@@ -8,12 +8,102 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model hsvalidity_treatments {
+model hsaccess_levels {
   id          Int    @id @default(autoincrement())
-  description String
+  description String @db.VarChar(150)
+
+  // employees employees[] @relation(map: "fk_employees_access_level")
 }
 
 model hsbranches {
-  id Int @id @default(autoincrement())
-  description String
+  id                  Int                   @id @default(autoincrement())
+  description         String                @db.VarChar(150)
+  hsvalidities        hsvalidities[]
+  hsvalidity_requests hsvalidity_requests[]
+
+  // employees employees[] @relation(map: "fk_employees_branch")
+}
+
+model hsvalidities {
+  id                  Int                   @id @default(autoincrement())
+  branch_id           Int
+  employee_id         Int
+  status              hsvalidities_status   @default(Pendente)
+  request_id          Int?
+  created_at          DateTime              @default(now()) @db.Timestamp(6)
+  modified_at         DateTime              @default(now()) @db.Timestamp(6)
+  hsbranches          hsbranches            @relation(fields: [branch_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validities_branch")
+  hsvalidity_requests hsvalidity_requests?  @relation(fields: [request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validities_request")
+  hsvalidity_products hsvalidity_products[]
+}
+
+model hsvalidity_products {
+  id                    Int                   @id @default(autoincrement())
+  validity_id           Int
+  product_cod           Int
+  quantity              Int
+  validity_date         DateTime              @db.Date
+  treat_id              Int                   @default(1)
+  hsvalidity_treatments hsvalidity_treatments @relation(fields: [treat_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_products_treat")
+  hsvalidities          hsvalidities          @relation(fields: [validity_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_products_validities")
+}
+
+model hsvalidity_request_products {
+  id                  Int                                @id @default(autoincrement())
+  request_id          Int
+  status              hsvalidity_request_products_status @default(Nao_vistoriado)
+  product_cod         Int
+  validity_date       DateTime                           @db.Date
+  hsvalidity_requests hsvalidity_requests                @relation(fields: [request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_request_products_request")
+}
+
+model hsvalidity_requests {
+  id                          Int                           @id @default(autoincrement())
+  branch_id                   Int
+  analyst_id                  Int
+  conferee_id                 Int
+  status                      hsvalidity_requests_status    @default(Pendente)
+  created_at                  DateTime                      @default(now()) @db.Timestamp(6)
+  modified_at                 DateTime                      @default(now()) @db.Timestamp(6)
+  hsvalidities                hsvalidities[]
+  hsvalidity_request_products hsvalidity_request_products[]
+  hsbranches                  hsbranches                    @relation(fields: [branch_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_requests_branch")
+}
+
+model hsvalidity_treatments {
+  id                  Int                   @id @default(autoincrement())
+  description         String                @db.VarChar(150)
+  hsvalidity_products hsvalidity_products[]
+}
+
+// model employees {
+//   id              Int             @id @default(autoincrement())
+//   branch_id       Int
+//   access_level    Int
+//   name            String          @db.VarChar(150)
+//   password        String          @db.VarChar(150)
+//   username        String          @db.VarChar(50)
+//   created_at      DateTime        @default(now()) @db.Timestamp(6)
+//   modified_at     DateTime        @default(now()) @db.Timestamp(6)
+//   hsbranches      hsbranches      @relation(fields: [branch_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_employees_branch")
+//   hsaccess_levels hsaccess_levels @relation(fields: [access_level], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_employees_access_level")
+// }
+
+enum hsvalidities_status {
+  Pendente
+  Em_andamento @map("Em andamento")
+  Concluido    @map("Concluído")
+}
+
+enum hsvalidity_request_products_status {
+  Nao_encontrado @map("Não encontrado")
+  Nao_vistoriado @map("Não vistoriado")
+  Vistoriado
+}
+
+enum hsvalidity_requests_status {
+  Pendente
+  Em_andamento @map("Em andamento")
+  Concluido    @map("Concluído")
+  Expirado
 }

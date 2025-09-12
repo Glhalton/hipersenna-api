@@ -1,10 +1,9 @@
 import fastify from "fastify";
+import routes from "./routes";
 
 const app = fastify();
 
-app.get('/', async (require, reply) => {
- return reply.send('Servidor rodando')
-})
+app.register(routes);
 
 app.listen({port: 8080}).then(() => {
     console.log('Server is running');
