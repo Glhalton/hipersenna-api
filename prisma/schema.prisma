@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model hsvalidity_treatments {
+  id          Int    @id @default(autoincrement())
+  description String
+}
+
+model hsbranches {
+  id Int @id @default(autoincrement())
+  description String
+}
