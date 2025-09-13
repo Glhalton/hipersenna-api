@@ -7,3 +7,7 @@ export const createValiditiesSchema = z.object({
     status: z.enum(hsvalidities_status),
     request_id: z.number().optional(),
 })
+
+export const getValiditiesParamSchema = z.object({
+    validityId: z.number()
+})

@@ -1,11 +1,15 @@
 import { FastifyInstance } from "fastify";
 import { createValidityRequestsSchema } from "./schema";
 import { createValidityRequest } from "./service";
+import { prisma } from "../../lib/prisma";
 
 
 export async function validityRequestsRoutes(app: FastifyInstance){
 
-    app.get('/', async () => {
+    app.get('/', async (request, reply) => {
+
+        const validityRequests = await prisma.hsvalidity_requests.findMany()
+        return reply.status(200).send(validityRequests);
 
     })
 

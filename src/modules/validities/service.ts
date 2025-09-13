@@ -3,7 +3,7 @@ import { prisma } from "../../lib/prisma"
 
 export async function createValidity(data: {
     branch_id: number
-    employee_id:number
+    employee_id: number
     status: hsvalidities_status
     request_id?: number
 }) {
@@ -11,4 +11,12 @@ export async function createValidity(data: {
         data
     })
     return validity
+}
+
+export async function getValidityById(validityId: number){
+    return await prisma.hsvalidities.findUnique({
+        where: {
+            id : validityId
+        }
+    })
 }
