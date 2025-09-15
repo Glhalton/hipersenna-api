@@ -11,22 +11,14 @@ export default async function validitiesRoutes(app: FastifyInstance) {
     });
 
     app.get('/:validityId', async (request, reply) => {
-    
-        const {validityId} = getValiditiesParamSchema.parse(request.params);
-        
+        const { validityId } = getValiditiesParamSchema.parse(request.params);
         const validityRequest = await getValidityById(validityId);
         return reply.status(200).send(validityRequest);
-
     });
 
     app.post('/', async (request, reply) => {
-
         const data = createValiditiesSchema.parse(request.body);
         const validity = await createValidity(data);
         return reply.status(201).send({ validityId: validity.id });
     });
-
-
-
-
 }
