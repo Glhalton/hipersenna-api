@@ -108,3 +108,67 @@ enum hsvalidity_requests_status {
   Expirado
 }
 
+// hsemployees
+model hsemployees {
+  id                String    @id
+  name              String
+  username          String
+  access_level      Int
+  branch_id         Int
+  display_username  String
+  email             String
+  email_verified    Boolean   @default(false)
+  image             String?
+  created_at        DateTime  @default(now())
+  modified_at       DateTime  @default(now()) @updatedAt
+  sessions          hssessions[]
+  accounts          hsaccounts[]
+
+  @@unique([username])
+  @@map("hsemployees")
+}
+
+model hssessions {
+  id          String   @id
+  expires_at  DateTime
+  token       String
+  created_at  DateTime @default(now())
+  modified_at DateTime @updatedAt
+  ip_address  String?
+  user_agent  String?
+  user_id     String
+  user        hsemployees     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("hssessions")
+}
+
+model hsaccounts {
+  id                        String    @id
+  account_id                String
+  provider_id               String
+  user_id                   String
+  user                      hsemployees      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  access_token              String?
+  refresh_token             String?
+  id_token                  String?
+  access_token_expires_at   DateTime?
+  refresh_token_expires_at  DateTime?
+  scope                     String?
+  password                  String?
+  created_at                DateTime  @default(now())
+  modified_at               DateTime  @updatedAt
+
+  @@map("hsaccounts")
+}
+
+model hsverifications {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  @@map("hsverifications")
+}
