@@ -76,18 +76,6 @@ model hsvalidity_treatments {
   hsvalidity_products hsvalidity_products[]
 }
 
-// model employees {
-//   id              Int             @id @default(autoincrement())
-//   branch_id       Int
-//   access_level    Int
-//   name            String          @db.VarChar(150)
-//   password        String          @db.VarChar(150)
-//   username        String          @db.VarChar(50)
-//   created_at      DateTime        @default(now()) @db.Timestamp(6)
-//   modified_at     DateTime        @default(now()) @db.Timestamp(6)
-//   hsbranches      hsbranches      @relation(fields: [branch_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_employees_branch")
-//   hsaccess_levels hsaccess_levels @relation(fields: [access_level], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_employees_access_level")
-// }
 
 enum hsvalidities_status {
   Pendente
@@ -108,3 +96,64 @@ enum hsvalidity_requests_status {
   Expirado
 }
 
+model User {
+  id              String    @id
+  name            String
+  username        String
+  displayUsername String
+  email           String
+  emailVerified   Boolean   @default(false)
+  image           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @default(now()) @updatedAt
+  sessions        Session[]
+  accounts        Account[]
+
+  @@unique([username])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  @@map("verification")
+}

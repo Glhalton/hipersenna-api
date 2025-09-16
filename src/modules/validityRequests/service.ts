@@ -1,5 +1,5 @@
-import { hsvalidity_requests_status } from "../../generated/prisma"
-import { prisma } from "../../lib/prisma"
+import { hsvalidity_requests_status } from "../../generated/prisma/client.js"
+import { prisma } from "../../lib/prisma.js"
 
 export async function createValidityRequest(data: {
     branch_id: number,

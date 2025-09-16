@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { hsvalidities_status } from "../../generated/prisma";
+import { hsvalidities_status } from "../../generated/prisma/client.js"
 
 export const createValiditiesSchema = z.object({
     branch_id: z.number(),

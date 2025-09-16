@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
-import validitiesRoutes from "./modules/validities/routes";
-import { validityRequestsRoutes } from "./modules/validityRequests/routes";
+import validitiesRoutes from "./modules/validities/routes.js";
+import { validityRequestsRoutes } from "./modules/validityRequests/routes.js";
 
 export default async function (app:FastifyInstance){
     app.register(validitiesRoutes, {prefix: '/validities'});

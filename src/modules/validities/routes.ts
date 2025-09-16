@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
-import { createValidity, getValidityById } from "./service";
-import { createValiditiesSchema, getValiditiesParamSchema } from "./schema";
-import { prisma } from "../../lib/prisma";
+import { createValidity, getValidityById } from "./service.js";
+import { createValiditiesSchema, getValiditiesParamSchema } from "./schema.js";
+import { prisma } from "../../lib/prisma.js";
 
 export default async function validitiesRoutes(app: FastifyInstance) {
 
