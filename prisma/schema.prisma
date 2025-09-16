@@ -96,58 +96,61 @@ enum hsvalidity_requests_status {
   Expirado
 }
 
-model User {
-  id              String    @id
-  name            String
-  username        String
-  displayUsername String
-  email           String
-  emailVerified   Boolean   @default(false)
-  image           String?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @default(now()) @updatedAt
-  sessions        Session[]
-  accounts        Account[]
+// hsemployees
+model hsemployees {
+  id                String    @id
+  name              String
+  username          String
+  access_level      Int
+  branch_id         Int
+  display_username  String
+  email             String
+  email_verified    Boolean   @default(false)
+  image             String?
+  created_at        DateTime  @default(now())
+  modified_at       DateTime  @default(now()) @updatedAt
+  sessions          hssessions[]
+  accounts          hsaccounts[]
 
   @@unique([username])
-  @@map("user")
+  @@map("hsemployees")
 }
 
-model Session {
-  id        String   @id
-  expiresAt DateTime
-  token     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  ipAddress String?
-  userAgent String?
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+model hssessions {
+  id          String   @id
+  expires_at  DateTime
+  token       String
+  created_at  DateTime @default(now())
+  modified_at DateTime @updatedAt
+  ip_address  String?
+  user_agent  String?
+  user_id     String
+  user        hsemployees     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@unique([token])
-  @@map("session")
+  @@map("hssessions")
 }
 
-model Account {
-  id                    String    @id
-  accountId             String
-  providerId            String
-  userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  accessToken           String?
-  refreshToken          String?
-  idToken               String?
-  accessTokenExpiresAt  DateTime?
-  refreshTokenExpiresAt DateTime?
-  scope                 String?
-  password              String?
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
+model hsaccounts {
+  id                        String    @id
+  account_id                String
+  provider_id               String
+  user_id                   String
+  user                      hsemployees      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  access_token              String?
+  refresh_token             String?
+  id_token                  String?
+  access_token_expires_at   DateTime?
+  refresh_token_expires_at  DateTime?
+  scope                     String?
+  password                  String?
+  created_at                DateTime  @default(now())
+  modified_at               DateTime  @updatedAt
 
-  @@map("account")
+  @@map("hsaccounts")
 }
 
-model Verification {
+model hsverifications {
   id         String   @id
   identifier String
   value      String
@@ -155,5 +158,5 @@ model Verification {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now()) @updatedAt
 
-  @@map("verification")
+  @@map("hsverifications")
 }

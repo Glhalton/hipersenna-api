@@ -1,18 +1,21 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "_version": "22.0.0",
+  "_version": "24.0.0",
+
   "compilerOptions": {
     "lib": [
       "es2024",
       "ESNext.Array",
       "ESNext.Collection",
-      "ESNext.Iterator"
+      "ESNext.Iterator",
+      "ESNext.Promise"
     ],
-    "module": "nodenext",
-    "target": "es2022",
+    "module": "esnext",
+    "target": "es2017",
+
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node16",
+    "moduleResolution": "bundler"
   }
 }
