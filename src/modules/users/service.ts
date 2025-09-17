@@ -1,35 +1,24 @@
-// import { auth } from "../../lib/auth";
+import { auth } from "../../lib/auth";
 
-// interface userSignUp {
-//     name: string;
-//     email: string;
-//     username: string;
-//     password: string;
-//     branch_id: number;
-//     access_level: number;
-// }
+export async function signUpService(data: any) {
+    return await auth.api.signUpEmail({
+        body: {
+            email: data.email,
+            name: data.name,
+            username: data.username,
+            password: data.password,
+            displayUsername: data.username,
+            branch_id: data.branch_id,
+            access_level: data.access_level
+        },
+    });
+}
 
-// export async function signUpUser({userSignUp}: {userSignUp: userSignUp | unknown}) {
-//     const { email, name, password, username, branch_id, access_level } = userSignUp as {
-//         email: string,
-//         name: string,
-//         password: string,
-//         username: string,
-//         branch_id: number,
-//         access_level: number,
-//     }
-
-//     const data = await auth.api.signUpEmail({
-//         body: {
-//             email,
-//             name,
-//             password,
-//             username,
-//             branch_id,
-//             access_level,
-//             displayUsername: username,
-//         }
-//     })
-
-//     return data;
-// }
+export async function signInService(data: any) {
+    return await auth.api.signInUsername({
+        body: {
+            username: data.username,
+            password: data.password
+        },
+    });
+}

@@ -1,11 +1,15 @@
-// import z from "zod";
+import z from "zod";
 
-// export const userReq = z
-// .object({
-//     name: z.string().min(3, { message: "O nome precisa ter no mínimo 3 caractéres" }),
-//     email: z.string().email({ message: "E-mail inválido" }),
-//     username: z.string(),
-//     password: z.string().min(8, { message: 'A senha deve ter pelo menos 8 caracteres' }),
-//     branchId: z.number(),
-//     accessLevel: z.number(),
-// })
+export const signUpSchema = z.object({
+    email: z.email(),
+    name: z.string().min(1),
+    username: z.string().min(3),
+    password: z.string().min(6),
+    branch_id: z.number(),
+    acess_level: z.number(),
+})
+
+export const signInSchema = z.object({
+    username: z.string(),
+    password: z.string()
+});
