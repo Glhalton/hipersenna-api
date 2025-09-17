@@ -18,16 +18,26 @@ export default async function validitiesRoutes(app: FastifyInstance) {
     });
 
     app.post('/', async (request, reply) => {
+        try {
 
-        const bodySchema = z.object({
-            validity: createValiditiesSchema,
-            products: z.array(productSchema)
-        });
+            const bodySchema = z.object({
+                validity: createValiditiesSchema,
+                products: z.array(productSchema)
+            });
 
-        const { validity, products } = bodySchema.parse(request.body);
+            const { validity, products } = bodySchema.parse(request.body);
 
 
-        const createdValidity = await createValidity({ validity, products });
-        return reply.status(201).send(createValidity);
+            const createdValidity = await createValidity({ validity, products });
+
+            return reply.status(201).send({
+                createdValidity,
+                mensagem: "Validade criada com sucesso"
+            });
+
+        } catch (err: any) {
+            return reply.status(400).send({ error: err.message })
+        }
+
     });
 }

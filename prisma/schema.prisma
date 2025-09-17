@@ -11,8 +11,6 @@ datasource db {
 model hsaccess_levels {
   id          Int    @id @default(autoincrement())
   description String @db.VarChar(150)
-
-  // employees employees[] @relation(map: "fk_employees_access_level")
 }
 
 model hsbranches {
@@ -20,19 +18,18 @@ model hsbranches {
   description         String                @db.VarChar(150)
   hsvalidities        hsvalidities[]
   hsvalidity_requests hsvalidity_requests[]
-
-  // employees employees[] @relation(map: "fk_employees_branch")
 }
 
 model hsvalidities {
   id                  Int                   @id @default(autoincrement())
   branch_id           Int
-  employee_id         Int
+  employee_id         String
   status              hsvalidities_status   @default(Pendente)
   request_id          Int?
   created_at          DateTime              @default(now()) @db.Timestamp(6)
   modified_at         DateTime              @default(now()) @db.Timestamp(6)
   hsbranches          hsbranches            @relation(fields: [branch_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validities_branch")
+  hsemployees         hsemployees           @relation(fields: [employee_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validities_employee")
   hsvalidity_requests hsvalidity_requests?  @relation(fields: [request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validities_request")
   hsvalidity_products hsvalidity_products[]
 }
@@ -48,6 +45,21 @@ model hsvalidity_products {
   hsvalidities          hsvalidities          @relation(fields: [validity_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_products_validities")
 }
 
+model hsvalidity_requests {
+  id                          Int                           @id @default(autoincrement())
+  branch_id                   Int
+  analyst_id                  String
+  conferee_id                 String
+  status                      hsvalidity_requests_status    @default(Pendente)
+  created_at                  DateTime                      @default(now()) @db.Timestamp(6)
+  modified_at                 DateTime                      @default(now()) @db.Timestamp(6)
+  hsvalidities                hsvalidities[]
+  hsvalidity_request_products hsvalidity_request_products[]
+  analyst                     hsemployees                   @relation("AnalystRelation", fields: [analyst_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_request_analyst")
+  conferee                    hsemployees                   @relation("ConfereeRelation", fields: [conferee_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_request_conferee")
+  hsbranches                  hsbranches                    @relation(fields: [branch_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_requests_branch")
+}
+
 model hsvalidity_request_products {
   id                  Int                                @id @default(autoincrement())
   request_id          Int
@@ -57,25 +69,76 @@ model hsvalidity_request_products {
   hsvalidity_requests hsvalidity_requests                @relation(fields: [request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_request_products_request")
 }
 
-model hsvalidity_requests {
-  id                          Int                           @id @default(autoincrement())
-  branch_id                   Int
-  analyst_id                  Int
-  conferee_id                 Int
-  status                      hsvalidity_requests_status    @default(Pendente)
-  created_at                  DateTime                      @default(now()) @db.Timestamp(6)
-  modified_at                 DateTime                      @default(now()) @db.Timestamp(6)
-  hsvalidities                hsvalidities[]
-  hsvalidity_request_products hsvalidity_request_products[]
-  hsbranches                  hsbranches                    @relation(fields: [branch_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_requests_branch")
-}
-
 model hsvalidity_treatments {
   id                  Int                   @id @default(autoincrement())
   description         String                @db.VarChar(150)
   hsvalidity_products hsvalidity_products[]
 }
 
+model hsemployees {
+  id               String                @id
+  name             String
+  username         String                @unique
+  access_level     Int
+  branch_id        Int
+  display_username String
+  email            String
+  email_verified   Boolean               @default(false)
+  image            String?
+  created_at       DateTime              @default(now())
+  modified_at      DateTime              @default(now()) @updatedAt
+  accounts         hsaccounts[]
+  sessions         hssessions[]
+  hsvalidities     hsvalidities[]
+  analystRequests  hsvalidity_requests[] @relation("AnalystRelation")
+  confereeRequests hsvalidity_requests[] @relation("ConfereeRelation")
+
+  @@map("hsemployees")
+}
+
+model hssessions {
+  id          String      @id
+  expires_at  DateTime
+  token       String      @unique
+  created_at  DateTime    @default(now())
+  modified_at DateTime    @updatedAt
+  ip_address  String?
+  user_agent  String?
+  user_id     String
+  user        hsemployees @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("hssessions")
+}
+
+model hsaccounts {
+  id                       String      @id
+  account_id               String
+  provider_id              String
+  user_id                  String
+  access_token             String?
+  refresh_token            String?
+  id_token                 String?
+  access_token_expires_at  DateTime?
+  refresh_token_expires_at DateTime?
+  scope                    String?
+  password                 String?
+  created_at               DateTime    @default(now())
+  modified_at              DateTime    @updatedAt
+  user                     hsemployees @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("hsaccounts")
+}
+
+model hsverifications {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  @@map("hsverifications")
+}
 
 enum hsvalidities_status {
   Pendente
@@ -94,69 +157,4 @@ enum hsvalidity_requests_status {
   Em_andamento @map("Em andamento")
   Concluido    @map("Concluído")
   Expirado
-}
-
-// hsemployees
-model hsemployees {
-  id                String    @id
-  name              String
-  username          String
-  access_level      Int
-  branch_id         Int
-  display_username  String
-  email             String
-  email_verified    Boolean   @default(false)
-  image             String?
-  created_at        DateTime  @default(now())
-  modified_at       DateTime  @default(now()) @updatedAt
-  sessions          hssessions[]
-  accounts          hsaccounts[]
-
-  @@unique([username])
-  @@map("hsemployees")
-}
-
-model hssessions {
-  id          String   @id
-  expires_at  DateTime
-  token       String
-  created_at  DateTime @default(now())
-  modified_at DateTime @updatedAt
-  ip_address  String?
-  user_agent  String?
-  user_id     String
-  user        hsemployees     @relation(fields: [user_id], references: [id], onDelete: Cascade)
-
-  @@unique([token])
-  @@map("hssessions")
-}
-
-model hsaccounts {
-  id                        String    @id
-  account_id                String
-  provider_id               String
-  user_id                   String
-  user                      hsemployees      @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  access_token              String?
-  refresh_token             String?
-  id_token                  String?
-  access_token_expires_at   DateTime?
-  refresh_token_expires_at  DateTime?
-  scope                     String?
-  password                  String?
-  created_at                DateTime  @default(now())
-  modified_at               DateTime  @updatedAt
-
-  @@map("hsaccounts")
-}
-
-model hsverifications {
-  id         String   @id
-  identifier String
-  value      String
-  expiresAt  DateTime
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now()) @updatedAt
-
-  @@map("hsverifications")
 }

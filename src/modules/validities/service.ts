@@ -20,7 +20,7 @@ export const createValidity = async ({ validity, products }: ValidityInput) => {
         data: {
             branch_id: validity.branch_id,
             employee_id: validity.employee_id,
-            request_id: validity.request_id,
+            request_id: validity.request_id || null,
             hsvalidity_products: {
                 create: products.map(p => ({
                     product_cod: p.product_cod,
