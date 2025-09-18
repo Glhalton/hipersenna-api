@@ -10,6 +10,17 @@ export async function getValidityById(validityId: number) {
     })
 }
 
+export async function getValidityByEmployeeId(employeeId: string) {
+    return await prisma.hsvalidities.findMany({
+        where: {
+            employee_id: employeeId
+        },
+        include: {
+            hsvalidity_products: true,
+        }
+    })
+}
+
 type ValidityInput = {
     validity: z.infer<typeof createValiditiesSchema>;
     products: z.infer<typeof productSchema>[];

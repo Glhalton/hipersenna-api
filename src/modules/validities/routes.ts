@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
-import { createValidity, getValidityById } from "./service.js";
-import { createValiditiesSchema, getValiditiesParamSchema, productSchema } from "./schema.js";
+import { createValidity, getValidityByEmployeeId, getValidityById } from "./service.js";
+import { createValiditiesSchema, getValiditiesByEmployeeParamSchema, getValiditiesParamSchema, productSchema } from "./schema.js";
 import { prisma } from "../../lib/prisma.js";
 import z from "zod";
 
@@ -13,8 +13,14 @@ export default async function validitiesRoutes(app: FastifyInstance) {
 
     app.get('/:validityId', async (request, reply) => {
         const { validityId } = getValiditiesParamSchema.parse(request.params);
-        const validityRequest = await getValidityById(validityId);
-        return reply.status(200).send(validityRequest);
+        const validity = await getValidityById(validityId);
+        return reply.status(200).send(validity);
+    });
+
+    app.get('/employee/:employeeId', async (request, reply) => {
+        const { employeeId } = getValiditiesByEmployeeParamSchema.parse(request.params);
+        const validitiesByEmployee = await getValidityByEmployeeId(employeeId);
+        return reply.status(200).send({ validitiesByEmployee });
     });
 
     app.post('/', async (request, reply) => {

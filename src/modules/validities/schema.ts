@@ -16,3 +16,8 @@ export const getValiditiesParamSchema = z.object({
     validityId: z.number()
 })
 
+export const getValiditiesByEmployeeParamSchema = z.object({
+    employeeId: z.string()
+})
+
+
