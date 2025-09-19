@@ -38,7 +38,7 @@ export default async function validitiesRoutes(app: FastifyInstance) {
 
             return reply.status(201).send({
                 createdValidity,
-                mensagem: "Validade criada com sucesso"
+                message: "Validade criada com sucesso"
             });
 
         } catch (err: any) {
