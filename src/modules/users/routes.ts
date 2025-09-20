@@ -1,12 +1,12 @@
 import { FastifyInstance } from "fastify";
 import { auth } from "../../lib/auth";
-import { signInSchema, signUpSchema } from "./schema";
+import { signInParamSchema, signUpParamSchema } from "./schema";
 import { signInService, signUpService } from "./service";
 
 export default async function userAuthRoutes(app: FastifyInstance) {
     app.post('/signup', async (request, reply) => {
         try {
-            const parsed = signUpSchema.parse(request.body);
+            const parsed = signUpParamSchema.parse(request.body);
 
             const data = await signUpService(parsed);
 
@@ -18,7 +18,7 @@ export default async function userAuthRoutes(app: FastifyInstance) {
 
     app.post('/signin', async (request, reply) => {
         try {
-            const parsed = signInSchema.parse(request.body);
+            const parsed = signInParamSchema.parse(request.body);
             const data = await signInService(parsed);
 
             return reply.status(200).send({

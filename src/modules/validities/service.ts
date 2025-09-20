@@ -1,8 +1,8 @@
 import z from "zod";
 import { prisma } from "../../lib/prisma.js"
-import { createValiditiesSchema, productSchema } from "./schema.js";
+import { createValidityParamSchema, createValidityProductParamSchema } from "./schema.js";
 
-export async function getValidityById(validityId: number) {
+export const getValidityById = async (validityId: number) => {
     return await prisma.hsvalidities.findUnique({
         where: {
             id: validityId
@@ -10,7 +10,7 @@ export async function getValidityById(validityId: number) {
     })
 }
 
-export async function getValidityByEmployeeId(employeeId: string) {
+export const listValiditiesByEmployeeId = async (employeeId: string) => {
     return await prisma.hsvalidities.findMany({
         where: {
             employee_id: employeeId
@@ -22,12 +22,12 @@ export async function getValidityByEmployeeId(employeeId: string) {
 }
 
 type ValidityInput = {
-    validity: z.infer<typeof createValiditiesSchema>;
-    products: z.infer<typeof productSchema>[];
+    validity: z.infer<typeof createValidityParamSchema>;
+    products: z.infer<typeof createValidityProductParamSchema>[];
 };
 
 export const createValidity = async ({ validity, products }: ValidityInput) => {
-    const createdValidity = await prisma.hsvalidities.create({
+    return await prisma.hsvalidities.create({
         data: {
             branch_id: validity.branch_id,
             employee_id: validity.employee_id,
@@ -44,7 +44,5 @@ export const createValidity = async ({ validity, products }: ValidityInput) => {
             hsvalidity_products: true
         }
     });
-
-    return createdValidity;
 }
 

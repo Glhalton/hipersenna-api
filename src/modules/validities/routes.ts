@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
-import { createValidity, getValidityByEmployeeId, getValidityById } from "./service.js";
-import { createValiditiesSchema, getValiditiesByEmployeeParamSchema, getValiditiesParamSchema, productSchema } from "./schema.js";
+import { createValidity, listValiditiesByEmployeeId, getValidityById } from "./service.js";
+import { createValidityParamSchema, listValiditiesByEmployeeParamSchema, getValidityParamSchema, createValidityProductParamSchema } from "./schema.js";
 import { prisma } from "../../lib/prisma.js";
 import z from "zod";
 
@@ -12,14 +12,14 @@ export default async function validitiesRoutes(app: FastifyInstance) {
     });
 
     app.get('/:validityId', async (request, reply) => {
-        const { validityId } = getValiditiesParamSchema.parse(request.params);
+        const { validityId } = getValidityParamSchema.parse(request.params);
         const validity = await getValidityById(validityId);
         return reply.status(200).send(validity);
     });
 
     app.get('/employee/:employeeId', async (request, reply) => {
-        const { employeeId } = getValiditiesByEmployeeParamSchema.parse(request.params);
-        const validitiesByEmployee = await getValidityByEmployeeId(employeeId);
+        const { employeeId } = listValiditiesByEmployeeParamSchema.parse(request.params);
+        const validitiesByEmployee = await listValiditiesByEmployeeId(employeeId);
         return reply.status(200).send({ validitiesByEmployee });
     });
 
@@ -27,8 +27,8 @@ export default async function validitiesRoutes(app: FastifyInstance) {
         try {
 
             const bodySchema = z.object({
-                validity: createValiditiesSchema,
-                products: z.array(productSchema)
+                validity: createValidityParamSchema,
+                products: z.array(createValidityProductParamSchema)
             });
 
             const { validity, products } = bodySchema.parse(request.body);
