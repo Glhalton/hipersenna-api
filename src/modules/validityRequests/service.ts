@@ -1,11 +1,13 @@
-import z from "zod";
-import { hsvalidity_requests_status } from "../../generated/prisma/client.js"
 import { prisma } from "../../lib/prisma.js"
 import { createValidityRequestsParamSchema, createValidityRequestProductsParamSchema } from "./schema.js";
+import { hsvalidity_requests_status } from "../../generated/prisma/client.js"
+import { getOracleConnection } from "../../../oracleClient.js";
+import oracledb from "oracledb";
+import z from "zod";
 
-
+//Tambem retorna as descrições dos produtos com base no banco da oracle
 export const listValidityRequestsByEmployeeId = async (employeeId: string) => {
-    return await prisma.hsvalidity_requests.findMany({
+    const dadosPostgres = await prisma.hsvalidity_requests.findMany({
         where: {
             conferee_id: employeeId,
             status: "Pendente",
@@ -13,7 +15,45 @@ export const listValidityRequestsByEmployeeId = async (employeeId: string) => {
         include: {
             hsvalidity_request_products: true
         }
-    })
+    });
+
+    const allCodes = dadosPostgres.flatMap(req =>
+        req.hsvalidity_request_products.map(p => p.product_cod)
+    );
+
+    if (allCodes.length === 0) return dadosPostgres;
+
+    const connection = await getOracleConnection();
+
+    const query = `
+        SELECT codprod, descricao
+        FROM pcprodut
+        WHERE codprod IN (${allCodes.map(() => ":code").join(",")})
+    `;
+
+    const result = await connection.execute(
+        query,
+        allCodes,
+        { outFormat: oracledb.OUT_FORMAT_OBJECT }
+    );
+
+    await connection.close();
+
+    const descricaoMap: Record<string, string> = {};
+    (result.rows || []).forEach((row: any) => {
+        descricaoMap[row.CODPROD] = row.DESCRICAO;
+    });
+
+    const enrichedData = dadosPostgres.map(req => ({
+        ...req,
+        hsvalidity_request_products: req.hsvalidity_request_products.map(prod => ({
+            ...prod,
+            description: descricaoMap[prod.product_cod] || null,
+        })),
+    }));
+
+    return enrichedData;
+
 }
 
 type ValidityRequestInput = {
