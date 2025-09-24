@@ -7,9 +7,18 @@ export default async function userAuthRoutes(app: FastifyInstance) {
 
     app.get("/session", async (request, reply) => {
         try {
-            const session = await auth.api.getSession({});
+            
+            const headers = new Headers();
 
-            if (!session){
+            for (const [key, value] of Object.entries(request.headers)) {
+                if (value) {
+                    headers.append(key, Array.isArray(value) ? value.join(",") : value);
+                }
+            }
+
+            const session = await auth.api.getSession({ headers });
+
+            if (!session) {
                 return reply.status(401).send({
                     message: "Sessão inválida ou expirada"
                 });
@@ -20,12 +29,12 @@ export default async function userAuthRoutes(app: FastifyInstance) {
                 user: session.user,
                 session,
             });
-        } catch (err: any){
-            return reply.status(400).send({error: err.message});
+        } catch (err: any) {
+            return reply.status(400).send({ error: err.message });
         }
     });
 
-    
+
 
     app.post('/signup', async (request, reply) => {
         try {
