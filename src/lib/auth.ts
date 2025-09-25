@@ -38,6 +38,10 @@ export const auth = betterAuth({
             branch_id: {
                 type: "number",
                 required: true,
+            },
+            winthor_id: {
+                type: "number",
+                required: true,
             }
         }
     },

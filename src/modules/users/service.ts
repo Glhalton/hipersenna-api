@@ -10,7 +10,8 @@ export async function signUpService(data: any) {
             password: data.password,
             displayUsername: data.username,
             branch_id: data.branch_id,
-            access_level: data.access_level
+            access_level: data.access_level,
+            winthor_id: data.winthor_id
         },
     });
 
@@ -28,6 +29,7 @@ export async function signUpService(data: any) {
         username: responseUser?.username,
         branchId: responseUser?.branch_id,
         accessLevel: responseUser?.access_level,
+        winthor_id: responseUser?.winthor_id,
         createdAt: responseUser?.created_at,
         modifiedAt: responseUser?.modified_at
     }
