@@ -17,6 +17,7 @@ export const listValidityRequestsByEmployeeId = async (employeeId: string) => {
         }
     });
 
+    //
     const allCodes = dadosPostgres.flatMap(req =>
         req.hsvalidity_request_products.map(p => p.product_cod)
     );

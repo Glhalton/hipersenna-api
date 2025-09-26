@@ -5,17 +5,19 @@ import { signInService, signUpService } from "./service";
 
 export default async function userAuthRoutes(app: FastifyInstance) {
 
+
     app.get("/session", async (request, reply) => {
         try {
-            
+            // Cria uma instância de Headers
             const headers = new Headers();
 
-            for (const [key, value] of Object.entries(request.headers)) {
-                if (value) {
-                    headers.append(key, Array.isArray(value) ? value.join(",") : value);
-                }
+            // Pega o token enviado no header Authorization
+            const token = request.headers.authorization; // normalmente "Bearer <token>"
+            if (token) {
+                headers.set("Authorization", token);
             }
 
+            // Chama a função getSession do SDK passando a instância correta de Headers
             const session = await auth.api.getSession({ headers });
 
             if (!session) {
@@ -34,33 +36,30 @@ export default async function userAuthRoutes(app: FastifyInstance) {
         }
     });
 
+    
 
 
-    app.post('/signup', async (request, reply) => {
-        try {
-            const parsed = signUpParamSchema.parse(request.body);
+app.post('/signup', async (request, reply) => {
+    try {
+        const parsed = signUpParamSchema.parse(request.body);
 
-            const data = await signUpService(parsed);
+        const data = await signUpService(parsed);
 
-            return reply.status(201).send(data);
-        } catch (err: any) {
-            return reply.status(400).send({ error: err.message })
-        }
-    });
+        return reply.status(201).send(data);
+    } catch (err: any) {
+        return reply.status(400).send({ error: err.message })
+    }
+});
 
-    app.post('/signin', async (request, reply) => {
-        try {
-            const parsed = signInParamSchema.parse(request.body);
-            const data = await signInService(parsed);
+app.post('/signin', async (request, reply) => {
+    try {
+        const parsed = signInParamSchema.parse(request.body);
+        const data = await signInService(parsed);
 
-            return reply.status(200).send({
-                message: 'Usuário logado com sucesso',
-                token: data?.token,
-                user: data?.user
-            });
+        return reply.status(200).send(data);
 
-        } catch (err: any) {
-            return reply.status(400).send({ error: err.message });
-        }
-    });
+    } catch (err: any) {
+        return reply.status(400).send({ error: "Usuário ou senha inválidos!" });
+    }
+});
 }

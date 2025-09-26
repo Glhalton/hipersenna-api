@@ -34,11 +34,29 @@ export async function signUpService(data: any) {
 }
 
 export async function signInService(data: any) {
-    return await auth.api.signInUsername({
+    const responseSignIn = await auth.api.signInUsername({
         body: {
             username: data.username,
             password: data.password
         },
     });
+
+    const responseUser = await prisma.hsemployees.findUnique({
+        where: {
+            id: responseSignIn?.user.id
+        }
+    });
+
+    return {
+        token: responseSignIn?.token,
+        id: responseUser?.id,
+        email: responseUser?.email,
+        name: responseUser?.name,
+        username: responseUser?.username,
+        branchId: responseUser?.branch_id,
+        accessLevel: responseUser?.access_level,
+        createdAt: responseUser?.created_at,
+        modifiedAt: responseUser?.modified_at
+    }
 }
 
