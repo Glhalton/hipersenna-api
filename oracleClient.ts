@@ -3,12 +3,14 @@ import oracledb from "oracledb";
 export async function getOracleConnection() {
     try {
 
-        oracledb.initOracleClient({ libDir: "C:\\oracle\\instantclient-basic-windows.x64-23.9.0.25.07\\instantclient_23_9" });
+        if (process.env.ORACLE_CLIENT_DIR) {
+            oracledb.initOracleClient({ libDir: process.env.ORACLE_CLIENT_DIR });
+        }
 
         const connection = await oracledb.getConnection({
-            user: "CLIENTES",
-            password: "hipcl089al",
-            connectString: "10.101.0.3:1521/wint"
+            user: process.env.USER_DB,
+            password: process.env.PASSWORD_DB,
+            connectString: process.env.CONNECTION_STRING,
         });
 
         console.log("Conectado ao Oracle com sucesso!");
