@@ -25,15 +25,12 @@ export default async function validitiesRoutes(app: FastifyInstance) {
 
     app.post('/', async (request, reply) => {
         try {
-
             const bodySchema = z.object({
                 validity: createValidityParamSchema,
                 products: z.array(createValidityProductParamSchema)
             });
 
             const { validity, products } = bodySchema.parse(request.body);
-
-
             const createdValidity = await createValidity({ validity, products });
 
             return reply.status(201).send({
@@ -44,6 +41,5 @@ export default async function validitiesRoutes(app: FastifyInstance) {
         } catch (err: any) {
             return reply.status(400).send({ error: err.message })
         }
-
     });
 }

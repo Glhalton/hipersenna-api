@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { createValidityRequestsParamSchema, getValidityRequestsByEmployeeIdParamSchema, createValidityRequestProductsParamSchema, updateValidityRequestByIdParamSchema } from "./schema.js";
-import { createValidityRequest, listValidityRequestsByEmployeeId, updateValidityRequestById } from "./service.js";
+import { createValidityRequest, listValidityRequestsByEmployeeId, updateValidityRequest } from "./service.js";
 import { prisma } from "../../lib/prisma.js";
 import z from "zod";
 
@@ -52,16 +52,22 @@ export async function validityRequestsRoutes(app: FastifyInstance) {
 
     })
 
-    app.patch('/', async (request, reply) => {
+    app.patch("/validityRequestsUpdate", async (request, reply) => {
         try {
-            const {requestId, status} = updateValidityRequestByIdParamSchema.parse(request.body);
-            const validityRequestUpdate = await updateValidityRequestById(requestId, status);
-            return reply.status(200).send({
-                message: "Status da validade alterada",
-                validityRequestUpdate
-            })
-        } catch(err: any){
-            return reply.status(400).send({error: err.message})
+            const data = updateValidityRequestByIdParamSchema.parse(request.body);
+            const validityRequestUpdate = await updateValidityRequest(data);
+
+            return reply.send({
+                success: true,
+                message: "Solicitação e produtos atualizados com sucesso",
+                validityRequestUpdate,
+            });
+        } catch (error: any) {
+            console.error(error);
+            return reply.status(500).send({
+                success: false,
+                message: error.message || "Erro ao atualizar solicitação",
+            });
         }
-    })
+    });
 }

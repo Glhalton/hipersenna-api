@@ -1,6 +1,8 @@
 import z from "zod";
 import { prisma } from "../../lib/prisma.js"
 import { createValidityParamSchema, createValidityProductParamSchema } from "./schema.js";
+import { getOracleConnection } from "../../../oracleClient.js";
+import oracledb from "oracledb";
 
 export const getValidityById = async (validityId: number) => {
     return await prisma.hsvalidities.findUnique({
@@ -8,17 +10,57 @@ export const getValidityById = async (validityId: number) => {
             id: validityId
         }
     })
+
 }
 
 export const listValiditiesByEmployeeId = async (employeeId: string) => {
-    return await prisma.hsvalidities.findMany({
+    const postgreData = await prisma.hsvalidities.findMany({
         where: {
             employee_id: employeeId
         },
         include: {
             hsvalidity_products: true,
         }
-    })
+    });
+
+
+    //
+    const allCodes = postgreData.flatMap(req =>
+        req.hsvalidity_products.map(p => p.product_cod)
+    );
+
+    if (allCodes.length === 0) return postgreData;
+
+    const connection = await getOracleConnection();
+
+    const query = `
+            SELECT codprod, descricao
+            FROM pcprodut
+            WHERE codprod IN (${allCodes.map(() => ":code").join(",")})
+        `;
+
+    const result = await connection.execute(
+        query,
+        allCodes,
+        { outFormat: oracledb.OUT_FORMAT_OBJECT }
+    );
+
+    await connection.close();
+
+    const descricaoMap: Record<string, string> = {};
+    (result.rows || []).forEach((row: any) => {
+        descricaoMap[row.CODPROD] = row.DESCRICAO;
+    });
+
+    const enrichedData = postgreData.map(req => ({
+        ...req,
+        hsvalidity_products: req.hsvalidity_products.map(prod => ({
+            ...prod,
+            description: descricaoMap[prod.product_cod] || null,
+        })),
+    }));
+
+    return enrichedData;
 }
 
 type ValidityInput = {

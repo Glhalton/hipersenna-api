@@ -1,5 +1,6 @@
 import { prisma } from "../../lib/prisma.js"
 import { createValidityRequestsParamSchema, createValidityRequestProductsParamSchema } from "./schema.js";
+import { UpdateValidityRequestInput } from "./schema.js";
 import { hsvalidity_requests_status } from "../../generated/prisma/client.js"
 import { getOracleConnection } from "../../../oracleClient.js";
 import oracledb from "oracledb";
@@ -81,9 +82,35 @@ export const createValidityRequest = async ({ validityRequest, requestProducts }
     });
 }
 
-export const updateValidityRequestById = async (requestId: number, status: hsvalidity_requests_status) => {
-    return await prisma.hsvalidity_requests.update({
-        where: { id: requestId },
-        data: { status }
+
+export async function updateValidityRequest(data: UpdateValidityRequestInput) {
+    const { requestId, status, products } = data;
+
+    // Transação: tudo ou nada
+    const result = await prisma.$transaction(async (tx) => {
+        // Atualiza a solicitação principal
+        const validityRequestUpdate = await tx.hsvalidity_requests.update({
+            where: { id: requestId },
+            data: { status },
+        });
+
+        // Atualiza cada produto vinculado
+        await Promise.all(
+            products.map((p) =>
+                tx.hsvalidity_request_products.updateMany({
+                    where: {
+                        request_id: requestId,
+                        product_cod: p.product_cod,
+                    },
+                    data: {
+                        status: p.status,
+                    },
+                })
+            )
+        );
+
+        return validityRequestUpdate;
     });
+
+    return result;
 }

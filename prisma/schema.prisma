@@ -81,7 +81,7 @@ model hsemployees {
   username         String                @unique
   access_level     Int
   branch_id        Int
-  winthor_id       Int
+  winthor_id       Int                   @default(0)
   display_username String
   email            String
   email_verified   Boolean               @default(false)

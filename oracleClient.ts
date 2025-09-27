@@ -1,4 +1,5 @@
 import oracledb from "oracledb";
+import { env } from "process";
 
 export async function getOracleConnection() {
     try {
@@ -13,7 +14,6 @@ export async function getOracleConnection() {
             connectString: process.env.CONNECTION_STRING,
         });
 
-        console.log("Conectado ao Oracle com sucesso!");
         return connection;
 
     } catch (err) {
