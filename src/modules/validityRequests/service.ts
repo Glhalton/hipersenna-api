@@ -7,7 +7,7 @@ import oracledb from "oracledb";
 import z from "zod";
 
 //Tambem retorna as descrições dos produtos com base no banco da oracle
-export const listValidityRequestsByEmployeeId = async (employeeId: string) => {
+export const listValidityRequestsByEmployeeId = async (employeeId: number) => {
     const dadosPostgres = await prisma.hsvalidity_requests.findMany({
         where: {
             conferee_id: employeeId,

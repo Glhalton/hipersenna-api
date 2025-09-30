@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const createValidityParamSchema = z.object({
     branch_id: z.number(),
-    employee_id: z.string(),
+    employee_id: z.number(),
     request_id: z.number().optional().nullable(),
 })
 
@@ -17,7 +17,7 @@ export const getValidityParamSchema = z.object({
 })
 
 export const listValiditiesByEmployeeParamSchema = z.object({
-    employeeId: z.string()
+    employeeId: z.number()
 })
 
 

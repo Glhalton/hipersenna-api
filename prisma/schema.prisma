@@ -23,7 +23,7 @@ model hsbranches {
 model hsvalidities {
   id                  Int                   @id @default(autoincrement())
   branch_id           Int
-  employee_id         String
+  employee_id         Int
   status              hsvalidities_status   @default(Pendente)
   request_id          Int?
   created_at          DateTime              @default(now()) @db.Timestamp(6)
@@ -48,8 +48,8 @@ model hsvalidity_products {
 model hsvalidity_requests {
   id                          Int                           @id @default(autoincrement())
   branch_id                   Int
-  analyst_id                  String
-  conferee_id                 String
+  analyst_id                  Int
+  conferee_id                 Int
   status                      hsvalidity_requests_status    @default(Pendente)
   created_at                  DateTime                      @default(now()) @db.Timestamp(6)
   modified_at                 DateTime                      @default(now()) @db.Timestamp(6)
@@ -76,19 +76,15 @@ model hsvalidity_treatments {
 }
 
 model hsemployees {
-  id               String                @id
+  id               Int                   @id @default(autoincrement())
+  branch_id        Int
+  access_level     Int
+  winthor_id       Int                   @unique @default(0)
   name             String
   username         String                @unique
-  access_level     Int
-  branch_id        Int
-  winthor_id       Int                   @default(0)
-  display_username String
-  email            String
-  email_verified   Boolean               @default(false)
-  image            String?
+  password         String
   created_at       DateTime              @default(now())
   modified_at      DateTime              @default(now()) @updatedAt
-  accounts         hsaccounts[]
   sessions         hssessions[]
   hsvalidities     hsvalidities[]
   analystRequests  hsvalidity_requests[] @relation("AnalystRelation")
@@ -105,40 +101,10 @@ model hssessions {
   modified_at DateTime    @updatedAt
   ip_address  String?
   user_agent  String?
-  user_id     String
+  user_id     Int
   user        hsemployees @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("hssessions")
-}
-
-model hsaccounts {
-  id                       String      @id
-  account_id               String
-  provider_id              String
-  user_id                  String
-  access_token             String?
-  refresh_token            String?
-  id_token                 String?
-  access_token_expires_at  DateTime?
-  refresh_token_expires_at DateTime?
-  scope                    String?
-  password                 String?
-  created_at               DateTime    @default(now())
-  modified_at              DateTime    @updatedAt
-  user                     hsemployees @relation(fields: [user_id], references: [id], onDelete: Cascade)
-
-  @@map("hsaccounts")
-}
-
-model hsverifications {
-  id         String   @id
-  identifier String
-  value      String
-  expiresAt  DateTime
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now()) @updatedAt
-
-  @@map("hsverifications")
 }
 
 enum hsvalidities_status {

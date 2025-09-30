@@ -2,6 +2,7 @@ import { betterAuth } from "better-auth";
 import { prisma } from "./prisma";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { username } from "better-auth/plugins";
+import { expo } from "@better-auth/expo";
 
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
@@ -20,7 +21,8 @@ export const auth = betterAuth({
                     }
                 }
             }
-        })
+        }),
+        expo()
     ],
     user: {
         modelName: "hsemployees",

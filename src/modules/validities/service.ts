@@ -13,7 +13,7 @@ export const getValidityById = async (validityId: number) => {
 
 }
 
-export const listValiditiesByEmployeeId = async (employeeId: string) => {
+export const listValiditiesByEmployeeId = async (employeeId: number) => {
     const postgreData = await prisma.hsvalidities.findMany({
         where: {
             employee_id: employeeId

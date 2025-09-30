@@ -8,6 +8,8 @@ const app = fastify();
 
 await app.register(import('@fastify/swagger'))
 
+declare module "fastify"
+
 app.register(betterAuthServer);
 
 app.register(routes);

@@ -1,65 +1,54 @@
 import { FastifyInstance } from "fastify";
-import { auth } from "../../lib/auth";
 import { signInParamSchema, signUpParamSchema } from "./schema";
-import { signInService, signUpService } from "./service";
+import { signInService, signUpService, findUser } from "./service";
+import jwt from "jsonwebtoken";
+import { env } from "process";
 
 export default async function userAuthRoutes(app: FastifyInstance) {
 
+    
 
-    app.get("/session", async (request, reply) => {
+    app.post('/signup', async (request, reply) => {
         try {
-            // Cria uma instância de Headers
-            const headers = new Headers();
+            const parsed = signUpParamSchema.parse(request.body);
+            const user = await findUser(parsed.winthor_id, parsed.username)
 
-            // Pega o token enviado no header Authorization
-            const token = request.headers.authorization; // normalmente "Bearer <token>"
-            if (token) {
-                headers.set("Authorization", token);
+            if (user) {
+                return reply.status(409).send({
+                    message: "Username ou código do winthor já cadastrados no sistema"
+                })
             }
 
-            // Chama a função getSession do SDK passando a instância correta de Headers
-            const session = await auth.api.getSession({ headers });
+            const userCreated = await signUpService(parsed);
 
-            if (!session) {
-                return reply.status(401).send({
-                    message: "Sessão inválida ou expirada"
-                });
-            }
-
-            return reply.status(200).send({
-                message: "Sessão válida",
-                user: session.user,
-                session,
-            });
+            return reply.status(201).send({ message: "Usuário criado com sucesso!", userCreated });
         } catch (err: any) {
-            return reply.status(400).send({ error: err.message });
+            return reply.status(400).send({ error: err.message })
         }
     });
 
-    
+    app.post('/signin', async (request, reply) => {
+        try {
+            const parsed = signInParamSchema.parse(request.body);
+            const user = await signInService(parsed);
 
+            if (!user) {
+                return reply.status(400).send({ error: "Usuário ou senha inválidos!" });
+            }
 
-app.post('/signup', async (request, reply) => {
-    try {
-        const parsed = signUpParamSchema.parse(request.body);
+            const jwtSecret = process.env.JWT_SECRET;
+            if (!jwtSecret) {
+                throw new Error("JWT_SECRET não definido no .env");
+            }
 
-        const data = await signUpService(parsed);
+            const token = jwt.sign({ id: user.id, username: user.username, winthor_id: user.winthor_id }, jwtSecret, {
+                expiresIn: "1h",
+            });
 
-        return reply.status(201).send(data);
-    } catch (err: any) {
-        return reply.status(400).send({ error: err.message })
-    }
-});
+            return reply.status(200).send({ message: "Usuário logado com sucesso!", token });
 
-app.post('/signin', async (request, reply) => {
-    try {
-        const parsed = signInParamSchema.parse(request.body);
-        const data = await signInService(parsed);
-
-        return reply.status(200).send(data);
-
-    } catch (err: any) {
-        return reply.status(400).send({ error: "Usuário ou senha inválidos!" });
-    }
-});
+        } catch (err: any) {
+            return reply.status(400).send(err);
+        }
+    });
 }

@@ -18,9 +18,15 @@ export default async function validitiesRoutes(app: FastifyInstance) {
     });
 
     app.get('/employee/:employeeId', async (request, reply) => {
-        const { employeeId } = listValiditiesByEmployeeParamSchema.parse(request.params);
-        const validitiesByEmployee = await listValiditiesByEmployeeId(employeeId);
-        return reply.status(200).send({ validitiesByEmployee });
+        try {
+            const { employeeId } = listValiditiesByEmployeeParamSchema.parse(request.params);
+            const validitiesByEmployee = await listValiditiesByEmployeeId(employeeId);
+            return reply.status(200).send({ validitiesByEmployee });
+        } catch(err: any){
+            console.log(err.message)
+            reply.status(400).send({error: err.message})
+        }
+        
     });
 
     app.post('/', async (request, reply) => {
@@ -35,7 +41,7 @@ export default async function validitiesRoutes(app: FastifyInstance) {
 
             return reply.status(201).send({
                 createdValidity,
-                message: "Validade criada com sucesso" 
+                message: "Validade criada com sucesso"
             });
 
         } catch (err: any) {

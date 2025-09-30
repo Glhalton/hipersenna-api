@@ -1,64 +1,53 @@
 import { auth } from "../../lib/auth";
 import { prisma } from "../../lib/prisma";
+import bcrypt from "bcryptjs";
 
-export async function signUpService(data: any) {
-    const responseSignUp = await auth.api.signUpEmail({
-        body: {
-            email: data.email,
-            name: data.name,
-            username: data.username,
-            password: data.password,
-            displayUsername: data.username,
-            branch_id: data.branch_id,
-            access_level: data.access_level,
-            winthor_id: data.winthor_id
+export async function signUpService(dataUser: any) {
+
+    const hashedPassword = await bcrypt.hash(dataUser.password, 10)
+    const responseSignUp = await prisma.hsemployees.create({
+        data: {
+            name: dataUser.name,
+            username: dataUser.username,
+            access_level: dataUser.access_level,
+            branch_id: dataUser.branch_id,
+            password: hashedPassword,
+            winthor_id: dataUser.winthor_id,
         },
     });
 
-    const responseUser = await prisma.hsemployees.findUnique({
-        where: {
-            id: responseSignUp.user.id
-        }
-    })
+    return responseSignUp;
 
-    return {
-        token: responseSignUp.token,
-        id: responseUser?.id,
-        email: responseUser?.email,
-        name: responseUser?.name,
-        username: responseUser?.username,
-        branchId: responseUser?.branch_id,
-        accessLevel: responseUser?.access_level,
-        winthor_id: responseUser?.winthor_id,
-        createdAt: responseUser?.created_at,
-        modifiedAt: responseUser?.modified_at
-    }
 }
 
 export async function signInService(data: any) {
-    const responseSignIn = await auth.api.signInUsername({
-        body: {
+    const responseSignIn = await prisma.hsemployees.findFirst({
+        where: {
             username: data.username,
-            password: data.password
         },
     });
 
-    const responseUser = await prisma.hsemployees.findUnique({
-        where: {
-            id: responseSignIn?.user.id
-        }
-    });
-
-    return {
-        token: responseSignIn?.token,
-        id: responseUser?.id,
-        email: responseUser?.email,
-        name: responseUser?.name,
-        username: responseUser?.username,
-        branchId: responseUser?.branch_id,
-        accessLevel: responseUser?.access_level,
-        createdAt: responseUser?.created_at,
-        modifiedAt: responseUser?.modified_at
+    if (!responseSignIn) {
+        return false;
     }
+
+    const isCorrectPassword = await bcrypt.compare(data.password, responseSignIn.password);
+
+    if (!isCorrectPassword) {
+        return false;
+    }
+
+    return responseSignIn;
+}
+
+export async function findUser(winthor_id: number, username: string) {
+    return await prisma.hsemployees.findFirst({
+        where: {
+            OR: [
+                { username: username },
+                { winthor_id: winthor_id },
+            ],
+        },
+    });
 }
 
