@@ -1,43 +1,54 @@
 import { FastifyInstance } from "fastify";
 import { createValidity, listValiditiesByEmployeeId, getValidityById } from "./service.js";
-import { createValidityParamSchema, listValiditiesByEmployeeParamSchema, getValidityParamSchema, createValidityProductParamSchema } from "./schema.js";
+import { createValidityBodySchema, getValidityParamSchema, createValidityProductBodySchema } from "./schema.js";
 import { prisma } from "../../lib/prisma.js";
 import z from "zod";
 
 export default async function validitiesRoutes(app: FastifyInstance) {
 
     app.get('/', async (request, reply) => {
-        const validities = await prisma.hsvalidities.findMany();
-        return reply.status(200).send(validities);
+        try {
+            const validities = await prisma.hsvalidities.findMany();
+            return reply.status(200).send(validities);
+        } catch (err: any) {
+            return reply.status(401).send({ error: err.message });
+        }
     });
 
     app.get('/:validityId', async (request, reply) => {
-        const { validityId } = getValidityParamSchema.parse(request.params);
-        const validity = await getValidityById(validityId);
-        return reply.status(200).send(validity);
+        try {
+            const { validityId } = getValidityParamSchema.parse(request.params);
+            const validity = await getValidityById(validityId);
+            return reply.status(200).send(validity);
+        } catch (err: any) {
+            return reply.status(401).send({ error: err.message });
+        }
     });
 
-    app.get('/employee/:employeeId', async (request, reply) => {
+    app.get('/employee', async (request, reply) => {
         try {
-            const { employeeId } = listValiditiesByEmployeeParamSchema.parse(request.params);
-            const validitiesByEmployee = await listValiditiesByEmployeeId(employeeId);
+            const userId = request.user?.id;
+            const validitiesByEmployee = await listValiditiesByEmployeeId(userId!);
             return reply.status(200).send({ validitiesByEmployee });
-        } catch(err: any){
-            console.log(err.message)
-            reply.status(400).send({error: err.message})
+        } catch (err: any) {
+            return reply.status(401).send({ error: err.message })
         }
-        
     });
 
     app.post('/', async (request, reply) => {
         try {
+            const userId = request.user?.id;
+            if (!userId) {
+                return reply.status(400).send({ message: "Id do usuario invalido" })
+            }
+
             const bodySchema = z.object({
-                validity: createValidityParamSchema,
-                products: z.array(createValidityProductParamSchema)
+                validity: createValidityBodySchema,
+                products: z.array(createValidityProductBodySchema)
             });
 
             const { validity, products } = bodySchema.parse(request.body);
-            const createdValidity = await createValidity({ validity, products });
+            const createdValidity = await createValidity({ validity, products, userId });
 
             return reply.status(201).send({
                 createdValidity,

@@ -1,5 +1,4 @@
 import oracledb from "oracledb";
-import { env } from "process";
 
 export async function getOracleConnection() {
     try {

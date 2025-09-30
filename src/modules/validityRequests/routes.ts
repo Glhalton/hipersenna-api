@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { createValidityRequestsParamSchema, getValidityRequestsByEmployeeIdParamSchema, createValidityRequestProductsParamSchema, updateValidityRequestByIdParamSchema } from "./schema.js";
+import { createValidityRequestsBodySchema, createValidityRequestProductsBodySchema, updateValidityRequestByIdBodySchema } from "./schema.js";
 import { createValidityRequest, listValidityRequestsByEmployeeId, updateValidityRequest } from "./service.js";
 import { prisma } from "../../lib/prisma.js";
 import z from "zod";
@@ -18,10 +18,10 @@ export async function validityRequestsRoutes(app: FastifyInstance) {
 
     })
 
-    app.get('/employee/:employeeId', async (request, reply) => {
+    app.get('/employee', async (request, reply) => {
         try {
-            const { employeeId } = getValidityRequestsByEmployeeIdParamSchema.parse(request.params);
-            const validityRequestsByEmployee = await listValidityRequestsByEmployeeId(employeeId);
+            const userId = request.user?.id;
+            const validityRequestsByEmployee = await listValidityRequestsByEmployeeId(userId!);
             return reply.status(200).send({ validityRequestsByEmployee });
         } catch (err: any) {
             return reply.status(400).send({ error: err.message })
@@ -31,15 +31,19 @@ export async function validityRequestsRoutes(app: FastifyInstance) {
     app.post('/', async (request, reply) => {
 
         try {
+            const userId = request.user?.id;
+            if (!userId) {
+                return reply.status(400).send({ message: "Id do usuario invalido" })
+            }
 
             const bodySchema = z.object({
-                validityRequest: createValidityRequestsParamSchema,
-                requestProducts: z.array(createValidityRequestProductsParamSchema)
+                validityRequest: createValidityRequestsBodySchema,
+                requestProducts: z.array(createValidityRequestProductsBodySchema)
             })
 
             const { validityRequest, requestProducts } = bodySchema.parse(request.body);
 
-            const createdValidityRequest = await createValidityRequest({ validityRequest, requestProducts });
+            const createdValidityRequest = await createValidityRequest({ validityRequest, requestProducts, userId });
 
             return reply.status(201).send({
                 message: "Solicitação de validade criada com sucesso!",
@@ -54,7 +58,7 @@ export async function validityRequestsRoutes(app: FastifyInstance) {
 
     app.patch("/validityRequestsUpdate", async (request, reply) => {
         try {
-            const data = updateValidityRequestByIdParamSchema.parse(request.body);
+            const data = updateValidityRequestByIdBodySchema.parse(request.body);
             const validityRequestUpdate = await updateValidityRequest(data);
 
             return reply.send({

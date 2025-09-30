@@ -4,8 +4,12 @@ import { BonusQuery } from "./schema";
 
 export default function bonusRoutes(app: FastifyInstance) {
   app.get('/', async (request, reply) => {
-    const query = request.query as BonusQuery;
-    const result = await listBonus({query});
-    return reply.status(result.status).send(result.body);
+    try {
+      const query = request.query as BonusQuery;
+      const result = await listBonus({ query });
+      return reply.status(result.status).send(result.body);
+    } catch (err: any) {
+      return reply.status(400).send({ error: err.message })
+    }
   })
 }

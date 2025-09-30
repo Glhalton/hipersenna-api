@@ -1,6 +1,6 @@
 import z from "zod";
 import { prisma } from "../../lib/prisma.js"
-import { createValidityParamSchema, createValidityProductParamSchema } from "./schema.js";
+import { createValidityBodySchema, createValidityProductBodySchema } from "./schema.js";
 import { getOracleConnection } from "../../../oracleClient.js";
 import oracledb from "oracledb";
 
@@ -10,7 +10,6 @@ export const getValidityById = async (validityId: number) => {
             id: validityId
         }
     })
-
 }
 
 export const listValiditiesByEmployeeId = async (employeeId: number) => {
@@ -23,8 +22,6 @@ export const listValiditiesByEmployeeId = async (employeeId: number) => {
         }
     });
 
-
-    //
     const allCodes = postgreData.flatMap(req =>
         req.hsvalidity_products.map(p => p.product_cod)
     );
@@ -64,15 +61,16 @@ export const listValiditiesByEmployeeId = async (employeeId: number) => {
 }
 
 type ValidityInput = {
-    validity: z.infer<typeof createValidityParamSchema>;
-    products: z.infer<typeof createValidityProductParamSchema>[];
+    validity: z.infer<typeof createValidityBodySchema>;
+    products: z.infer<typeof createValidityProductBodySchema>[];
+    userId: number;
 };
 
-export const createValidity = async ({ validity, products }: ValidityInput) => {
+export const createValidity = async ({ validity, products, userId }: ValidityInput) => {
     return await prisma.hsvalidities.create({
         data: {
             branch_id: validity.branch_id,
-            employee_id: validity.employee_id,
+            employee_id: userId,
             request_id: validity.request_id || null,
             hsvalidity_products: {
                 create: products.map(p => ({

@@ -1,16 +1,13 @@
 import fastify from "fastify";
 import routes from "./routes.js"
-import swageger from "@fastify/swagger"
+import swagger from "@fastify/swagger"
 import swaggerUI from "@fastify/swagger-ui"
-import betterAuthServer from "./lib/better-auth.js";
 
 const app = fastify();
 
 await app.register(import('@fastify/swagger'))
 
 declare module "fastify"
-
-app.register(betterAuthServer);
 
 app.register(routes);
 

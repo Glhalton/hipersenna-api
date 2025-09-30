@@ -1,8 +1,7 @@
-import { auth } from "../../lib/auth";
 import { prisma } from "../../lib/prisma";
 import bcrypt from "bcryptjs";
 
-export async function signUpService(dataUser: any) {
+export const signUpService = async (dataUser: any) => {
 
     const hashedPassword = await bcrypt.hash(dataUser.password, 10)
     const responseSignUp = await prisma.hsemployees.create({
@@ -17,10 +16,9 @@ export async function signUpService(dataUser: any) {
     });
 
     return responseSignUp;
-
 }
 
-export async function signInService(data: any) {
+export const signInService = async (data: any) => {
     const responseSignIn = await prisma.hsemployees.findFirst({
         where: {
             username: data.username,
@@ -40,7 +38,7 @@ export async function signInService(data: any) {
     return responseSignIn;
 }
 
-export async function findUser(winthor_id: number, username: string) {
+export const findUser = async (winthor_id: number, username: string) => {
     return await prisma.hsemployees.findFirst({
         where: {
             OR: [

@@ -1,5 +1,5 @@
 import { prisma } from "../../lib/prisma.js"
-import { createValidityRequestsParamSchema, createValidityRequestProductsParamSchema } from "./schema.js";
+import { createValidityRequestsBodySchema, createValidityRequestProductsBodySchema } from "./schema.js";
 import { UpdateValidityRequestInput } from "./schema.js";
 import { hsvalidity_requests_status } from "../../generated/prisma/client.js"
 import { getOracleConnection } from "../../../oracleClient.js";
@@ -59,15 +59,16 @@ export const listValidityRequestsByEmployeeId = async (employeeId: number) => {
 }
 
 type ValidityRequestInput = {
-    validityRequest: z.infer<typeof createValidityRequestsParamSchema>;
-    requestProducts: z.infer<typeof createValidityRequestProductsParamSchema>[];
+    validityRequest: z.infer<typeof createValidityRequestsBodySchema>;
+    requestProducts: z.infer<typeof createValidityRequestProductsBodySchema>[];
+    userId: number;
 };
 
-export const createValidityRequest = async ({ validityRequest, requestProducts }: ValidityRequestInput) => {
+export const createValidityRequest = async ({ validityRequest, requestProducts, userId }: ValidityRequestInput) => {
     return await prisma.hsvalidity_requests.create({
         data: {
             branch_id: validityRequest.branch_id,
-            analyst_id: validityRequest.analyst_id,
+            analyst_id: userId,
             conferee_id: validityRequest.conferee_id,
             hsvalidity_request_products: {
                 create: requestProducts.map(p => ({

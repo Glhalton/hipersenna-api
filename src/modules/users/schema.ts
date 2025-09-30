@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const signUpParamSchema = z.object({
+export const signUpBodySchema = z.object({
     name: z.string().min(1),
     username: z.string().min(3),
     password: z.string().min(4),
@@ -9,7 +9,7 @@ export const signUpParamSchema = z.object({
     winthor_id: z.number(),
 })
 
-export const signInParamSchema = z.object({
+export const signInBodySchema = z.object({
     username: z.string(),
     password: z.string()
 });

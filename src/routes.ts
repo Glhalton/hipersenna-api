@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 
 declare module "fastify" {
     export interface FastifyRequest {
-        user?: { id: number; username: string; winthor_id: number; iat: number; exp: number }
+        user?: { id: number; name: string; username: string; winthor_id: number; branch_id: number; access_level : number; iat: number; exp: number }
     }
 }
 
@@ -53,5 +53,4 @@ export default async function (app: FastifyInstance) {
         protectedRoutes.register(validityRequestsRoutes, { prefix: "/validityRequests" });
         protectedRoutes.register(bonusRoutes, { prefix: "/bonus" });
     });
-
 }
