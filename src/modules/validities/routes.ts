@@ -10,8 +10,8 @@ export default async function validitiesRoutes(app: FastifyInstance) {
         try {
             const validities = await prisma.hsvalidities.findMany();
             return reply.status(200).send(validities);
-        } catch (err: any) {
-            return reply.status(401).send({ error: err.message });
+        } catch (error: any) {
+            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` });
         }
     });
 
@@ -20,8 +20,8 @@ export default async function validitiesRoutes(app: FastifyInstance) {
             const { validityId } = getValidityParamSchema.parse(request.params);
             const validity = await getValidityById(validityId);
             return reply.status(200).send(validity);
-        } catch (err: any) {
-            return reply.status(401).send({ error: err.message });
+        } catch (error: any) {
+            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` });
         }
     });
 
@@ -30,8 +30,8 @@ export default async function validitiesRoutes(app: FastifyInstance) {
             const userId = request.user?.id;
             const validitiesByEmployee = await listValiditiesByEmployeeId(userId!);
             return reply.status(200).send({ validitiesByEmployee });
-        } catch (err: any) {
-            return reply.status(401).send({ error: err.message })
+        } catch (error: any) {
+            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` })
         }
     });
 
@@ -39,7 +39,7 @@ export default async function validitiesRoutes(app: FastifyInstance) {
         try {
             const userId = request.user?.id;
             if (!userId) {
-                return reply.status(400).send({ message: "Id do usuario invalido" })
+                return reply.status(400).send({ message: "Id do usuario inválido" })
             }
 
             const bodySchema = z.object({
@@ -51,12 +51,12 @@ export default async function validitiesRoutes(app: FastifyInstance) {
             const createdValidity = await createValidity({ validity, products, userId });
 
             return reply.status(201).send({
-                createdValidity,
-                message: "Validade criada com sucesso"
+                message: "Validade criada com sucesso",
+                createdValidity
             });
 
-        } catch (err: any) {
-            return reply.status(400).send({ error: err.message })
+        } catch (error: any) {
+            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` })
         }
     });
 }

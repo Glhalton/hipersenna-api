@@ -49,3 +49,20 @@ export const findUser = async (winthor_id: number, username: string) => {
     });
 }
 
+export const saveSession = async (user_id: number, token: string, expires_at?: any) => {
+    return await prisma.hssessions.create({
+        data: {
+            user_id,
+            token,
+            expires_at
+        }
+    })
+}
+
+export const deleteSession = async (token: string) => {
+    return await prisma.hssessions.deleteMany({
+        where: {
+            token
+        }
+    });
+}

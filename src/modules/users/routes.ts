@@ -1,13 +1,14 @@
 import { FastifyInstance } from "fastify";
 import { signInBodySchema, signUpBodySchema } from "./schema";
-import { signInService, signUpService, findUser } from "./service";
+import { signInService, signUpService, findUser, saveSession, deleteSession } from "./service";
 import jwt from "jsonwebtoken";
 
 export default async function userAuthRoutes(app: FastifyInstance) {
+
     app.post('/signup', async (request, reply) => {
         try {
-            const dataParsed = signUpBodySchema.parse(request.body);
-            const user = await findUser(dataParsed.winthor_id, dataParsed.username)
+            const parsedData = signUpBodySchema.parse(request.body);
+            const user = await findUser(parsedData.winthor_id, parsedData.username)
 
             if (user) {
                 return reply.status(409).send({
@@ -15,21 +16,21 @@ export default async function userAuthRoutes(app: FastifyInstance) {
                 })
             }
 
-            const userCreated = await signUpService(dataParsed);
+            const userCreated = await signUpService(parsedData);
 
             return reply.status(201).send({ message: "Usuário criado com sucesso!", userCreated });
-        } catch (err: any) {
-            return reply.status(400).send({ message: "Erro ao criar usuário", error: err.message })
+        } catch (error: any) {
+            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` })
         }
     });
 
     app.post('/signin', async (request, reply) => {
         try {
-            const dataParsed = signInBodySchema.parse(request.body);
-            const user = await signInService(dataParsed);
+            const parsedData = signInBodySchema.parse(request.body);
+            const user = await signInService(parsedData);
 
             if (!user) {
-                return reply.status(400).send({ error: "Usuário ou senha inválidos!" });
+                return reply.status(400).send({ message: "Usuário ou senha inválidos!" });
             }
 
             const jwtSecret = process.env.JWT_SECRET;
@@ -44,14 +45,39 @@ export default async function userAuthRoutes(app: FastifyInstance) {
                 winthor_id: user.winthor_id,
                 branch_id: user.branch_id,
                 access_level: user.access_level
-            }, jwtSecret, {
-                expiresIn: "24h",
-            });
+                
+            }, jwtSecret);
+
+            const decoded: any = jwt.decode(token);
+
+            const expires_at = new Date(decoded.exp * 1000);
+            const createdSession = await saveSession(user.id, token);
 
             return reply.status(200).send({ message: "Usuário logado com sucesso!", token });
 
-        } catch (err: any) {
-            return reply.status(400).send(err);
+        } catch (error: any) {
+            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` });
         }
     });
+
+    app.post("/signout", async (request, reply) => {
+        try {
+            const token = request.headers.authorization?.replace("Bearer ", "");
+
+            if (!token) {
+                return reply.status(401).send({ message: "Token não fornecido" });
+            }
+
+            const deletedSession = await deleteSession(token)
+
+            if (!deletedSession) {
+                return reply.status(404).send({ message: "Sessão não encontrada ou já expirada" });
+            }
+
+            return reply.status(200).send({ message: "Logout realizado com sucesso" });
+
+        } catch (error: any) {
+            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` });
+        }
+    })
 }

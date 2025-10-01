@@ -94,15 +94,12 @@ model hsemployees {
 }
 
 model hssessions {
-  id          String      @id
-  expires_at  DateTime
-  token       String      @unique
-  created_at  DateTime    @default(now())
-  modified_at DateTime    @updatedAt
-  ip_address  String?
-  user_agent  String?
-  user_id     Int
-  user        hsemployees @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  id         String      @id @default(uuid()) @db.Uuid
+  user_id    Int
+  token      String      @unique
+  created_at DateTime    @default(now())
+  expires_at DateTime?
+  user       hsemployees @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("hssessions")
 }

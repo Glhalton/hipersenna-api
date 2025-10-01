@@ -8,14 +8,12 @@ import z from "zod";
 export async function validityRequestsRoutes(app: FastifyInstance) {
 
     app.get('/', async (request, reply) => {
-
-        const validityRequests = await prisma.hsvalidity_requests.findMany()
-        return reply.status(200).send(validityRequests);
-
-    })
-
-    app.get('/:id', async (request, reply) => {
-
+        try {
+            const validityRequests = await prisma.hsvalidity_requests.findMany()
+            return reply.status(200).send(validityRequests);
+        } catch (error: any) {
+            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` })
+        }
     })
 
     app.get('/employee', async (request, reply) => {
@@ -23,13 +21,12 @@ export async function validityRequestsRoutes(app: FastifyInstance) {
             const userId = request.user?.id;
             const validityRequestsByEmployee = await listValidityRequestsByEmployeeId(userId!);
             return reply.status(200).send({ validityRequestsByEmployee });
-        } catch (err: any) {
-            return reply.status(400).send({ error: err.message })
+        } catch (error: any) {
+            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` })
         }
     })
 
     app.post('/', async (request, reply) => {
-
         try {
             const userId = request.user?.id;
             if (!userId) {
@@ -50,8 +47,8 @@ export async function validityRequestsRoutes(app: FastifyInstance) {
                 createdValidityRequest
             })
 
-        } catch (err: any) {
-            return reply.status(400).send({ error: err.message })
+        } catch (error: any) {
+            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` })
         }
 
     })
@@ -67,11 +64,7 @@ export async function validityRequestsRoutes(app: FastifyInstance) {
                 validityRequestUpdate,
             });
         } catch (error: any) {
-            console.error(error);
-            return reply.status(500).send({
-                success: false,
-                message: error.message || "Erro ao atualizar solicitação",
-            });
+            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` })
         }
     });
 }
