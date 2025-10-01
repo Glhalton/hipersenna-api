@@ -5,6 +5,7 @@ import userAuthRoutes from "./modules/users/routes";
 import bonusRoutes from "./modules/bonus/routes";
 import jwt from "jsonwebtoken";
 import { prisma } from "./lib/prisma.js"
+import productsRoutes from "./modules/products/routes";
 
 
 declare module "fastify" {
@@ -54,6 +55,7 @@ export default async function (app: FastifyInstance) {
             return reply.send(req.user);
         });
 
+        protectedRoutes.register(productsRoutes, { prefix: "/products" });
         protectedRoutes.register(validitiesRoutes, { prefix: "/validities" });
         protectedRoutes.register(validityRequestsRoutes, { prefix: "/validityRequests" });
         protectedRoutes.register(bonusRoutes, { prefix: "/bonus" });
