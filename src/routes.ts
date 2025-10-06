@@ -1,11 +1,12 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
-import validitiesRoutes from "./modules/validities/routes";
-import { validityRequestsRoutes } from "./modules/validityRequests/routes";
-import userAuthRoutes from "./modules/users/routes";
-import bonusRoutes from "./modules/bonus/routes";
-import jwt from "jsonwebtoken";
 import { prisma } from "./lib/prisma.js"
+import jwt from "jsonwebtoken";
+import validitiesRoutes from "./modules/validities/routes";
+import userAuthRoutes from "./modules/auth/routes";
+import bonusRoutes from "./modules/bonus/routes";
 import productsRoutes from "./modules/products/routes";
+import { validityRequestsRoutes } from "./modules/validityRequests/routes";
+import usersRoutes from "./modules/users/routes.js";
 
 
 declare module "fastify" {
@@ -47,14 +48,12 @@ async function authenticate(request: FastifyRequest, reply: FastifyReply) {
 export default async function (app: FastifyInstance) {
 
     app.register(userAuthRoutes, { prefix: "/auth" });
+    //app.register(usersRoutes, {prefix: "/users"});
 
     app.register(async (protectedRoutes) => {
         protectedRoutes.addHook("preHandler", authenticate);
-
-        protectedRoutes.get("/me", async (req, reply) => {
-            return reply.send(req.user);
-        });
-
+        
+        protectedRoutes.register(usersRoutes, {prefix: "/users"});
         protectedRoutes.register(productsRoutes, { prefix: "/products" });
         protectedRoutes.register(validitiesRoutes, { prefix: "/validities" });
         protectedRoutes.register(validityRequestsRoutes, { prefix: "/validityRequests" });

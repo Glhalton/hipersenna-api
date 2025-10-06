@@ -9,8 +9,9 @@ datasource db {
 }
 
 model hsaccess_levels {
-  id          Int    @id @default(autoincrement())
-  description String @db.VarChar(150)
+  id          Int           @id @default(autoincrement())
+  description String        @db.VarChar(150)
+  hsemployees hsemployees[]
 }
 
 model hsbranches {
@@ -18,6 +19,7 @@ model hsbranches {
   description         String                @db.VarChar(150)
   hsvalidities        hsvalidities[]
   hsvalidity_requests hsvalidity_requests[]
+  hsemployees         hsemployees[]
 }
 
 model hsvalidities {
@@ -26,11 +28,11 @@ model hsvalidities {
   employee_id         Int
   status              hsvalidities_status   @default(Pendente)
   request_id          Int?
-  created_at          DateTime              @default(now()) @db.Timestamp(6)
-  modified_at         DateTime              @default(now()) @db.Timestamp(6)
-  hsbranches          hsbranches            @relation(fields: [branch_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validities_branch")
-  hsemployees         hsemployees           @relation(fields: [employee_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validities_employee")
-  hsvalidity_requests hsvalidity_requests?  @relation(fields: [request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validities_request")
+  created_at          DateTime              @default(now()) @db.Timestamptz(6)
+  modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
+  hsbranches          hsbranches            @relation(fields: [branch_id], references: [id])
+  hsemployees         hsemployees           @relation(fields: [employee_id], references: [id])
+  hsvalidity_requests hsvalidity_requests?  @relation(fields: [request_id], references: [id])
   hsvalidity_products hsvalidity_products[]
 }
 
@@ -41,8 +43,8 @@ model hsvalidity_products {
   quantity              Int
   validity_date         DateTime              @db.Date
   treat_id              Int                   @default(1)
-  hsvalidity_treatments hsvalidity_treatments @relation(fields: [treat_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_products_treat")
-  hsvalidities          hsvalidities          @relation(fields: [validity_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_products_validities")
+  hsvalidity_treatments hsvalidity_treatments @relation(fields: [treat_id], references: [id])
+  hsvalidities          hsvalidities          @relation(fields: [validity_id], references: [id])
 }
 
 model hsvalidity_requests {
@@ -51,13 +53,13 @@ model hsvalidity_requests {
   analyst_id                  Int
   conferee_id                 Int
   status                      hsvalidity_requests_status    @default(Pendente)
-  created_at                  DateTime                      @default(now()) @db.Timestamp(6)
-  modified_at                 DateTime                      @default(now()) @db.Timestamp(6)
+  created_at                  DateTime                      @default(now()) @db.Timestamptz(6)
+  modified_at                 DateTime                      @default(now()) @updatedAt @db.Timestamptz(6)
   hsvalidities                hsvalidities[]
   hsvalidity_request_products hsvalidity_request_products[]
-  analyst                     hsemployees                   @relation("AnalystRelation", fields: [analyst_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_request_analyst")
-  conferee                    hsemployees                   @relation("ConfereeRelation", fields: [conferee_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_request_conferee")
-  hsbranches                  hsbranches                    @relation(fields: [branch_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_requests_branch")
+  analyst                     hsemployees                   @relation("AnalystRelation", fields: [analyst_id], references: [id])
+  conferee                    hsemployees                   @relation("ConfereeRelation", fields: [conferee_id], references: [id])
+  hsbranches                  hsbranches                    @relation(fields: [branch_id], references: [id])
 }
 
 model hsvalidity_request_products {
@@ -66,7 +68,7 @@ model hsvalidity_request_products {
   status              hsvalidity_request_products_status @default(Nao_vistoriado)
   product_cod         Int
   validity_date       DateTime                           @db.Date
-  hsvalidity_requests hsvalidity_requests                @relation(fields: [request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_validity_request_products_request")
+  hsvalidity_requests hsvalidity_requests                @relation(fields: [request_id], references: [id])
 }
 
 model hsvalidity_treatments {
@@ -83,12 +85,14 @@ model hsemployees {
   name             String
   username         String                @unique
   password         String
-  created_at       DateTime              @default(now())
-  modified_at      DateTime              @default(now()) @updatedAt
-  sessions         hssessions[]
-  hsvalidities     hsvalidities[]
+  created_at       DateTime              @default(now()) @db.Timestamptz(6)
+  modified_at      DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
+  branch           hsbranches            @relation(fields: [branch_id], references: [id])
+  hsaccess_level   hsaccess_levels       @relation(fields: [access_level], references: [id])
   analystRequests  hsvalidity_requests[] @relation("AnalystRelation")
   confereeRequests hsvalidity_requests[] @relation("ConfereeRelation")
+  sessions         hssessions[]
+  hsvalidities     hsvalidities[]
 
   @@map("hsemployees")
 }
@@ -97,7 +101,7 @@ model hssessions {
   id         String      @id @default(uuid()) @db.Uuid
   user_id    Int
   token      String      @unique
-  created_at DateTime    @default(now())
+  created_at DateTime    @default(now()) @db.Timestamptz(6)
   expires_at DateTime?
   user       hsemployees @relation(fields: [user_id], references: [id], onDelete: Cascade)
 

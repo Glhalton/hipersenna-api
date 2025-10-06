@@ -3,7 +3,7 @@ import { z } from "zod";
 export const createValidityBodySchema = z.object({
     branch_id: z.number(),
     request_id: z.number().optional().nullable(),
-})
+});
 
 export const createValidityProductBodySchema = z.object({
     product_cod: z.number(),
@@ -12,7 +12,7 @@ export const createValidityProductBodySchema = z.object({
 }).strip();
 
 export const getValidityParamSchema = z.object({
-    validityId: z.number()
-})
+    validityId: z.coerce.number()
+});
 
 

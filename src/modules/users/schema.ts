@@ -9,7 +9,15 @@ export const signUpBodySchema = z.object({
     winthor_id: z.number(),
 })
 
-export const signInBodySchema = z.object({
-    username: z.string(),
-    password: z.string()
-});
+ export const userSchema = z.object({
+    id: z.coerce.number()
+ })
+
+ export const updateUserBodySchema = z.object({
+    name: z.string().min(1).optional(),
+    username: z.string().min(3).optional(),
+    password: z.string().min(4).optional(),
+    branch_id: z.number().optional(),
+    access_level: z.number().optional(),
+    winthor_id: z.number().optional(),
+})
