@@ -4,6 +4,12 @@ import { createValidityBodySchema, createValidityProductBodySchema } from "./sch
 import { getOracleConnection } from "../../../oracleClient.js";
 import oracledb from "oracledb";
 
+type ValidityInput = {
+    validity: z.infer<typeof createValidityBodySchema>;
+    products: z.infer<typeof createValidityProductBodySchema>[];
+    userId: number;
+};
+
 export const getValidityById = async (validityId: number) => {
     return await prisma.hsvalidities.findUnique({
         where: {
@@ -59,12 +65,6 @@ export const listValiditiesByEmployeeId = async (employeeId: number) => {
 
     return enrichedData;
 }
-
-type ValidityInput = {
-    validity: z.infer<typeof createValidityBodySchema>;
-    products: z.infer<typeof createValidityProductBodySchema>[];
-    userId: number;
-};
 
 export const createValidity = async ({ validity, products, userId }: ValidityInput) => {
     return await prisma.hsvalidities.create({

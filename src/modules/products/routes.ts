@@ -8,10 +8,10 @@ export default async function productsRoutes(app: FastifyInstance) {
             const { productId } = getProductParamSchema.parse(request.params);
             const product = await getProductById(productId);
 
-            if (!product[0] ) {
+            if (!product[0]) {
                 return reply.status(404).send({ message: "Produto não encontrado!" })
             }
-            
+
             return reply.status(200).send(product);
         } catch (error: any) {
             return reply.status(500).send({ message: `Erro no servidor: ${error.message}` });

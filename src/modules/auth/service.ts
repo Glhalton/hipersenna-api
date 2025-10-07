@@ -1,8 +1,11 @@
 import { prisma } from "../../lib/prisma";
 import bcrypt from "bcryptjs";
+import { signInBodySchema } from "./schema";
+import z from "zod";
 
+type signInInput = z.infer<typeof signInBodySchema>
 
-export const signInService = async (data: any) => {
+export const signInService = async (data: signInInput) => {
     const responseSignIn = await prisma.hsemployees.findFirst({
         where: {
             username: data.username,
