@@ -1,98 +1,89 @@
 import { FastifyInstance } from "fastify";
-import { signUpBodySchema, updateUserBodySchema, userSchema } from "./schema";
-import { deleteSession, deleteUser, findUser, getUser, signUpService, updateUser } from "./service";
+import { updateUserBodySchema, userSchema } from "./schema";
+import { deleteSession, deleteUser, getUser, updateUser } from "./service";
 
 export default async function usersRoutes(app: FastifyInstance) {
+  app.get("/me", async (request, reply) => {
+    try {
+      return reply.send(request.user);
+    } catch (error: any) {
+      return reply
+        .status(500)
+        .send({ message: `Erro no servidor: ${error.message}` });
+    }
+  });
 
-    app.get("/me", async (request, reply) => {
-        try {
-            return reply.send(request.user);
-        } catch (error: any) {
-            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` })
-        }
-    });
+  app.get("/:id", async (request, reply) => {
+    try {
+      const { id } = userSchema.parse(request.params);
 
-    app.get("/:id", async (request, reply) => {
-        try {
-            const { id } = userSchema.parse(request.params);
+      const user = await getUser(id);
 
-            const user = await getUser(id);
+      if (!user) {
+        return reply.status(404).send({ message: "Usuário não encontrado!" });
+      }
 
-            if (!user) {
-                return reply.status(404).send({ message: "Usuário não encontrado!" })
-            }
+      return reply.status(200).send({ user });
+    } catch (error: any) {
+      return reply
+        .status(500)
+        .send({ message: `Erro no servidor: ${error.message}` });
+    }
+  });
 
-            return reply.status(200).send({ user })
-        } catch (error: any) {
-            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` });
-        }
-    })
+  app.post("/signout", async (request, reply) => {
+    try {
+      const token = request.headers.authorization?.replace("Bearer ", "");
 
-    app.post('/signup', async (request, reply) => {
-        try {
-            const parsedData = signUpBodySchema.parse(request.body);
-            const user = await findUser(parsedData.winthor_id, parsedData.username)
+      if (!token) {
+        return reply.status(401).send({ message: "Token não fornecido" });
+      }
 
-            if (user) {
-                return reply.status(409).send({
-                    message: "Username ou código do winthor já cadastrados no sistema"
-                })
-            }
+      const deletedSession = await deleteSession(token);
 
-            const userCreated = await signUpService(parsedData);
+      if (!deletedSession) {
+        return reply
+          .status(404)
+          .send({ message: "Sessão não encontrada ou já expirada" });
+      }
 
-            return reply.status(201).send({ message: "Usuário criado com sucesso!", userCreated });
-        } catch (error: any) {
-            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` })
-        }
-    });
+      return reply
+        .status(200)
+        .send({ message: "Logout realizado com sucesso" });
+    } catch (error: any) {
+      return reply
+        .status(500)
+        .send({ message: `Erro no servidor: ${error.message}` });
+    }
+  });
 
-    app.post("/signout", async (request, reply) => {
-        try {
-            const token = request.headers.authorization?.replace("Bearer ", "");
+  app.delete("/:id", async (request, reply) => {
+    try {
+      const { id } = userSchema.parse(request.params);
 
-            if (!token) {
-                return reply.status(401).send({ message: "Token não fornecido" });
-            }
+      const userDeleted = await deleteUser(id);
 
-            const deletedSession = await deleteSession(token)
+      return reply.status(200).send({ userDeleted });
+    } catch (error: any) {
+      return reply
+        .status(500)
+        .send({ message: `Erro no servidor: ${error.message}` });
+    }
+  });
 
-            if (!deletedSession) {
-                return reply.status(404).send({ message: "Sessão não encontrada ou já expirada" });
-            }
+  app.patch("/:id", async (request, reply) => {
+    try {
+      const { id } = userSchema.parse(request.params);
 
-            return reply.status(200).send({ message: "Logout realizado com sucesso" });
+      const user = updateUserBodySchema.parse(request.body);
 
-        } catch (error: any) {
-            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` });
-        }
-    });
+      const userUpdated = await updateUser(id, user);
 
-    app.delete("/:id", async (request, reply) => {
-        try {
-            const { id } = userSchema.parse(request.params);
-
-            const userDeleted = await deleteUser(id);
-
-            return reply.status(200).send({ userDeleted });
-
-        } catch (error: any) {
-            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` })
-        }
-    });
-
-    app.patch("/:id", async (request, reply) => {
-        try {
-            const { id } = userSchema.parse(request.params);
-
-            const user = updateUserBodySchema.parse(request.body);
-
-            const userUpdated = await updateUser(id, user);
-
-            return reply.status(200).send({ userUpdated });
-        } catch (error: any) {
-            return reply.status(500).send({ message: `Erro no servidor: ${error.message}` });
-        }
-    })
-
+      return reply.status(200).send({ userUpdated });
+    } catch (error: any) {
+      return reply
+        .status(500)
+        .send({ message: `Erro no servidor: ${error.message}` });
+    }
+  });
 }
