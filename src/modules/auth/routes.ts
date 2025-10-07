@@ -34,7 +34,7 @@ export default async function userAuthRoutes(app: FastifyInstance) {
             const expires_at = new Date(decoded.exp * 1000);
             const createdSession = await saveSession(user.id, token);
 
-            return reply.status(200).send({ message: "Usuário logado com sucesso!", token });
+            return reply.status(200).send({ message: "Usuário logado com sucesso!",id: user.id, token });
 
         } catch (error: any) {
             return reply.status(500).send({ message: `Erro no servidor: ${error.message}` });
