@@ -1,5 +1,7 @@
 import { z } from "zod";
 
 export const getProductParamSchema = z.object({
-    productId: z.coerce.number()
+    codprod: z.coerce.number().optional(),
+    descricao: z.coerce.string().optional(),
+    codauxiliar: z.coerce.number().optional(),
 })

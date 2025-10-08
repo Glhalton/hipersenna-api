@@ -5,10 +5,14 @@ import { getProductById } from "./service";
 export default async function productsRoutes(app: FastifyInstance) {
     app.get('/:productId', async (request, reply) => {
         try {
-            const { productId } = getProductParamSchema.parse(request.params);
-            const product = await getProductById(productId);
+            const { codprod, codauxiliar, descricao } = getProductParamSchema.parse(request.query);
+            const product = await getProductById(codprod, codauxiliar, descricao);
 
-            if (!product[0]) {
+            if (product == 200) {
+                return reply.status(404).send({ message: "Informe pelo menos um filtro de busca" })
+            }
+
+            if (product == 404) {
                 return reply.status(404).send({ message: "Produto não encontrado!" })
             }
 
