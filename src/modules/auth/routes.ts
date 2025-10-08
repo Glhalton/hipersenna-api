@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { signInBodySchema } from "./schema";
-import { signInService, saveSession } from "./service";
+import { signInService, saveSession, deleteSessions } from "./service";
 import jwt from "jsonwebtoken";
 
 export default async function userAuthRoutes(app: FastifyInstance) {
@@ -26,13 +26,19 @@ export default async function userAuthRoutes(app: FastifyInstance) {
                 winthor_id: user.winthor_id,
                 branch_id: user.branch_id,
                 access_level: user.access_level
-                
-            }, jwtSecret);
+
+            }, jwtSecret,
+                {
+                    expiresIn: '12h'
+                });
 
             const decoded: any = jwt.decode(token);
 
             const expires_at = new Date(decoded.exp * 1000);
-            const createdSession = await saveSession(user.id, token);
+
+            const deletedSessions = deleteSessions(user.id)
+
+            const createdSession = await saveSession(user.id, token, expires_at);
 
             return reply.status(200).send({ message: "Usuário logado com sucesso!", token });
 
