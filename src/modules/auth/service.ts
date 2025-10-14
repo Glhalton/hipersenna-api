@@ -35,12 +35,6 @@ export const saveSession = async (user_id: number, token: string, expires_at?: a
     })
 }
 
-export const checkSessions = async (user_id: number) => {
-    return await prisma.hssessions.findMany({
-        where: { user_id }
-    })
-}
-
 export const deleteSessions = async (user_id: number) => {
     return await prisma.hssessions.deleteMany({
         where: { user_id }
