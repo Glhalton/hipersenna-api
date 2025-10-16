@@ -12,7 +12,6 @@ export const signUpService = async (dataUser: any) => {
         data: {
             name: dataUser.name,
             username: dataUser.username,
-            access_level: dataUser.access_level,
             branch_id: dataUser.branch_id,
             password: hashedPassword,
             winthor_id: dataUser.winthor_id,
@@ -66,6 +65,12 @@ export const updateUser = async (id: number, data: UpdateUserInput) => {
 
 export const getUser = async (id: number) => {
     return await prisma.hsemployees.findFirst({
-        where: { id }
+        where: { id },
+        include:{
+            hsusers_roles:{
+                include: {
+                    hsroles: true
+                }
+            }}
     });
 }

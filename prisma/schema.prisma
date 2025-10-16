@@ -8,10 +8,72 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model hsaccess_levels {
-  id          Int           @id @default(autoincrement())
-  description String        @db.VarChar(150)
-  hsemployees hsemployees[]
+model hsemployees {
+  id                  Int                   @id @default(autoincrement())
+  branch_id           Int
+  winthor_id          Int                   @unique @default(0)
+  name                String
+  username            String                @unique
+  password            String
+  created_at          DateTime              @default(now()) @db.Timestamptz(6)
+  modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
+  branch              hsbranches            @relation(fields: [branch_id], references: [id])
+  analystRequests     hsvalidity_requests[] @relation("AnalystRelation")
+  confereeRequests    hsvalidity_requests[] @relation("ConfereeRelation")
+  sessions            hssessions[]
+  hsvalidities        hsvalidities[]
+  hsusers_permissions hsusers_permissions[]
+  hsusers_roles       hsusers_roles[]
+
+  @@map("hsemployees")
+}
+
+model hsroles {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique @db.VarChar(50)
+  description String   @db.VarChar(150)
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  modified_at DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+
+  hspermissions_roles hspermissions_roles[]
+  hsusers_roles       hsusers_roles[]
+}
+
+model hspermissions {
+  id                  Int                   @id @default(autoincrement())
+  name                String                @unique @db.VarChar(50)
+  description         String                @db.VarChar(150)
+  created_at          DateTime              @default(now()) @db.Timestamptz(6)
+  modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
+  hsusers_permissions hsusers_permissions[]
+  hspermissions_roles hspermissions_roles[]
+}
+
+model hspermissions_roles {
+  role_id       Int
+  permission_id Int
+  hsroles       hsroles       @relation(fields: [role_id], references: [id])
+  hspermissions hspermissions @relation(fields: [permission_id], references: [id])
+
+  @@id([role_id, permission_id])
+}
+
+model hsusers_permissions {
+  user_id       Int
+  permission_id Int
+  hsemployees   hsemployees   @relation(fields: [user_id], references: [id])
+  hspermissions hspermissions @relation(fields: [permission_id], references: [id])
+
+  @@id([user_id, permission_id])
+}
+
+model hsusers_roles {
+  user_id     Int
+  role_id     Int
+  heemployees hsemployees @relation(fields: [user_id], references: [id])
+  hsroles     hsroles     @relation(fields: [role_id], references: [id])
+
+  @@id([user_id, role_id])
 }
 
 model hsbranches {
@@ -75,26 +137,6 @@ model hsvalidity_treatments {
   id                  Int                   @id @default(autoincrement())
   description         String                @db.VarChar(150)
   hsvalidity_products hsvalidity_products[]
-}
-
-model hsemployees {
-  id               Int                   @id @default(autoincrement())
-  branch_id        Int
-  access_level     Int
-  winthor_id       Int                   @unique @default(0)
-  name             String
-  username         String                @unique
-  password         String
-  created_at       DateTime              @default(now()) @db.Timestamptz(6)
-  modified_at      DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
-  branch           hsbranches            @relation(fields: [branch_id], references: [id])
-  hsaccess_level   hsaccess_levels       @relation(fields: [access_level], references: [id])
-  analystRequests  hsvalidity_requests[] @relation("AnalystRelation")
-  confereeRequests hsvalidity_requests[] @relation("ConfereeRelation")
-  sessions         hssessions[]
-  hsvalidities     hsvalidities[]
-
-  @@map("hsemployees")
 }
 
 model hssessions {

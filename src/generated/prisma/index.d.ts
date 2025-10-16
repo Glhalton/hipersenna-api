@@ -14,10 +14,35 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model hsaccess_levels
+ * Model hsemployees
  * 
  */
-export type hsaccess_levels = $Result.DefaultSelection<Prisma.$hsaccess_levelsPayload>
+export type hsemployees = $Result.DefaultSelection<Prisma.$hsemployeesPayload>
+/**
+ * Model hsroles
+ * 
+ */
+export type hsroles = $Result.DefaultSelection<Prisma.$hsrolesPayload>
+/**
+ * Model hspermissions
+ * 
+ */
+export type hspermissions = $Result.DefaultSelection<Prisma.$hspermissionsPayload>
+/**
+ * Model hspermissions_roles
+ * 
+ */
+export type hspermissions_roles = $Result.DefaultSelection<Prisma.$hspermissions_rolesPayload>
+/**
+ * Model hsusers_permissions
+ * 
+ */
+export type hsusers_permissions = $Result.DefaultSelection<Prisma.$hsusers_permissionsPayload>
+/**
+ * Model hsusers_roles
+ * 
+ */
+export type hsusers_roles = $Result.DefaultSelection<Prisma.$hsusers_rolesPayload>
 /**
  * Model hsbranches
  * 
@@ -48,11 +73,6 @@ export type hsvalidity_request_products = $Result.DefaultSelection<Prisma.$hsval
  * 
  */
 export type hsvalidity_treatments = $Result.DefaultSelection<Prisma.$hsvalidity_treatmentsPayload>
-/**
- * Model hsemployees
- * 
- */
-export type hsemployees = $Result.DefaultSelection<Prisma.$hsemployeesPayload>
 /**
  * Model hssessions
  * 
@@ -111,8 +131,8 @@ export const hsvalidity_requests_status: typeof $Enums.hsvalidity_requests_statu
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Hsaccess_levels
- * const hsaccess_levels = await prisma.hsaccess_levels.findMany()
+ * // Fetch zero or more Hsemployees
+ * const hsemployees = await prisma.hsemployees.findMany()
  * ```
  *
  *
@@ -132,8 +152,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Hsaccess_levels
-   * const hsaccess_levels = await prisma.hsaccess_levels.findMany()
+   * // Fetch zero or more Hsemployees
+   * const hsemployees = await prisma.hsemployees.findMany()
    * ```
    *
    *
@@ -223,14 +243,64 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.hsaccess_levels`: Exposes CRUD operations for the **hsaccess_levels** model.
+   * `prisma.hsemployees`: Exposes CRUD operations for the **hsemployees** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Hsaccess_levels
-    * const hsaccess_levels = await prisma.hsaccess_levels.findMany()
+    * // Fetch zero or more Hsemployees
+    * const hsemployees = await prisma.hsemployees.findMany()
     * ```
     */
-  get hsaccess_levels(): Prisma.hsaccess_levelsDelegate<ExtArgs, ClientOptions>;
+  get hsemployees(): Prisma.hsemployeesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hsroles`: Exposes CRUD operations for the **hsroles** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hsroles
+    * const hsroles = await prisma.hsroles.findMany()
+    * ```
+    */
+  get hsroles(): Prisma.hsrolesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hspermissions`: Exposes CRUD operations for the **hspermissions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hspermissions
+    * const hspermissions = await prisma.hspermissions.findMany()
+    * ```
+    */
+  get hspermissions(): Prisma.hspermissionsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hspermissions_roles`: Exposes CRUD operations for the **hspermissions_roles** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hspermissions_roles
+    * const hspermissions_roles = await prisma.hspermissions_roles.findMany()
+    * ```
+    */
+  get hspermissions_roles(): Prisma.hspermissions_rolesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hsusers_permissions`: Exposes CRUD operations for the **hsusers_permissions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hsusers_permissions
+    * const hsusers_permissions = await prisma.hsusers_permissions.findMany()
+    * ```
+    */
+  get hsusers_permissions(): Prisma.hsusers_permissionsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hsusers_roles`: Exposes CRUD operations for the **hsusers_roles** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hsusers_roles
+    * const hsusers_roles = await prisma.hsusers_roles.findMany()
+    * ```
+    */
+  get hsusers_roles(): Prisma.hsusers_rolesDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.hsbranches`: Exposes CRUD operations for the **hsbranches** model.
@@ -291,16 +361,6 @@ export class PrismaClient<
     * ```
     */
   get hsvalidity_treatments(): Prisma.hsvalidity_treatmentsDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.hsemployees`: Exposes CRUD operations for the **hsemployees** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Hsemployees
-    * const hsemployees = await prisma.hsemployees.findMany()
-    * ```
-    */
-  get hsemployees(): Prisma.hsemployeesDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.hssessions`: Exposes CRUD operations for the **hssessions** model.
@@ -751,14 +811,18 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    hsaccess_levels: 'hsaccess_levels',
+    hsemployees: 'hsemployees',
+    hsroles: 'hsroles',
+    hspermissions: 'hspermissions',
+    hspermissions_roles: 'hspermissions_roles',
+    hsusers_permissions: 'hsusers_permissions',
+    hsusers_roles: 'hsusers_roles',
     hsbranches: 'hsbranches',
     hsvalidities: 'hsvalidities',
     hsvalidity_products: 'hsvalidity_products',
     hsvalidity_requests: 'hsvalidity_requests',
     hsvalidity_request_products: 'hsvalidity_request_products',
     hsvalidity_treatments: 'hsvalidity_treatments',
-    hsemployees: 'hsemployees',
     hssessions: 'hssessions'
   };
 
@@ -778,81 +842,451 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "hsaccess_levels" | "hsbranches" | "hsvalidities" | "hsvalidity_products" | "hsvalidity_requests" | "hsvalidity_request_products" | "hsvalidity_treatments" | "hsemployees" | "hssessions"
+      modelProps: "hsemployees" | "hsroles" | "hspermissions" | "hspermissions_roles" | "hsusers_permissions" | "hsusers_roles" | "hsbranches" | "hsvalidities" | "hsvalidity_products" | "hsvalidity_requests" | "hsvalidity_request_products" | "hsvalidity_treatments" | "hssessions"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      hsaccess_levels: {
-        payload: Prisma.$hsaccess_levelsPayload<ExtArgs>
-        fields: Prisma.hsaccess_levelsFieldRefs
+      hsemployees: {
+        payload: Prisma.$hsemployeesPayload<ExtArgs>
+        fields: Prisma.hsemployeesFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.hsaccess_levelsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsaccess_levelsPayload> | null
+            args: Prisma.hsemployeesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.hsaccess_levelsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsaccess_levelsPayload>
+            args: Prisma.hsemployeesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>
           }
           findFirst: {
-            args: Prisma.hsaccess_levelsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsaccess_levelsPayload> | null
+            args: Prisma.hsemployeesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.hsaccess_levelsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsaccess_levelsPayload>
+            args: Prisma.hsemployeesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>
           }
           findMany: {
-            args: Prisma.hsaccess_levelsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsaccess_levelsPayload>[]
+            args: Prisma.hsemployeesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>[]
           }
           create: {
-            args: Prisma.hsaccess_levelsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsaccess_levelsPayload>
+            args: Prisma.hsemployeesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>
           }
           createMany: {
-            args: Prisma.hsaccess_levelsCreateManyArgs<ExtArgs>
+            args: Prisma.hsemployeesCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.hsaccess_levelsCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsaccess_levelsPayload>[]
+            args: Prisma.hsemployeesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>[]
           }
           delete: {
-            args: Prisma.hsaccess_levelsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsaccess_levelsPayload>
+            args: Prisma.hsemployeesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>
           }
           update: {
-            args: Prisma.hsaccess_levelsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsaccess_levelsPayload>
+            args: Prisma.hsemployeesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>
           }
           deleteMany: {
-            args: Prisma.hsaccess_levelsDeleteManyArgs<ExtArgs>
+            args: Prisma.hsemployeesDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.hsaccess_levelsUpdateManyArgs<ExtArgs>
+            args: Prisma.hsemployeesUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.hsaccess_levelsUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsaccess_levelsPayload>[]
+            args: Prisma.hsemployeesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>[]
           }
           upsert: {
-            args: Prisma.hsaccess_levelsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsaccess_levelsPayload>
+            args: Prisma.hsemployeesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>
           }
           aggregate: {
-            args: Prisma.Hsaccess_levelsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateHsaccess_levels>
+            args: Prisma.HsemployeesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHsemployees>
           }
           groupBy: {
-            args: Prisma.hsaccess_levelsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Hsaccess_levelsGroupByOutputType>[]
+            args: Prisma.hsemployeesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HsemployeesGroupByOutputType>[]
           }
           count: {
-            args: Prisma.hsaccess_levelsCountArgs<ExtArgs>
-            result: $Utils.Optional<Hsaccess_levelsCountAggregateOutputType> | number
+            args: Prisma.hsemployeesCountArgs<ExtArgs>
+            result: $Utils.Optional<HsemployeesCountAggregateOutputType> | number
+          }
+        }
+      }
+      hsroles: {
+        payload: Prisma.$hsrolesPayload<ExtArgs>
+        fields: Prisma.hsrolesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.hsrolesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrolesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.hsrolesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrolesPayload>
+          }
+          findFirst: {
+            args: Prisma.hsrolesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrolesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.hsrolesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrolesPayload>
+          }
+          findMany: {
+            args: Prisma.hsrolesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrolesPayload>[]
+          }
+          create: {
+            args: Prisma.hsrolesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrolesPayload>
+          }
+          createMany: {
+            args: Prisma.hsrolesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.hsrolesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrolesPayload>[]
+          }
+          delete: {
+            args: Prisma.hsrolesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrolesPayload>
+          }
+          update: {
+            args: Prisma.hsrolesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrolesPayload>
+          }
+          deleteMany: {
+            args: Prisma.hsrolesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.hsrolesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.hsrolesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrolesPayload>[]
+          }
+          upsert: {
+            args: Prisma.hsrolesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrolesPayload>
+          }
+          aggregate: {
+            args: Prisma.HsrolesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHsroles>
+          }
+          groupBy: {
+            args: Prisma.hsrolesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HsrolesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.hsrolesCountArgs<ExtArgs>
+            result: $Utils.Optional<HsrolesCountAggregateOutputType> | number
+          }
+        }
+      }
+      hspermissions: {
+        payload: Prisma.$hspermissionsPayload<ExtArgs>
+        fields: Prisma.hspermissionsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.hspermissionsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissionsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.hspermissionsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissionsPayload>
+          }
+          findFirst: {
+            args: Prisma.hspermissionsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissionsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.hspermissionsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissionsPayload>
+          }
+          findMany: {
+            args: Prisma.hspermissionsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissionsPayload>[]
+          }
+          create: {
+            args: Prisma.hspermissionsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissionsPayload>
+          }
+          createMany: {
+            args: Prisma.hspermissionsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.hspermissionsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissionsPayload>[]
+          }
+          delete: {
+            args: Prisma.hspermissionsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissionsPayload>
+          }
+          update: {
+            args: Prisma.hspermissionsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissionsPayload>
+          }
+          deleteMany: {
+            args: Prisma.hspermissionsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.hspermissionsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.hspermissionsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissionsPayload>[]
+          }
+          upsert: {
+            args: Prisma.hspermissionsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissionsPayload>
+          }
+          aggregate: {
+            args: Prisma.HspermissionsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHspermissions>
+          }
+          groupBy: {
+            args: Prisma.hspermissionsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HspermissionsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.hspermissionsCountArgs<ExtArgs>
+            result: $Utils.Optional<HspermissionsCountAggregateOutputType> | number
+          }
+        }
+      }
+      hspermissions_roles: {
+        payload: Prisma.$hspermissions_rolesPayload<ExtArgs>
+        fields: Prisma.hspermissions_rolesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.hspermissions_rolesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissions_rolesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.hspermissions_rolesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissions_rolesPayload>
+          }
+          findFirst: {
+            args: Prisma.hspermissions_rolesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissions_rolesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.hspermissions_rolesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissions_rolesPayload>
+          }
+          findMany: {
+            args: Prisma.hspermissions_rolesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissions_rolesPayload>[]
+          }
+          create: {
+            args: Prisma.hspermissions_rolesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissions_rolesPayload>
+          }
+          createMany: {
+            args: Prisma.hspermissions_rolesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.hspermissions_rolesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissions_rolesPayload>[]
+          }
+          delete: {
+            args: Prisma.hspermissions_rolesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissions_rolesPayload>
+          }
+          update: {
+            args: Prisma.hspermissions_rolesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissions_rolesPayload>
+          }
+          deleteMany: {
+            args: Prisma.hspermissions_rolesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.hspermissions_rolesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.hspermissions_rolesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissions_rolesPayload>[]
+          }
+          upsert: {
+            args: Prisma.hspermissions_rolesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hspermissions_rolesPayload>
+          }
+          aggregate: {
+            args: Prisma.Hspermissions_rolesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHspermissions_roles>
+          }
+          groupBy: {
+            args: Prisma.hspermissions_rolesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Hspermissions_rolesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.hspermissions_rolesCountArgs<ExtArgs>
+            result: $Utils.Optional<Hspermissions_rolesCountAggregateOutputType> | number
+          }
+        }
+      }
+      hsusers_permissions: {
+        payload: Prisma.$hsusers_permissionsPayload<ExtArgs>
+        fields: Prisma.hsusers_permissionsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.hsusers_permissionsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_permissionsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.hsusers_permissionsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_permissionsPayload>
+          }
+          findFirst: {
+            args: Prisma.hsusers_permissionsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_permissionsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.hsusers_permissionsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_permissionsPayload>
+          }
+          findMany: {
+            args: Prisma.hsusers_permissionsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_permissionsPayload>[]
+          }
+          create: {
+            args: Prisma.hsusers_permissionsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_permissionsPayload>
+          }
+          createMany: {
+            args: Prisma.hsusers_permissionsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.hsusers_permissionsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_permissionsPayload>[]
+          }
+          delete: {
+            args: Prisma.hsusers_permissionsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_permissionsPayload>
+          }
+          update: {
+            args: Prisma.hsusers_permissionsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_permissionsPayload>
+          }
+          deleteMany: {
+            args: Prisma.hsusers_permissionsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.hsusers_permissionsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.hsusers_permissionsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_permissionsPayload>[]
+          }
+          upsert: {
+            args: Prisma.hsusers_permissionsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_permissionsPayload>
+          }
+          aggregate: {
+            args: Prisma.Hsusers_permissionsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHsusers_permissions>
+          }
+          groupBy: {
+            args: Prisma.hsusers_permissionsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Hsusers_permissionsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.hsusers_permissionsCountArgs<ExtArgs>
+            result: $Utils.Optional<Hsusers_permissionsCountAggregateOutputType> | number
+          }
+        }
+      }
+      hsusers_roles: {
+        payload: Prisma.$hsusers_rolesPayload<ExtArgs>
+        fields: Prisma.hsusers_rolesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.hsusers_rolesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.hsusers_rolesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>
+          }
+          findFirst: {
+            args: Prisma.hsusers_rolesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.hsusers_rolesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>
+          }
+          findMany: {
+            args: Prisma.hsusers_rolesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>[]
+          }
+          create: {
+            args: Prisma.hsusers_rolesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>
+          }
+          createMany: {
+            args: Prisma.hsusers_rolesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.hsusers_rolesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>[]
+          }
+          delete: {
+            args: Prisma.hsusers_rolesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>
+          }
+          update: {
+            args: Prisma.hsusers_rolesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>
+          }
+          deleteMany: {
+            args: Prisma.hsusers_rolesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.hsusers_rolesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.hsusers_rolesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>[]
+          }
+          upsert: {
+            args: Prisma.hsusers_rolesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>
+          }
+          aggregate: {
+            args: Prisma.Hsusers_rolesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHsusers_roles>
+          }
+          groupBy: {
+            args: Prisma.hsusers_rolesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Hsusers_rolesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.hsusers_rolesCountArgs<ExtArgs>
+            result: $Utils.Optional<Hsusers_rolesCountAggregateOutputType> | number
           }
         }
       }
@@ -1300,80 +1734,6 @@ export namespace Prisma {
           }
         }
       }
-      hsemployees: {
-        payload: Prisma.$hsemployeesPayload<ExtArgs>
-        fields: Prisma.hsemployeesFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.hsemployeesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.hsemployeesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>
-          }
-          findFirst: {
-            args: Prisma.hsemployeesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.hsemployeesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>
-          }
-          findMany: {
-            args: Prisma.hsemployeesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>[]
-          }
-          create: {
-            args: Prisma.hsemployeesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>
-          }
-          createMany: {
-            args: Prisma.hsemployeesCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.hsemployeesCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>[]
-          }
-          delete: {
-            args: Prisma.hsemployeesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>
-          }
-          update: {
-            args: Prisma.hsemployeesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>
-          }
-          deleteMany: {
-            args: Prisma.hsemployeesDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.hsemployeesUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.hsemployeesUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>[]
-          }
-          upsert: {
-            args: Prisma.hsemployeesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsemployeesPayload>
-          }
-          aggregate: {
-            args: Prisma.HsemployeesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateHsemployees>
-          }
-          groupBy: {
-            args: Prisma.hsemployeesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<HsemployeesGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.hsemployeesCountArgs<ExtArgs>
-            result: $Utils.Optional<HsemployeesCountAggregateOutputType> | number
-          }
-        }
-      }
       hssessions: {
         payload: Prisma.$hssessionsPayload<ExtArgs>
         fields: Prisma.hssessionsFieldRefs
@@ -1544,14 +1904,18 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    hsaccess_levels?: hsaccess_levelsOmit
+    hsemployees?: hsemployeesOmit
+    hsroles?: hsrolesOmit
+    hspermissions?: hspermissionsOmit
+    hspermissions_roles?: hspermissions_rolesOmit
+    hsusers_permissions?: hsusers_permissionsOmit
+    hsusers_roles?: hsusers_rolesOmit
     hsbranches?: hsbranchesOmit
     hsvalidities?: hsvaliditiesOmit
     hsvalidity_products?: hsvalidity_productsOmit
     hsvalidity_requests?: hsvalidity_requestsOmit
     hsvalidity_request_products?: hsvalidity_request_productsOmit
     hsvalidity_treatments?: hsvalidity_treatmentsOmit
-    hsemployees?: hsemployeesOmit
     hssessions?: hssessionsOmit
   }
 
@@ -1629,33 +1993,158 @@ export namespace Prisma {
 
 
   /**
-   * Count Type Hsaccess_levelsCountOutputType
+   * Count Type HsemployeesCountOutputType
    */
 
-  export type Hsaccess_levelsCountOutputType = {
-    hsemployees: number
+  export type HsemployeesCountOutputType = {
+    analystRequests: number
+    confereeRequests: number
+    sessions: number
+    hsvalidities: number
+    hsusers_permissions: number
+    hsusers_roles: number
   }
 
-  export type Hsaccess_levelsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsemployees?: boolean | Hsaccess_levelsCountOutputTypeCountHsemployeesArgs
+  export type HsemployeesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    analystRequests?: boolean | HsemployeesCountOutputTypeCountAnalystRequestsArgs
+    confereeRequests?: boolean | HsemployeesCountOutputTypeCountConfereeRequestsArgs
+    sessions?: boolean | HsemployeesCountOutputTypeCountSessionsArgs
+    hsvalidities?: boolean | HsemployeesCountOutputTypeCountHsvaliditiesArgs
+    hsusers_permissions?: boolean | HsemployeesCountOutputTypeCountHsusers_permissionsArgs
+    hsusers_roles?: boolean | HsemployeesCountOutputTypeCountHsusers_rolesArgs
   }
 
   // Custom InputTypes
   /**
-   * Hsaccess_levelsCountOutputType without action
+   * HsemployeesCountOutputType without action
    */
-  export type Hsaccess_levelsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HsemployeesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Hsaccess_levelsCountOutputType
+     * Select specific fields to fetch from the HsemployeesCountOutputType
      */
-    select?: Hsaccess_levelsCountOutputTypeSelect<ExtArgs> | null
+    select?: HsemployeesCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * Hsaccess_levelsCountOutputType without action
+   * HsemployeesCountOutputType without action
    */
-  export type Hsaccess_levelsCountOutputTypeCountHsemployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsemployeesWhereInput
+  export type HsemployeesCountOutputTypeCountAnalystRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsvalidity_requestsWhereInput
+  }
+
+  /**
+   * HsemployeesCountOutputType without action
+   */
+  export type HsemployeesCountOutputTypeCountConfereeRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsvalidity_requestsWhereInput
+  }
+
+  /**
+   * HsemployeesCountOutputType without action
+   */
+  export type HsemployeesCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hssessionsWhereInput
+  }
+
+  /**
+   * HsemployeesCountOutputType without action
+   */
+  export type HsemployeesCountOutputTypeCountHsvaliditiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsvaliditiesWhereInput
+  }
+
+  /**
+   * HsemployeesCountOutputType without action
+   */
+  export type HsemployeesCountOutputTypeCountHsusers_permissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsusers_permissionsWhereInput
+  }
+
+  /**
+   * HsemployeesCountOutputType without action
+   */
+  export type HsemployeesCountOutputTypeCountHsusers_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsusers_rolesWhereInput
+  }
+
+
+  /**
+   * Count Type HsrolesCountOutputType
+   */
+
+  export type HsrolesCountOutputType = {
+    hspermissions_roles: number
+    hsusers_roles: number
+  }
+
+  export type HsrolesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hspermissions_roles?: boolean | HsrolesCountOutputTypeCountHspermissions_rolesArgs
+    hsusers_roles?: boolean | HsrolesCountOutputTypeCountHsusers_rolesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * HsrolesCountOutputType without action
+   */
+  export type HsrolesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HsrolesCountOutputType
+     */
+    select?: HsrolesCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * HsrolesCountOutputType without action
+   */
+  export type HsrolesCountOutputTypeCountHspermissions_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hspermissions_rolesWhereInput
+  }
+
+  /**
+   * HsrolesCountOutputType without action
+   */
+  export type HsrolesCountOutputTypeCountHsusers_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsusers_rolesWhereInput
+  }
+
+
+  /**
+   * Count Type HspermissionsCountOutputType
+   */
+
+  export type HspermissionsCountOutputType = {
+    hsusers_permissions: number
+    hspermissions_roles: number
+  }
+
+  export type HspermissionsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsusers_permissions?: boolean | HspermissionsCountOutputTypeCountHsusers_permissionsArgs
+    hspermissions_roles?: boolean | HspermissionsCountOutputTypeCountHspermissions_rolesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * HspermissionsCountOutputType without action
+   */
+  export type HspermissionsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HspermissionsCountOutputType
+     */
+    select?: HspermissionsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * HspermissionsCountOutputType without action
+   */
+  export type HspermissionsCountOutputTypeCountHsusers_permissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsusers_permissionsWhereInput
+  }
+
+  /**
+   * HspermissionsCountOutputType without action
+   */
+  export type HspermissionsCountOutputTypeCountHspermissions_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hspermissions_rolesWhereInput
   }
 
 
@@ -1811,406 +2300,452 @@ export namespace Prisma {
 
 
   /**
-   * Count Type HsemployeesCountOutputType
-   */
-
-  export type HsemployeesCountOutputType = {
-    analystRequests: number
-    confereeRequests: number
-    sessions: number
-    hsvalidities: number
-  }
-
-  export type HsemployeesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    analystRequests?: boolean | HsemployeesCountOutputTypeCountAnalystRequestsArgs
-    confereeRequests?: boolean | HsemployeesCountOutputTypeCountConfereeRequestsArgs
-    sessions?: boolean | HsemployeesCountOutputTypeCountSessionsArgs
-    hsvalidities?: boolean | HsemployeesCountOutputTypeCountHsvaliditiesArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * HsemployeesCountOutputType without action
-   */
-  export type HsemployeesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HsemployeesCountOutputType
-     */
-    select?: HsemployeesCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * HsemployeesCountOutputType without action
-   */
-  export type HsemployeesCountOutputTypeCountAnalystRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsvalidity_requestsWhereInput
-  }
-
-  /**
-   * HsemployeesCountOutputType without action
-   */
-  export type HsemployeesCountOutputTypeCountConfereeRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsvalidity_requestsWhereInput
-  }
-
-  /**
-   * HsemployeesCountOutputType without action
-   */
-  export type HsemployeesCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hssessionsWhereInput
-  }
-
-  /**
-   * HsemployeesCountOutputType without action
-   */
-  export type HsemployeesCountOutputTypeCountHsvaliditiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsvaliditiesWhereInput
-  }
-
-
-  /**
    * Models
    */
 
   /**
-   * Model hsaccess_levels
+   * Model hsemployees
    */
 
-  export type AggregateHsaccess_levels = {
-    _count: Hsaccess_levelsCountAggregateOutputType | null
-    _avg: Hsaccess_levelsAvgAggregateOutputType | null
-    _sum: Hsaccess_levelsSumAggregateOutputType | null
-    _min: Hsaccess_levelsMinAggregateOutputType | null
-    _max: Hsaccess_levelsMaxAggregateOutputType | null
+  export type AggregateHsemployees = {
+    _count: HsemployeesCountAggregateOutputType | null
+    _avg: HsemployeesAvgAggregateOutputType | null
+    _sum: HsemployeesSumAggregateOutputType | null
+    _min: HsemployeesMinAggregateOutputType | null
+    _max: HsemployeesMaxAggregateOutputType | null
   }
 
-  export type Hsaccess_levelsAvgAggregateOutputType = {
+  export type HsemployeesAvgAggregateOutputType = {
     id: number | null
+    branch_id: number | null
+    winthor_id: number | null
   }
 
-  export type Hsaccess_levelsSumAggregateOutputType = {
+  export type HsemployeesSumAggregateOutputType = {
     id: number | null
+    branch_id: number | null
+    winthor_id: number | null
   }
 
-  export type Hsaccess_levelsMinAggregateOutputType = {
+  export type HsemployeesMinAggregateOutputType = {
     id: number | null
-    description: string | null
+    branch_id: number | null
+    winthor_id: number | null
+    name: string | null
+    username: string | null
+    password: string | null
+    created_at: Date | null
+    modified_at: Date | null
   }
 
-  export type Hsaccess_levelsMaxAggregateOutputType = {
+  export type HsemployeesMaxAggregateOutputType = {
     id: number | null
-    description: string | null
+    branch_id: number | null
+    winthor_id: number | null
+    name: string | null
+    username: string | null
+    password: string | null
+    created_at: Date | null
+    modified_at: Date | null
   }
 
-  export type Hsaccess_levelsCountAggregateOutputType = {
+  export type HsemployeesCountAggregateOutputType = {
     id: number
-    description: number
+    branch_id: number
+    winthor_id: number
+    name: number
+    username: number
+    password: number
+    created_at: number
+    modified_at: number
     _all: number
   }
 
 
-  export type Hsaccess_levelsAvgAggregateInputType = {
+  export type HsemployeesAvgAggregateInputType = {
     id?: true
+    branch_id?: true
+    winthor_id?: true
   }
 
-  export type Hsaccess_levelsSumAggregateInputType = {
+  export type HsemployeesSumAggregateInputType = {
     id?: true
+    branch_id?: true
+    winthor_id?: true
   }
 
-  export type Hsaccess_levelsMinAggregateInputType = {
+  export type HsemployeesMinAggregateInputType = {
     id?: true
-    description?: true
+    branch_id?: true
+    winthor_id?: true
+    name?: true
+    username?: true
+    password?: true
+    created_at?: true
+    modified_at?: true
   }
 
-  export type Hsaccess_levelsMaxAggregateInputType = {
+  export type HsemployeesMaxAggregateInputType = {
     id?: true
-    description?: true
+    branch_id?: true
+    winthor_id?: true
+    name?: true
+    username?: true
+    password?: true
+    created_at?: true
+    modified_at?: true
   }
 
-  export type Hsaccess_levelsCountAggregateInputType = {
+  export type HsemployeesCountAggregateInputType = {
     id?: true
-    description?: true
+    branch_id?: true
+    winthor_id?: true
+    name?: true
+    username?: true
+    password?: true
+    created_at?: true
+    modified_at?: true
     _all?: true
   }
 
-  export type Hsaccess_levelsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type HsemployeesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which hsaccess_levels to aggregate.
+     * Filter which hsemployees to aggregate.
      */
-    where?: hsaccess_levelsWhereInput
+    where?: hsemployeesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of hsaccess_levels to fetch.
+     * Determine the order of hsemployees to fetch.
      */
-    orderBy?: hsaccess_levelsOrderByWithRelationInput | hsaccess_levelsOrderByWithRelationInput[]
+    orderBy?: hsemployeesOrderByWithRelationInput | hsemployeesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: hsaccess_levelsWhereUniqueInput
+    cursor?: hsemployeesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` hsaccess_levels from the position of the cursor.
+     * Take `±n` hsemployees from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` hsaccess_levels.
+     * Skip the first `n` hsemployees.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned hsaccess_levels
+     * Count returned hsemployees
     **/
-    _count?: true | Hsaccess_levelsCountAggregateInputType
+    _count?: true | HsemployeesCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: Hsaccess_levelsAvgAggregateInputType
+    _avg?: HsemployeesAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: Hsaccess_levelsSumAggregateInputType
+    _sum?: HsemployeesSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: Hsaccess_levelsMinAggregateInputType
+    _min?: HsemployeesMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: Hsaccess_levelsMaxAggregateInputType
+    _max?: HsemployeesMaxAggregateInputType
   }
 
-  export type GetHsaccess_levelsAggregateType<T extends Hsaccess_levelsAggregateArgs> = {
-        [P in keyof T & keyof AggregateHsaccess_levels]: P extends '_count' | 'count'
+  export type GetHsemployeesAggregateType<T extends HsemployeesAggregateArgs> = {
+        [P in keyof T & keyof AggregateHsemployees]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateHsaccess_levels[P]>
-      : GetScalarType<T[P], AggregateHsaccess_levels[P]>
+        : GetScalarType<T[P], AggregateHsemployees[P]>
+      : GetScalarType<T[P], AggregateHsemployees[P]>
   }
 
 
 
 
-  export type hsaccess_levelsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsaccess_levelsWhereInput
-    orderBy?: hsaccess_levelsOrderByWithAggregationInput | hsaccess_levelsOrderByWithAggregationInput[]
-    by: Hsaccess_levelsScalarFieldEnum[] | Hsaccess_levelsScalarFieldEnum
-    having?: hsaccess_levelsScalarWhereWithAggregatesInput
+  export type hsemployeesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsemployeesWhereInput
+    orderBy?: hsemployeesOrderByWithAggregationInput | hsemployeesOrderByWithAggregationInput[]
+    by: HsemployeesScalarFieldEnum[] | HsemployeesScalarFieldEnum
+    having?: hsemployeesScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: Hsaccess_levelsCountAggregateInputType | true
-    _avg?: Hsaccess_levelsAvgAggregateInputType
-    _sum?: Hsaccess_levelsSumAggregateInputType
-    _min?: Hsaccess_levelsMinAggregateInputType
-    _max?: Hsaccess_levelsMaxAggregateInputType
+    _count?: HsemployeesCountAggregateInputType | true
+    _avg?: HsemployeesAvgAggregateInputType
+    _sum?: HsemployeesSumAggregateInputType
+    _min?: HsemployeesMinAggregateInputType
+    _max?: HsemployeesMaxAggregateInputType
   }
 
-  export type Hsaccess_levelsGroupByOutputType = {
+  export type HsemployeesGroupByOutputType = {
     id: number
-    description: string
-    _count: Hsaccess_levelsCountAggregateOutputType | null
-    _avg: Hsaccess_levelsAvgAggregateOutputType | null
-    _sum: Hsaccess_levelsSumAggregateOutputType | null
-    _min: Hsaccess_levelsMinAggregateOutputType | null
-    _max: Hsaccess_levelsMaxAggregateOutputType | null
+    branch_id: number
+    winthor_id: number
+    name: string
+    username: string
+    password: string
+    created_at: Date
+    modified_at: Date
+    _count: HsemployeesCountAggregateOutputType | null
+    _avg: HsemployeesAvgAggregateOutputType | null
+    _sum: HsemployeesSumAggregateOutputType | null
+    _min: HsemployeesMinAggregateOutputType | null
+    _max: HsemployeesMaxAggregateOutputType | null
   }
 
-  type GetHsaccess_levelsGroupByPayload<T extends hsaccess_levelsGroupByArgs> = Prisma.PrismaPromise<
+  type GetHsemployeesGroupByPayload<T extends hsemployeesGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<Hsaccess_levelsGroupByOutputType, T['by']> &
+      PickEnumerable<HsemployeesGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof Hsaccess_levelsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof HsemployeesGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], Hsaccess_levelsGroupByOutputType[P]>
-            : GetScalarType<T[P], Hsaccess_levelsGroupByOutputType[P]>
+              : GetScalarType<T[P], HsemployeesGroupByOutputType[P]>
+            : GetScalarType<T[P], HsemployeesGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type hsaccess_levelsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type hsemployeesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    description?: boolean
-    hsemployees?: boolean | hsaccess_levels$hsemployeesArgs<ExtArgs>
-    _count?: boolean | Hsaccess_levelsCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hsaccess_levels"]>
+    branch_id?: boolean
+    winthor_id?: boolean
+    name?: boolean
+    username?: boolean
+    password?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    analystRequests?: boolean | hsemployees$analystRequestsArgs<ExtArgs>
+    confereeRequests?: boolean | hsemployees$confereeRequestsArgs<ExtArgs>
+    sessions?: boolean | hsemployees$sessionsArgs<ExtArgs>
+    hsvalidities?: boolean | hsemployees$hsvaliditiesArgs<ExtArgs>
+    hsusers_permissions?: boolean | hsemployees$hsusers_permissionsArgs<ExtArgs>
+    hsusers_roles?: boolean | hsemployees$hsusers_rolesArgs<ExtArgs>
+    _count?: boolean | HsemployeesCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsemployees"]>
 
-  export type hsaccess_levelsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type hsemployeesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    description?: boolean
-  }, ExtArgs["result"]["hsaccess_levels"]>
+    branch_id?: boolean
+    winthor_id?: boolean
+    name?: boolean
+    username?: boolean
+    password?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsemployees"]>
 
-  export type hsaccess_levelsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type hsemployeesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    description?: boolean
-  }, ExtArgs["result"]["hsaccess_levels"]>
+    branch_id?: boolean
+    winthor_id?: boolean
+    name?: boolean
+    username?: boolean
+    password?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsemployees"]>
 
-  export type hsaccess_levelsSelectScalar = {
+  export type hsemployeesSelectScalar = {
     id?: boolean
-    description?: boolean
+    branch_id?: boolean
+    winthor_id?: boolean
+    name?: boolean
+    username?: boolean
+    password?: boolean
+    created_at?: boolean
+    modified_at?: boolean
   }
 
-  export type hsaccess_levelsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description", ExtArgs["result"]["hsaccess_levels"]>
-  export type hsaccess_levelsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsemployees?: boolean | hsaccess_levels$hsemployeesArgs<ExtArgs>
-    _count?: boolean | Hsaccess_levelsCountOutputTypeDefaultArgs<ExtArgs>
+  export type hsemployeesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branch_id" | "winthor_id" | "name" | "username" | "password" | "created_at" | "modified_at", ExtArgs["result"]["hsemployees"]>
+  export type hsemployeesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    analystRequests?: boolean | hsemployees$analystRequestsArgs<ExtArgs>
+    confereeRequests?: boolean | hsemployees$confereeRequestsArgs<ExtArgs>
+    sessions?: boolean | hsemployees$sessionsArgs<ExtArgs>
+    hsvalidities?: boolean | hsemployees$hsvaliditiesArgs<ExtArgs>
+    hsusers_permissions?: boolean | hsemployees$hsusers_permissionsArgs<ExtArgs>
+    hsusers_roles?: boolean | hsemployees$hsusers_rolesArgs<ExtArgs>
+    _count?: boolean | HsemployeesCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type hsaccess_levelsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type hsaccess_levelsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type hsemployeesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+  }
+  export type hsemployeesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+  }
 
-  export type $hsaccess_levelsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "hsaccess_levels"
+  export type $hsemployeesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "hsemployees"
     objects: {
-      hsemployees: Prisma.$hsemployeesPayload<ExtArgs>[]
+      branch: Prisma.$hsbranchesPayload<ExtArgs>
+      analystRequests: Prisma.$hsvalidity_requestsPayload<ExtArgs>[]
+      confereeRequests: Prisma.$hsvalidity_requestsPayload<ExtArgs>[]
+      sessions: Prisma.$hssessionsPayload<ExtArgs>[]
+      hsvalidities: Prisma.$hsvaliditiesPayload<ExtArgs>[]
+      hsusers_permissions: Prisma.$hsusers_permissionsPayload<ExtArgs>[]
+      hsusers_roles: Prisma.$hsusers_rolesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      description: string
-    }, ExtArgs["result"]["hsaccess_levels"]>
+      branch_id: number
+      winthor_id: number
+      name: string
+      username: string
+      password: string
+      created_at: Date
+      modified_at: Date
+    }, ExtArgs["result"]["hsemployees"]>
     composites: {}
   }
 
-  type hsaccess_levelsGetPayload<S extends boolean | null | undefined | hsaccess_levelsDefaultArgs> = $Result.GetResult<Prisma.$hsaccess_levelsPayload, S>
+  type hsemployeesGetPayload<S extends boolean | null | undefined | hsemployeesDefaultArgs> = $Result.GetResult<Prisma.$hsemployeesPayload, S>
 
-  type hsaccess_levelsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<hsaccess_levelsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Hsaccess_levelsCountAggregateInputType | true
+  type hsemployeesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<hsemployeesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HsemployeesCountAggregateInputType | true
     }
 
-  export interface hsaccess_levelsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hsaccess_levels'], meta: { name: 'hsaccess_levels' } }
+  export interface hsemployeesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hsemployees'], meta: { name: 'hsemployees' } }
     /**
-     * Find zero or one Hsaccess_levels that matches the filter.
-     * @param {hsaccess_levelsFindUniqueArgs} args - Arguments to find a Hsaccess_levels
+     * Find zero or one Hsemployees that matches the filter.
+     * @param {hsemployeesFindUniqueArgs} args - Arguments to find a Hsemployees
      * @example
-     * // Get one Hsaccess_levels
-     * const hsaccess_levels = await prisma.hsaccess_levels.findUnique({
+     * // Get one Hsemployees
+     * const hsemployees = await prisma.hsemployees.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends hsaccess_levelsFindUniqueArgs>(args: SelectSubset<T, hsaccess_levelsFindUniqueArgs<ExtArgs>>): Prisma__hsaccess_levelsClient<$Result.GetResult<Prisma.$hsaccess_levelsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends hsemployeesFindUniqueArgs>(args: SelectSubset<T, hsemployeesFindUniqueArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Hsaccess_levels that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Hsemployees that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {hsaccess_levelsFindUniqueOrThrowArgs} args - Arguments to find a Hsaccess_levels
+     * @param {hsemployeesFindUniqueOrThrowArgs} args - Arguments to find a Hsemployees
      * @example
-     * // Get one Hsaccess_levels
-     * const hsaccess_levels = await prisma.hsaccess_levels.findUniqueOrThrow({
+     * // Get one Hsemployees
+     * const hsemployees = await prisma.hsemployees.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends hsaccess_levelsFindUniqueOrThrowArgs>(args: SelectSubset<T, hsaccess_levelsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hsaccess_levelsClient<$Result.GetResult<Prisma.$hsaccess_levelsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends hsemployeesFindUniqueOrThrowArgs>(args: SelectSubset<T, hsemployeesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Hsaccess_levels that matches the filter.
+     * Find the first Hsemployees that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsaccess_levelsFindFirstArgs} args - Arguments to find a Hsaccess_levels
+     * @param {hsemployeesFindFirstArgs} args - Arguments to find a Hsemployees
      * @example
-     * // Get one Hsaccess_levels
-     * const hsaccess_levels = await prisma.hsaccess_levels.findFirst({
+     * // Get one Hsemployees
+     * const hsemployees = await prisma.hsemployees.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends hsaccess_levelsFindFirstArgs>(args?: SelectSubset<T, hsaccess_levelsFindFirstArgs<ExtArgs>>): Prisma__hsaccess_levelsClient<$Result.GetResult<Prisma.$hsaccess_levelsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends hsemployeesFindFirstArgs>(args?: SelectSubset<T, hsemployeesFindFirstArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Hsaccess_levels that matches the filter or
+     * Find the first Hsemployees that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsaccess_levelsFindFirstOrThrowArgs} args - Arguments to find a Hsaccess_levels
+     * @param {hsemployeesFindFirstOrThrowArgs} args - Arguments to find a Hsemployees
      * @example
-     * // Get one Hsaccess_levels
-     * const hsaccess_levels = await prisma.hsaccess_levels.findFirstOrThrow({
+     * // Get one Hsemployees
+     * const hsemployees = await prisma.hsemployees.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends hsaccess_levelsFindFirstOrThrowArgs>(args?: SelectSubset<T, hsaccess_levelsFindFirstOrThrowArgs<ExtArgs>>): Prisma__hsaccess_levelsClient<$Result.GetResult<Prisma.$hsaccess_levelsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends hsemployeesFindFirstOrThrowArgs>(args?: SelectSubset<T, hsemployeesFindFirstOrThrowArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Hsaccess_levels that matches the filter.
+     * Find zero or more Hsemployees that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsaccess_levelsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {hsemployeesFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Hsaccess_levels
-     * const hsaccess_levels = await prisma.hsaccess_levels.findMany()
+     * // Get all Hsemployees
+     * const hsemployees = await prisma.hsemployees.findMany()
      * 
-     * // Get first 10 Hsaccess_levels
-     * const hsaccess_levels = await prisma.hsaccess_levels.findMany({ take: 10 })
+     * // Get first 10 Hsemployees
+     * const hsemployees = await prisma.hsemployees.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const hsaccess_levelsWithIdOnly = await prisma.hsaccess_levels.findMany({ select: { id: true } })
+     * const hsemployeesWithIdOnly = await prisma.hsemployees.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends hsaccess_levelsFindManyArgs>(args?: SelectSubset<T, hsaccess_levelsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsaccess_levelsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends hsemployeesFindManyArgs>(args?: SelectSubset<T, hsemployeesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Hsaccess_levels.
-     * @param {hsaccess_levelsCreateArgs} args - Arguments to create a Hsaccess_levels.
+     * Create a Hsemployees.
+     * @param {hsemployeesCreateArgs} args - Arguments to create a Hsemployees.
      * @example
-     * // Create one Hsaccess_levels
-     * const Hsaccess_levels = await prisma.hsaccess_levels.create({
+     * // Create one Hsemployees
+     * const Hsemployees = await prisma.hsemployees.create({
      *   data: {
-     *     // ... data to create a Hsaccess_levels
+     *     // ... data to create a Hsemployees
      *   }
      * })
      * 
      */
-    create<T extends hsaccess_levelsCreateArgs>(args: SelectSubset<T, hsaccess_levelsCreateArgs<ExtArgs>>): Prisma__hsaccess_levelsClient<$Result.GetResult<Prisma.$hsaccess_levelsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends hsemployeesCreateArgs>(args: SelectSubset<T, hsemployeesCreateArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Hsaccess_levels.
-     * @param {hsaccess_levelsCreateManyArgs} args - Arguments to create many Hsaccess_levels.
+     * Create many Hsemployees.
+     * @param {hsemployeesCreateManyArgs} args - Arguments to create many Hsemployees.
      * @example
-     * // Create many Hsaccess_levels
-     * const hsaccess_levels = await prisma.hsaccess_levels.createMany({
+     * // Create many Hsemployees
+     * const hsemployees = await prisma.hsemployees.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends hsaccess_levelsCreateManyArgs>(args?: SelectSubset<T, hsaccess_levelsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends hsemployeesCreateManyArgs>(args?: SelectSubset<T, hsemployeesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Hsaccess_levels and returns the data saved in the database.
-     * @param {hsaccess_levelsCreateManyAndReturnArgs} args - Arguments to create many Hsaccess_levels.
+     * Create many Hsemployees and returns the data saved in the database.
+     * @param {hsemployeesCreateManyAndReturnArgs} args - Arguments to create many Hsemployees.
      * @example
-     * // Create many Hsaccess_levels
-     * const hsaccess_levels = await prisma.hsaccess_levels.createManyAndReturn({
+     * // Create many Hsemployees
+     * const hsemployees = await prisma.hsemployees.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Hsaccess_levels and only return the `id`
-     * const hsaccess_levelsWithIdOnly = await prisma.hsaccess_levels.createManyAndReturn({
+     * // Create many Hsemployees and only return the `id`
+     * const hsemployeesWithIdOnly = await prisma.hsemployees.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -2220,28 +2755,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends hsaccess_levelsCreateManyAndReturnArgs>(args?: SelectSubset<T, hsaccess_levelsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsaccess_levelsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends hsemployeesCreateManyAndReturnArgs>(args?: SelectSubset<T, hsemployeesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Hsaccess_levels.
-     * @param {hsaccess_levelsDeleteArgs} args - Arguments to delete one Hsaccess_levels.
+     * Delete a Hsemployees.
+     * @param {hsemployeesDeleteArgs} args - Arguments to delete one Hsemployees.
      * @example
-     * // Delete one Hsaccess_levels
-     * const Hsaccess_levels = await prisma.hsaccess_levels.delete({
+     * // Delete one Hsemployees
+     * const Hsemployees = await prisma.hsemployees.delete({
      *   where: {
-     *     // ... filter to delete one Hsaccess_levels
+     *     // ... filter to delete one Hsemployees
      *   }
      * })
      * 
      */
-    delete<T extends hsaccess_levelsDeleteArgs>(args: SelectSubset<T, hsaccess_levelsDeleteArgs<ExtArgs>>): Prisma__hsaccess_levelsClient<$Result.GetResult<Prisma.$hsaccess_levelsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends hsemployeesDeleteArgs>(args: SelectSubset<T, hsemployeesDeleteArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Hsaccess_levels.
-     * @param {hsaccess_levelsUpdateArgs} args - Arguments to update one Hsaccess_levels.
+     * Update one Hsemployees.
+     * @param {hsemployeesUpdateArgs} args - Arguments to update one Hsemployees.
      * @example
-     * // Update one Hsaccess_levels
-     * const hsaccess_levels = await prisma.hsaccess_levels.update({
+     * // Update one Hsemployees
+     * const hsemployees = await prisma.hsemployees.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2251,30 +2786,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends hsaccess_levelsUpdateArgs>(args: SelectSubset<T, hsaccess_levelsUpdateArgs<ExtArgs>>): Prisma__hsaccess_levelsClient<$Result.GetResult<Prisma.$hsaccess_levelsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends hsemployeesUpdateArgs>(args: SelectSubset<T, hsemployeesUpdateArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Hsaccess_levels.
-     * @param {hsaccess_levelsDeleteManyArgs} args - Arguments to filter Hsaccess_levels to delete.
+     * Delete zero or more Hsemployees.
+     * @param {hsemployeesDeleteManyArgs} args - Arguments to filter Hsemployees to delete.
      * @example
-     * // Delete a few Hsaccess_levels
-     * const { count } = await prisma.hsaccess_levels.deleteMany({
+     * // Delete a few Hsemployees
+     * const { count } = await prisma.hsemployees.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends hsaccess_levelsDeleteManyArgs>(args?: SelectSubset<T, hsaccess_levelsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends hsemployeesDeleteManyArgs>(args?: SelectSubset<T, hsemployeesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Hsaccess_levels.
+     * Update zero or more Hsemployees.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsaccess_levelsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {hsemployeesUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Hsaccess_levels
-     * const hsaccess_levels = await prisma.hsaccess_levels.updateMany({
+     * // Update many Hsemployees
+     * const hsemployees = await prisma.hsemployees.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2284,14 +2819,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends hsaccess_levelsUpdateManyArgs>(args: SelectSubset<T, hsaccess_levelsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends hsemployeesUpdateManyArgs>(args: SelectSubset<T, hsemployeesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Hsaccess_levels and returns the data updated in the database.
-     * @param {hsaccess_levelsUpdateManyAndReturnArgs} args - Arguments to update many Hsaccess_levels.
+     * Update zero or more Hsemployees and returns the data updated in the database.
+     * @param {hsemployeesUpdateManyAndReturnArgs} args - Arguments to update many Hsemployees.
      * @example
-     * // Update many Hsaccess_levels
-     * const hsaccess_levels = await prisma.hsaccess_levels.updateManyAndReturn({
+     * // Update many Hsemployees
+     * const hsemployees = await prisma.hsemployees.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2300,8 +2835,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Hsaccess_levels and only return the `id`
-     * const hsaccess_levelsWithIdOnly = await prisma.hsaccess_levels.updateManyAndReturn({
+     * // Update zero or more Hsemployees and only return the `id`
+     * const hsemployeesWithIdOnly = await prisma.hsemployees.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -2314,56 +2849,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends hsaccess_levelsUpdateManyAndReturnArgs>(args: SelectSubset<T, hsaccess_levelsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsaccess_levelsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends hsemployeesUpdateManyAndReturnArgs>(args: SelectSubset<T, hsemployeesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Hsaccess_levels.
-     * @param {hsaccess_levelsUpsertArgs} args - Arguments to update or create a Hsaccess_levels.
+     * Create or update one Hsemployees.
+     * @param {hsemployeesUpsertArgs} args - Arguments to update or create a Hsemployees.
      * @example
-     * // Update or create a Hsaccess_levels
-     * const hsaccess_levels = await prisma.hsaccess_levels.upsert({
+     * // Update or create a Hsemployees
+     * const hsemployees = await prisma.hsemployees.upsert({
      *   create: {
-     *     // ... data to create a Hsaccess_levels
+     *     // ... data to create a Hsemployees
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Hsaccess_levels we want to update
+     *     // ... the filter for the Hsemployees we want to update
      *   }
      * })
      */
-    upsert<T extends hsaccess_levelsUpsertArgs>(args: SelectSubset<T, hsaccess_levelsUpsertArgs<ExtArgs>>): Prisma__hsaccess_levelsClient<$Result.GetResult<Prisma.$hsaccess_levelsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends hsemployeesUpsertArgs>(args: SelectSubset<T, hsemployeesUpsertArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Hsaccess_levels.
+     * Count the number of Hsemployees.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsaccess_levelsCountArgs} args - Arguments to filter Hsaccess_levels to count.
+     * @param {hsemployeesCountArgs} args - Arguments to filter Hsemployees to count.
      * @example
-     * // Count the number of Hsaccess_levels
-     * const count = await prisma.hsaccess_levels.count({
+     * // Count the number of Hsemployees
+     * const count = await prisma.hsemployees.count({
      *   where: {
-     *     // ... the filter for the Hsaccess_levels we want to count
+     *     // ... the filter for the Hsemployees we want to count
      *   }
      * })
     **/
-    count<T extends hsaccess_levelsCountArgs>(
-      args?: Subset<T, hsaccess_levelsCountArgs>,
+    count<T extends hsemployeesCountArgs>(
+      args?: Subset<T, hsemployeesCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], Hsaccess_levelsCountAggregateOutputType>
+          : GetScalarType<T['select'], HsemployeesCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Hsaccess_levels.
+     * Allows you to perform aggregations operations on a Hsemployees.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Hsaccess_levelsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {HsemployeesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2383,13 +2918,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends Hsaccess_levelsAggregateArgs>(args: Subset<T, Hsaccess_levelsAggregateArgs>): Prisma.PrismaPromise<GetHsaccess_levelsAggregateType<T>>
+    aggregate<T extends HsemployeesAggregateArgs>(args: Subset<T, HsemployeesAggregateArgs>): Prisma.PrismaPromise<GetHsemployeesAggregateType<T>>
 
     /**
-     * Group by Hsaccess_levels.
+     * Group by Hsemployees.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsaccess_levelsGroupByArgs} args - Group by arguments.
+     * @param {hsemployeesGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2404,14 +2939,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends hsaccess_levelsGroupByArgs,
+      T extends hsemployeesGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: hsaccess_levelsGroupByArgs['orderBy'] }
-        : { orderBy?: hsaccess_levelsGroupByArgs['orderBy'] },
+        ? { orderBy: hsemployeesGroupByArgs['orderBy'] }
+        : { orderBy?: hsemployeesGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2460,22 +2995,28 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, hsaccess_levelsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHsaccess_levelsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, hsemployeesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHsemployeesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the hsaccess_levels model
+   * Fields of the hsemployees model
    */
-  readonly fields: hsaccess_levelsFieldRefs;
+  readonly fields: hsemployeesFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for hsaccess_levels.
+   * The delegate class that acts as a "Promise-like" for hsemployees.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__hsaccess_levelsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__hsemployeesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    hsemployees<T extends hsaccess_levels$hsemployeesArgs<ExtArgs> = {}>(args?: Subset<T, hsaccess_levels$hsemployeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    branch<T extends hsbranchesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsbranchesDefaultArgs<ExtArgs>>): Prisma__hsbranchesClient<$Result.GetResult<Prisma.$hsbranchesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    analystRequests<T extends hsemployees$analystRequestsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$analystRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    confereeRequests<T extends hsemployees$confereeRequestsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$confereeRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sessions<T extends hsemployees$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hssessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hsvalidities<T extends hsemployees$hsvaliditiesArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$hsvaliditiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvaliditiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hsusers_permissions<T extends hsemployees$hsusers_permissionsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$hsusers_permissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hsusers_roles<T extends hsemployees$hsusers_rolesArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$hsusers_rolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2502,402 +3043,25 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the hsaccess_levels model
+   * Fields of the hsemployees model
    */
-  interface hsaccess_levelsFieldRefs {
-    readonly id: FieldRef<"hsaccess_levels", 'Int'>
-    readonly description: FieldRef<"hsaccess_levels", 'String'>
+  interface hsemployeesFieldRefs {
+    readonly id: FieldRef<"hsemployees", 'Int'>
+    readonly branch_id: FieldRef<"hsemployees", 'Int'>
+    readonly winthor_id: FieldRef<"hsemployees", 'Int'>
+    readonly name: FieldRef<"hsemployees", 'String'>
+    readonly username: FieldRef<"hsemployees", 'String'>
+    readonly password: FieldRef<"hsemployees", 'String'>
+    readonly created_at: FieldRef<"hsemployees", 'DateTime'>
+    readonly modified_at: FieldRef<"hsemployees", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * hsaccess_levels findUnique
+   * hsemployees findUnique
    */
-  export type hsaccess_levelsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsaccess_levels
-     */
-    select?: hsaccess_levelsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsaccess_levels
-     */
-    omit?: hsaccess_levelsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsaccess_levelsInclude<ExtArgs> | null
-    /**
-     * Filter, which hsaccess_levels to fetch.
-     */
-    where: hsaccess_levelsWhereUniqueInput
-  }
-
-  /**
-   * hsaccess_levels findUniqueOrThrow
-   */
-  export type hsaccess_levelsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsaccess_levels
-     */
-    select?: hsaccess_levelsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsaccess_levels
-     */
-    omit?: hsaccess_levelsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsaccess_levelsInclude<ExtArgs> | null
-    /**
-     * Filter, which hsaccess_levels to fetch.
-     */
-    where: hsaccess_levelsWhereUniqueInput
-  }
-
-  /**
-   * hsaccess_levels findFirst
-   */
-  export type hsaccess_levelsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsaccess_levels
-     */
-    select?: hsaccess_levelsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsaccess_levels
-     */
-    omit?: hsaccess_levelsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsaccess_levelsInclude<ExtArgs> | null
-    /**
-     * Filter, which hsaccess_levels to fetch.
-     */
-    where?: hsaccess_levelsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of hsaccess_levels to fetch.
-     */
-    orderBy?: hsaccess_levelsOrderByWithRelationInput | hsaccess_levelsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for hsaccess_levels.
-     */
-    cursor?: hsaccess_levelsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` hsaccess_levels from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` hsaccess_levels.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of hsaccess_levels.
-     */
-    distinct?: Hsaccess_levelsScalarFieldEnum | Hsaccess_levelsScalarFieldEnum[]
-  }
-
-  /**
-   * hsaccess_levels findFirstOrThrow
-   */
-  export type hsaccess_levelsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsaccess_levels
-     */
-    select?: hsaccess_levelsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsaccess_levels
-     */
-    omit?: hsaccess_levelsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsaccess_levelsInclude<ExtArgs> | null
-    /**
-     * Filter, which hsaccess_levels to fetch.
-     */
-    where?: hsaccess_levelsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of hsaccess_levels to fetch.
-     */
-    orderBy?: hsaccess_levelsOrderByWithRelationInput | hsaccess_levelsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for hsaccess_levels.
-     */
-    cursor?: hsaccess_levelsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` hsaccess_levels from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` hsaccess_levels.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of hsaccess_levels.
-     */
-    distinct?: Hsaccess_levelsScalarFieldEnum | Hsaccess_levelsScalarFieldEnum[]
-  }
-
-  /**
-   * hsaccess_levels findMany
-   */
-  export type hsaccess_levelsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsaccess_levels
-     */
-    select?: hsaccess_levelsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsaccess_levels
-     */
-    omit?: hsaccess_levelsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsaccess_levelsInclude<ExtArgs> | null
-    /**
-     * Filter, which hsaccess_levels to fetch.
-     */
-    where?: hsaccess_levelsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of hsaccess_levels to fetch.
-     */
-    orderBy?: hsaccess_levelsOrderByWithRelationInput | hsaccess_levelsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing hsaccess_levels.
-     */
-    cursor?: hsaccess_levelsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` hsaccess_levels from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` hsaccess_levels.
-     */
-    skip?: number
-    distinct?: Hsaccess_levelsScalarFieldEnum | Hsaccess_levelsScalarFieldEnum[]
-  }
-
-  /**
-   * hsaccess_levels create
-   */
-  export type hsaccess_levelsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsaccess_levels
-     */
-    select?: hsaccess_levelsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsaccess_levels
-     */
-    omit?: hsaccess_levelsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsaccess_levelsInclude<ExtArgs> | null
-    /**
-     * The data needed to create a hsaccess_levels.
-     */
-    data: XOR<hsaccess_levelsCreateInput, hsaccess_levelsUncheckedCreateInput>
-  }
-
-  /**
-   * hsaccess_levels createMany
-   */
-  export type hsaccess_levelsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many hsaccess_levels.
-     */
-    data: hsaccess_levelsCreateManyInput | hsaccess_levelsCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * hsaccess_levels createManyAndReturn
-   */
-  export type hsaccess_levelsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsaccess_levels
-     */
-    select?: hsaccess_levelsSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsaccess_levels
-     */
-    omit?: hsaccess_levelsOmit<ExtArgs> | null
-    /**
-     * The data used to create many hsaccess_levels.
-     */
-    data: hsaccess_levelsCreateManyInput | hsaccess_levelsCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * hsaccess_levels update
-   */
-  export type hsaccess_levelsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsaccess_levels
-     */
-    select?: hsaccess_levelsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsaccess_levels
-     */
-    omit?: hsaccess_levelsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsaccess_levelsInclude<ExtArgs> | null
-    /**
-     * The data needed to update a hsaccess_levels.
-     */
-    data: XOR<hsaccess_levelsUpdateInput, hsaccess_levelsUncheckedUpdateInput>
-    /**
-     * Choose, which hsaccess_levels to update.
-     */
-    where: hsaccess_levelsWhereUniqueInput
-  }
-
-  /**
-   * hsaccess_levels updateMany
-   */
-  export type hsaccess_levelsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update hsaccess_levels.
-     */
-    data: XOR<hsaccess_levelsUpdateManyMutationInput, hsaccess_levelsUncheckedUpdateManyInput>
-    /**
-     * Filter which hsaccess_levels to update
-     */
-    where?: hsaccess_levelsWhereInput
-    /**
-     * Limit how many hsaccess_levels to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * hsaccess_levels updateManyAndReturn
-   */
-  export type hsaccess_levelsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsaccess_levels
-     */
-    select?: hsaccess_levelsSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsaccess_levels
-     */
-    omit?: hsaccess_levelsOmit<ExtArgs> | null
-    /**
-     * The data used to update hsaccess_levels.
-     */
-    data: XOR<hsaccess_levelsUpdateManyMutationInput, hsaccess_levelsUncheckedUpdateManyInput>
-    /**
-     * Filter which hsaccess_levels to update
-     */
-    where?: hsaccess_levelsWhereInput
-    /**
-     * Limit how many hsaccess_levels to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * hsaccess_levels upsert
-   */
-  export type hsaccess_levelsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsaccess_levels
-     */
-    select?: hsaccess_levelsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsaccess_levels
-     */
-    omit?: hsaccess_levelsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsaccess_levelsInclude<ExtArgs> | null
-    /**
-     * The filter to search for the hsaccess_levels to update in case it exists.
-     */
-    where: hsaccess_levelsWhereUniqueInput
-    /**
-     * In case the hsaccess_levels found by the `where` argument doesn't exist, create a new hsaccess_levels with this data.
-     */
-    create: XOR<hsaccess_levelsCreateInput, hsaccess_levelsUncheckedCreateInput>
-    /**
-     * In case the hsaccess_levels was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<hsaccess_levelsUpdateInput, hsaccess_levelsUncheckedUpdateInput>
-  }
-
-  /**
-   * hsaccess_levels delete
-   */
-  export type hsaccess_levelsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsaccess_levels
-     */
-    select?: hsaccess_levelsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsaccess_levels
-     */
-    omit?: hsaccess_levelsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsaccess_levelsInclude<ExtArgs> | null
-    /**
-     * Filter which hsaccess_levels to delete.
-     */
-    where: hsaccess_levelsWhereUniqueInput
-  }
-
-  /**
-   * hsaccess_levels deleteMany
-   */
-  export type hsaccess_levelsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which hsaccess_levels to delete
-     */
-    where?: hsaccess_levelsWhereInput
-    /**
-     * Limit how many hsaccess_levels to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * hsaccess_levels.hsemployees
-   */
-  export type hsaccess_levels$hsemployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type hsemployeesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the hsemployees
      */
@@ -2910,30 +3074,6000 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: hsemployeesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsemployees to fetch.
+     */
+    where: hsemployeesWhereUniqueInput
+  }
+
+  /**
+   * hsemployees findUniqueOrThrow
+   */
+  export type hsemployeesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsemployees
+     */
+    select?: hsemployeesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsemployees
+     */
+    omit?: hsemployeesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsemployeesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsemployees to fetch.
+     */
+    where: hsemployeesWhereUniqueInput
+  }
+
+  /**
+   * hsemployees findFirst
+   */
+  export type hsemployeesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsemployees
+     */
+    select?: hsemployeesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsemployees
+     */
+    omit?: hsemployeesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsemployeesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsemployees to fetch.
+     */
     where?: hsemployeesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsemployees to fetch.
+     */
     orderBy?: hsemployeesOrderByWithRelationInput | hsemployeesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsemployees.
+     */
     cursor?: hsemployeesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsemployees from the position of the cursor.
+     */
     take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsemployees.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsemployees.
+     */
+    distinct?: HsemployeesScalarFieldEnum | HsemployeesScalarFieldEnum[]
+  }
+
+  /**
+   * hsemployees findFirstOrThrow
+   */
+  export type hsemployeesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsemployees
+     */
+    select?: hsemployeesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsemployees
+     */
+    omit?: hsemployeesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsemployeesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsemployees to fetch.
+     */
+    where?: hsemployeesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsemployees to fetch.
+     */
+    orderBy?: hsemployeesOrderByWithRelationInput | hsemployeesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsemployees.
+     */
+    cursor?: hsemployeesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsemployees from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsemployees.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsemployees.
+     */
+    distinct?: HsemployeesScalarFieldEnum | HsemployeesScalarFieldEnum[]
+  }
+
+  /**
+   * hsemployees findMany
+   */
+  export type hsemployeesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsemployees
+     */
+    select?: hsemployeesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsemployees
+     */
+    omit?: hsemployeesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsemployeesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsemployees to fetch.
+     */
+    where?: hsemployeesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsemployees to fetch.
+     */
+    orderBy?: hsemployeesOrderByWithRelationInput | hsemployeesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing hsemployees.
+     */
+    cursor?: hsemployeesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsemployees from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsemployees.
+     */
     skip?: number
     distinct?: HsemployeesScalarFieldEnum | HsemployeesScalarFieldEnum[]
   }
 
   /**
-   * hsaccess_levels without action
+   * hsemployees create
    */
-  export type hsaccess_levelsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type hsemployeesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the hsaccess_levels
+     * Select specific fields to fetch from the hsemployees
      */
-    select?: hsaccess_levelsSelect<ExtArgs> | null
+    select?: hsemployeesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the hsaccess_levels
+     * Omit specific fields from the hsemployees
      */
-    omit?: hsaccess_levelsOmit<ExtArgs> | null
+    omit?: hsemployeesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: hsaccess_levelsInclude<ExtArgs> | null
+    include?: hsemployeesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a hsemployees.
+     */
+    data: XOR<hsemployeesCreateInput, hsemployeesUncheckedCreateInput>
+  }
+
+  /**
+   * hsemployees createMany
+   */
+  export type hsemployeesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many hsemployees.
+     */
+    data: hsemployeesCreateManyInput | hsemployeesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hsemployees createManyAndReturn
+   */
+  export type hsemployeesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsemployees
+     */
+    select?: hsemployeesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsemployees
+     */
+    omit?: hsemployeesOmit<ExtArgs> | null
+    /**
+     * The data used to create many hsemployees.
+     */
+    data: hsemployeesCreateManyInput | hsemployeesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsemployeesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hsemployees update
+   */
+  export type hsemployeesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsemployees
+     */
+    select?: hsemployeesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsemployees
+     */
+    omit?: hsemployeesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsemployeesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a hsemployees.
+     */
+    data: XOR<hsemployeesUpdateInput, hsemployeesUncheckedUpdateInput>
+    /**
+     * Choose, which hsemployees to update.
+     */
+    where: hsemployeesWhereUniqueInput
+  }
+
+  /**
+   * hsemployees updateMany
+   */
+  export type hsemployeesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update hsemployees.
+     */
+    data: XOR<hsemployeesUpdateManyMutationInput, hsemployeesUncheckedUpdateManyInput>
+    /**
+     * Filter which hsemployees to update
+     */
+    where?: hsemployeesWhereInput
+    /**
+     * Limit how many hsemployees to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsemployees updateManyAndReturn
+   */
+  export type hsemployeesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsemployees
+     */
+    select?: hsemployeesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsemployees
+     */
+    omit?: hsemployeesOmit<ExtArgs> | null
+    /**
+     * The data used to update hsemployees.
+     */
+    data: XOR<hsemployeesUpdateManyMutationInput, hsemployeesUncheckedUpdateManyInput>
+    /**
+     * Filter which hsemployees to update
+     */
+    where?: hsemployeesWhereInput
+    /**
+     * Limit how many hsemployees to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsemployeesIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hsemployees upsert
+   */
+  export type hsemployeesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsemployees
+     */
+    select?: hsemployeesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsemployees
+     */
+    omit?: hsemployeesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsemployeesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the hsemployees to update in case it exists.
+     */
+    where: hsemployeesWhereUniqueInput
+    /**
+     * In case the hsemployees found by the `where` argument doesn't exist, create a new hsemployees with this data.
+     */
+    create: XOR<hsemployeesCreateInput, hsemployeesUncheckedCreateInput>
+    /**
+     * In case the hsemployees was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<hsemployeesUpdateInput, hsemployeesUncheckedUpdateInput>
+  }
+
+  /**
+   * hsemployees delete
+   */
+  export type hsemployeesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsemployees
+     */
+    select?: hsemployeesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsemployees
+     */
+    omit?: hsemployeesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsemployeesInclude<ExtArgs> | null
+    /**
+     * Filter which hsemployees to delete.
+     */
+    where: hsemployeesWhereUniqueInput
+  }
+
+  /**
+   * hsemployees deleteMany
+   */
+  export type hsemployeesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsemployees to delete
+     */
+    where?: hsemployeesWhereInput
+    /**
+     * Limit how many hsemployees to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsemployees.analystRequests
+   */
+  export type hsemployees$analystRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsvalidity_requests
+     */
+    select?: hsvalidity_requestsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsvalidity_requests
+     */
+    omit?: hsvalidity_requestsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsvalidity_requestsInclude<ExtArgs> | null
+    where?: hsvalidity_requestsWhereInput
+    orderBy?: hsvalidity_requestsOrderByWithRelationInput | hsvalidity_requestsOrderByWithRelationInput[]
+    cursor?: hsvalidity_requestsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsvalidity_requestsScalarFieldEnum | Hsvalidity_requestsScalarFieldEnum[]
+  }
+
+  /**
+   * hsemployees.confereeRequests
+   */
+  export type hsemployees$confereeRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsvalidity_requests
+     */
+    select?: hsvalidity_requestsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsvalidity_requests
+     */
+    omit?: hsvalidity_requestsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsvalidity_requestsInclude<ExtArgs> | null
+    where?: hsvalidity_requestsWhereInput
+    orderBy?: hsvalidity_requestsOrderByWithRelationInput | hsvalidity_requestsOrderByWithRelationInput[]
+    cursor?: hsvalidity_requestsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsvalidity_requestsScalarFieldEnum | Hsvalidity_requestsScalarFieldEnum[]
+  }
+
+  /**
+   * hsemployees.sessions
+   */
+  export type hsemployees$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hssessions
+     */
+    select?: hssessionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hssessions
+     */
+    omit?: hssessionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hssessionsInclude<ExtArgs> | null
+    where?: hssessionsWhereInput
+    orderBy?: hssessionsOrderByWithRelationInput | hssessionsOrderByWithRelationInput[]
+    cursor?: hssessionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HssessionsScalarFieldEnum | HssessionsScalarFieldEnum[]
+  }
+
+  /**
+   * hsemployees.hsvalidities
+   */
+  export type hsemployees$hsvaliditiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsvalidities
+     */
+    select?: hsvaliditiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsvalidities
+     */
+    omit?: hsvaliditiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsvaliditiesInclude<ExtArgs> | null
+    where?: hsvaliditiesWhereInput
+    orderBy?: hsvaliditiesOrderByWithRelationInput | hsvaliditiesOrderByWithRelationInput[]
+    cursor?: hsvaliditiesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HsvaliditiesScalarFieldEnum | HsvaliditiesScalarFieldEnum[]
+  }
+
+  /**
+   * hsemployees.hsusers_permissions
+   */
+  export type hsemployees$hsusers_permissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+    where?: hsusers_permissionsWhereInput
+    orderBy?: hsusers_permissionsOrderByWithRelationInput | hsusers_permissionsOrderByWithRelationInput[]
+    cursor?: hsusers_permissionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsusers_permissionsScalarFieldEnum | Hsusers_permissionsScalarFieldEnum[]
+  }
+
+  /**
+   * hsemployees.hsusers_roles
+   */
+  export type hsemployees$hsusers_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesInclude<ExtArgs> | null
+    where?: hsusers_rolesWhereInput
+    orderBy?: hsusers_rolesOrderByWithRelationInput | hsusers_rolesOrderByWithRelationInput[]
+    cursor?: hsusers_rolesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsusers_rolesScalarFieldEnum | Hsusers_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * hsemployees without action
+   */
+  export type hsemployeesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsemployees
+     */
+    select?: hsemployeesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsemployees
+     */
+    omit?: hsemployeesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsemployeesInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model hsroles
+   */
+
+  export type AggregateHsroles = {
+    _count: HsrolesCountAggregateOutputType | null
+    _avg: HsrolesAvgAggregateOutputType | null
+    _sum: HsrolesSumAggregateOutputType | null
+    _min: HsrolesMinAggregateOutputType | null
+    _max: HsrolesMaxAggregateOutputType | null
+  }
+
+  export type HsrolesAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type HsrolesSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type HsrolesMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    description: string | null
+    created_at: Date | null
+    modified_at: Date | null
+  }
+
+  export type HsrolesMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    description: string | null
+    created_at: Date | null
+    modified_at: Date | null
+  }
+
+  export type HsrolesCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    created_at: number
+    modified_at: number
+    _all: number
+  }
+
+
+  export type HsrolesAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type HsrolesSumAggregateInputType = {
+    id?: true
+  }
+
+  export type HsrolesMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    created_at?: true
+    modified_at?: true
+  }
+
+  export type HsrolesMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    created_at?: true
+    modified_at?: true
+  }
+
+  export type HsrolesCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    created_at?: true
+    modified_at?: true
+    _all?: true
+  }
+
+  export type HsrolesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsroles to aggregate.
+     */
+    where?: hsrolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsroles to fetch.
+     */
+    orderBy?: hsrolesOrderByWithRelationInput | hsrolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: hsrolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsroles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsroles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned hsroles
+    **/
+    _count?: true | HsrolesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HsrolesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HsrolesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HsrolesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HsrolesMaxAggregateInputType
+  }
+
+  export type GetHsrolesAggregateType<T extends HsrolesAggregateArgs> = {
+        [P in keyof T & keyof AggregateHsroles]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHsroles[P]>
+      : GetScalarType<T[P], AggregateHsroles[P]>
+  }
+
+
+
+
+  export type hsrolesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsrolesWhereInput
+    orderBy?: hsrolesOrderByWithAggregationInput | hsrolesOrderByWithAggregationInput[]
+    by: HsrolesScalarFieldEnum[] | HsrolesScalarFieldEnum
+    having?: hsrolesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HsrolesCountAggregateInputType | true
+    _avg?: HsrolesAvgAggregateInputType
+    _sum?: HsrolesSumAggregateInputType
+    _min?: HsrolesMinAggregateInputType
+    _max?: HsrolesMaxAggregateInputType
+  }
+
+  export type HsrolesGroupByOutputType = {
+    id: number
+    name: string
+    description: string
+    created_at: Date
+    modified_at: Date
+    _count: HsrolesCountAggregateOutputType | null
+    _avg: HsrolesAvgAggregateOutputType | null
+    _sum: HsrolesSumAggregateOutputType | null
+    _min: HsrolesMinAggregateOutputType | null
+    _max: HsrolesMaxAggregateOutputType | null
+  }
+
+  type GetHsrolesGroupByPayload<T extends hsrolesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HsrolesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HsrolesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HsrolesGroupByOutputType[P]>
+            : GetScalarType<T[P], HsrolesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type hsrolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    hspermissions_roles?: boolean | hsroles$hspermissions_rolesArgs<ExtArgs>
+    hsusers_roles?: boolean | hsroles$hsusers_rolesArgs<ExtArgs>
+    _count?: boolean | HsrolesCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsroles"]>
+
+  export type hsrolesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+  }, ExtArgs["result"]["hsroles"]>
+
+  export type hsrolesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+  }, ExtArgs["result"]["hsroles"]>
+
+  export type hsrolesSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+  }
+
+  export type hsrolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "created_at" | "modified_at", ExtArgs["result"]["hsroles"]>
+  export type hsrolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hspermissions_roles?: boolean | hsroles$hspermissions_rolesArgs<ExtArgs>
+    hsusers_roles?: boolean | hsroles$hsusers_rolesArgs<ExtArgs>
+    _count?: boolean | HsrolesCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type hsrolesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type hsrolesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $hsrolesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "hsroles"
+    objects: {
+      hspermissions_roles: Prisma.$hspermissions_rolesPayload<ExtArgs>[]
+      hsusers_roles: Prisma.$hsusers_rolesPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      description: string
+      created_at: Date
+      modified_at: Date
+    }, ExtArgs["result"]["hsroles"]>
+    composites: {}
+  }
+
+  type hsrolesGetPayload<S extends boolean | null | undefined | hsrolesDefaultArgs> = $Result.GetResult<Prisma.$hsrolesPayload, S>
+
+  type hsrolesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<hsrolesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HsrolesCountAggregateInputType | true
+    }
+
+  export interface hsrolesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hsroles'], meta: { name: 'hsroles' } }
+    /**
+     * Find zero or one Hsroles that matches the filter.
+     * @param {hsrolesFindUniqueArgs} args - Arguments to find a Hsroles
+     * @example
+     * // Get one Hsroles
+     * const hsroles = await prisma.hsroles.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends hsrolesFindUniqueArgs>(args: SelectSubset<T, hsrolesFindUniqueArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hsroles that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {hsrolesFindUniqueOrThrowArgs} args - Arguments to find a Hsroles
+     * @example
+     * // Get one Hsroles
+     * const hsroles = await prisma.hsroles.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends hsrolesFindUniqueOrThrowArgs>(args: SelectSubset<T, hsrolesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsroles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsrolesFindFirstArgs} args - Arguments to find a Hsroles
+     * @example
+     * // Get one Hsroles
+     * const hsroles = await prisma.hsroles.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends hsrolesFindFirstArgs>(args?: SelectSubset<T, hsrolesFindFirstArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsroles that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsrolesFindFirstOrThrowArgs} args - Arguments to find a Hsroles
+     * @example
+     * // Get one Hsroles
+     * const hsroles = await prisma.hsroles.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends hsrolesFindFirstOrThrowArgs>(args?: SelectSubset<T, hsrolesFindFirstOrThrowArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hsroles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsrolesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hsroles
+     * const hsroles = await prisma.hsroles.findMany()
+     * 
+     * // Get first 10 Hsroles
+     * const hsroles = await prisma.hsroles.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hsrolesWithIdOnly = await prisma.hsroles.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends hsrolesFindManyArgs>(args?: SelectSubset<T, hsrolesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hsroles.
+     * @param {hsrolesCreateArgs} args - Arguments to create a Hsroles.
+     * @example
+     * // Create one Hsroles
+     * const Hsroles = await prisma.hsroles.create({
+     *   data: {
+     *     // ... data to create a Hsroles
+     *   }
+     * })
+     * 
+     */
+    create<T extends hsrolesCreateArgs>(args: SelectSubset<T, hsrolesCreateArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hsroles.
+     * @param {hsrolesCreateManyArgs} args - Arguments to create many Hsroles.
+     * @example
+     * // Create many Hsroles
+     * const hsroles = await prisma.hsroles.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends hsrolesCreateManyArgs>(args?: SelectSubset<T, hsrolesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hsroles and returns the data saved in the database.
+     * @param {hsrolesCreateManyAndReturnArgs} args - Arguments to create many Hsroles.
+     * @example
+     * // Create many Hsroles
+     * const hsroles = await prisma.hsroles.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hsroles and only return the `id`
+     * const hsrolesWithIdOnly = await prisma.hsroles.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends hsrolesCreateManyAndReturnArgs>(args?: SelectSubset<T, hsrolesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hsroles.
+     * @param {hsrolesDeleteArgs} args - Arguments to delete one Hsroles.
+     * @example
+     * // Delete one Hsroles
+     * const Hsroles = await prisma.hsroles.delete({
+     *   where: {
+     *     // ... filter to delete one Hsroles
+     *   }
+     * })
+     * 
+     */
+    delete<T extends hsrolesDeleteArgs>(args: SelectSubset<T, hsrolesDeleteArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hsroles.
+     * @param {hsrolesUpdateArgs} args - Arguments to update one Hsroles.
+     * @example
+     * // Update one Hsroles
+     * const hsroles = await prisma.hsroles.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends hsrolesUpdateArgs>(args: SelectSubset<T, hsrolesUpdateArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hsroles.
+     * @param {hsrolesDeleteManyArgs} args - Arguments to filter Hsroles to delete.
+     * @example
+     * // Delete a few Hsroles
+     * const { count } = await prisma.hsroles.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends hsrolesDeleteManyArgs>(args?: SelectSubset<T, hsrolesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsroles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsrolesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hsroles
+     * const hsroles = await prisma.hsroles.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends hsrolesUpdateManyArgs>(args: SelectSubset<T, hsrolesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsroles and returns the data updated in the database.
+     * @param {hsrolesUpdateManyAndReturnArgs} args - Arguments to update many Hsroles.
+     * @example
+     * // Update many Hsroles
+     * const hsroles = await prisma.hsroles.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hsroles and only return the `id`
+     * const hsrolesWithIdOnly = await prisma.hsroles.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends hsrolesUpdateManyAndReturnArgs>(args: SelectSubset<T, hsrolesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hsroles.
+     * @param {hsrolesUpsertArgs} args - Arguments to update or create a Hsroles.
+     * @example
+     * // Update or create a Hsroles
+     * const hsroles = await prisma.hsroles.upsert({
+     *   create: {
+     *     // ... data to create a Hsroles
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hsroles we want to update
+     *   }
+     * })
+     */
+    upsert<T extends hsrolesUpsertArgs>(args: SelectSubset<T, hsrolesUpsertArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hsroles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsrolesCountArgs} args - Arguments to filter Hsroles to count.
+     * @example
+     * // Count the number of Hsroles
+     * const count = await prisma.hsroles.count({
+     *   where: {
+     *     // ... the filter for the Hsroles we want to count
+     *   }
+     * })
+    **/
+    count<T extends hsrolesCountArgs>(
+      args?: Subset<T, hsrolesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HsrolesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hsroles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HsrolesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HsrolesAggregateArgs>(args: Subset<T, HsrolesAggregateArgs>): Prisma.PrismaPromise<GetHsrolesAggregateType<T>>
+
+    /**
+     * Group by Hsroles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsrolesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends hsrolesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: hsrolesGroupByArgs['orderBy'] }
+        : { orderBy?: hsrolesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, hsrolesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHsrolesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the hsroles model
+   */
+  readonly fields: hsrolesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for hsroles.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__hsrolesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    hspermissions_roles<T extends hsroles$hspermissions_rolesArgs<ExtArgs> = {}>(args?: Subset<T, hsroles$hspermissions_rolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hsusers_roles<T extends hsroles$hsusers_rolesArgs<ExtArgs> = {}>(args?: Subset<T, hsroles$hsusers_rolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the hsroles model
+   */
+  interface hsrolesFieldRefs {
+    readonly id: FieldRef<"hsroles", 'Int'>
+    readonly name: FieldRef<"hsroles", 'String'>
+    readonly description: FieldRef<"hsroles", 'String'>
+    readonly created_at: FieldRef<"hsroles", 'DateTime'>
+    readonly modified_at: FieldRef<"hsroles", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * hsroles findUnique
+   */
+  export type hsrolesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsroles
+     */
+    select?: hsrolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsroles
+     */
+    omit?: hsrolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsroles to fetch.
+     */
+    where: hsrolesWhereUniqueInput
+  }
+
+  /**
+   * hsroles findUniqueOrThrow
+   */
+  export type hsrolesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsroles
+     */
+    select?: hsrolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsroles
+     */
+    omit?: hsrolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsroles to fetch.
+     */
+    where: hsrolesWhereUniqueInput
+  }
+
+  /**
+   * hsroles findFirst
+   */
+  export type hsrolesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsroles
+     */
+    select?: hsrolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsroles
+     */
+    omit?: hsrolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsroles to fetch.
+     */
+    where?: hsrolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsroles to fetch.
+     */
+    orderBy?: hsrolesOrderByWithRelationInput | hsrolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsroles.
+     */
+    cursor?: hsrolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsroles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsroles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsroles.
+     */
+    distinct?: HsrolesScalarFieldEnum | HsrolesScalarFieldEnum[]
+  }
+
+  /**
+   * hsroles findFirstOrThrow
+   */
+  export type hsrolesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsroles
+     */
+    select?: hsrolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsroles
+     */
+    omit?: hsrolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsroles to fetch.
+     */
+    where?: hsrolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsroles to fetch.
+     */
+    orderBy?: hsrolesOrderByWithRelationInput | hsrolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsroles.
+     */
+    cursor?: hsrolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsroles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsroles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsroles.
+     */
+    distinct?: HsrolesScalarFieldEnum | HsrolesScalarFieldEnum[]
+  }
+
+  /**
+   * hsroles findMany
+   */
+  export type hsrolesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsroles
+     */
+    select?: hsrolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsroles
+     */
+    omit?: hsrolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsroles to fetch.
+     */
+    where?: hsrolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsroles to fetch.
+     */
+    orderBy?: hsrolesOrderByWithRelationInput | hsrolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing hsroles.
+     */
+    cursor?: hsrolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsroles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsroles.
+     */
+    skip?: number
+    distinct?: HsrolesScalarFieldEnum | HsrolesScalarFieldEnum[]
+  }
+
+  /**
+   * hsroles create
+   */
+  export type hsrolesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsroles
+     */
+    select?: hsrolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsroles
+     */
+    omit?: hsrolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrolesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a hsroles.
+     */
+    data: XOR<hsrolesCreateInput, hsrolesUncheckedCreateInput>
+  }
+
+  /**
+   * hsroles createMany
+   */
+  export type hsrolesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many hsroles.
+     */
+    data: hsrolesCreateManyInput | hsrolesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hsroles createManyAndReturn
+   */
+  export type hsrolesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsroles
+     */
+    select?: hsrolesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsroles
+     */
+    omit?: hsrolesOmit<ExtArgs> | null
+    /**
+     * The data used to create many hsroles.
+     */
+    data: hsrolesCreateManyInput | hsrolesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hsroles update
+   */
+  export type hsrolesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsroles
+     */
+    select?: hsrolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsroles
+     */
+    omit?: hsrolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrolesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a hsroles.
+     */
+    data: XOR<hsrolesUpdateInput, hsrolesUncheckedUpdateInput>
+    /**
+     * Choose, which hsroles to update.
+     */
+    where: hsrolesWhereUniqueInput
+  }
+
+  /**
+   * hsroles updateMany
+   */
+  export type hsrolesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update hsroles.
+     */
+    data: XOR<hsrolesUpdateManyMutationInput, hsrolesUncheckedUpdateManyInput>
+    /**
+     * Filter which hsroles to update
+     */
+    where?: hsrolesWhereInput
+    /**
+     * Limit how many hsroles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsroles updateManyAndReturn
+   */
+  export type hsrolesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsroles
+     */
+    select?: hsrolesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsroles
+     */
+    omit?: hsrolesOmit<ExtArgs> | null
+    /**
+     * The data used to update hsroles.
+     */
+    data: XOR<hsrolesUpdateManyMutationInput, hsrolesUncheckedUpdateManyInput>
+    /**
+     * Filter which hsroles to update
+     */
+    where?: hsrolesWhereInput
+    /**
+     * Limit how many hsroles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsroles upsert
+   */
+  export type hsrolesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsroles
+     */
+    select?: hsrolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsroles
+     */
+    omit?: hsrolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrolesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the hsroles to update in case it exists.
+     */
+    where: hsrolesWhereUniqueInput
+    /**
+     * In case the hsroles found by the `where` argument doesn't exist, create a new hsroles with this data.
+     */
+    create: XOR<hsrolesCreateInput, hsrolesUncheckedCreateInput>
+    /**
+     * In case the hsroles was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<hsrolesUpdateInput, hsrolesUncheckedUpdateInput>
+  }
+
+  /**
+   * hsroles delete
+   */
+  export type hsrolesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsroles
+     */
+    select?: hsrolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsroles
+     */
+    omit?: hsrolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrolesInclude<ExtArgs> | null
+    /**
+     * Filter which hsroles to delete.
+     */
+    where: hsrolesWhereUniqueInput
+  }
+
+  /**
+   * hsroles deleteMany
+   */
+  export type hsrolesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsroles to delete
+     */
+    where?: hsrolesWhereInput
+    /**
+     * Limit how many hsroles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsroles.hspermissions_roles
+   */
+  export type hsroles$hspermissions_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesInclude<ExtArgs> | null
+    where?: hspermissions_rolesWhereInput
+    orderBy?: hspermissions_rolesOrderByWithRelationInput | hspermissions_rolesOrderByWithRelationInput[]
+    cursor?: hspermissions_rolesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hspermissions_rolesScalarFieldEnum | Hspermissions_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * hsroles.hsusers_roles
+   */
+  export type hsroles$hsusers_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesInclude<ExtArgs> | null
+    where?: hsusers_rolesWhereInput
+    orderBy?: hsusers_rolesOrderByWithRelationInput | hsusers_rolesOrderByWithRelationInput[]
+    cursor?: hsusers_rolesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsusers_rolesScalarFieldEnum | Hsusers_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * hsroles without action
+   */
+  export type hsrolesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsroles
+     */
+    select?: hsrolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsroles
+     */
+    omit?: hsrolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrolesInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model hspermissions
+   */
+
+  export type AggregateHspermissions = {
+    _count: HspermissionsCountAggregateOutputType | null
+    _avg: HspermissionsAvgAggregateOutputType | null
+    _sum: HspermissionsSumAggregateOutputType | null
+    _min: HspermissionsMinAggregateOutputType | null
+    _max: HspermissionsMaxAggregateOutputType | null
+  }
+
+  export type HspermissionsAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type HspermissionsSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type HspermissionsMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    description: string | null
+    created_at: Date | null
+    modified_at: Date | null
+  }
+
+  export type HspermissionsMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    description: string | null
+    created_at: Date | null
+    modified_at: Date | null
+  }
+
+  export type HspermissionsCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    created_at: number
+    modified_at: number
+    _all: number
+  }
+
+
+  export type HspermissionsAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type HspermissionsSumAggregateInputType = {
+    id?: true
+  }
+
+  export type HspermissionsMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    created_at?: true
+    modified_at?: true
+  }
+
+  export type HspermissionsMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    created_at?: true
+    modified_at?: true
+  }
+
+  export type HspermissionsCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    created_at?: true
+    modified_at?: true
+    _all?: true
+  }
+
+  export type HspermissionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hspermissions to aggregate.
+     */
+    where?: hspermissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hspermissions to fetch.
+     */
+    orderBy?: hspermissionsOrderByWithRelationInput | hspermissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: hspermissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hspermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hspermissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned hspermissions
+    **/
+    _count?: true | HspermissionsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HspermissionsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HspermissionsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HspermissionsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HspermissionsMaxAggregateInputType
+  }
+
+  export type GetHspermissionsAggregateType<T extends HspermissionsAggregateArgs> = {
+        [P in keyof T & keyof AggregateHspermissions]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHspermissions[P]>
+      : GetScalarType<T[P], AggregateHspermissions[P]>
+  }
+
+
+
+
+  export type hspermissionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hspermissionsWhereInput
+    orderBy?: hspermissionsOrderByWithAggregationInput | hspermissionsOrderByWithAggregationInput[]
+    by: HspermissionsScalarFieldEnum[] | HspermissionsScalarFieldEnum
+    having?: hspermissionsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HspermissionsCountAggregateInputType | true
+    _avg?: HspermissionsAvgAggregateInputType
+    _sum?: HspermissionsSumAggregateInputType
+    _min?: HspermissionsMinAggregateInputType
+    _max?: HspermissionsMaxAggregateInputType
+  }
+
+  export type HspermissionsGroupByOutputType = {
+    id: number
+    name: string
+    description: string
+    created_at: Date
+    modified_at: Date
+    _count: HspermissionsCountAggregateOutputType | null
+    _avg: HspermissionsAvgAggregateOutputType | null
+    _sum: HspermissionsSumAggregateOutputType | null
+    _min: HspermissionsMinAggregateOutputType | null
+    _max: HspermissionsMaxAggregateOutputType | null
+  }
+
+  type GetHspermissionsGroupByPayload<T extends hspermissionsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HspermissionsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HspermissionsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HspermissionsGroupByOutputType[P]>
+            : GetScalarType<T[P], HspermissionsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type hspermissionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    hsusers_permissions?: boolean | hspermissions$hsusers_permissionsArgs<ExtArgs>
+    hspermissions_roles?: boolean | hspermissions$hspermissions_rolesArgs<ExtArgs>
+    _count?: boolean | HspermissionsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hspermissions"]>
+
+  export type hspermissionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+  }, ExtArgs["result"]["hspermissions"]>
+
+  export type hspermissionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+  }, ExtArgs["result"]["hspermissions"]>
+
+  export type hspermissionsSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+  }
+
+  export type hspermissionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "created_at" | "modified_at", ExtArgs["result"]["hspermissions"]>
+  export type hspermissionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsusers_permissions?: boolean | hspermissions$hsusers_permissionsArgs<ExtArgs>
+    hspermissions_roles?: boolean | hspermissions$hspermissions_rolesArgs<ExtArgs>
+    _count?: boolean | HspermissionsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type hspermissionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type hspermissionsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $hspermissionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "hspermissions"
+    objects: {
+      hsusers_permissions: Prisma.$hsusers_permissionsPayload<ExtArgs>[]
+      hspermissions_roles: Prisma.$hspermissions_rolesPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      description: string
+      created_at: Date
+      modified_at: Date
+    }, ExtArgs["result"]["hspermissions"]>
+    composites: {}
+  }
+
+  type hspermissionsGetPayload<S extends boolean | null | undefined | hspermissionsDefaultArgs> = $Result.GetResult<Prisma.$hspermissionsPayload, S>
+
+  type hspermissionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<hspermissionsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HspermissionsCountAggregateInputType | true
+    }
+
+  export interface hspermissionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hspermissions'], meta: { name: 'hspermissions' } }
+    /**
+     * Find zero or one Hspermissions that matches the filter.
+     * @param {hspermissionsFindUniqueArgs} args - Arguments to find a Hspermissions
+     * @example
+     * // Get one Hspermissions
+     * const hspermissions = await prisma.hspermissions.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends hspermissionsFindUniqueArgs>(args: SelectSubset<T, hspermissionsFindUniqueArgs<ExtArgs>>): Prisma__hspermissionsClient<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hspermissions that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {hspermissionsFindUniqueOrThrowArgs} args - Arguments to find a Hspermissions
+     * @example
+     * // Get one Hspermissions
+     * const hspermissions = await prisma.hspermissions.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends hspermissionsFindUniqueOrThrowArgs>(args: SelectSubset<T, hspermissionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hspermissionsClient<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hspermissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hspermissionsFindFirstArgs} args - Arguments to find a Hspermissions
+     * @example
+     * // Get one Hspermissions
+     * const hspermissions = await prisma.hspermissions.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends hspermissionsFindFirstArgs>(args?: SelectSubset<T, hspermissionsFindFirstArgs<ExtArgs>>): Prisma__hspermissionsClient<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hspermissions that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hspermissionsFindFirstOrThrowArgs} args - Arguments to find a Hspermissions
+     * @example
+     * // Get one Hspermissions
+     * const hspermissions = await prisma.hspermissions.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends hspermissionsFindFirstOrThrowArgs>(args?: SelectSubset<T, hspermissionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__hspermissionsClient<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hspermissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hspermissionsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hspermissions
+     * const hspermissions = await prisma.hspermissions.findMany()
+     * 
+     * // Get first 10 Hspermissions
+     * const hspermissions = await prisma.hspermissions.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hspermissionsWithIdOnly = await prisma.hspermissions.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends hspermissionsFindManyArgs>(args?: SelectSubset<T, hspermissionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hspermissions.
+     * @param {hspermissionsCreateArgs} args - Arguments to create a Hspermissions.
+     * @example
+     * // Create one Hspermissions
+     * const Hspermissions = await prisma.hspermissions.create({
+     *   data: {
+     *     // ... data to create a Hspermissions
+     *   }
+     * })
+     * 
+     */
+    create<T extends hspermissionsCreateArgs>(args: SelectSubset<T, hspermissionsCreateArgs<ExtArgs>>): Prisma__hspermissionsClient<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hspermissions.
+     * @param {hspermissionsCreateManyArgs} args - Arguments to create many Hspermissions.
+     * @example
+     * // Create many Hspermissions
+     * const hspermissions = await prisma.hspermissions.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends hspermissionsCreateManyArgs>(args?: SelectSubset<T, hspermissionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hspermissions and returns the data saved in the database.
+     * @param {hspermissionsCreateManyAndReturnArgs} args - Arguments to create many Hspermissions.
+     * @example
+     * // Create many Hspermissions
+     * const hspermissions = await prisma.hspermissions.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hspermissions and only return the `id`
+     * const hspermissionsWithIdOnly = await prisma.hspermissions.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends hspermissionsCreateManyAndReturnArgs>(args?: SelectSubset<T, hspermissionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hspermissions.
+     * @param {hspermissionsDeleteArgs} args - Arguments to delete one Hspermissions.
+     * @example
+     * // Delete one Hspermissions
+     * const Hspermissions = await prisma.hspermissions.delete({
+     *   where: {
+     *     // ... filter to delete one Hspermissions
+     *   }
+     * })
+     * 
+     */
+    delete<T extends hspermissionsDeleteArgs>(args: SelectSubset<T, hspermissionsDeleteArgs<ExtArgs>>): Prisma__hspermissionsClient<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hspermissions.
+     * @param {hspermissionsUpdateArgs} args - Arguments to update one Hspermissions.
+     * @example
+     * // Update one Hspermissions
+     * const hspermissions = await prisma.hspermissions.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends hspermissionsUpdateArgs>(args: SelectSubset<T, hspermissionsUpdateArgs<ExtArgs>>): Prisma__hspermissionsClient<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hspermissions.
+     * @param {hspermissionsDeleteManyArgs} args - Arguments to filter Hspermissions to delete.
+     * @example
+     * // Delete a few Hspermissions
+     * const { count } = await prisma.hspermissions.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends hspermissionsDeleteManyArgs>(args?: SelectSubset<T, hspermissionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hspermissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hspermissionsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hspermissions
+     * const hspermissions = await prisma.hspermissions.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends hspermissionsUpdateManyArgs>(args: SelectSubset<T, hspermissionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hspermissions and returns the data updated in the database.
+     * @param {hspermissionsUpdateManyAndReturnArgs} args - Arguments to update many Hspermissions.
+     * @example
+     * // Update many Hspermissions
+     * const hspermissions = await prisma.hspermissions.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hspermissions and only return the `id`
+     * const hspermissionsWithIdOnly = await prisma.hspermissions.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends hspermissionsUpdateManyAndReturnArgs>(args: SelectSubset<T, hspermissionsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hspermissions.
+     * @param {hspermissionsUpsertArgs} args - Arguments to update or create a Hspermissions.
+     * @example
+     * // Update or create a Hspermissions
+     * const hspermissions = await prisma.hspermissions.upsert({
+     *   create: {
+     *     // ... data to create a Hspermissions
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hspermissions we want to update
+     *   }
+     * })
+     */
+    upsert<T extends hspermissionsUpsertArgs>(args: SelectSubset<T, hspermissionsUpsertArgs<ExtArgs>>): Prisma__hspermissionsClient<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hspermissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hspermissionsCountArgs} args - Arguments to filter Hspermissions to count.
+     * @example
+     * // Count the number of Hspermissions
+     * const count = await prisma.hspermissions.count({
+     *   where: {
+     *     // ... the filter for the Hspermissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends hspermissionsCountArgs>(
+      args?: Subset<T, hspermissionsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HspermissionsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hspermissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HspermissionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HspermissionsAggregateArgs>(args: Subset<T, HspermissionsAggregateArgs>): Prisma.PrismaPromise<GetHspermissionsAggregateType<T>>
+
+    /**
+     * Group by Hspermissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hspermissionsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends hspermissionsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: hspermissionsGroupByArgs['orderBy'] }
+        : { orderBy?: hspermissionsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, hspermissionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHspermissionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the hspermissions model
+   */
+  readonly fields: hspermissionsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for hspermissions.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__hspermissionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    hsusers_permissions<T extends hspermissions$hsusers_permissionsArgs<ExtArgs> = {}>(args?: Subset<T, hspermissions$hsusers_permissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hspermissions_roles<T extends hspermissions$hspermissions_rolesArgs<ExtArgs> = {}>(args?: Subset<T, hspermissions$hspermissions_rolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the hspermissions model
+   */
+  interface hspermissionsFieldRefs {
+    readonly id: FieldRef<"hspermissions", 'Int'>
+    readonly name: FieldRef<"hspermissions", 'String'>
+    readonly description: FieldRef<"hspermissions", 'String'>
+    readonly created_at: FieldRef<"hspermissions", 'DateTime'>
+    readonly modified_at: FieldRef<"hspermissions", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * hspermissions findUnique
+   */
+  export type hspermissionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions
+     */
+    select?: hspermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions
+     */
+    omit?: hspermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which hspermissions to fetch.
+     */
+    where: hspermissionsWhereUniqueInput
+  }
+
+  /**
+   * hspermissions findUniqueOrThrow
+   */
+  export type hspermissionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions
+     */
+    select?: hspermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions
+     */
+    omit?: hspermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which hspermissions to fetch.
+     */
+    where: hspermissionsWhereUniqueInput
+  }
+
+  /**
+   * hspermissions findFirst
+   */
+  export type hspermissionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions
+     */
+    select?: hspermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions
+     */
+    omit?: hspermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which hspermissions to fetch.
+     */
+    where?: hspermissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hspermissions to fetch.
+     */
+    orderBy?: hspermissionsOrderByWithRelationInput | hspermissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hspermissions.
+     */
+    cursor?: hspermissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hspermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hspermissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hspermissions.
+     */
+    distinct?: HspermissionsScalarFieldEnum | HspermissionsScalarFieldEnum[]
+  }
+
+  /**
+   * hspermissions findFirstOrThrow
+   */
+  export type hspermissionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions
+     */
+    select?: hspermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions
+     */
+    omit?: hspermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which hspermissions to fetch.
+     */
+    where?: hspermissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hspermissions to fetch.
+     */
+    orderBy?: hspermissionsOrderByWithRelationInput | hspermissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hspermissions.
+     */
+    cursor?: hspermissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hspermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hspermissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hspermissions.
+     */
+    distinct?: HspermissionsScalarFieldEnum | HspermissionsScalarFieldEnum[]
+  }
+
+  /**
+   * hspermissions findMany
+   */
+  export type hspermissionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions
+     */
+    select?: hspermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions
+     */
+    omit?: hspermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which hspermissions to fetch.
+     */
+    where?: hspermissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hspermissions to fetch.
+     */
+    orderBy?: hspermissionsOrderByWithRelationInput | hspermissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing hspermissions.
+     */
+    cursor?: hspermissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hspermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hspermissions.
+     */
+    skip?: number
+    distinct?: HspermissionsScalarFieldEnum | HspermissionsScalarFieldEnum[]
+  }
+
+  /**
+   * hspermissions create
+   */
+  export type hspermissionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions
+     */
+    select?: hspermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions
+     */
+    omit?: hspermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissionsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a hspermissions.
+     */
+    data: XOR<hspermissionsCreateInput, hspermissionsUncheckedCreateInput>
+  }
+
+  /**
+   * hspermissions createMany
+   */
+  export type hspermissionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many hspermissions.
+     */
+    data: hspermissionsCreateManyInput | hspermissionsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hspermissions createManyAndReturn
+   */
+  export type hspermissionsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions
+     */
+    select?: hspermissionsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions
+     */
+    omit?: hspermissionsOmit<ExtArgs> | null
+    /**
+     * The data used to create many hspermissions.
+     */
+    data: hspermissionsCreateManyInput | hspermissionsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hspermissions update
+   */
+  export type hspermissionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions
+     */
+    select?: hspermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions
+     */
+    omit?: hspermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissionsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a hspermissions.
+     */
+    data: XOR<hspermissionsUpdateInput, hspermissionsUncheckedUpdateInput>
+    /**
+     * Choose, which hspermissions to update.
+     */
+    where: hspermissionsWhereUniqueInput
+  }
+
+  /**
+   * hspermissions updateMany
+   */
+  export type hspermissionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update hspermissions.
+     */
+    data: XOR<hspermissionsUpdateManyMutationInput, hspermissionsUncheckedUpdateManyInput>
+    /**
+     * Filter which hspermissions to update
+     */
+    where?: hspermissionsWhereInput
+    /**
+     * Limit how many hspermissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hspermissions updateManyAndReturn
+   */
+  export type hspermissionsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions
+     */
+    select?: hspermissionsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions
+     */
+    omit?: hspermissionsOmit<ExtArgs> | null
+    /**
+     * The data used to update hspermissions.
+     */
+    data: XOR<hspermissionsUpdateManyMutationInput, hspermissionsUncheckedUpdateManyInput>
+    /**
+     * Filter which hspermissions to update
+     */
+    where?: hspermissionsWhereInput
+    /**
+     * Limit how many hspermissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hspermissions upsert
+   */
+  export type hspermissionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions
+     */
+    select?: hspermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions
+     */
+    omit?: hspermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissionsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the hspermissions to update in case it exists.
+     */
+    where: hspermissionsWhereUniqueInput
+    /**
+     * In case the hspermissions found by the `where` argument doesn't exist, create a new hspermissions with this data.
+     */
+    create: XOR<hspermissionsCreateInput, hspermissionsUncheckedCreateInput>
+    /**
+     * In case the hspermissions was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<hspermissionsUpdateInput, hspermissionsUncheckedUpdateInput>
+  }
+
+  /**
+   * hspermissions delete
+   */
+  export type hspermissionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions
+     */
+    select?: hspermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions
+     */
+    omit?: hspermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissionsInclude<ExtArgs> | null
+    /**
+     * Filter which hspermissions to delete.
+     */
+    where: hspermissionsWhereUniqueInput
+  }
+
+  /**
+   * hspermissions deleteMany
+   */
+  export type hspermissionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hspermissions to delete
+     */
+    where?: hspermissionsWhereInput
+    /**
+     * Limit how many hspermissions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * hspermissions.hsusers_permissions
+   */
+  export type hspermissions$hsusers_permissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+    where?: hsusers_permissionsWhereInput
+    orderBy?: hsusers_permissionsOrderByWithRelationInput | hsusers_permissionsOrderByWithRelationInput[]
+    cursor?: hsusers_permissionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsusers_permissionsScalarFieldEnum | Hsusers_permissionsScalarFieldEnum[]
+  }
+
+  /**
+   * hspermissions.hspermissions_roles
+   */
+  export type hspermissions$hspermissions_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesInclude<ExtArgs> | null
+    where?: hspermissions_rolesWhereInput
+    orderBy?: hspermissions_rolesOrderByWithRelationInput | hspermissions_rolesOrderByWithRelationInput[]
+    cursor?: hspermissions_rolesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hspermissions_rolesScalarFieldEnum | Hspermissions_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * hspermissions without action
+   */
+  export type hspermissionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions
+     */
+    select?: hspermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions
+     */
+    omit?: hspermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissionsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model hspermissions_roles
+   */
+
+  export type AggregateHspermissions_roles = {
+    _count: Hspermissions_rolesCountAggregateOutputType | null
+    _avg: Hspermissions_rolesAvgAggregateOutputType | null
+    _sum: Hspermissions_rolesSumAggregateOutputType | null
+    _min: Hspermissions_rolesMinAggregateOutputType | null
+    _max: Hspermissions_rolesMaxAggregateOutputType | null
+  }
+
+  export type Hspermissions_rolesAvgAggregateOutputType = {
+    role_id: number | null
+    permission_id: number | null
+  }
+
+  export type Hspermissions_rolesSumAggregateOutputType = {
+    role_id: number | null
+    permission_id: number | null
+  }
+
+  export type Hspermissions_rolesMinAggregateOutputType = {
+    role_id: number | null
+    permission_id: number | null
+  }
+
+  export type Hspermissions_rolesMaxAggregateOutputType = {
+    role_id: number | null
+    permission_id: number | null
+  }
+
+  export type Hspermissions_rolesCountAggregateOutputType = {
+    role_id: number
+    permission_id: number
+    _all: number
+  }
+
+
+  export type Hspermissions_rolesAvgAggregateInputType = {
+    role_id?: true
+    permission_id?: true
+  }
+
+  export type Hspermissions_rolesSumAggregateInputType = {
+    role_id?: true
+    permission_id?: true
+  }
+
+  export type Hspermissions_rolesMinAggregateInputType = {
+    role_id?: true
+    permission_id?: true
+  }
+
+  export type Hspermissions_rolesMaxAggregateInputType = {
+    role_id?: true
+    permission_id?: true
+  }
+
+  export type Hspermissions_rolesCountAggregateInputType = {
+    role_id?: true
+    permission_id?: true
+    _all?: true
+  }
+
+  export type Hspermissions_rolesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hspermissions_roles to aggregate.
+     */
+    where?: hspermissions_rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hspermissions_roles to fetch.
+     */
+    orderBy?: hspermissions_rolesOrderByWithRelationInput | hspermissions_rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: hspermissions_rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hspermissions_roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hspermissions_roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned hspermissions_roles
+    **/
+    _count?: true | Hspermissions_rolesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Hspermissions_rolesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Hspermissions_rolesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Hspermissions_rolesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Hspermissions_rolesMaxAggregateInputType
+  }
+
+  export type GetHspermissions_rolesAggregateType<T extends Hspermissions_rolesAggregateArgs> = {
+        [P in keyof T & keyof AggregateHspermissions_roles]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHspermissions_roles[P]>
+      : GetScalarType<T[P], AggregateHspermissions_roles[P]>
+  }
+
+
+
+
+  export type hspermissions_rolesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hspermissions_rolesWhereInput
+    orderBy?: hspermissions_rolesOrderByWithAggregationInput | hspermissions_rolesOrderByWithAggregationInput[]
+    by: Hspermissions_rolesScalarFieldEnum[] | Hspermissions_rolesScalarFieldEnum
+    having?: hspermissions_rolesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Hspermissions_rolesCountAggregateInputType | true
+    _avg?: Hspermissions_rolesAvgAggregateInputType
+    _sum?: Hspermissions_rolesSumAggregateInputType
+    _min?: Hspermissions_rolesMinAggregateInputType
+    _max?: Hspermissions_rolesMaxAggregateInputType
+  }
+
+  export type Hspermissions_rolesGroupByOutputType = {
+    role_id: number
+    permission_id: number
+    _count: Hspermissions_rolesCountAggregateOutputType | null
+    _avg: Hspermissions_rolesAvgAggregateOutputType | null
+    _sum: Hspermissions_rolesSumAggregateOutputType | null
+    _min: Hspermissions_rolesMinAggregateOutputType | null
+    _max: Hspermissions_rolesMaxAggregateOutputType | null
+  }
+
+  type GetHspermissions_rolesGroupByPayload<T extends hspermissions_rolesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Hspermissions_rolesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Hspermissions_rolesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Hspermissions_rolesGroupByOutputType[P]>
+            : GetScalarType<T[P], Hspermissions_rolesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type hspermissions_rolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    role_id?: boolean
+    permission_id?: boolean
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+    hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hspermissions_roles"]>
+
+  export type hspermissions_rolesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    role_id?: boolean
+    permission_id?: boolean
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+    hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hspermissions_roles"]>
+
+  export type hspermissions_rolesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    role_id?: boolean
+    permission_id?: boolean
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+    hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hspermissions_roles"]>
+
+  export type hspermissions_rolesSelectScalar = {
+    role_id?: boolean
+    permission_id?: boolean
+  }
+
+  export type hspermissions_rolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"role_id" | "permission_id", ExtArgs["result"]["hspermissions_roles"]>
+  export type hspermissions_rolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+    hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+  }
+  export type hspermissions_rolesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+    hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+  }
+  export type hspermissions_rolesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+    hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+  }
+
+  export type $hspermissions_rolesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "hspermissions_roles"
+    objects: {
+      hsroles: Prisma.$hsrolesPayload<ExtArgs>
+      hspermissions: Prisma.$hspermissionsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      role_id: number
+      permission_id: number
+    }, ExtArgs["result"]["hspermissions_roles"]>
+    composites: {}
+  }
+
+  type hspermissions_rolesGetPayload<S extends boolean | null | undefined | hspermissions_rolesDefaultArgs> = $Result.GetResult<Prisma.$hspermissions_rolesPayload, S>
+
+  type hspermissions_rolesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<hspermissions_rolesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Hspermissions_rolesCountAggregateInputType | true
+    }
+
+  export interface hspermissions_rolesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hspermissions_roles'], meta: { name: 'hspermissions_roles' } }
+    /**
+     * Find zero or one Hspermissions_roles that matches the filter.
+     * @param {hspermissions_rolesFindUniqueArgs} args - Arguments to find a Hspermissions_roles
+     * @example
+     * // Get one Hspermissions_roles
+     * const hspermissions_roles = await prisma.hspermissions_roles.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends hspermissions_rolesFindUniqueArgs>(args: SelectSubset<T, hspermissions_rolesFindUniqueArgs<ExtArgs>>): Prisma__hspermissions_rolesClient<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hspermissions_roles that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {hspermissions_rolesFindUniqueOrThrowArgs} args - Arguments to find a Hspermissions_roles
+     * @example
+     * // Get one Hspermissions_roles
+     * const hspermissions_roles = await prisma.hspermissions_roles.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends hspermissions_rolesFindUniqueOrThrowArgs>(args: SelectSubset<T, hspermissions_rolesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hspermissions_rolesClient<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hspermissions_roles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hspermissions_rolesFindFirstArgs} args - Arguments to find a Hspermissions_roles
+     * @example
+     * // Get one Hspermissions_roles
+     * const hspermissions_roles = await prisma.hspermissions_roles.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends hspermissions_rolesFindFirstArgs>(args?: SelectSubset<T, hspermissions_rolesFindFirstArgs<ExtArgs>>): Prisma__hspermissions_rolesClient<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hspermissions_roles that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hspermissions_rolesFindFirstOrThrowArgs} args - Arguments to find a Hspermissions_roles
+     * @example
+     * // Get one Hspermissions_roles
+     * const hspermissions_roles = await prisma.hspermissions_roles.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends hspermissions_rolesFindFirstOrThrowArgs>(args?: SelectSubset<T, hspermissions_rolesFindFirstOrThrowArgs<ExtArgs>>): Prisma__hspermissions_rolesClient<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hspermissions_roles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hspermissions_rolesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hspermissions_roles
+     * const hspermissions_roles = await prisma.hspermissions_roles.findMany()
+     * 
+     * // Get first 10 Hspermissions_roles
+     * const hspermissions_roles = await prisma.hspermissions_roles.findMany({ take: 10 })
+     * 
+     * // Only select the `role_id`
+     * const hspermissions_rolesWithRole_idOnly = await prisma.hspermissions_roles.findMany({ select: { role_id: true } })
+     * 
+     */
+    findMany<T extends hspermissions_rolesFindManyArgs>(args?: SelectSubset<T, hspermissions_rolesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hspermissions_roles.
+     * @param {hspermissions_rolesCreateArgs} args - Arguments to create a Hspermissions_roles.
+     * @example
+     * // Create one Hspermissions_roles
+     * const Hspermissions_roles = await prisma.hspermissions_roles.create({
+     *   data: {
+     *     // ... data to create a Hspermissions_roles
+     *   }
+     * })
+     * 
+     */
+    create<T extends hspermissions_rolesCreateArgs>(args: SelectSubset<T, hspermissions_rolesCreateArgs<ExtArgs>>): Prisma__hspermissions_rolesClient<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hspermissions_roles.
+     * @param {hspermissions_rolesCreateManyArgs} args - Arguments to create many Hspermissions_roles.
+     * @example
+     * // Create many Hspermissions_roles
+     * const hspermissions_roles = await prisma.hspermissions_roles.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends hspermissions_rolesCreateManyArgs>(args?: SelectSubset<T, hspermissions_rolesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hspermissions_roles and returns the data saved in the database.
+     * @param {hspermissions_rolesCreateManyAndReturnArgs} args - Arguments to create many Hspermissions_roles.
+     * @example
+     * // Create many Hspermissions_roles
+     * const hspermissions_roles = await prisma.hspermissions_roles.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hspermissions_roles and only return the `role_id`
+     * const hspermissions_rolesWithRole_idOnly = await prisma.hspermissions_roles.createManyAndReturn({
+     *   select: { role_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends hspermissions_rolesCreateManyAndReturnArgs>(args?: SelectSubset<T, hspermissions_rolesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hspermissions_roles.
+     * @param {hspermissions_rolesDeleteArgs} args - Arguments to delete one Hspermissions_roles.
+     * @example
+     * // Delete one Hspermissions_roles
+     * const Hspermissions_roles = await prisma.hspermissions_roles.delete({
+     *   where: {
+     *     // ... filter to delete one Hspermissions_roles
+     *   }
+     * })
+     * 
+     */
+    delete<T extends hspermissions_rolesDeleteArgs>(args: SelectSubset<T, hspermissions_rolesDeleteArgs<ExtArgs>>): Prisma__hspermissions_rolesClient<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hspermissions_roles.
+     * @param {hspermissions_rolesUpdateArgs} args - Arguments to update one Hspermissions_roles.
+     * @example
+     * // Update one Hspermissions_roles
+     * const hspermissions_roles = await prisma.hspermissions_roles.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends hspermissions_rolesUpdateArgs>(args: SelectSubset<T, hspermissions_rolesUpdateArgs<ExtArgs>>): Prisma__hspermissions_rolesClient<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hspermissions_roles.
+     * @param {hspermissions_rolesDeleteManyArgs} args - Arguments to filter Hspermissions_roles to delete.
+     * @example
+     * // Delete a few Hspermissions_roles
+     * const { count } = await prisma.hspermissions_roles.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends hspermissions_rolesDeleteManyArgs>(args?: SelectSubset<T, hspermissions_rolesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hspermissions_roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hspermissions_rolesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hspermissions_roles
+     * const hspermissions_roles = await prisma.hspermissions_roles.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends hspermissions_rolesUpdateManyArgs>(args: SelectSubset<T, hspermissions_rolesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hspermissions_roles and returns the data updated in the database.
+     * @param {hspermissions_rolesUpdateManyAndReturnArgs} args - Arguments to update many Hspermissions_roles.
+     * @example
+     * // Update many Hspermissions_roles
+     * const hspermissions_roles = await prisma.hspermissions_roles.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hspermissions_roles and only return the `role_id`
+     * const hspermissions_rolesWithRole_idOnly = await prisma.hspermissions_roles.updateManyAndReturn({
+     *   select: { role_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends hspermissions_rolesUpdateManyAndReturnArgs>(args: SelectSubset<T, hspermissions_rolesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hspermissions_roles.
+     * @param {hspermissions_rolesUpsertArgs} args - Arguments to update or create a Hspermissions_roles.
+     * @example
+     * // Update or create a Hspermissions_roles
+     * const hspermissions_roles = await prisma.hspermissions_roles.upsert({
+     *   create: {
+     *     // ... data to create a Hspermissions_roles
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hspermissions_roles we want to update
+     *   }
+     * })
+     */
+    upsert<T extends hspermissions_rolesUpsertArgs>(args: SelectSubset<T, hspermissions_rolesUpsertArgs<ExtArgs>>): Prisma__hspermissions_rolesClient<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hspermissions_roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hspermissions_rolesCountArgs} args - Arguments to filter Hspermissions_roles to count.
+     * @example
+     * // Count the number of Hspermissions_roles
+     * const count = await prisma.hspermissions_roles.count({
+     *   where: {
+     *     // ... the filter for the Hspermissions_roles we want to count
+     *   }
+     * })
+    **/
+    count<T extends hspermissions_rolesCountArgs>(
+      args?: Subset<T, hspermissions_rolesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Hspermissions_rolesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hspermissions_roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Hspermissions_rolesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Hspermissions_rolesAggregateArgs>(args: Subset<T, Hspermissions_rolesAggregateArgs>): Prisma.PrismaPromise<GetHspermissions_rolesAggregateType<T>>
+
+    /**
+     * Group by Hspermissions_roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hspermissions_rolesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends hspermissions_rolesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: hspermissions_rolesGroupByArgs['orderBy'] }
+        : { orderBy?: hspermissions_rolesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, hspermissions_rolesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHspermissions_rolesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the hspermissions_roles model
+   */
+  readonly fields: hspermissions_rolesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for hspermissions_roles.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__hspermissions_rolesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    hsroles<T extends hsrolesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsrolesDefaultArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    hspermissions<T extends hspermissionsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hspermissionsDefaultArgs<ExtArgs>>): Prisma__hspermissionsClient<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the hspermissions_roles model
+   */
+  interface hspermissions_rolesFieldRefs {
+    readonly role_id: FieldRef<"hspermissions_roles", 'Int'>
+    readonly permission_id: FieldRef<"hspermissions_roles", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * hspermissions_roles findUnique
+   */
+  export type hspermissions_rolesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hspermissions_roles to fetch.
+     */
+    where: hspermissions_rolesWhereUniqueInput
+  }
+
+  /**
+   * hspermissions_roles findUniqueOrThrow
+   */
+  export type hspermissions_rolesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hspermissions_roles to fetch.
+     */
+    where: hspermissions_rolesWhereUniqueInput
+  }
+
+  /**
+   * hspermissions_roles findFirst
+   */
+  export type hspermissions_rolesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hspermissions_roles to fetch.
+     */
+    where?: hspermissions_rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hspermissions_roles to fetch.
+     */
+    orderBy?: hspermissions_rolesOrderByWithRelationInput | hspermissions_rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hspermissions_roles.
+     */
+    cursor?: hspermissions_rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hspermissions_roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hspermissions_roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hspermissions_roles.
+     */
+    distinct?: Hspermissions_rolesScalarFieldEnum | Hspermissions_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * hspermissions_roles findFirstOrThrow
+   */
+  export type hspermissions_rolesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hspermissions_roles to fetch.
+     */
+    where?: hspermissions_rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hspermissions_roles to fetch.
+     */
+    orderBy?: hspermissions_rolesOrderByWithRelationInput | hspermissions_rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hspermissions_roles.
+     */
+    cursor?: hspermissions_rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hspermissions_roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hspermissions_roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hspermissions_roles.
+     */
+    distinct?: Hspermissions_rolesScalarFieldEnum | Hspermissions_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * hspermissions_roles findMany
+   */
+  export type hspermissions_rolesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hspermissions_roles to fetch.
+     */
+    where?: hspermissions_rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hspermissions_roles to fetch.
+     */
+    orderBy?: hspermissions_rolesOrderByWithRelationInput | hspermissions_rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing hspermissions_roles.
+     */
+    cursor?: hspermissions_rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hspermissions_roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hspermissions_roles.
+     */
+    skip?: number
+    distinct?: Hspermissions_rolesScalarFieldEnum | Hspermissions_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * hspermissions_roles create
+   */
+  export type hspermissions_rolesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a hspermissions_roles.
+     */
+    data: XOR<hspermissions_rolesCreateInput, hspermissions_rolesUncheckedCreateInput>
+  }
+
+  /**
+   * hspermissions_roles createMany
+   */
+  export type hspermissions_rolesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many hspermissions_roles.
+     */
+    data: hspermissions_rolesCreateManyInput | hspermissions_rolesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hspermissions_roles createManyAndReturn
+   */
+  export type hspermissions_rolesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * The data used to create many hspermissions_roles.
+     */
+    data: hspermissions_rolesCreateManyInput | hspermissions_rolesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hspermissions_roles update
+   */
+  export type hspermissions_rolesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a hspermissions_roles.
+     */
+    data: XOR<hspermissions_rolesUpdateInput, hspermissions_rolesUncheckedUpdateInput>
+    /**
+     * Choose, which hspermissions_roles to update.
+     */
+    where: hspermissions_rolesWhereUniqueInput
+  }
+
+  /**
+   * hspermissions_roles updateMany
+   */
+  export type hspermissions_rolesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update hspermissions_roles.
+     */
+    data: XOR<hspermissions_rolesUpdateManyMutationInput, hspermissions_rolesUncheckedUpdateManyInput>
+    /**
+     * Filter which hspermissions_roles to update
+     */
+    where?: hspermissions_rolesWhereInput
+    /**
+     * Limit how many hspermissions_roles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hspermissions_roles updateManyAndReturn
+   */
+  export type hspermissions_rolesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * The data used to update hspermissions_roles.
+     */
+    data: XOR<hspermissions_rolesUpdateManyMutationInput, hspermissions_rolesUncheckedUpdateManyInput>
+    /**
+     * Filter which hspermissions_roles to update
+     */
+    where?: hspermissions_rolesWhereInput
+    /**
+     * Limit how many hspermissions_roles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hspermissions_roles upsert
+   */
+  export type hspermissions_rolesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the hspermissions_roles to update in case it exists.
+     */
+    where: hspermissions_rolesWhereUniqueInput
+    /**
+     * In case the hspermissions_roles found by the `where` argument doesn't exist, create a new hspermissions_roles with this data.
+     */
+    create: XOR<hspermissions_rolesCreateInput, hspermissions_rolesUncheckedCreateInput>
+    /**
+     * In case the hspermissions_roles was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<hspermissions_rolesUpdateInput, hspermissions_rolesUncheckedUpdateInput>
+  }
+
+  /**
+   * hspermissions_roles delete
+   */
+  export type hspermissions_rolesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesInclude<ExtArgs> | null
+    /**
+     * Filter which hspermissions_roles to delete.
+     */
+    where: hspermissions_rolesWhereUniqueInput
+  }
+
+  /**
+   * hspermissions_roles deleteMany
+   */
+  export type hspermissions_rolesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hspermissions_roles to delete
+     */
+    where?: hspermissions_rolesWhereInput
+    /**
+     * Limit how many hspermissions_roles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * hspermissions_roles without action
+   */
+  export type hspermissions_rolesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hspermissions_roles
+     */
+    select?: hspermissions_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hspermissions_roles
+     */
+    omit?: hspermissions_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hspermissions_rolesInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model hsusers_permissions
+   */
+
+  export type AggregateHsusers_permissions = {
+    _count: Hsusers_permissionsCountAggregateOutputType | null
+    _avg: Hsusers_permissionsAvgAggregateOutputType | null
+    _sum: Hsusers_permissionsSumAggregateOutputType | null
+    _min: Hsusers_permissionsMinAggregateOutputType | null
+    _max: Hsusers_permissionsMaxAggregateOutputType | null
+  }
+
+  export type Hsusers_permissionsAvgAggregateOutputType = {
+    user_id: number | null
+    permission_id: number | null
+  }
+
+  export type Hsusers_permissionsSumAggregateOutputType = {
+    user_id: number | null
+    permission_id: number | null
+  }
+
+  export type Hsusers_permissionsMinAggregateOutputType = {
+    user_id: number | null
+    permission_id: number | null
+  }
+
+  export type Hsusers_permissionsMaxAggregateOutputType = {
+    user_id: number | null
+    permission_id: number | null
+  }
+
+  export type Hsusers_permissionsCountAggregateOutputType = {
+    user_id: number
+    permission_id: number
+    _all: number
+  }
+
+
+  export type Hsusers_permissionsAvgAggregateInputType = {
+    user_id?: true
+    permission_id?: true
+  }
+
+  export type Hsusers_permissionsSumAggregateInputType = {
+    user_id?: true
+    permission_id?: true
+  }
+
+  export type Hsusers_permissionsMinAggregateInputType = {
+    user_id?: true
+    permission_id?: true
+  }
+
+  export type Hsusers_permissionsMaxAggregateInputType = {
+    user_id?: true
+    permission_id?: true
+  }
+
+  export type Hsusers_permissionsCountAggregateInputType = {
+    user_id?: true
+    permission_id?: true
+    _all?: true
+  }
+
+  export type Hsusers_permissionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsusers_permissions to aggregate.
+     */
+    where?: hsusers_permissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsusers_permissions to fetch.
+     */
+    orderBy?: hsusers_permissionsOrderByWithRelationInput | hsusers_permissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: hsusers_permissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsusers_permissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsusers_permissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned hsusers_permissions
+    **/
+    _count?: true | Hsusers_permissionsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Hsusers_permissionsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Hsusers_permissionsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Hsusers_permissionsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Hsusers_permissionsMaxAggregateInputType
+  }
+
+  export type GetHsusers_permissionsAggregateType<T extends Hsusers_permissionsAggregateArgs> = {
+        [P in keyof T & keyof AggregateHsusers_permissions]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHsusers_permissions[P]>
+      : GetScalarType<T[P], AggregateHsusers_permissions[P]>
+  }
+
+
+
+
+  export type hsusers_permissionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsusers_permissionsWhereInput
+    orderBy?: hsusers_permissionsOrderByWithAggregationInput | hsusers_permissionsOrderByWithAggregationInput[]
+    by: Hsusers_permissionsScalarFieldEnum[] | Hsusers_permissionsScalarFieldEnum
+    having?: hsusers_permissionsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Hsusers_permissionsCountAggregateInputType | true
+    _avg?: Hsusers_permissionsAvgAggregateInputType
+    _sum?: Hsusers_permissionsSumAggregateInputType
+    _min?: Hsusers_permissionsMinAggregateInputType
+    _max?: Hsusers_permissionsMaxAggregateInputType
+  }
+
+  export type Hsusers_permissionsGroupByOutputType = {
+    user_id: number
+    permission_id: number
+    _count: Hsusers_permissionsCountAggregateOutputType | null
+    _avg: Hsusers_permissionsAvgAggregateOutputType | null
+    _sum: Hsusers_permissionsSumAggregateOutputType | null
+    _min: Hsusers_permissionsMinAggregateOutputType | null
+    _max: Hsusers_permissionsMaxAggregateOutputType | null
+  }
+
+  type GetHsusers_permissionsGroupByPayload<T extends hsusers_permissionsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Hsusers_permissionsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Hsusers_permissionsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Hsusers_permissionsGroupByOutputType[P]>
+            : GetScalarType<T[P], Hsusers_permissionsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type hsusers_permissionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    user_id?: boolean
+    permission_id?: boolean
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsusers_permissions"]>
+
+  export type hsusers_permissionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    user_id?: boolean
+    permission_id?: boolean
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsusers_permissions"]>
+
+  export type hsusers_permissionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    user_id?: boolean
+    permission_id?: boolean
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsusers_permissions"]>
+
+  export type hsusers_permissionsSelectScalar = {
+    user_id?: boolean
+    permission_id?: boolean
+  }
+
+  export type hsusers_permissionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "permission_id", ExtArgs["result"]["hsusers_permissions"]>
+  export type hsusers_permissionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+  }
+  export type hsusers_permissionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+  }
+  export type hsusers_permissionsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+  }
+
+  export type $hsusers_permissionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "hsusers_permissions"
+    objects: {
+      hsemployees: Prisma.$hsemployeesPayload<ExtArgs>
+      hspermissions: Prisma.$hspermissionsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      user_id: number
+      permission_id: number
+    }, ExtArgs["result"]["hsusers_permissions"]>
+    composites: {}
+  }
+
+  type hsusers_permissionsGetPayload<S extends boolean | null | undefined | hsusers_permissionsDefaultArgs> = $Result.GetResult<Prisma.$hsusers_permissionsPayload, S>
+
+  type hsusers_permissionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<hsusers_permissionsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Hsusers_permissionsCountAggregateInputType | true
+    }
+
+  export interface hsusers_permissionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hsusers_permissions'], meta: { name: 'hsusers_permissions' } }
+    /**
+     * Find zero or one Hsusers_permissions that matches the filter.
+     * @param {hsusers_permissionsFindUniqueArgs} args - Arguments to find a Hsusers_permissions
+     * @example
+     * // Get one Hsusers_permissions
+     * const hsusers_permissions = await prisma.hsusers_permissions.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends hsusers_permissionsFindUniqueArgs>(args: SelectSubset<T, hsusers_permissionsFindUniqueArgs<ExtArgs>>): Prisma__hsusers_permissionsClient<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hsusers_permissions that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {hsusers_permissionsFindUniqueOrThrowArgs} args - Arguments to find a Hsusers_permissions
+     * @example
+     * // Get one Hsusers_permissions
+     * const hsusers_permissions = await prisma.hsusers_permissions.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends hsusers_permissionsFindUniqueOrThrowArgs>(args: SelectSubset<T, hsusers_permissionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hsusers_permissionsClient<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsusers_permissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsusers_permissionsFindFirstArgs} args - Arguments to find a Hsusers_permissions
+     * @example
+     * // Get one Hsusers_permissions
+     * const hsusers_permissions = await prisma.hsusers_permissions.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends hsusers_permissionsFindFirstArgs>(args?: SelectSubset<T, hsusers_permissionsFindFirstArgs<ExtArgs>>): Prisma__hsusers_permissionsClient<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsusers_permissions that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsusers_permissionsFindFirstOrThrowArgs} args - Arguments to find a Hsusers_permissions
+     * @example
+     * // Get one Hsusers_permissions
+     * const hsusers_permissions = await prisma.hsusers_permissions.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends hsusers_permissionsFindFirstOrThrowArgs>(args?: SelectSubset<T, hsusers_permissionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__hsusers_permissionsClient<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hsusers_permissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsusers_permissionsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hsusers_permissions
+     * const hsusers_permissions = await prisma.hsusers_permissions.findMany()
+     * 
+     * // Get first 10 Hsusers_permissions
+     * const hsusers_permissions = await prisma.hsusers_permissions.findMany({ take: 10 })
+     * 
+     * // Only select the `user_id`
+     * const hsusers_permissionsWithUser_idOnly = await prisma.hsusers_permissions.findMany({ select: { user_id: true } })
+     * 
+     */
+    findMany<T extends hsusers_permissionsFindManyArgs>(args?: SelectSubset<T, hsusers_permissionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hsusers_permissions.
+     * @param {hsusers_permissionsCreateArgs} args - Arguments to create a Hsusers_permissions.
+     * @example
+     * // Create one Hsusers_permissions
+     * const Hsusers_permissions = await prisma.hsusers_permissions.create({
+     *   data: {
+     *     // ... data to create a Hsusers_permissions
+     *   }
+     * })
+     * 
+     */
+    create<T extends hsusers_permissionsCreateArgs>(args: SelectSubset<T, hsusers_permissionsCreateArgs<ExtArgs>>): Prisma__hsusers_permissionsClient<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hsusers_permissions.
+     * @param {hsusers_permissionsCreateManyArgs} args - Arguments to create many Hsusers_permissions.
+     * @example
+     * // Create many Hsusers_permissions
+     * const hsusers_permissions = await prisma.hsusers_permissions.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends hsusers_permissionsCreateManyArgs>(args?: SelectSubset<T, hsusers_permissionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hsusers_permissions and returns the data saved in the database.
+     * @param {hsusers_permissionsCreateManyAndReturnArgs} args - Arguments to create many Hsusers_permissions.
+     * @example
+     * // Create many Hsusers_permissions
+     * const hsusers_permissions = await prisma.hsusers_permissions.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hsusers_permissions and only return the `user_id`
+     * const hsusers_permissionsWithUser_idOnly = await prisma.hsusers_permissions.createManyAndReturn({
+     *   select: { user_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends hsusers_permissionsCreateManyAndReturnArgs>(args?: SelectSubset<T, hsusers_permissionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hsusers_permissions.
+     * @param {hsusers_permissionsDeleteArgs} args - Arguments to delete one Hsusers_permissions.
+     * @example
+     * // Delete one Hsusers_permissions
+     * const Hsusers_permissions = await prisma.hsusers_permissions.delete({
+     *   where: {
+     *     // ... filter to delete one Hsusers_permissions
+     *   }
+     * })
+     * 
+     */
+    delete<T extends hsusers_permissionsDeleteArgs>(args: SelectSubset<T, hsusers_permissionsDeleteArgs<ExtArgs>>): Prisma__hsusers_permissionsClient<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hsusers_permissions.
+     * @param {hsusers_permissionsUpdateArgs} args - Arguments to update one Hsusers_permissions.
+     * @example
+     * // Update one Hsusers_permissions
+     * const hsusers_permissions = await prisma.hsusers_permissions.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends hsusers_permissionsUpdateArgs>(args: SelectSubset<T, hsusers_permissionsUpdateArgs<ExtArgs>>): Prisma__hsusers_permissionsClient<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hsusers_permissions.
+     * @param {hsusers_permissionsDeleteManyArgs} args - Arguments to filter Hsusers_permissions to delete.
+     * @example
+     * // Delete a few Hsusers_permissions
+     * const { count } = await prisma.hsusers_permissions.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends hsusers_permissionsDeleteManyArgs>(args?: SelectSubset<T, hsusers_permissionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsusers_permissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsusers_permissionsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hsusers_permissions
+     * const hsusers_permissions = await prisma.hsusers_permissions.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends hsusers_permissionsUpdateManyArgs>(args: SelectSubset<T, hsusers_permissionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsusers_permissions and returns the data updated in the database.
+     * @param {hsusers_permissionsUpdateManyAndReturnArgs} args - Arguments to update many Hsusers_permissions.
+     * @example
+     * // Update many Hsusers_permissions
+     * const hsusers_permissions = await prisma.hsusers_permissions.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hsusers_permissions and only return the `user_id`
+     * const hsusers_permissionsWithUser_idOnly = await prisma.hsusers_permissions.updateManyAndReturn({
+     *   select: { user_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends hsusers_permissionsUpdateManyAndReturnArgs>(args: SelectSubset<T, hsusers_permissionsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hsusers_permissions.
+     * @param {hsusers_permissionsUpsertArgs} args - Arguments to update or create a Hsusers_permissions.
+     * @example
+     * // Update or create a Hsusers_permissions
+     * const hsusers_permissions = await prisma.hsusers_permissions.upsert({
+     *   create: {
+     *     // ... data to create a Hsusers_permissions
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hsusers_permissions we want to update
+     *   }
+     * })
+     */
+    upsert<T extends hsusers_permissionsUpsertArgs>(args: SelectSubset<T, hsusers_permissionsUpsertArgs<ExtArgs>>): Prisma__hsusers_permissionsClient<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hsusers_permissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsusers_permissionsCountArgs} args - Arguments to filter Hsusers_permissions to count.
+     * @example
+     * // Count the number of Hsusers_permissions
+     * const count = await prisma.hsusers_permissions.count({
+     *   where: {
+     *     // ... the filter for the Hsusers_permissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends hsusers_permissionsCountArgs>(
+      args?: Subset<T, hsusers_permissionsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Hsusers_permissionsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hsusers_permissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Hsusers_permissionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Hsusers_permissionsAggregateArgs>(args: Subset<T, Hsusers_permissionsAggregateArgs>): Prisma.PrismaPromise<GetHsusers_permissionsAggregateType<T>>
+
+    /**
+     * Group by Hsusers_permissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsusers_permissionsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends hsusers_permissionsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: hsusers_permissionsGroupByArgs['orderBy'] }
+        : { orderBy?: hsusers_permissionsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, hsusers_permissionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHsusers_permissionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the hsusers_permissions model
+   */
+  readonly fields: hsusers_permissionsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for hsusers_permissions.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__hsusers_permissionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    hsemployees<T extends hsemployeesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsemployeesDefaultArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    hspermissions<T extends hspermissionsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hspermissionsDefaultArgs<ExtArgs>>): Prisma__hspermissionsClient<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the hsusers_permissions model
+   */
+  interface hsusers_permissionsFieldRefs {
+    readonly user_id: FieldRef<"hsusers_permissions", 'Int'>
+    readonly permission_id: FieldRef<"hsusers_permissions", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * hsusers_permissions findUnique
+   */
+  export type hsusers_permissionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsusers_permissions to fetch.
+     */
+    where: hsusers_permissionsWhereUniqueInput
+  }
+
+  /**
+   * hsusers_permissions findUniqueOrThrow
+   */
+  export type hsusers_permissionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsusers_permissions to fetch.
+     */
+    where: hsusers_permissionsWhereUniqueInput
+  }
+
+  /**
+   * hsusers_permissions findFirst
+   */
+  export type hsusers_permissionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsusers_permissions to fetch.
+     */
+    where?: hsusers_permissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsusers_permissions to fetch.
+     */
+    orderBy?: hsusers_permissionsOrderByWithRelationInput | hsusers_permissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsusers_permissions.
+     */
+    cursor?: hsusers_permissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsusers_permissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsusers_permissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsusers_permissions.
+     */
+    distinct?: Hsusers_permissionsScalarFieldEnum | Hsusers_permissionsScalarFieldEnum[]
+  }
+
+  /**
+   * hsusers_permissions findFirstOrThrow
+   */
+  export type hsusers_permissionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsusers_permissions to fetch.
+     */
+    where?: hsusers_permissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsusers_permissions to fetch.
+     */
+    orderBy?: hsusers_permissionsOrderByWithRelationInput | hsusers_permissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsusers_permissions.
+     */
+    cursor?: hsusers_permissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsusers_permissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsusers_permissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsusers_permissions.
+     */
+    distinct?: Hsusers_permissionsScalarFieldEnum | Hsusers_permissionsScalarFieldEnum[]
+  }
+
+  /**
+   * hsusers_permissions findMany
+   */
+  export type hsusers_permissionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsusers_permissions to fetch.
+     */
+    where?: hsusers_permissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsusers_permissions to fetch.
+     */
+    orderBy?: hsusers_permissionsOrderByWithRelationInput | hsusers_permissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing hsusers_permissions.
+     */
+    cursor?: hsusers_permissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsusers_permissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsusers_permissions.
+     */
+    skip?: number
+    distinct?: Hsusers_permissionsScalarFieldEnum | Hsusers_permissionsScalarFieldEnum[]
+  }
+
+  /**
+   * hsusers_permissions create
+   */
+  export type hsusers_permissionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a hsusers_permissions.
+     */
+    data: XOR<hsusers_permissionsCreateInput, hsusers_permissionsUncheckedCreateInput>
+  }
+
+  /**
+   * hsusers_permissions createMany
+   */
+  export type hsusers_permissionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many hsusers_permissions.
+     */
+    data: hsusers_permissionsCreateManyInput | hsusers_permissionsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hsusers_permissions createManyAndReturn
+   */
+  export type hsusers_permissionsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * The data used to create many hsusers_permissions.
+     */
+    data: hsusers_permissionsCreateManyInput | hsusers_permissionsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hsusers_permissions update
+   */
+  export type hsusers_permissionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a hsusers_permissions.
+     */
+    data: XOR<hsusers_permissionsUpdateInput, hsusers_permissionsUncheckedUpdateInput>
+    /**
+     * Choose, which hsusers_permissions to update.
+     */
+    where: hsusers_permissionsWhereUniqueInput
+  }
+
+  /**
+   * hsusers_permissions updateMany
+   */
+  export type hsusers_permissionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update hsusers_permissions.
+     */
+    data: XOR<hsusers_permissionsUpdateManyMutationInput, hsusers_permissionsUncheckedUpdateManyInput>
+    /**
+     * Filter which hsusers_permissions to update
+     */
+    where?: hsusers_permissionsWhereInput
+    /**
+     * Limit how many hsusers_permissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsusers_permissions updateManyAndReturn
+   */
+  export type hsusers_permissionsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * The data used to update hsusers_permissions.
+     */
+    data: XOR<hsusers_permissionsUpdateManyMutationInput, hsusers_permissionsUncheckedUpdateManyInput>
+    /**
+     * Filter which hsusers_permissions to update
+     */
+    where?: hsusers_permissionsWhereInput
+    /**
+     * Limit how many hsusers_permissions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hsusers_permissions upsert
+   */
+  export type hsusers_permissionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the hsusers_permissions to update in case it exists.
+     */
+    where: hsusers_permissionsWhereUniqueInput
+    /**
+     * In case the hsusers_permissions found by the `where` argument doesn't exist, create a new hsusers_permissions with this data.
+     */
+    create: XOR<hsusers_permissionsCreateInput, hsusers_permissionsUncheckedCreateInput>
+    /**
+     * In case the hsusers_permissions was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<hsusers_permissionsUpdateInput, hsusers_permissionsUncheckedUpdateInput>
+  }
+
+  /**
+   * hsusers_permissions delete
+   */
+  export type hsusers_permissionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+    /**
+     * Filter which hsusers_permissions to delete.
+     */
+    where: hsusers_permissionsWhereUniqueInput
+  }
+
+  /**
+   * hsusers_permissions deleteMany
+   */
+  export type hsusers_permissionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsusers_permissions to delete
+     */
+    where?: hsusers_permissionsWhereInput
+    /**
+     * Limit how many hsusers_permissions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsusers_permissions without action
+   */
+  export type hsusers_permissionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model hsusers_roles
+   */
+
+  export type AggregateHsusers_roles = {
+    _count: Hsusers_rolesCountAggregateOutputType | null
+    _avg: Hsusers_rolesAvgAggregateOutputType | null
+    _sum: Hsusers_rolesSumAggregateOutputType | null
+    _min: Hsusers_rolesMinAggregateOutputType | null
+    _max: Hsusers_rolesMaxAggregateOutputType | null
+  }
+
+  export type Hsusers_rolesAvgAggregateOutputType = {
+    user_id: number | null
+    role_id: number | null
+  }
+
+  export type Hsusers_rolesSumAggregateOutputType = {
+    user_id: number | null
+    role_id: number | null
+  }
+
+  export type Hsusers_rolesMinAggregateOutputType = {
+    user_id: number | null
+    role_id: number | null
+  }
+
+  export type Hsusers_rolesMaxAggregateOutputType = {
+    user_id: number | null
+    role_id: number | null
+  }
+
+  export type Hsusers_rolesCountAggregateOutputType = {
+    user_id: number
+    role_id: number
+    _all: number
+  }
+
+
+  export type Hsusers_rolesAvgAggregateInputType = {
+    user_id?: true
+    role_id?: true
+  }
+
+  export type Hsusers_rolesSumAggregateInputType = {
+    user_id?: true
+    role_id?: true
+  }
+
+  export type Hsusers_rolesMinAggregateInputType = {
+    user_id?: true
+    role_id?: true
+  }
+
+  export type Hsusers_rolesMaxAggregateInputType = {
+    user_id?: true
+    role_id?: true
+  }
+
+  export type Hsusers_rolesCountAggregateInputType = {
+    user_id?: true
+    role_id?: true
+    _all?: true
+  }
+
+  export type Hsusers_rolesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsusers_roles to aggregate.
+     */
+    where?: hsusers_rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsusers_roles to fetch.
+     */
+    orderBy?: hsusers_rolesOrderByWithRelationInput | hsusers_rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: hsusers_rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsusers_roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsusers_roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned hsusers_roles
+    **/
+    _count?: true | Hsusers_rolesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Hsusers_rolesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Hsusers_rolesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Hsusers_rolesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Hsusers_rolesMaxAggregateInputType
+  }
+
+  export type GetHsusers_rolesAggregateType<T extends Hsusers_rolesAggregateArgs> = {
+        [P in keyof T & keyof AggregateHsusers_roles]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHsusers_roles[P]>
+      : GetScalarType<T[P], AggregateHsusers_roles[P]>
+  }
+
+
+
+
+  export type hsusers_rolesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsusers_rolesWhereInput
+    orderBy?: hsusers_rolesOrderByWithAggregationInput | hsusers_rolesOrderByWithAggregationInput[]
+    by: Hsusers_rolesScalarFieldEnum[] | Hsusers_rolesScalarFieldEnum
+    having?: hsusers_rolesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Hsusers_rolesCountAggregateInputType | true
+    _avg?: Hsusers_rolesAvgAggregateInputType
+    _sum?: Hsusers_rolesSumAggregateInputType
+    _min?: Hsusers_rolesMinAggregateInputType
+    _max?: Hsusers_rolesMaxAggregateInputType
+  }
+
+  export type Hsusers_rolesGroupByOutputType = {
+    user_id: number
+    role_id: number
+    _count: Hsusers_rolesCountAggregateOutputType | null
+    _avg: Hsusers_rolesAvgAggregateOutputType | null
+    _sum: Hsusers_rolesSumAggregateOutputType | null
+    _min: Hsusers_rolesMinAggregateOutputType | null
+    _max: Hsusers_rolesMaxAggregateOutputType | null
+  }
+
+  type GetHsusers_rolesGroupByPayload<T extends hsusers_rolesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Hsusers_rolesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Hsusers_rolesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Hsusers_rolesGroupByOutputType[P]>
+            : GetScalarType<T[P], Hsusers_rolesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type hsusers_rolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    user_id?: boolean
+    role_id?: boolean
+    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsusers_roles"]>
+
+  export type hsusers_rolesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    user_id?: boolean
+    role_id?: boolean
+    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsusers_roles"]>
+
+  export type hsusers_rolesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    user_id?: boolean
+    role_id?: boolean
+    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsusers_roles"]>
+
+  export type hsusers_rolesSelectScalar = {
+    user_id?: boolean
+    role_id?: boolean
+  }
+
+  export type hsusers_rolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "role_id", ExtArgs["result"]["hsusers_roles"]>
+  export type hsusers_rolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+  }
+  export type hsusers_rolesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+  }
+  export type hsusers_rolesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+  }
+
+  export type $hsusers_rolesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "hsusers_roles"
+    objects: {
+      heemployees: Prisma.$hsemployeesPayload<ExtArgs>
+      hsroles: Prisma.$hsrolesPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      user_id: number
+      role_id: number
+    }, ExtArgs["result"]["hsusers_roles"]>
+    composites: {}
+  }
+
+  type hsusers_rolesGetPayload<S extends boolean | null | undefined | hsusers_rolesDefaultArgs> = $Result.GetResult<Prisma.$hsusers_rolesPayload, S>
+
+  type hsusers_rolesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<hsusers_rolesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Hsusers_rolesCountAggregateInputType | true
+    }
+
+  export interface hsusers_rolesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hsusers_roles'], meta: { name: 'hsusers_roles' } }
+    /**
+     * Find zero or one Hsusers_roles that matches the filter.
+     * @param {hsusers_rolesFindUniqueArgs} args - Arguments to find a Hsusers_roles
+     * @example
+     * // Get one Hsusers_roles
+     * const hsusers_roles = await prisma.hsusers_roles.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends hsusers_rolesFindUniqueArgs>(args: SelectSubset<T, hsusers_rolesFindUniqueArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hsusers_roles that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {hsusers_rolesFindUniqueOrThrowArgs} args - Arguments to find a Hsusers_roles
+     * @example
+     * // Get one Hsusers_roles
+     * const hsusers_roles = await prisma.hsusers_roles.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends hsusers_rolesFindUniqueOrThrowArgs>(args: SelectSubset<T, hsusers_rolesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsusers_roles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsusers_rolesFindFirstArgs} args - Arguments to find a Hsusers_roles
+     * @example
+     * // Get one Hsusers_roles
+     * const hsusers_roles = await prisma.hsusers_roles.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends hsusers_rolesFindFirstArgs>(args?: SelectSubset<T, hsusers_rolesFindFirstArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsusers_roles that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsusers_rolesFindFirstOrThrowArgs} args - Arguments to find a Hsusers_roles
+     * @example
+     * // Get one Hsusers_roles
+     * const hsusers_roles = await prisma.hsusers_roles.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends hsusers_rolesFindFirstOrThrowArgs>(args?: SelectSubset<T, hsusers_rolesFindFirstOrThrowArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hsusers_roles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsusers_rolesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hsusers_roles
+     * const hsusers_roles = await prisma.hsusers_roles.findMany()
+     * 
+     * // Get first 10 Hsusers_roles
+     * const hsusers_roles = await prisma.hsusers_roles.findMany({ take: 10 })
+     * 
+     * // Only select the `user_id`
+     * const hsusers_rolesWithUser_idOnly = await prisma.hsusers_roles.findMany({ select: { user_id: true } })
+     * 
+     */
+    findMany<T extends hsusers_rolesFindManyArgs>(args?: SelectSubset<T, hsusers_rolesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hsusers_roles.
+     * @param {hsusers_rolesCreateArgs} args - Arguments to create a Hsusers_roles.
+     * @example
+     * // Create one Hsusers_roles
+     * const Hsusers_roles = await prisma.hsusers_roles.create({
+     *   data: {
+     *     // ... data to create a Hsusers_roles
+     *   }
+     * })
+     * 
+     */
+    create<T extends hsusers_rolesCreateArgs>(args: SelectSubset<T, hsusers_rolesCreateArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hsusers_roles.
+     * @param {hsusers_rolesCreateManyArgs} args - Arguments to create many Hsusers_roles.
+     * @example
+     * // Create many Hsusers_roles
+     * const hsusers_roles = await prisma.hsusers_roles.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends hsusers_rolesCreateManyArgs>(args?: SelectSubset<T, hsusers_rolesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hsusers_roles and returns the data saved in the database.
+     * @param {hsusers_rolesCreateManyAndReturnArgs} args - Arguments to create many Hsusers_roles.
+     * @example
+     * // Create many Hsusers_roles
+     * const hsusers_roles = await prisma.hsusers_roles.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hsusers_roles and only return the `user_id`
+     * const hsusers_rolesWithUser_idOnly = await prisma.hsusers_roles.createManyAndReturn({
+     *   select: { user_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends hsusers_rolesCreateManyAndReturnArgs>(args?: SelectSubset<T, hsusers_rolesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hsusers_roles.
+     * @param {hsusers_rolesDeleteArgs} args - Arguments to delete one Hsusers_roles.
+     * @example
+     * // Delete one Hsusers_roles
+     * const Hsusers_roles = await prisma.hsusers_roles.delete({
+     *   where: {
+     *     // ... filter to delete one Hsusers_roles
+     *   }
+     * })
+     * 
+     */
+    delete<T extends hsusers_rolesDeleteArgs>(args: SelectSubset<T, hsusers_rolesDeleteArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hsusers_roles.
+     * @param {hsusers_rolesUpdateArgs} args - Arguments to update one Hsusers_roles.
+     * @example
+     * // Update one Hsusers_roles
+     * const hsusers_roles = await prisma.hsusers_roles.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends hsusers_rolesUpdateArgs>(args: SelectSubset<T, hsusers_rolesUpdateArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hsusers_roles.
+     * @param {hsusers_rolesDeleteManyArgs} args - Arguments to filter Hsusers_roles to delete.
+     * @example
+     * // Delete a few Hsusers_roles
+     * const { count } = await prisma.hsusers_roles.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends hsusers_rolesDeleteManyArgs>(args?: SelectSubset<T, hsusers_rolesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsusers_roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsusers_rolesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hsusers_roles
+     * const hsusers_roles = await prisma.hsusers_roles.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends hsusers_rolesUpdateManyArgs>(args: SelectSubset<T, hsusers_rolesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsusers_roles and returns the data updated in the database.
+     * @param {hsusers_rolesUpdateManyAndReturnArgs} args - Arguments to update many Hsusers_roles.
+     * @example
+     * // Update many Hsusers_roles
+     * const hsusers_roles = await prisma.hsusers_roles.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hsusers_roles and only return the `user_id`
+     * const hsusers_rolesWithUser_idOnly = await prisma.hsusers_roles.updateManyAndReturn({
+     *   select: { user_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends hsusers_rolesUpdateManyAndReturnArgs>(args: SelectSubset<T, hsusers_rolesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hsusers_roles.
+     * @param {hsusers_rolesUpsertArgs} args - Arguments to update or create a Hsusers_roles.
+     * @example
+     * // Update or create a Hsusers_roles
+     * const hsusers_roles = await prisma.hsusers_roles.upsert({
+     *   create: {
+     *     // ... data to create a Hsusers_roles
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hsusers_roles we want to update
+     *   }
+     * })
+     */
+    upsert<T extends hsusers_rolesUpsertArgs>(args: SelectSubset<T, hsusers_rolesUpsertArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hsusers_roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsusers_rolesCountArgs} args - Arguments to filter Hsusers_roles to count.
+     * @example
+     * // Count the number of Hsusers_roles
+     * const count = await prisma.hsusers_roles.count({
+     *   where: {
+     *     // ... the filter for the Hsusers_roles we want to count
+     *   }
+     * })
+    **/
+    count<T extends hsusers_rolesCountArgs>(
+      args?: Subset<T, hsusers_rolesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Hsusers_rolesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hsusers_roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Hsusers_rolesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Hsusers_rolesAggregateArgs>(args: Subset<T, Hsusers_rolesAggregateArgs>): Prisma.PrismaPromise<GetHsusers_rolesAggregateType<T>>
+
+    /**
+     * Group by Hsusers_roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsusers_rolesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends hsusers_rolesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: hsusers_rolesGroupByArgs['orderBy'] }
+        : { orderBy?: hsusers_rolesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, hsusers_rolesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHsusers_rolesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the hsusers_roles model
+   */
+  readonly fields: hsusers_rolesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for hsusers_roles.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__hsusers_rolesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    heemployees<T extends hsemployeesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsemployeesDefaultArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    hsroles<T extends hsrolesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsrolesDefaultArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the hsusers_roles model
+   */
+  interface hsusers_rolesFieldRefs {
+    readonly user_id: FieldRef<"hsusers_roles", 'Int'>
+    readonly role_id: FieldRef<"hsusers_roles", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * hsusers_roles findUnique
+   */
+  export type hsusers_rolesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsusers_roles to fetch.
+     */
+    where: hsusers_rolesWhereUniqueInput
+  }
+
+  /**
+   * hsusers_roles findUniqueOrThrow
+   */
+  export type hsusers_rolesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsusers_roles to fetch.
+     */
+    where: hsusers_rolesWhereUniqueInput
+  }
+
+  /**
+   * hsusers_roles findFirst
+   */
+  export type hsusers_rolesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsusers_roles to fetch.
+     */
+    where?: hsusers_rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsusers_roles to fetch.
+     */
+    orderBy?: hsusers_rolesOrderByWithRelationInput | hsusers_rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsusers_roles.
+     */
+    cursor?: hsusers_rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsusers_roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsusers_roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsusers_roles.
+     */
+    distinct?: Hsusers_rolesScalarFieldEnum | Hsusers_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * hsusers_roles findFirstOrThrow
+   */
+  export type hsusers_rolesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsusers_roles to fetch.
+     */
+    where?: hsusers_rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsusers_roles to fetch.
+     */
+    orderBy?: hsusers_rolesOrderByWithRelationInput | hsusers_rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsusers_roles.
+     */
+    cursor?: hsusers_rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsusers_roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsusers_roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsusers_roles.
+     */
+    distinct?: Hsusers_rolesScalarFieldEnum | Hsusers_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * hsusers_roles findMany
+   */
+  export type hsusers_rolesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsusers_roles to fetch.
+     */
+    where?: hsusers_rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsusers_roles to fetch.
+     */
+    orderBy?: hsusers_rolesOrderByWithRelationInput | hsusers_rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing hsusers_roles.
+     */
+    cursor?: hsusers_rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsusers_roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsusers_roles.
+     */
+    skip?: number
+    distinct?: Hsusers_rolesScalarFieldEnum | Hsusers_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * hsusers_roles create
+   */
+  export type hsusers_rolesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a hsusers_roles.
+     */
+    data: XOR<hsusers_rolesCreateInput, hsusers_rolesUncheckedCreateInput>
+  }
+
+  /**
+   * hsusers_roles createMany
+   */
+  export type hsusers_rolesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many hsusers_roles.
+     */
+    data: hsusers_rolesCreateManyInput | hsusers_rolesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hsusers_roles createManyAndReturn
+   */
+  export type hsusers_rolesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * The data used to create many hsusers_roles.
+     */
+    data: hsusers_rolesCreateManyInput | hsusers_rolesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hsusers_roles update
+   */
+  export type hsusers_rolesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a hsusers_roles.
+     */
+    data: XOR<hsusers_rolesUpdateInput, hsusers_rolesUncheckedUpdateInput>
+    /**
+     * Choose, which hsusers_roles to update.
+     */
+    where: hsusers_rolesWhereUniqueInput
+  }
+
+  /**
+   * hsusers_roles updateMany
+   */
+  export type hsusers_rolesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update hsusers_roles.
+     */
+    data: XOR<hsusers_rolesUpdateManyMutationInput, hsusers_rolesUncheckedUpdateManyInput>
+    /**
+     * Filter which hsusers_roles to update
+     */
+    where?: hsusers_rolesWhereInput
+    /**
+     * Limit how many hsusers_roles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsusers_roles updateManyAndReturn
+   */
+  export type hsusers_rolesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * The data used to update hsusers_roles.
+     */
+    data: XOR<hsusers_rolesUpdateManyMutationInput, hsusers_rolesUncheckedUpdateManyInput>
+    /**
+     * Filter which hsusers_roles to update
+     */
+    where?: hsusers_rolesWhereInput
+    /**
+     * Limit how many hsusers_roles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hsusers_roles upsert
+   */
+  export type hsusers_rolesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the hsusers_roles to update in case it exists.
+     */
+    where: hsusers_rolesWhereUniqueInput
+    /**
+     * In case the hsusers_roles found by the `where` argument doesn't exist, create a new hsusers_roles with this data.
+     */
+    create: XOR<hsusers_rolesCreateInput, hsusers_rolesUncheckedCreateInput>
+    /**
+     * In case the hsusers_roles was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<hsusers_rolesUpdateInput, hsusers_rolesUncheckedUpdateInput>
+  }
+
+  /**
+   * hsusers_roles delete
+   */
+  export type hsusers_rolesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesInclude<ExtArgs> | null
+    /**
+     * Filter which hsusers_roles to delete.
+     */
+    where: hsusers_rolesWhereUniqueInput
+  }
+
+  /**
+   * hsusers_roles deleteMany
+   */
+  export type hsusers_rolesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsusers_roles to delete
+     */
+    where?: hsusers_rolesWhereInput
+    /**
+     * Limit how many hsusers_roles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsusers_roles without action
+   */
+  export type hsusers_rolesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_roles
+     */
+    select?: hsusers_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_roles
+     */
+    omit?: hsusers_rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_rolesInclude<ExtArgs> | null
   }
 
 
@@ -9752,1284 +15886,6 @@ export namespace Prisma {
 
 
   /**
-   * Model hsemployees
-   */
-
-  export type AggregateHsemployees = {
-    _count: HsemployeesCountAggregateOutputType | null
-    _avg: HsemployeesAvgAggregateOutputType | null
-    _sum: HsemployeesSumAggregateOutputType | null
-    _min: HsemployeesMinAggregateOutputType | null
-    _max: HsemployeesMaxAggregateOutputType | null
-  }
-
-  export type HsemployeesAvgAggregateOutputType = {
-    id: number | null
-    branch_id: number | null
-    access_level: number | null
-    winthor_id: number | null
-  }
-
-  export type HsemployeesSumAggregateOutputType = {
-    id: number | null
-    branch_id: number | null
-    access_level: number | null
-    winthor_id: number | null
-  }
-
-  export type HsemployeesMinAggregateOutputType = {
-    id: number | null
-    branch_id: number | null
-    access_level: number | null
-    winthor_id: number | null
-    name: string | null
-    username: string | null
-    password: string | null
-    created_at: Date | null
-    modified_at: Date | null
-  }
-
-  export type HsemployeesMaxAggregateOutputType = {
-    id: number | null
-    branch_id: number | null
-    access_level: number | null
-    winthor_id: number | null
-    name: string | null
-    username: string | null
-    password: string | null
-    created_at: Date | null
-    modified_at: Date | null
-  }
-
-  export type HsemployeesCountAggregateOutputType = {
-    id: number
-    branch_id: number
-    access_level: number
-    winthor_id: number
-    name: number
-    username: number
-    password: number
-    created_at: number
-    modified_at: number
-    _all: number
-  }
-
-
-  export type HsemployeesAvgAggregateInputType = {
-    id?: true
-    branch_id?: true
-    access_level?: true
-    winthor_id?: true
-  }
-
-  export type HsemployeesSumAggregateInputType = {
-    id?: true
-    branch_id?: true
-    access_level?: true
-    winthor_id?: true
-  }
-
-  export type HsemployeesMinAggregateInputType = {
-    id?: true
-    branch_id?: true
-    access_level?: true
-    winthor_id?: true
-    name?: true
-    username?: true
-    password?: true
-    created_at?: true
-    modified_at?: true
-  }
-
-  export type HsemployeesMaxAggregateInputType = {
-    id?: true
-    branch_id?: true
-    access_level?: true
-    winthor_id?: true
-    name?: true
-    username?: true
-    password?: true
-    created_at?: true
-    modified_at?: true
-  }
-
-  export type HsemployeesCountAggregateInputType = {
-    id?: true
-    branch_id?: true
-    access_level?: true
-    winthor_id?: true
-    name?: true
-    username?: true
-    password?: true
-    created_at?: true
-    modified_at?: true
-    _all?: true
-  }
-
-  export type HsemployeesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which hsemployees to aggregate.
-     */
-    where?: hsemployeesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of hsemployees to fetch.
-     */
-    orderBy?: hsemployeesOrderByWithRelationInput | hsemployeesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: hsemployeesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` hsemployees from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` hsemployees.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned hsemployees
-    **/
-    _count?: true | HsemployeesCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: HsemployeesAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: HsemployeesSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: HsemployeesMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: HsemployeesMaxAggregateInputType
-  }
-
-  export type GetHsemployeesAggregateType<T extends HsemployeesAggregateArgs> = {
-        [P in keyof T & keyof AggregateHsemployees]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateHsemployees[P]>
-      : GetScalarType<T[P], AggregateHsemployees[P]>
-  }
-
-
-
-
-  export type hsemployeesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsemployeesWhereInput
-    orderBy?: hsemployeesOrderByWithAggregationInput | hsemployeesOrderByWithAggregationInput[]
-    by: HsemployeesScalarFieldEnum[] | HsemployeesScalarFieldEnum
-    having?: hsemployeesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: HsemployeesCountAggregateInputType | true
-    _avg?: HsemployeesAvgAggregateInputType
-    _sum?: HsemployeesSumAggregateInputType
-    _min?: HsemployeesMinAggregateInputType
-    _max?: HsemployeesMaxAggregateInputType
-  }
-
-  export type HsemployeesGroupByOutputType = {
-    id: number
-    branch_id: number
-    access_level: number
-    winthor_id: number
-    name: string
-    username: string
-    password: string
-    created_at: Date
-    modified_at: Date
-    _count: HsemployeesCountAggregateOutputType | null
-    _avg: HsemployeesAvgAggregateOutputType | null
-    _sum: HsemployeesSumAggregateOutputType | null
-    _min: HsemployeesMinAggregateOutputType | null
-    _max: HsemployeesMaxAggregateOutputType | null
-  }
-
-  type GetHsemployeesGroupByPayload<T extends hsemployeesGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<HsemployeesGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof HsemployeesGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], HsemployeesGroupByOutputType[P]>
-            : GetScalarType<T[P], HsemployeesGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type hsemployeesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    branch_id?: boolean
-    access_level?: boolean
-    winthor_id?: boolean
-    name?: boolean
-    username?: boolean
-    password?: boolean
-    created_at?: boolean
-    modified_at?: boolean
-    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
-    hsaccess_level?: boolean | hsaccess_levelsDefaultArgs<ExtArgs>
-    analystRequests?: boolean | hsemployees$analystRequestsArgs<ExtArgs>
-    confereeRequests?: boolean | hsemployees$confereeRequestsArgs<ExtArgs>
-    sessions?: boolean | hsemployees$sessionsArgs<ExtArgs>
-    hsvalidities?: boolean | hsemployees$hsvaliditiesArgs<ExtArgs>
-    _count?: boolean | HsemployeesCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hsemployees"]>
-
-  export type hsemployeesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    branch_id?: boolean
-    access_level?: boolean
-    winthor_id?: boolean
-    name?: boolean
-    username?: boolean
-    password?: boolean
-    created_at?: boolean
-    modified_at?: boolean
-    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
-    hsaccess_level?: boolean | hsaccess_levelsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hsemployees"]>
-
-  export type hsemployeesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    branch_id?: boolean
-    access_level?: boolean
-    winthor_id?: boolean
-    name?: boolean
-    username?: boolean
-    password?: boolean
-    created_at?: boolean
-    modified_at?: boolean
-    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
-    hsaccess_level?: boolean | hsaccess_levelsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hsemployees"]>
-
-  export type hsemployeesSelectScalar = {
-    id?: boolean
-    branch_id?: boolean
-    access_level?: boolean
-    winthor_id?: boolean
-    name?: boolean
-    username?: boolean
-    password?: boolean
-    created_at?: boolean
-    modified_at?: boolean
-  }
-
-  export type hsemployeesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branch_id" | "access_level" | "winthor_id" | "name" | "username" | "password" | "created_at" | "modified_at", ExtArgs["result"]["hsemployees"]>
-  export type hsemployeesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
-    hsaccess_level?: boolean | hsaccess_levelsDefaultArgs<ExtArgs>
-    analystRequests?: boolean | hsemployees$analystRequestsArgs<ExtArgs>
-    confereeRequests?: boolean | hsemployees$confereeRequestsArgs<ExtArgs>
-    sessions?: boolean | hsemployees$sessionsArgs<ExtArgs>
-    hsvalidities?: boolean | hsemployees$hsvaliditiesArgs<ExtArgs>
-    _count?: boolean | HsemployeesCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type hsemployeesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
-    hsaccess_level?: boolean | hsaccess_levelsDefaultArgs<ExtArgs>
-  }
-  export type hsemployeesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
-    hsaccess_level?: boolean | hsaccess_levelsDefaultArgs<ExtArgs>
-  }
-
-  export type $hsemployeesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "hsemployees"
-    objects: {
-      branch: Prisma.$hsbranchesPayload<ExtArgs>
-      hsaccess_level: Prisma.$hsaccess_levelsPayload<ExtArgs>
-      analystRequests: Prisma.$hsvalidity_requestsPayload<ExtArgs>[]
-      confereeRequests: Prisma.$hsvalidity_requestsPayload<ExtArgs>[]
-      sessions: Prisma.$hssessionsPayload<ExtArgs>[]
-      hsvalidities: Prisma.$hsvaliditiesPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      branch_id: number
-      access_level: number
-      winthor_id: number
-      name: string
-      username: string
-      password: string
-      created_at: Date
-      modified_at: Date
-    }, ExtArgs["result"]["hsemployees"]>
-    composites: {}
-  }
-
-  type hsemployeesGetPayload<S extends boolean | null | undefined | hsemployeesDefaultArgs> = $Result.GetResult<Prisma.$hsemployeesPayload, S>
-
-  type hsemployeesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<hsemployeesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: HsemployeesCountAggregateInputType | true
-    }
-
-  export interface hsemployeesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hsemployees'], meta: { name: 'hsemployees' } }
-    /**
-     * Find zero or one Hsemployees that matches the filter.
-     * @param {hsemployeesFindUniqueArgs} args - Arguments to find a Hsemployees
-     * @example
-     * // Get one Hsemployees
-     * const hsemployees = await prisma.hsemployees.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends hsemployeesFindUniqueArgs>(args: SelectSubset<T, hsemployeesFindUniqueArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Hsemployees that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {hsemployeesFindUniqueOrThrowArgs} args - Arguments to find a Hsemployees
-     * @example
-     * // Get one Hsemployees
-     * const hsemployees = await prisma.hsemployees.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends hsemployeesFindUniqueOrThrowArgs>(args: SelectSubset<T, hsemployeesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Hsemployees that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsemployeesFindFirstArgs} args - Arguments to find a Hsemployees
-     * @example
-     * // Get one Hsemployees
-     * const hsemployees = await prisma.hsemployees.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends hsemployeesFindFirstArgs>(args?: SelectSubset<T, hsemployeesFindFirstArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Hsemployees that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsemployeesFindFirstOrThrowArgs} args - Arguments to find a Hsemployees
-     * @example
-     * // Get one Hsemployees
-     * const hsemployees = await prisma.hsemployees.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends hsemployeesFindFirstOrThrowArgs>(args?: SelectSubset<T, hsemployeesFindFirstOrThrowArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Hsemployees that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsemployeesFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Hsemployees
-     * const hsemployees = await prisma.hsemployees.findMany()
-     * 
-     * // Get first 10 Hsemployees
-     * const hsemployees = await prisma.hsemployees.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const hsemployeesWithIdOnly = await prisma.hsemployees.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends hsemployeesFindManyArgs>(args?: SelectSubset<T, hsemployeesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Hsemployees.
-     * @param {hsemployeesCreateArgs} args - Arguments to create a Hsemployees.
-     * @example
-     * // Create one Hsemployees
-     * const Hsemployees = await prisma.hsemployees.create({
-     *   data: {
-     *     // ... data to create a Hsemployees
-     *   }
-     * })
-     * 
-     */
-    create<T extends hsemployeesCreateArgs>(args: SelectSubset<T, hsemployeesCreateArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Hsemployees.
-     * @param {hsemployeesCreateManyArgs} args - Arguments to create many Hsemployees.
-     * @example
-     * // Create many Hsemployees
-     * const hsemployees = await prisma.hsemployees.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends hsemployeesCreateManyArgs>(args?: SelectSubset<T, hsemployeesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Hsemployees and returns the data saved in the database.
-     * @param {hsemployeesCreateManyAndReturnArgs} args - Arguments to create many Hsemployees.
-     * @example
-     * // Create many Hsemployees
-     * const hsemployees = await prisma.hsemployees.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Hsemployees and only return the `id`
-     * const hsemployeesWithIdOnly = await prisma.hsemployees.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends hsemployeesCreateManyAndReturnArgs>(args?: SelectSubset<T, hsemployeesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Hsemployees.
-     * @param {hsemployeesDeleteArgs} args - Arguments to delete one Hsemployees.
-     * @example
-     * // Delete one Hsemployees
-     * const Hsemployees = await prisma.hsemployees.delete({
-     *   where: {
-     *     // ... filter to delete one Hsemployees
-     *   }
-     * })
-     * 
-     */
-    delete<T extends hsemployeesDeleteArgs>(args: SelectSubset<T, hsemployeesDeleteArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Hsemployees.
-     * @param {hsemployeesUpdateArgs} args - Arguments to update one Hsemployees.
-     * @example
-     * // Update one Hsemployees
-     * const hsemployees = await prisma.hsemployees.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends hsemployeesUpdateArgs>(args: SelectSubset<T, hsemployeesUpdateArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Hsemployees.
-     * @param {hsemployeesDeleteManyArgs} args - Arguments to filter Hsemployees to delete.
-     * @example
-     * // Delete a few Hsemployees
-     * const { count } = await prisma.hsemployees.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends hsemployeesDeleteManyArgs>(args?: SelectSubset<T, hsemployeesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Hsemployees.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsemployeesUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Hsemployees
-     * const hsemployees = await prisma.hsemployees.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends hsemployeesUpdateManyArgs>(args: SelectSubset<T, hsemployeesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Hsemployees and returns the data updated in the database.
-     * @param {hsemployeesUpdateManyAndReturnArgs} args - Arguments to update many Hsemployees.
-     * @example
-     * // Update many Hsemployees
-     * const hsemployees = await prisma.hsemployees.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Hsemployees and only return the `id`
-     * const hsemployeesWithIdOnly = await prisma.hsemployees.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends hsemployeesUpdateManyAndReturnArgs>(args: SelectSubset<T, hsemployeesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Hsemployees.
-     * @param {hsemployeesUpsertArgs} args - Arguments to update or create a Hsemployees.
-     * @example
-     * // Update or create a Hsemployees
-     * const hsemployees = await prisma.hsemployees.upsert({
-     *   create: {
-     *     // ... data to create a Hsemployees
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Hsemployees we want to update
-     *   }
-     * })
-     */
-    upsert<T extends hsemployeesUpsertArgs>(args: SelectSubset<T, hsemployeesUpsertArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Hsemployees.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsemployeesCountArgs} args - Arguments to filter Hsemployees to count.
-     * @example
-     * // Count the number of Hsemployees
-     * const count = await prisma.hsemployees.count({
-     *   where: {
-     *     // ... the filter for the Hsemployees we want to count
-     *   }
-     * })
-    **/
-    count<T extends hsemployeesCountArgs>(
-      args?: Subset<T, hsemployeesCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], HsemployeesCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Hsemployees.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HsemployeesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends HsemployeesAggregateArgs>(args: Subset<T, HsemployeesAggregateArgs>): Prisma.PrismaPromise<GetHsemployeesAggregateType<T>>
-
-    /**
-     * Group by Hsemployees.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsemployeesGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends hsemployeesGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: hsemployeesGroupByArgs['orderBy'] }
-        : { orderBy?: hsemployeesGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, hsemployeesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHsemployeesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the hsemployees model
-   */
-  readonly fields: hsemployeesFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for hsemployees.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__hsemployeesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    branch<T extends hsbranchesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsbranchesDefaultArgs<ExtArgs>>): Prisma__hsbranchesClient<$Result.GetResult<Prisma.$hsbranchesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    hsaccess_level<T extends hsaccess_levelsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsaccess_levelsDefaultArgs<ExtArgs>>): Prisma__hsaccess_levelsClient<$Result.GetResult<Prisma.$hsaccess_levelsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    analystRequests<T extends hsemployees$analystRequestsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$analystRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    confereeRequests<T extends hsemployees$confereeRequestsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$confereeRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    sessions<T extends hsemployees$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hssessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    hsvalidities<T extends hsemployees$hsvaliditiesArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$hsvaliditiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvaliditiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the hsemployees model
-   */
-  interface hsemployeesFieldRefs {
-    readonly id: FieldRef<"hsemployees", 'Int'>
-    readonly branch_id: FieldRef<"hsemployees", 'Int'>
-    readonly access_level: FieldRef<"hsemployees", 'Int'>
-    readonly winthor_id: FieldRef<"hsemployees", 'Int'>
-    readonly name: FieldRef<"hsemployees", 'String'>
-    readonly username: FieldRef<"hsemployees", 'String'>
-    readonly password: FieldRef<"hsemployees", 'String'>
-    readonly created_at: FieldRef<"hsemployees", 'DateTime'>
-    readonly modified_at: FieldRef<"hsemployees", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * hsemployees findUnique
-   */
-  export type hsemployeesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesInclude<ExtArgs> | null
-    /**
-     * Filter, which hsemployees to fetch.
-     */
-    where: hsemployeesWhereUniqueInput
-  }
-
-  /**
-   * hsemployees findUniqueOrThrow
-   */
-  export type hsemployeesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesInclude<ExtArgs> | null
-    /**
-     * Filter, which hsemployees to fetch.
-     */
-    where: hsemployeesWhereUniqueInput
-  }
-
-  /**
-   * hsemployees findFirst
-   */
-  export type hsemployeesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesInclude<ExtArgs> | null
-    /**
-     * Filter, which hsemployees to fetch.
-     */
-    where?: hsemployeesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of hsemployees to fetch.
-     */
-    orderBy?: hsemployeesOrderByWithRelationInput | hsemployeesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for hsemployees.
-     */
-    cursor?: hsemployeesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` hsemployees from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` hsemployees.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of hsemployees.
-     */
-    distinct?: HsemployeesScalarFieldEnum | HsemployeesScalarFieldEnum[]
-  }
-
-  /**
-   * hsemployees findFirstOrThrow
-   */
-  export type hsemployeesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesInclude<ExtArgs> | null
-    /**
-     * Filter, which hsemployees to fetch.
-     */
-    where?: hsemployeesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of hsemployees to fetch.
-     */
-    orderBy?: hsemployeesOrderByWithRelationInput | hsemployeesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for hsemployees.
-     */
-    cursor?: hsemployeesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` hsemployees from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` hsemployees.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of hsemployees.
-     */
-    distinct?: HsemployeesScalarFieldEnum | HsemployeesScalarFieldEnum[]
-  }
-
-  /**
-   * hsemployees findMany
-   */
-  export type hsemployeesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesInclude<ExtArgs> | null
-    /**
-     * Filter, which hsemployees to fetch.
-     */
-    where?: hsemployeesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of hsemployees to fetch.
-     */
-    orderBy?: hsemployeesOrderByWithRelationInput | hsemployeesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing hsemployees.
-     */
-    cursor?: hsemployeesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` hsemployees from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` hsemployees.
-     */
-    skip?: number
-    distinct?: HsemployeesScalarFieldEnum | HsemployeesScalarFieldEnum[]
-  }
-
-  /**
-   * hsemployees create
-   */
-  export type hsemployeesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesInclude<ExtArgs> | null
-    /**
-     * The data needed to create a hsemployees.
-     */
-    data: XOR<hsemployeesCreateInput, hsemployeesUncheckedCreateInput>
-  }
-
-  /**
-   * hsemployees createMany
-   */
-  export type hsemployeesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many hsemployees.
-     */
-    data: hsemployeesCreateManyInput | hsemployeesCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * hsemployees createManyAndReturn
-   */
-  export type hsemployeesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * The data used to create many hsemployees.
-     */
-    data: hsemployeesCreateManyInput | hsemployeesCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * hsemployees update
-   */
-  export type hsemployeesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesInclude<ExtArgs> | null
-    /**
-     * The data needed to update a hsemployees.
-     */
-    data: XOR<hsemployeesUpdateInput, hsemployeesUncheckedUpdateInput>
-    /**
-     * Choose, which hsemployees to update.
-     */
-    where: hsemployeesWhereUniqueInput
-  }
-
-  /**
-   * hsemployees updateMany
-   */
-  export type hsemployeesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update hsemployees.
-     */
-    data: XOR<hsemployeesUpdateManyMutationInput, hsemployeesUncheckedUpdateManyInput>
-    /**
-     * Filter which hsemployees to update
-     */
-    where?: hsemployeesWhereInput
-    /**
-     * Limit how many hsemployees to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * hsemployees updateManyAndReturn
-   */
-  export type hsemployeesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * The data used to update hsemployees.
-     */
-    data: XOR<hsemployeesUpdateManyMutationInput, hsemployeesUncheckedUpdateManyInput>
-    /**
-     * Filter which hsemployees to update
-     */
-    where?: hsemployeesWhereInput
-    /**
-     * Limit how many hsemployees to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * hsemployees upsert
-   */
-  export type hsemployeesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesInclude<ExtArgs> | null
-    /**
-     * The filter to search for the hsemployees to update in case it exists.
-     */
-    where: hsemployeesWhereUniqueInput
-    /**
-     * In case the hsemployees found by the `where` argument doesn't exist, create a new hsemployees with this data.
-     */
-    create: XOR<hsemployeesCreateInput, hsemployeesUncheckedCreateInput>
-    /**
-     * In case the hsemployees was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<hsemployeesUpdateInput, hsemployeesUncheckedUpdateInput>
-  }
-
-  /**
-   * hsemployees delete
-   */
-  export type hsemployeesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesInclude<ExtArgs> | null
-    /**
-     * Filter which hsemployees to delete.
-     */
-    where: hsemployeesWhereUniqueInput
-  }
-
-  /**
-   * hsemployees deleteMany
-   */
-  export type hsemployeesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which hsemployees to delete
-     */
-    where?: hsemployeesWhereInput
-    /**
-     * Limit how many hsemployees to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * hsemployees.analystRequests
-   */
-  export type hsemployees$analystRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsvalidity_requests
-     */
-    select?: hsvalidity_requestsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsvalidity_requests
-     */
-    omit?: hsvalidity_requestsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsvalidity_requestsInclude<ExtArgs> | null
-    where?: hsvalidity_requestsWhereInput
-    orderBy?: hsvalidity_requestsOrderByWithRelationInput | hsvalidity_requestsOrderByWithRelationInput[]
-    cursor?: hsvalidity_requestsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Hsvalidity_requestsScalarFieldEnum | Hsvalidity_requestsScalarFieldEnum[]
-  }
-
-  /**
-   * hsemployees.confereeRequests
-   */
-  export type hsemployees$confereeRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsvalidity_requests
-     */
-    select?: hsvalidity_requestsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsvalidity_requests
-     */
-    omit?: hsvalidity_requestsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsvalidity_requestsInclude<ExtArgs> | null
-    where?: hsvalidity_requestsWhereInput
-    orderBy?: hsvalidity_requestsOrderByWithRelationInput | hsvalidity_requestsOrderByWithRelationInput[]
-    cursor?: hsvalidity_requestsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Hsvalidity_requestsScalarFieldEnum | Hsvalidity_requestsScalarFieldEnum[]
-  }
-
-  /**
-   * hsemployees.sessions
-   */
-  export type hsemployees$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hssessions
-     */
-    select?: hssessionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hssessions
-     */
-    omit?: hssessionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hssessionsInclude<ExtArgs> | null
-    where?: hssessionsWhereInput
-    orderBy?: hssessionsOrderByWithRelationInput | hssessionsOrderByWithRelationInput[]
-    cursor?: hssessionsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HssessionsScalarFieldEnum | HssessionsScalarFieldEnum[]
-  }
-
-  /**
-   * hsemployees.hsvalidities
-   */
-  export type hsemployees$hsvaliditiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsvalidities
-     */
-    select?: hsvaliditiesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsvalidities
-     */
-    omit?: hsvaliditiesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsvaliditiesInclude<ExtArgs> | null
-    where?: hsvaliditiesWhereInput
-    orderBy?: hsvaliditiesOrderByWithRelationInput | hsvaliditiesOrderByWithRelationInput[]
-    cursor?: hsvaliditiesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HsvaliditiesScalarFieldEnum | HsvaliditiesScalarFieldEnum[]
-  }
-
-  /**
-   * hsemployees without action
-   */
-  export type hsemployeesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model hssessions
    */
 
@@ -12135,12 +16991,64 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const Hsaccess_levelsScalarFieldEnum: {
+  export const HsemployeesScalarFieldEnum: {
     id: 'id',
-    description: 'description'
+    branch_id: 'branch_id',
+    winthor_id: 'winthor_id',
+    name: 'name',
+    username: 'username',
+    password: 'password',
+    created_at: 'created_at',
+    modified_at: 'modified_at'
   };
 
-  export type Hsaccess_levelsScalarFieldEnum = (typeof Hsaccess_levelsScalarFieldEnum)[keyof typeof Hsaccess_levelsScalarFieldEnum]
+  export type HsemployeesScalarFieldEnum = (typeof HsemployeesScalarFieldEnum)[keyof typeof HsemployeesScalarFieldEnum]
+
+
+  export const HsrolesScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    created_at: 'created_at',
+    modified_at: 'modified_at'
+  };
+
+  export type HsrolesScalarFieldEnum = (typeof HsrolesScalarFieldEnum)[keyof typeof HsrolesScalarFieldEnum]
+
+
+  export const HspermissionsScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    created_at: 'created_at',
+    modified_at: 'modified_at'
+  };
+
+  export type HspermissionsScalarFieldEnum = (typeof HspermissionsScalarFieldEnum)[keyof typeof HspermissionsScalarFieldEnum]
+
+
+  export const Hspermissions_rolesScalarFieldEnum: {
+    role_id: 'role_id',
+    permission_id: 'permission_id'
+  };
+
+  export type Hspermissions_rolesScalarFieldEnum = (typeof Hspermissions_rolesScalarFieldEnum)[keyof typeof Hspermissions_rolesScalarFieldEnum]
+
+
+  export const Hsusers_permissionsScalarFieldEnum: {
+    user_id: 'user_id',
+    permission_id: 'permission_id'
+  };
+
+  export type Hsusers_permissionsScalarFieldEnum = (typeof Hsusers_permissionsScalarFieldEnum)[keyof typeof Hsusers_permissionsScalarFieldEnum]
+
+
+  export const Hsusers_rolesScalarFieldEnum: {
+    user_id: 'user_id',
+    role_id: 'role_id'
+  };
+
+  export type Hsusers_rolesScalarFieldEnum = (typeof Hsusers_rolesScalarFieldEnum)[keyof typeof Hsusers_rolesScalarFieldEnum]
 
 
   export const HsbranchesScalarFieldEnum: {
@@ -12206,21 +17114,6 @@ export namespace Prisma {
   };
 
   export type Hsvalidity_treatmentsScalarFieldEnum = (typeof Hsvalidity_treatmentsScalarFieldEnum)[keyof typeof Hsvalidity_treatmentsScalarFieldEnum]
-
-
-  export const HsemployeesScalarFieldEnum: {
-    id: 'id',
-    branch_id: 'branch_id',
-    access_level: 'access_level',
-    winthor_id: 'winthor_id',
-    name: 'name',
-    username: 'username',
-    password: 'password',
-    created_at: 'created_at',
-    modified_at: 'modified_at'
-  };
-
-  export type HsemployeesScalarFieldEnum = (typeof HsemployeesScalarFieldEnum)[keyof typeof HsemployeesScalarFieldEnum]
 
 
   export const HssessionsScalarFieldEnum: {
@@ -12292,20 +17185,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'hsvalidities_status'
-   */
-  export type Enumhsvalidities_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'hsvalidities_status'>
-    
-
-
-  /**
-   * Reference to a field of type 'hsvalidities_status[]'
-   */
-  export type ListEnumhsvalidities_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'hsvalidities_status[]'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -12316,6 +17195,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'hsvalidities_status'
+   */
+  export type Enumhsvalidities_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'hsvalidities_status'>
+    
+
+
+  /**
+   * Reference to a field of type 'hsvalidities_status[]'
+   */
+  export type ListEnumhsvalidities_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'hsvalidities_status[]'>
     
 
 
@@ -12364,46 +17257,352 @@ export namespace Prisma {
    */
 
 
-  export type hsaccess_levelsWhereInput = {
-    AND?: hsaccess_levelsWhereInput | hsaccess_levelsWhereInput[]
-    OR?: hsaccess_levelsWhereInput[]
-    NOT?: hsaccess_levelsWhereInput | hsaccess_levelsWhereInput[]
-    id?: IntFilter<"hsaccess_levels"> | number
-    description?: StringFilter<"hsaccess_levels"> | string
-    hsemployees?: HsemployeesListRelationFilter
+  export type hsemployeesWhereInput = {
+    AND?: hsemployeesWhereInput | hsemployeesWhereInput[]
+    OR?: hsemployeesWhereInput[]
+    NOT?: hsemployeesWhereInput | hsemployeesWhereInput[]
+    id?: IntFilter<"hsemployees"> | number
+    branch_id?: IntFilter<"hsemployees"> | number
+    winthor_id?: IntFilter<"hsemployees"> | number
+    name?: StringFilter<"hsemployees"> | string
+    username?: StringFilter<"hsemployees"> | string
+    password?: StringFilter<"hsemployees"> | string
+    created_at?: DateTimeFilter<"hsemployees"> | Date | string
+    modified_at?: DateTimeFilter<"hsemployees"> | Date | string
+    branch?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
+    analystRequests?: Hsvalidity_requestsListRelationFilter
+    confereeRequests?: Hsvalidity_requestsListRelationFilter
+    sessions?: HssessionsListRelationFilter
+    hsvalidities?: HsvaliditiesListRelationFilter
+    hsusers_permissions?: Hsusers_permissionsListRelationFilter
+    hsusers_roles?: Hsusers_rolesListRelationFilter
   }
 
-  export type hsaccess_levelsOrderByWithRelationInput = {
+  export type hsemployeesOrderByWithRelationInput = {
     id?: SortOrder
-    description?: SortOrder
-    hsemployees?: hsemployeesOrderByRelationAggregateInput
+    branch_id?: SortOrder
+    winthor_id?: SortOrder
+    name?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    branch?: hsbranchesOrderByWithRelationInput
+    analystRequests?: hsvalidity_requestsOrderByRelationAggregateInput
+    confereeRequests?: hsvalidity_requestsOrderByRelationAggregateInput
+    sessions?: hssessionsOrderByRelationAggregateInput
+    hsvalidities?: hsvaliditiesOrderByRelationAggregateInput
+    hsusers_permissions?: hsusers_permissionsOrderByRelationAggregateInput
+    hsusers_roles?: hsusers_rolesOrderByRelationAggregateInput
   }
 
-  export type hsaccess_levelsWhereUniqueInput = Prisma.AtLeast<{
+  export type hsemployeesWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: hsaccess_levelsWhereInput | hsaccess_levelsWhereInput[]
-    OR?: hsaccess_levelsWhereInput[]
-    NOT?: hsaccess_levelsWhereInput | hsaccess_levelsWhereInput[]
-    description?: StringFilter<"hsaccess_levels"> | string
-    hsemployees?: HsemployeesListRelationFilter
-  }, "id">
+    winthor_id?: number
+    username?: string
+    AND?: hsemployeesWhereInput | hsemployeesWhereInput[]
+    OR?: hsemployeesWhereInput[]
+    NOT?: hsemployeesWhereInput | hsemployeesWhereInput[]
+    branch_id?: IntFilter<"hsemployees"> | number
+    name?: StringFilter<"hsemployees"> | string
+    password?: StringFilter<"hsemployees"> | string
+    created_at?: DateTimeFilter<"hsemployees"> | Date | string
+    modified_at?: DateTimeFilter<"hsemployees"> | Date | string
+    branch?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
+    analystRequests?: Hsvalidity_requestsListRelationFilter
+    confereeRequests?: Hsvalidity_requestsListRelationFilter
+    sessions?: HssessionsListRelationFilter
+    hsvalidities?: HsvaliditiesListRelationFilter
+    hsusers_permissions?: Hsusers_permissionsListRelationFilter
+    hsusers_roles?: Hsusers_rolesListRelationFilter
+  }, "id" | "winthor_id" | "username">
 
-  export type hsaccess_levelsOrderByWithAggregationInput = {
+  export type hsemployeesOrderByWithAggregationInput = {
     id?: SortOrder
-    description?: SortOrder
-    _count?: hsaccess_levelsCountOrderByAggregateInput
-    _avg?: hsaccess_levelsAvgOrderByAggregateInput
-    _max?: hsaccess_levelsMaxOrderByAggregateInput
-    _min?: hsaccess_levelsMinOrderByAggregateInput
-    _sum?: hsaccess_levelsSumOrderByAggregateInput
+    branch_id?: SortOrder
+    winthor_id?: SortOrder
+    name?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    _count?: hsemployeesCountOrderByAggregateInput
+    _avg?: hsemployeesAvgOrderByAggregateInput
+    _max?: hsemployeesMaxOrderByAggregateInput
+    _min?: hsemployeesMinOrderByAggregateInput
+    _sum?: hsemployeesSumOrderByAggregateInput
   }
 
-  export type hsaccess_levelsScalarWhereWithAggregatesInput = {
-    AND?: hsaccess_levelsScalarWhereWithAggregatesInput | hsaccess_levelsScalarWhereWithAggregatesInput[]
-    OR?: hsaccess_levelsScalarWhereWithAggregatesInput[]
-    NOT?: hsaccess_levelsScalarWhereWithAggregatesInput | hsaccess_levelsScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"hsaccess_levels"> | number
-    description?: StringWithAggregatesFilter<"hsaccess_levels"> | string
+  export type hsemployeesScalarWhereWithAggregatesInput = {
+    AND?: hsemployeesScalarWhereWithAggregatesInput | hsemployeesScalarWhereWithAggregatesInput[]
+    OR?: hsemployeesScalarWhereWithAggregatesInput[]
+    NOT?: hsemployeesScalarWhereWithAggregatesInput | hsemployeesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"hsemployees"> | number
+    branch_id?: IntWithAggregatesFilter<"hsemployees"> | number
+    winthor_id?: IntWithAggregatesFilter<"hsemployees"> | number
+    name?: StringWithAggregatesFilter<"hsemployees"> | string
+    username?: StringWithAggregatesFilter<"hsemployees"> | string
+    password?: StringWithAggregatesFilter<"hsemployees"> | string
+    created_at?: DateTimeWithAggregatesFilter<"hsemployees"> | Date | string
+    modified_at?: DateTimeWithAggregatesFilter<"hsemployees"> | Date | string
+  }
+
+  export type hsrolesWhereInput = {
+    AND?: hsrolesWhereInput | hsrolesWhereInput[]
+    OR?: hsrolesWhereInput[]
+    NOT?: hsrolesWhereInput | hsrolesWhereInput[]
+    id?: IntFilter<"hsroles"> | number
+    name?: StringFilter<"hsroles"> | string
+    description?: StringFilter<"hsroles"> | string
+    created_at?: DateTimeFilter<"hsroles"> | Date | string
+    modified_at?: DateTimeFilter<"hsroles"> | Date | string
+    hspermissions_roles?: Hspermissions_rolesListRelationFilter
+    hsusers_roles?: Hsusers_rolesListRelationFilter
+  }
+
+  export type hsrolesOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    hspermissions_roles?: hspermissions_rolesOrderByRelationAggregateInput
+    hsusers_roles?: hsusers_rolesOrderByRelationAggregateInput
+  }
+
+  export type hsrolesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    AND?: hsrolesWhereInput | hsrolesWhereInput[]
+    OR?: hsrolesWhereInput[]
+    NOT?: hsrolesWhereInput | hsrolesWhereInput[]
+    description?: StringFilter<"hsroles"> | string
+    created_at?: DateTimeFilter<"hsroles"> | Date | string
+    modified_at?: DateTimeFilter<"hsroles"> | Date | string
+    hspermissions_roles?: Hspermissions_rolesListRelationFilter
+    hsusers_roles?: Hsusers_rolesListRelationFilter
+  }, "id" | "name">
+
+  export type hsrolesOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    _count?: hsrolesCountOrderByAggregateInput
+    _avg?: hsrolesAvgOrderByAggregateInput
+    _max?: hsrolesMaxOrderByAggregateInput
+    _min?: hsrolesMinOrderByAggregateInput
+    _sum?: hsrolesSumOrderByAggregateInput
+  }
+
+  export type hsrolesScalarWhereWithAggregatesInput = {
+    AND?: hsrolesScalarWhereWithAggregatesInput | hsrolesScalarWhereWithAggregatesInput[]
+    OR?: hsrolesScalarWhereWithAggregatesInput[]
+    NOT?: hsrolesScalarWhereWithAggregatesInput | hsrolesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"hsroles"> | number
+    name?: StringWithAggregatesFilter<"hsroles"> | string
+    description?: StringWithAggregatesFilter<"hsroles"> | string
+    created_at?: DateTimeWithAggregatesFilter<"hsroles"> | Date | string
+    modified_at?: DateTimeWithAggregatesFilter<"hsroles"> | Date | string
+  }
+
+  export type hspermissionsWhereInput = {
+    AND?: hspermissionsWhereInput | hspermissionsWhereInput[]
+    OR?: hspermissionsWhereInput[]
+    NOT?: hspermissionsWhereInput | hspermissionsWhereInput[]
+    id?: IntFilter<"hspermissions"> | number
+    name?: StringFilter<"hspermissions"> | string
+    description?: StringFilter<"hspermissions"> | string
+    created_at?: DateTimeFilter<"hspermissions"> | Date | string
+    modified_at?: DateTimeFilter<"hspermissions"> | Date | string
+    hsusers_permissions?: Hsusers_permissionsListRelationFilter
+    hspermissions_roles?: Hspermissions_rolesListRelationFilter
+  }
+
+  export type hspermissionsOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    hsusers_permissions?: hsusers_permissionsOrderByRelationAggregateInput
+    hspermissions_roles?: hspermissions_rolesOrderByRelationAggregateInput
+  }
+
+  export type hspermissionsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    AND?: hspermissionsWhereInput | hspermissionsWhereInput[]
+    OR?: hspermissionsWhereInput[]
+    NOT?: hspermissionsWhereInput | hspermissionsWhereInput[]
+    description?: StringFilter<"hspermissions"> | string
+    created_at?: DateTimeFilter<"hspermissions"> | Date | string
+    modified_at?: DateTimeFilter<"hspermissions"> | Date | string
+    hsusers_permissions?: Hsusers_permissionsListRelationFilter
+    hspermissions_roles?: Hspermissions_rolesListRelationFilter
+  }, "id" | "name">
+
+  export type hspermissionsOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    _count?: hspermissionsCountOrderByAggregateInput
+    _avg?: hspermissionsAvgOrderByAggregateInput
+    _max?: hspermissionsMaxOrderByAggregateInput
+    _min?: hspermissionsMinOrderByAggregateInput
+    _sum?: hspermissionsSumOrderByAggregateInput
+  }
+
+  export type hspermissionsScalarWhereWithAggregatesInput = {
+    AND?: hspermissionsScalarWhereWithAggregatesInput | hspermissionsScalarWhereWithAggregatesInput[]
+    OR?: hspermissionsScalarWhereWithAggregatesInput[]
+    NOT?: hspermissionsScalarWhereWithAggregatesInput | hspermissionsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"hspermissions"> | number
+    name?: StringWithAggregatesFilter<"hspermissions"> | string
+    description?: StringWithAggregatesFilter<"hspermissions"> | string
+    created_at?: DateTimeWithAggregatesFilter<"hspermissions"> | Date | string
+    modified_at?: DateTimeWithAggregatesFilter<"hspermissions"> | Date | string
+  }
+
+  export type hspermissions_rolesWhereInput = {
+    AND?: hspermissions_rolesWhereInput | hspermissions_rolesWhereInput[]
+    OR?: hspermissions_rolesWhereInput[]
+    NOT?: hspermissions_rolesWhereInput | hspermissions_rolesWhereInput[]
+    role_id?: IntFilter<"hspermissions_roles"> | number
+    permission_id?: IntFilter<"hspermissions_roles"> | number
+    hsroles?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
+    hspermissions?: XOR<HspermissionsScalarRelationFilter, hspermissionsWhereInput>
+  }
+
+  export type hspermissions_rolesOrderByWithRelationInput = {
+    role_id?: SortOrder
+    permission_id?: SortOrder
+    hsroles?: hsrolesOrderByWithRelationInput
+    hspermissions?: hspermissionsOrderByWithRelationInput
+  }
+
+  export type hspermissions_rolesWhereUniqueInput = Prisma.AtLeast<{
+    role_id_permission_id?: hspermissions_rolesRole_idPermission_idCompoundUniqueInput
+    AND?: hspermissions_rolesWhereInput | hspermissions_rolesWhereInput[]
+    OR?: hspermissions_rolesWhereInput[]
+    NOT?: hspermissions_rolesWhereInput | hspermissions_rolesWhereInput[]
+    role_id?: IntFilter<"hspermissions_roles"> | number
+    permission_id?: IntFilter<"hspermissions_roles"> | number
+    hsroles?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
+    hspermissions?: XOR<HspermissionsScalarRelationFilter, hspermissionsWhereInput>
+  }, "role_id_permission_id">
+
+  export type hspermissions_rolesOrderByWithAggregationInput = {
+    role_id?: SortOrder
+    permission_id?: SortOrder
+    _count?: hspermissions_rolesCountOrderByAggregateInput
+    _avg?: hspermissions_rolesAvgOrderByAggregateInput
+    _max?: hspermissions_rolesMaxOrderByAggregateInput
+    _min?: hspermissions_rolesMinOrderByAggregateInput
+    _sum?: hspermissions_rolesSumOrderByAggregateInput
+  }
+
+  export type hspermissions_rolesScalarWhereWithAggregatesInput = {
+    AND?: hspermissions_rolesScalarWhereWithAggregatesInput | hspermissions_rolesScalarWhereWithAggregatesInput[]
+    OR?: hspermissions_rolesScalarWhereWithAggregatesInput[]
+    NOT?: hspermissions_rolesScalarWhereWithAggregatesInput | hspermissions_rolesScalarWhereWithAggregatesInput[]
+    role_id?: IntWithAggregatesFilter<"hspermissions_roles"> | number
+    permission_id?: IntWithAggregatesFilter<"hspermissions_roles"> | number
+  }
+
+  export type hsusers_permissionsWhereInput = {
+    AND?: hsusers_permissionsWhereInput | hsusers_permissionsWhereInput[]
+    OR?: hsusers_permissionsWhereInput[]
+    NOT?: hsusers_permissionsWhereInput | hsusers_permissionsWhereInput[]
+    user_id?: IntFilter<"hsusers_permissions"> | number
+    permission_id?: IntFilter<"hsusers_permissions"> | number
+    hsemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
+    hspermissions?: XOR<HspermissionsScalarRelationFilter, hspermissionsWhereInput>
+  }
+
+  export type hsusers_permissionsOrderByWithRelationInput = {
+    user_id?: SortOrder
+    permission_id?: SortOrder
+    hsemployees?: hsemployeesOrderByWithRelationInput
+    hspermissions?: hspermissionsOrderByWithRelationInput
+  }
+
+  export type hsusers_permissionsWhereUniqueInput = Prisma.AtLeast<{
+    user_id_permission_id?: hsusers_permissionsUser_idPermission_idCompoundUniqueInput
+    AND?: hsusers_permissionsWhereInput | hsusers_permissionsWhereInput[]
+    OR?: hsusers_permissionsWhereInput[]
+    NOT?: hsusers_permissionsWhereInput | hsusers_permissionsWhereInput[]
+    user_id?: IntFilter<"hsusers_permissions"> | number
+    permission_id?: IntFilter<"hsusers_permissions"> | number
+    hsemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
+    hspermissions?: XOR<HspermissionsScalarRelationFilter, hspermissionsWhereInput>
+  }, "user_id_permission_id">
+
+  export type hsusers_permissionsOrderByWithAggregationInput = {
+    user_id?: SortOrder
+    permission_id?: SortOrder
+    _count?: hsusers_permissionsCountOrderByAggregateInput
+    _avg?: hsusers_permissionsAvgOrderByAggregateInput
+    _max?: hsusers_permissionsMaxOrderByAggregateInput
+    _min?: hsusers_permissionsMinOrderByAggregateInput
+    _sum?: hsusers_permissionsSumOrderByAggregateInput
+  }
+
+  export type hsusers_permissionsScalarWhereWithAggregatesInput = {
+    AND?: hsusers_permissionsScalarWhereWithAggregatesInput | hsusers_permissionsScalarWhereWithAggregatesInput[]
+    OR?: hsusers_permissionsScalarWhereWithAggregatesInput[]
+    NOT?: hsusers_permissionsScalarWhereWithAggregatesInput | hsusers_permissionsScalarWhereWithAggregatesInput[]
+    user_id?: IntWithAggregatesFilter<"hsusers_permissions"> | number
+    permission_id?: IntWithAggregatesFilter<"hsusers_permissions"> | number
+  }
+
+  export type hsusers_rolesWhereInput = {
+    AND?: hsusers_rolesWhereInput | hsusers_rolesWhereInput[]
+    OR?: hsusers_rolesWhereInput[]
+    NOT?: hsusers_rolesWhereInput | hsusers_rolesWhereInput[]
+    user_id?: IntFilter<"hsusers_roles"> | number
+    role_id?: IntFilter<"hsusers_roles"> | number
+    heemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
+    hsroles?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
+  }
+
+  export type hsusers_rolesOrderByWithRelationInput = {
+    user_id?: SortOrder
+    role_id?: SortOrder
+    heemployees?: hsemployeesOrderByWithRelationInput
+    hsroles?: hsrolesOrderByWithRelationInput
+  }
+
+  export type hsusers_rolesWhereUniqueInput = Prisma.AtLeast<{
+    user_id_role_id?: hsusers_rolesUser_idRole_idCompoundUniqueInput
+    AND?: hsusers_rolesWhereInput | hsusers_rolesWhereInput[]
+    OR?: hsusers_rolesWhereInput[]
+    NOT?: hsusers_rolesWhereInput | hsusers_rolesWhereInput[]
+    user_id?: IntFilter<"hsusers_roles"> | number
+    role_id?: IntFilter<"hsusers_roles"> | number
+    heemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
+    hsroles?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
+  }, "user_id_role_id">
+
+  export type hsusers_rolesOrderByWithAggregationInput = {
+    user_id?: SortOrder
+    role_id?: SortOrder
+    _count?: hsusers_rolesCountOrderByAggregateInput
+    _avg?: hsusers_rolesAvgOrderByAggregateInput
+    _max?: hsusers_rolesMaxOrderByAggregateInput
+    _min?: hsusers_rolesMinOrderByAggregateInput
+    _sum?: hsusers_rolesSumOrderByAggregateInput
+  }
+
+  export type hsusers_rolesScalarWhereWithAggregatesInput = {
+    AND?: hsusers_rolesScalarWhereWithAggregatesInput | hsusers_rolesScalarWhereWithAggregatesInput[]
+    OR?: hsusers_rolesScalarWhereWithAggregatesInput[]
+    NOT?: hsusers_rolesScalarWhereWithAggregatesInput | hsusers_rolesScalarWhereWithAggregatesInput[]
+    user_id?: IntWithAggregatesFilter<"hsusers_roles"> | number
+    role_id?: IntWithAggregatesFilter<"hsusers_roles"> | number
   }
 
   export type hsbranchesWhereInput = {
@@ -12773,98 +17972,6 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"hsvalidity_treatments"> | string
   }
 
-  export type hsemployeesWhereInput = {
-    AND?: hsemployeesWhereInput | hsemployeesWhereInput[]
-    OR?: hsemployeesWhereInput[]
-    NOT?: hsemployeesWhereInput | hsemployeesWhereInput[]
-    id?: IntFilter<"hsemployees"> | number
-    branch_id?: IntFilter<"hsemployees"> | number
-    access_level?: IntFilter<"hsemployees"> | number
-    winthor_id?: IntFilter<"hsemployees"> | number
-    name?: StringFilter<"hsemployees"> | string
-    username?: StringFilter<"hsemployees"> | string
-    password?: StringFilter<"hsemployees"> | string
-    created_at?: DateTimeFilter<"hsemployees"> | Date | string
-    modified_at?: DateTimeFilter<"hsemployees"> | Date | string
-    branch?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
-    hsaccess_level?: XOR<Hsaccess_levelsScalarRelationFilter, hsaccess_levelsWhereInput>
-    analystRequests?: Hsvalidity_requestsListRelationFilter
-    confereeRequests?: Hsvalidity_requestsListRelationFilter
-    sessions?: HssessionsListRelationFilter
-    hsvalidities?: HsvaliditiesListRelationFilter
-  }
-
-  export type hsemployeesOrderByWithRelationInput = {
-    id?: SortOrder
-    branch_id?: SortOrder
-    access_level?: SortOrder
-    winthor_id?: SortOrder
-    name?: SortOrder
-    username?: SortOrder
-    password?: SortOrder
-    created_at?: SortOrder
-    modified_at?: SortOrder
-    branch?: hsbranchesOrderByWithRelationInput
-    hsaccess_level?: hsaccess_levelsOrderByWithRelationInput
-    analystRequests?: hsvalidity_requestsOrderByRelationAggregateInput
-    confereeRequests?: hsvalidity_requestsOrderByRelationAggregateInput
-    sessions?: hssessionsOrderByRelationAggregateInput
-    hsvalidities?: hsvaliditiesOrderByRelationAggregateInput
-  }
-
-  export type hsemployeesWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    winthor_id?: number
-    username?: string
-    AND?: hsemployeesWhereInput | hsemployeesWhereInput[]
-    OR?: hsemployeesWhereInput[]
-    NOT?: hsemployeesWhereInput | hsemployeesWhereInput[]
-    branch_id?: IntFilter<"hsemployees"> | number
-    access_level?: IntFilter<"hsemployees"> | number
-    name?: StringFilter<"hsemployees"> | string
-    password?: StringFilter<"hsemployees"> | string
-    created_at?: DateTimeFilter<"hsemployees"> | Date | string
-    modified_at?: DateTimeFilter<"hsemployees"> | Date | string
-    branch?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
-    hsaccess_level?: XOR<Hsaccess_levelsScalarRelationFilter, hsaccess_levelsWhereInput>
-    analystRequests?: Hsvalidity_requestsListRelationFilter
-    confereeRequests?: Hsvalidity_requestsListRelationFilter
-    sessions?: HssessionsListRelationFilter
-    hsvalidities?: HsvaliditiesListRelationFilter
-  }, "id" | "winthor_id" | "username">
-
-  export type hsemployeesOrderByWithAggregationInput = {
-    id?: SortOrder
-    branch_id?: SortOrder
-    access_level?: SortOrder
-    winthor_id?: SortOrder
-    name?: SortOrder
-    username?: SortOrder
-    password?: SortOrder
-    created_at?: SortOrder
-    modified_at?: SortOrder
-    _count?: hsemployeesCountOrderByAggregateInput
-    _avg?: hsemployeesAvgOrderByAggregateInput
-    _max?: hsemployeesMaxOrderByAggregateInput
-    _min?: hsemployeesMinOrderByAggregateInput
-    _sum?: hsemployeesSumOrderByAggregateInput
-  }
-
-  export type hsemployeesScalarWhereWithAggregatesInput = {
-    AND?: hsemployeesScalarWhereWithAggregatesInput | hsemployeesScalarWhereWithAggregatesInput[]
-    OR?: hsemployeesScalarWhereWithAggregatesInput[]
-    NOT?: hsemployeesScalarWhereWithAggregatesInput | hsemployeesScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"hsemployees"> | number
-    branch_id?: IntWithAggregatesFilter<"hsemployees"> | number
-    access_level?: IntWithAggregatesFilter<"hsemployees"> | number
-    winthor_id?: IntWithAggregatesFilter<"hsemployees"> | number
-    name?: StringWithAggregatesFilter<"hsemployees"> | string
-    username?: StringWithAggregatesFilter<"hsemployees"> | string
-    password?: StringWithAggregatesFilter<"hsemployees"> | string
-    created_at?: DateTimeWithAggregatesFilter<"hsemployees"> | Date | string
-    modified_at?: DateTimeWithAggregatesFilter<"hsemployees"> | Date | string
-  }
-
   export type hssessionsWhereInput = {
     AND?: hssessionsWhereInput | hssessionsWhereInput[]
     OR?: hssessionsWhereInput[]
@@ -12922,40 +18029,325 @@ export namespace Prisma {
     expires_at?: DateTimeNullableWithAggregatesFilter<"hssessions"> | Date | string | null
   }
 
-  export type hsaccess_levelsCreateInput = {
-    description: string
-    hsemployees?: hsemployeesCreateNestedManyWithoutHsaccess_levelInput
+  export type hsemployeesCreateInput = {
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+    sessions?: hssessionsCreateNestedManyWithoutUserInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
   }
 
-  export type hsaccess_levelsUncheckedCreateInput = {
+  export type hsemployeesUncheckedCreateInput = {
     id?: number
-    description: string
-    hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutHsaccess_levelInput
+    branch_id: number
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+    sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
   }
 
-  export type hsaccess_levelsUpdateInput = {
-    description?: StringFieldUpdateOperationsInput | string
-    hsemployees?: hsemployeesUpdateManyWithoutHsaccess_levelNestedInput
+  export type hsemployeesUpdateInput = {
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+    sessions?: hssessionsUpdateManyWithoutUserNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
   }
 
-  export type hsaccess_levelsUncheckedUpdateInput = {
+  export type hsemployeesUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    description?: StringFieldUpdateOperationsInput | string
-    hsemployees?: hsemployeesUncheckedUpdateManyWithoutHsaccess_levelNestedInput
+    branch_id?: IntFieldUpdateOperationsInput | number
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
   }
 
-  export type hsaccess_levelsCreateManyInput = {
+  export type hsemployeesCreateManyInput = {
     id?: number
-    description: string
+    branch_id: number
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
   }
 
-  export type hsaccess_levelsUpdateManyMutationInput = {
-    description?: StringFieldUpdateOperationsInput | string
+  export type hsemployeesUpdateManyMutationInput = {
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type hsaccess_levelsUncheckedUpdateManyInput = {
+  export type hsemployeesUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsrolesCreateInput = {
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hspermissions_roles?: hspermissions_rolesCreateNestedManyWithoutHsrolesInput
+    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsrolesInput
+  }
+
+  export type hsrolesUncheckedCreateInput = {
+    id?: number
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hspermissions_roles?: hspermissions_rolesUncheckedCreateNestedManyWithoutHsrolesInput
+    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsrolesInput
+  }
+
+  export type hsrolesUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hspermissions_roles?: hspermissions_rolesUpdateManyWithoutHsrolesNestedInput
+    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsrolesNestedInput
+  }
+
+  export type hsrolesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hspermissions_roles?: hspermissions_rolesUncheckedUpdateManyWithoutHsrolesNestedInput
+    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsrolesNestedInput
+  }
+
+  export type hsrolesCreateManyInput = {
+    id?: number
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsrolesUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsrolesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hspermissionsCreateInput = {
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHspermissionsInput
+    hspermissions_roles?: hspermissions_rolesCreateNestedManyWithoutHspermissionsInput
+  }
+
+  export type hspermissionsUncheckedCreateInput = {
+    id?: number
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHspermissionsInput
+    hspermissions_roles?: hspermissions_rolesUncheckedCreateNestedManyWithoutHspermissionsInput
+  }
+
+  export type hspermissionsUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHspermissionsNestedInput
+    hspermissions_roles?: hspermissions_rolesUpdateManyWithoutHspermissionsNestedInput
+  }
+
+  export type hspermissionsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHspermissionsNestedInput
+    hspermissions_roles?: hspermissions_rolesUncheckedUpdateManyWithoutHspermissionsNestedInput
+  }
+
+  export type hspermissionsCreateManyInput = {
+    id?: number
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hspermissionsUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hspermissionsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hspermissions_rolesCreateInput = {
+    hsroles: hsrolesCreateNestedOneWithoutHspermissions_rolesInput
+    hspermissions: hspermissionsCreateNestedOneWithoutHspermissions_rolesInput
+  }
+
+  export type hspermissions_rolesUncheckedCreateInput = {
+    role_id: number
+    permission_id: number
+  }
+
+  export type hspermissions_rolesUpdateInput = {
+    hsroles?: hsrolesUpdateOneRequiredWithoutHspermissions_rolesNestedInput
+    hspermissions?: hspermissionsUpdateOneRequiredWithoutHspermissions_rolesNestedInput
+  }
+
+  export type hspermissions_rolesUncheckedUpdateInput = {
+    role_id?: IntFieldUpdateOperationsInput | number
+    permission_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hspermissions_rolesCreateManyInput = {
+    role_id: number
+    permission_id: number
+  }
+
+  export type hspermissions_rolesUpdateManyMutationInput = {
+
+  }
+
+  export type hspermissions_rolesUncheckedUpdateManyInput = {
+    role_id?: IntFieldUpdateOperationsInput | number
+    permission_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_permissionsCreateInput = {
+    hsemployees: hsemployeesCreateNestedOneWithoutHsusers_permissionsInput
+    hspermissions: hspermissionsCreateNestedOneWithoutHsusers_permissionsInput
+  }
+
+  export type hsusers_permissionsUncheckedCreateInput = {
+    user_id: number
+    permission_id: number
+  }
+
+  export type hsusers_permissionsUpdateInput = {
+    hsemployees?: hsemployeesUpdateOneRequiredWithoutHsusers_permissionsNestedInput
+    hspermissions?: hspermissionsUpdateOneRequiredWithoutHsusers_permissionsNestedInput
+  }
+
+  export type hsusers_permissionsUncheckedUpdateInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    permission_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_permissionsCreateManyInput = {
+    user_id: number
+    permission_id: number
+  }
+
+  export type hsusers_permissionsUpdateManyMutationInput = {
+
+  }
+
+  export type hsusers_permissionsUncheckedUpdateManyInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    permission_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_rolesCreateInput = {
+    heemployees: hsemployeesCreateNestedOneWithoutHsusers_rolesInput
+    hsroles: hsrolesCreateNestedOneWithoutHsusers_rolesInput
+  }
+
+  export type hsusers_rolesUncheckedCreateInput = {
+    user_id: number
+    role_id: number
+  }
+
+  export type hsusers_rolesUpdateInput = {
+    heemployees?: hsemployeesUpdateOneRequiredWithoutHsusers_rolesNestedInput
+    hsroles?: hsrolesUpdateOneRequiredWithoutHsusers_rolesNestedInput
+  }
+
+  export type hsusers_rolesUncheckedUpdateInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    role_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_rolesCreateManyInput = {
+    user_id: number
+    role_id: number
+  }
+
+  export type hsusers_rolesUpdateManyMutationInput = {
+
+  }
+
+  export type hsusers_rolesUncheckedUpdateManyInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    role_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type hsbranchesCreateInput = {
@@ -13288,101 +18680,6 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
   }
 
-  export type hsemployeesCreateInput = {
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    hsaccess_level: hsaccess_levelsCreateNestedOneWithoutHsemployeesInput
-    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
-    sessions?: hssessionsCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
-  }
-
-  export type hsemployeesUncheckedCreateInput = {
-    id?: number
-    branch_id: number
-    access_level: number
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
-    sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
-  }
-
-  export type hsemployeesUpdateInput = {
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    hsaccess_level?: hsaccess_levelsUpdateOneRequiredWithoutHsemployeesNestedInput
-    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
-    sessions?: hssessionsUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
-  }
-
-  export type hsemployeesUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    access_level?: IntFieldUpdateOperationsInput | number
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
-    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
-  }
-
-  export type hsemployeesCreateManyInput = {
-    id?: number
-    branch_id: number
-    access_level: number
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
-    created_at?: Date | string
-    modified_at?: Date | string
-  }
-
-  export type hsemployeesUpdateManyMutationInput = {
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type hsemployeesUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    access_level?: IntFieldUpdateOperationsInput | number
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type hssessionsCreateInput = {
     id?: string
     token: string
@@ -13464,37 +18761,115 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type HsemployeesListRelationFilter = {
-    every?: hsemployeesWhereInput
-    some?: hsemployeesWhereInput
-    none?: hsemployeesWhereInput
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type hsemployeesOrderByRelationAggregateInput = {
+  export type HsbranchesScalarRelationFilter = {
+    is?: hsbranchesWhereInput
+    isNot?: hsbranchesWhereInput
+  }
+
+  export type Hsvalidity_requestsListRelationFilter = {
+    every?: hsvalidity_requestsWhereInput
+    some?: hsvalidity_requestsWhereInput
+    none?: hsvalidity_requestsWhereInput
+  }
+
+  export type HssessionsListRelationFilter = {
+    every?: hssessionsWhereInput
+    some?: hssessionsWhereInput
+    none?: hssessionsWhereInput
+  }
+
+  export type HsvaliditiesListRelationFilter = {
+    every?: hsvaliditiesWhereInput
+    some?: hsvaliditiesWhereInput
+    none?: hsvaliditiesWhereInput
+  }
+
+  export type Hsusers_permissionsListRelationFilter = {
+    every?: hsusers_permissionsWhereInput
+    some?: hsusers_permissionsWhereInput
+    none?: hsusers_permissionsWhereInput
+  }
+
+  export type Hsusers_rolesListRelationFilter = {
+    every?: hsusers_rolesWhereInput
+    some?: hsusers_rolesWhereInput
+    none?: hsusers_rolesWhereInput
+  }
+
+  export type hsvalidity_requestsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type hsaccess_levelsCountOrderByAggregateInput = {
-    id?: SortOrder
-    description?: SortOrder
+  export type hssessionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
-  export type hsaccess_levelsAvgOrderByAggregateInput = {
-    id?: SortOrder
+  export type hsvaliditiesOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
-  export type hsaccess_levelsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    description?: SortOrder
+  export type hsusers_permissionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
-  export type hsaccess_levelsMinOrderByAggregateInput = {
-    id?: SortOrder
-    description?: SortOrder
+  export type hsusers_rolesOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
-  export type hsaccess_levelsSumOrderByAggregateInput = {
+  export type hsemployeesCountOrderByAggregateInput = {
     id?: SortOrder
+    branch_id?: SortOrder
+    winthor_id?: SortOrder
+    name?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsemployeesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    branch_id?: SortOrder
+    winthor_id?: SortOrder
+  }
+
+  export type hsemployeesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    branch_id?: SortOrder
+    winthor_id?: SortOrder
+    name?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsemployeesMinOrderByAggregateInput = {
+    id?: SortOrder
+    branch_id?: SortOrder
+    winthor_id?: SortOrder
+    name?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsemployeesSumOrderByAggregateInput = {
+    id?: SortOrder
+    branch_id?: SortOrder
+    winthor_id?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -13531,23 +18906,206 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type HsvaliditiesListRelationFilter = {
-    every?: hsvaliditiesWhereInput
-    some?: hsvaliditiesWhereInput
-    none?: hsvaliditiesWhereInput
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type Hsvalidity_requestsListRelationFilter = {
-    every?: hsvalidity_requestsWhereInput
-    some?: hsvalidity_requestsWhereInput
-    none?: hsvalidity_requestsWhereInput
+  export type Hspermissions_rolesListRelationFilter = {
+    every?: hspermissions_rolesWhereInput
+    some?: hspermissions_rolesWhereInput
+    none?: hspermissions_rolesWhereInput
   }
 
-  export type hsvaliditiesOrderByRelationAggregateInput = {
+  export type hspermissions_rolesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type hsvalidity_requestsOrderByRelationAggregateInput = {
+  export type hsrolesCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsrolesAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type hsrolesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsrolesMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsrolesSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type hspermissionsCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hspermissionsAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type hspermissionsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hspermissionsMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hspermissionsSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type HsrolesScalarRelationFilter = {
+    is?: hsrolesWhereInput
+    isNot?: hsrolesWhereInput
+  }
+
+  export type HspermissionsScalarRelationFilter = {
+    is?: hspermissionsWhereInput
+    isNot?: hspermissionsWhereInput
+  }
+
+  export type hspermissions_rolesRole_idPermission_idCompoundUniqueInput = {
+    role_id: number
+    permission_id: number
+  }
+
+  export type hspermissions_rolesCountOrderByAggregateInput = {
+    role_id?: SortOrder
+    permission_id?: SortOrder
+  }
+
+  export type hspermissions_rolesAvgOrderByAggregateInput = {
+    role_id?: SortOrder
+    permission_id?: SortOrder
+  }
+
+  export type hspermissions_rolesMaxOrderByAggregateInput = {
+    role_id?: SortOrder
+    permission_id?: SortOrder
+  }
+
+  export type hspermissions_rolesMinOrderByAggregateInput = {
+    role_id?: SortOrder
+    permission_id?: SortOrder
+  }
+
+  export type hspermissions_rolesSumOrderByAggregateInput = {
+    role_id?: SortOrder
+    permission_id?: SortOrder
+  }
+
+  export type HsemployeesScalarRelationFilter = {
+    is?: hsemployeesWhereInput
+    isNot?: hsemployeesWhereInput
+  }
+
+  export type hsusers_permissionsUser_idPermission_idCompoundUniqueInput = {
+    user_id: number
+    permission_id: number
+  }
+
+  export type hsusers_permissionsCountOrderByAggregateInput = {
+    user_id?: SortOrder
+    permission_id?: SortOrder
+  }
+
+  export type hsusers_permissionsAvgOrderByAggregateInput = {
+    user_id?: SortOrder
+    permission_id?: SortOrder
+  }
+
+  export type hsusers_permissionsMaxOrderByAggregateInput = {
+    user_id?: SortOrder
+    permission_id?: SortOrder
+  }
+
+  export type hsusers_permissionsMinOrderByAggregateInput = {
+    user_id?: SortOrder
+    permission_id?: SortOrder
+  }
+
+  export type hsusers_permissionsSumOrderByAggregateInput = {
+    user_id?: SortOrder
+    permission_id?: SortOrder
+  }
+
+  export type hsusers_rolesUser_idRole_idCompoundUniqueInput = {
+    user_id: number
+    role_id: number
+  }
+
+  export type hsusers_rolesCountOrderByAggregateInput = {
+    user_id?: SortOrder
+    role_id?: SortOrder
+  }
+
+  export type hsusers_rolesAvgOrderByAggregateInput = {
+    user_id?: SortOrder
+    role_id?: SortOrder
+  }
+
+  export type hsusers_rolesMaxOrderByAggregateInput = {
+    user_id?: SortOrder
+    role_id?: SortOrder
+  }
+
+  export type hsusers_rolesMinOrderByAggregateInput = {
+    user_id?: SortOrder
+    role_id?: SortOrder
+  }
+
+  export type hsusers_rolesSumOrderByAggregateInput = {
+    user_id?: SortOrder
+    role_id?: SortOrder
+  }
+
+  export type HsemployeesListRelationFilter = {
+    every?: hsemployeesWhereInput
+    some?: hsemployeesWhereInput
+    none?: hsemployeesWhereInput
+  }
+
+  export type hsemployeesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13590,27 +19148,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type HsbranchesScalarRelationFilter = {
-    is?: hsbranchesWhereInput
-    isNot?: hsbranchesWhereInput
-  }
-
-  export type HsemployeesScalarRelationFilter = {
-    is?: hsemployeesWhereInput
-    isNot?: hsemployeesWhereInput
   }
 
   export type Hsvalidity_requestsNullableScalarRelationFilter = {
@@ -13701,20 +19238,6 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type Hsvalidity_treatmentsScalarRelationFilter = {
@@ -13922,71 +19445,6 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type Hsaccess_levelsScalarRelationFilter = {
-    is?: hsaccess_levelsWhereInput
-    isNot?: hsaccess_levelsWhereInput
-  }
-
-  export type HssessionsListRelationFilter = {
-    every?: hssessionsWhereInput
-    some?: hssessionsWhereInput
-    none?: hssessionsWhereInput
-  }
-
-  export type hssessionsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type hsemployeesCountOrderByAggregateInput = {
-    id?: SortOrder
-    branch_id?: SortOrder
-    access_level?: SortOrder
-    winthor_id?: SortOrder
-    name?: SortOrder
-    username?: SortOrder
-    password?: SortOrder
-    created_at?: SortOrder
-    modified_at?: SortOrder
-  }
-
-  export type hsemployeesAvgOrderByAggregateInput = {
-    id?: SortOrder
-    branch_id?: SortOrder
-    access_level?: SortOrder
-    winthor_id?: SortOrder
-  }
-
-  export type hsemployeesMaxOrderByAggregateInput = {
-    id?: SortOrder
-    branch_id?: SortOrder
-    access_level?: SortOrder
-    winthor_id?: SortOrder
-    name?: SortOrder
-    username?: SortOrder
-    password?: SortOrder
-    created_at?: SortOrder
-    modified_at?: SortOrder
-  }
-
-  export type hsemployeesMinOrderByAggregateInput = {
-    id?: SortOrder
-    branch_id?: SortOrder
-    access_level?: SortOrder
-    winthor_id?: SortOrder
-    name?: SortOrder
-    username?: SortOrder
-    password?: SortOrder
-    created_at?: SortOrder
-    modified_at?: SortOrder
-  }
-
-  export type hsemployeesSumOrderByAggregateInput = {
-    id?: SortOrder
-    branch_id?: SortOrder
-    access_level?: SortOrder
-    winthor_id?: SortOrder
-  }
-
   export type UuidFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -14071,36 +19529,94 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type hsemployeesCreateNestedManyWithoutHsaccess_levelInput = {
-    create?: XOR<hsemployeesCreateWithoutHsaccess_levelInput, hsemployeesUncheckedCreateWithoutHsaccess_levelInput> | hsemployeesCreateWithoutHsaccess_levelInput[] | hsemployeesUncheckedCreateWithoutHsaccess_levelInput[]
-    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsaccess_levelInput | hsemployeesCreateOrConnectWithoutHsaccess_levelInput[]
-    createMany?: hsemployeesCreateManyHsaccess_levelInputEnvelope
-    connect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+  export type hsbranchesCreateNestedOneWithoutHsemployeesInput = {
+    create?: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
+    connectOrCreate?: hsbranchesCreateOrConnectWithoutHsemployeesInput
+    connect?: hsbranchesWhereUniqueInput
   }
 
-  export type hsemployeesUncheckedCreateNestedManyWithoutHsaccess_levelInput = {
-    create?: XOR<hsemployeesCreateWithoutHsaccess_levelInput, hsemployeesUncheckedCreateWithoutHsaccess_levelInput> | hsemployeesCreateWithoutHsaccess_levelInput[] | hsemployeesUncheckedCreateWithoutHsaccess_levelInput[]
-    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsaccess_levelInput | hsemployeesCreateOrConnectWithoutHsaccess_levelInput[]
-    createMany?: hsemployeesCreateManyHsaccess_levelInputEnvelope
-    connect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+  export type hsvalidity_requestsCreateNestedManyWithoutAnalystInput = {
+    create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
+    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
+    createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
+    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
+  export type hsvalidity_requestsCreateNestedManyWithoutConfereeInput = {
+    create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
+    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
+    createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
+    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
   }
 
-  export type hsemployeesUpdateManyWithoutHsaccess_levelNestedInput = {
-    create?: XOR<hsemployeesCreateWithoutHsaccess_levelInput, hsemployeesUncheckedCreateWithoutHsaccess_levelInput> | hsemployeesCreateWithoutHsaccess_levelInput[] | hsemployeesUncheckedCreateWithoutHsaccess_levelInput[]
-    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsaccess_levelInput | hsemployeesCreateOrConnectWithoutHsaccess_levelInput[]
-    upsert?: hsemployeesUpsertWithWhereUniqueWithoutHsaccess_levelInput | hsemployeesUpsertWithWhereUniqueWithoutHsaccess_levelInput[]
-    createMany?: hsemployeesCreateManyHsaccess_levelInputEnvelope
-    set?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
-    disconnect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
-    delete?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
-    connect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
-    update?: hsemployeesUpdateWithWhereUniqueWithoutHsaccess_levelInput | hsemployeesUpdateWithWhereUniqueWithoutHsaccess_levelInput[]
-    updateMany?: hsemployeesUpdateManyWithWhereWithoutHsaccess_levelInput | hsemployeesUpdateManyWithWhereWithoutHsaccess_levelInput[]
-    deleteMany?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
+  export type hssessionsCreateNestedManyWithoutUserInput = {
+    create?: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput> | hssessionsCreateWithoutUserInput[] | hssessionsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
+    createMany?: hssessionsCreateManyUserInputEnvelope
+    connect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
+  }
+
+  export type hsvaliditiesCreateNestedManyWithoutHsemployeesInput = {
+    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
+    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
+    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+  }
+
+  export type hsusers_permissionsCreateNestedManyWithoutHsemployeesInput = {
+    create?: XOR<hsusers_permissionsCreateWithoutHsemployeesInput, hsusers_permissionsUncheckedCreateWithoutHsemployeesInput> | hsusers_permissionsCreateWithoutHsemployeesInput[] | hsusers_permissionsUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHsemployeesInput | hsusers_permissionsCreateOrConnectWithoutHsemployeesInput[]
+    createMany?: hsusers_permissionsCreateManyHsemployeesInputEnvelope
+    connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+  }
+
+  export type hsusers_rolesCreateNestedManyWithoutHeemployeesInput = {
+    create?: XOR<hsusers_rolesCreateWithoutHeemployeesInput, hsusers_rolesUncheckedCreateWithoutHeemployeesInput> | hsusers_rolesCreateWithoutHeemployeesInput[] | hsusers_rolesUncheckedCreateWithoutHeemployeesInput[]
+    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHeemployeesInput | hsusers_rolesCreateOrConnectWithoutHeemployeesInput[]
+    createMany?: hsusers_rolesCreateManyHeemployeesInputEnvelope
+    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+  }
+
+  export type hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput = {
+    create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
+    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
+    createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
+    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+  }
+
+  export type hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput = {
+    create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
+    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
+    createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
+    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+  }
+
+  export type hssessionsUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput> | hssessionsCreateWithoutUserInput[] | hssessionsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
+    createMany?: hssessionsCreateManyUserInputEnvelope
+    connect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
+  }
+
+  export type hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput = {
+    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
+    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
+    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+  }
+
+  export type hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput = {
+    create?: XOR<hsusers_permissionsCreateWithoutHsemployeesInput, hsusers_permissionsUncheckedCreateWithoutHsemployeesInput> | hsusers_permissionsCreateWithoutHsemployeesInput[] | hsusers_permissionsUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHsemployeesInput | hsusers_permissionsCreateOrConnectWithoutHsemployeesInput[]
+    createMany?: hsusers_permissionsCreateManyHsemployeesInputEnvelope
+    connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+  }
+
+  export type hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput = {
+    create?: XOR<hsusers_rolesCreateWithoutHeemployeesInput, hsusers_rolesUncheckedCreateWithoutHeemployeesInput> | hsusers_rolesCreateWithoutHeemployeesInput[] | hsusers_rolesUncheckedCreateWithoutHeemployeesInput[]
+    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHeemployeesInput | hsusers_rolesCreateOrConnectWithoutHeemployeesInput[]
+    createMany?: hsusers_rolesCreateManyHeemployeesInputEnvelope
+    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -14111,18 +19627,440 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type hsemployeesUncheckedUpdateManyWithoutHsaccess_levelNestedInput = {
-    create?: XOR<hsemployeesCreateWithoutHsaccess_levelInput, hsemployeesUncheckedCreateWithoutHsaccess_levelInput> | hsemployeesCreateWithoutHsaccess_levelInput[] | hsemployeesUncheckedCreateWithoutHsaccess_levelInput[]
-    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsaccess_levelInput | hsemployeesCreateOrConnectWithoutHsaccess_levelInput[]
-    upsert?: hsemployeesUpsertWithWhereUniqueWithoutHsaccess_levelInput | hsemployeesUpsertWithWhereUniqueWithoutHsaccess_levelInput[]
-    createMany?: hsemployeesCreateManyHsaccess_levelInputEnvelope
-    set?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
-    disconnect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
-    delete?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
-    connect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
-    update?: hsemployeesUpdateWithWhereUniqueWithoutHsaccess_levelInput | hsemployeesUpdateWithWhereUniqueWithoutHsaccess_levelInput[]
-    updateMany?: hsemployeesUpdateManyWithWhereWithoutHsaccess_levelInput | hsemployeesUpdateManyWithWhereWithoutHsaccess_levelInput[]
-    deleteMany?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput = {
+    create?: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
+    connectOrCreate?: hsbranchesCreateOrConnectWithoutHsemployeesInput
+    upsert?: hsbranchesUpsertWithoutHsemployeesInput
+    connect?: hsbranchesWhereUniqueInput
+    update?: XOR<XOR<hsbranchesUpdateToOneWithWhereWithoutHsemployeesInput, hsbranchesUpdateWithoutHsemployeesInput>, hsbranchesUncheckedUpdateWithoutHsemployeesInput>
+  }
+
+  export type hsvalidity_requestsUpdateManyWithoutAnalystNestedInput = {
+    create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
+    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
+    upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput[]
+    createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
+    set?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    disconnect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    delete?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput[]
+    updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput | hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput[]
+    deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
+  }
+
+  export type hsvalidity_requestsUpdateManyWithoutConfereeNestedInput = {
+    create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
+    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
+    upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput[]
+    createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
+    set?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    disconnect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    delete?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput[]
+    updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput | hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput[]
+    deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
+  }
+
+  export type hssessionsUpdateManyWithoutUserNestedInput = {
+    create?: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput> | hssessionsCreateWithoutUserInput[] | hssessionsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
+    upsert?: hssessionsUpsertWithWhereUniqueWithoutUserInput | hssessionsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: hssessionsCreateManyUserInputEnvelope
+    set?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
+    disconnect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
+    delete?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
+    connect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
+    update?: hssessionsUpdateWithWhereUniqueWithoutUserInput | hssessionsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: hssessionsUpdateManyWithWhereWithoutUserInput | hssessionsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: hssessionsScalarWhereInput | hssessionsScalarWhereInput[]
+  }
+
+  export type hsvaliditiesUpdateManyWithoutHsemployeesNestedInput = {
+    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
+    upsert?: hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput[]
+    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
+    set?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    disconnect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    delete?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    update?: hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput[]
+    updateMany?: hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput | hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput[]
+    deleteMany?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
+  }
+
+  export type hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput = {
+    create?: XOR<hsusers_permissionsCreateWithoutHsemployeesInput, hsusers_permissionsUncheckedCreateWithoutHsemployeesInput> | hsusers_permissionsCreateWithoutHsemployeesInput[] | hsusers_permissionsUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHsemployeesInput | hsusers_permissionsCreateOrConnectWithoutHsemployeesInput[]
+    upsert?: hsusers_permissionsUpsertWithWhereUniqueWithoutHsemployeesInput | hsusers_permissionsUpsertWithWhereUniqueWithoutHsemployeesInput[]
+    createMany?: hsusers_permissionsCreateManyHsemployeesInputEnvelope
+    set?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    disconnect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    delete?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    update?: hsusers_permissionsUpdateWithWhereUniqueWithoutHsemployeesInput | hsusers_permissionsUpdateWithWhereUniqueWithoutHsemployeesInput[]
+    updateMany?: hsusers_permissionsUpdateManyWithWhereWithoutHsemployeesInput | hsusers_permissionsUpdateManyWithWhereWithoutHsemployeesInput[]
+    deleteMany?: hsusers_permissionsScalarWhereInput | hsusers_permissionsScalarWhereInput[]
+  }
+
+  export type hsusers_rolesUpdateManyWithoutHeemployeesNestedInput = {
+    create?: XOR<hsusers_rolesCreateWithoutHeemployeesInput, hsusers_rolesUncheckedCreateWithoutHeemployeesInput> | hsusers_rolesCreateWithoutHeemployeesInput[] | hsusers_rolesUncheckedCreateWithoutHeemployeesInput[]
+    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHeemployeesInput | hsusers_rolesCreateOrConnectWithoutHeemployeesInput[]
+    upsert?: hsusers_rolesUpsertWithWhereUniqueWithoutHeemployeesInput | hsusers_rolesUpsertWithWhereUniqueWithoutHeemployeesInput[]
+    createMany?: hsusers_rolesCreateManyHeemployeesInputEnvelope
+    set?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    disconnect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    delete?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    update?: hsusers_rolesUpdateWithWhereUniqueWithoutHeemployeesInput | hsusers_rolesUpdateWithWhereUniqueWithoutHeemployeesInput[]
+    updateMany?: hsusers_rolesUpdateManyWithWhereWithoutHeemployeesInput | hsusers_rolesUpdateManyWithWhereWithoutHeemployeesInput[]
+    deleteMany?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
+  }
+
+  export type hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput = {
+    create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
+    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
+    upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput[]
+    createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
+    set?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    disconnect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    delete?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput[]
+    updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput | hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput[]
+    deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
+  }
+
+  export type hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput = {
+    create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
+    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
+    upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput[]
+    createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
+    set?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    disconnect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    delete?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput[]
+    updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput | hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput[]
+    deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
+  }
+
+  export type hssessionsUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput> | hssessionsCreateWithoutUserInput[] | hssessionsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
+    upsert?: hssessionsUpsertWithWhereUniqueWithoutUserInput | hssessionsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: hssessionsCreateManyUserInputEnvelope
+    set?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
+    disconnect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
+    delete?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
+    connect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
+    update?: hssessionsUpdateWithWhereUniqueWithoutUserInput | hssessionsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: hssessionsUpdateManyWithWhereWithoutUserInput | hssessionsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: hssessionsScalarWhereInput | hssessionsScalarWhereInput[]
+  }
+
+  export type hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput = {
+    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
+    upsert?: hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput[]
+    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
+    set?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    disconnect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    delete?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    update?: hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput[]
+    updateMany?: hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput | hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput[]
+    deleteMany?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
+  }
+
+  export type hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput = {
+    create?: XOR<hsusers_permissionsCreateWithoutHsemployeesInput, hsusers_permissionsUncheckedCreateWithoutHsemployeesInput> | hsusers_permissionsCreateWithoutHsemployeesInput[] | hsusers_permissionsUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHsemployeesInput | hsusers_permissionsCreateOrConnectWithoutHsemployeesInput[]
+    upsert?: hsusers_permissionsUpsertWithWhereUniqueWithoutHsemployeesInput | hsusers_permissionsUpsertWithWhereUniqueWithoutHsemployeesInput[]
+    createMany?: hsusers_permissionsCreateManyHsemployeesInputEnvelope
+    set?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    disconnect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    delete?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    update?: hsusers_permissionsUpdateWithWhereUniqueWithoutHsemployeesInput | hsusers_permissionsUpdateWithWhereUniqueWithoutHsemployeesInput[]
+    updateMany?: hsusers_permissionsUpdateManyWithWhereWithoutHsemployeesInput | hsusers_permissionsUpdateManyWithWhereWithoutHsemployeesInput[]
+    deleteMany?: hsusers_permissionsScalarWhereInput | hsusers_permissionsScalarWhereInput[]
+  }
+
+  export type hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput = {
+    create?: XOR<hsusers_rolesCreateWithoutHeemployeesInput, hsusers_rolesUncheckedCreateWithoutHeemployeesInput> | hsusers_rolesCreateWithoutHeemployeesInput[] | hsusers_rolesUncheckedCreateWithoutHeemployeesInput[]
+    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHeemployeesInput | hsusers_rolesCreateOrConnectWithoutHeemployeesInput[]
+    upsert?: hsusers_rolesUpsertWithWhereUniqueWithoutHeemployeesInput | hsusers_rolesUpsertWithWhereUniqueWithoutHeemployeesInput[]
+    createMany?: hsusers_rolesCreateManyHeemployeesInputEnvelope
+    set?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    disconnect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    delete?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    update?: hsusers_rolesUpdateWithWhereUniqueWithoutHeemployeesInput | hsusers_rolesUpdateWithWhereUniqueWithoutHeemployeesInput[]
+    updateMany?: hsusers_rolesUpdateManyWithWhereWithoutHeemployeesInput | hsusers_rolesUpdateManyWithWhereWithoutHeemployeesInput[]
+    deleteMany?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
+  }
+
+  export type hspermissions_rolesCreateNestedManyWithoutHsrolesInput = {
+    create?: XOR<hspermissions_rolesCreateWithoutHsrolesInput, hspermissions_rolesUncheckedCreateWithoutHsrolesInput> | hspermissions_rolesCreateWithoutHsrolesInput[] | hspermissions_rolesUncheckedCreateWithoutHsrolesInput[]
+    connectOrCreate?: hspermissions_rolesCreateOrConnectWithoutHsrolesInput | hspermissions_rolesCreateOrConnectWithoutHsrolesInput[]
+    createMany?: hspermissions_rolesCreateManyHsrolesInputEnvelope
+    connect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+  }
+
+  export type hsusers_rolesCreateNestedManyWithoutHsrolesInput = {
+    create?: XOR<hsusers_rolesCreateWithoutHsrolesInput, hsusers_rolesUncheckedCreateWithoutHsrolesInput> | hsusers_rolesCreateWithoutHsrolesInput[] | hsusers_rolesUncheckedCreateWithoutHsrolesInput[]
+    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHsrolesInput | hsusers_rolesCreateOrConnectWithoutHsrolesInput[]
+    createMany?: hsusers_rolesCreateManyHsrolesInputEnvelope
+    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+  }
+
+  export type hspermissions_rolesUncheckedCreateNestedManyWithoutHsrolesInput = {
+    create?: XOR<hspermissions_rolesCreateWithoutHsrolesInput, hspermissions_rolesUncheckedCreateWithoutHsrolesInput> | hspermissions_rolesCreateWithoutHsrolesInput[] | hspermissions_rolesUncheckedCreateWithoutHsrolesInput[]
+    connectOrCreate?: hspermissions_rolesCreateOrConnectWithoutHsrolesInput | hspermissions_rolesCreateOrConnectWithoutHsrolesInput[]
+    createMany?: hspermissions_rolesCreateManyHsrolesInputEnvelope
+    connect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+  }
+
+  export type hsusers_rolesUncheckedCreateNestedManyWithoutHsrolesInput = {
+    create?: XOR<hsusers_rolesCreateWithoutHsrolesInput, hsusers_rolesUncheckedCreateWithoutHsrolesInput> | hsusers_rolesCreateWithoutHsrolesInput[] | hsusers_rolesUncheckedCreateWithoutHsrolesInput[]
+    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHsrolesInput | hsusers_rolesCreateOrConnectWithoutHsrolesInput[]
+    createMany?: hsusers_rolesCreateManyHsrolesInputEnvelope
+    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+  }
+
+  export type hspermissions_rolesUpdateManyWithoutHsrolesNestedInput = {
+    create?: XOR<hspermissions_rolesCreateWithoutHsrolesInput, hspermissions_rolesUncheckedCreateWithoutHsrolesInput> | hspermissions_rolesCreateWithoutHsrolesInput[] | hspermissions_rolesUncheckedCreateWithoutHsrolesInput[]
+    connectOrCreate?: hspermissions_rolesCreateOrConnectWithoutHsrolesInput | hspermissions_rolesCreateOrConnectWithoutHsrolesInput[]
+    upsert?: hspermissions_rolesUpsertWithWhereUniqueWithoutHsrolesInput | hspermissions_rolesUpsertWithWhereUniqueWithoutHsrolesInput[]
+    createMany?: hspermissions_rolesCreateManyHsrolesInputEnvelope
+    set?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    disconnect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    delete?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    connect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    update?: hspermissions_rolesUpdateWithWhereUniqueWithoutHsrolesInput | hspermissions_rolesUpdateWithWhereUniqueWithoutHsrolesInput[]
+    updateMany?: hspermissions_rolesUpdateManyWithWhereWithoutHsrolesInput | hspermissions_rolesUpdateManyWithWhereWithoutHsrolesInput[]
+    deleteMany?: hspermissions_rolesScalarWhereInput | hspermissions_rolesScalarWhereInput[]
+  }
+
+  export type hsusers_rolesUpdateManyWithoutHsrolesNestedInput = {
+    create?: XOR<hsusers_rolesCreateWithoutHsrolesInput, hsusers_rolesUncheckedCreateWithoutHsrolesInput> | hsusers_rolesCreateWithoutHsrolesInput[] | hsusers_rolesUncheckedCreateWithoutHsrolesInput[]
+    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHsrolesInput | hsusers_rolesCreateOrConnectWithoutHsrolesInput[]
+    upsert?: hsusers_rolesUpsertWithWhereUniqueWithoutHsrolesInput | hsusers_rolesUpsertWithWhereUniqueWithoutHsrolesInput[]
+    createMany?: hsusers_rolesCreateManyHsrolesInputEnvelope
+    set?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    disconnect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    delete?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    update?: hsusers_rolesUpdateWithWhereUniqueWithoutHsrolesInput | hsusers_rolesUpdateWithWhereUniqueWithoutHsrolesInput[]
+    updateMany?: hsusers_rolesUpdateManyWithWhereWithoutHsrolesInput | hsusers_rolesUpdateManyWithWhereWithoutHsrolesInput[]
+    deleteMany?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
+  }
+
+  export type hspermissions_rolesUncheckedUpdateManyWithoutHsrolesNestedInput = {
+    create?: XOR<hspermissions_rolesCreateWithoutHsrolesInput, hspermissions_rolesUncheckedCreateWithoutHsrolesInput> | hspermissions_rolesCreateWithoutHsrolesInput[] | hspermissions_rolesUncheckedCreateWithoutHsrolesInput[]
+    connectOrCreate?: hspermissions_rolesCreateOrConnectWithoutHsrolesInput | hspermissions_rolesCreateOrConnectWithoutHsrolesInput[]
+    upsert?: hspermissions_rolesUpsertWithWhereUniqueWithoutHsrolesInput | hspermissions_rolesUpsertWithWhereUniqueWithoutHsrolesInput[]
+    createMany?: hspermissions_rolesCreateManyHsrolesInputEnvelope
+    set?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    disconnect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    delete?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    connect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    update?: hspermissions_rolesUpdateWithWhereUniqueWithoutHsrolesInput | hspermissions_rolesUpdateWithWhereUniqueWithoutHsrolesInput[]
+    updateMany?: hspermissions_rolesUpdateManyWithWhereWithoutHsrolesInput | hspermissions_rolesUpdateManyWithWhereWithoutHsrolesInput[]
+    deleteMany?: hspermissions_rolesScalarWhereInput | hspermissions_rolesScalarWhereInput[]
+  }
+
+  export type hsusers_rolesUncheckedUpdateManyWithoutHsrolesNestedInput = {
+    create?: XOR<hsusers_rolesCreateWithoutHsrolesInput, hsusers_rolesUncheckedCreateWithoutHsrolesInput> | hsusers_rolesCreateWithoutHsrolesInput[] | hsusers_rolesUncheckedCreateWithoutHsrolesInput[]
+    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHsrolesInput | hsusers_rolesCreateOrConnectWithoutHsrolesInput[]
+    upsert?: hsusers_rolesUpsertWithWhereUniqueWithoutHsrolesInput | hsusers_rolesUpsertWithWhereUniqueWithoutHsrolesInput[]
+    createMany?: hsusers_rolesCreateManyHsrolesInputEnvelope
+    set?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    disconnect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    delete?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+    update?: hsusers_rolesUpdateWithWhereUniqueWithoutHsrolesInput | hsusers_rolesUpdateWithWhereUniqueWithoutHsrolesInput[]
+    updateMany?: hsusers_rolesUpdateManyWithWhereWithoutHsrolesInput | hsusers_rolesUpdateManyWithWhereWithoutHsrolesInput[]
+    deleteMany?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
+  }
+
+  export type hsusers_permissionsCreateNestedManyWithoutHspermissionsInput = {
+    create?: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput> | hsusers_permissionsCreateWithoutHspermissionsInput[] | hsusers_permissionsUncheckedCreateWithoutHspermissionsInput[]
+    connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHspermissionsInput | hsusers_permissionsCreateOrConnectWithoutHspermissionsInput[]
+    createMany?: hsusers_permissionsCreateManyHspermissionsInputEnvelope
+    connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+  }
+
+  export type hspermissions_rolesCreateNestedManyWithoutHspermissionsInput = {
+    create?: XOR<hspermissions_rolesCreateWithoutHspermissionsInput, hspermissions_rolesUncheckedCreateWithoutHspermissionsInput> | hspermissions_rolesCreateWithoutHspermissionsInput[] | hspermissions_rolesUncheckedCreateWithoutHspermissionsInput[]
+    connectOrCreate?: hspermissions_rolesCreateOrConnectWithoutHspermissionsInput | hspermissions_rolesCreateOrConnectWithoutHspermissionsInput[]
+    createMany?: hspermissions_rolesCreateManyHspermissionsInputEnvelope
+    connect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+  }
+
+  export type hsusers_permissionsUncheckedCreateNestedManyWithoutHspermissionsInput = {
+    create?: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput> | hsusers_permissionsCreateWithoutHspermissionsInput[] | hsusers_permissionsUncheckedCreateWithoutHspermissionsInput[]
+    connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHspermissionsInput | hsusers_permissionsCreateOrConnectWithoutHspermissionsInput[]
+    createMany?: hsusers_permissionsCreateManyHspermissionsInputEnvelope
+    connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+  }
+
+  export type hspermissions_rolesUncheckedCreateNestedManyWithoutHspermissionsInput = {
+    create?: XOR<hspermissions_rolesCreateWithoutHspermissionsInput, hspermissions_rolesUncheckedCreateWithoutHspermissionsInput> | hspermissions_rolesCreateWithoutHspermissionsInput[] | hspermissions_rolesUncheckedCreateWithoutHspermissionsInput[]
+    connectOrCreate?: hspermissions_rolesCreateOrConnectWithoutHspermissionsInput | hspermissions_rolesCreateOrConnectWithoutHspermissionsInput[]
+    createMany?: hspermissions_rolesCreateManyHspermissionsInputEnvelope
+    connect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+  }
+
+  export type hsusers_permissionsUpdateManyWithoutHspermissionsNestedInput = {
+    create?: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput> | hsusers_permissionsCreateWithoutHspermissionsInput[] | hsusers_permissionsUncheckedCreateWithoutHspermissionsInput[]
+    connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHspermissionsInput | hsusers_permissionsCreateOrConnectWithoutHspermissionsInput[]
+    upsert?: hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput | hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput[]
+    createMany?: hsusers_permissionsCreateManyHspermissionsInputEnvelope
+    set?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    disconnect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    delete?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    update?: hsusers_permissionsUpdateWithWhereUniqueWithoutHspermissionsInput | hsusers_permissionsUpdateWithWhereUniqueWithoutHspermissionsInput[]
+    updateMany?: hsusers_permissionsUpdateManyWithWhereWithoutHspermissionsInput | hsusers_permissionsUpdateManyWithWhereWithoutHspermissionsInput[]
+    deleteMany?: hsusers_permissionsScalarWhereInput | hsusers_permissionsScalarWhereInput[]
+  }
+
+  export type hspermissions_rolesUpdateManyWithoutHspermissionsNestedInput = {
+    create?: XOR<hspermissions_rolesCreateWithoutHspermissionsInput, hspermissions_rolesUncheckedCreateWithoutHspermissionsInput> | hspermissions_rolesCreateWithoutHspermissionsInput[] | hspermissions_rolesUncheckedCreateWithoutHspermissionsInput[]
+    connectOrCreate?: hspermissions_rolesCreateOrConnectWithoutHspermissionsInput | hspermissions_rolesCreateOrConnectWithoutHspermissionsInput[]
+    upsert?: hspermissions_rolesUpsertWithWhereUniqueWithoutHspermissionsInput | hspermissions_rolesUpsertWithWhereUniqueWithoutHspermissionsInput[]
+    createMany?: hspermissions_rolesCreateManyHspermissionsInputEnvelope
+    set?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    disconnect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    delete?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    connect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    update?: hspermissions_rolesUpdateWithWhereUniqueWithoutHspermissionsInput | hspermissions_rolesUpdateWithWhereUniqueWithoutHspermissionsInput[]
+    updateMany?: hspermissions_rolesUpdateManyWithWhereWithoutHspermissionsInput | hspermissions_rolesUpdateManyWithWhereWithoutHspermissionsInput[]
+    deleteMany?: hspermissions_rolesScalarWhereInput | hspermissions_rolesScalarWhereInput[]
+  }
+
+  export type hsusers_permissionsUncheckedUpdateManyWithoutHspermissionsNestedInput = {
+    create?: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput> | hsusers_permissionsCreateWithoutHspermissionsInput[] | hsusers_permissionsUncheckedCreateWithoutHspermissionsInput[]
+    connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHspermissionsInput | hsusers_permissionsCreateOrConnectWithoutHspermissionsInput[]
+    upsert?: hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput | hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput[]
+    createMany?: hsusers_permissionsCreateManyHspermissionsInputEnvelope
+    set?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    disconnect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    delete?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    update?: hsusers_permissionsUpdateWithWhereUniqueWithoutHspermissionsInput | hsusers_permissionsUpdateWithWhereUniqueWithoutHspermissionsInput[]
+    updateMany?: hsusers_permissionsUpdateManyWithWhereWithoutHspermissionsInput | hsusers_permissionsUpdateManyWithWhereWithoutHspermissionsInput[]
+    deleteMany?: hsusers_permissionsScalarWhereInput | hsusers_permissionsScalarWhereInput[]
+  }
+
+  export type hspermissions_rolesUncheckedUpdateManyWithoutHspermissionsNestedInput = {
+    create?: XOR<hspermissions_rolesCreateWithoutHspermissionsInput, hspermissions_rolesUncheckedCreateWithoutHspermissionsInput> | hspermissions_rolesCreateWithoutHspermissionsInput[] | hspermissions_rolesUncheckedCreateWithoutHspermissionsInput[]
+    connectOrCreate?: hspermissions_rolesCreateOrConnectWithoutHspermissionsInput | hspermissions_rolesCreateOrConnectWithoutHspermissionsInput[]
+    upsert?: hspermissions_rolesUpsertWithWhereUniqueWithoutHspermissionsInput | hspermissions_rolesUpsertWithWhereUniqueWithoutHspermissionsInput[]
+    createMany?: hspermissions_rolesCreateManyHspermissionsInputEnvelope
+    set?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    disconnect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    delete?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    connect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
+    update?: hspermissions_rolesUpdateWithWhereUniqueWithoutHspermissionsInput | hspermissions_rolesUpdateWithWhereUniqueWithoutHspermissionsInput[]
+    updateMany?: hspermissions_rolesUpdateManyWithWhereWithoutHspermissionsInput | hspermissions_rolesUpdateManyWithWhereWithoutHspermissionsInput[]
+    deleteMany?: hspermissions_rolesScalarWhereInput | hspermissions_rolesScalarWhereInput[]
+  }
+
+  export type hsrolesCreateNestedOneWithoutHspermissions_rolesInput = {
+    create?: XOR<hsrolesCreateWithoutHspermissions_rolesInput, hsrolesUncheckedCreateWithoutHspermissions_rolesInput>
+    connectOrCreate?: hsrolesCreateOrConnectWithoutHspermissions_rolesInput
+    connect?: hsrolesWhereUniqueInput
+  }
+
+  export type hspermissionsCreateNestedOneWithoutHspermissions_rolesInput = {
+    create?: XOR<hspermissionsCreateWithoutHspermissions_rolesInput, hspermissionsUncheckedCreateWithoutHspermissions_rolesInput>
+    connectOrCreate?: hspermissionsCreateOrConnectWithoutHspermissions_rolesInput
+    connect?: hspermissionsWhereUniqueInput
+  }
+
+  export type hsrolesUpdateOneRequiredWithoutHspermissions_rolesNestedInput = {
+    create?: XOR<hsrolesCreateWithoutHspermissions_rolesInput, hsrolesUncheckedCreateWithoutHspermissions_rolesInput>
+    connectOrCreate?: hsrolesCreateOrConnectWithoutHspermissions_rolesInput
+    upsert?: hsrolesUpsertWithoutHspermissions_rolesInput
+    connect?: hsrolesWhereUniqueInput
+    update?: XOR<XOR<hsrolesUpdateToOneWithWhereWithoutHspermissions_rolesInput, hsrolesUpdateWithoutHspermissions_rolesInput>, hsrolesUncheckedUpdateWithoutHspermissions_rolesInput>
+  }
+
+  export type hspermissionsUpdateOneRequiredWithoutHspermissions_rolesNestedInput = {
+    create?: XOR<hspermissionsCreateWithoutHspermissions_rolesInput, hspermissionsUncheckedCreateWithoutHspermissions_rolesInput>
+    connectOrCreate?: hspermissionsCreateOrConnectWithoutHspermissions_rolesInput
+    upsert?: hspermissionsUpsertWithoutHspermissions_rolesInput
+    connect?: hspermissionsWhereUniqueInput
+    update?: XOR<XOR<hspermissionsUpdateToOneWithWhereWithoutHspermissions_rolesInput, hspermissionsUpdateWithoutHspermissions_rolesInput>, hspermissionsUncheckedUpdateWithoutHspermissions_rolesInput>
+  }
+
+  export type hsemployeesCreateNestedOneWithoutHsusers_permissionsInput = {
+    create?: XOR<hsemployeesCreateWithoutHsusers_permissionsInput, hsemployeesUncheckedCreateWithoutHsusers_permissionsInput>
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsusers_permissionsInput
+    connect?: hsemployeesWhereUniqueInput
+  }
+
+  export type hspermissionsCreateNestedOneWithoutHsusers_permissionsInput = {
+    create?: XOR<hspermissionsCreateWithoutHsusers_permissionsInput, hspermissionsUncheckedCreateWithoutHsusers_permissionsInput>
+    connectOrCreate?: hspermissionsCreateOrConnectWithoutHsusers_permissionsInput
+    connect?: hspermissionsWhereUniqueInput
+  }
+
+  export type hsemployeesUpdateOneRequiredWithoutHsusers_permissionsNestedInput = {
+    create?: XOR<hsemployeesCreateWithoutHsusers_permissionsInput, hsemployeesUncheckedCreateWithoutHsusers_permissionsInput>
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsusers_permissionsInput
+    upsert?: hsemployeesUpsertWithoutHsusers_permissionsInput
+    connect?: hsemployeesWhereUniqueInput
+    update?: XOR<XOR<hsemployeesUpdateToOneWithWhereWithoutHsusers_permissionsInput, hsemployeesUpdateWithoutHsusers_permissionsInput>, hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput>
+  }
+
+  export type hspermissionsUpdateOneRequiredWithoutHsusers_permissionsNestedInput = {
+    create?: XOR<hspermissionsCreateWithoutHsusers_permissionsInput, hspermissionsUncheckedCreateWithoutHsusers_permissionsInput>
+    connectOrCreate?: hspermissionsCreateOrConnectWithoutHsusers_permissionsInput
+    upsert?: hspermissionsUpsertWithoutHsusers_permissionsInput
+    connect?: hspermissionsWhereUniqueInput
+    update?: XOR<XOR<hspermissionsUpdateToOneWithWhereWithoutHsusers_permissionsInput, hspermissionsUpdateWithoutHsusers_permissionsInput>, hspermissionsUncheckedUpdateWithoutHsusers_permissionsInput>
+  }
+
+  export type hsemployeesCreateNestedOneWithoutHsusers_rolesInput = {
+    create?: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsusers_rolesInput
+    connect?: hsemployeesWhereUniqueInput
+  }
+
+  export type hsrolesCreateNestedOneWithoutHsusers_rolesInput = {
+    create?: XOR<hsrolesCreateWithoutHsusers_rolesInput, hsrolesUncheckedCreateWithoutHsusers_rolesInput>
+    connectOrCreate?: hsrolesCreateOrConnectWithoutHsusers_rolesInput
+    connect?: hsrolesWhereUniqueInput
+  }
+
+  export type hsemployeesUpdateOneRequiredWithoutHsusers_rolesNestedInput = {
+    create?: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsusers_rolesInput
+    upsert?: hsemployeesUpsertWithoutHsusers_rolesInput
+    connect?: hsemployeesWhereUniqueInput
+    update?: XOR<XOR<hsemployeesUpdateToOneWithWhereWithoutHsusers_rolesInput, hsemployeesUpdateWithoutHsusers_rolesInput>, hsemployeesUncheckedUpdateWithoutHsusers_rolesInput>
+  }
+
+  export type hsrolesUpdateOneRequiredWithoutHsusers_rolesNestedInput = {
+    create?: XOR<hsrolesCreateWithoutHsusers_rolesInput, hsrolesUncheckedCreateWithoutHsusers_rolesInput>
+    connectOrCreate?: hsrolesCreateOrConnectWithoutHsusers_rolesInput
+    upsert?: hsrolesUpsertWithoutHsusers_rolesInput
+    connect?: hsrolesWhereUniqueInput
+    update?: XOR<XOR<hsrolesUpdateToOneWithWhereWithoutHsusers_rolesInput, hsrolesUpdateWithoutHsusers_rolesInput>, hsrolesUncheckedUpdateWithoutHsusers_rolesInput>
   }
 
   export type hsvaliditiesCreateNestedManyWithoutHsbranchesInput = {
@@ -14285,10 +20223,6 @@ export namespace Prisma {
 
   export type Enumhsvalidities_statusFieldUpdateOperationsInput = {
     set?: $Enums.hsvalidities_status
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type hsbranchesUpdateOneRequiredWithoutHsvaliditiesNestedInput = {
@@ -14571,202 +20505,6 @@ export namespace Prisma {
     deleteMany?: hsvalidity_productsScalarWhereInput | hsvalidity_productsScalarWhereInput[]
   }
 
-  export type hsbranchesCreateNestedOneWithoutHsemployeesInput = {
-    create?: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
-    connectOrCreate?: hsbranchesCreateOrConnectWithoutHsemployeesInput
-    connect?: hsbranchesWhereUniqueInput
-  }
-
-  export type hsaccess_levelsCreateNestedOneWithoutHsemployeesInput = {
-    create?: XOR<hsaccess_levelsCreateWithoutHsemployeesInput, hsaccess_levelsUncheckedCreateWithoutHsemployeesInput>
-    connectOrCreate?: hsaccess_levelsCreateOrConnectWithoutHsemployeesInput
-    connect?: hsaccess_levelsWhereUniqueInput
-  }
-
-  export type hsvalidity_requestsCreateNestedManyWithoutAnalystInput = {
-    create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
-    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
-    createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
-    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-  }
-
-  export type hsvalidity_requestsCreateNestedManyWithoutConfereeInput = {
-    create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
-    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
-    createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
-    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-  }
-
-  export type hssessionsCreateNestedManyWithoutUserInput = {
-    create?: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput> | hssessionsCreateWithoutUserInput[] | hssessionsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
-    createMany?: hssessionsCreateManyUserInputEnvelope
-    connect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
-  }
-
-  export type hsvaliditiesCreateNestedManyWithoutHsemployeesInput = {
-    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
-    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
-    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
-    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-  }
-
-  export type hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput = {
-    create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
-    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
-    createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
-    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-  }
-
-  export type hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput = {
-    create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
-    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
-    createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
-    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-  }
-
-  export type hssessionsUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput> | hssessionsCreateWithoutUserInput[] | hssessionsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
-    createMany?: hssessionsCreateManyUserInputEnvelope
-    connect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
-  }
-
-  export type hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput = {
-    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
-    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
-    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
-    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-  }
-
-  export type hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput = {
-    create?: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
-    connectOrCreate?: hsbranchesCreateOrConnectWithoutHsemployeesInput
-    upsert?: hsbranchesUpsertWithoutHsemployeesInput
-    connect?: hsbranchesWhereUniqueInput
-    update?: XOR<XOR<hsbranchesUpdateToOneWithWhereWithoutHsemployeesInput, hsbranchesUpdateWithoutHsemployeesInput>, hsbranchesUncheckedUpdateWithoutHsemployeesInput>
-  }
-
-  export type hsaccess_levelsUpdateOneRequiredWithoutHsemployeesNestedInput = {
-    create?: XOR<hsaccess_levelsCreateWithoutHsemployeesInput, hsaccess_levelsUncheckedCreateWithoutHsemployeesInput>
-    connectOrCreate?: hsaccess_levelsCreateOrConnectWithoutHsemployeesInput
-    upsert?: hsaccess_levelsUpsertWithoutHsemployeesInput
-    connect?: hsaccess_levelsWhereUniqueInput
-    update?: XOR<XOR<hsaccess_levelsUpdateToOneWithWhereWithoutHsemployeesInput, hsaccess_levelsUpdateWithoutHsemployeesInput>, hsaccess_levelsUncheckedUpdateWithoutHsemployeesInput>
-  }
-
-  export type hsvalidity_requestsUpdateManyWithoutAnalystNestedInput = {
-    create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
-    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
-    upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput[]
-    createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
-    set?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    disconnect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    delete?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput[]
-    updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput | hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput[]
-    deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
-  }
-
-  export type hsvalidity_requestsUpdateManyWithoutConfereeNestedInput = {
-    create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
-    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
-    upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput[]
-    createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
-    set?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    disconnect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    delete?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput[]
-    updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput | hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput[]
-    deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
-  }
-
-  export type hssessionsUpdateManyWithoutUserNestedInput = {
-    create?: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput> | hssessionsCreateWithoutUserInput[] | hssessionsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
-    upsert?: hssessionsUpsertWithWhereUniqueWithoutUserInput | hssessionsUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: hssessionsCreateManyUserInputEnvelope
-    set?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
-    disconnect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
-    delete?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
-    connect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
-    update?: hssessionsUpdateWithWhereUniqueWithoutUserInput | hssessionsUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: hssessionsUpdateManyWithWhereWithoutUserInput | hssessionsUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: hssessionsScalarWhereInput | hssessionsScalarWhereInput[]
-  }
-
-  export type hsvaliditiesUpdateManyWithoutHsemployeesNestedInput = {
-    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
-    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
-    upsert?: hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput[]
-    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
-    set?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    disconnect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    delete?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    update?: hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput[]
-    updateMany?: hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput | hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput[]
-    deleteMany?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
-  }
-
-  export type hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput = {
-    create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
-    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
-    upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput[]
-    createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
-    set?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    disconnect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    delete?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput[]
-    updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput | hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput[]
-    deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
-  }
-
-  export type hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput = {
-    create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
-    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
-    upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput[]
-    createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
-    set?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    disconnect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    delete?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput[]
-    updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput | hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput[]
-    deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
-  }
-
-  export type hssessionsUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput> | hssessionsCreateWithoutUserInput[] | hssessionsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
-    upsert?: hssessionsUpsertWithWhereUniqueWithoutUserInput | hssessionsUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: hssessionsCreateManyUserInputEnvelope
-    set?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
-    disconnect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
-    delete?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
-    connect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
-    update?: hssessionsUpdateWithWhereUniqueWithoutUserInput | hssessionsUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: hssessionsUpdateManyWithWhereWithoutUserInput | hssessionsUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: hssessionsScalarWhereInput | hssessionsScalarWhereInput[]
-  }
-
-  export type hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput = {
-    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
-    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
-    upsert?: hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput[]
-    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
-    set?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    disconnect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    delete?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    update?: hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput[]
-    updateMany?: hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput | hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput[]
-    deleteMany?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
-  }
-
   export type hsemployeesCreateNestedOneWithoutSessionsInput = {
     create?: XOR<hsemployeesCreateWithoutSessionsInput, hsemployeesUncheckedCreateWithoutSessionsInput>
     connectOrCreate?: hsemployeesCreateOrConnectWithoutSessionsInput
@@ -14808,6 +20546,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -14854,6 +20603,20 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type NestedEnumhsvalidities_statusFilter<$PrismaModel = never> = {
     equals?: $Enums.hsvalidities_status | Enumhsvalidities_statusFieldRefInput<$PrismaModel>
     in?: $Enums.hsvalidities_status[] | ListEnumhsvalidities_statusFieldRefInput<$PrismaModel>
@@ -14870,17 +20633,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedEnumhsvalidities_statusWithAggregatesFilter<$PrismaModel = never> = {
@@ -14918,20 +20670,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedEnumhsvalidity_requests_statusFilter<$PrismaModel = never> = {
@@ -15018,7 +20756,593 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type hsemployeesCreateWithoutHsaccess_levelInput = {
+  export type hsbranchesCreateWithoutHsemployeesInput = {
+    description: string
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsbranchesInput
+    hsvalidity_requests?: hsvalidity_requestsCreateNestedManyWithoutHsbranchesInput
+  }
+
+  export type hsbranchesUncheckedCreateWithoutHsemployeesInput = {
+    id?: number
+    description: string
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsbranchesInput
+    hsvalidity_requests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutHsbranchesInput
+  }
+
+  export type hsbranchesCreateOrConnectWithoutHsemployeesInput = {
+    where: hsbranchesWhereUniqueInput
+    create: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
+  }
+
+  export type hsvalidity_requestsCreateWithoutAnalystInput = {
+    status?: $Enums.hsvalidity_requests_status
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsvalidity_requestsInput
+    hsvalidity_request_products?: hsvalidity_request_productsCreateNestedManyWithoutHsvalidity_requestsInput
+    conferee: hsemployeesCreateNestedOneWithoutConfereeRequestsInput
+    hsbranches: hsbranchesCreateNestedOneWithoutHsvalidity_requestsInput
+  }
+
+  export type hsvalidity_requestsUncheckedCreateWithoutAnalystInput = {
+    id?: number
+    branch_id: number
+    conferee_id: number
+    status?: $Enums.hsvalidity_requests_status
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
+    hsvalidity_request_products?: hsvalidity_request_productsUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
+  }
+
+  export type hsvalidity_requestsCreateOrConnectWithoutAnalystInput = {
+    where: hsvalidity_requestsWhereUniqueInput
+    create: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput>
+  }
+
+  export type hsvalidity_requestsCreateManyAnalystInputEnvelope = {
+    data: hsvalidity_requestsCreateManyAnalystInput | hsvalidity_requestsCreateManyAnalystInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsvalidity_requestsCreateWithoutConfereeInput = {
+    status?: $Enums.hsvalidity_requests_status
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsvalidity_requestsInput
+    hsvalidity_request_products?: hsvalidity_request_productsCreateNestedManyWithoutHsvalidity_requestsInput
+    analyst: hsemployeesCreateNestedOneWithoutAnalystRequestsInput
+    hsbranches: hsbranchesCreateNestedOneWithoutHsvalidity_requestsInput
+  }
+
+  export type hsvalidity_requestsUncheckedCreateWithoutConfereeInput = {
+    id?: number
+    branch_id: number
+    analyst_id: number
+    status?: $Enums.hsvalidity_requests_status
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
+    hsvalidity_request_products?: hsvalidity_request_productsUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
+  }
+
+  export type hsvalidity_requestsCreateOrConnectWithoutConfereeInput = {
+    where: hsvalidity_requestsWhereUniqueInput
+    create: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput>
+  }
+
+  export type hsvalidity_requestsCreateManyConfereeInputEnvelope = {
+    data: hsvalidity_requestsCreateManyConfereeInput | hsvalidity_requestsCreateManyConfereeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hssessionsCreateWithoutUserInput = {
+    id?: string
+    token: string
+    created_at?: Date | string
+    expires_at?: Date | string | null
+  }
+
+  export type hssessionsUncheckedCreateWithoutUserInput = {
+    id?: string
+    token: string
+    created_at?: Date | string
+    expires_at?: Date | string | null
+  }
+
+  export type hssessionsCreateOrConnectWithoutUserInput = {
+    where: hssessionsWhereUniqueInput
+    create: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput>
+  }
+
+  export type hssessionsCreateManyUserInputEnvelope = {
+    data: hssessionsCreateManyUserInput | hssessionsCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsvaliditiesCreateWithoutHsemployeesInput = {
+    status?: $Enums.hsvalidities_status
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsbranches: hsbranchesCreateNestedOneWithoutHsvaliditiesInput
+    hsvalidity_requests?: hsvalidity_requestsCreateNestedOneWithoutHsvaliditiesInput
+    hsvalidity_products?: hsvalidity_productsCreateNestedManyWithoutHsvaliditiesInput
+  }
+
+  export type hsvaliditiesUncheckedCreateWithoutHsemployeesInput = {
+    id?: number
+    branch_id: number
+    status?: $Enums.hsvalidities_status
+    request_id?: number | null
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsvalidity_products?: hsvalidity_productsUncheckedCreateNestedManyWithoutHsvaliditiesInput
+  }
+
+  export type hsvaliditiesCreateOrConnectWithoutHsemployeesInput = {
+    where: hsvaliditiesWhereUniqueInput
+    create: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput>
+  }
+
+  export type hsvaliditiesCreateManyHsemployeesInputEnvelope = {
+    data: hsvaliditiesCreateManyHsemployeesInput | hsvaliditiesCreateManyHsemployeesInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsusers_permissionsCreateWithoutHsemployeesInput = {
+    hspermissions: hspermissionsCreateNestedOneWithoutHsusers_permissionsInput
+  }
+
+  export type hsusers_permissionsUncheckedCreateWithoutHsemployeesInput = {
+    permission_id: number
+  }
+
+  export type hsusers_permissionsCreateOrConnectWithoutHsemployeesInput = {
+    where: hsusers_permissionsWhereUniqueInput
+    create: XOR<hsusers_permissionsCreateWithoutHsemployeesInput, hsusers_permissionsUncheckedCreateWithoutHsemployeesInput>
+  }
+
+  export type hsusers_permissionsCreateManyHsemployeesInputEnvelope = {
+    data: hsusers_permissionsCreateManyHsemployeesInput | hsusers_permissionsCreateManyHsemployeesInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsusers_rolesCreateWithoutHeemployeesInput = {
+    hsroles: hsrolesCreateNestedOneWithoutHsusers_rolesInput
+  }
+
+  export type hsusers_rolesUncheckedCreateWithoutHeemployeesInput = {
+    role_id: number
+  }
+
+  export type hsusers_rolesCreateOrConnectWithoutHeemployeesInput = {
+    where: hsusers_rolesWhereUniqueInput
+    create: XOR<hsusers_rolesCreateWithoutHeemployeesInput, hsusers_rolesUncheckedCreateWithoutHeemployeesInput>
+  }
+
+  export type hsusers_rolesCreateManyHeemployeesInputEnvelope = {
+    data: hsusers_rolesCreateManyHeemployeesInput | hsusers_rolesCreateManyHeemployeesInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsbranchesUpsertWithoutHsemployeesInput = {
+    update: XOR<hsbranchesUpdateWithoutHsemployeesInput, hsbranchesUncheckedUpdateWithoutHsemployeesInput>
+    create: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
+    where?: hsbranchesWhereInput
+  }
+
+  export type hsbranchesUpdateToOneWithWhereWithoutHsemployeesInput = {
+    where?: hsbranchesWhereInput
+    data: XOR<hsbranchesUpdateWithoutHsemployeesInput, hsbranchesUncheckedUpdateWithoutHsemployeesInput>
+  }
+
+  export type hsbranchesUpdateWithoutHsemployeesInput = {
+    description?: StringFieldUpdateOperationsInput | string
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsbranchesNestedInput
+    hsvalidity_requests?: hsvalidity_requestsUpdateManyWithoutHsbranchesNestedInput
+  }
+
+  export type hsbranchesUncheckedUpdateWithoutHsemployeesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsbranchesNestedInput
+    hsvalidity_requests?: hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesNestedInput
+  }
+
+  export type hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput = {
+    where: hsvalidity_requestsWhereUniqueInput
+    update: XOR<hsvalidity_requestsUpdateWithoutAnalystInput, hsvalidity_requestsUncheckedUpdateWithoutAnalystInput>
+    create: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput>
+  }
+
+  export type hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput = {
+    where: hsvalidity_requestsWhereUniqueInput
+    data: XOR<hsvalidity_requestsUpdateWithoutAnalystInput, hsvalidity_requestsUncheckedUpdateWithoutAnalystInput>
+  }
+
+  export type hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput = {
+    where: hsvalidity_requestsScalarWhereInput
+    data: XOR<hsvalidity_requestsUpdateManyMutationInput, hsvalidity_requestsUncheckedUpdateManyWithoutAnalystInput>
+  }
+
+  export type hsvalidity_requestsScalarWhereInput = {
+    AND?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
+    OR?: hsvalidity_requestsScalarWhereInput[]
+    NOT?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
+    id?: IntFilter<"hsvalidity_requests"> | number
+    branch_id?: IntFilter<"hsvalidity_requests"> | number
+    analyst_id?: IntFilter<"hsvalidity_requests"> | number
+    conferee_id?: IntFilter<"hsvalidity_requests"> | number
+    status?: Enumhsvalidity_requests_statusFilter<"hsvalidity_requests"> | $Enums.hsvalidity_requests_status
+    created_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
+    modified_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
+  }
+
+  export type hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput = {
+    where: hsvalidity_requestsWhereUniqueInput
+    update: XOR<hsvalidity_requestsUpdateWithoutConfereeInput, hsvalidity_requestsUncheckedUpdateWithoutConfereeInput>
+    create: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput>
+  }
+
+  export type hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput = {
+    where: hsvalidity_requestsWhereUniqueInput
+    data: XOR<hsvalidity_requestsUpdateWithoutConfereeInput, hsvalidity_requestsUncheckedUpdateWithoutConfereeInput>
+  }
+
+  export type hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput = {
+    where: hsvalidity_requestsScalarWhereInput
+    data: XOR<hsvalidity_requestsUpdateManyMutationInput, hsvalidity_requestsUncheckedUpdateManyWithoutConfereeInput>
+  }
+
+  export type hssessionsUpsertWithWhereUniqueWithoutUserInput = {
+    where: hssessionsWhereUniqueInput
+    update: XOR<hssessionsUpdateWithoutUserInput, hssessionsUncheckedUpdateWithoutUserInput>
+    create: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput>
+  }
+
+  export type hssessionsUpdateWithWhereUniqueWithoutUserInput = {
+    where: hssessionsWhereUniqueInput
+    data: XOR<hssessionsUpdateWithoutUserInput, hssessionsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type hssessionsUpdateManyWithWhereWithoutUserInput = {
+    where: hssessionsScalarWhereInput
+    data: XOR<hssessionsUpdateManyMutationInput, hssessionsUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type hssessionsScalarWhereInput = {
+    AND?: hssessionsScalarWhereInput | hssessionsScalarWhereInput[]
+    OR?: hssessionsScalarWhereInput[]
+    NOT?: hssessionsScalarWhereInput | hssessionsScalarWhereInput[]
+    id?: UuidFilter<"hssessions"> | string
+    user_id?: IntFilter<"hssessions"> | number
+    token?: StringFilter<"hssessions"> | string
+    created_at?: DateTimeFilter<"hssessions"> | Date | string
+    expires_at?: DateTimeNullableFilter<"hssessions"> | Date | string | null
+  }
+
+  export type hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput = {
+    where: hsvaliditiesWhereUniqueInput
+    update: XOR<hsvaliditiesUpdateWithoutHsemployeesInput, hsvaliditiesUncheckedUpdateWithoutHsemployeesInput>
+    create: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput>
+  }
+
+  export type hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput = {
+    where: hsvaliditiesWhereUniqueInput
+    data: XOR<hsvaliditiesUpdateWithoutHsemployeesInput, hsvaliditiesUncheckedUpdateWithoutHsemployeesInput>
+  }
+
+  export type hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput = {
+    where: hsvaliditiesScalarWhereInput
+    data: XOR<hsvaliditiesUpdateManyMutationInput, hsvaliditiesUncheckedUpdateManyWithoutHsemployeesInput>
+  }
+
+  export type hsvaliditiesScalarWhereInput = {
+    AND?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
+    OR?: hsvaliditiesScalarWhereInput[]
+    NOT?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
+    id?: IntFilter<"hsvalidities"> | number
+    branch_id?: IntFilter<"hsvalidities"> | number
+    employee_id?: IntFilter<"hsvalidities"> | number
+    status?: Enumhsvalidities_statusFilter<"hsvalidities"> | $Enums.hsvalidities_status
+    request_id?: IntNullableFilter<"hsvalidities"> | number | null
+    created_at?: DateTimeFilter<"hsvalidities"> | Date | string
+    modified_at?: DateTimeFilter<"hsvalidities"> | Date | string
+  }
+
+  export type hsusers_permissionsUpsertWithWhereUniqueWithoutHsemployeesInput = {
+    where: hsusers_permissionsWhereUniqueInput
+    update: XOR<hsusers_permissionsUpdateWithoutHsemployeesInput, hsusers_permissionsUncheckedUpdateWithoutHsemployeesInput>
+    create: XOR<hsusers_permissionsCreateWithoutHsemployeesInput, hsusers_permissionsUncheckedCreateWithoutHsemployeesInput>
+  }
+
+  export type hsusers_permissionsUpdateWithWhereUniqueWithoutHsemployeesInput = {
+    where: hsusers_permissionsWhereUniqueInput
+    data: XOR<hsusers_permissionsUpdateWithoutHsemployeesInput, hsusers_permissionsUncheckedUpdateWithoutHsemployeesInput>
+  }
+
+  export type hsusers_permissionsUpdateManyWithWhereWithoutHsemployeesInput = {
+    where: hsusers_permissionsScalarWhereInput
+    data: XOR<hsusers_permissionsUpdateManyMutationInput, hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesInput>
+  }
+
+  export type hsusers_permissionsScalarWhereInput = {
+    AND?: hsusers_permissionsScalarWhereInput | hsusers_permissionsScalarWhereInput[]
+    OR?: hsusers_permissionsScalarWhereInput[]
+    NOT?: hsusers_permissionsScalarWhereInput | hsusers_permissionsScalarWhereInput[]
+    user_id?: IntFilter<"hsusers_permissions"> | number
+    permission_id?: IntFilter<"hsusers_permissions"> | number
+  }
+
+  export type hsusers_rolesUpsertWithWhereUniqueWithoutHeemployeesInput = {
+    where: hsusers_rolesWhereUniqueInput
+    update: XOR<hsusers_rolesUpdateWithoutHeemployeesInput, hsusers_rolesUncheckedUpdateWithoutHeemployeesInput>
+    create: XOR<hsusers_rolesCreateWithoutHeemployeesInput, hsusers_rolesUncheckedCreateWithoutHeemployeesInput>
+  }
+
+  export type hsusers_rolesUpdateWithWhereUniqueWithoutHeemployeesInput = {
+    where: hsusers_rolesWhereUniqueInput
+    data: XOR<hsusers_rolesUpdateWithoutHeemployeesInput, hsusers_rolesUncheckedUpdateWithoutHeemployeesInput>
+  }
+
+  export type hsusers_rolesUpdateManyWithWhereWithoutHeemployeesInput = {
+    where: hsusers_rolesScalarWhereInput
+    data: XOR<hsusers_rolesUpdateManyMutationInput, hsusers_rolesUncheckedUpdateManyWithoutHeemployeesInput>
+  }
+
+  export type hsusers_rolesScalarWhereInput = {
+    AND?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
+    OR?: hsusers_rolesScalarWhereInput[]
+    NOT?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
+    user_id?: IntFilter<"hsusers_roles"> | number
+    role_id?: IntFilter<"hsusers_roles"> | number
+  }
+
+  export type hspermissions_rolesCreateWithoutHsrolesInput = {
+    hspermissions: hspermissionsCreateNestedOneWithoutHspermissions_rolesInput
+  }
+
+  export type hspermissions_rolesUncheckedCreateWithoutHsrolesInput = {
+    permission_id: number
+  }
+
+  export type hspermissions_rolesCreateOrConnectWithoutHsrolesInput = {
+    where: hspermissions_rolesWhereUniqueInput
+    create: XOR<hspermissions_rolesCreateWithoutHsrolesInput, hspermissions_rolesUncheckedCreateWithoutHsrolesInput>
+  }
+
+  export type hspermissions_rolesCreateManyHsrolesInputEnvelope = {
+    data: hspermissions_rolesCreateManyHsrolesInput | hspermissions_rolesCreateManyHsrolesInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsusers_rolesCreateWithoutHsrolesInput = {
+    heemployees: hsemployeesCreateNestedOneWithoutHsusers_rolesInput
+  }
+
+  export type hsusers_rolesUncheckedCreateWithoutHsrolesInput = {
+    user_id: number
+  }
+
+  export type hsusers_rolesCreateOrConnectWithoutHsrolesInput = {
+    where: hsusers_rolesWhereUniqueInput
+    create: XOR<hsusers_rolesCreateWithoutHsrolesInput, hsusers_rolesUncheckedCreateWithoutHsrolesInput>
+  }
+
+  export type hsusers_rolesCreateManyHsrolesInputEnvelope = {
+    data: hsusers_rolesCreateManyHsrolesInput | hsusers_rolesCreateManyHsrolesInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hspermissions_rolesUpsertWithWhereUniqueWithoutHsrolesInput = {
+    where: hspermissions_rolesWhereUniqueInput
+    update: XOR<hspermissions_rolesUpdateWithoutHsrolesInput, hspermissions_rolesUncheckedUpdateWithoutHsrolesInput>
+    create: XOR<hspermissions_rolesCreateWithoutHsrolesInput, hspermissions_rolesUncheckedCreateWithoutHsrolesInput>
+  }
+
+  export type hspermissions_rolesUpdateWithWhereUniqueWithoutHsrolesInput = {
+    where: hspermissions_rolesWhereUniqueInput
+    data: XOR<hspermissions_rolesUpdateWithoutHsrolesInput, hspermissions_rolesUncheckedUpdateWithoutHsrolesInput>
+  }
+
+  export type hspermissions_rolesUpdateManyWithWhereWithoutHsrolesInput = {
+    where: hspermissions_rolesScalarWhereInput
+    data: XOR<hspermissions_rolesUpdateManyMutationInput, hspermissions_rolesUncheckedUpdateManyWithoutHsrolesInput>
+  }
+
+  export type hspermissions_rolesScalarWhereInput = {
+    AND?: hspermissions_rolesScalarWhereInput | hspermissions_rolesScalarWhereInput[]
+    OR?: hspermissions_rolesScalarWhereInput[]
+    NOT?: hspermissions_rolesScalarWhereInput | hspermissions_rolesScalarWhereInput[]
+    role_id?: IntFilter<"hspermissions_roles"> | number
+    permission_id?: IntFilter<"hspermissions_roles"> | number
+  }
+
+  export type hsusers_rolesUpsertWithWhereUniqueWithoutHsrolesInput = {
+    where: hsusers_rolesWhereUniqueInput
+    update: XOR<hsusers_rolesUpdateWithoutHsrolesInput, hsusers_rolesUncheckedUpdateWithoutHsrolesInput>
+    create: XOR<hsusers_rolesCreateWithoutHsrolesInput, hsusers_rolesUncheckedCreateWithoutHsrolesInput>
+  }
+
+  export type hsusers_rolesUpdateWithWhereUniqueWithoutHsrolesInput = {
+    where: hsusers_rolesWhereUniqueInput
+    data: XOR<hsusers_rolesUpdateWithoutHsrolesInput, hsusers_rolesUncheckedUpdateWithoutHsrolesInput>
+  }
+
+  export type hsusers_rolesUpdateManyWithWhereWithoutHsrolesInput = {
+    where: hsusers_rolesScalarWhereInput
+    data: XOR<hsusers_rolesUpdateManyMutationInput, hsusers_rolesUncheckedUpdateManyWithoutHsrolesInput>
+  }
+
+  export type hsusers_permissionsCreateWithoutHspermissionsInput = {
+    hsemployees: hsemployeesCreateNestedOneWithoutHsusers_permissionsInput
+  }
+
+  export type hsusers_permissionsUncheckedCreateWithoutHspermissionsInput = {
+    user_id: number
+  }
+
+  export type hsusers_permissionsCreateOrConnectWithoutHspermissionsInput = {
+    where: hsusers_permissionsWhereUniqueInput
+    create: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput>
+  }
+
+  export type hsusers_permissionsCreateManyHspermissionsInputEnvelope = {
+    data: hsusers_permissionsCreateManyHspermissionsInput | hsusers_permissionsCreateManyHspermissionsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hspermissions_rolesCreateWithoutHspermissionsInput = {
+    hsroles: hsrolesCreateNestedOneWithoutHspermissions_rolesInput
+  }
+
+  export type hspermissions_rolesUncheckedCreateWithoutHspermissionsInput = {
+    role_id: number
+  }
+
+  export type hspermissions_rolesCreateOrConnectWithoutHspermissionsInput = {
+    where: hspermissions_rolesWhereUniqueInput
+    create: XOR<hspermissions_rolesCreateWithoutHspermissionsInput, hspermissions_rolesUncheckedCreateWithoutHspermissionsInput>
+  }
+
+  export type hspermissions_rolesCreateManyHspermissionsInputEnvelope = {
+    data: hspermissions_rolesCreateManyHspermissionsInput | hspermissions_rolesCreateManyHspermissionsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput = {
+    where: hsusers_permissionsWhereUniqueInput
+    update: XOR<hsusers_permissionsUpdateWithoutHspermissionsInput, hsusers_permissionsUncheckedUpdateWithoutHspermissionsInput>
+    create: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput>
+  }
+
+  export type hsusers_permissionsUpdateWithWhereUniqueWithoutHspermissionsInput = {
+    where: hsusers_permissionsWhereUniqueInput
+    data: XOR<hsusers_permissionsUpdateWithoutHspermissionsInput, hsusers_permissionsUncheckedUpdateWithoutHspermissionsInput>
+  }
+
+  export type hsusers_permissionsUpdateManyWithWhereWithoutHspermissionsInput = {
+    where: hsusers_permissionsScalarWhereInput
+    data: XOR<hsusers_permissionsUpdateManyMutationInput, hsusers_permissionsUncheckedUpdateManyWithoutHspermissionsInput>
+  }
+
+  export type hspermissions_rolesUpsertWithWhereUniqueWithoutHspermissionsInput = {
+    where: hspermissions_rolesWhereUniqueInput
+    update: XOR<hspermissions_rolesUpdateWithoutHspermissionsInput, hspermissions_rolesUncheckedUpdateWithoutHspermissionsInput>
+    create: XOR<hspermissions_rolesCreateWithoutHspermissionsInput, hspermissions_rolesUncheckedCreateWithoutHspermissionsInput>
+  }
+
+  export type hspermissions_rolesUpdateWithWhereUniqueWithoutHspermissionsInput = {
+    where: hspermissions_rolesWhereUniqueInput
+    data: XOR<hspermissions_rolesUpdateWithoutHspermissionsInput, hspermissions_rolesUncheckedUpdateWithoutHspermissionsInput>
+  }
+
+  export type hspermissions_rolesUpdateManyWithWhereWithoutHspermissionsInput = {
+    where: hspermissions_rolesScalarWhereInput
+    data: XOR<hspermissions_rolesUpdateManyMutationInput, hspermissions_rolesUncheckedUpdateManyWithoutHspermissionsInput>
+  }
+
+  export type hsrolesCreateWithoutHspermissions_rolesInput = {
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsrolesInput
+  }
+
+  export type hsrolesUncheckedCreateWithoutHspermissions_rolesInput = {
+    id?: number
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsrolesInput
+  }
+
+  export type hsrolesCreateOrConnectWithoutHspermissions_rolesInput = {
+    where: hsrolesWhereUniqueInput
+    create: XOR<hsrolesCreateWithoutHspermissions_rolesInput, hsrolesUncheckedCreateWithoutHspermissions_rolesInput>
+  }
+
+  export type hspermissionsCreateWithoutHspermissions_rolesInput = {
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHspermissionsInput
+  }
+
+  export type hspermissionsUncheckedCreateWithoutHspermissions_rolesInput = {
+    id?: number
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHspermissionsInput
+  }
+
+  export type hspermissionsCreateOrConnectWithoutHspermissions_rolesInput = {
+    where: hspermissionsWhereUniqueInput
+    create: XOR<hspermissionsCreateWithoutHspermissions_rolesInput, hspermissionsUncheckedCreateWithoutHspermissions_rolesInput>
+  }
+
+  export type hsrolesUpsertWithoutHspermissions_rolesInput = {
+    update: XOR<hsrolesUpdateWithoutHspermissions_rolesInput, hsrolesUncheckedUpdateWithoutHspermissions_rolesInput>
+    create: XOR<hsrolesCreateWithoutHspermissions_rolesInput, hsrolesUncheckedCreateWithoutHspermissions_rolesInput>
+    where?: hsrolesWhereInput
+  }
+
+  export type hsrolesUpdateToOneWithWhereWithoutHspermissions_rolesInput = {
+    where?: hsrolesWhereInput
+    data: XOR<hsrolesUpdateWithoutHspermissions_rolesInput, hsrolesUncheckedUpdateWithoutHspermissions_rolesInput>
+  }
+
+  export type hsrolesUpdateWithoutHspermissions_rolesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsrolesNestedInput
+  }
+
+  export type hsrolesUncheckedUpdateWithoutHspermissions_rolesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsrolesNestedInput
+  }
+
+  export type hspermissionsUpsertWithoutHspermissions_rolesInput = {
+    update: XOR<hspermissionsUpdateWithoutHspermissions_rolesInput, hspermissionsUncheckedUpdateWithoutHspermissions_rolesInput>
+    create: XOR<hspermissionsCreateWithoutHspermissions_rolesInput, hspermissionsUncheckedCreateWithoutHspermissions_rolesInput>
+    where?: hspermissionsWhereInput
+  }
+
+  export type hspermissionsUpdateToOneWithWhereWithoutHspermissions_rolesInput = {
+    where?: hspermissionsWhereInput
+    data: XOR<hspermissionsUpdateWithoutHspermissions_rolesInput, hspermissionsUncheckedUpdateWithoutHspermissions_rolesInput>
+  }
+
+  export type hspermissionsUpdateWithoutHspermissions_rolesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHspermissionsNestedInput
+  }
+
+  export type hspermissionsUncheckedUpdateWithoutHspermissions_rolesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHspermissionsNestedInput
+  }
+
+  export type hsemployeesCreateWithoutHsusers_permissionsInput = {
     winthor_id?: number
     name: string
     username: string
@@ -15030,9 +21354,10 @@ export namespace Prisma {
     confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
   }
 
-  export type hsemployeesUncheckedCreateWithoutHsaccess_levelInput = {
+  export type hsemployeesUncheckedCreateWithoutHsusers_permissionsInput = {
     id?: number
     branch_id: number
     winthor_id?: number
@@ -15045,47 +21370,232 @@ export namespace Prisma {
     confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
   }
 
-  export type hsemployeesCreateOrConnectWithoutHsaccess_levelInput = {
+  export type hsemployeesCreateOrConnectWithoutHsusers_permissionsInput = {
     where: hsemployeesWhereUniqueInput
-    create: XOR<hsemployeesCreateWithoutHsaccess_levelInput, hsemployeesUncheckedCreateWithoutHsaccess_levelInput>
+    create: XOR<hsemployeesCreateWithoutHsusers_permissionsInput, hsemployeesUncheckedCreateWithoutHsusers_permissionsInput>
   }
 
-  export type hsemployeesCreateManyHsaccess_levelInputEnvelope = {
-    data: hsemployeesCreateManyHsaccess_levelInput | hsemployeesCreateManyHsaccess_levelInput[]
-    skipDuplicates?: boolean
+  export type hspermissionsCreateWithoutHsusers_permissionsInput = {
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hspermissions_roles?: hspermissions_rolesCreateNestedManyWithoutHspermissionsInput
   }
 
-  export type hsemployeesUpsertWithWhereUniqueWithoutHsaccess_levelInput = {
+  export type hspermissionsUncheckedCreateWithoutHsusers_permissionsInput = {
+    id?: number
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hspermissions_roles?: hspermissions_rolesUncheckedCreateNestedManyWithoutHspermissionsInput
+  }
+
+  export type hspermissionsCreateOrConnectWithoutHsusers_permissionsInput = {
+    where: hspermissionsWhereUniqueInput
+    create: XOR<hspermissionsCreateWithoutHsusers_permissionsInput, hspermissionsUncheckedCreateWithoutHsusers_permissionsInput>
+  }
+
+  export type hsemployeesUpsertWithoutHsusers_permissionsInput = {
+    update: XOR<hsemployeesUpdateWithoutHsusers_permissionsInput, hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput>
+    create: XOR<hsemployeesCreateWithoutHsusers_permissionsInput, hsemployeesUncheckedCreateWithoutHsusers_permissionsInput>
+    where?: hsemployeesWhereInput
+  }
+
+  export type hsemployeesUpdateToOneWithWhereWithoutHsusers_permissionsInput = {
+    where?: hsemployeesWhereInput
+    data: XOR<hsemployeesUpdateWithoutHsusers_permissionsInput, hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput>
+  }
+
+  export type hsemployeesUpdateWithoutHsusers_permissionsInput = {
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+    sessions?: hssessionsUpdateManyWithoutUserNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
+  }
+
+  export type hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
+  }
+
+  export type hspermissionsUpsertWithoutHsusers_permissionsInput = {
+    update: XOR<hspermissionsUpdateWithoutHsusers_permissionsInput, hspermissionsUncheckedUpdateWithoutHsusers_permissionsInput>
+    create: XOR<hspermissionsCreateWithoutHsusers_permissionsInput, hspermissionsUncheckedCreateWithoutHsusers_permissionsInput>
+    where?: hspermissionsWhereInput
+  }
+
+  export type hspermissionsUpdateToOneWithWhereWithoutHsusers_permissionsInput = {
+    where?: hspermissionsWhereInput
+    data: XOR<hspermissionsUpdateWithoutHsusers_permissionsInput, hspermissionsUncheckedUpdateWithoutHsusers_permissionsInput>
+  }
+
+  export type hspermissionsUpdateWithoutHsusers_permissionsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hspermissions_roles?: hspermissions_rolesUpdateManyWithoutHspermissionsNestedInput
+  }
+
+  export type hspermissionsUncheckedUpdateWithoutHsusers_permissionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hspermissions_roles?: hspermissions_rolesUncheckedUpdateManyWithoutHspermissionsNestedInput
+  }
+
+  export type hsemployeesCreateWithoutHsusers_rolesInput = {
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+    sessions?: hssessionsCreateNestedManyWithoutUserInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
+  }
+
+  export type hsemployeesUncheckedCreateWithoutHsusers_rolesInput = {
+    id?: number
+    branch_id: number
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+    sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
+  }
+
+  export type hsemployeesCreateOrConnectWithoutHsusers_rolesInput = {
     where: hsemployeesWhereUniqueInput
-    update: XOR<hsemployeesUpdateWithoutHsaccess_levelInput, hsemployeesUncheckedUpdateWithoutHsaccess_levelInput>
-    create: XOR<hsemployeesCreateWithoutHsaccess_levelInput, hsemployeesUncheckedCreateWithoutHsaccess_levelInput>
+    create: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
   }
 
-  export type hsemployeesUpdateWithWhereUniqueWithoutHsaccess_levelInput = {
-    where: hsemployeesWhereUniqueInput
-    data: XOR<hsemployeesUpdateWithoutHsaccess_levelInput, hsemployeesUncheckedUpdateWithoutHsaccess_levelInput>
+  export type hsrolesCreateWithoutHsusers_rolesInput = {
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hspermissions_roles?: hspermissions_rolesCreateNestedManyWithoutHsrolesInput
   }
 
-  export type hsemployeesUpdateManyWithWhereWithoutHsaccess_levelInput = {
-    where: hsemployeesScalarWhereInput
-    data: XOR<hsemployeesUpdateManyMutationInput, hsemployeesUncheckedUpdateManyWithoutHsaccess_levelInput>
+  export type hsrolesUncheckedCreateWithoutHsusers_rolesInput = {
+    id?: number
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hspermissions_roles?: hspermissions_rolesUncheckedCreateNestedManyWithoutHsrolesInput
   }
 
-  export type hsemployeesScalarWhereInput = {
-    AND?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
-    OR?: hsemployeesScalarWhereInput[]
-    NOT?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
-    id?: IntFilter<"hsemployees"> | number
-    branch_id?: IntFilter<"hsemployees"> | number
-    access_level?: IntFilter<"hsemployees"> | number
-    winthor_id?: IntFilter<"hsemployees"> | number
-    name?: StringFilter<"hsemployees"> | string
-    username?: StringFilter<"hsemployees"> | string
-    password?: StringFilter<"hsemployees"> | string
-    created_at?: DateTimeFilter<"hsemployees"> | Date | string
-    modified_at?: DateTimeFilter<"hsemployees"> | Date | string
+  export type hsrolesCreateOrConnectWithoutHsusers_rolesInput = {
+    where: hsrolesWhereUniqueInput
+    create: XOR<hsrolesCreateWithoutHsusers_rolesInput, hsrolesUncheckedCreateWithoutHsusers_rolesInput>
+  }
+
+  export type hsemployeesUpsertWithoutHsusers_rolesInput = {
+    update: XOR<hsemployeesUpdateWithoutHsusers_rolesInput, hsemployeesUncheckedUpdateWithoutHsusers_rolesInput>
+    create: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
+    where?: hsemployeesWhereInput
+  }
+
+  export type hsemployeesUpdateToOneWithWhereWithoutHsusers_rolesInput = {
+    where?: hsemployeesWhereInput
+    data: XOR<hsemployeesUpdateWithoutHsusers_rolesInput, hsemployeesUncheckedUpdateWithoutHsusers_rolesInput>
+  }
+
+  export type hsemployeesUpdateWithoutHsusers_rolesInput = {
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+    sessions?: hssessionsUpdateManyWithoutUserNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
+  }
+
+  export type hsemployeesUncheckedUpdateWithoutHsusers_rolesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
+  }
+
+  export type hsrolesUpsertWithoutHsusers_rolesInput = {
+    update: XOR<hsrolesUpdateWithoutHsusers_rolesInput, hsrolesUncheckedUpdateWithoutHsusers_rolesInput>
+    create: XOR<hsrolesCreateWithoutHsusers_rolesInput, hsrolesUncheckedCreateWithoutHsusers_rolesInput>
+    where?: hsrolesWhereInput
+  }
+
+  export type hsrolesUpdateToOneWithWhereWithoutHsusers_rolesInput = {
+    where?: hsrolesWhereInput
+    data: XOR<hsrolesUpdateWithoutHsusers_rolesInput, hsrolesUncheckedUpdateWithoutHsusers_rolesInput>
+  }
+
+  export type hsrolesUpdateWithoutHsusers_rolesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hspermissions_roles?: hspermissions_rolesUpdateManyWithoutHsrolesNestedInput
+  }
+
+  export type hsrolesUncheckedUpdateWithoutHsusers_rolesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hspermissions_roles?: hspermissions_rolesUncheckedUpdateManyWithoutHsrolesNestedInput
   }
 
   export type hsvaliditiesCreateWithoutHsbranchesInput = {
@@ -15155,16 +21665,16 @@ export namespace Prisma {
     password: string
     created_at?: Date | string
     modified_at?: Date | string
-    hsaccess_level: hsaccess_levelsCreateNestedOneWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
   }
 
   export type hsemployeesUncheckedCreateWithoutBranchInput = {
     id?: number
-    access_level: number
     winthor_id?: number
     name: string
     username: string
@@ -15175,6 +21685,8 @@ export namespace Prisma {
     confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
   }
 
   export type hsemployeesCreateOrConnectWithoutBranchInput = {
@@ -15203,19 +21715,6 @@ export namespace Prisma {
     data: XOR<hsvaliditiesUpdateManyMutationInput, hsvaliditiesUncheckedUpdateManyWithoutHsbranchesInput>
   }
 
-  export type hsvaliditiesScalarWhereInput = {
-    AND?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
-    OR?: hsvaliditiesScalarWhereInput[]
-    NOT?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
-    id?: IntFilter<"hsvalidities"> | number
-    branch_id?: IntFilter<"hsvalidities"> | number
-    employee_id?: IntFilter<"hsvalidities"> | number
-    status?: Enumhsvalidities_statusFilter<"hsvalidities"> | $Enums.hsvalidities_status
-    request_id?: IntNullableFilter<"hsvalidities"> | number | null
-    created_at?: DateTimeFilter<"hsvalidities"> | Date | string
-    modified_at?: DateTimeFilter<"hsvalidities"> | Date | string
-  }
-
   export type hsvalidity_requestsUpsertWithWhereUniqueWithoutHsbranchesInput = {
     where: hsvalidity_requestsWhereUniqueInput
     update: XOR<hsvalidity_requestsUpdateWithoutHsbranchesInput, hsvalidity_requestsUncheckedUpdateWithoutHsbranchesInput>
@@ -15232,19 +21731,6 @@ export namespace Prisma {
     data: XOR<hsvalidity_requestsUpdateManyMutationInput, hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesInput>
   }
 
-  export type hsvalidity_requestsScalarWhereInput = {
-    AND?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
-    OR?: hsvalidity_requestsScalarWhereInput[]
-    NOT?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
-    id?: IntFilter<"hsvalidity_requests"> | number
-    branch_id?: IntFilter<"hsvalidity_requests"> | number
-    analyst_id?: IntFilter<"hsvalidity_requests"> | number
-    conferee_id?: IntFilter<"hsvalidity_requests"> | number
-    status?: Enumhsvalidity_requests_statusFilter<"hsvalidity_requests"> | $Enums.hsvalidity_requests_status
-    created_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
-    modified_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
-  }
-
   export type hsemployeesUpsertWithWhereUniqueWithoutBranchInput = {
     where: hsemployeesWhereUniqueInput
     update: XOR<hsemployeesUpdateWithoutBranchInput, hsemployeesUncheckedUpdateWithoutBranchInput>
@@ -15259,6 +21745,20 @@ export namespace Prisma {
   export type hsemployeesUpdateManyWithWhereWithoutBranchInput = {
     where: hsemployeesScalarWhereInput
     data: XOR<hsemployeesUpdateManyMutationInput, hsemployeesUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type hsemployeesScalarWhereInput = {
+    AND?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
+    OR?: hsemployeesScalarWhereInput[]
+    NOT?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
+    id?: IntFilter<"hsemployees"> | number
+    branch_id?: IntFilter<"hsemployees"> | number
+    winthor_id?: IntFilter<"hsemployees"> | number
+    name?: StringFilter<"hsemployees"> | string
+    username?: StringFilter<"hsemployees"> | string
+    password?: StringFilter<"hsemployees"> | string
+    created_at?: DateTimeFilter<"hsemployees"> | Date | string
+    modified_at?: DateTimeFilter<"hsemployees"> | Date | string
   }
 
   export type hsbranchesCreateWithoutHsvaliditiesInput = {
@@ -15287,16 +21787,16 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    hsaccess_level: hsaccess_levelsCreateNestedOneWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
   }
 
   export type hsemployeesUncheckedCreateWithoutHsvaliditiesInput = {
     id?: number
     branch_id: number
-    access_level: number
     winthor_id?: number
     name: string
     username: string
@@ -15306,6 +21806,8 @@ export namespace Prisma {
     analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
   }
 
   export type hsemployeesCreateOrConnectWithoutHsvaliditiesInput = {
@@ -15407,16 +21909,16 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    hsaccess_level?: hsaccess_levelsUpdateOneRequiredWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutHsvaliditiesInput = {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
-    access_level?: IntFieldUpdateOperationsInput | number
     winthor_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
@@ -15426,6 +21928,8 @@ export namespace Prisma {
     analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
   }
 
   export type hsvalidity_requestsUpsertWithoutHsvaliditiesInput = {
@@ -15636,16 +22140,16 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    hsaccess_level: hsaccess_levelsCreateNestedOneWithoutHsemployeesInput
     confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
   }
 
   export type hsemployeesUncheckedCreateWithoutAnalystRequestsInput = {
     id?: number
     branch_id: number
-    access_level: number
     winthor_id?: number
     name: string
     username: string
@@ -15655,6 +22159,8 @@ export namespace Prisma {
     confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
   }
 
   export type hsemployeesCreateOrConnectWithoutAnalystRequestsInput = {
@@ -15670,16 +22176,16 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    hsaccess_level: hsaccess_levelsCreateNestedOneWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
   }
 
   export type hsemployeesUncheckedCreateWithoutConfereeRequestsInput = {
     id?: number
     branch_id: number
-    access_level: number
     winthor_id?: number
     name: string
     username: string
@@ -15689,6 +22195,8 @@ export namespace Prisma {
     analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
   }
 
   export type hsemployeesCreateOrConnectWithoutConfereeRequestsInput = {
@@ -15776,16 +22284,16 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    hsaccess_level?: hsaccess_levelsUpdateOneRequiredWithoutHsemployeesNestedInput
     confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutAnalystRequestsInput = {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
-    access_level?: IntFieldUpdateOperationsInput | number
     winthor_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
@@ -15795,6 +22303,8 @@ export namespace Prisma {
     confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
   }
 
   export type hsemployeesUpsertWithoutConfereeRequestsInput = {
@@ -15816,16 +22326,16 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    hsaccess_level?: hsaccess_levelsUpdateOneRequiredWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutConfereeRequestsInput = {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
-    access_level?: IntFieldUpdateOperationsInput | number
     winthor_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
@@ -15835,6 +22345,8 @@ export namespace Prisma {
     analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
   }
 
   export type hsbranchesUpsertWithoutHsvalidity_requestsInput = {
@@ -15960,272 +22472,6 @@ export namespace Prisma {
     data: XOR<hsvalidity_productsUpdateManyMutationInput, hsvalidity_productsUncheckedUpdateManyWithoutHsvalidity_treatmentsInput>
   }
 
-  export type hsbranchesCreateWithoutHsemployeesInput = {
-    description: string
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsbranchesInput
-    hsvalidity_requests?: hsvalidity_requestsCreateNestedManyWithoutHsbranchesInput
-  }
-
-  export type hsbranchesUncheckedCreateWithoutHsemployeesInput = {
-    id?: number
-    description: string
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsbranchesInput
-    hsvalidity_requests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutHsbranchesInput
-  }
-
-  export type hsbranchesCreateOrConnectWithoutHsemployeesInput = {
-    where: hsbranchesWhereUniqueInput
-    create: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
-  }
-
-  export type hsaccess_levelsCreateWithoutHsemployeesInput = {
-    description: string
-  }
-
-  export type hsaccess_levelsUncheckedCreateWithoutHsemployeesInput = {
-    id?: number
-    description: string
-  }
-
-  export type hsaccess_levelsCreateOrConnectWithoutHsemployeesInput = {
-    where: hsaccess_levelsWhereUniqueInput
-    create: XOR<hsaccess_levelsCreateWithoutHsemployeesInput, hsaccess_levelsUncheckedCreateWithoutHsemployeesInput>
-  }
-
-  export type hsvalidity_requestsCreateWithoutAnalystInput = {
-    status?: $Enums.hsvalidity_requests_status
-    created_at?: Date | string
-    modified_at?: Date | string
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsvalidity_requestsInput
-    hsvalidity_request_products?: hsvalidity_request_productsCreateNestedManyWithoutHsvalidity_requestsInput
-    conferee: hsemployeesCreateNestedOneWithoutConfereeRequestsInput
-    hsbranches: hsbranchesCreateNestedOneWithoutHsvalidity_requestsInput
-  }
-
-  export type hsvalidity_requestsUncheckedCreateWithoutAnalystInput = {
-    id?: number
-    branch_id: number
-    conferee_id: number
-    status?: $Enums.hsvalidity_requests_status
-    created_at?: Date | string
-    modified_at?: Date | string
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
-    hsvalidity_request_products?: hsvalidity_request_productsUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
-  }
-
-  export type hsvalidity_requestsCreateOrConnectWithoutAnalystInput = {
-    where: hsvalidity_requestsWhereUniqueInput
-    create: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput>
-  }
-
-  export type hsvalidity_requestsCreateManyAnalystInputEnvelope = {
-    data: hsvalidity_requestsCreateManyAnalystInput | hsvalidity_requestsCreateManyAnalystInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type hsvalidity_requestsCreateWithoutConfereeInput = {
-    status?: $Enums.hsvalidity_requests_status
-    created_at?: Date | string
-    modified_at?: Date | string
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsvalidity_requestsInput
-    hsvalidity_request_products?: hsvalidity_request_productsCreateNestedManyWithoutHsvalidity_requestsInput
-    analyst: hsemployeesCreateNestedOneWithoutAnalystRequestsInput
-    hsbranches: hsbranchesCreateNestedOneWithoutHsvalidity_requestsInput
-  }
-
-  export type hsvalidity_requestsUncheckedCreateWithoutConfereeInput = {
-    id?: number
-    branch_id: number
-    analyst_id: number
-    status?: $Enums.hsvalidity_requests_status
-    created_at?: Date | string
-    modified_at?: Date | string
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
-    hsvalidity_request_products?: hsvalidity_request_productsUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
-  }
-
-  export type hsvalidity_requestsCreateOrConnectWithoutConfereeInput = {
-    where: hsvalidity_requestsWhereUniqueInput
-    create: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput>
-  }
-
-  export type hsvalidity_requestsCreateManyConfereeInputEnvelope = {
-    data: hsvalidity_requestsCreateManyConfereeInput | hsvalidity_requestsCreateManyConfereeInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type hssessionsCreateWithoutUserInput = {
-    id?: string
-    token: string
-    created_at?: Date | string
-    expires_at?: Date | string | null
-  }
-
-  export type hssessionsUncheckedCreateWithoutUserInput = {
-    id?: string
-    token: string
-    created_at?: Date | string
-    expires_at?: Date | string | null
-  }
-
-  export type hssessionsCreateOrConnectWithoutUserInput = {
-    where: hssessionsWhereUniqueInput
-    create: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput>
-  }
-
-  export type hssessionsCreateManyUserInputEnvelope = {
-    data: hssessionsCreateManyUserInput | hssessionsCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type hsvaliditiesCreateWithoutHsemployeesInput = {
-    status?: $Enums.hsvalidities_status
-    created_at?: Date | string
-    modified_at?: Date | string
-    hsbranches: hsbranchesCreateNestedOneWithoutHsvaliditiesInput
-    hsvalidity_requests?: hsvalidity_requestsCreateNestedOneWithoutHsvaliditiesInput
-    hsvalidity_products?: hsvalidity_productsCreateNestedManyWithoutHsvaliditiesInput
-  }
-
-  export type hsvaliditiesUncheckedCreateWithoutHsemployeesInput = {
-    id?: number
-    branch_id: number
-    status?: $Enums.hsvalidities_status
-    request_id?: number | null
-    created_at?: Date | string
-    modified_at?: Date | string
-    hsvalidity_products?: hsvalidity_productsUncheckedCreateNestedManyWithoutHsvaliditiesInput
-  }
-
-  export type hsvaliditiesCreateOrConnectWithoutHsemployeesInput = {
-    where: hsvaliditiesWhereUniqueInput
-    create: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput>
-  }
-
-  export type hsvaliditiesCreateManyHsemployeesInputEnvelope = {
-    data: hsvaliditiesCreateManyHsemployeesInput | hsvaliditiesCreateManyHsemployeesInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type hsbranchesUpsertWithoutHsemployeesInput = {
-    update: XOR<hsbranchesUpdateWithoutHsemployeesInput, hsbranchesUncheckedUpdateWithoutHsemployeesInput>
-    create: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
-    where?: hsbranchesWhereInput
-  }
-
-  export type hsbranchesUpdateToOneWithWhereWithoutHsemployeesInput = {
-    where?: hsbranchesWhereInput
-    data: XOR<hsbranchesUpdateWithoutHsemployeesInput, hsbranchesUncheckedUpdateWithoutHsemployeesInput>
-  }
-
-  export type hsbranchesUpdateWithoutHsemployeesInput = {
-    description?: StringFieldUpdateOperationsInput | string
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsbranchesNestedInput
-    hsvalidity_requests?: hsvalidity_requestsUpdateManyWithoutHsbranchesNestedInput
-  }
-
-  export type hsbranchesUncheckedUpdateWithoutHsemployeesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    description?: StringFieldUpdateOperationsInput | string
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsbranchesNestedInput
-    hsvalidity_requests?: hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesNestedInput
-  }
-
-  export type hsaccess_levelsUpsertWithoutHsemployeesInput = {
-    update: XOR<hsaccess_levelsUpdateWithoutHsemployeesInput, hsaccess_levelsUncheckedUpdateWithoutHsemployeesInput>
-    create: XOR<hsaccess_levelsCreateWithoutHsemployeesInput, hsaccess_levelsUncheckedCreateWithoutHsemployeesInput>
-    where?: hsaccess_levelsWhereInput
-  }
-
-  export type hsaccess_levelsUpdateToOneWithWhereWithoutHsemployeesInput = {
-    where?: hsaccess_levelsWhereInput
-    data: XOR<hsaccess_levelsUpdateWithoutHsemployeesInput, hsaccess_levelsUncheckedUpdateWithoutHsemployeesInput>
-  }
-
-  export type hsaccess_levelsUpdateWithoutHsemployeesInput = {
-    description?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type hsaccess_levelsUncheckedUpdateWithoutHsemployeesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    description?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput = {
-    where: hsvalidity_requestsWhereUniqueInput
-    update: XOR<hsvalidity_requestsUpdateWithoutAnalystInput, hsvalidity_requestsUncheckedUpdateWithoutAnalystInput>
-    create: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput>
-  }
-
-  export type hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput = {
-    where: hsvalidity_requestsWhereUniqueInput
-    data: XOR<hsvalidity_requestsUpdateWithoutAnalystInput, hsvalidity_requestsUncheckedUpdateWithoutAnalystInput>
-  }
-
-  export type hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput = {
-    where: hsvalidity_requestsScalarWhereInput
-    data: XOR<hsvalidity_requestsUpdateManyMutationInput, hsvalidity_requestsUncheckedUpdateManyWithoutAnalystInput>
-  }
-
-  export type hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput = {
-    where: hsvalidity_requestsWhereUniqueInput
-    update: XOR<hsvalidity_requestsUpdateWithoutConfereeInput, hsvalidity_requestsUncheckedUpdateWithoutConfereeInput>
-    create: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput>
-  }
-
-  export type hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput = {
-    where: hsvalidity_requestsWhereUniqueInput
-    data: XOR<hsvalidity_requestsUpdateWithoutConfereeInput, hsvalidity_requestsUncheckedUpdateWithoutConfereeInput>
-  }
-
-  export type hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput = {
-    where: hsvalidity_requestsScalarWhereInput
-    data: XOR<hsvalidity_requestsUpdateManyMutationInput, hsvalidity_requestsUncheckedUpdateManyWithoutConfereeInput>
-  }
-
-  export type hssessionsUpsertWithWhereUniqueWithoutUserInput = {
-    where: hssessionsWhereUniqueInput
-    update: XOR<hssessionsUpdateWithoutUserInput, hssessionsUncheckedUpdateWithoutUserInput>
-    create: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput>
-  }
-
-  export type hssessionsUpdateWithWhereUniqueWithoutUserInput = {
-    where: hssessionsWhereUniqueInput
-    data: XOR<hssessionsUpdateWithoutUserInput, hssessionsUncheckedUpdateWithoutUserInput>
-  }
-
-  export type hssessionsUpdateManyWithWhereWithoutUserInput = {
-    where: hssessionsScalarWhereInput
-    data: XOR<hssessionsUpdateManyMutationInput, hssessionsUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type hssessionsScalarWhereInput = {
-    AND?: hssessionsScalarWhereInput | hssessionsScalarWhereInput[]
-    OR?: hssessionsScalarWhereInput[]
-    NOT?: hssessionsScalarWhereInput | hssessionsScalarWhereInput[]
-    id?: UuidFilter<"hssessions"> | string
-    user_id?: IntFilter<"hssessions"> | number
-    token?: StringFilter<"hssessions"> | string
-    created_at?: DateTimeFilter<"hssessions"> | Date | string
-    expires_at?: DateTimeNullableFilter<"hssessions"> | Date | string | null
-  }
-
-  export type hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput = {
-    where: hsvaliditiesWhereUniqueInput
-    update: XOR<hsvaliditiesUpdateWithoutHsemployeesInput, hsvaliditiesUncheckedUpdateWithoutHsemployeesInput>
-    create: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput>
-  }
-
-  export type hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput = {
-    where: hsvaliditiesWhereUniqueInput
-    data: XOR<hsvaliditiesUpdateWithoutHsemployeesInput, hsvaliditiesUncheckedUpdateWithoutHsemployeesInput>
-  }
-
-  export type hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput = {
-    where: hsvaliditiesScalarWhereInput
-    data: XOR<hsvaliditiesUpdateManyMutationInput, hsvaliditiesUncheckedUpdateManyWithoutHsemployeesInput>
-  }
-
   export type hsemployeesCreateWithoutSessionsInput = {
     winthor_id?: number
     name: string
@@ -16234,16 +22480,16 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    hsaccess_level: hsaccess_levelsCreateNestedOneWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
   }
 
   export type hsemployeesUncheckedCreateWithoutSessionsInput = {
     id?: number
     branch_id: number
-    access_level: number
     winthor_id?: number
     name: string
     username: string
@@ -16253,6 +22499,8 @@ export namespace Prisma {
     analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
   }
 
   export type hsemployeesCreateOrConnectWithoutSessionsInput = {
@@ -16279,16 +22527,16 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    hsaccess_level?: hsaccess_levelsUpdateOneRequiredWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutSessionsInput = {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
-    access_level?: IntFieldUpdateOperationsInput | number
     winthor_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
@@ -16298,57 +22546,247 @@ export namespace Prisma {
     analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
   }
 
-  export type hsemployeesCreateManyHsaccess_levelInput = {
+  export type hsvalidity_requestsCreateManyAnalystInput = {
     id?: number
     branch_id: number
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
+    conferee_id: number
+    status?: $Enums.hsvalidity_requests_status
     created_at?: Date | string
     modified_at?: Date | string
   }
 
-  export type hsemployeesUpdateWithoutHsaccess_levelInput = {
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
-    sessions?: hssessionsUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+  export type hsvalidity_requestsCreateManyConfereeInput = {
+    id?: number
+    branch_id: number
+    analyst_id: number
+    status?: $Enums.hsvalidity_requests_status
+    created_at?: Date | string
+    modified_at?: Date | string
   }
 
-  export type hsemployeesUncheckedUpdateWithoutHsaccess_levelInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
-    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+  export type hssessionsCreateManyUserInput = {
+    id?: string
+    token: string
+    created_at?: Date | string
+    expires_at?: Date | string | null
   }
 
-  export type hsemployeesUncheckedUpdateManyWithoutHsaccess_levelInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+  export type hsvaliditiesCreateManyHsemployeesInput = {
+    id?: number
+    branch_id: number
+    status?: $Enums.hsvalidities_status
+    request_id?: number | null
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsusers_permissionsCreateManyHsemployeesInput = {
+    permission_id: number
+  }
+
+  export type hsusers_rolesCreateManyHeemployeesInput = {
+    role_id: number
+  }
+
+  export type hsvalidity_requestsUpdateWithoutAnalystInput = {
+    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput
+    hsvalidity_request_products?: hsvalidity_request_productsUpdateManyWithoutHsvalidity_requestsNestedInput
+    conferee?: hsemployeesUpdateOneRequiredWithoutConfereeRequestsNestedInput
+    hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvalidity_requestsNestedInput
+  }
+
+  export type hsvalidity_requestsUncheckedUpdateWithoutAnalystInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    conferee_id?: IntFieldUpdateOperationsInput | number
+    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
+    hsvalidity_request_products?: hsvalidity_request_productsUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
+  }
+
+  export type hsvalidity_requestsUncheckedUpdateManyWithoutAnalystInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    conferee_id?: IntFieldUpdateOperationsInput | number
+    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsvalidity_requestsUpdateWithoutConfereeInput = {
+    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput
+    hsvalidity_request_products?: hsvalidity_request_productsUpdateManyWithoutHsvalidity_requestsNestedInput
+    analyst?: hsemployeesUpdateOneRequiredWithoutAnalystRequestsNestedInput
+    hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvalidity_requestsNestedInput
+  }
+
+  export type hsvalidity_requestsUncheckedUpdateWithoutConfereeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    analyst_id?: IntFieldUpdateOperationsInput | number
+    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
+    hsvalidity_request_products?: hsvalidity_request_productsUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
+  }
+
+  export type hsvalidity_requestsUncheckedUpdateManyWithoutConfereeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    analyst_id?: IntFieldUpdateOperationsInput | number
+    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hssessionsUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type hssessionsUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type hssessionsUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type hsvaliditiesUpdateWithoutHsemployeesInput = {
+    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvaliditiesNestedInput
+    hsvalidity_requests?: hsvalidity_requestsUpdateOneWithoutHsvaliditiesNestedInput
+    hsvalidity_products?: hsvalidity_productsUpdateManyWithoutHsvaliditiesNestedInput
+  }
+
+  export type hsvaliditiesUncheckedUpdateWithoutHsemployeesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    request_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsvalidity_products?: hsvalidity_productsUncheckedUpdateManyWithoutHsvaliditiesNestedInput
+  }
+
+  export type hsvaliditiesUncheckedUpdateManyWithoutHsemployeesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    request_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsusers_permissionsUpdateWithoutHsemployeesInput = {
+    hspermissions?: hspermissionsUpdateOneRequiredWithoutHsusers_permissionsNestedInput
+  }
+
+  export type hsusers_permissionsUncheckedUpdateWithoutHsemployeesInput = {
+    permission_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesInput = {
+    permission_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_rolesUpdateWithoutHeemployeesInput = {
+    hsroles?: hsrolesUpdateOneRequiredWithoutHsusers_rolesNestedInput
+  }
+
+  export type hsusers_rolesUncheckedUpdateWithoutHeemployeesInput = {
+    role_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_rolesUncheckedUpdateManyWithoutHeemployeesInput = {
+    role_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hspermissions_rolesCreateManyHsrolesInput = {
+    permission_id: number
+  }
+
+  export type hsusers_rolesCreateManyHsrolesInput = {
+    user_id: number
+  }
+
+  export type hspermissions_rolesUpdateWithoutHsrolesInput = {
+    hspermissions?: hspermissionsUpdateOneRequiredWithoutHspermissions_rolesNestedInput
+  }
+
+  export type hspermissions_rolesUncheckedUpdateWithoutHsrolesInput = {
+    permission_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hspermissions_rolesUncheckedUpdateManyWithoutHsrolesInput = {
+    permission_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_rolesUpdateWithoutHsrolesInput = {
+    heemployees?: hsemployeesUpdateOneRequiredWithoutHsusers_rolesNestedInput
+  }
+
+  export type hsusers_rolesUncheckedUpdateWithoutHsrolesInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_rolesUncheckedUpdateManyWithoutHsrolesInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_permissionsCreateManyHspermissionsInput = {
+    user_id: number
+  }
+
+  export type hspermissions_rolesCreateManyHspermissionsInput = {
+    role_id: number
+  }
+
+  export type hsusers_permissionsUpdateWithoutHspermissionsInput = {
+    hsemployees?: hsemployeesUpdateOneRequiredWithoutHsusers_permissionsNestedInput
+  }
+
+  export type hsusers_permissionsUncheckedUpdateWithoutHspermissionsInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_permissionsUncheckedUpdateManyWithoutHspermissionsInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hspermissions_rolesUpdateWithoutHspermissionsInput = {
+    hsroles?: hsrolesUpdateOneRequiredWithoutHspermissions_rolesNestedInput
+  }
+
+  export type hspermissions_rolesUncheckedUpdateWithoutHspermissionsInput = {
+    role_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hspermissions_rolesUncheckedUpdateManyWithoutHspermissionsInput = {
+    role_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type hsvaliditiesCreateManyHsbranchesInput = {
@@ -16371,7 +22809,6 @@ export namespace Prisma {
 
   export type hsemployeesCreateManyBranchInput = {
     id?: number
-    access_level: number
     winthor_id?: number
     name: string
     username: string
@@ -16445,16 +22882,16 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsaccess_level?: hsaccess_levelsUpdateOneRequiredWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutBranchInput = {
     id?: IntFieldUpdateOperationsInput | number
-    access_level?: IntFieldUpdateOperationsInput | number
     winthor_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
@@ -16465,11 +22902,12 @@ export namespace Prisma {
     confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateManyWithoutBranchInput = {
     id?: IntFieldUpdateOperationsInput | number
-    access_level?: IntFieldUpdateOperationsInput | number
     winthor_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
@@ -16602,149 +23040,6 @@ export namespace Prisma {
     product_cod?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type hsvalidity_requestsCreateManyAnalystInput = {
-    id?: number
-    branch_id: number
-    conferee_id: number
-    status?: $Enums.hsvalidity_requests_status
-    created_at?: Date | string
-    modified_at?: Date | string
-  }
-
-  export type hsvalidity_requestsCreateManyConfereeInput = {
-    id?: number
-    branch_id: number
-    analyst_id: number
-    status?: $Enums.hsvalidity_requests_status
-    created_at?: Date | string
-    modified_at?: Date | string
-  }
-
-  export type hssessionsCreateManyUserInput = {
-    id?: string
-    token: string
-    created_at?: Date | string
-    expires_at?: Date | string | null
-  }
-
-  export type hsvaliditiesCreateManyHsemployeesInput = {
-    id?: number
-    branch_id: number
-    status?: $Enums.hsvalidities_status
-    request_id?: number | null
-    created_at?: Date | string
-    modified_at?: Date | string
-  }
-
-  export type hsvalidity_requestsUpdateWithoutAnalystInput = {
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput
-    hsvalidity_request_products?: hsvalidity_request_productsUpdateManyWithoutHsvalidity_requestsNestedInput
-    conferee?: hsemployeesUpdateOneRequiredWithoutConfereeRequestsNestedInput
-    hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvalidity_requestsNestedInput
-  }
-
-  export type hsvalidity_requestsUncheckedUpdateWithoutAnalystInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    conferee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
-    hsvalidity_request_products?: hsvalidity_request_productsUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
-  }
-
-  export type hsvalidity_requestsUncheckedUpdateManyWithoutAnalystInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    conferee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type hsvalidity_requestsUpdateWithoutConfereeInput = {
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput
-    hsvalidity_request_products?: hsvalidity_request_productsUpdateManyWithoutHsvalidity_requestsNestedInput
-    analyst?: hsemployeesUpdateOneRequiredWithoutAnalystRequestsNestedInput
-    hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvalidity_requestsNestedInput
-  }
-
-  export type hsvalidity_requestsUncheckedUpdateWithoutConfereeInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    analyst_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
-    hsvalidity_request_products?: hsvalidity_request_productsUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
-  }
-
-  export type hsvalidity_requestsUncheckedUpdateManyWithoutConfereeInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    analyst_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type hssessionsUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    token?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type hssessionsUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    token?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type hssessionsUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    token?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type hsvaliditiesUpdateWithoutHsemployeesInput = {
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvaliditiesNestedInput
-    hsvalidity_requests?: hsvalidity_requestsUpdateOneWithoutHsvaliditiesNestedInput
-    hsvalidity_products?: hsvalidity_productsUpdateManyWithoutHsvaliditiesNestedInput
-  }
-
-  export type hsvaliditiesUncheckedUpdateWithoutHsemployeesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
-    request_id?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsvalidity_products?: hsvalidity_productsUncheckedUpdateManyWithoutHsvaliditiesNestedInput
-  }
-
-  export type hsvaliditiesUncheckedUpdateManyWithoutHsemployeesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
-    request_id?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

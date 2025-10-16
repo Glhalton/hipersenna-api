@@ -120,9 +120,46 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.Hsaccess_levelsScalarFieldEnum = {
+exports.Prisma.HsemployeesScalarFieldEnum = {
   id: 'id',
-  description: 'description'
+  branch_id: 'branch_id',
+  winthor_id: 'winthor_id',
+  name: 'name',
+  username: 'username',
+  password: 'password',
+  created_at: 'created_at',
+  modified_at: 'modified_at'
+};
+
+exports.Prisma.HsrolesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  created_at: 'created_at',
+  modified_at: 'modified_at'
+};
+
+exports.Prisma.HspermissionsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  created_at: 'created_at',
+  modified_at: 'modified_at'
+};
+
+exports.Prisma.Hspermissions_rolesScalarFieldEnum = {
+  role_id: 'role_id',
+  permission_id: 'permission_id'
+};
+
+exports.Prisma.Hsusers_permissionsScalarFieldEnum = {
+  user_id: 'user_id',
+  permission_id: 'permission_id'
+};
+
+exports.Prisma.Hsusers_rolesScalarFieldEnum = {
+  user_id: 'user_id',
+  role_id: 'role_id'
 };
 
 exports.Prisma.HsbranchesScalarFieldEnum = {
@@ -172,18 +209,6 @@ exports.Prisma.Hsvalidity_treatmentsScalarFieldEnum = {
   description: 'description'
 };
 
-exports.Prisma.HsemployeesScalarFieldEnum = {
-  id: 'id',
-  branch_id: 'branch_id',
-  access_level: 'access_level',
-  winthor_id: 'winthor_id',
-  name: 'name',
-  username: 'username',
-  password: 'password',
-  created_at: 'created_at',
-  modified_at: 'modified_at'
-};
-
 exports.Prisma.HssessionsScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
@@ -226,14 +251,18 @@ exports.hsvalidity_request_products_status = exports.$Enums.hsvalidity_request_p
 };
 
 exports.Prisma.ModelName = {
-  hsaccess_levels: 'hsaccess_levels',
+  hsemployees: 'hsemployees',
+  hsroles: 'hsroles',
+  hspermissions: 'hspermissions',
+  hspermissions_roles: 'hspermissions_roles',
+  hsusers_permissions: 'hsusers_permissions',
+  hsusers_roles: 'hsusers_roles',
   hsbranches: 'hsbranches',
   hsvalidities: 'hsvalidities',
   hsvalidity_products: 'hsvalidity_products',
   hsvalidity_requests: 'hsvalidity_requests',
   hsvalidity_request_products: 'hsvalidity_request_products',
   hsvalidity_treatments: 'hsvalidity_treatments',
-  hsemployees: 'hsemployees',
   hssessions: 'hssessions'
 };
 
