@@ -8,6 +8,7 @@ import {
   signUpService,
   updateUser,
 } from "./service";
+import { authorizePermissions } from "../../middlewares/authorizePermissions";
 
 export default async function usersRoutes(app: FastifyInstance) {
   app.get("/me", async (request, reply) => {
@@ -20,100 +21,114 @@ export default async function usersRoutes(app: FastifyInstance) {
     }
   });
 
-  app.post("/signup", async (request, reply) => {
-    try {
-      const parsedData = signUpBodySchema.parse(request.body);
-      const user = await findUser(parsedData.winthor_id, parsedData.username);
+  app.get(
+    "/id/:id",
+    { preHandler: authorizePermissions(1) },
+    async (request, reply) => {
+      try {
+        const { id } = userSchema.parse(request.params);
+        const user = await getUser(id);
+        if (!user) {
+          throw new Error("Usuário não encontrado!");
+        }
 
-      if (user) {
-        return reply.status(409).send({
-          message: "Username ou código do winthor já cadastrados no sistema",
-        });
+        return reply.status(200).send({ user });
+      } catch (error: any) {
+        return reply.status(400).send({ message: ` ${error.message}` });
       }
-
-      const userCreated = await signUpService(parsedData);
-
-      return reply
-        .status(201)
-        .send({ message: "Usuário criado com sucesso!", userCreated });
-    } catch (error: any) {
-      return reply
-        .status(500)
-        .send({ message: `Erro no servidor: ${error.message}` });
     }
-  });
+  );
 
-  app.post("/signout", async (request, reply) => {
-    try {
-      const token = request.headers.authorization?.replace("Bearer ", "");
+  app.post(
+    "/",
+    { preHandler: authorizePermissions(2) },
+    async (request, reply) => {
+      try {
+        const parsedData = signUpBodySchema.parse(request.body);
+        const user = await findUser(parsedData.winthor_id, parsedData.username);
 
-      if (!token) {
-        return reply.status(401).send({ message: "Token não fornecido" });
-      }
+        if (user) {
+          return reply.status(409).send({
+            message: "Username ou código do winthor já cadastrados no sistema",
+          });
+        }
 
-      const deletedSession = await deleteSession(token);
+        const userCreated = await signUpService(parsedData);
 
-      if (!deletedSession) {
         return reply
-          .status(404)
-          .send({ message: "Sessão não encontrada ou já expirada" });
+          .status(201)
+          .send({ message: "Usuário criado com sucesso!", userCreated });
+      } catch (error: any) {
+        return reply.status(400).send({ message: `${error.message}` });
       }
-
-      return reply
-        .status(200)
-        .send({ message: "Logout realizado com sucesso" });
-    } catch (error: any) {
-      return reply
-        .status(500)
-        .send({ message: `Erro no servidor: ${error.message}` });
     }
-  });
+  );
 
-  app.get("/id/:id", async (request, reply) => {
-    try {
-      const { id } = userSchema.parse(request.params);
+  // app.post("/signout", async (request, reply) => {
+  //   try {
+  //     const token = request.headers.authorization?.replace("Bearer ", "");
 
-      const user = await getUser(id);
+  //     if (!token) {
+  //       return reply.status(401).send({ message: "Token não fornecido" });
+  //     }
 
-      if (!user) {
-        return reply.status(404).send({ message: "Usuário não encontrado!" });
+  //     const deletedSession = await deleteSession(token);
+
+  //     if (!deletedSession) {
+  //       return reply
+  //         .status(404)
+  //         .send({ message: "Sessão não encontrada ou já expirada" });
+  //     }
+
+  //     return reply
+  //       .status(200)
+  //       .send({ message: "Logout realizado com sucesso" });
+  //   } catch (error: any) {
+  //     return reply
+  //       .status(500)
+  //       .send({ message: `Erro no servidor: ${error.message}` });
+  //   }
+  // });
+
+  app.delete(
+    "/id/:id",
+    { preHandler: authorizePermissions(3) },
+    async (request, reply) => {
+      try {
+        const { id } = userSchema.parse(request.params);
+
+        const user = await getUser(id);
+        if (!user) {
+          throw new Error("Usuário não encontrado!");
+        }
+
+        const userDeleted = await deleteUser(id);
+        return reply.status(200).send({ userDeleted });
+      } catch (error: any) {
+        return reply.status(400).send({ message: `${error.message}` });
       }
-
-      return reply.status(200).send({ user });
-    } catch (error: any) {
-      return reply
-        .status(500)
-        .send({ message: `Erro no servidor: ${error.message}` });
     }
-  });
+  );
 
-  app.delete("/id/:id", async (request, reply) => {
-    try {
-      const { id } = userSchema.parse(request.params);
+  app.patch(
+    "/id/:id",
+    { preHandler: authorizePermissions(4) },
+    async (request, reply) => {
+      try {
+        const { id } = userSchema.parse(request.params);
 
-      const userDeleted = await deleteUser(id);
+        const user = await getUser(id);
+        if (!user) {
+          throw new Error("Usuário não encontrado!");
+        }
 
-      return reply.status(200).send({ userDeleted });
-    } catch (error: any) {
-      return reply
-        .status(500)
-        .send({ message: `Erro no servidor: ${error.message}` });
+        const userData = updateUserBodySchema.parse(request.body);
+        
+        const userUpdated = await updateUser(id, userData);
+        return reply.status(200).send({ userUpdated });
+      } catch (error: any) {
+        return reply.status(400).send({ message: ` ${error.message}` });
+      }
     }
-  });
-
-  app.patch("/id/:id", async (request, reply) => {
-    try {
-      const { id } = userSchema.parse(request.params);
-
-      const user = updateUserBodySchema.parse(request.body);
-
-      const userUpdated = await updateUser(id, user);
-
-      return reply.status(200).send({ userUpdated });
-    } catch (error: any) {
-      return reply
-        .status(500)
-        .send({ message: `Erro no servidor: ${error.message}` });
-    }
-  });
+  );
 }

@@ -5,7 +5,7 @@ import validitiesRoutes from "./modules/validities/routes";
 import userAuthRoutes from "./modules/auth/routes";
 import bonusRoutes from "./modules/bonus/routes";
 import productsRoutes from "./modules/products/routes";
-import { validityRequestsRoutes } from "./modules/validityRequests/routes";
+import validityRequestsRoutes from "./modules/validityRequests/routes";
 import usersRoutes from "./modules/users/routes.js";
 import rolesRoutes from "./modules/roles/routes.js";
 import permissionsRoutes from "./modules/permissions/routes.js";
@@ -49,14 +49,13 @@ async function authenticate(request: FastifyRequest, reply: FastifyReply) {
     }
 
     request.user = decodedJwt as FastifyRequest["user"];
-  } catch (err) {
-    reply.status(401).send({ message: "Autenticação falhou" });
+  } catch (err: any) {
+    reply.status(401).send({ message: `Autenticação falhou: ${err.message}` });
   }
 }
 
 export default async function (app: FastifyInstance) {
   app.register(userAuthRoutes, { prefix: "/auth" });
-  //app.register(usersRoutes, {prefix: "/users"});
 
   app.register(async (protectedRoutes) => {
     protectedRoutes.addHook("preHandler", authenticate);

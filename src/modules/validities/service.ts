@@ -10,10 +10,10 @@ type ValidityInput = {
     userId: number;
 };
 
-export const getValidityById = async (validityId: number) => {
+export const getValidityById = async (id: number) => {
     return await prisma.hsvalidities.findUnique({
         where: {
-            id: validityId
+            id
         }
     })
 }

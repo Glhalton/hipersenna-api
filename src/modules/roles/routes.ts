@@ -8,6 +8,7 @@ import {
 } from "./service";
 import { roleParamSchema, roleSchema, roleUpdateSchema } from "./schema";
 
+
 export default async function rolesRoutes(app: FastifyInstance) {
   app.get("/", async (request, reply) => {
     try {
@@ -38,7 +39,7 @@ export default async function rolesRoutes(app: FastifyInstance) {
     }
   });
 
-  app.post("/", async (request, reply) => {
+  app.post("/", async (request, reply,) => {
     try {
       const { name, description } = roleSchema.parse(request.body);
 

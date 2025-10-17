@@ -16,7 +16,7 @@ export default async function permissionsRoutes(app: FastifyInstance) {
   app.get("/", async (request, reply) => {
     try {
       const permissions = await getPermissions();
-
+""
       if (permissions.length === 0) {
         throw new Error("Nenhum cargo encontrado");
       }
