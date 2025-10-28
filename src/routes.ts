@@ -1,15 +1,17 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { prisma } from "./lib/prisma.js";
 import jwt from "jsonwebtoken";
-import validitiesRoutes from "./modules/validities/routes";
-import userAuthRoutes from "./modules/auth/routes";
-import bonusRoutes from "./modules/bonus/routes";
-import productsRoutes from "./modules/products/routes";
-import validityRequestsRoutes from "./modules/validityRequests/routes";
-import usersRoutes from "./modules/users/routes.js";
-import rolesRoutes from "./modules/roles/routes.js";
-import permissionsRoutes from "./modules/permissions/routes.js";
-import userAccessControlRoutes from "./modules/userAccessControl/routes.js";
+import signinRoutes from "./routes/signin.routes.js";
+import usersRoutes from "./routes/users.routes.js";
+import productsRoutes from "./routes/products.routes.js";
+import validitiesRoutes from "./routes/validities.routes.js";
+import validityRequestsRoutes from "./routes/validityRequests.routes.js";
+import bonusRoutes from "./routes/bonus.routes.js";
+import permissionsRoutes from "./routes/permissions.routes.js";
+import rolesRoutes from "./routes/roles.routes.js";
+import userRolesRoutes from "./routes/userRoles.routes.js";
+import rolesPermissionsRoutes from "./routes/rolesPermissions.routes.js";
+import userPermissionsRoutes from "./routes/userPermissions.routes.js";
 
 declare module "fastify" {
   export interface FastifyRequest {
@@ -55,19 +57,21 @@ async function authenticate(request: FastifyRequest, reply: FastifyReply) {
 }
 
 export default async function (app: FastifyInstance) {
-  app.register(userAuthRoutes, { prefix: "/auth" });
+  app.register(signinRoutes, { prefix: "/signin" });
 
   app.register(async (protectedRoutes) => {
     protectedRoutes.addHook("preHandler", authenticate);
 
     protectedRoutes.register(usersRoutes, { prefix: "/users" });
     protectedRoutes.register(rolesRoutes, { prefix: "/roles" });
+    protectedRoutes.register(userRolesRoutes, { prefix: "/user-roles" });
+    protectedRoutes.register(rolesPermissionsRoutes, { prefix: "/role-permissions" });
+    protectedRoutes.register(userPermissionsRoutes, { prefix: "/user-permissions" });
     protectedRoutes.register(permissionsRoutes, { prefix: "/permissions" });
-    protectedRoutes.register(userAccessControlRoutes, { prefix: "/uac" });
     protectedRoutes.register(productsRoutes, { prefix: "/products" });
     protectedRoutes.register(validitiesRoutes, { prefix: "/validities" });
     protectedRoutes.register(validityRequestsRoutes, {
-      prefix: "/validityRequests",
+      prefix: "/validity-requests",
     });
     protectedRoutes.register(bonusRoutes, { prefix: "/bonus" });
   });
