@@ -183,7 +183,8 @@ exports.Prisma.Hsvalidity_productsScalarFieldEnum = {
   product_cod: 'product_cod',
   quantity: 'quantity',
   validity_date: 'validity_date',
-  treat_id: 'treat_id'
+  treat_id: 'treat_id',
+  auxiliary_code: 'auxiliary_code'
 };
 
 exports.Prisma.Hsvalidity_requestsScalarFieldEnum = {
@@ -201,7 +202,8 @@ exports.Prisma.Hsvalidity_request_productsScalarFieldEnum = {
   request_id: 'request_id',
   status: 'status',
   product_cod: 'product_cod',
-  validity_date: 'validity_date'
+  validity_date: 'validity_date',
+  auxiliary_code: 'auxiliary_code'
 };
 
 exports.Prisma.Hsvalidity_treatmentsScalarFieldEnum = {

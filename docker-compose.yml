@@ -1,16 +1,16 @@
 services:
-  db:
-    image: postgres:15
-    container_name: hs-dev-db
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: hsdev
-      POSTGRES_PASSWORD: hsdev123
-      POSTGRES_DB: hsdev-db
-    ports:
-      - "5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
+  # db:
+  #   image: postgres:15
+  #   container_name: hs-dev-db
+  #   restart: unless-stopped
+  #   environment:
+  #     POSTGRES_USER: hsdev
+  #     POSTGRES_PASSWORD: hsdev123
+  #     POSTGRES_DB: hsdev-db
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - db_data:/var/lib/postgresql/data
   api:
     build:
       context: .
@@ -21,7 +21,7 @@ services:
     command: sh -c "npx prisma migrate dev && npm run dev"
     env_file:
       - .env
-    depends_on:
-      - db
-volumes:
-  db_data:
+    # depends_on:
+    #   - db
+# volumes:
+#   db_data:

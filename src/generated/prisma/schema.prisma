@@ -18,23 +18,22 @@ model hsemployees {
   created_at          DateTime              @default(now()) @db.Timestamptz(6)
   modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
   branch              hsbranches            @relation(fields: [branch_id], references: [id])
-  analystRequests     hsvalidity_requests[] @relation("AnalystRelation")
-  confereeRequests    hsvalidity_requests[] @relation("ConfereeRelation")
   sessions            hssessions[]
-  hsvalidities        hsvalidities[]
   hsusers_permissions hsusers_permissions[]
   hsusers_roles       hsusers_roles[]
+  hsvalidities        hsvalidities[]
+  analystRequests     hsvalidity_requests[] @relation("AnalystRelation")
+  confereeRequests    hsvalidity_requests[] @relation("ConfereeRelation")
 
   @@map("hsemployees")
 }
 
 model hsroles {
-  id          Int      @id @default(autoincrement())
-  name        String   @unique @db.VarChar(50)
-  description String   @db.VarChar(150)
-  created_at  DateTime @default(now()) @db.Timestamptz(6)
-  modified_at DateTime @default(now()) @updatedAt @db.Timestamptz(6)
-
+  id                  Int                   @id @default(autoincrement())
+  name                String                @unique @db.VarChar(50)
+  description         String                @db.VarChar(150)
+  created_at          DateTime              @default(now()) @db.Timestamptz(6)
+  modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
   hspermissions_roles hspermissions_roles[]
   hsusers_roles       hsusers_roles[]
 }
@@ -45,15 +44,15 @@ model hspermissions {
   description         String                @db.VarChar(150)
   created_at          DateTime              @default(now()) @db.Timestamptz(6)
   modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
-  hsusers_permissions hsusers_permissions[]
   hspermissions_roles hspermissions_roles[]
+  hsusers_permissions hsusers_permissions[]
 }
 
 model hspermissions_roles {
   role_id       Int
   permission_id Int
-  hsroles       hsroles       @relation(fields: [role_id], references: [id])
   hspermissions hspermissions @relation(fields: [permission_id], references: [id])
+  hsroles       hsroles       @relation(fields: [role_id], references: [id])
 
   @@id([role_id, permission_id])
 }
@@ -61,8 +60,8 @@ model hspermissions_roles {
 model hsusers_permissions {
   user_id       Int
   permission_id Int
-  hsemployees   hsemployees   @relation(fields: [user_id], references: [id])
   hspermissions hspermissions @relation(fields: [permission_id], references: [id])
+  hsemployees   hsemployees   @relation(fields: [user_id], references: [id])
 
   @@id([user_id, permission_id])
 }
@@ -70,8 +69,8 @@ model hsusers_permissions {
 model hsusers_roles {
   user_id     Int
   role_id     Int
-  heemployees hsemployees @relation(fields: [user_id], references: [id])
   hsroles     hsroles     @relation(fields: [role_id], references: [id])
+  heemployees hsemployees @relation(fields: [user_id], references: [id])
 
   @@id([user_id, role_id])
 }
@@ -79,9 +78,9 @@ model hsusers_roles {
 model hsbranches {
   id                  Int                   @id @default(autoincrement())
   description         String                @db.VarChar(150)
+  hsemployees         hsemployees[]
   hsvalidities        hsvalidities[]
   hsvalidity_requests hsvalidity_requests[]
-  hsemployees         hsemployees[]
 }
 
 model hsvalidities {
@@ -105,6 +104,7 @@ model hsvalidity_products {
   quantity              Int
   validity_date         DateTime              @db.Date
   treat_id              Int                   @default(1)
+  auxiliary_code        String                @db.VarChar(150)
   hsvalidity_treatments hsvalidity_treatments @relation(fields: [treat_id], references: [id])
   hsvalidities          hsvalidities          @relation(fields: [validity_id], references: [id])
 }
@@ -120,8 +120,8 @@ model hsvalidity_requests {
   hsvalidities                hsvalidities[]
   hsvalidity_request_products hsvalidity_request_products[]
   analyst                     hsemployees                   @relation("AnalystRelation", fields: [analyst_id], references: [id])
-  conferee                    hsemployees                   @relation("ConfereeRelation", fields: [conferee_id], references: [id])
   hsbranches                  hsbranches                    @relation(fields: [branch_id], references: [id])
+  conferee                    hsemployees                   @relation("ConfereeRelation", fields: [conferee_id], references: [id])
 }
 
 model hsvalidity_request_products {
@@ -130,6 +130,7 @@ model hsvalidity_request_products {
   status              hsvalidity_request_products_status @default(Nao_vistoriado)
   product_cod         Int
   validity_date       DateTime                           @db.Date
+  auxiliary_code      String                             @db.VarChar(150)
   hsvalidity_requests hsvalidity_requests                @relation(fields: [request_id], references: [id])
 }
 

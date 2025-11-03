@@ -4,6 +4,16 @@ export const userIdSchema = z.object({
   id: z.coerce.number(),
 });
 
+export const getUserSchema = z.object({
+  id: z.coerce.number().optional(),
+  name: z.string().optional(),
+  username: z.string().optional(),
+  winthor_id: z.coerce.number().optional(),
+  branch_id: z.coerce.number().optional(),
+});
+
+export type GetUserInput = z.infer<typeof getUserSchema>
+
 export const createUserSchema = z.object({
   name: z.string().min(1),
   username: z.string().min(3),

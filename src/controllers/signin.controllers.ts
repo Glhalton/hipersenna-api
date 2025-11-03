@@ -1,9 +1,12 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { signInSchema } from "../schemas/signin.schemas";
 import { signInService } from "../services/signin.services";
-import { deleteSessionService, createSessionService } from "../services/signin.services";
-import jwt  from "jsonwebtoken";
-
+import {
+  deleteSessionService,
+  createSessionService,
+} from "../services/signin.services";
+import jwt from "jsonwebtoken";
+import { ZodError } from "zod";
 
 export async function signinController(
   request: FastifyRequest,
@@ -40,12 +43,21 @@ export async function signinController(
     const decoded: any = jwt.decode(token);
     const expires_at = new Date(decoded.exp * 1000);
     const deletedSessions = await deleteSessionService(user.id);
-    const createdSession = await createSessionService(user.id, token, expires_at);
+    const createdSession = await createSessionService(
+      user.id,
+      token,
+      expires_at
+    );
 
     return reply
       .status(200)
       .send({ message: "Usuário logado com sucesso!", token });
   } catch (error: any) {
-    return reply.status(400).send({ message: `${error.message}` });
+    if (error instanceof ZodError) {
+      const messages = error.issues.map((e) => e.message);
+      return reply.status(400).send({ message: messages[0] });
+    } else {
+      return reply.status(400).send({ message: error.message });
+    }
   }
 }

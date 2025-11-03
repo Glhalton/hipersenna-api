@@ -1,40 +1,24 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import {
   createValidityService,
-  getAllValidities,
   getValidityService,
   listValiditiesByEmployeeIdService,
 } from "../services/validities.services";
 import {
   createValiditySchema,
+  getValiditySchema,
   productSchema,
   validityIdSchema,
 } from "../schemas/validities.schemas";
 import z from "zod";
-
-export async function getAllValiditiesController(
-  request: FastifyRequest,
-  reply: FastifyReply
-) {
-  try {
-    const validities = await getAllValidities();
-    if (!validities || validities.length === 0) {
-      throw new Error("Nenhuma validade encontrada");
-    }
-    return reply.status(200).send(validities);
-  } catch (error: any) {
-    return reply.status(400).send({ message: `${error.message}` });
-  }
-}
 
 export async function getValidityController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try { 
-    const { id } = validityIdSchema.parse(request.params);
-    console.log(id)
-    const validity = await getValidityService(id);
+    const { id,branch_id, created_at, expiresDays, finalDate, initialDate, descricao  } = getValiditySchema.parse(request.query);
+    const validity = await getValidityService({id, branch_id, created_at, expiresDays, finalDate, initialDate, descricao})
     if (!validity) {
       throw new Error("Validade não encontrada");
     }

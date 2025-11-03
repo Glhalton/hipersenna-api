@@ -1,6 +1,7 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import {
   createUserSchema,
+  getUserSchema,
   updateUserSchema,
   userIdSchema,
 } from "../schemas/users.schemas";
@@ -9,35 +10,25 @@ import {
   deleteSessionService,
   deleteUserService,
   findUser,
-  getAllUsersService,
   getUserService,
   updateUserService,
 } from "../services/users.services";
-
-export async function getAllUsersController(
-  request: FastifyRequest,
-  reply: FastifyReply
-) {
-  try {
-    const users = await getAllUsersService();
-
-    if (!users) {
-      throw new Error("Nenhum usuário encontrado");
-    }
-
-    return reply.status(200).send({ users });
-  } catch (error: any) {
-    return reply.status(400).send({ message: `${error.message}` });
-  }
-}
 
 export async function getUserController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
-    const { id } = userIdSchema.parse(request.params);
-    const user = await getUserService(id);
+    const { id, branch_id, name, username, winthor_id } = getUserSchema.parse(
+      request.query
+    );
+    const user = await getUserService({
+      id,
+      branch_id,
+      name,
+      username,
+      winthor_id,
+    });
 
     if (!user) {
       throw new Error("Usuário não encontrado!");
@@ -80,7 +71,7 @@ export async function deleteUserController(
   try {
     const { id } = userIdSchema.parse(request.params);
 
-    const user = await getUserService(id);
+    const user = await getUserService({ id });
     if (!user) {
       throw new Error("Usuário não encontrado!");
     }
@@ -101,7 +92,7 @@ export async function updateUserController(
   try {
     const { id } = userIdSchema.parse(request.params);
 
-    const user = await getUserService(id);
+    const user = await getUserService({ id });
     if (!user) {
       throw new Error("Usuário não encontrado!");
     }
@@ -115,7 +106,10 @@ export async function updateUserController(
   }
 }
 
-export async function signoutController(request: FastifyRequest, reply: FastifyReply) {
+export async function signoutController(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
   try {
     const token = request.headers.authorization?.replace("Bearer ", "");
 
@@ -139,12 +133,15 @@ export async function signoutController(request: FastifyRequest, reply: FastifyR
   }
 }
 
-export async function getTokenDataController(request: FastifyRequest, reply: FastifyReply){
-    try {
-      return reply.send(request.user);
-    } catch (error: any) {
-      return reply
-        .status(400)
-        .send({ message: `Erro no servidor: ${error.message}` });
-    }
+export async function getTokenDataController(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
+  try {
+    return reply.send(request.user);
+  } catch (error: any) {
+    return reply
+      .status(400)
+      .send({ message: `Erro no servidor: ${error.message}` });
+  }
 }

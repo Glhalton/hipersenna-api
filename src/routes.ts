@@ -21,8 +21,12 @@ export default async function (app: FastifyInstance) {
     protectedRoutes.register(usersRoutes, { prefix: "/users" });
     protectedRoutes.register(rolesRoutes, { prefix: "/roles" });
     protectedRoutes.register(userRolesRoutes, { prefix: "/user-roles" });
-    protectedRoutes.register(rolesPermissionsRoutes, { prefix: "/role-permissions" });
-    protectedRoutes.register(userPermissionsRoutes, { prefix: "/user-permissions" });
+    protectedRoutes.register(rolesPermissionsRoutes, {
+      prefix: "/role-permissions",
+    });
+    protectedRoutes.register(userPermissionsRoutes, {
+      prefix: "/user-permissions",
+    });
     protectedRoutes.register(permissionsRoutes, { prefix: "/permissions" });
     protectedRoutes.register(productsRoutes, { prefix: "/products" });
     protectedRoutes.register(validitiesRoutes, { prefix: "/validities" });
