@@ -1,6 +1,7 @@
 import fastify from "fastify";
 import routes from "./routes.js";
-import swagger from "@fastify/swagger";
+import { fastifySwagger } from "@fastify/swagger";
+import { fastifySwaggerUi } from "@fastify/swagger-ui";
 import { fastifyCors } from "@fastify/cors";
 
 const app = fastify();
@@ -11,7 +12,20 @@ await app.register(fastifyCors, {
   allowedHeaders: ["Content-Type", "Authorization"],
 });
 
-await app.register(import("@fastify/swagger"));
+await app.register(fastifySwagger, {
+  openapi: {
+    info: {
+      title: "Hipersenna-api",
+      description: "Documentação da api do Hipersenna",
+      version: "1.0.0",
+    },
+    servers: [{ url: "http://localhost:3333", description: "Servidor local" }],
+  },
+});
+
+app.register(fastifySwaggerUi, {
+  routePrefix: "/docs"
+})
 
 declare module "fastify";
 

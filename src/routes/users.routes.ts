@@ -3,9 +3,8 @@ import { createUserController, deleteUserController, getAllUsersController, getT
 import { authorizePermissions } from "../middlewares/authorizePermissions";
 
 export default async function usersRoutes (app: FastifyInstance){
-    app.get("/", {preHandler: authorizePermissions(1)}, getAllUsersController);
 
-    app.get("/id/:id", {preHandler: authorizePermissions(1)}, getUserController);
+    app.get("/", {preHandler: authorizePermissions(1)}, getUserController);
 
     app.post("/", {preHandler: authorizePermissions(2)}, createUserController);
 

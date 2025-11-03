@@ -1,36 +1,18 @@
 import { prisma } from "../lib/prisma";
 import bcrypt from "bcryptjs";
-import { UpdateUserInput, CreateUserInput } from "../schemas/users.schemas";
+import { UpdateUserInput, CreateUserInput, GetUserInput } from "../schemas/users.schemas";
 
-export const getAllUsersService = async () => {
+export const getUserService = async ({id, name, winthor_id, username, branch_id} : GetUserInput) => {
+
+  const whereClause: any = {};
+  if(id) whereClause.id = id;
+  if(name) whereClause.name = name;
+  if(winthor_id) whereClause.winthor_id = winthor_id;
+  if(username) whereClause.username = username;
+  if(branch_id) whereClause.branch_id = branch_id;
+
   return await prisma.hsemployees.findMany({
-    select: {
-      id: true,
-      branch_id: true,
-      winthor_id: true,
-      name: true,
-      username: true,
-      created_at: true,
-      modified_at: true,
-      hsusers_roles: {
-        select: {
-          role_id: true,
-          hsroles: {
-            select: {
-              id: true,
-              name: true,
-              description: true,
-            },
-          },
-        },
-      },
-    },
-  });
-};
-
-export const getUserService = async (id: number) => {
-  return await prisma.hsemployees.findFirst({
-    where: { id },
+    where: whereClause,
     select: {
       id: true,
       branch_id: true,

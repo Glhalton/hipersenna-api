@@ -32,7 +32,6 @@ export async function getUserPermissions(userId: number): Promise<number[]> {
   );
 
   const allPermissions = new Set([...directPermissions, ...rolePermissions]);
-
-  console.log(allPermissions);
+  
   return Array.from(allPermissions);
 }

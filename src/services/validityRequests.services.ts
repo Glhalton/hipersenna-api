@@ -3,7 +3,6 @@ import { ValidityRequestInput } from "../schemas/validityRequests.schemas.js";
 import { getOracleConnection } from "../../oracleClient.js";
 import oracledb from "oracledb";
 import { UpdateValidityRequestsInput } from "../schemas/validityRequests.schemas.js";
-import { includes } from "zod";
 
 export const getAllValidityRequestService = () => {
     return prisma.hsvalidity_requests.findMany();
@@ -68,6 +67,7 @@ export const createValidityRequestService = async ({ validityRequest, requestPro
             conferee_id: validityRequest.conferee_id,
             hsvalidity_request_products: {
                 create: requestProducts.map(p => ({
+                    auxiliary_code: p.auxiliary_code,
                     product_cod: p.product_cod,
                     validity_date: p.validity_date
                 }))

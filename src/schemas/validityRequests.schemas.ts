@@ -8,6 +8,7 @@ export const validityRequestSchema = z.object({
 
 export const validityRequestProductSchema = z.object({
     product_cod: z.number(),
+    auxiliary_code: z.string(),
     validity_date: z.coerce.date(),
 }).strip();
 

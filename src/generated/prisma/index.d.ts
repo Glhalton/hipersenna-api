@@ -1997,21 +1997,21 @@ export namespace Prisma {
    */
 
   export type HsemployeesCountOutputType = {
-    analystRequests: number
-    confereeRequests: number
     sessions: number
-    hsvalidities: number
     hsusers_permissions: number
     hsusers_roles: number
+    hsvalidities: number
+    analystRequests: number
+    confereeRequests: number
   }
 
   export type HsemployeesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    analystRequests?: boolean | HsemployeesCountOutputTypeCountAnalystRequestsArgs
-    confereeRequests?: boolean | HsemployeesCountOutputTypeCountConfereeRequestsArgs
     sessions?: boolean | HsemployeesCountOutputTypeCountSessionsArgs
-    hsvalidities?: boolean | HsemployeesCountOutputTypeCountHsvaliditiesArgs
     hsusers_permissions?: boolean | HsemployeesCountOutputTypeCountHsusers_permissionsArgs
     hsusers_roles?: boolean | HsemployeesCountOutputTypeCountHsusers_rolesArgs
+    hsvalidities?: boolean | HsemployeesCountOutputTypeCountHsvaliditiesArgs
+    analystRequests?: boolean | HsemployeesCountOutputTypeCountAnalystRequestsArgs
+    confereeRequests?: boolean | HsemployeesCountOutputTypeCountConfereeRequestsArgs
   }
 
   // Custom InputTypes
@@ -2028,29 +2028,8 @@ export namespace Prisma {
   /**
    * HsemployeesCountOutputType without action
    */
-  export type HsemployeesCountOutputTypeCountAnalystRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsvalidity_requestsWhereInput
-  }
-
-  /**
-   * HsemployeesCountOutputType without action
-   */
-  export type HsemployeesCountOutputTypeCountConfereeRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsvalidity_requestsWhereInput
-  }
-
-  /**
-   * HsemployeesCountOutputType without action
-   */
   export type HsemployeesCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: hssessionsWhereInput
-  }
-
-  /**
-   * HsemployeesCountOutputType without action
-   */
-  export type HsemployeesCountOutputTypeCountHsvaliditiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsvaliditiesWhereInput
   }
 
   /**
@@ -2065,6 +2044,27 @@ export namespace Prisma {
    */
   export type HsemployeesCountOutputTypeCountHsusers_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: hsusers_rolesWhereInput
+  }
+
+  /**
+   * HsemployeesCountOutputType without action
+   */
+  export type HsemployeesCountOutputTypeCountHsvaliditiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsvaliditiesWhereInput
+  }
+
+  /**
+   * HsemployeesCountOutputType without action
+   */
+  export type HsemployeesCountOutputTypeCountAnalystRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsvalidity_requestsWhereInput
+  }
+
+  /**
+   * HsemployeesCountOutputType without action
+   */
+  export type HsemployeesCountOutputTypeCountConfereeRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsvalidity_requestsWhereInput
   }
 
 
@@ -2113,13 +2113,13 @@ export namespace Prisma {
    */
 
   export type HspermissionsCountOutputType = {
-    hsusers_permissions: number
     hspermissions_roles: number
+    hsusers_permissions: number
   }
 
   export type HspermissionsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsusers_permissions?: boolean | HspermissionsCountOutputTypeCountHsusers_permissionsArgs
     hspermissions_roles?: boolean | HspermissionsCountOutputTypeCountHspermissions_rolesArgs
+    hsusers_permissions?: boolean | HspermissionsCountOutputTypeCountHsusers_permissionsArgs
   }
 
   // Custom InputTypes
@@ -2136,15 +2136,15 @@ export namespace Prisma {
   /**
    * HspermissionsCountOutputType without action
    */
-  export type HspermissionsCountOutputTypeCountHsusers_permissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsusers_permissionsWhereInput
+  export type HspermissionsCountOutputTypeCountHspermissions_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hspermissions_rolesWhereInput
   }
 
   /**
    * HspermissionsCountOutputType without action
    */
-  export type HspermissionsCountOutputTypeCountHspermissions_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hspermissions_rolesWhereInput
+  export type HspermissionsCountOutputTypeCountHsusers_permissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsusers_permissionsWhereInput
   }
 
 
@@ -2153,15 +2153,15 @@ export namespace Prisma {
    */
 
   export type HsbranchesCountOutputType = {
+    hsemployees: number
     hsvalidities: number
     hsvalidity_requests: number
-    hsemployees: number
   }
 
   export type HsbranchesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsemployees?: boolean | HsbranchesCountOutputTypeCountHsemployeesArgs
     hsvalidities?: boolean | HsbranchesCountOutputTypeCountHsvaliditiesArgs
     hsvalidity_requests?: boolean | HsbranchesCountOutputTypeCountHsvalidity_requestsArgs
-    hsemployees?: boolean | HsbranchesCountOutputTypeCountHsemployeesArgs
   }
 
   // Custom InputTypes
@@ -2178,6 +2178,13 @@ export namespace Prisma {
   /**
    * HsbranchesCountOutputType without action
    */
+  export type HsbranchesCountOutputTypeCountHsemployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsemployeesWhereInput
+  }
+
+  /**
+   * HsbranchesCountOutputType without action
+   */
   export type HsbranchesCountOutputTypeCountHsvaliditiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: hsvaliditiesWhereInput
   }
@@ -2187,13 +2194,6 @@ export namespace Prisma {
    */
   export type HsbranchesCountOutputTypeCountHsvalidity_requestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: hsvalidity_requestsWhereInput
-  }
-
-  /**
-   * HsbranchesCountOutputType without action
-   */
-  export type HsbranchesCountOutputTypeCountHsemployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsemployeesWhereInput
   }
 
 
@@ -2534,12 +2534,12 @@ export namespace Prisma {
     created_at?: boolean
     modified_at?: boolean
     branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
-    analystRequests?: boolean | hsemployees$analystRequestsArgs<ExtArgs>
-    confereeRequests?: boolean | hsemployees$confereeRequestsArgs<ExtArgs>
     sessions?: boolean | hsemployees$sessionsArgs<ExtArgs>
-    hsvalidities?: boolean | hsemployees$hsvaliditiesArgs<ExtArgs>
     hsusers_permissions?: boolean | hsemployees$hsusers_permissionsArgs<ExtArgs>
     hsusers_roles?: boolean | hsemployees$hsusers_rolesArgs<ExtArgs>
+    hsvalidities?: boolean | hsemployees$hsvaliditiesArgs<ExtArgs>
+    analystRequests?: boolean | hsemployees$analystRequestsArgs<ExtArgs>
+    confereeRequests?: boolean | hsemployees$confereeRequestsArgs<ExtArgs>
     _count?: boolean | HsemployeesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsemployees"]>
 
@@ -2581,12 +2581,12 @@ export namespace Prisma {
   export type hsemployeesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branch_id" | "winthor_id" | "name" | "username" | "password" | "created_at" | "modified_at", ExtArgs["result"]["hsemployees"]>
   export type hsemployeesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
-    analystRequests?: boolean | hsemployees$analystRequestsArgs<ExtArgs>
-    confereeRequests?: boolean | hsemployees$confereeRequestsArgs<ExtArgs>
     sessions?: boolean | hsemployees$sessionsArgs<ExtArgs>
-    hsvalidities?: boolean | hsemployees$hsvaliditiesArgs<ExtArgs>
     hsusers_permissions?: boolean | hsemployees$hsusers_permissionsArgs<ExtArgs>
     hsusers_roles?: boolean | hsemployees$hsusers_rolesArgs<ExtArgs>
+    hsvalidities?: boolean | hsemployees$hsvaliditiesArgs<ExtArgs>
+    analystRequests?: boolean | hsemployees$analystRequestsArgs<ExtArgs>
+    confereeRequests?: boolean | hsemployees$confereeRequestsArgs<ExtArgs>
     _count?: boolean | HsemployeesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type hsemployeesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2600,12 +2600,12 @@ export namespace Prisma {
     name: "hsemployees"
     objects: {
       branch: Prisma.$hsbranchesPayload<ExtArgs>
-      analystRequests: Prisma.$hsvalidity_requestsPayload<ExtArgs>[]
-      confereeRequests: Prisma.$hsvalidity_requestsPayload<ExtArgs>[]
       sessions: Prisma.$hssessionsPayload<ExtArgs>[]
-      hsvalidities: Prisma.$hsvaliditiesPayload<ExtArgs>[]
       hsusers_permissions: Prisma.$hsusers_permissionsPayload<ExtArgs>[]
       hsusers_roles: Prisma.$hsusers_rolesPayload<ExtArgs>[]
+      hsvalidities: Prisma.$hsvaliditiesPayload<ExtArgs>[]
+      analystRequests: Prisma.$hsvalidity_requestsPayload<ExtArgs>[]
+      confereeRequests: Prisma.$hsvalidity_requestsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3011,12 +3011,12 @@ export namespace Prisma {
   export interface Prisma__hsemployeesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     branch<T extends hsbranchesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsbranchesDefaultArgs<ExtArgs>>): Prisma__hsbranchesClient<$Result.GetResult<Prisma.$hsbranchesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    analystRequests<T extends hsemployees$analystRequestsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$analystRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    confereeRequests<T extends hsemployees$confereeRequestsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$confereeRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends hsemployees$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hssessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    hsvalidities<T extends hsemployees$hsvaliditiesArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$hsvaliditiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvaliditiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hsusers_permissions<T extends hsemployees$hsusers_permissionsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$hsusers_permissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hsusers_roles<T extends hsemployees$hsusers_rolesArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$hsusers_rolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hsvalidities<T extends hsemployees$hsvaliditiesArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$hsvaliditiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvaliditiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    analystRequests<T extends hsemployees$analystRequestsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$analystRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    confereeRequests<T extends hsemployees$confereeRequestsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$confereeRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3450,54 +3450,6 @@ export namespace Prisma {
   }
 
   /**
-   * hsemployees.analystRequests
-   */
-  export type hsemployees$analystRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsvalidity_requests
-     */
-    select?: hsvalidity_requestsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsvalidity_requests
-     */
-    omit?: hsvalidity_requestsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsvalidity_requestsInclude<ExtArgs> | null
-    where?: hsvalidity_requestsWhereInput
-    orderBy?: hsvalidity_requestsOrderByWithRelationInput | hsvalidity_requestsOrderByWithRelationInput[]
-    cursor?: hsvalidity_requestsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Hsvalidity_requestsScalarFieldEnum | Hsvalidity_requestsScalarFieldEnum[]
-  }
-
-  /**
-   * hsemployees.confereeRequests
-   */
-  export type hsemployees$confereeRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsvalidity_requests
-     */
-    select?: hsvalidity_requestsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsvalidity_requests
-     */
-    omit?: hsvalidity_requestsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsvalidity_requestsInclude<ExtArgs> | null
-    where?: hsvalidity_requestsWhereInput
-    orderBy?: hsvalidity_requestsOrderByWithRelationInput | hsvalidity_requestsOrderByWithRelationInput[]
-    cursor?: hsvalidity_requestsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Hsvalidity_requestsScalarFieldEnum | Hsvalidity_requestsScalarFieldEnum[]
-  }
-
-  /**
    * hsemployees.sessions
    */
   export type hsemployees$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3519,30 +3471,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: HssessionsScalarFieldEnum | HssessionsScalarFieldEnum[]
-  }
-
-  /**
-   * hsemployees.hsvalidities
-   */
-  export type hsemployees$hsvaliditiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsvalidities
-     */
-    select?: hsvaliditiesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsvalidities
-     */
-    omit?: hsvaliditiesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsvaliditiesInclude<ExtArgs> | null
-    where?: hsvaliditiesWhereInput
-    orderBy?: hsvaliditiesOrderByWithRelationInput | hsvaliditiesOrderByWithRelationInput[]
-    cursor?: hsvaliditiesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HsvaliditiesScalarFieldEnum | HsvaliditiesScalarFieldEnum[]
   }
 
   /**
@@ -3591,6 +3519,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Hsusers_rolesScalarFieldEnum | Hsusers_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * hsemployees.hsvalidities
+   */
+  export type hsemployees$hsvaliditiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsvalidities
+     */
+    select?: hsvaliditiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsvalidities
+     */
+    omit?: hsvaliditiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsvaliditiesInclude<ExtArgs> | null
+    where?: hsvaliditiesWhereInput
+    orderBy?: hsvaliditiesOrderByWithRelationInput | hsvaliditiesOrderByWithRelationInput[]
+    cursor?: hsvaliditiesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HsvaliditiesScalarFieldEnum | HsvaliditiesScalarFieldEnum[]
+  }
+
+  /**
+   * hsemployees.analystRequests
+   */
+  export type hsemployees$analystRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsvalidity_requests
+     */
+    select?: hsvalidity_requestsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsvalidity_requests
+     */
+    omit?: hsvalidity_requestsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsvalidity_requestsInclude<ExtArgs> | null
+    where?: hsvalidity_requestsWhereInput
+    orderBy?: hsvalidity_requestsOrderByWithRelationInput | hsvalidity_requestsOrderByWithRelationInput[]
+    cursor?: hsvalidity_requestsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsvalidity_requestsScalarFieldEnum | Hsvalidity_requestsScalarFieldEnum[]
+  }
+
+  /**
+   * hsemployees.confereeRequests
+   */
+  export type hsemployees$confereeRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsvalidity_requests
+     */
+    select?: hsvalidity_requestsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsvalidity_requests
+     */
+    omit?: hsvalidity_requestsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsvalidity_requestsInclude<ExtArgs> | null
+    where?: hsvalidity_requestsWhereInput
+    orderBy?: hsvalidity_requestsOrderByWithRelationInput | hsvalidity_requestsOrderByWithRelationInput[]
+    cursor?: hsvalidity_requestsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsvalidity_requestsScalarFieldEnum | Hsvalidity_requestsScalarFieldEnum[]
   }
 
   /**
@@ -4942,8 +4942,8 @@ export namespace Prisma {
     description?: boolean
     created_at?: boolean
     modified_at?: boolean
-    hsusers_permissions?: boolean | hspermissions$hsusers_permissionsArgs<ExtArgs>
     hspermissions_roles?: boolean | hspermissions$hspermissions_rolesArgs<ExtArgs>
+    hsusers_permissions?: boolean | hspermissions$hsusers_permissionsArgs<ExtArgs>
     _count?: boolean | HspermissionsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hspermissions"]>
 
@@ -4973,8 +4973,8 @@ export namespace Prisma {
 
   export type hspermissionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "created_at" | "modified_at", ExtArgs["result"]["hspermissions"]>
   export type hspermissionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsusers_permissions?: boolean | hspermissions$hsusers_permissionsArgs<ExtArgs>
     hspermissions_roles?: boolean | hspermissions$hspermissions_rolesArgs<ExtArgs>
+    hsusers_permissions?: boolean | hspermissions$hsusers_permissionsArgs<ExtArgs>
     _count?: boolean | HspermissionsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type hspermissionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4983,8 +4983,8 @@ export namespace Prisma {
   export type $hspermissionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "hspermissions"
     objects: {
-      hsusers_permissions: Prisma.$hsusers_permissionsPayload<ExtArgs>[]
       hspermissions_roles: Prisma.$hspermissions_rolesPayload<ExtArgs>[]
+      hsusers_permissions: Prisma.$hsusers_permissionsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5386,8 +5386,8 @@ export namespace Prisma {
    */
   export interface Prisma__hspermissionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    hsusers_permissions<T extends hspermissions$hsusers_permissionsArgs<ExtArgs> = {}>(args?: Subset<T, hspermissions$hsusers_permissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hspermissions_roles<T extends hspermissions$hspermissions_rolesArgs<ExtArgs> = {}>(args?: Subset<T, hspermissions$hspermissions_rolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hspermissions_rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hsusers_permissions<T extends hspermissions$hsusers_permissionsArgs<ExtArgs> = {}>(args?: Subset<T, hspermissions$hsusers_permissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5810,30 +5810,6 @@ export namespace Prisma {
   }
 
   /**
-   * hspermissions.hsusers_permissions
-   */
-  export type hspermissions$hsusers_permissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_permissions
-     */
-    select?: hsusers_permissionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_permissions
-     */
-    omit?: hsusers_permissionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_permissionsInclude<ExtArgs> | null
-    where?: hsusers_permissionsWhereInput
-    orderBy?: hsusers_permissionsOrderByWithRelationInput | hsusers_permissionsOrderByWithRelationInput[]
-    cursor?: hsusers_permissionsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Hsusers_permissionsScalarFieldEnum | Hsusers_permissionsScalarFieldEnum[]
-  }
-
-  /**
    * hspermissions.hspermissions_roles
    */
   export type hspermissions$hspermissions_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5855,6 +5831,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Hspermissions_rolesScalarFieldEnum | Hspermissions_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * hspermissions.hsusers_permissions
+   */
+  export type hspermissions$hsusers_permissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsusers_permissions
+     */
+    select?: hsusers_permissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsusers_permissions
+     */
+    omit?: hsusers_permissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsusers_permissionsInclude<ExtArgs> | null
+    where?: hsusers_permissionsWhereInput
+    orderBy?: hsusers_permissionsOrderByWithRelationInput | hsusers_permissionsOrderByWithRelationInput[]
+    cursor?: hsusers_permissionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsusers_permissionsScalarFieldEnum | Hsusers_permissionsScalarFieldEnum[]
   }
 
   /**
@@ -6054,22 +6054,22 @@ export namespace Prisma {
   export type hspermissions_rolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     role_id?: boolean
     permission_id?: boolean
-    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
     hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hspermissions_roles"]>
 
   export type hspermissions_rolesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     role_id?: boolean
     permission_id?: boolean
-    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
     hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hspermissions_roles"]>
 
   export type hspermissions_rolesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     role_id?: boolean
     permission_id?: boolean
-    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
     hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hspermissions_roles"]>
 
   export type hspermissions_rolesSelectScalar = {
@@ -6079,23 +6079,23 @@ export namespace Prisma {
 
   export type hspermissions_rolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"role_id" | "permission_id", ExtArgs["result"]["hspermissions_roles"]>
   export type hspermissions_rolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
     hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
   }
   export type hspermissions_rolesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
     hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
   }
   export type hspermissions_rolesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
     hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
   }
 
   export type $hspermissions_rolesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "hspermissions_roles"
     objects: {
-      hsroles: Prisma.$hsrolesPayload<ExtArgs>
       hspermissions: Prisma.$hspermissionsPayload<ExtArgs>
+      hsroles: Prisma.$hsrolesPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       role_id: number
@@ -6494,8 +6494,8 @@ export namespace Prisma {
    */
   export interface Prisma__hspermissions_rolesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    hsroles<T extends hsrolesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsrolesDefaultArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     hspermissions<T extends hspermissionsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hspermissionsDefaultArgs<ExtArgs>>): Prisma__hspermissionsClient<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    hsroles<T extends hsrolesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsrolesDefaultArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7119,22 +7119,22 @@ export namespace Prisma {
   export type hsusers_permissionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     user_id?: boolean
     permission_id?: boolean
-    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsusers_permissions"]>
 
   export type hsusers_permissionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     user_id?: boolean
     permission_id?: boolean
-    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsusers_permissions"]>
 
   export type hsusers_permissionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     user_id?: boolean
     permission_id?: boolean
-    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsusers_permissions"]>
 
   export type hsusers_permissionsSelectScalar = {
@@ -7144,23 +7144,23 @@ export namespace Prisma {
 
   export type hsusers_permissionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "permission_id", ExtArgs["result"]["hsusers_permissions"]>
   export type hsusers_permissionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }
   export type hsusers_permissionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }
   export type hsusers_permissionsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hspermissions?: boolean | hspermissionsDefaultArgs<ExtArgs>
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }
 
   export type $hsusers_permissionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "hsusers_permissions"
     objects: {
-      hsemployees: Prisma.$hsemployeesPayload<ExtArgs>
       hspermissions: Prisma.$hspermissionsPayload<ExtArgs>
+      hsemployees: Prisma.$hsemployeesPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       user_id: number
@@ -7559,8 +7559,8 @@ export namespace Prisma {
    */
   export interface Prisma__hsusers_permissionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    hsemployees<T extends hsemployeesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsemployeesDefaultArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     hspermissions<T extends hspermissionsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hspermissionsDefaultArgs<ExtArgs>>): Prisma__hspermissionsClient<$Result.GetResult<Prisma.$hspermissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    hsemployees<T extends hsemployeesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsemployeesDefaultArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8184,22 +8184,22 @@ export namespace Prisma {
   export type hsusers_rolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     user_id?: boolean
     role_id?: boolean
-    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsusers_roles"]>
 
   export type hsusers_rolesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     user_id?: boolean
     role_id?: boolean
-    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsusers_roles"]>
 
   export type hsusers_rolesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     user_id?: boolean
     role_id?: boolean
-    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsusers_roles"]>
 
   export type hsusers_rolesSelectScalar = {
@@ -8209,23 +8209,23 @@ export namespace Prisma {
 
   export type hsusers_rolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "role_id", ExtArgs["result"]["hsusers_roles"]>
   export type hsusers_rolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }
   export type hsusers_rolesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }
   export type hsusers_rolesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
+    heemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }
 
   export type $hsusers_rolesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "hsusers_roles"
     objects: {
-      heemployees: Prisma.$hsemployeesPayload<ExtArgs>
       hsroles: Prisma.$hsrolesPayload<ExtArgs>
+      heemployees: Prisma.$hsemployeesPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       user_id: number
@@ -8624,8 +8624,8 @@ export namespace Prisma {
    */
   export interface Prisma__hsusers_rolesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    heemployees<T extends hsemployeesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsemployeesDefaultArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     hsroles<T extends hsrolesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsrolesDefaultArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    heemployees<T extends hsemployeesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsemployeesDefaultArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9245,9 +9245,9 @@ export namespace Prisma {
   export type hsbranchesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     description?: boolean
+    hsemployees?: boolean | hsbranches$hsemployeesArgs<ExtArgs>
     hsvalidities?: boolean | hsbranches$hsvaliditiesArgs<ExtArgs>
     hsvalidity_requests?: boolean | hsbranches$hsvalidity_requestsArgs<ExtArgs>
-    hsemployees?: boolean | hsbranches$hsemployeesArgs<ExtArgs>
     _count?: boolean | HsbranchesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsbranches"]>
 
@@ -9268,9 +9268,9 @@ export namespace Prisma {
 
   export type hsbranchesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description", ExtArgs["result"]["hsbranches"]>
   export type hsbranchesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsemployees?: boolean | hsbranches$hsemployeesArgs<ExtArgs>
     hsvalidities?: boolean | hsbranches$hsvaliditiesArgs<ExtArgs>
     hsvalidity_requests?: boolean | hsbranches$hsvalidity_requestsArgs<ExtArgs>
-    hsemployees?: boolean | hsbranches$hsemployeesArgs<ExtArgs>
     _count?: boolean | HsbranchesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type hsbranchesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -9279,9 +9279,9 @@ export namespace Prisma {
   export type $hsbranchesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "hsbranches"
     objects: {
+      hsemployees: Prisma.$hsemployeesPayload<ExtArgs>[]
       hsvalidities: Prisma.$hsvaliditiesPayload<ExtArgs>[]
       hsvalidity_requests: Prisma.$hsvalidity_requestsPayload<ExtArgs>[]
-      hsemployees: Prisma.$hsemployeesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -9680,9 +9680,9 @@ export namespace Prisma {
    */
   export interface Prisma__hsbranchesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    hsemployees<T extends hsbranches$hsemployeesArgs<ExtArgs> = {}>(args?: Subset<T, hsbranches$hsemployeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hsvalidities<T extends hsbranches$hsvaliditiesArgs<ExtArgs> = {}>(args?: Subset<T, hsbranches$hsvaliditiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvaliditiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hsvalidity_requests<T extends hsbranches$hsvalidity_requestsArgs<ExtArgs> = {}>(args?: Subset<T, hsbranches$hsvalidity_requestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    hsemployees<T extends hsbranches$hsemployeesArgs<ExtArgs> = {}>(args?: Subset<T, hsbranches$hsemployeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10102,6 +10102,30 @@ export namespace Prisma {
   }
 
   /**
+   * hsbranches.hsemployees
+   */
+  export type hsbranches$hsemployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsemployees
+     */
+    select?: hsemployeesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsemployees
+     */
+    omit?: hsemployeesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsemployeesInclude<ExtArgs> | null
+    where?: hsemployeesWhereInput
+    orderBy?: hsemployeesOrderByWithRelationInput | hsemployeesOrderByWithRelationInput[]
+    cursor?: hsemployeesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HsemployeesScalarFieldEnum | HsemployeesScalarFieldEnum[]
+  }
+
+  /**
    * hsbranches.hsvalidities
    */
   export type hsbranches$hsvaliditiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10147,30 +10171,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Hsvalidity_requestsScalarFieldEnum | Hsvalidity_requestsScalarFieldEnum[]
-  }
-
-  /**
-   * hsbranches.hsemployees
-   */
-  export type hsbranches$hsemployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsemployees
-     */
-    select?: hsemployeesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsemployees
-     */
-    omit?: hsemployeesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsemployeesInclude<ExtArgs> | null
-    where?: hsemployeesWhereInput
-    orderBy?: hsemployeesOrderByWithRelationInput | hsemployeesOrderByWithRelationInput[]
-    cursor?: hsemployeesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HsemployeesScalarFieldEnum | HsemployeesScalarFieldEnum[]
   }
 
   /**
@@ -11422,6 +11422,7 @@ export namespace Prisma {
     quantity: number | null
     validity_date: Date | null
     treat_id: number | null
+    auxiliary_code: string | null
   }
 
   export type Hsvalidity_productsMaxAggregateOutputType = {
@@ -11431,6 +11432,7 @@ export namespace Prisma {
     quantity: number | null
     validity_date: Date | null
     treat_id: number | null
+    auxiliary_code: string | null
   }
 
   export type Hsvalidity_productsCountAggregateOutputType = {
@@ -11440,6 +11442,7 @@ export namespace Prisma {
     quantity: number
     validity_date: number
     treat_id: number
+    auxiliary_code: number
     _all: number
   }
 
@@ -11467,6 +11470,7 @@ export namespace Prisma {
     quantity?: true
     validity_date?: true
     treat_id?: true
+    auxiliary_code?: true
   }
 
   export type Hsvalidity_productsMaxAggregateInputType = {
@@ -11476,6 +11480,7 @@ export namespace Prisma {
     quantity?: true
     validity_date?: true
     treat_id?: true
+    auxiliary_code?: true
   }
 
   export type Hsvalidity_productsCountAggregateInputType = {
@@ -11485,6 +11490,7 @@ export namespace Prisma {
     quantity?: true
     validity_date?: true
     treat_id?: true
+    auxiliary_code?: true
     _all?: true
   }
 
@@ -11581,6 +11587,7 @@ export namespace Prisma {
     quantity: number
     validity_date: Date
     treat_id: number
+    auxiliary_code: string
     _count: Hsvalidity_productsCountAggregateOutputType | null
     _avg: Hsvalidity_productsAvgAggregateOutputType | null
     _sum: Hsvalidity_productsSumAggregateOutputType | null
@@ -11609,6 +11616,7 @@ export namespace Prisma {
     quantity?: boolean
     validity_date?: boolean
     treat_id?: boolean
+    auxiliary_code?: boolean
     hsvalidity_treatments?: boolean | hsvalidity_treatmentsDefaultArgs<ExtArgs>
     hsvalidities?: boolean | hsvaliditiesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsvalidity_products"]>
@@ -11620,6 +11628,7 @@ export namespace Prisma {
     quantity?: boolean
     validity_date?: boolean
     treat_id?: boolean
+    auxiliary_code?: boolean
     hsvalidity_treatments?: boolean | hsvalidity_treatmentsDefaultArgs<ExtArgs>
     hsvalidities?: boolean | hsvaliditiesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsvalidity_products"]>
@@ -11631,6 +11640,7 @@ export namespace Prisma {
     quantity?: boolean
     validity_date?: boolean
     treat_id?: boolean
+    auxiliary_code?: boolean
     hsvalidity_treatments?: boolean | hsvalidity_treatmentsDefaultArgs<ExtArgs>
     hsvalidities?: boolean | hsvaliditiesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsvalidity_products"]>
@@ -11642,9 +11652,10 @@ export namespace Prisma {
     quantity?: boolean
     validity_date?: boolean
     treat_id?: boolean
+    auxiliary_code?: boolean
   }
 
-  export type hsvalidity_productsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "validity_id" | "product_cod" | "quantity" | "validity_date" | "treat_id", ExtArgs["result"]["hsvalidity_products"]>
+  export type hsvalidity_productsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "validity_id" | "product_cod" | "quantity" | "validity_date" | "treat_id" | "auxiliary_code", ExtArgs["result"]["hsvalidity_products"]>
   export type hsvalidity_productsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hsvalidity_treatments?: boolean | hsvalidity_treatmentsDefaultArgs<ExtArgs>
     hsvalidities?: boolean | hsvaliditiesDefaultArgs<ExtArgs>
@@ -11671,6 +11682,7 @@ export namespace Prisma {
       quantity: number
       validity_date: Date
       treat_id: number
+      auxiliary_code: string
     }, ExtArgs["result"]["hsvalidity_products"]>
     composites: {}
   }
@@ -12102,6 +12114,7 @@ export namespace Prisma {
     readonly quantity: FieldRef<"hsvalidity_products", 'Int'>
     readonly validity_date: FieldRef<"hsvalidity_products", 'DateTime'>
     readonly treat_id: FieldRef<"hsvalidity_products", 'Int'>
+    readonly auxiliary_code: FieldRef<"hsvalidity_products", 'String'>
   }
     
 
@@ -12745,8 +12758,8 @@ export namespace Prisma {
     hsvalidities?: boolean | hsvalidity_requests$hsvaliditiesArgs<ExtArgs>
     hsvalidity_request_products?: boolean | hsvalidity_requests$hsvalidity_request_productsArgs<ExtArgs>
     analyst?: boolean | hsemployeesDefaultArgs<ExtArgs>
-    conferee?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hsbranches?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    conferee?: boolean | hsemployeesDefaultArgs<ExtArgs>
     _count?: boolean | Hsvalidity_requestsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsvalidity_requests"]>
 
@@ -12759,8 +12772,8 @@ export namespace Prisma {
     created_at?: boolean
     modified_at?: boolean
     analyst?: boolean | hsemployeesDefaultArgs<ExtArgs>
-    conferee?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hsbranches?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    conferee?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsvalidity_requests"]>
 
   export type hsvalidity_requestsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -12772,8 +12785,8 @@ export namespace Prisma {
     created_at?: boolean
     modified_at?: boolean
     analyst?: boolean | hsemployeesDefaultArgs<ExtArgs>
-    conferee?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hsbranches?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    conferee?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsvalidity_requests"]>
 
   export type hsvalidity_requestsSelectScalar = {
@@ -12791,19 +12804,19 @@ export namespace Prisma {
     hsvalidities?: boolean | hsvalidity_requests$hsvaliditiesArgs<ExtArgs>
     hsvalidity_request_products?: boolean | hsvalidity_requests$hsvalidity_request_productsArgs<ExtArgs>
     analyst?: boolean | hsemployeesDefaultArgs<ExtArgs>
-    conferee?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hsbranches?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    conferee?: boolean | hsemployeesDefaultArgs<ExtArgs>
     _count?: boolean | Hsvalidity_requestsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type hsvalidity_requestsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     analyst?: boolean | hsemployeesDefaultArgs<ExtArgs>
-    conferee?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hsbranches?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    conferee?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }
   export type hsvalidity_requestsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     analyst?: boolean | hsemployeesDefaultArgs<ExtArgs>
-    conferee?: boolean | hsemployeesDefaultArgs<ExtArgs>
     hsbranches?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    conferee?: boolean | hsemployeesDefaultArgs<ExtArgs>
   }
 
   export type $hsvalidity_requestsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12812,8 +12825,8 @@ export namespace Prisma {
       hsvalidities: Prisma.$hsvaliditiesPayload<ExtArgs>[]
       hsvalidity_request_products: Prisma.$hsvalidity_request_productsPayload<ExtArgs>[]
       analyst: Prisma.$hsemployeesPayload<ExtArgs>
-      conferee: Prisma.$hsemployeesPayload<ExtArgs>
       hsbranches: Prisma.$hsbranchesPayload<ExtArgs>
+      conferee: Prisma.$hsemployeesPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -13220,8 +13233,8 @@ export namespace Prisma {
     hsvalidities<T extends hsvalidity_requests$hsvaliditiesArgs<ExtArgs> = {}>(args?: Subset<T, hsvalidity_requests$hsvaliditiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvaliditiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hsvalidity_request_products<T extends hsvalidity_requests$hsvalidity_request_productsArgs<ExtArgs> = {}>(args?: Subset<T, hsvalidity_requests$hsvalidity_request_productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_request_productsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     analyst<T extends hsemployeesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsemployeesDefaultArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    conferee<T extends hsemployeesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsemployeesDefaultArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     hsbranches<T extends hsbranchesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsbranchesDefaultArgs<ExtArgs>>): Prisma__hsbranchesClient<$Result.GetResult<Prisma.$hsbranchesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    conferee<T extends hsemployeesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsemployeesDefaultArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13750,6 +13763,7 @@ export namespace Prisma {
     status: $Enums.hsvalidity_request_products_status | null
     product_cod: number | null
     validity_date: Date | null
+    auxiliary_code: string | null
   }
 
   export type Hsvalidity_request_productsMaxAggregateOutputType = {
@@ -13758,6 +13772,7 @@ export namespace Prisma {
     status: $Enums.hsvalidity_request_products_status | null
     product_cod: number | null
     validity_date: Date | null
+    auxiliary_code: string | null
   }
 
   export type Hsvalidity_request_productsCountAggregateOutputType = {
@@ -13766,6 +13781,7 @@ export namespace Prisma {
     status: number
     product_cod: number
     validity_date: number
+    auxiliary_code: number
     _all: number
   }
 
@@ -13788,6 +13804,7 @@ export namespace Prisma {
     status?: true
     product_cod?: true
     validity_date?: true
+    auxiliary_code?: true
   }
 
   export type Hsvalidity_request_productsMaxAggregateInputType = {
@@ -13796,6 +13813,7 @@ export namespace Prisma {
     status?: true
     product_cod?: true
     validity_date?: true
+    auxiliary_code?: true
   }
 
   export type Hsvalidity_request_productsCountAggregateInputType = {
@@ -13804,6 +13822,7 @@ export namespace Prisma {
     status?: true
     product_cod?: true
     validity_date?: true
+    auxiliary_code?: true
     _all?: true
   }
 
@@ -13899,6 +13918,7 @@ export namespace Prisma {
     status: $Enums.hsvalidity_request_products_status
     product_cod: number
     validity_date: Date
+    auxiliary_code: string
     _count: Hsvalidity_request_productsCountAggregateOutputType | null
     _avg: Hsvalidity_request_productsAvgAggregateOutputType | null
     _sum: Hsvalidity_request_productsSumAggregateOutputType | null
@@ -13926,6 +13946,7 @@ export namespace Prisma {
     status?: boolean
     product_cod?: boolean
     validity_date?: boolean
+    auxiliary_code?: boolean
     hsvalidity_requests?: boolean | hsvalidity_requestsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsvalidity_request_products"]>
 
@@ -13935,6 +13956,7 @@ export namespace Prisma {
     status?: boolean
     product_cod?: boolean
     validity_date?: boolean
+    auxiliary_code?: boolean
     hsvalidity_requests?: boolean | hsvalidity_requestsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsvalidity_request_products"]>
 
@@ -13944,6 +13966,7 @@ export namespace Prisma {
     status?: boolean
     product_cod?: boolean
     validity_date?: boolean
+    auxiliary_code?: boolean
     hsvalidity_requests?: boolean | hsvalidity_requestsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsvalidity_request_products"]>
 
@@ -13953,9 +13976,10 @@ export namespace Prisma {
     status?: boolean
     product_cod?: boolean
     validity_date?: boolean
+    auxiliary_code?: boolean
   }
 
-  export type hsvalidity_request_productsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "request_id" | "status" | "product_cod" | "validity_date", ExtArgs["result"]["hsvalidity_request_products"]>
+  export type hsvalidity_request_productsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "request_id" | "status" | "product_cod" | "validity_date" | "auxiliary_code", ExtArgs["result"]["hsvalidity_request_products"]>
   export type hsvalidity_request_productsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hsvalidity_requests?: boolean | hsvalidity_requestsDefaultArgs<ExtArgs>
   }
@@ -13977,6 +14001,7 @@ export namespace Prisma {
       status: $Enums.hsvalidity_request_products_status
       product_cod: number
       validity_date: Date
+      auxiliary_code: string
     }, ExtArgs["result"]["hsvalidity_request_products"]>
     composites: {}
   }
@@ -14406,6 +14431,7 @@ export namespace Prisma {
     readonly status: FieldRef<"hsvalidity_request_products", 'hsvalidity_request_products_status'>
     readonly product_cod: FieldRef<"hsvalidity_request_products", 'Int'>
     readonly validity_date: FieldRef<"hsvalidity_request_products", 'DateTime'>
+    readonly auxiliary_code: FieldRef<"hsvalidity_request_products", 'String'>
   }
     
 
@@ -17078,7 +17104,8 @@ export namespace Prisma {
     product_cod: 'product_cod',
     quantity: 'quantity',
     validity_date: 'validity_date',
-    treat_id: 'treat_id'
+    treat_id: 'treat_id',
+    auxiliary_code: 'auxiliary_code'
   };
 
   export type Hsvalidity_productsScalarFieldEnum = (typeof Hsvalidity_productsScalarFieldEnum)[keyof typeof Hsvalidity_productsScalarFieldEnum]
@@ -17102,7 +17129,8 @@ export namespace Prisma {
     request_id: 'request_id',
     status: 'status',
     product_cod: 'product_cod',
-    validity_date: 'validity_date'
+    validity_date: 'validity_date',
+    auxiliary_code: 'auxiliary_code'
   };
 
   export type Hsvalidity_request_productsScalarFieldEnum = (typeof Hsvalidity_request_productsScalarFieldEnum)[keyof typeof Hsvalidity_request_productsScalarFieldEnum]
@@ -17270,12 +17298,12 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"hsemployees"> | Date | string
     modified_at?: DateTimeFilter<"hsemployees"> | Date | string
     branch?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
-    analystRequests?: Hsvalidity_requestsListRelationFilter
-    confereeRequests?: Hsvalidity_requestsListRelationFilter
     sessions?: HssessionsListRelationFilter
-    hsvalidities?: HsvaliditiesListRelationFilter
     hsusers_permissions?: Hsusers_permissionsListRelationFilter
     hsusers_roles?: Hsusers_rolesListRelationFilter
+    hsvalidities?: HsvaliditiesListRelationFilter
+    analystRequests?: Hsvalidity_requestsListRelationFilter
+    confereeRequests?: Hsvalidity_requestsListRelationFilter
   }
 
   export type hsemployeesOrderByWithRelationInput = {
@@ -17288,12 +17316,12 @@ export namespace Prisma {
     created_at?: SortOrder
     modified_at?: SortOrder
     branch?: hsbranchesOrderByWithRelationInput
-    analystRequests?: hsvalidity_requestsOrderByRelationAggregateInput
-    confereeRequests?: hsvalidity_requestsOrderByRelationAggregateInput
     sessions?: hssessionsOrderByRelationAggregateInput
-    hsvalidities?: hsvaliditiesOrderByRelationAggregateInput
     hsusers_permissions?: hsusers_permissionsOrderByRelationAggregateInput
     hsusers_roles?: hsusers_rolesOrderByRelationAggregateInput
+    hsvalidities?: hsvaliditiesOrderByRelationAggregateInput
+    analystRequests?: hsvalidity_requestsOrderByRelationAggregateInput
+    confereeRequests?: hsvalidity_requestsOrderByRelationAggregateInput
   }
 
   export type hsemployeesWhereUniqueInput = Prisma.AtLeast<{
@@ -17309,12 +17337,12 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"hsemployees"> | Date | string
     modified_at?: DateTimeFilter<"hsemployees"> | Date | string
     branch?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
-    analystRequests?: Hsvalidity_requestsListRelationFilter
-    confereeRequests?: Hsvalidity_requestsListRelationFilter
     sessions?: HssessionsListRelationFilter
-    hsvalidities?: HsvaliditiesListRelationFilter
     hsusers_permissions?: Hsusers_permissionsListRelationFilter
     hsusers_roles?: Hsusers_rolesListRelationFilter
+    hsvalidities?: HsvaliditiesListRelationFilter
+    analystRequests?: Hsvalidity_requestsListRelationFilter
+    confereeRequests?: Hsvalidity_requestsListRelationFilter
   }, "id" | "winthor_id" | "username">
 
   export type hsemployeesOrderByWithAggregationInput = {
@@ -17416,8 +17444,8 @@ export namespace Prisma {
     description?: StringFilter<"hspermissions"> | string
     created_at?: DateTimeFilter<"hspermissions"> | Date | string
     modified_at?: DateTimeFilter<"hspermissions"> | Date | string
-    hsusers_permissions?: Hsusers_permissionsListRelationFilter
     hspermissions_roles?: Hspermissions_rolesListRelationFilter
+    hsusers_permissions?: Hsusers_permissionsListRelationFilter
   }
 
   export type hspermissionsOrderByWithRelationInput = {
@@ -17426,8 +17454,8 @@ export namespace Prisma {
     description?: SortOrder
     created_at?: SortOrder
     modified_at?: SortOrder
-    hsusers_permissions?: hsusers_permissionsOrderByRelationAggregateInput
     hspermissions_roles?: hspermissions_rolesOrderByRelationAggregateInput
+    hsusers_permissions?: hsusers_permissionsOrderByRelationAggregateInput
   }
 
   export type hspermissionsWhereUniqueInput = Prisma.AtLeast<{
@@ -17439,8 +17467,8 @@ export namespace Prisma {
     description?: StringFilter<"hspermissions"> | string
     created_at?: DateTimeFilter<"hspermissions"> | Date | string
     modified_at?: DateTimeFilter<"hspermissions"> | Date | string
-    hsusers_permissions?: Hsusers_permissionsListRelationFilter
     hspermissions_roles?: Hspermissions_rolesListRelationFilter
+    hsusers_permissions?: Hsusers_permissionsListRelationFilter
   }, "id" | "name">
 
   export type hspermissionsOrderByWithAggregationInput = {
@@ -17473,15 +17501,15 @@ export namespace Prisma {
     NOT?: hspermissions_rolesWhereInput | hspermissions_rolesWhereInput[]
     role_id?: IntFilter<"hspermissions_roles"> | number
     permission_id?: IntFilter<"hspermissions_roles"> | number
-    hsroles?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
     hspermissions?: XOR<HspermissionsScalarRelationFilter, hspermissionsWhereInput>
+    hsroles?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
   }
 
   export type hspermissions_rolesOrderByWithRelationInput = {
     role_id?: SortOrder
     permission_id?: SortOrder
-    hsroles?: hsrolesOrderByWithRelationInput
     hspermissions?: hspermissionsOrderByWithRelationInput
+    hsroles?: hsrolesOrderByWithRelationInput
   }
 
   export type hspermissions_rolesWhereUniqueInput = Prisma.AtLeast<{
@@ -17491,8 +17519,8 @@ export namespace Prisma {
     NOT?: hspermissions_rolesWhereInput | hspermissions_rolesWhereInput[]
     role_id?: IntFilter<"hspermissions_roles"> | number
     permission_id?: IntFilter<"hspermissions_roles"> | number
-    hsroles?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
     hspermissions?: XOR<HspermissionsScalarRelationFilter, hspermissionsWhereInput>
+    hsroles?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
   }, "role_id_permission_id">
 
   export type hspermissions_rolesOrderByWithAggregationInput = {
@@ -17519,15 +17547,15 @@ export namespace Prisma {
     NOT?: hsusers_permissionsWhereInput | hsusers_permissionsWhereInput[]
     user_id?: IntFilter<"hsusers_permissions"> | number
     permission_id?: IntFilter<"hsusers_permissions"> | number
-    hsemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
     hspermissions?: XOR<HspermissionsScalarRelationFilter, hspermissionsWhereInput>
+    hsemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
   }
 
   export type hsusers_permissionsOrderByWithRelationInput = {
     user_id?: SortOrder
     permission_id?: SortOrder
-    hsemployees?: hsemployeesOrderByWithRelationInput
     hspermissions?: hspermissionsOrderByWithRelationInput
+    hsemployees?: hsemployeesOrderByWithRelationInput
   }
 
   export type hsusers_permissionsWhereUniqueInput = Prisma.AtLeast<{
@@ -17537,8 +17565,8 @@ export namespace Prisma {
     NOT?: hsusers_permissionsWhereInput | hsusers_permissionsWhereInput[]
     user_id?: IntFilter<"hsusers_permissions"> | number
     permission_id?: IntFilter<"hsusers_permissions"> | number
-    hsemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
     hspermissions?: XOR<HspermissionsScalarRelationFilter, hspermissionsWhereInput>
+    hsemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
   }, "user_id_permission_id">
 
   export type hsusers_permissionsOrderByWithAggregationInput = {
@@ -17565,15 +17593,15 @@ export namespace Prisma {
     NOT?: hsusers_rolesWhereInput | hsusers_rolesWhereInput[]
     user_id?: IntFilter<"hsusers_roles"> | number
     role_id?: IntFilter<"hsusers_roles"> | number
-    heemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
     hsroles?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
+    heemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
   }
 
   export type hsusers_rolesOrderByWithRelationInput = {
     user_id?: SortOrder
     role_id?: SortOrder
-    heemployees?: hsemployeesOrderByWithRelationInput
     hsroles?: hsrolesOrderByWithRelationInput
+    heemployees?: hsemployeesOrderByWithRelationInput
   }
 
   export type hsusers_rolesWhereUniqueInput = Prisma.AtLeast<{
@@ -17583,8 +17611,8 @@ export namespace Prisma {
     NOT?: hsusers_rolesWhereInput | hsusers_rolesWhereInput[]
     user_id?: IntFilter<"hsusers_roles"> | number
     role_id?: IntFilter<"hsusers_roles"> | number
-    heemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
     hsroles?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
+    heemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
   }, "user_id_role_id">
 
   export type hsusers_rolesOrderByWithAggregationInput = {
@@ -17611,17 +17639,17 @@ export namespace Prisma {
     NOT?: hsbranchesWhereInput | hsbranchesWhereInput[]
     id?: IntFilter<"hsbranches"> | number
     description?: StringFilter<"hsbranches"> | string
+    hsemployees?: HsemployeesListRelationFilter
     hsvalidities?: HsvaliditiesListRelationFilter
     hsvalidity_requests?: Hsvalidity_requestsListRelationFilter
-    hsemployees?: HsemployeesListRelationFilter
   }
 
   export type hsbranchesOrderByWithRelationInput = {
     id?: SortOrder
     description?: SortOrder
+    hsemployees?: hsemployeesOrderByRelationAggregateInput
     hsvalidities?: hsvaliditiesOrderByRelationAggregateInput
     hsvalidity_requests?: hsvalidity_requestsOrderByRelationAggregateInput
-    hsemployees?: hsemployeesOrderByRelationAggregateInput
   }
 
   export type hsbranchesWhereUniqueInput = Prisma.AtLeast<{
@@ -17630,9 +17658,9 @@ export namespace Prisma {
     OR?: hsbranchesWhereInput[]
     NOT?: hsbranchesWhereInput | hsbranchesWhereInput[]
     description?: StringFilter<"hsbranches"> | string
+    hsemployees?: HsemployeesListRelationFilter
     hsvalidities?: HsvaliditiesListRelationFilter
     hsvalidity_requests?: Hsvalidity_requestsListRelationFilter
-    hsemployees?: HsemployeesListRelationFilter
   }, "id">
 
   export type hsbranchesOrderByWithAggregationInput = {
@@ -17739,6 +17767,7 @@ export namespace Prisma {
     quantity?: IntFilter<"hsvalidity_products"> | number
     validity_date?: DateTimeFilter<"hsvalidity_products"> | Date | string
     treat_id?: IntFilter<"hsvalidity_products"> | number
+    auxiliary_code?: StringFilter<"hsvalidity_products"> | string
     hsvalidity_treatments?: XOR<Hsvalidity_treatmentsScalarRelationFilter, hsvalidity_treatmentsWhereInput>
     hsvalidities?: XOR<HsvaliditiesScalarRelationFilter, hsvaliditiesWhereInput>
   }
@@ -17750,6 +17779,7 @@ export namespace Prisma {
     quantity?: SortOrder
     validity_date?: SortOrder
     treat_id?: SortOrder
+    auxiliary_code?: SortOrder
     hsvalidity_treatments?: hsvalidity_treatmentsOrderByWithRelationInput
     hsvalidities?: hsvaliditiesOrderByWithRelationInput
   }
@@ -17764,6 +17794,7 @@ export namespace Prisma {
     quantity?: IntFilter<"hsvalidity_products"> | number
     validity_date?: DateTimeFilter<"hsvalidity_products"> | Date | string
     treat_id?: IntFilter<"hsvalidity_products"> | number
+    auxiliary_code?: StringFilter<"hsvalidity_products"> | string
     hsvalidity_treatments?: XOR<Hsvalidity_treatmentsScalarRelationFilter, hsvalidity_treatmentsWhereInput>
     hsvalidities?: XOR<HsvaliditiesScalarRelationFilter, hsvaliditiesWhereInput>
   }, "id">
@@ -17775,6 +17806,7 @@ export namespace Prisma {
     quantity?: SortOrder
     validity_date?: SortOrder
     treat_id?: SortOrder
+    auxiliary_code?: SortOrder
     _count?: hsvalidity_productsCountOrderByAggregateInput
     _avg?: hsvalidity_productsAvgOrderByAggregateInput
     _max?: hsvalidity_productsMaxOrderByAggregateInput
@@ -17792,6 +17824,7 @@ export namespace Prisma {
     quantity?: IntWithAggregatesFilter<"hsvalidity_products"> | number
     validity_date?: DateTimeWithAggregatesFilter<"hsvalidity_products"> | Date | string
     treat_id?: IntWithAggregatesFilter<"hsvalidity_products"> | number
+    auxiliary_code?: StringWithAggregatesFilter<"hsvalidity_products"> | string
   }
 
   export type hsvalidity_requestsWhereInput = {
@@ -17808,8 +17841,8 @@ export namespace Prisma {
     hsvalidities?: HsvaliditiesListRelationFilter
     hsvalidity_request_products?: Hsvalidity_request_productsListRelationFilter
     analyst?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
-    conferee?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
     hsbranches?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
+    conferee?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
   }
 
   export type hsvalidity_requestsOrderByWithRelationInput = {
@@ -17823,8 +17856,8 @@ export namespace Prisma {
     hsvalidities?: hsvaliditiesOrderByRelationAggregateInput
     hsvalidity_request_products?: hsvalidity_request_productsOrderByRelationAggregateInput
     analyst?: hsemployeesOrderByWithRelationInput
-    conferee?: hsemployeesOrderByWithRelationInput
     hsbranches?: hsbranchesOrderByWithRelationInput
+    conferee?: hsemployeesOrderByWithRelationInput
   }
 
   export type hsvalidity_requestsWhereUniqueInput = Prisma.AtLeast<{
@@ -17841,8 +17874,8 @@ export namespace Prisma {
     hsvalidities?: HsvaliditiesListRelationFilter
     hsvalidity_request_products?: Hsvalidity_request_productsListRelationFilter
     analyst?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
-    conferee?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
     hsbranches?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
+    conferee?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
   }, "id">
 
   export type hsvalidity_requestsOrderByWithAggregationInput = {
@@ -17882,6 +17915,7 @@ export namespace Prisma {
     status?: Enumhsvalidity_request_products_statusFilter<"hsvalidity_request_products"> | $Enums.hsvalidity_request_products_status
     product_cod?: IntFilter<"hsvalidity_request_products"> | number
     validity_date?: DateTimeFilter<"hsvalidity_request_products"> | Date | string
+    auxiliary_code?: StringFilter<"hsvalidity_request_products"> | string
     hsvalidity_requests?: XOR<Hsvalidity_requestsScalarRelationFilter, hsvalidity_requestsWhereInput>
   }
 
@@ -17891,6 +17925,7 @@ export namespace Prisma {
     status?: SortOrder
     product_cod?: SortOrder
     validity_date?: SortOrder
+    auxiliary_code?: SortOrder
     hsvalidity_requests?: hsvalidity_requestsOrderByWithRelationInput
   }
 
@@ -17903,6 +17938,7 @@ export namespace Prisma {
     status?: Enumhsvalidity_request_products_statusFilter<"hsvalidity_request_products"> | $Enums.hsvalidity_request_products_status
     product_cod?: IntFilter<"hsvalidity_request_products"> | number
     validity_date?: DateTimeFilter<"hsvalidity_request_products"> | Date | string
+    auxiliary_code?: StringFilter<"hsvalidity_request_products"> | string
     hsvalidity_requests?: XOR<Hsvalidity_requestsScalarRelationFilter, hsvalidity_requestsWhereInput>
   }, "id">
 
@@ -17912,6 +17948,7 @@ export namespace Prisma {
     status?: SortOrder
     product_cod?: SortOrder
     validity_date?: SortOrder
+    auxiliary_code?: SortOrder
     _count?: hsvalidity_request_productsCountOrderByAggregateInput
     _avg?: hsvalidity_request_productsAvgOrderByAggregateInput
     _max?: hsvalidity_request_productsMaxOrderByAggregateInput
@@ -17928,6 +17965,7 @@ export namespace Prisma {
     status?: Enumhsvalidity_request_products_statusWithAggregatesFilter<"hsvalidity_request_products"> | $Enums.hsvalidity_request_products_status
     product_cod?: IntWithAggregatesFilter<"hsvalidity_request_products"> | number
     validity_date?: DateTimeWithAggregatesFilter<"hsvalidity_request_products"> | Date | string
+    auxiliary_code?: StringWithAggregatesFilter<"hsvalidity_request_products"> | string
   }
 
   export type hsvalidity_treatmentsWhereInput = {
@@ -18037,12 +18075,12 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
     hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
     hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
   }
 
   export type hsemployeesUncheckedCreateInput = {
@@ -18054,12 +18092,12 @@ export namespace Prisma {
     password: string
     created_at?: Date | string
     modified_at?: Date | string
-    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
     hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
     hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
   }
 
   export type hsemployeesUpdateInput = {
@@ -18070,12 +18108,12 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
     hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
     hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
   }
 
   export type hsemployeesUncheckedUpdateInput = {
@@ -18087,12 +18125,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
   }
 
   export type hsemployeesCreateManyInput = {
@@ -18192,8 +18230,8 @@ export namespace Prisma {
     description: string
     created_at?: Date | string
     modified_at?: Date | string
-    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHspermissionsInput
     hspermissions_roles?: hspermissions_rolesCreateNestedManyWithoutHspermissionsInput
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHspermissionsInput
   }
 
   export type hspermissionsUncheckedCreateInput = {
@@ -18202,8 +18240,8 @@ export namespace Prisma {
     description: string
     created_at?: Date | string
     modified_at?: Date | string
-    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHspermissionsInput
     hspermissions_roles?: hspermissions_rolesUncheckedCreateNestedManyWithoutHspermissionsInput
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHspermissionsInput
   }
 
   export type hspermissionsUpdateInput = {
@@ -18211,8 +18249,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHspermissionsNestedInput
     hspermissions_roles?: hspermissions_rolesUpdateManyWithoutHspermissionsNestedInput
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHspermissionsNestedInput
   }
 
   export type hspermissionsUncheckedUpdateInput = {
@@ -18221,8 +18259,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHspermissionsNestedInput
     hspermissions_roles?: hspermissions_rolesUncheckedUpdateManyWithoutHspermissionsNestedInput
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHspermissionsNestedInput
   }
 
   export type hspermissionsCreateManyInput = {
@@ -18249,8 +18287,8 @@ export namespace Prisma {
   }
 
   export type hspermissions_rolesCreateInput = {
-    hsroles: hsrolesCreateNestedOneWithoutHspermissions_rolesInput
     hspermissions: hspermissionsCreateNestedOneWithoutHspermissions_rolesInput
+    hsroles: hsrolesCreateNestedOneWithoutHspermissions_rolesInput
   }
 
   export type hspermissions_rolesUncheckedCreateInput = {
@@ -18259,8 +18297,8 @@ export namespace Prisma {
   }
 
   export type hspermissions_rolesUpdateInput = {
-    hsroles?: hsrolesUpdateOneRequiredWithoutHspermissions_rolesNestedInput
     hspermissions?: hspermissionsUpdateOneRequiredWithoutHspermissions_rolesNestedInput
+    hsroles?: hsrolesUpdateOneRequiredWithoutHspermissions_rolesNestedInput
   }
 
   export type hspermissions_rolesUncheckedUpdateInput = {
@@ -18283,8 +18321,8 @@ export namespace Prisma {
   }
 
   export type hsusers_permissionsCreateInput = {
-    hsemployees: hsemployeesCreateNestedOneWithoutHsusers_permissionsInput
     hspermissions: hspermissionsCreateNestedOneWithoutHsusers_permissionsInput
+    hsemployees: hsemployeesCreateNestedOneWithoutHsusers_permissionsInput
   }
 
   export type hsusers_permissionsUncheckedCreateInput = {
@@ -18293,8 +18331,8 @@ export namespace Prisma {
   }
 
   export type hsusers_permissionsUpdateInput = {
-    hsemployees?: hsemployeesUpdateOneRequiredWithoutHsusers_permissionsNestedInput
     hspermissions?: hspermissionsUpdateOneRequiredWithoutHsusers_permissionsNestedInput
+    hsemployees?: hsemployeesUpdateOneRequiredWithoutHsusers_permissionsNestedInput
   }
 
   export type hsusers_permissionsUncheckedUpdateInput = {
@@ -18317,8 +18355,8 @@ export namespace Prisma {
   }
 
   export type hsusers_rolesCreateInput = {
-    heemployees: hsemployeesCreateNestedOneWithoutHsusers_rolesInput
     hsroles: hsrolesCreateNestedOneWithoutHsusers_rolesInput
+    heemployees: hsemployeesCreateNestedOneWithoutHsusers_rolesInput
   }
 
   export type hsusers_rolesUncheckedCreateInput = {
@@ -18327,8 +18365,8 @@ export namespace Prisma {
   }
 
   export type hsusers_rolesUpdateInput = {
-    heemployees?: hsemployeesUpdateOneRequiredWithoutHsusers_rolesNestedInput
     hsroles?: hsrolesUpdateOneRequiredWithoutHsusers_rolesNestedInput
+    heemployees?: hsemployeesUpdateOneRequiredWithoutHsusers_rolesNestedInput
   }
 
   export type hsusers_rolesUncheckedUpdateInput = {
@@ -18352,32 +18390,32 @@ export namespace Prisma {
 
   export type hsbranchesCreateInput = {
     description: string
+    hsemployees?: hsemployeesCreateNestedManyWithoutBranchInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsbranchesInput
     hsvalidity_requests?: hsvalidity_requestsCreateNestedManyWithoutHsbranchesInput
-    hsemployees?: hsemployeesCreateNestedManyWithoutBranchInput
   }
 
   export type hsbranchesUncheckedCreateInput = {
     id?: number
     description: string
+    hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutBranchInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsbranchesInput
     hsvalidity_requests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutHsbranchesInput
-    hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type hsbranchesUpdateInput = {
     description?: StringFieldUpdateOperationsInput | string
+    hsemployees?: hsemployeesUpdateManyWithoutBranchNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsbranchesNestedInput
     hsvalidity_requests?: hsvalidity_requestsUpdateManyWithoutHsbranchesNestedInput
-    hsemployees?: hsemployeesUpdateManyWithoutBranchNestedInput
   }
 
   export type hsbranchesUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
+    hsemployees?: hsemployeesUncheckedUpdateManyWithoutBranchNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsbranchesNestedInput
     hsvalidity_requests?: hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesNestedInput
-    hsemployees?: hsemployeesUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type hsbranchesCreateManyInput = {
@@ -18466,6 +18504,7 @@ export namespace Prisma {
     product_cod: number
     quantity: number
     validity_date: Date | string
+    auxiliary_code: string
     hsvalidity_treatments?: hsvalidity_treatmentsCreateNestedOneWithoutHsvalidity_productsInput
     hsvalidities: hsvaliditiesCreateNestedOneWithoutHsvalidity_productsInput
   }
@@ -18477,12 +18516,14 @@ export namespace Prisma {
     quantity: number
     validity_date: Date | string
     treat_id?: number
+    auxiliary_code: string
   }
 
   export type hsvalidity_productsUpdateInput = {
     product_cod?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
     hsvalidity_treatments?: hsvalidity_treatmentsUpdateOneRequiredWithoutHsvalidity_productsNestedInput
     hsvalidities?: hsvaliditiesUpdateOneRequiredWithoutHsvalidity_productsNestedInput
   }
@@ -18494,6 +18535,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
     treat_id?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type hsvalidity_productsCreateManyInput = {
@@ -18503,12 +18545,14 @@ export namespace Prisma {
     quantity: number
     validity_date: Date | string
     treat_id?: number
+    auxiliary_code: string
   }
 
   export type hsvalidity_productsUpdateManyMutationInput = {
     product_cod?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type hsvalidity_productsUncheckedUpdateManyInput = {
@@ -18518,6 +18562,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
     treat_id?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type hsvalidity_requestsCreateInput = {
@@ -18527,8 +18572,8 @@ export namespace Prisma {
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsvalidity_requestsInput
     hsvalidity_request_products?: hsvalidity_request_productsCreateNestedManyWithoutHsvalidity_requestsInput
     analyst: hsemployeesCreateNestedOneWithoutAnalystRequestsInput
-    conferee: hsemployeesCreateNestedOneWithoutConfereeRequestsInput
     hsbranches: hsbranchesCreateNestedOneWithoutHsvalidity_requestsInput
+    conferee: hsemployeesCreateNestedOneWithoutConfereeRequestsInput
   }
 
   export type hsvalidity_requestsUncheckedCreateInput = {
@@ -18550,8 +18595,8 @@ export namespace Prisma {
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput
     hsvalidity_request_products?: hsvalidity_request_productsUpdateManyWithoutHsvalidity_requestsNestedInput
     analyst?: hsemployeesUpdateOneRequiredWithoutAnalystRequestsNestedInput
-    conferee?: hsemployeesUpdateOneRequiredWithoutConfereeRequestsNestedInput
     hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvalidity_requestsNestedInput
+    conferee?: hsemployeesUpdateOneRequiredWithoutConfereeRequestsNestedInput
   }
 
   export type hsvalidity_requestsUncheckedUpdateInput = {
@@ -18596,6 +18641,7 @@ export namespace Prisma {
     status?: $Enums.hsvalidity_request_products_status
     product_cod: number
     validity_date: Date | string
+    auxiliary_code: string
     hsvalidity_requests: hsvalidity_requestsCreateNestedOneWithoutHsvalidity_request_productsInput
   }
 
@@ -18605,12 +18651,14 @@ export namespace Prisma {
     status?: $Enums.hsvalidity_request_products_status
     product_cod: number
     validity_date: Date | string
+    auxiliary_code: string
   }
 
   export type hsvalidity_request_productsUpdateInput = {
     status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
     product_cod?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
     hsvalidity_requests?: hsvalidity_requestsUpdateOneRequiredWithoutHsvalidity_request_productsNestedInput
   }
 
@@ -18620,6 +18668,7 @@ export namespace Prisma {
     status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
     product_cod?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type hsvalidity_request_productsCreateManyInput = {
@@ -18628,12 +18677,14 @@ export namespace Prisma {
     status?: $Enums.hsvalidity_request_products_status
     product_cod: number
     validity_date: Date | string
+    auxiliary_code: string
   }
 
   export type hsvalidity_request_productsUpdateManyMutationInput = {
     status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
     product_cod?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type hsvalidity_request_productsUncheckedUpdateManyInput = {
@@ -18642,6 +18693,7 @@ export namespace Prisma {
     status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
     product_cod?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type hsvalidity_treatmentsCreateInput = {
@@ -18777,22 +18829,10 @@ export namespace Prisma {
     isNot?: hsbranchesWhereInput
   }
 
-  export type Hsvalidity_requestsListRelationFilter = {
-    every?: hsvalidity_requestsWhereInput
-    some?: hsvalidity_requestsWhereInput
-    none?: hsvalidity_requestsWhereInput
-  }
-
   export type HssessionsListRelationFilter = {
     every?: hssessionsWhereInput
     some?: hssessionsWhereInput
     none?: hssessionsWhereInput
-  }
-
-  export type HsvaliditiesListRelationFilter = {
-    every?: hsvaliditiesWhereInput
-    some?: hsvaliditiesWhereInput
-    none?: hsvaliditiesWhereInput
   }
 
   export type Hsusers_permissionsListRelationFilter = {
@@ -18807,15 +18847,19 @@ export namespace Prisma {
     none?: hsusers_rolesWhereInput
   }
 
-  export type hsvalidity_requestsOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type HsvaliditiesListRelationFilter = {
+    every?: hsvaliditiesWhereInput
+    some?: hsvaliditiesWhereInput
+    none?: hsvaliditiesWhereInput
+  }
+
+  export type Hsvalidity_requestsListRelationFilter = {
+    every?: hsvalidity_requestsWhereInput
+    some?: hsvalidity_requestsWhereInput
+    none?: hsvalidity_requestsWhereInput
   }
 
   export type hssessionsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type hsvaliditiesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18824,6 +18868,14 @@ export namespace Prisma {
   }
 
   export type hsusers_rolesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type hsvaliditiesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type hsvalidity_requestsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18994,14 +19046,14 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type HsrolesScalarRelationFilter = {
-    is?: hsrolesWhereInput
-    isNot?: hsrolesWhereInput
-  }
-
   export type HspermissionsScalarRelationFilter = {
     is?: hspermissionsWhereInput
     isNot?: hspermissionsWhereInput
+  }
+
+  export type HsrolesScalarRelationFilter = {
+    is?: hsrolesWhereInput
+    isNot?: hsrolesWhereInput
   }
 
   export type hspermissions_rolesRole_idPermission_idCompoundUniqueInput = {
@@ -19257,6 +19309,7 @@ export namespace Prisma {
     quantity?: SortOrder
     validity_date?: SortOrder
     treat_id?: SortOrder
+    auxiliary_code?: SortOrder
   }
 
   export type hsvalidity_productsAvgOrderByAggregateInput = {
@@ -19274,6 +19327,7 @@ export namespace Prisma {
     quantity?: SortOrder
     validity_date?: SortOrder
     treat_id?: SortOrder
+    auxiliary_code?: SortOrder
   }
 
   export type hsvalidity_productsMinOrderByAggregateInput = {
@@ -19283,6 +19337,7 @@ export namespace Prisma {
     quantity?: SortOrder
     validity_date?: SortOrder
     treat_id?: SortOrder
+    auxiliary_code?: SortOrder
   }
 
   export type hsvalidity_productsSumOrderByAggregateInput = {
@@ -19382,6 +19437,7 @@ export namespace Prisma {
     status?: SortOrder
     product_cod?: SortOrder
     validity_date?: SortOrder
+    auxiliary_code?: SortOrder
   }
 
   export type hsvalidity_request_productsAvgOrderByAggregateInput = {
@@ -19396,6 +19452,7 @@ export namespace Prisma {
     status?: SortOrder
     product_cod?: SortOrder
     validity_date?: SortOrder
+    auxiliary_code?: SortOrder
   }
 
   export type hsvalidity_request_productsMinOrderByAggregateInput = {
@@ -19404,6 +19461,7 @@ export namespace Prisma {
     status?: SortOrder
     product_cod?: SortOrder
     validity_date?: SortOrder
+    auxiliary_code?: SortOrder
   }
 
   export type hsvalidity_request_productsSumOrderByAggregateInput = {
@@ -19535,32 +19593,11 @@ export namespace Prisma {
     connect?: hsbranchesWhereUniqueInput
   }
 
-  export type hsvalidity_requestsCreateNestedManyWithoutAnalystInput = {
-    create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
-    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
-    createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
-    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-  }
-
-  export type hsvalidity_requestsCreateNestedManyWithoutConfereeInput = {
-    create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
-    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
-    createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
-    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-  }
-
   export type hssessionsCreateNestedManyWithoutUserInput = {
     create?: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput> | hssessionsCreateWithoutUserInput[] | hssessionsUncheckedCreateWithoutUserInput[]
     connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
     createMany?: hssessionsCreateManyUserInputEnvelope
     connect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
-  }
-
-  export type hsvaliditiesCreateNestedManyWithoutHsemployeesInput = {
-    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
-    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
-    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
-    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
   }
 
   export type hsusers_permissionsCreateNestedManyWithoutHsemployeesInput = {
@@ -19577,14 +19614,21 @@ export namespace Prisma {
     connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
   }
 
-  export type hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput = {
+  export type hsvaliditiesCreateNestedManyWithoutHsemployeesInput = {
+    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
+    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
+    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+  }
+
+  export type hsvalidity_requestsCreateNestedManyWithoutAnalystInput = {
     create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
     connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
     createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
     connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
   }
 
-  export type hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput = {
+  export type hsvalidity_requestsCreateNestedManyWithoutConfereeInput = {
     create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
     connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
     createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
@@ -19596,13 +19640,6 @@ export namespace Prisma {
     connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
     createMany?: hssessionsCreateManyUserInputEnvelope
     connect?: hssessionsWhereUniqueInput | hssessionsWhereUniqueInput[]
-  }
-
-  export type hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput = {
-    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
-    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
-    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
-    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
   }
 
   export type hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput = {
@@ -19617,6 +19654,27 @@ export namespace Prisma {
     connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHeemployeesInput | hsusers_rolesCreateOrConnectWithoutHeemployeesInput[]
     createMany?: hsusers_rolesCreateManyHeemployeesInputEnvelope
     connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+  }
+
+  export type hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput = {
+    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
+    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
+    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+  }
+
+  export type hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput = {
+    create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
+    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
+    createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
+    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+  }
+
+  export type hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput = {
+    create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
+    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
+    createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
+    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -19643,34 +19701,6 @@ export namespace Prisma {
     update?: XOR<XOR<hsbranchesUpdateToOneWithWhereWithoutHsemployeesInput, hsbranchesUpdateWithoutHsemployeesInput>, hsbranchesUncheckedUpdateWithoutHsemployeesInput>
   }
 
-  export type hsvalidity_requestsUpdateManyWithoutAnalystNestedInput = {
-    create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
-    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
-    upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput[]
-    createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
-    set?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    disconnect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    delete?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput[]
-    updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput | hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput[]
-    deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
-  }
-
-  export type hsvalidity_requestsUpdateManyWithoutConfereeNestedInput = {
-    create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
-    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
-    upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput[]
-    createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
-    set?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    disconnect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    delete?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
-    update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput[]
-    updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput | hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput[]
-    deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
-  }
-
   export type hssessionsUpdateManyWithoutUserNestedInput = {
     create?: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput> | hssessionsCreateWithoutUserInput[] | hssessionsUncheckedCreateWithoutUserInput[]
     connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
@@ -19683,20 +19713,6 @@ export namespace Prisma {
     update?: hssessionsUpdateWithWhereUniqueWithoutUserInput | hssessionsUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: hssessionsUpdateManyWithWhereWithoutUserInput | hssessionsUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: hssessionsScalarWhereInput | hssessionsScalarWhereInput[]
-  }
-
-  export type hsvaliditiesUpdateManyWithoutHsemployeesNestedInput = {
-    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
-    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
-    upsert?: hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput[]
-    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
-    set?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    disconnect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    delete?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    update?: hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput[]
-    updateMany?: hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput | hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput[]
-    deleteMany?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
   }
 
   export type hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput = {
@@ -19727,7 +19743,21 @@ export namespace Prisma {
     deleteMany?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
   }
 
-  export type hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput = {
+  export type hsvaliditiesUpdateManyWithoutHsemployeesNestedInput = {
+    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
+    upsert?: hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput[]
+    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
+    set?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    disconnect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    delete?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    update?: hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput[]
+    updateMany?: hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput | hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput[]
+    deleteMany?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
+  }
+
+  export type hsvalidity_requestsUpdateManyWithoutAnalystNestedInput = {
     create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
     connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
     upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput[]
@@ -19741,7 +19771,7 @@ export namespace Prisma {
     deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
   }
 
-  export type hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput = {
+  export type hsvalidity_requestsUpdateManyWithoutConfereeNestedInput = {
     create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
     connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
     upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput[]
@@ -19767,20 +19797,6 @@ export namespace Prisma {
     update?: hssessionsUpdateWithWhereUniqueWithoutUserInput | hssessionsUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: hssessionsUpdateManyWithWhereWithoutUserInput | hssessionsUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: hssessionsScalarWhereInput | hssessionsScalarWhereInput[]
-  }
-
-  export type hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput = {
-    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
-    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
-    upsert?: hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput[]
-    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
-    set?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    disconnect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    delete?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
-    update?: hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput[]
-    updateMany?: hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput | hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput[]
-    deleteMany?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
   }
 
   export type hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput = {
@@ -19809,6 +19825,48 @@ export namespace Prisma {
     update?: hsusers_rolesUpdateWithWhereUniqueWithoutHeemployeesInput | hsusers_rolesUpdateWithWhereUniqueWithoutHeemployeesInput[]
     updateMany?: hsusers_rolesUpdateManyWithWhereWithoutHeemployeesInput | hsusers_rolesUpdateManyWithWhereWithoutHeemployeesInput[]
     deleteMany?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
+  }
+
+  export type hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput = {
+    create?: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput> | hsvaliditiesCreateWithoutHsemployeesInput[] | hsvaliditiesUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsvaliditiesCreateOrConnectWithoutHsemployeesInput | hsvaliditiesCreateOrConnectWithoutHsemployeesInput[]
+    upsert?: hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput[]
+    createMany?: hsvaliditiesCreateManyHsemployeesInputEnvelope
+    set?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    disconnect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    delete?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    connect?: hsvaliditiesWhereUniqueInput | hsvaliditiesWhereUniqueInput[]
+    update?: hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput | hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput[]
+    updateMany?: hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput | hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput[]
+    deleteMany?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
+  }
+
+  export type hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput = {
+    create?: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput> | hsvalidity_requestsCreateWithoutAnalystInput[] | hsvalidity_requestsUncheckedCreateWithoutAnalystInput[]
+    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutAnalystInput | hsvalidity_requestsCreateOrConnectWithoutAnalystInput[]
+    upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput[]
+    createMany?: hsvalidity_requestsCreateManyAnalystInputEnvelope
+    set?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    disconnect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    delete?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput[]
+    updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput | hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput[]
+    deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
+  }
+
+  export type hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput = {
+    create?: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput> | hsvalidity_requestsCreateWithoutConfereeInput[] | hsvalidity_requestsUncheckedCreateWithoutConfereeInput[]
+    connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
+    upsert?: hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput[]
+    createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
+    set?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    disconnect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    delete?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+    update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput[]
+    updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput | hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput[]
+    deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
   }
 
   export type hspermissions_rolesCreateNestedManyWithoutHsrolesInput = {
@@ -19895,13 +19953,6 @@ export namespace Prisma {
     deleteMany?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
   }
 
-  export type hsusers_permissionsCreateNestedManyWithoutHspermissionsInput = {
-    create?: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput> | hsusers_permissionsCreateWithoutHspermissionsInput[] | hsusers_permissionsUncheckedCreateWithoutHspermissionsInput[]
-    connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHspermissionsInput | hsusers_permissionsCreateOrConnectWithoutHspermissionsInput[]
-    createMany?: hsusers_permissionsCreateManyHspermissionsInputEnvelope
-    connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
-  }
-
   export type hspermissions_rolesCreateNestedManyWithoutHspermissionsInput = {
     create?: XOR<hspermissions_rolesCreateWithoutHspermissionsInput, hspermissions_rolesUncheckedCreateWithoutHspermissionsInput> | hspermissions_rolesCreateWithoutHspermissionsInput[] | hspermissions_rolesUncheckedCreateWithoutHspermissionsInput[]
     connectOrCreate?: hspermissions_rolesCreateOrConnectWithoutHspermissionsInput | hspermissions_rolesCreateOrConnectWithoutHspermissionsInput[]
@@ -19909,7 +19960,7 @@ export namespace Prisma {
     connect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
   }
 
-  export type hsusers_permissionsUncheckedCreateNestedManyWithoutHspermissionsInput = {
+  export type hsusers_permissionsCreateNestedManyWithoutHspermissionsInput = {
     create?: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput> | hsusers_permissionsCreateWithoutHspermissionsInput[] | hsusers_permissionsUncheckedCreateWithoutHspermissionsInput[]
     connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHspermissionsInput | hsusers_permissionsCreateOrConnectWithoutHspermissionsInput[]
     createMany?: hsusers_permissionsCreateManyHspermissionsInputEnvelope
@@ -19923,18 +19974,11 @@ export namespace Prisma {
     connect?: hspermissions_rolesWhereUniqueInput | hspermissions_rolesWhereUniqueInput[]
   }
 
-  export type hsusers_permissionsUpdateManyWithoutHspermissionsNestedInput = {
+  export type hsusers_permissionsUncheckedCreateNestedManyWithoutHspermissionsInput = {
     create?: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput> | hsusers_permissionsCreateWithoutHspermissionsInput[] | hsusers_permissionsUncheckedCreateWithoutHspermissionsInput[]
     connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHspermissionsInput | hsusers_permissionsCreateOrConnectWithoutHspermissionsInput[]
-    upsert?: hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput | hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput[]
     createMany?: hsusers_permissionsCreateManyHspermissionsInputEnvelope
-    set?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
-    disconnect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
-    delete?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
     connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
-    update?: hsusers_permissionsUpdateWithWhereUniqueWithoutHspermissionsInput | hsusers_permissionsUpdateWithWhereUniqueWithoutHspermissionsInput[]
-    updateMany?: hsusers_permissionsUpdateManyWithWhereWithoutHspermissionsInput | hsusers_permissionsUpdateManyWithWhereWithoutHspermissionsInput[]
-    deleteMany?: hsusers_permissionsScalarWhereInput | hsusers_permissionsScalarWhereInput[]
   }
 
   export type hspermissions_rolesUpdateManyWithoutHspermissionsNestedInput = {
@@ -19951,7 +19995,7 @@ export namespace Prisma {
     deleteMany?: hspermissions_rolesScalarWhereInput | hspermissions_rolesScalarWhereInput[]
   }
 
-  export type hsusers_permissionsUncheckedUpdateManyWithoutHspermissionsNestedInput = {
+  export type hsusers_permissionsUpdateManyWithoutHspermissionsNestedInput = {
     create?: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput> | hsusers_permissionsCreateWithoutHspermissionsInput[] | hsusers_permissionsUncheckedCreateWithoutHspermissionsInput[]
     connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHspermissionsInput | hsusers_permissionsCreateOrConnectWithoutHspermissionsInput[]
     upsert?: hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput | hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput[]
@@ -19979,10 +20023,18 @@ export namespace Prisma {
     deleteMany?: hspermissions_rolesScalarWhereInput | hspermissions_rolesScalarWhereInput[]
   }
 
-  export type hsrolesCreateNestedOneWithoutHspermissions_rolesInput = {
-    create?: XOR<hsrolesCreateWithoutHspermissions_rolesInput, hsrolesUncheckedCreateWithoutHspermissions_rolesInput>
-    connectOrCreate?: hsrolesCreateOrConnectWithoutHspermissions_rolesInput
-    connect?: hsrolesWhereUniqueInput
+  export type hsusers_permissionsUncheckedUpdateManyWithoutHspermissionsNestedInput = {
+    create?: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput> | hsusers_permissionsCreateWithoutHspermissionsInput[] | hsusers_permissionsUncheckedCreateWithoutHspermissionsInput[]
+    connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHspermissionsInput | hsusers_permissionsCreateOrConnectWithoutHspermissionsInput[]
+    upsert?: hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput | hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput[]
+    createMany?: hsusers_permissionsCreateManyHspermissionsInputEnvelope
+    set?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    disconnect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    delete?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
+    update?: hsusers_permissionsUpdateWithWhereUniqueWithoutHspermissionsInput | hsusers_permissionsUpdateWithWhereUniqueWithoutHspermissionsInput[]
+    updateMany?: hsusers_permissionsUpdateManyWithWhereWithoutHspermissionsInput | hsusers_permissionsUpdateManyWithWhereWithoutHspermissionsInput[]
+    deleteMany?: hsusers_permissionsScalarWhereInput | hsusers_permissionsScalarWhereInput[]
   }
 
   export type hspermissionsCreateNestedOneWithoutHspermissions_rolesInput = {
@@ -19991,12 +20043,10 @@ export namespace Prisma {
     connect?: hspermissionsWhereUniqueInput
   }
 
-  export type hsrolesUpdateOneRequiredWithoutHspermissions_rolesNestedInput = {
+  export type hsrolesCreateNestedOneWithoutHspermissions_rolesInput = {
     create?: XOR<hsrolesCreateWithoutHspermissions_rolesInput, hsrolesUncheckedCreateWithoutHspermissions_rolesInput>
     connectOrCreate?: hsrolesCreateOrConnectWithoutHspermissions_rolesInput
-    upsert?: hsrolesUpsertWithoutHspermissions_rolesInput
     connect?: hsrolesWhereUniqueInput
-    update?: XOR<XOR<hsrolesUpdateToOneWithWhereWithoutHspermissions_rolesInput, hsrolesUpdateWithoutHspermissions_rolesInput>, hsrolesUncheckedUpdateWithoutHspermissions_rolesInput>
   }
 
   export type hspermissionsUpdateOneRequiredWithoutHspermissions_rolesNestedInput = {
@@ -20007,10 +20057,12 @@ export namespace Prisma {
     update?: XOR<XOR<hspermissionsUpdateToOneWithWhereWithoutHspermissions_rolesInput, hspermissionsUpdateWithoutHspermissions_rolesInput>, hspermissionsUncheckedUpdateWithoutHspermissions_rolesInput>
   }
 
-  export type hsemployeesCreateNestedOneWithoutHsusers_permissionsInput = {
-    create?: XOR<hsemployeesCreateWithoutHsusers_permissionsInput, hsemployeesUncheckedCreateWithoutHsusers_permissionsInput>
-    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsusers_permissionsInput
-    connect?: hsemployeesWhereUniqueInput
+  export type hsrolesUpdateOneRequiredWithoutHspermissions_rolesNestedInput = {
+    create?: XOR<hsrolesCreateWithoutHspermissions_rolesInput, hsrolesUncheckedCreateWithoutHspermissions_rolesInput>
+    connectOrCreate?: hsrolesCreateOrConnectWithoutHspermissions_rolesInput
+    upsert?: hsrolesUpsertWithoutHspermissions_rolesInput
+    connect?: hsrolesWhereUniqueInput
+    update?: XOR<XOR<hsrolesUpdateToOneWithWhereWithoutHspermissions_rolesInput, hsrolesUpdateWithoutHspermissions_rolesInput>, hsrolesUncheckedUpdateWithoutHspermissions_rolesInput>
   }
 
   export type hspermissionsCreateNestedOneWithoutHsusers_permissionsInput = {
@@ -20019,12 +20071,10 @@ export namespace Prisma {
     connect?: hspermissionsWhereUniqueInput
   }
 
-  export type hsemployeesUpdateOneRequiredWithoutHsusers_permissionsNestedInput = {
+  export type hsemployeesCreateNestedOneWithoutHsusers_permissionsInput = {
     create?: XOR<hsemployeesCreateWithoutHsusers_permissionsInput, hsemployeesUncheckedCreateWithoutHsusers_permissionsInput>
     connectOrCreate?: hsemployeesCreateOrConnectWithoutHsusers_permissionsInput
-    upsert?: hsemployeesUpsertWithoutHsusers_permissionsInput
     connect?: hsemployeesWhereUniqueInput
-    update?: XOR<XOR<hsemployeesUpdateToOneWithWhereWithoutHsusers_permissionsInput, hsemployeesUpdateWithoutHsusers_permissionsInput>, hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput>
   }
 
   export type hspermissionsUpdateOneRequiredWithoutHsusers_permissionsNestedInput = {
@@ -20035,16 +20085,32 @@ export namespace Prisma {
     update?: XOR<XOR<hspermissionsUpdateToOneWithWhereWithoutHsusers_permissionsInput, hspermissionsUpdateWithoutHsusers_permissionsInput>, hspermissionsUncheckedUpdateWithoutHsusers_permissionsInput>
   }
 
-  export type hsemployeesCreateNestedOneWithoutHsusers_rolesInput = {
-    create?: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
-    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsusers_rolesInput
+  export type hsemployeesUpdateOneRequiredWithoutHsusers_permissionsNestedInput = {
+    create?: XOR<hsemployeesCreateWithoutHsusers_permissionsInput, hsemployeesUncheckedCreateWithoutHsusers_permissionsInput>
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsusers_permissionsInput
+    upsert?: hsemployeesUpsertWithoutHsusers_permissionsInput
     connect?: hsemployeesWhereUniqueInput
+    update?: XOR<XOR<hsemployeesUpdateToOneWithWhereWithoutHsusers_permissionsInput, hsemployeesUpdateWithoutHsusers_permissionsInput>, hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput>
   }
 
   export type hsrolesCreateNestedOneWithoutHsusers_rolesInput = {
     create?: XOR<hsrolesCreateWithoutHsusers_rolesInput, hsrolesUncheckedCreateWithoutHsusers_rolesInput>
     connectOrCreate?: hsrolesCreateOrConnectWithoutHsusers_rolesInput
     connect?: hsrolesWhereUniqueInput
+  }
+
+  export type hsemployeesCreateNestedOneWithoutHsusers_rolesInput = {
+    create?: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsusers_rolesInput
+    connect?: hsemployeesWhereUniqueInput
+  }
+
+  export type hsrolesUpdateOneRequiredWithoutHsusers_rolesNestedInput = {
+    create?: XOR<hsrolesCreateWithoutHsusers_rolesInput, hsrolesUncheckedCreateWithoutHsusers_rolesInput>
+    connectOrCreate?: hsrolesCreateOrConnectWithoutHsusers_rolesInput
+    upsert?: hsrolesUpsertWithoutHsusers_rolesInput
+    connect?: hsrolesWhereUniqueInput
+    update?: XOR<XOR<hsrolesUpdateToOneWithWhereWithoutHsusers_rolesInput, hsrolesUpdateWithoutHsusers_rolesInput>, hsrolesUncheckedUpdateWithoutHsusers_rolesInput>
   }
 
   export type hsemployeesUpdateOneRequiredWithoutHsusers_rolesNestedInput = {
@@ -20055,12 +20121,11 @@ export namespace Prisma {
     update?: XOR<XOR<hsemployeesUpdateToOneWithWhereWithoutHsusers_rolesInput, hsemployeesUpdateWithoutHsusers_rolesInput>, hsemployeesUncheckedUpdateWithoutHsusers_rolesInput>
   }
 
-  export type hsrolesUpdateOneRequiredWithoutHsusers_rolesNestedInput = {
-    create?: XOR<hsrolesCreateWithoutHsusers_rolesInput, hsrolesUncheckedCreateWithoutHsusers_rolesInput>
-    connectOrCreate?: hsrolesCreateOrConnectWithoutHsusers_rolesInput
-    upsert?: hsrolesUpsertWithoutHsusers_rolesInput
-    connect?: hsrolesWhereUniqueInput
-    update?: XOR<XOR<hsrolesUpdateToOneWithWhereWithoutHsusers_rolesInput, hsrolesUpdateWithoutHsusers_rolesInput>, hsrolesUncheckedUpdateWithoutHsusers_rolesInput>
+  export type hsemployeesCreateNestedManyWithoutBranchInput = {
+    create?: XOR<hsemployeesCreateWithoutBranchInput, hsemployeesUncheckedCreateWithoutBranchInput> | hsemployeesCreateWithoutBranchInput[] | hsemployeesUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutBranchInput | hsemployeesCreateOrConnectWithoutBranchInput[]
+    createMany?: hsemployeesCreateManyBranchInputEnvelope
+    connect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
   }
 
   export type hsvaliditiesCreateNestedManyWithoutHsbranchesInput = {
@@ -20077,7 +20142,7 @@ export namespace Prisma {
     connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
   }
 
-  export type hsemployeesCreateNestedManyWithoutBranchInput = {
+  export type hsemployeesUncheckedCreateNestedManyWithoutBranchInput = {
     create?: XOR<hsemployeesCreateWithoutBranchInput, hsemployeesUncheckedCreateWithoutBranchInput> | hsemployeesCreateWithoutBranchInput[] | hsemployeesUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: hsemployeesCreateOrConnectWithoutBranchInput | hsemployeesCreateOrConnectWithoutBranchInput[]
     createMany?: hsemployeesCreateManyBranchInputEnvelope
@@ -20098,11 +20163,18 @@ export namespace Prisma {
     connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
   }
 
-  export type hsemployeesUncheckedCreateNestedManyWithoutBranchInput = {
+  export type hsemployeesUpdateManyWithoutBranchNestedInput = {
     create?: XOR<hsemployeesCreateWithoutBranchInput, hsemployeesUncheckedCreateWithoutBranchInput> | hsemployeesCreateWithoutBranchInput[] | hsemployeesUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: hsemployeesCreateOrConnectWithoutBranchInput | hsemployeesCreateOrConnectWithoutBranchInput[]
+    upsert?: hsemployeesUpsertWithWhereUniqueWithoutBranchInput | hsemployeesUpsertWithWhereUniqueWithoutBranchInput[]
     createMany?: hsemployeesCreateManyBranchInputEnvelope
+    set?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+    disconnect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+    delete?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
     connect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+    update?: hsemployeesUpdateWithWhereUniqueWithoutBranchInput | hsemployeesUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: hsemployeesUpdateManyWithWhereWithoutBranchInput | hsemployeesUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
   }
 
   export type hsvaliditiesUpdateManyWithoutHsbranchesNestedInput = {
@@ -20133,7 +20205,7 @@ export namespace Prisma {
     deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
   }
 
-  export type hsemployeesUpdateManyWithoutBranchNestedInput = {
+  export type hsemployeesUncheckedUpdateManyWithoutBranchNestedInput = {
     create?: XOR<hsemployeesCreateWithoutBranchInput, hsemployeesUncheckedCreateWithoutBranchInput> | hsemployeesCreateWithoutBranchInput[] | hsemployeesUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: hsemployeesCreateOrConnectWithoutBranchInput | hsemployeesCreateOrConnectWithoutBranchInput[]
     upsert?: hsemployeesUpsertWithWhereUniqueWithoutBranchInput | hsemployeesUpsertWithWhereUniqueWithoutBranchInput[]
@@ -20173,20 +20245,6 @@ export namespace Prisma {
     update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutHsbranchesInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutHsbranchesInput[]
     updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutHsbranchesInput | hsvalidity_requestsUpdateManyWithWhereWithoutHsbranchesInput[]
     deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
-  }
-
-  export type hsemployeesUncheckedUpdateManyWithoutBranchNestedInput = {
-    create?: XOR<hsemployeesCreateWithoutBranchInput, hsemployeesUncheckedCreateWithoutBranchInput> | hsemployeesCreateWithoutBranchInput[] | hsemployeesUncheckedCreateWithoutBranchInput[]
-    connectOrCreate?: hsemployeesCreateOrConnectWithoutBranchInput | hsemployeesCreateOrConnectWithoutBranchInput[]
-    upsert?: hsemployeesUpsertWithWhereUniqueWithoutBranchInput | hsemployeesUpsertWithWhereUniqueWithoutBranchInput[]
-    createMany?: hsemployeesCreateManyBranchInputEnvelope
-    set?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
-    disconnect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
-    delete?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
-    connect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
-    update?: hsemployeesUpdateWithWhereUniqueWithoutBranchInput | hsemployeesUpdateWithWhereUniqueWithoutBranchInput[]
-    updateMany?: hsemployeesUpdateManyWithWhereWithoutBranchInput | hsemployeesUpdateManyWithWhereWithoutBranchInput[]
-    deleteMany?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
   }
 
   export type hsbranchesCreateNestedOneWithoutHsvaliditiesInput = {
@@ -20335,16 +20393,16 @@ export namespace Prisma {
     connect?: hsemployeesWhereUniqueInput
   }
 
-  export type hsemployeesCreateNestedOneWithoutConfereeRequestsInput = {
-    create?: XOR<hsemployeesCreateWithoutConfereeRequestsInput, hsemployeesUncheckedCreateWithoutConfereeRequestsInput>
-    connectOrCreate?: hsemployeesCreateOrConnectWithoutConfereeRequestsInput
-    connect?: hsemployeesWhereUniqueInput
-  }
-
   export type hsbranchesCreateNestedOneWithoutHsvalidity_requestsInput = {
     create?: XOR<hsbranchesCreateWithoutHsvalidity_requestsInput, hsbranchesUncheckedCreateWithoutHsvalidity_requestsInput>
     connectOrCreate?: hsbranchesCreateOrConnectWithoutHsvalidity_requestsInput
     connect?: hsbranchesWhereUniqueInput
+  }
+
+  export type hsemployeesCreateNestedOneWithoutConfereeRequestsInput = {
+    create?: XOR<hsemployeesCreateWithoutConfereeRequestsInput, hsemployeesUncheckedCreateWithoutConfereeRequestsInput>
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutConfereeRequestsInput
+    connect?: hsemployeesWhereUniqueInput
   }
 
   export type hsvaliditiesUncheckedCreateNestedManyWithoutHsvalidity_requestsInput = {
@@ -20401,20 +20459,20 @@ export namespace Prisma {
     update?: XOR<XOR<hsemployeesUpdateToOneWithWhereWithoutAnalystRequestsInput, hsemployeesUpdateWithoutAnalystRequestsInput>, hsemployeesUncheckedUpdateWithoutAnalystRequestsInput>
   }
 
-  export type hsemployeesUpdateOneRequiredWithoutConfereeRequestsNestedInput = {
-    create?: XOR<hsemployeesCreateWithoutConfereeRequestsInput, hsemployeesUncheckedCreateWithoutConfereeRequestsInput>
-    connectOrCreate?: hsemployeesCreateOrConnectWithoutConfereeRequestsInput
-    upsert?: hsemployeesUpsertWithoutConfereeRequestsInput
-    connect?: hsemployeesWhereUniqueInput
-    update?: XOR<XOR<hsemployeesUpdateToOneWithWhereWithoutConfereeRequestsInput, hsemployeesUpdateWithoutConfereeRequestsInput>, hsemployeesUncheckedUpdateWithoutConfereeRequestsInput>
-  }
-
   export type hsbranchesUpdateOneRequiredWithoutHsvalidity_requestsNestedInput = {
     create?: XOR<hsbranchesCreateWithoutHsvalidity_requestsInput, hsbranchesUncheckedCreateWithoutHsvalidity_requestsInput>
     connectOrCreate?: hsbranchesCreateOrConnectWithoutHsvalidity_requestsInput
     upsert?: hsbranchesUpsertWithoutHsvalidity_requestsInput
     connect?: hsbranchesWhereUniqueInput
     update?: XOR<XOR<hsbranchesUpdateToOneWithWhereWithoutHsvalidity_requestsInput, hsbranchesUpdateWithoutHsvalidity_requestsInput>, hsbranchesUncheckedUpdateWithoutHsvalidity_requestsInput>
+  }
+
+  export type hsemployeesUpdateOneRequiredWithoutConfereeRequestsNestedInput = {
+    create?: XOR<hsemployeesCreateWithoutConfereeRequestsInput, hsemployeesUncheckedCreateWithoutConfereeRequestsInput>
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutConfereeRequestsInput
+    upsert?: hsemployeesUpsertWithoutConfereeRequestsInput
+    connect?: hsemployeesWhereUniqueInput
+    update?: XOR<XOR<hsemployeesUpdateToOneWithWhereWithoutConfereeRequestsInput, hsemployeesUpdateWithoutConfereeRequestsInput>, hsemployeesUncheckedUpdateWithoutConfereeRequestsInput>
   }
 
   export type hsvaliditiesUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput = {
@@ -20774,14 +20832,103 @@ export namespace Prisma {
     create: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
   }
 
+  export type hssessionsCreateWithoutUserInput = {
+    id?: string
+    token: string
+    created_at?: Date | string
+    expires_at?: Date | string | null
+  }
+
+  export type hssessionsUncheckedCreateWithoutUserInput = {
+    id?: string
+    token: string
+    created_at?: Date | string
+    expires_at?: Date | string | null
+  }
+
+  export type hssessionsCreateOrConnectWithoutUserInput = {
+    where: hssessionsWhereUniqueInput
+    create: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput>
+  }
+
+  export type hssessionsCreateManyUserInputEnvelope = {
+    data: hssessionsCreateManyUserInput | hssessionsCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsusers_permissionsCreateWithoutHsemployeesInput = {
+    hspermissions: hspermissionsCreateNestedOneWithoutHsusers_permissionsInput
+  }
+
+  export type hsusers_permissionsUncheckedCreateWithoutHsemployeesInput = {
+    permission_id: number
+  }
+
+  export type hsusers_permissionsCreateOrConnectWithoutHsemployeesInput = {
+    where: hsusers_permissionsWhereUniqueInput
+    create: XOR<hsusers_permissionsCreateWithoutHsemployeesInput, hsusers_permissionsUncheckedCreateWithoutHsemployeesInput>
+  }
+
+  export type hsusers_permissionsCreateManyHsemployeesInputEnvelope = {
+    data: hsusers_permissionsCreateManyHsemployeesInput | hsusers_permissionsCreateManyHsemployeesInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsusers_rolesCreateWithoutHeemployeesInput = {
+    hsroles: hsrolesCreateNestedOneWithoutHsusers_rolesInput
+  }
+
+  export type hsusers_rolesUncheckedCreateWithoutHeemployeesInput = {
+    role_id: number
+  }
+
+  export type hsusers_rolesCreateOrConnectWithoutHeemployeesInput = {
+    where: hsusers_rolesWhereUniqueInput
+    create: XOR<hsusers_rolesCreateWithoutHeemployeesInput, hsusers_rolesUncheckedCreateWithoutHeemployeesInput>
+  }
+
+  export type hsusers_rolesCreateManyHeemployeesInputEnvelope = {
+    data: hsusers_rolesCreateManyHeemployeesInput | hsusers_rolesCreateManyHeemployeesInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsvaliditiesCreateWithoutHsemployeesInput = {
+    status?: $Enums.hsvalidities_status
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsbranches: hsbranchesCreateNestedOneWithoutHsvaliditiesInput
+    hsvalidity_requests?: hsvalidity_requestsCreateNestedOneWithoutHsvaliditiesInput
+    hsvalidity_products?: hsvalidity_productsCreateNestedManyWithoutHsvaliditiesInput
+  }
+
+  export type hsvaliditiesUncheckedCreateWithoutHsemployeesInput = {
+    id?: number
+    branch_id: number
+    status?: $Enums.hsvalidities_status
+    request_id?: number | null
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsvalidity_products?: hsvalidity_productsUncheckedCreateNestedManyWithoutHsvaliditiesInput
+  }
+
+  export type hsvaliditiesCreateOrConnectWithoutHsemployeesInput = {
+    where: hsvaliditiesWhereUniqueInput
+    create: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput>
+  }
+
+  export type hsvaliditiesCreateManyHsemployeesInputEnvelope = {
+    data: hsvaliditiesCreateManyHsemployeesInput | hsvaliditiesCreateManyHsemployeesInput[]
+    skipDuplicates?: boolean
+  }
+
   export type hsvalidity_requestsCreateWithoutAnalystInput = {
     status?: $Enums.hsvalidity_requests_status
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsvalidity_requestsInput
     hsvalidity_request_products?: hsvalidity_request_productsCreateNestedManyWithoutHsvalidity_requestsInput
-    conferee: hsemployeesCreateNestedOneWithoutConfereeRequestsInput
     hsbranches: hsbranchesCreateNestedOneWithoutHsvalidity_requestsInput
+    conferee: hsemployeesCreateNestedOneWithoutConfereeRequestsInput
   }
 
   export type hsvalidity_requestsUncheckedCreateWithoutAnalystInput = {
@@ -20836,95 +20983,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type hssessionsCreateWithoutUserInput = {
-    id?: string
-    token: string
-    created_at?: Date | string
-    expires_at?: Date | string | null
-  }
-
-  export type hssessionsUncheckedCreateWithoutUserInput = {
-    id?: string
-    token: string
-    created_at?: Date | string
-    expires_at?: Date | string | null
-  }
-
-  export type hssessionsCreateOrConnectWithoutUserInput = {
-    where: hssessionsWhereUniqueInput
-    create: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput>
-  }
-
-  export type hssessionsCreateManyUserInputEnvelope = {
-    data: hssessionsCreateManyUserInput | hssessionsCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type hsvaliditiesCreateWithoutHsemployeesInput = {
-    status?: $Enums.hsvalidities_status
-    created_at?: Date | string
-    modified_at?: Date | string
-    hsbranches: hsbranchesCreateNestedOneWithoutHsvaliditiesInput
-    hsvalidity_requests?: hsvalidity_requestsCreateNestedOneWithoutHsvaliditiesInput
-    hsvalidity_products?: hsvalidity_productsCreateNestedManyWithoutHsvaliditiesInput
-  }
-
-  export type hsvaliditiesUncheckedCreateWithoutHsemployeesInput = {
-    id?: number
-    branch_id: number
-    status?: $Enums.hsvalidities_status
-    request_id?: number | null
-    created_at?: Date | string
-    modified_at?: Date | string
-    hsvalidity_products?: hsvalidity_productsUncheckedCreateNestedManyWithoutHsvaliditiesInput
-  }
-
-  export type hsvaliditiesCreateOrConnectWithoutHsemployeesInput = {
-    where: hsvaliditiesWhereUniqueInput
-    create: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput>
-  }
-
-  export type hsvaliditiesCreateManyHsemployeesInputEnvelope = {
-    data: hsvaliditiesCreateManyHsemployeesInput | hsvaliditiesCreateManyHsemployeesInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type hsusers_permissionsCreateWithoutHsemployeesInput = {
-    hspermissions: hspermissionsCreateNestedOneWithoutHsusers_permissionsInput
-  }
-
-  export type hsusers_permissionsUncheckedCreateWithoutHsemployeesInput = {
-    permission_id: number
-  }
-
-  export type hsusers_permissionsCreateOrConnectWithoutHsemployeesInput = {
-    where: hsusers_permissionsWhereUniqueInput
-    create: XOR<hsusers_permissionsCreateWithoutHsemployeesInput, hsusers_permissionsUncheckedCreateWithoutHsemployeesInput>
-  }
-
-  export type hsusers_permissionsCreateManyHsemployeesInputEnvelope = {
-    data: hsusers_permissionsCreateManyHsemployeesInput | hsusers_permissionsCreateManyHsemployeesInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type hsusers_rolesCreateWithoutHeemployeesInput = {
-    hsroles: hsrolesCreateNestedOneWithoutHsusers_rolesInput
-  }
-
-  export type hsusers_rolesUncheckedCreateWithoutHeemployeesInput = {
-    role_id: number
-  }
-
-  export type hsusers_rolesCreateOrConnectWithoutHeemployeesInput = {
-    where: hsusers_rolesWhereUniqueInput
-    create: XOR<hsusers_rolesCreateWithoutHeemployeesInput, hsusers_rolesUncheckedCreateWithoutHeemployeesInput>
-  }
-
-  export type hsusers_rolesCreateManyHeemployeesInputEnvelope = {
-    data: hsusers_rolesCreateManyHeemployeesInput | hsusers_rolesCreateManyHeemployeesInput[]
-    skipDuplicates?: boolean
-  }
-
   export type hsbranchesUpsertWithoutHsemployeesInput = {
     update: XOR<hsbranchesUpdateWithoutHsemployeesInput, hsbranchesUncheckedUpdateWithoutHsemployeesInput>
     create: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
@@ -20947,51 +21005,6 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsbranchesNestedInput
     hsvalidity_requests?: hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesNestedInput
-  }
-
-  export type hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput = {
-    where: hsvalidity_requestsWhereUniqueInput
-    update: XOR<hsvalidity_requestsUpdateWithoutAnalystInput, hsvalidity_requestsUncheckedUpdateWithoutAnalystInput>
-    create: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput>
-  }
-
-  export type hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput = {
-    where: hsvalidity_requestsWhereUniqueInput
-    data: XOR<hsvalidity_requestsUpdateWithoutAnalystInput, hsvalidity_requestsUncheckedUpdateWithoutAnalystInput>
-  }
-
-  export type hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput = {
-    where: hsvalidity_requestsScalarWhereInput
-    data: XOR<hsvalidity_requestsUpdateManyMutationInput, hsvalidity_requestsUncheckedUpdateManyWithoutAnalystInput>
-  }
-
-  export type hsvalidity_requestsScalarWhereInput = {
-    AND?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
-    OR?: hsvalidity_requestsScalarWhereInput[]
-    NOT?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
-    id?: IntFilter<"hsvalidity_requests"> | number
-    branch_id?: IntFilter<"hsvalidity_requests"> | number
-    analyst_id?: IntFilter<"hsvalidity_requests"> | number
-    conferee_id?: IntFilter<"hsvalidity_requests"> | number
-    status?: Enumhsvalidity_requests_statusFilter<"hsvalidity_requests"> | $Enums.hsvalidity_requests_status
-    created_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
-    modified_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
-  }
-
-  export type hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput = {
-    where: hsvalidity_requestsWhereUniqueInput
-    update: XOR<hsvalidity_requestsUpdateWithoutConfereeInput, hsvalidity_requestsUncheckedUpdateWithoutConfereeInput>
-    create: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput>
-  }
-
-  export type hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput = {
-    where: hsvalidity_requestsWhereUniqueInput
-    data: XOR<hsvalidity_requestsUpdateWithoutConfereeInput, hsvalidity_requestsUncheckedUpdateWithoutConfereeInput>
-  }
-
-  export type hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput = {
-    where: hsvalidity_requestsScalarWhereInput
-    data: XOR<hsvalidity_requestsUpdateManyMutationInput, hsvalidity_requestsUncheckedUpdateManyWithoutConfereeInput>
   }
 
   export type hssessionsUpsertWithWhereUniqueWithoutUserInput = {
@@ -21019,35 +21032,6 @@ export namespace Prisma {
     token?: StringFilter<"hssessions"> | string
     created_at?: DateTimeFilter<"hssessions"> | Date | string
     expires_at?: DateTimeNullableFilter<"hssessions"> | Date | string | null
-  }
-
-  export type hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput = {
-    where: hsvaliditiesWhereUniqueInput
-    update: XOR<hsvaliditiesUpdateWithoutHsemployeesInput, hsvaliditiesUncheckedUpdateWithoutHsemployeesInput>
-    create: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput>
-  }
-
-  export type hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput = {
-    where: hsvaliditiesWhereUniqueInput
-    data: XOR<hsvaliditiesUpdateWithoutHsemployeesInput, hsvaliditiesUncheckedUpdateWithoutHsemployeesInput>
-  }
-
-  export type hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput = {
-    where: hsvaliditiesScalarWhereInput
-    data: XOR<hsvaliditiesUpdateManyMutationInput, hsvaliditiesUncheckedUpdateManyWithoutHsemployeesInput>
-  }
-
-  export type hsvaliditiesScalarWhereInput = {
-    AND?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
-    OR?: hsvaliditiesScalarWhereInput[]
-    NOT?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
-    id?: IntFilter<"hsvalidities"> | number
-    branch_id?: IntFilter<"hsvalidities"> | number
-    employee_id?: IntFilter<"hsvalidities"> | number
-    status?: Enumhsvalidities_statusFilter<"hsvalidities"> | $Enums.hsvalidities_status
-    request_id?: IntNullableFilter<"hsvalidities"> | number | null
-    created_at?: DateTimeFilter<"hsvalidities"> | Date | string
-    modified_at?: DateTimeFilter<"hsvalidities"> | Date | string
   }
 
   export type hsusers_permissionsUpsertWithWhereUniqueWithoutHsemployeesInput = {
@@ -21096,6 +21080,80 @@ export namespace Prisma {
     NOT?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
     user_id?: IntFilter<"hsusers_roles"> | number
     role_id?: IntFilter<"hsusers_roles"> | number
+  }
+
+  export type hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput = {
+    where: hsvaliditiesWhereUniqueInput
+    update: XOR<hsvaliditiesUpdateWithoutHsemployeesInput, hsvaliditiesUncheckedUpdateWithoutHsemployeesInput>
+    create: XOR<hsvaliditiesCreateWithoutHsemployeesInput, hsvaliditiesUncheckedCreateWithoutHsemployeesInput>
+  }
+
+  export type hsvaliditiesUpdateWithWhereUniqueWithoutHsemployeesInput = {
+    where: hsvaliditiesWhereUniqueInput
+    data: XOR<hsvaliditiesUpdateWithoutHsemployeesInput, hsvaliditiesUncheckedUpdateWithoutHsemployeesInput>
+  }
+
+  export type hsvaliditiesUpdateManyWithWhereWithoutHsemployeesInput = {
+    where: hsvaliditiesScalarWhereInput
+    data: XOR<hsvaliditiesUpdateManyMutationInput, hsvaliditiesUncheckedUpdateManyWithoutHsemployeesInput>
+  }
+
+  export type hsvaliditiesScalarWhereInput = {
+    AND?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
+    OR?: hsvaliditiesScalarWhereInput[]
+    NOT?: hsvaliditiesScalarWhereInput | hsvaliditiesScalarWhereInput[]
+    id?: IntFilter<"hsvalidities"> | number
+    branch_id?: IntFilter<"hsvalidities"> | number
+    employee_id?: IntFilter<"hsvalidities"> | number
+    status?: Enumhsvalidities_statusFilter<"hsvalidities"> | $Enums.hsvalidities_status
+    request_id?: IntNullableFilter<"hsvalidities"> | number | null
+    created_at?: DateTimeFilter<"hsvalidities"> | Date | string
+    modified_at?: DateTimeFilter<"hsvalidities"> | Date | string
+  }
+
+  export type hsvalidity_requestsUpsertWithWhereUniqueWithoutAnalystInput = {
+    where: hsvalidity_requestsWhereUniqueInput
+    update: XOR<hsvalidity_requestsUpdateWithoutAnalystInput, hsvalidity_requestsUncheckedUpdateWithoutAnalystInput>
+    create: XOR<hsvalidity_requestsCreateWithoutAnalystInput, hsvalidity_requestsUncheckedCreateWithoutAnalystInput>
+  }
+
+  export type hsvalidity_requestsUpdateWithWhereUniqueWithoutAnalystInput = {
+    where: hsvalidity_requestsWhereUniqueInput
+    data: XOR<hsvalidity_requestsUpdateWithoutAnalystInput, hsvalidity_requestsUncheckedUpdateWithoutAnalystInput>
+  }
+
+  export type hsvalidity_requestsUpdateManyWithWhereWithoutAnalystInput = {
+    where: hsvalidity_requestsScalarWhereInput
+    data: XOR<hsvalidity_requestsUpdateManyMutationInput, hsvalidity_requestsUncheckedUpdateManyWithoutAnalystInput>
+  }
+
+  export type hsvalidity_requestsScalarWhereInput = {
+    AND?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
+    OR?: hsvalidity_requestsScalarWhereInput[]
+    NOT?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
+    id?: IntFilter<"hsvalidity_requests"> | number
+    branch_id?: IntFilter<"hsvalidity_requests"> | number
+    analyst_id?: IntFilter<"hsvalidity_requests"> | number
+    conferee_id?: IntFilter<"hsvalidity_requests"> | number
+    status?: Enumhsvalidity_requests_statusFilter<"hsvalidity_requests"> | $Enums.hsvalidity_requests_status
+    created_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
+    modified_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
+  }
+
+  export type hsvalidity_requestsUpsertWithWhereUniqueWithoutConfereeInput = {
+    where: hsvalidity_requestsWhereUniqueInput
+    update: XOR<hsvalidity_requestsUpdateWithoutConfereeInput, hsvalidity_requestsUncheckedUpdateWithoutConfereeInput>
+    create: XOR<hsvalidity_requestsCreateWithoutConfereeInput, hsvalidity_requestsUncheckedCreateWithoutConfereeInput>
+  }
+
+  export type hsvalidity_requestsUpdateWithWhereUniqueWithoutConfereeInput = {
+    where: hsvalidity_requestsWhereUniqueInput
+    data: XOR<hsvalidity_requestsUpdateWithoutConfereeInput, hsvalidity_requestsUncheckedUpdateWithoutConfereeInput>
+  }
+
+  export type hsvalidity_requestsUpdateManyWithWhereWithoutConfereeInput = {
+    where: hsvalidity_requestsScalarWhereInput
+    data: XOR<hsvalidity_requestsUpdateManyMutationInput, hsvalidity_requestsUncheckedUpdateManyWithoutConfereeInput>
   }
 
   export type hspermissions_rolesCreateWithoutHsrolesInput = {
@@ -21174,24 +21232,6 @@ export namespace Prisma {
     data: XOR<hsusers_rolesUpdateManyMutationInput, hsusers_rolesUncheckedUpdateManyWithoutHsrolesInput>
   }
 
-  export type hsusers_permissionsCreateWithoutHspermissionsInput = {
-    hsemployees: hsemployeesCreateNestedOneWithoutHsusers_permissionsInput
-  }
-
-  export type hsusers_permissionsUncheckedCreateWithoutHspermissionsInput = {
-    user_id: number
-  }
-
-  export type hsusers_permissionsCreateOrConnectWithoutHspermissionsInput = {
-    where: hsusers_permissionsWhereUniqueInput
-    create: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput>
-  }
-
-  export type hsusers_permissionsCreateManyHspermissionsInputEnvelope = {
-    data: hsusers_permissionsCreateManyHspermissionsInput | hsusers_permissionsCreateManyHspermissionsInput[]
-    skipDuplicates?: boolean
-  }
-
   export type hspermissions_rolesCreateWithoutHspermissionsInput = {
     hsroles: hsrolesCreateNestedOneWithoutHspermissions_rolesInput
   }
@@ -21210,20 +21250,22 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput = {
+  export type hsusers_permissionsCreateWithoutHspermissionsInput = {
+    hsemployees: hsemployeesCreateNestedOneWithoutHsusers_permissionsInput
+  }
+
+  export type hsusers_permissionsUncheckedCreateWithoutHspermissionsInput = {
+    user_id: number
+  }
+
+  export type hsusers_permissionsCreateOrConnectWithoutHspermissionsInput = {
     where: hsusers_permissionsWhereUniqueInput
-    update: XOR<hsusers_permissionsUpdateWithoutHspermissionsInput, hsusers_permissionsUncheckedUpdateWithoutHspermissionsInput>
     create: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput>
   }
 
-  export type hsusers_permissionsUpdateWithWhereUniqueWithoutHspermissionsInput = {
-    where: hsusers_permissionsWhereUniqueInput
-    data: XOR<hsusers_permissionsUpdateWithoutHspermissionsInput, hsusers_permissionsUncheckedUpdateWithoutHspermissionsInput>
-  }
-
-  export type hsusers_permissionsUpdateManyWithWhereWithoutHspermissionsInput = {
-    where: hsusers_permissionsScalarWhereInput
-    data: XOR<hsusers_permissionsUpdateManyMutationInput, hsusers_permissionsUncheckedUpdateManyWithoutHspermissionsInput>
+  export type hsusers_permissionsCreateManyHspermissionsInputEnvelope = {
+    data: hsusers_permissionsCreateManyHspermissionsInput | hsusers_permissionsCreateManyHspermissionsInput[]
+    skipDuplicates?: boolean
   }
 
   export type hspermissions_rolesUpsertWithWhereUniqueWithoutHspermissionsInput = {
@@ -21242,26 +21284,20 @@ export namespace Prisma {
     data: XOR<hspermissions_rolesUpdateManyMutationInput, hspermissions_rolesUncheckedUpdateManyWithoutHspermissionsInput>
   }
 
-  export type hsrolesCreateWithoutHspermissions_rolesInput = {
-    name: string
-    description: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsrolesInput
+  export type hsusers_permissionsUpsertWithWhereUniqueWithoutHspermissionsInput = {
+    where: hsusers_permissionsWhereUniqueInput
+    update: XOR<hsusers_permissionsUpdateWithoutHspermissionsInput, hsusers_permissionsUncheckedUpdateWithoutHspermissionsInput>
+    create: XOR<hsusers_permissionsCreateWithoutHspermissionsInput, hsusers_permissionsUncheckedCreateWithoutHspermissionsInput>
   }
 
-  export type hsrolesUncheckedCreateWithoutHspermissions_rolesInput = {
-    id?: number
-    name: string
-    description: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsrolesInput
+  export type hsusers_permissionsUpdateWithWhereUniqueWithoutHspermissionsInput = {
+    where: hsusers_permissionsWhereUniqueInput
+    data: XOR<hsusers_permissionsUpdateWithoutHspermissionsInput, hsusers_permissionsUncheckedUpdateWithoutHspermissionsInput>
   }
 
-  export type hsrolesCreateOrConnectWithoutHspermissions_rolesInput = {
-    where: hsrolesWhereUniqueInput
-    create: XOR<hsrolesCreateWithoutHspermissions_rolesInput, hsrolesUncheckedCreateWithoutHspermissions_rolesInput>
+  export type hsusers_permissionsUpdateManyWithWhereWithoutHspermissionsInput = {
+    where: hsusers_permissionsScalarWhereInput
+    data: XOR<hsusers_permissionsUpdateManyMutationInput, hsusers_permissionsUncheckedUpdateManyWithoutHspermissionsInput>
   }
 
   export type hspermissionsCreateWithoutHspermissions_rolesInput = {
@@ -21286,32 +21322,26 @@ export namespace Prisma {
     create: XOR<hspermissionsCreateWithoutHspermissions_rolesInput, hspermissionsUncheckedCreateWithoutHspermissions_rolesInput>
   }
 
-  export type hsrolesUpsertWithoutHspermissions_rolesInput = {
-    update: XOR<hsrolesUpdateWithoutHspermissions_rolesInput, hsrolesUncheckedUpdateWithoutHspermissions_rolesInput>
+  export type hsrolesCreateWithoutHspermissions_rolesInput = {
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsrolesInput
+  }
+
+  export type hsrolesUncheckedCreateWithoutHspermissions_rolesInput = {
+    id?: number
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsrolesInput
+  }
+
+  export type hsrolesCreateOrConnectWithoutHspermissions_rolesInput = {
+    where: hsrolesWhereUniqueInput
     create: XOR<hsrolesCreateWithoutHspermissions_rolesInput, hsrolesUncheckedCreateWithoutHspermissions_rolesInput>
-    where?: hsrolesWhereInput
-  }
-
-  export type hsrolesUpdateToOneWithWhereWithoutHspermissions_rolesInput = {
-    where?: hsrolesWhereInput
-    data: XOR<hsrolesUpdateWithoutHspermissions_rolesInput, hsrolesUncheckedUpdateWithoutHspermissions_rolesInput>
-  }
-
-  export type hsrolesUpdateWithoutHspermissions_rolesInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsrolesNestedInput
-  }
-
-  export type hsrolesUncheckedUpdateWithoutHspermissions_rolesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsrolesNestedInput
   }
 
   export type hspermissionsUpsertWithoutHspermissions_rolesInput = {
@@ -21342,40 +21372,32 @@ export namespace Prisma {
     hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHspermissionsNestedInput
   }
 
-  export type hsemployeesCreateWithoutHsusers_permissionsInput = {
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
-    sessions?: hssessionsCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
+  export type hsrolesUpsertWithoutHspermissions_rolesInput = {
+    update: XOR<hsrolesUpdateWithoutHspermissions_rolesInput, hsrolesUncheckedUpdateWithoutHspermissions_rolesInput>
+    create: XOR<hsrolesCreateWithoutHspermissions_rolesInput, hsrolesUncheckedCreateWithoutHspermissions_rolesInput>
+    where?: hsrolesWhereInput
   }
 
-  export type hsemployeesUncheckedCreateWithoutHsusers_permissionsInput = {
-    id?: number
-    branch_id: number
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
-    sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
+  export type hsrolesUpdateToOneWithWhereWithoutHspermissions_rolesInput = {
+    where?: hsrolesWhereInput
+    data: XOR<hsrolesUpdateWithoutHspermissions_rolesInput, hsrolesUncheckedUpdateWithoutHspermissions_rolesInput>
   }
 
-  export type hsemployeesCreateOrConnectWithoutHsusers_permissionsInput = {
-    where: hsemployeesWhereUniqueInput
-    create: XOR<hsemployeesCreateWithoutHsusers_permissionsInput, hsemployeesUncheckedCreateWithoutHsusers_permissionsInput>
+  export type hsrolesUpdateWithoutHspermissions_rolesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsrolesNestedInput
+  }
+
+  export type hsrolesUncheckedUpdateWithoutHspermissions_rolesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsrolesNestedInput
   }
 
   export type hspermissionsCreateWithoutHsusers_permissionsInput = {
@@ -21400,46 +21422,40 @@ export namespace Prisma {
     create: XOR<hspermissionsCreateWithoutHsusers_permissionsInput, hspermissionsUncheckedCreateWithoutHsusers_permissionsInput>
   }
 
-  export type hsemployeesUpsertWithoutHsusers_permissionsInput = {
-    update: XOR<hsemployeesUpdateWithoutHsusers_permissionsInput, hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput>
+  export type hsemployeesCreateWithoutHsusers_permissionsInput = {
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
+    sessions?: hssessionsCreateNestedManyWithoutUserInput
+    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+  }
+
+  export type hsemployeesUncheckedCreateWithoutHsusers_permissionsInput = {
+    id?: number
+    branch_id: number
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
+    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+  }
+
+  export type hsemployeesCreateOrConnectWithoutHsusers_permissionsInput = {
+    where: hsemployeesWhereUniqueInput
     create: XOR<hsemployeesCreateWithoutHsusers_permissionsInput, hsemployeesUncheckedCreateWithoutHsusers_permissionsInput>
-    where?: hsemployeesWhereInput
-  }
-
-  export type hsemployeesUpdateToOneWithWhereWithoutHsusers_permissionsInput = {
-    where?: hsemployeesWhereInput
-    data: XOR<hsemployeesUpdateWithoutHsusers_permissionsInput, hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput>
-  }
-
-  export type hsemployeesUpdateWithoutHsusers_permissionsInput = {
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
-    sessions?: hssessionsUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
-  }
-
-  export type hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
-    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
   }
 
   export type hspermissionsUpsertWithoutHsusers_permissionsInput = {
@@ -21470,40 +21486,46 @@ export namespace Prisma {
     hspermissions_roles?: hspermissions_rolesUncheckedUpdateManyWithoutHspermissionsNestedInput
   }
 
-  export type hsemployeesCreateWithoutHsusers_rolesInput = {
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
-    sessions?: hssessionsCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
-    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
+  export type hsemployeesUpsertWithoutHsusers_permissionsInput = {
+    update: XOR<hsemployeesUpdateWithoutHsusers_permissionsInput, hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput>
+    create: XOR<hsemployeesCreateWithoutHsusers_permissionsInput, hsemployeesUncheckedCreateWithoutHsusers_permissionsInput>
+    where?: hsemployeesWhereInput
   }
 
-  export type hsemployeesUncheckedCreateWithoutHsusers_rolesInput = {
-    id?: number
-    branch_id: number
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
-    sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
-    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
+  export type hsemployeesUpdateToOneWithWhereWithoutHsusers_permissionsInput = {
+    where?: hsemployeesWhereInput
+    data: XOR<hsemployeesUpdateWithoutHsusers_permissionsInput, hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput>
   }
 
-  export type hsemployeesCreateOrConnectWithoutHsusers_rolesInput = {
-    where: hsemployeesWhereUniqueInput
-    create: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
+  export type hsemployeesUpdateWithoutHsusers_permissionsInput = {
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    sessions?: hssessionsUpdateManyWithoutUserNestedInput
+    hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+  }
+
+  export type hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
+    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
   }
 
   export type hsrolesCreateWithoutHsusers_rolesInput = {
@@ -21528,46 +21550,40 @@ export namespace Prisma {
     create: XOR<hsrolesCreateWithoutHsusers_rolesInput, hsrolesUncheckedCreateWithoutHsusers_rolesInput>
   }
 
-  export type hsemployeesUpsertWithoutHsusers_rolesInput = {
-    update: XOR<hsemployeesUpdateWithoutHsusers_rolesInput, hsemployeesUncheckedUpdateWithoutHsusers_rolesInput>
+  export type hsemployeesCreateWithoutHsusers_rolesInput = {
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
+    sessions?: hssessionsCreateNestedManyWithoutUserInput
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+  }
+
+  export type hsemployeesUncheckedCreateWithoutHsusers_rolesInput = {
+    id?: number
+    branch_id: number
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+  }
+
+  export type hsemployeesCreateOrConnectWithoutHsusers_rolesInput = {
+    where: hsemployeesWhereUniqueInput
     create: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
-    where?: hsemployeesWhereInput
-  }
-
-  export type hsemployeesUpdateToOneWithWhereWithoutHsusers_rolesInput = {
-    where?: hsemployeesWhereInput
-    data: XOR<hsemployeesUpdateWithoutHsusers_rolesInput, hsemployeesUncheckedUpdateWithoutHsusers_rolesInput>
-  }
-
-  export type hsemployeesUpdateWithoutHsusers_rolesInput = {
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
-    sessions?: hssessionsUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
-    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
-  }
-
-  export type hsemployeesUncheckedUpdateWithoutHsusers_rolesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
-    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
-    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsrolesUpsertWithoutHsusers_rolesInput = {
@@ -21596,6 +21612,89 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hspermissions_roles?: hspermissions_rolesUncheckedUpdateManyWithoutHsrolesNestedInput
+  }
+
+  export type hsemployeesUpsertWithoutHsusers_rolesInput = {
+    update: XOR<hsemployeesUpdateWithoutHsusers_rolesInput, hsemployeesUncheckedUpdateWithoutHsusers_rolesInput>
+    create: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
+    where?: hsemployeesWhereInput
+  }
+
+  export type hsemployeesUpdateToOneWithWhereWithoutHsusers_rolesInput = {
+    where?: hsemployeesWhereInput
+    data: XOR<hsemployeesUpdateWithoutHsusers_rolesInput, hsemployeesUncheckedUpdateWithoutHsusers_rolesInput>
+  }
+
+  export type hsemployeesUpdateWithoutHsusers_rolesInput = {
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    sessions?: hssessionsUpdateManyWithoutUserNestedInput
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+  }
+
+  export type hsemployeesUncheckedUpdateWithoutHsusers_rolesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+  }
+
+  export type hsemployeesCreateWithoutBranchInput = {
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    sessions?: hssessionsCreateNestedManyWithoutUserInput
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+  }
+
+  export type hsemployeesUncheckedCreateWithoutBranchInput = {
+    id?: number
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+  }
+
+  export type hsemployeesCreateOrConnectWithoutBranchInput = {
+    where: hsemployeesWhereUniqueInput
+    create: XOR<hsemployeesCreateWithoutBranchInput, hsemployeesUncheckedCreateWithoutBranchInput>
+  }
+
+  export type hsemployeesCreateManyBranchInputEnvelope = {
+    data: hsemployeesCreateManyBranchInput | hsemployeesCreateManyBranchInput[]
+    skipDuplicates?: boolean
   }
 
   export type hsvaliditiesCreateWithoutHsbranchesInput = {
@@ -21658,45 +21757,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type hsemployeesCreateWithoutBranchInput = {
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
-    sessions?: hssessionsCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
-    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
-  }
-
-  export type hsemployeesUncheckedCreateWithoutBranchInput = {
-    id?: number
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
-    sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
-    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
-  }
-
-  export type hsemployeesCreateOrConnectWithoutBranchInput = {
+  export type hsemployeesUpsertWithWhereUniqueWithoutBranchInput = {
     where: hsemployeesWhereUniqueInput
+    update: XOR<hsemployeesUpdateWithoutBranchInput, hsemployeesUncheckedUpdateWithoutBranchInput>
     create: XOR<hsemployeesCreateWithoutBranchInput, hsemployeesUncheckedCreateWithoutBranchInput>
   }
 
-  export type hsemployeesCreateManyBranchInputEnvelope = {
-    data: hsemployeesCreateManyBranchInput | hsemployeesCreateManyBranchInput[]
-    skipDuplicates?: boolean
+  export type hsemployeesUpdateWithWhereUniqueWithoutBranchInput = {
+    where: hsemployeesWhereUniqueInput
+    data: XOR<hsemployeesUpdateWithoutBranchInput, hsemployeesUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type hsemployeesUpdateManyWithWhereWithoutBranchInput = {
+    where: hsemployeesScalarWhereInput
+    data: XOR<hsemployeesUpdateManyMutationInput, hsemployeesUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type hsemployeesScalarWhereInput = {
+    AND?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
+    OR?: hsemployeesScalarWhereInput[]
+    NOT?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
+    id?: IntFilter<"hsemployees"> | number
+    branch_id?: IntFilter<"hsemployees"> | number
+    winthor_id?: IntFilter<"hsemployees"> | number
+    name?: StringFilter<"hsemployees"> | string
+    username?: StringFilter<"hsemployees"> | string
+    password?: StringFilter<"hsemployees"> | string
+    created_at?: DateTimeFilter<"hsemployees"> | Date | string
+    modified_at?: DateTimeFilter<"hsemployees"> | Date | string
   }
 
   export type hsvaliditiesUpsertWithWhereUniqueWithoutHsbranchesInput = {
@@ -21731,47 +21819,17 @@ export namespace Prisma {
     data: XOR<hsvalidity_requestsUpdateManyMutationInput, hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesInput>
   }
 
-  export type hsemployeesUpsertWithWhereUniqueWithoutBranchInput = {
-    where: hsemployeesWhereUniqueInput
-    update: XOR<hsemployeesUpdateWithoutBranchInput, hsemployeesUncheckedUpdateWithoutBranchInput>
-    create: XOR<hsemployeesCreateWithoutBranchInput, hsemployeesUncheckedCreateWithoutBranchInput>
-  }
-
-  export type hsemployeesUpdateWithWhereUniqueWithoutBranchInput = {
-    where: hsemployeesWhereUniqueInput
-    data: XOR<hsemployeesUpdateWithoutBranchInput, hsemployeesUncheckedUpdateWithoutBranchInput>
-  }
-
-  export type hsemployeesUpdateManyWithWhereWithoutBranchInput = {
-    where: hsemployeesScalarWhereInput
-    data: XOR<hsemployeesUpdateManyMutationInput, hsemployeesUncheckedUpdateManyWithoutBranchInput>
-  }
-
-  export type hsemployeesScalarWhereInput = {
-    AND?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
-    OR?: hsemployeesScalarWhereInput[]
-    NOT?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
-    id?: IntFilter<"hsemployees"> | number
-    branch_id?: IntFilter<"hsemployees"> | number
-    winthor_id?: IntFilter<"hsemployees"> | number
-    name?: StringFilter<"hsemployees"> | string
-    username?: StringFilter<"hsemployees"> | string
-    password?: StringFilter<"hsemployees"> | string
-    created_at?: DateTimeFilter<"hsemployees"> | Date | string
-    modified_at?: DateTimeFilter<"hsemployees"> | Date | string
-  }
-
   export type hsbranchesCreateWithoutHsvaliditiesInput = {
     description: string
-    hsvalidity_requests?: hsvalidity_requestsCreateNestedManyWithoutHsbranchesInput
     hsemployees?: hsemployeesCreateNestedManyWithoutBranchInput
+    hsvalidity_requests?: hsvalidity_requestsCreateNestedManyWithoutHsbranchesInput
   }
 
   export type hsbranchesUncheckedCreateWithoutHsvaliditiesInput = {
     id?: number
     description: string
-    hsvalidity_requests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutHsbranchesInput
     hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutBranchInput
+    hsvalidity_requests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutHsbranchesInput
   }
 
   export type hsbranchesCreateOrConnectWithoutHsvaliditiesInput = {
@@ -21787,11 +21845,11 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
     hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
     hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
+    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
   }
 
   export type hsemployeesUncheckedCreateWithoutHsvaliditiesInput = {
@@ -21803,11 +21861,11 @@ export namespace Prisma {
     password: string
     created_at?: Date | string
     modified_at?: Date | string
-    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
     hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
     hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
+    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
   }
 
   export type hsemployeesCreateOrConnectWithoutHsvaliditiesInput = {
@@ -21821,8 +21879,8 @@ export namespace Prisma {
     modified_at?: Date | string
     hsvalidity_request_products?: hsvalidity_request_productsCreateNestedManyWithoutHsvalidity_requestsInput
     analyst: hsemployeesCreateNestedOneWithoutAnalystRequestsInput
-    conferee: hsemployeesCreateNestedOneWithoutConfereeRequestsInput
     hsbranches: hsbranchesCreateNestedOneWithoutHsvalidity_requestsInput
+    conferee: hsemployeesCreateNestedOneWithoutConfereeRequestsInput
   }
 
   export type hsvalidity_requestsUncheckedCreateWithoutHsvaliditiesInput = {
@@ -21845,6 +21903,7 @@ export namespace Prisma {
     product_cod: number
     quantity: number
     validity_date: Date | string
+    auxiliary_code: string
     hsvalidity_treatments?: hsvalidity_treatmentsCreateNestedOneWithoutHsvalidity_productsInput
   }
 
@@ -21854,6 +21913,7 @@ export namespace Prisma {
     quantity: number
     validity_date: Date | string
     treat_id?: number
+    auxiliary_code: string
   }
 
   export type hsvalidity_productsCreateOrConnectWithoutHsvaliditiesInput = {
@@ -21879,15 +21939,15 @@ export namespace Prisma {
 
   export type hsbranchesUpdateWithoutHsvaliditiesInput = {
     description?: StringFieldUpdateOperationsInput | string
-    hsvalidity_requests?: hsvalidity_requestsUpdateManyWithoutHsbranchesNestedInput
     hsemployees?: hsemployeesUpdateManyWithoutBranchNestedInput
+    hsvalidity_requests?: hsvalidity_requestsUpdateManyWithoutHsbranchesNestedInput
   }
 
   export type hsbranchesUncheckedUpdateWithoutHsvaliditiesInput = {
     id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
-    hsvalidity_requests?: hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesNestedInput
     hsemployees?: hsemployeesUncheckedUpdateManyWithoutBranchNestedInput
+    hsvalidity_requests?: hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesNestedInput
   }
 
   export type hsemployeesUpsertWithoutHsvaliditiesInput = {
@@ -21909,11 +21969,11 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
     hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
     hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutHsvaliditiesInput = {
@@ -21925,11 +21985,11 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
     hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
   }
 
   export type hsvalidity_requestsUpsertWithoutHsvaliditiesInput = {
@@ -21949,8 +22009,8 @@ export namespace Prisma {
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidity_request_products?: hsvalidity_request_productsUpdateManyWithoutHsvalidity_requestsNestedInput
     analyst?: hsemployeesUpdateOneRequiredWithoutAnalystRequestsNestedInput
-    conferee?: hsemployeesUpdateOneRequiredWithoutConfereeRequestsNestedInput
     hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvalidity_requestsNestedInput
+    conferee?: hsemployeesUpdateOneRequiredWithoutConfereeRequestsNestedInput
   }
 
   export type hsvalidity_requestsUncheckedUpdateWithoutHsvaliditiesInput = {
@@ -21990,6 +22050,7 @@ export namespace Prisma {
     quantity?: IntFilter<"hsvalidity_products"> | number
     validity_date?: DateTimeFilter<"hsvalidity_products"> | Date | string
     treat_id?: IntFilter<"hsvalidity_products"> | number
+    auxiliary_code?: StringFilter<"hsvalidity_products"> | string
   }
 
   export type hsvalidity_treatmentsCreateWithoutHsvalidity_productsInput = {
@@ -22113,6 +22174,7 @@ export namespace Prisma {
     status?: $Enums.hsvalidity_request_products_status
     product_cod: number
     validity_date: Date | string
+    auxiliary_code: string
   }
 
   export type hsvalidity_request_productsUncheckedCreateWithoutHsvalidity_requestsInput = {
@@ -22120,6 +22182,7 @@ export namespace Prisma {
     status?: $Enums.hsvalidity_request_products_status
     product_cod: number
     validity_date: Date | string
+    auxiliary_code: string
   }
 
   export type hsvalidity_request_productsCreateOrConnectWithoutHsvalidity_requestsInput = {
@@ -22140,11 +22203,11 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
     hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
     hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
   }
 
   export type hsemployeesUncheckedCreateWithoutAnalystRequestsInput = {
@@ -22156,16 +22219,34 @@ export namespace Prisma {
     password: string
     created_at?: Date | string
     modified_at?: Date | string
-    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
     hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
     hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
   }
 
   export type hsemployeesCreateOrConnectWithoutAnalystRequestsInput = {
     where: hsemployeesWhereUniqueInput
     create: XOR<hsemployeesCreateWithoutAnalystRequestsInput, hsemployeesUncheckedCreateWithoutAnalystRequestsInput>
+  }
+
+  export type hsbranchesCreateWithoutHsvalidity_requestsInput = {
+    description: string
+    hsemployees?: hsemployeesCreateNestedManyWithoutBranchInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsbranchesInput
+  }
+
+  export type hsbranchesUncheckedCreateWithoutHsvalidity_requestsInput = {
+    id?: number
+    description: string
+    hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutBranchInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsbranchesInput
+  }
+
+  export type hsbranchesCreateOrConnectWithoutHsvalidity_requestsInput = {
+    where: hsbranchesWhereUniqueInput
+    create: XOR<hsbranchesCreateWithoutHsvalidity_requestsInput, hsbranchesUncheckedCreateWithoutHsvalidity_requestsInput>
   }
 
   export type hsemployeesCreateWithoutConfereeRequestsInput = {
@@ -22176,11 +22257,11 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
     hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
     hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
   }
 
   export type hsemployeesUncheckedCreateWithoutConfereeRequestsInput = {
@@ -22192,34 +22273,16 @@ export namespace Prisma {
     password: string
     created_at?: Date | string
     modified_at?: Date | string
-    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
     hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
     hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
   }
 
   export type hsemployeesCreateOrConnectWithoutConfereeRequestsInput = {
     where: hsemployeesWhereUniqueInput
     create: XOR<hsemployeesCreateWithoutConfereeRequestsInput, hsemployeesUncheckedCreateWithoutConfereeRequestsInput>
-  }
-
-  export type hsbranchesCreateWithoutHsvalidity_requestsInput = {
-    description: string
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsbranchesInput
-    hsemployees?: hsemployeesCreateNestedManyWithoutBranchInput
-  }
-
-  export type hsbranchesUncheckedCreateWithoutHsvalidity_requestsInput = {
-    id?: number
-    description: string
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsbranchesInput
-    hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutBranchInput
-  }
-
-  export type hsbranchesCreateOrConnectWithoutHsvalidity_requestsInput = {
-    where: hsbranchesWhereUniqueInput
-    create: XOR<hsbranchesCreateWithoutHsvalidity_requestsInput, hsbranchesUncheckedCreateWithoutHsvalidity_requestsInput>
   }
 
   export type hsvaliditiesUpsertWithWhereUniqueWithoutHsvalidity_requestsInput = {
@@ -22263,6 +22326,7 @@ export namespace Prisma {
     status?: Enumhsvalidity_request_products_statusFilter<"hsvalidity_request_products"> | $Enums.hsvalidity_request_products_status
     product_cod?: IntFilter<"hsvalidity_request_products"> | number
     validity_date?: DateTimeFilter<"hsvalidity_request_products"> | Date | string
+    auxiliary_code?: StringFilter<"hsvalidity_request_products"> | string
   }
 
   export type hsemployeesUpsertWithoutAnalystRequestsInput = {
@@ -22284,11 +22348,11 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
     hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
     hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutAnalystRequestsInput = {
@@ -22300,11 +22364,35 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+  }
+
+  export type hsbranchesUpsertWithoutHsvalidity_requestsInput = {
+    update: XOR<hsbranchesUpdateWithoutHsvalidity_requestsInput, hsbranchesUncheckedUpdateWithoutHsvalidity_requestsInput>
+    create: XOR<hsbranchesCreateWithoutHsvalidity_requestsInput, hsbranchesUncheckedCreateWithoutHsvalidity_requestsInput>
+    where?: hsbranchesWhereInput
+  }
+
+  export type hsbranchesUpdateToOneWithWhereWithoutHsvalidity_requestsInput = {
+    where?: hsbranchesWhereInput
+    data: XOR<hsbranchesUpdateWithoutHsvalidity_requestsInput, hsbranchesUncheckedUpdateWithoutHsvalidity_requestsInput>
+  }
+
+  export type hsbranchesUpdateWithoutHsvalidity_requestsInput = {
+    description?: StringFieldUpdateOperationsInput | string
+    hsemployees?: hsemployeesUpdateManyWithoutBranchNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsbranchesNestedInput
+  }
+
+  export type hsbranchesUncheckedUpdateWithoutHsvalidity_requestsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    hsemployees?: hsemployeesUncheckedUpdateManyWithoutBranchNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsbranchesNestedInput
   }
 
   export type hsemployeesUpsertWithoutConfereeRequestsInput = {
@@ -22326,11 +22414,11 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
     hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
     hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutConfereeRequestsInput = {
@@ -22342,35 +22430,11 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
-  }
-
-  export type hsbranchesUpsertWithoutHsvalidity_requestsInput = {
-    update: XOR<hsbranchesUpdateWithoutHsvalidity_requestsInput, hsbranchesUncheckedUpdateWithoutHsvalidity_requestsInput>
-    create: XOR<hsbranchesCreateWithoutHsvalidity_requestsInput, hsbranchesUncheckedCreateWithoutHsvalidity_requestsInput>
-    where?: hsbranchesWhereInput
-  }
-
-  export type hsbranchesUpdateToOneWithWhereWithoutHsvalidity_requestsInput = {
-    where?: hsbranchesWhereInput
-    data: XOR<hsbranchesUpdateWithoutHsvalidity_requestsInput, hsbranchesUncheckedUpdateWithoutHsvalidity_requestsInput>
-  }
-
-  export type hsbranchesUpdateWithoutHsvalidity_requestsInput = {
-    description?: StringFieldUpdateOperationsInput | string
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsbranchesNestedInput
-    hsemployees?: hsemployeesUpdateManyWithoutBranchNestedInput
-  }
-
-  export type hsbranchesUncheckedUpdateWithoutHsvalidity_requestsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    description?: StringFieldUpdateOperationsInput | string
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsbranchesNestedInput
-    hsemployees?: hsemployeesUncheckedUpdateManyWithoutBranchNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
   }
 
   export type hsvalidity_requestsCreateWithoutHsvalidity_request_productsInput = {
@@ -22379,8 +22443,8 @@ export namespace Prisma {
     modified_at?: Date | string
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsvalidity_requestsInput
     analyst: hsemployeesCreateNestedOneWithoutAnalystRequestsInput
-    conferee: hsemployeesCreateNestedOneWithoutConfereeRequestsInput
     hsbranches: hsbranchesCreateNestedOneWithoutHsvalidity_requestsInput
+    conferee: hsemployeesCreateNestedOneWithoutConfereeRequestsInput
   }
 
   export type hsvalidity_requestsUncheckedCreateWithoutHsvalidity_request_productsInput = {
@@ -22416,8 +22480,8 @@ export namespace Prisma {
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput
     analyst?: hsemployeesUpdateOneRequiredWithoutAnalystRequestsNestedInput
-    conferee?: hsemployeesUpdateOneRequiredWithoutConfereeRequestsNestedInput
     hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvalidity_requestsNestedInput
+    conferee?: hsemployeesUpdateOneRequiredWithoutConfereeRequestsNestedInput
   }
 
   export type hsvalidity_requestsUncheckedUpdateWithoutHsvalidity_request_productsInput = {
@@ -22435,6 +22499,7 @@ export namespace Prisma {
     product_cod: number
     quantity: number
     validity_date: Date | string
+    auxiliary_code: string
     hsvalidities: hsvaliditiesCreateNestedOneWithoutHsvalidity_productsInput
   }
 
@@ -22444,6 +22509,7 @@ export namespace Prisma {
     product_cod: number
     quantity: number
     validity_date: Date | string
+    auxiliary_code: string
   }
 
   export type hsvalidity_productsCreateOrConnectWithoutHsvalidity_treatmentsInput = {
@@ -22480,11 +22546,11 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
     hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
     hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHeemployeesInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
   }
 
   export type hsemployeesUncheckedCreateWithoutSessionsInput = {
@@ -22496,11 +22562,11 @@ export namespace Prisma {
     password: string
     created_at?: Date | string
     modified_at?: Date | string
-    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
     hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
     hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHeemployeesInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
   }
 
   export type hsemployeesCreateOrConnectWithoutSessionsInput = {
@@ -22527,11 +22593,11 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
     hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
     hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutSessionsInput = {
@@ -22543,11 +22609,35 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+  }
+
+  export type hssessionsCreateManyUserInput = {
+    id?: string
+    token: string
+    created_at?: Date | string
+    expires_at?: Date | string | null
+  }
+
+  export type hsusers_permissionsCreateManyHsemployeesInput = {
+    permission_id: number
+  }
+
+  export type hsusers_rolesCreateManyHeemployeesInput = {
+    role_id: number
+  }
+
+  export type hsvaliditiesCreateManyHsemployeesInput = {
+    id?: number
+    branch_id: number
+    status?: $Enums.hsvalidities_status
+    request_id?: number | null
+    created_at?: Date | string
+    modified_at?: Date | string
   }
 
   export type hsvalidity_requestsCreateManyAnalystInput = {
@@ -22568,28 +22658,77 @@ export namespace Prisma {
     modified_at?: Date | string
   }
 
-  export type hssessionsCreateManyUserInput = {
-    id?: string
-    token: string
-    created_at?: Date | string
-    expires_at?: Date | string | null
+  export type hssessionsUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type hsvaliditiesCreateManyHsemployeesInput = {
-    id?: number
-    branch_id: number
-    status?: $Enums.hsvalidities_status
-    request_id?: number | null
-    created_at?: Date | string
-    modified_at?: Date | string
+  export type hssessionsUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type hsusers_permissionsCreateManyHsemployeesInput = {
-    permission_id: number
+  export type hssessionsUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type hsusers_rolesCreateManyHeemployeesInput = {
-    role_id: number
+  export type hsusers_permissionsUpdateWithoutHsemployeesInput = {
+    hspermissions?: hspermissionsUpdateOneRequiredWithoutHsusers_permissionsNestedInput
+  }
+
+  export type hsusers_permissionsUncheckedUpdateWithoutHsemployeesInput = {
+    permission_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesInput = {
+    permission_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_rolesUpdateWithoutHeemployeesInput = {
+    hsroles?: hsrolesUpdateOneRequiredWithoutHsusers_rolesNestedInput
+  }
+
+  export type hsusers_rolesUncheckedUpdateWithoutHeemployeesInput = {
+    role_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsusers_rolesUncheckedUpdateManyWithoutHeemployeesInput = {
+    role_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hsvaliditiesUpdateWithoutHsemployeesInput = {
+    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvaliditiesNestedInput
+    hsvalidity_requests?: hsvalidity_requestsUpdateOneWithoutHsvaliditiesNestedInput
+    hsvalidity_products?: hsvalidity_productsUpdateManyWithoutHsvaliditiesNestedInput
+  }
+
+  export type hsvaliditiesUncheckedUpdateWithoutHsemployeesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    request_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsvalidity_products?: hsvalidity_productsUncheckedUpdateManyWithoutHsvaliditiesNestedInput
+  }
+
+  export type hsvaliditiesUncheckedUpdateManyWithoutHsemployeesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    request_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type hsvalidity_requestsUpdateWithoutAnalystInput = {
@@ -22598,8 +22737,8 @@ export namespace Prisma {
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput
     hsvalidity_request_products?: hsvalidity_request_productsUpdateManyWithoutHsvalidity_requestsNestedInput
-    conferee?: hsemployeesUpdateOneRequiredWithoutConfereeRequestsNestedInput
     hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvalidity_requestsNestedInput
+    conferee?: hsemployeesUpdateOneRequiredWithoutConfereeRequestsNestedInput
   }
 
   export type hsvalidity_requestsUncheckedUpdateWithoutAnalystInput = {
@@ -22652,79 +22791,6 @@ export namespace Prisma {
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type hssessionsUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    token?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type hssessionsUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    token?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type hssessionsUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    token?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type hsvaliditiesUpdateWithoutHsemployeesInput = {
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvaliditiesNestedInput
-    hsvalidity_requests?: hsvalidity_requestsUpdateOneWithoutHsvaliditiesNestedInput
-    hsvalidity_products?: hsvalidity_productsUpdateManyWithoutHsvaliditiesNestedInput
-  }
-
-  export type hsvaliditiesUncheckedUpdateWithoutHsemployeesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
-    request_id?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsvalidity_products?: hsvalidity_productsUncheckedUpdateManyWithoutHsvaliditiesNestedInput
-  }
-
-  export type hsvaliditiesUncheckedUpdateManyWithoutHsemployeesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
-    request_id?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type hsusers_permissionsUpdateWithoutHsemployeesInput = {
-    hspermissions?: hspermissionsUpdateOneRequiredWithoutHsusers_permissionsNestedInput
-  }
-
-  export type hsusers_permissionsUncheckedUpdateWithoutHsemployeesInput = {
-    permission_id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesInput = {
-    permission_id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type hsusers_rolesUpdateWithoutHeemployeesInput = {
-    hsroles?: hsrolesUpdateOneRequiredWithoutHsusers_rolesNestedInput
-  }
-
-  export type hsusers_rolesUncheckedUpdateWithoutHeemployeesInput = {
-    role_id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type hsusers_rolesUncheckedUpdateManyWithoutHeemployeesInput = {
-    role_id?: IntFieldUpdateOperationsInput | number
-  }
-
   export type hspermissions_rolesCreateManyHsrolesInput = {
     permission_id: number
   }
@@ -22757,12 +22823,24 @@ export namespace Prisma {
     user_id?: IntFieldUpdateOperationsInput | number
   }
 
+  export type hspermissions_rolesCreateManyHspermissionsInput = {
+    role_id: number
+  }
+
   export type hsusers_permissionsCreateManyHspermissionsInput = {
     user_id: number
   }
 
-  export type hspermissions_rolesCreateManyHspermissionsInput = {
-    role_id: number
+  export type hspermissions_rolesUpdateWithoutHspermissionsInput = {
+    hsroles?: hsrolesUpdateOneRequiredWithoutHspermissions_rolesNestedInput
+  }
+
+  export type hspermissions_rolesUncheckedUpdateWithoutHspermissionsInput = {
+    role_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type hspermissions_rolesUncheckedUpdateManyWithoutHspermissionsInput = {
+    role_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type hsusers_permissionsUpdateWithoutHspermissionsInput = {
@@ -22777,16 +22855,14 @@ export namespace Prisma {
     user_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type hspermissions_rolesUpdateWithoutHspermissionsInput = {
-    hsroles?: hsrolesUpdateOneRequiredWithoutHspermissions_rolesNestedInput
-  }
-
-  export type hspermissions_rolesUncheckedUpdateWithoutHspermissionsInput = {
-    role_id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type hspermissions_rolesUncheckedUpdateManyWithoutHspermissionsInput = {
-    role_id?: IntFieldUpdateOperationsInput | number
+  export type hsemployeesCreateManyBranchInput = {
+    id?: number
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
   }
 
   export type hsvaliditiesCreateManyHsbranchesInput = {
@@ -22807,14 +22883,45 @@ export namespace Prisma {
     modified_at?: Date | string
   }
 
-  export type hsemployeesCreateManyBranchInput = {
-    id?: number
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
-    created_at?: Date | string
-    modified_at?: Date | string
+  export type hsemployeesUpdateWithoutBranchInput = {
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: hssessionsUpdateManyWithoutUserNestedInput
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+  }
+
+  export type hsemployeesUncheckedUpdateWithoutBranchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+  }
+
+  export type hsemployeesUncheckedUpdateManyWithoutBranchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type hsvaliditiesUpdateWithoutHsbranchesInput = {
@@ -22875,59 +22982,20 @@ export namespace Prisma {
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type hsemployeesUpdateWithoutBranchInput = {
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
-    sessions?: hssessionsUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
-    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUpdateManyWithoutHeemployeesNestedInput
-  }
-
-  export type hsemployeesUncheckedUpdateWithoutBranchInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
-    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
-    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHeemployeesNestedInput
-  }
-
-  export type hsemployeesUncheckedUpdateManyWithoutBranchInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type hsvalidity_productsCreateManyHsvaliditiesInput = {
     id?: number
     product_cod: number
     quantity: number
     validity_date: Date | string
     treat_id?: number
+    auxiliary_code: string
   }
 
   export type hsvalidity_productsUpdateWithoutHsvaliditiesInput = {
     product_cod?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
     hsvalidity_treatments?: hsvalidity_treatmentsUpdateOneRequiredWithoutHsvalidity_productsNestedInput
   }
 
@@ -22937,6 +23005,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
     treat_id?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type hsvalidity_productsUncheckedUpdateManyWithoutHsvaliditiesInput = {
@@ -22945,6 +23014,7 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
     treat_id?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type hsvaliditiesCreateManyHsvalidity_requestsInput = {
@@ -22961,6 +23031,7 @@ export namespace Prisma {
     status?: $Enums.hsvalidity_request_products_status
     product_cod: number
     validity_date: Date | string
+    auxiliary_code: string
   }
 
   export type hsvaliditiesUpdateWithoutHsvalidity_requestsInput = {
@@ -22995,6 +23066,7 @@ export namespace Prisma {
     status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
     product_cod?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type hsvalidity_request_productsUncheckedUpdateWithoutHsvalidity_requestsInput = {
@@ -23002,6 +23074,7 @@ export namespace Prisma {
     status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
     product_cod?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type hsvalidity_request_productsUncheckedUpdateManyWithoutHsvalidity_requestsInput = {
@@ -23009,6 +23082,7 @@ export namespace Prisma {
     status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
     product_cod?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type hsvalidity_productsCreateManyHsvalidity_treatmentsInput = {
@@ -23017,12 +23091,14 @@ export namespace Prisma {
     product_cod: number
     quantity: number
     validity_date: Date | string
+    auxiliary_code: string
   }
 
   export type hsvalidity_productsUpdateWithoutHsvalidity_treatmentsInput = {
     product_cod?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
     hsvalidities?: hsvaliditiesUpdateOneRequiredWithoutHsvalidity_productsNestedInput
   }
 
@@ -23032,6 +23108,7 @@ export namespace Prisma {
     product_cod?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type hsvalidity_productsUncheckedUpdateManyWithoutHsvalidity_treatmentsInput = {
@@ -23040,6 +23117,7 @@ export namespace Prisma {
     product_cod?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
   }
 
 

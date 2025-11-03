@@ -7,10 +7,10 @@ export async function getProductController(
   reply: FastifyReply
 ) {
   try {
-    const { codprod, codauxiliar, descricao } = getProductSchema.parse(
+    const { codprod, codauxiliar, descricao, codfilial } = getProductSchema.parse(
       request.query
     );
-    const product = await getProductService(codprod, codauxiliar, descricao);
+    const product = await getProductService(codprod, codauxiliar, descricao, codfilial);
 
     if (product == 200) {
       return reply
@@ -21,6 +21,8 @@ export async function getProductController(
     if (product == 404) {
       return reply.status(404).send({ message: "Produto não encontrado!" });
     }
+
+    console.log(product)
 
     return reply.status(200).send(product);
   } catch (error: any) {

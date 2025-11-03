@@ -24,6 +24,7 @@
     "bcryptjs": "^3.0.2",
     "fastify": "^5.6.0",
     "jsonwebtoken": "^9.0.2",
+    "npm": "^11.6.2",
     "oracledb": "^6.9.0",
     "zod": "^4.1.8"
   },
