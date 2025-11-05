@@ -1,8 +1,8 @@
 import fastify from "fastify";
 import routes from "./routes.js";
-import fastifySwagger from "@fastify/swagger";
-import fastifySwaggerUi from "@fastify/swagger-ui";
-import fastifyCors from "@fastify/cors";
+import { fastifySwagger } from "@fastify/swagger";
+import { fastifySwaggerUi } from "@fastify/swagger-ui";
+import { fastifyCors } from "@fastify/cors";
 
 const app = fastify();
 

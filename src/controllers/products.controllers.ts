@@ -22,6 +22,8 @@ export async function getProductController(
       return reply.status(404).send({ message: "Produto não encontrado!" });
     }
 
+    console.log(product)
+
     return reply.status(200).send(product);
   } catch (error: any) {
     return reply
