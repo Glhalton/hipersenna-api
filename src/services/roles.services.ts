@@ -1,5 +1,5 @@
-import { prisma } from "../lib/prisma";
-import { UpdateRoleInput, RoleInput } from "../schemas/roles.schemas";
+import { prisma } from '../lib/prisma.js';
+import { UpdateRoleInput, RoleInput } from '../schemas/roles.schemas.js';
 
 export const getAllRolesService = async () => {
   return await prisma.hsroles.findMany();

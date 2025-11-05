@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { bonusSchema } from "../schemas/bonus.schemas";
-import { bonusListService } from "../services/bonus.services";
+import { bonusSchema } from '../schemas/bonus.schemas.js';
+import { bonusListService } from '../services/bonus.services.js';
 
 export async function bonusListController(
   request: FastifyRequest,

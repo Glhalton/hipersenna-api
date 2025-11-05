@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
-import { createValidityController, getValidityByEmployeeController, getValidityController } from "../controllers/validities.controllers";
-import { authorizePermissions } from "../middlewares/authorizePermissions";
+import { createValidityController, getValidityByEmployeeController, getValidityController } from '../controllers/validities.controllers.js';
+import { authorizePermissions } from '../middlewares/authorizePermissions.js';
 
 export default async function validitiesRoutes(app: FastifyInstance){
     app.get("/",{preHandler: authorizePermissions(21)}, getValidityController);

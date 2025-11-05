@@ -1,6 +1,6 @@
 import { FastifyInstance} from "fastify";
-import { createUserRolesController, deleteUserRolesController, getUserRolesController } from "../controllers/userRoles.controllers";
-import { authorizePermissions } from "../middlewares/authorizePermissions";
+import { createUserRolesController, deleteUserRolesController, getUserRolesController } from '../controllers/userRoles.controllers.js';
+import { authorizePermissions } from '../middlewares/authorizePermissions.js';
 
 export default async function userRolesRoutes(app: FastifyInstance){
     app.get("/id/:id",  getUserRolesController);

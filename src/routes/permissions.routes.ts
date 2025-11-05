@@ -1,6 +1,6 @@
 import {FastifyInstance} from "fastify";
-import { createPermissionController, deletePermissionController, getAllPermissionsController, getPermissionController, updatePermissionController } from "../controllers/permissions.controllers";
-import { authorizePermissions } from "../middlewares/authorizePermissions";
+import { createPermissionController, deletePermissionController, getAllPermissionsController, getPermissionController, updatePermissionController } from '../controllers/permissions.controllers.js';
+import { authorizePermissions } from '../middlewares/authorizePermissions.js';
 
 export default async function permissionsRoutes(app: FastifyInstance){
 

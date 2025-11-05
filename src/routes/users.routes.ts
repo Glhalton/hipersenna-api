@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
-import { createUserController, deleteUserController, getAllUsersController, getTokenDataController, getUserController, signoutController, updateUserController } from "../controllers/users.controllers";
-import { authorizePermissions } from "../middlewares/authorizePermissions";
+import { createUserController, deleteUserController, getTokenDataController, getUserController, signoutController, updateUserController } from '../controllers/users.controllers.js';
+import { authorizePermissions } from '../middlewares/authorizePermissions.js';
 
 export default async function usersRoutes (app: FastifyInstance){
 

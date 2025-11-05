@@ -2,12 +2,12 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import {
   userIdSchema,
   userPermissionSchema,
-} from "../schemas/userPermissions.schemas";
+} from '../schemas/userPermissions.schemas.js';
 import {
   createUserPermissionsService,
   deleteUserPermissionsService,
   getUserPermissionsService,
-} from "../services/userPermissions.services";
+} from '../services/userPermissions.services.js';
 
 export async function getUserPermissionsController(
   request: FastifyRequest,

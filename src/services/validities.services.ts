@@ -3,7 +3,7 @@ import {
   ValidityInput,
   getValidityInput,
 } from "../schemas/validities.schemas.js";
-import { getOracleConnection } from "../../oracleClient.js";
+import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
 
 export const getValidityService = async ({

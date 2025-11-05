@@ -1,6 +1,6 @@
 import {FastifyInstance} from "fastify";
-import { createRoleController, deleteRoleController, getAllRolesController, getRoleController, updateRoleController } from "../controllers/roles.controllers";
-import { authorizePermissions } from "../middlewares/authorizePermissions";
+import { createRoleController, deleteRoleController, getAllRolesController, getRoleController, updateRoleController } from '../controllers/roles.controllers.js';
+import { authorizePermissions } from '../middlewares/authorizePermissions.js';
 
 export default async function rolesRoutes(app: FastifyInstance){
     app.get("/",{preHandler: authorizePermissions(9)}, getAllRolesController);

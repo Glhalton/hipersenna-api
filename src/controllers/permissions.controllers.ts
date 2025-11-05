@@ -5,12 +5,12 @@ import {
   getAllPermissionsService,
   getPermissionService,
   updatePermissionService,
-} from "../services/permissions.services";
+} from '../services/permissions.services.js';
 import {
   permissionIdSchema,
   permissionSchema,
   updatePermissionSchema,
-} from "../schemas/permissions.schemas";
+} from '../schemas/permissions.schemas.js';
 
 export async function getAllPermissionsController(
   request: FastifyRequest,

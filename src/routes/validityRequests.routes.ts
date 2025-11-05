@@ -4,8 +4,8 @@ import {
   getAllValidityRequestsController,
   listValidityRequestsByEmployeeIdController,
   updateValidityRequestController,
-} from "../controllers/validityRequests.controllers";
-import { authorizePermissions } from "../middlewares/authorizePermissions";
+} from '../controllers/validityRequests.controllers.js';
+import { authorizePermissions } from '../middlewares/authorizePermissions.js';
 
 export default async function validityRequestsRoutes(app: FastifyInstance) {
   app.get(

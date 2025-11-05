@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { prisma } from "../lib/prisma";
-import { getUserPermissions } from "./services";
+import { prisma } from '../lib/prisma.js';
+import { getUserPermissions } from './services.js';
 
 export function authorizePermissions(...rolesPermitidos: number[]) {
   return async function (request: FastifyRequest, reply: FastifyReply) {

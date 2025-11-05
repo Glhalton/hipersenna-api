@@ -1,4 +1,4 @@
-import { getOracleConnection } from "../../oracleClient.js";
+import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
 
 export const getProductService = async (

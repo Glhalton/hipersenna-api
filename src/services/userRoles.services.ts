@@ -1,5 +1,5 @@
-import { prisma } from "../lib/prisma";
-import { UserRoleInput } from "../schemas/userRoles.schemas";
+import { prisma } from '../lib/prisma.js';
+import { UserRoleInput } from '../schemas/userRoles.schemas.js';
 
 export const getUserRolesService = async (user_id: number) => {
     return await prisma.hsusers_roles.findMany({

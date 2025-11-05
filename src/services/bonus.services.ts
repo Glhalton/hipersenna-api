@@ -1,5 +1,5 @@
 import oracledb from "oracledb";
-import { BonusQuery } from "../schemas/bonus.schemas";
+import { BonusQuery } from '../schemas/bonus.schemas.js';
 
 export async function bonusListService({ query }: {query: BonusQuery}) {
   let baseQuery = `

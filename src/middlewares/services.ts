@@ -1,4 +1,4 @@
-import { prisma } from "../lib/prisma";
+import { prisma } from '../lib/prisma.js';
 
 export async function getUserPermissions(userId: number): Promise<number[]> {
   const user = await prisma.hsemployees.findUnique({

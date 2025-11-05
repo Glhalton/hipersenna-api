@@ -1,10 +1,10 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { userIdSchema, userRoleSchema } from "../schemas/userRoles.schemas";
+import { userIdSchema, userRoleSchema } from '../schemas/userRoles.schemas.js';
 import {
   createUserRolesService,
   deleteUserRolesService,
   getUserRolesService,
-} from "../services/userRoles.services";
+} from '../services/userRoles.services.js';
 
 export async function getUserRolesController(
   request: FastifyRequest,

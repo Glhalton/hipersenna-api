@@ -1,10 +1,10 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { signInSchema } from "../schemas/signin.schemas";
-import { signInService } from "../services/signin.services";
+import { signInSchema } from '../schemas/signin.schemas.js';
+import { signInService } from '../services/signin.services.js';
 import {
   deleteSessionService,
   createSessionService,
-} from "../services/signin.services";
+} from '../services/signin.services.js';
 import jwt from "jsonwebtoken";
 import { ZodError } from "zod";
 

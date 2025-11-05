@@ -1,6 +1,6 @@
-import { prisma } from "../lib/prisma";
+import { prisma } from '../lib/prisma.js';
 import bcrypt from "bcryptjs";
-import { signInInput } from "../schemas/signin.schemas";
+import { signInInput } from '../schemas/signin.schemas.js';
 
 export const signInService = async ({password, username}: signInInput) => {
     const responseSignIn = await prisma.hsemployees.findFirst({

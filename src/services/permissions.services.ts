@@ -1,8 +1,8 @@
-import { prisma } from "../lib/prisma";
+import { prisma } from '../lib/prisma.js';
 import {
   PermissionInput,
   UpdatePermissionInput,
-} from "../schemas/permissions.schemas";
+} from '../schemas/permissions.schemas.js';
 
 export const getAllPermissionsService = async () => {
   return await prisma.hspermissions.findMany();

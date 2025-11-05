@@ -3,8 +3,8 @@ import {
   createRolePermissionsController,
   deleteRolePermissionController,
   getRolePermissionsController,
-} from "../controllers/rolesPermissions.controllers";
-import { authorizePermissions } from "../middlewares/authorizePermissions";
+} from '../controllers/rolesPermissions.controllers.js';
+import { authorizePermissions } from '../middlewares/authorizePermissions.js';
 
 export default async function rolesPermissionsRoutes(app: FastifyInstance) {
   app.get("/id/:id", getRolePermissionsController);

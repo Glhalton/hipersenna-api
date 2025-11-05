@@ -2,12 +2,12 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import {
   roleIdSchema,
   rolePermissionSchema,
-} from "../schemas/rolesPermissions.schemas";
+} from '../schemas/rolesPermissions.schemas.js';
 import {
   createRolePermissionsService,
   deleteRolePermissionsService,
   getRolePermissionsService,
-} from "../services/rolesPermissions.services";
+} from '../services/rolesPermissions.services.js';
 
 export async function getRolePermissionsController(
   request: FastifyRequest,

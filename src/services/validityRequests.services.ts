@@ -1,6 +1,6 @@
 import { prisma } from "../lib/prisma.js"
 import { ValidityRequestInput } from "../schemas/validityRequests.schemas.js";
-import { getOracleConnection } from "../../oracleClient.js";
+import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
 import { UpdateValidityRequestsInput } from "../schemas/validityRequests.schemas.js";
 

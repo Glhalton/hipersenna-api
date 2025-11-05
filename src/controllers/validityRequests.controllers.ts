@@ -4,13 +4,13 @@ import {
   getAllValidityRequestService,
   listValidityRequestsByEmployeeIdService,
   updateValidityRequestService,
-} from "../services/validityRequests.services";
+} from '../services/validityRequests.services.js';
 import z from "zod";
 import {
   updateValidityRequestsSchema,
   validityRequestProductSchema,
   validityRequestSchema,
-} from "../schemas/validityRequests.schemas";
+} from '../schemas/validityRequests.schemas.js';
 
 export async function getAllValidityRequestsController(
   request: FastifyRequest,

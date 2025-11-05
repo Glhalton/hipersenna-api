@@ -1,6 +1,6 @@
-import { prisma } from "../lib/prisma";
+import { prisma } from '../lib/prisma.js';
 import bcrypt from "bcryptjs";
-import { UpdateUserInput, CreateUserInput, GetUserInput } from "../schemas/users.schemas";
+import { UpdateUserInput, CreateUserInput, GetUserInput } from '../schemas/users.schemas.js';
 
 export const getUserService = async ({id, name, winthor_id, username, branch_id} : GetUserInput) => {
 

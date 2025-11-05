@@ -2,9 +2,11 @@
   "name": "hipersenna-api",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node ./dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,6 @@
     "fastify": "^5.6.0",
     "fastify-type-provider-zod": "^6.1.0",
     "jsonwebtoken": "^9.0.2",
-    "npm": "^11.6.2",
     "oracledb": "^6.9.0",
     "zod": "^4.1.8"
   },

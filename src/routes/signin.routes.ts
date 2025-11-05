@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { signinController } from "../controllers/signin.controllers";
+import { signinController } from '../controllers/signin.controllers.js';
 
 export default async function signinRoutes(app: FastifyInstance) {
   app.post(

@@ -4,7 +4,7 @@ import {
   getUserSchema,
   updateUserSchema,
   userIdSchema,
-} from "../schemas/users.schemas";
+} from '../schemas/users.schemas.js';
 import {
   createUserService,
   deleteSessionService,
@@ -12,7 +12,7 @@ import {
   findUser,
   getUserService,
   updateUserService,
-} from "../services/users.services";
+} from '../services/users.services.js';
 
 export async function getUserController(
   request: FastifyRequest,

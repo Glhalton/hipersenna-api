@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { getProductSchema } from "../schemas/products.schemas";
-import { getProductService } from "../services/products.services";
+import { getProductSchema } from '../schemas/products.schemas.js';
+import { getProductService } from '../services/products.services.js';
 
 export async function getProductController(
   request: FastifyRequest,

@@ -1,5 +1,5 @@
-import { prisma } from "../lib/prisma";
-import { UserPermissionInput } from "../schemas/userPermissions.schemas";
+import { prisma } from '../lib/prisma.js';
+import { UserPermissionInput } from '../schemas/userPermissions.schemas.js';
 
 export const getUserPermissionsService = async (id: number) => {
   return await prisma.hsusers_permissions.findMany({

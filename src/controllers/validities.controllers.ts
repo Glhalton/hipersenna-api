@@ -3,13 +3,13 @@ import {
   createValidityService,
   getValidityService,
   listValiditiesByEmployeeIdService,
-} from "../services/validities.services";
+} from '../services/validities.services.js';
 import {
   createValiditySchema,
   getValiditySchema,
   productSchema,
   validityIdSchema,
-} from "../schemas/validities.schemas";
+} from '../schemas/validities.schemas.js';
 import z from "zod";
 
 export async function getValidityController(

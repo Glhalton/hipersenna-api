@@ -5,12 +5,12 @@ import {
   getAllRolesService,
   getRoleService,
   updateRoleService,
-} from "../services/roles.services";
+} from '../services/roles.services.js';
 import {
   roleIdSchema,
   roleSchema,
   updateRoleSchema,
-} from "../schemas/roles.schemas";
+} from '../schemas/roles.schemas.js';
 
 export async function getAllRolesController(
   request: FastifyRequest,
