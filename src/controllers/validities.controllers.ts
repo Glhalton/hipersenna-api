@@ -3,22 +3,39 @@ import {
   createValidityService,
   getValidityService,
   listValiditiesByEmployeeIdService,
-} from '../services/validities.services.js';
+  updateValidityService,
+} from "../services/validities.services.js";
 import {
   createValiditySchema,
   getValiditySchema,
-  productSchema,
+  updateValiditySchema,
   validityIdSchema,
-} from '../schemas/validities.schemas.js';
+} from "../schemas/validities.schemas.js";
 import z from "zod";
 
 export async function getValidityController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  try { 
-    const { id,branch_id, created_at, expiresDays, finalDate, initialDate, descricao  } = getValiditySchema.parse(request.query);
-    const validity = await getValidityService({id, branch_id, created_at, expiresDays, finalDate, initialDate, descricao})
+  try {
+    const {
+      id,
+      branch_id,
+      created_at,
+      expiresDays,
+      finalDate,
+      initialDate,
+      descricao,
+    } = getValiditySchema.parse(request.query);
+    const validity = await getValidityService({
+      id,
+      branch_id,
+      created_at,
+      expiresDays,
+      finalDate,
+      initialDate,
+      descricao,
+    });
     if (!validity) {
       throw new Error("Validade não encontrada");
     }
@@ -46,6 +63,37 @@ export async function getValidityByEmployeeController(
   }
 }
 
+// export async function createValidityController(
+//   request: FastifyRequest,
+//   reply: FastifyReply
+// ) {
+//   try {
+//     const userId = request.user?.id;
+//     if (!userId) {
+//       throw new Error("O id do usuário é inválido");
+//     }
+
+//     const bodySchema = z.object({
+//       validity: createValiditySchema,
+//       products: z.array(productSchema),
+//     });
+
+//     const { validity, products } = bodySchema.parse(request.body);
+//     const createdValidity = await createValidityService({
+//       validity,
+//       products,
+//       userId,
+//     });
+
+//     return reply.status(201).send({
+//       message: "Validade criada com sucesso",
+//       createdValidity,
+//     });
+//   } catch (error: any) {
+//     return reply.status(400).send({ message: `${error.message}` });
+//   }
+// }
+
 export async function createValidityController(
   request: FastifyRequest,
   reply: FastifyReply
@@ -56,21 +104,31 @@ export async function createValidityController(
       throw new Error("O id do usuário é inválido");
     }
 
-    const bodySchema = z.object({
-      validity: createValiditySchema,
-      products: z.array(productSchema),
-    });
-
-    const { validity, products } = bodySchema.parse(request.body);
-    const createdValidity = await createValidityService({
-      validity,
-      products,
-      userId,
-    });
+    console.log(request.body);
+    const validity = createValiditySchema.parse(request.body);
+    const createdValidity = await createValidityService(validity, userId);
 
     return reply.status(201).send({
       message: "Validade criada com sucesso",
       createdValidity,
+    });
+  } catch (error: any) {
+    return reply.status(400).send({ message: `${error.message}` });
+  }
+}
+
+export async function updateValidityController(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
+  try {
+    const data = updateValiditySchema.parse(request.body);
+
+    const updatedData = updateValidityService(data);
+
+    return reply.status(200).send({
+      message: "Dados atualizados com sucesso!",
+      updatedData,
     });
   } catch (error: any) {
     return reply.status(400).send({ message: `${error.message}` });

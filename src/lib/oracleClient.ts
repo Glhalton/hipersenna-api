@@ -11,7 +11,7 @@ export async function getOracleConnection() {
             user: process.env.USER_DB,
             password: process.env.PASSWORD_DB,
             connectString: process.env.CONNECTION_STRING,
-        });
+        });     
 
         return connection;
 

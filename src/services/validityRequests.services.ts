@@ -1,5 +1,5 @@
 import { prisma } from "../lib/prisma.js"
-import { ValidityRequestInput } from "../schemas/validityRequests.schemas.js";
+import { createValidityRequestInput } from "../schemas/validityRequests.schemas.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
 import { UpdateValidityRequestsInput } from "../schemas/validityRequests.schemas.js";
@@ -59,25 +59,48 @@ export const listValidityRequestsByEmployeeIdService = async (employeeId: number
     return enrichedData;
 }
 
-export const createValidityRequestService = async ({ validityRequest, requestProducts, userId }: ValidityRequestInput) => {
-    return await prisma.hsvalidity_requests.create({
-        data: {
-            branch_id: validityRequest.branch_id,
-            analyst_id: userId,
-            conferee_id: validityRequest.conferee_id,
-            hsvalidity_request_products: {
-                create: requestProducts.map(p => ({
-                    auxiliary_code: p.auxiliary_code,
-                    product_cod: p.product_cod,
-                    validity_date: p.validity_date
-                }))
-            }
-        },
-        include: {
-            hsvalidity_request_products: true
-        }
-    });
-}
+// export const createValidityRequestService = async ({ validityRequest, requestProducts, userId }: ValidityRequestInput) => {
+//     return await prisma.hsvalidity_requests.create({
+//         data: {
+//             branch_id: validityRequest.branch_id,
+//             analyst_id: userId,
+//             conferee_id: validityRequest.conferee_id,
+//             hsvalidity_request_products: {
+//                 create: requestProducts.map(p => ({
+//                     auxiliary_code: p.auxiliary_code,
+//                     product_cod: p.product_cod,
+//                     validity_date: p.validity_date
+//                 }))
+//             }
+//         },
+//         include: {
+//             hsvalidity_request_products: true
+//         }
+//     });
+// }
+
+export const createValidityRequestService = async (
+  validityRequestData: createValidityRequestInput,
+  userId: number
+) => {
+  return await prisma.hsvalidity_requests.create({
+    data: {
+      branch_id: validityRequestData.branch_id,
+      analyst_id: userId,
+      conferee_id: validityRequestData.conferee_id,
+      hsvalidity_request_products: {
+        create: validityRequestData.products.map((p) => ({
+          product_cod: p.product_cod,
+          auxiliary_code: p.auxiliary_code,
+          validity_date: p.validity_date,
+        })),
+      },
+    },
+    include: {
+      hsvalidity_request_products: true,
+    },
+  });
+};
 
 export async function updateValidityRequestService({requestId, status, products}: UpdateValidityRequestsInput) {
     // Transação: tudo ou nada

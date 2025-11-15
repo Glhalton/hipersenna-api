@@ -13,7 +13,7 @@ export const getProductService = async (
     const binds: Record<string, any> = {};
 
     if (codprod) {
-      conditions.push("p.codprod = :codprod");
+      conditions.push("em.codprod = :codprod");
       binds.codprod = Number(codprod);
     }
 
@@ -23,12 +23,13 @@ export const getProductService = async (
     }
 
     if (codauxiliar) {
-      conditions.push("p.codauxiliar = :codauxiliar");
+      conditions.push("em.codauxiliar = :codauxiliar");
       binds.codauxiliar = Number(codauxiliar);
     }
 
     if (codfilial) {
-      conditions.push("pe.codfilial = :codfilial");
+      conditions.push("em.codfilial = :codfilial");
+      conditions.push("es.codfilial = :codfilial");
       binds.codfilial = Number(codfilial);
     }
 
@@ -40,22 +41,51 @@ export const getProductService = async (
       conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
 
     const query = `
-            SELECT DISTINCT
-                p.codepto,
-                p.codprod,
-                p.codauxiliar,
-                p.descricao,
-                p.codfornec,
-                pf.codcomprador,
-                ep.nome,
-                pe.ptabela,
-                pe.pvenda
-            FROM pcprodut p
-            JOIN pcprodfilial pf ON pf.codprod = p.codprod
-            JOIN pcempr ep ON ep.matricula = pf.codcomprador
-            JOIN pcembalagem pe ON pe.codprod = p.codprod
-            ${whereClause}
-        `;
+      SELECT DISTINCT
+          p.codepto,
+          em.codprod,
+          em.codauxiliar,
+          p.descricao,
+          p.codfornec,
+          pf.codcomprador,
+          ep.nome,
+          em.ptabela,
+          em.pvenda,
+          em.fatorconversao,
+          em.unidade,
+          em.embalagem,
+          em.ptabelaatac,
+          em.pvendaatac,
+          em.dtinativo,
+          es.qtestger, 
+          es.qtreserv,
+          es.qtbloqueada,
+
+          -- Estoque da filial 6
+          (SELECT es6.qtestger
+            FROM pcest es6
+            WHERE es6.codprod = p.codprod
+              AND es6.codfilial = 6
+              AND ROWNUM = 1) AS qtestgerdp6,
+
+          (SELECT es6.qtreserv
+            FROM pcest es6
+            WHERE es6.codprod = p.codprod
+              AND es6.codfilial = 6
+              AND ROWNUM = 1) AS qtreservdp6,
+
+          (SELECT es6.qtbloqueada
+            FROM pcest es6
+            WHERE es6.codprod = p.codprod
+              AND es6.codfilial = 6
+              AND ROWNUM = 1) AS qtbloqueadadp6
+
+      FROM pcprodut p
+      JOIN pcprodfilial pf ON pf.codprod = p.codprod
+      JOIN pcempr ep ON ep.matricula = pf.codcomprador
+      JOIN pcembalagem em ON em.codprod = p.codprod
+      JOIN pcest es ON es.codprod = p.codprod
+      ${whereClause}`;
 
     const result = await connection.execute(query, binds, {
       outFormat: oracledb.OUT_FORMAT_OBJECT,
@@ -73,8 +103,20 @@ export const getProductService = async (
       CODEPTO: number;
       DESCRICAO: string;
       NOME: string;
-      PTABELA: number,
-      PVENDA: number
+      PTABELA: number;
+      PVENDA: number;
+      PTABELAATAC: number;
+      PVENDAATAC: number;
+      FATORCONVERSAO: number;
+      UNIDADE: string;
+      EMBALAGEM: string;
+      DTINATIVO: string;
+      QTESTGER: number;
+      QTRESERV: number;
+      QTBLOQUEADA: number;
+      QTESTGERDP6: number;
+      QTRESERVDP6: number;
+      QTBLOQUEADADP6: number;
     };
 
     return ((result.rows as ProductRow[]) ?? []).map((row) => ({
@@ -86,7 +128,19 @@ export const getProductService = async (
       descricao: row.DESCRICAO,
       comprador: row.NOME,
       precotabela: row.PTABELA,
-      precovenda: row.PVENDA
+      precovenda: row.PVENDA,
+      precotabelaatac: row.PTABELAATAC,
+      precovendaatac: row.PVENDAATAC,
+      fatorconversao: row.FATORCONVERSAO,
+      unidade: row.UNIDADE,
+      embalagem: row.EMBALAGEM,
+      dtinativo: row.DTINATIVO,
+      qtestger: row.QTESTGER,
+      qtreserv: row.QTRESERV,
+      qtbloqueada: row.QTBLOQUEADA,
+      qtestgerdp6: row.QTESTGERDP6,
+      qtreservdp6: row.QTRESERVDP6,
+      qtbloqueadadp6: row.QTBLOQUEADADP6,
     }));
   } finally {
     await connection.close();

@@ -11,6 +11,7 @@ import userRolesRoutes from "./routes/userRoles.routes.js";
 import rolesPermissionsRoutes from "./routes/rolesPermissions.routes.js";
 import userPermissionsRoutes from "./routes/userPermissions.routes.js";
 import { authenticate } from "./middlewares/authentication.js";
+import sessionsRoutes from "./routes/sessions.routes.js";
 
 export default async function (app: FastifyInstance) {
   app.register(signinRoutes, { prefix: "/signin" });
@@ -34,5 +35,6 @@ export default async function (app: FastifyInstance) {
       prefix: "/validity-requests",
     });
     protectedRoutes.register(bonusRoutes, { prefix: "/bonus" });
+    protectedRoutes.register(sessionsRoutes, {prefix: "/sessions"})
   });
 }

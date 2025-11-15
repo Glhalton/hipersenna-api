@@ -1,6 +1,7 @@
 import { prisma } from "../lib/prisma.js";
 import {
-  ValidityInput,
+  updateValidityInput,
+  createValidityInput,
   getValidityInput,
 } from "../schemas/validities.schemas.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
@@ -136,18 +137,18 @@ export const getValidityService = async ({
   return enrichedData;
 };
 
-export const createValidityService = async ({
-  validity,
-  products,
-  userId,
-}: ValidityInput) => {
+
+export const createValidityService = async (
+  validityData: createValidityInput,
+  userId: number
+) => {
   return await prisma.hsvalidities.create({
     data: {
-      branch_id: validity.branch_id,
+      branch_id: validityData.branch_id,
+      request_id: validityData.request_id ?? null,
       employee_id: userId,
-      request_id: validity.request_id || null,
       hsvalidity_products: {
-        create: products.map((p) => ({
+        create: validityData.products.map((p) => ({
           product_cod: p.product_cod,
           auxiliary_code: p.auxiliary_code,
           quantity: p.quantity,
@@ -209,4 +210,26 @@ export const listValiditiesByEmployeeIdService = async (employeeId: number) => {
   }
 
   return postgreData;
+};
+
+export const updateValidityService = async (data: updateValidityInput) => {
+  const updates = data.flatMap((validity) =>
+    validity.products.map((product) =>
+      prisma.hsvalidity_products.updateMany({
+        where: {
+          validity_id: validity.validity_id,
+          id: product.product_id,
+        },
+        data: {
+          treat_id: product.treat_id,
+        },
+      })
+    )
+  );
+
+  const results = await Promise.all(updates);
+
+  const totalUpdated = results.reduce((acc, r) => acc + r.count, 0);
+
+  return { totalUpdated };
 };

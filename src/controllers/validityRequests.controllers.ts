@@ -4,13 +4,12 @@ import {
   getAllValidityRequestService,
   listValidityRequestsByEmployeeIdService,
   updateValidityRequestService,
-} from '../services/validityRequests.services.js';
+} from "../services/validityRequests.services.js";
 import z from "zod";
 import {
+  createValidityRequestSchema,
   updateValidityRequestsSchema,
-  validityRequestProductSchema,
-  validityRequestSchema,
-} from '../schemas/validityRequests.schemas.js';
+} from "../schemas/validityRequests.schemas.js";
 
 export async function getAllValidityRequestsController(
   request: FastifyRequest,
@@ -53,18 +52,12 @@ export async function createValidityRequestController(
       throw new Error("Id do usuário é inválido");
     }
 
-    const bodySchema = z.object({
-      validityRequest: validityRequestSchema,
-      requestProducts: z.array(validityRequestProductSchema),
-    });
+    const validityRequestData = createValidityRequestSchema.parse(request.body);
 
-    const { validityRequest, requestProducts } = bodySchema.parse(request.body);
-
-    const createdValidityRequest = await createValidityRequestService({
-      validityRequest,
-      requestProducts,
-      userId,
-    });
+    const createdValidityRequest = await createValidityRequestService(
+      validityRequestData,
+      userId
+    );
 
     return reply.status(201).send({
       message: "Solicitação de validade criada com sucesso!",
