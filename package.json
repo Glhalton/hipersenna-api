@@ -8,12 +8,15 @@
     "build": "tsc",
     "start": "node ./dist/server.js"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Glhalton/hipersenna-api.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Glhalton",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Glhalton/hipersenna-api/issues"
@@ -27,7 +30,6 @@
     "fastify": "^5.6.0",
     "fastify-type-provider-zod": "^6.1.0",
     "jsonwebtoken": "^9.0.2",
-    "npm": "^11.6.2",
     "oracledb": "^6.9.0",
     "zod": "^4.1.8"
   },

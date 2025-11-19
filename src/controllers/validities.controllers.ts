@@ -63,37 +63,6 @@ export async function getValidityByEmployeeController(
   }
 }
 
-// export async function createValidityController(
-//   request: FastifyRequest,
-//   reply: FastifyReply
-// ) {
-//   try {
-//     const userId = request.user?.id;
-//     if (!userId) {
-//       throw new Error("O id do usuário é inválido");
-//     }
-
-//     const bodySchema = z.object({
-//       validity: createValiditySchema,
-//       products: z.array(productSchema),
-//     });
-
-//     const { validity, products } = bodySchema.parse(request.body);
-//     const createdValidity = await createValidityService({
-//       validity,
-//       products,
-//       userId,
-//     });
-
-//     return reply.status(201).send({
-//       message: "Validade criada com sucesso",
-//       createdValidity,
-//     });
-//   } catch (error: any) {
-//     return reply.status(400).send({ message: `${error.message}` });
-//   }
-// }
-
 export async function createValidityController(
   request: FastifyRequest,
   reply: FastifyReply
@@ -103,8 +72,6 @@ export async function createValidityController(
     if (!userId) {
       throw new Error("O id do usuário é inválido");
     }
-
-    console.log(request.body);
     const validity = createValiditySchema.parse(request.body);
     const createdValidity = await createValidityService(validity, userId);
 

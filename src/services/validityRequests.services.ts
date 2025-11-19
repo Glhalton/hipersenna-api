@@ -59,26 +59,6 @@ export const listValidityRequestsByEmployeeIdService = async (employeeId: number
     return enrichedData;
 }
 
-// export const createValidityRequestService = async ({ validityRequest, requestProducts, userId }: ValidityRequestInput) => {
-//     return await prisma.hsvalidity_requests.create({
-//         data: {
-//             branch_id: validityRequest.branch_id,
-//             analyst_id: userId,
-//             conferee_id: validityRequest.conferee_id,
-//             hsvalidity_request_products: {
-//                 create: requestProducts.map(p => ({
-//                     auxiliary_code: p.auxiliary_code,
-//                     product_cod: p.product_cod,
-//                     validity_date: p.validity_date
-//                 }))
-//             }
-//         },
-//         include: {
-//             hsvalidity_request_products: true
-//         }
-//     });
-// }
-
 export const createValidityRequestService = async (
   validityRequestData: createValidityRequestInput,
   userId: number

@@ -47,8 +47,6 @@ export const getProductService = async (
           em.codauxiliar,
           p.descricao,
           p.codfornec,
-          pf.codcomprador,
-          ep.nome,
           em.ptabela,
           em.pvenda,
           em.fatorconversao,
@@ -81,8 +79,6 @@ export const getProductService = async (
               AND ROWNUM = 1) AS qtbloqueadadp6
 
       FROM pcprodut p
-      JOIN pcprodfilial pf ON pf.codprod = p.codprod
-      JOIN pcempr ep ON ep.matricula = pf.codcomprador
       JOIN pcembalagem em ON em.codprod = p.codprod
       JOIN pcest es ON es.codprod = p.codprod
       ${whereClause}`;
@@ -97,12 +93,10 @@ export const getProductService = async (
 
     type ProductRow = {
       CODAUXILIAR: string;
-      CODCOMPRADOR: number;
       CODPROD: number;
       CODFORNEC: number;
       CODEPTO: number;
       DESCRICAO: string;
-      NOME: string;
       PTABELA: number;
       PVENDA: number;
       PTABELAATAC: number;
@@ -121,12 +115,10 @@ export const getProductService = async (
 
     return ((result.rows as ProductRow[]) ?? []).map((row) => ({
       codAuxiliar: String(row.CODAUXILIAR),
-      codComprador: row.CODCOMPRADOR,
       codProd: row.CODPROD,
       codFornec: row.CODFORNEC,
       codDepto: row.CODEPTO,
       descricao: row.DESCRICAO,
-      comprador: row.NOME,
       precotabela: row.PTABELA,
       precovenda: row.PVENDA,
       precotabelaatac: row.PTABELAATAC,
