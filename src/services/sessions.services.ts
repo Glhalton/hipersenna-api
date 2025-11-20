@@ -70,3 +70,11 @@ export const deleteAllSessionsService = async (userId: number) => {
     },
   });
 };
+
+export const deleteMySessionService = async (token: string) => {
+  return await prisma.hssessions.delete({
+    where: {
+      token,
+    },
+  });
+};

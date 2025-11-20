@@ -1,29 +1,48 @@
-import { prisma } from '../lib/prisma.js';
+import { prisma } from "../lib/prisma.js";
 import {
-  PermissionInput,
-  UpdatePermissionInput,
-} from '../schemas/permissions.schemas.js';
+  Permission,
+  UpdatePermission,
+  GetPermission,
+} from "../schemas/permissions.schemas.js";
 
-export const getAllPermissionsService = async () => {
-  return await prisma.hspermissions.findMany();
-};
+export const getPermissionService = async ({
+  id,
+  name,
+  description,
+}: GetPermission) => {
+  const whereClause: any = {};
 
-export const getPermissionService = async (id: number) => {
-  return await prisma.hspermissions.findUnique({
-    where: {
-      id,
-    },
+  if (id) whereClause.id = id;
+  if (name) whereClause.name = name;
+  if (description) whereClause.description = description;
+
+  return await prisma.hspermissions.findMany({
+    where: whereClause,
   });
 };
 
 export const createPermissionService = async ({
-  description,
   name,
-}: PermissionInput) => {
+  description,
+}: Permission) => {
   return await prisma.hspermissions.create({
     data: {
-      description,
       name,
+      description,
+    },
+  });
+};
+
+
+export const updatePermissionService = async (
+  id: number,
+  { name, description,  }: UpdatePermission
+) => {
+  return await prisma.hspermissions.update({
+    where: { id },
+    data: {
+      name,
+      description,
     },
   });
 };
@@ -31,18 +50,5 @@ export const createPermissionService = async ({
 export const deletePermissionService = async (id: number) => {
   return await prisma.hspermissions.delete({
     where: { id },
-  });
-};
-
-export const updatePermissionService = async (
-  id: number,
-  { description, name }: UpdatePermissionInput
-) => {
-  return await prisma.hspermissions.update({
-    where: { id },
-    data: {
-      description,
-      name,
-    },
   });
 };

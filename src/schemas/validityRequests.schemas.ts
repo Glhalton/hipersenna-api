@@ -4,19 +4,6 @@ import {
   hsvalidity_requests_status,
 } from "@prisma/client";
 
-// export const validityRequestSchema = z.object({
-//   branch_id: z.number(),
-//   conferee_id: z.number(),
-// });
-
-// export const validityRequestProductSchema = z
-//   .object({
-//     product_cod: z.number(),
-//     auxiliary_code: z.string(),
-//     validity_date: z.coerce.date(),
-//   })
-//   .strip();
-
 export const createValidityRequestSchema = z.object({
   branch_id: z.number(),
   conferee_id: z.number(),

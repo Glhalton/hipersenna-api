@@ -55,7 +55,7 @@ export async function getValidityByEmployeeController(
       userId!
     );
     if (!validitiesByEmployee || validitiesByEmployee.length === 0) {
-      throw new Error("Nenhuma validade encontrada");
+      return reply.status(404).send({message: "Nenhum dado foi encontrado."})
     }
     return reply.status(200).send({ validitiesByEmployee });
   } catch (error: any) {

@@ -70,14 +70,6 @@ export const updateUserService = async (id: number, data: UpdateUserInput) => {
   });
 };
 
-export const deleteSessionService = async (token: string) => {
-  return await prisma.hssessions.delete({
-    where: {
-      token,
-    },
-  });
-};
-
 export const findUser = async (winthor_id: number, username: string) => {
   return await prisma.hsemployees.findFirst({
     where: {

@@ -2,43 +2,29 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import {
   createPermissionService,
   deletePermissionService,
-  getAllPermissionsService,
   getPermissionService,
   updatePermissionService,
-} from '../services/permissions.services.js';
+} from "../services/permissions.services.js";
 import {
+  getPermissionSchema,
   permissionIdSchema,
   permissionSchema,
   updatePermissionSchema,
-} from '../schemas/permissions.schemas.js';
-
-export async function getAllPermissionsController(
-  request: FastifyRequest,
-  reply: FastifyReply
-) {
-  try {
-    const permissions = await getAllPermissionsService();
-    if (permissions.length === 0) {
-      throw new Error("Nenhum cargo encontrado");
-    }
-
-    return reply.status(200).send(permissions);
-  } catch (error: any) {
-    return reply.status(400).send({ message: error.message });
-  }
-}
+} from "../schemas/permissions.schemas.js";
 
 export async function getPermissionController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
-    const { id } = permissionIdSchema.parse(request.params);
+    const { id, name, description } = getPermissionSchema.parse(request.query);
 
-    const permission = await getPermissionService(id);
+    const permission = await getPermissionService({ id, name, description });
 
     if (!permission) {
-      throw new Error("Permissão não encontrada");
+      return reply
+        .status(404)
+        .send({ message: "Nenhuma permissão encontrada!" });
     }
 
     return reply.status(200).send(permission);
@@ -52,10 +38,33 @@ export async function createPermissionController(
   reply: FastifyReply
 ) {
   try {
-    const data = permissionSchema.parse(request.body);
-    const permission = await createPermissionService(data);
+    const { name, description } = permissionSchema.parse(request.body);
+    const permission = await createPermissionService({ name, description });
 
     return reply.status(201).send(permission);
+  } catch (error: any) {
+    return reply.status(400).send({ message: error.message });
+  }
+}
+
+export async function updatePermissionController(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
+  try {
+    const { id } = permissionIdSchema.parse(request.params);
+    const { name, description } = updatePermissionSchema.parse(request.body);
+
+    const permissionExists = await getPermissionService({ id });
+    if (!permissionExists) {
+      return reply
+        .status(404)
+        .send({ message: "Nenhuma permissão encontrada!" });
+    }
+
+    const permission = await updatePermissionService(id, { name, description });
+
+    return reply.status(200).send(permission);
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }
@@ -68,33 +77,14 @@ export async function deletePermissionController(
   try {
     const { id } = permissionIdSchema.parse(request.params);
 
-    const permissionExists = await getPermissionService(id);
+    const permissionExists = await getPermissionService({ id });
     if (!permissionExists) {
-      throw new Error("Permissão não encontrada");
+      return reply
+        .status(404)
+        .send({ message: "Nenhuma permissão encontrada!" });
     }
 
     const permission = await deletePermissionService(id);
-
-    return reply.status(200).send(permission);
-  } catch (error: any) {
-    return reply.status(400).send({ message: error.message });
-  }
-}
-
-export async function updatePermissionController(
-  request: FastifyRequest,
-  reply: FastifyReply
-) {
-  try {
-    const { id } = permissionIdSchema.parse(request.params);
-    const data = updatePermissionSchema.parse(request.body);
-
-    const permissionExists = await getPermissionService(id);
-    if (!permissionExists) {
-      throw new Error("Permissão não encontrada");
-    }
-
-    const permission = await updatePermissionService(id, data);
 
     return reply.status(200).send(permission);
   } catch (error: any) {

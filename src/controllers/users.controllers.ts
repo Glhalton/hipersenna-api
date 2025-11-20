@@ -7,7 +7,6 @@ import {
 } from '../schemas/users.schemas.js';
 import {
   createUserService,
-  deleteSessionService,
   deleteUserService,
   findUser,
   getUserService,
@@ -31,7 +30,7 @@ export async function getUserController(
     });
 
     if (!user) {
-      throw new Error("Usuário não encontrado!");
+      return reply.status(404).send({message: "Usuário não encontrado!"})
     }
 
     return reply.status(200).send({ user });
@@ -103,33 +102,6 @@ export async function updateUserController(
     return reply.status(200).send({ userUpdated });
   } catch (error: any) {
     return reply.status(400).send({ message: ` ${error.message}` });
-  }
-}
-
-export async function signoutController(
-  request: FastifyRequest,
-  reply: FastifyReply
-) {
-  try {
-    const token = request.headers.authorization?.replace("Bearer ", "");
-
-    if (!token) {
-      return reply.status(401).send({ message: "Token não fornecido" });
-    }
-
-    const deletedSession = await deleteSessionService(token);
-
-    if (!deletedSession) {
-      return reply
-        .status(404)
-        .send({ message: "Sessão não encontrada ou já expirada" });
-    }
-
-    return reply.status(200).send({ message: "Signout realizado com sucesso" });
-  } catch (error: any) {
-    return reply
-      .status(400)
-      .send({ message: `Erro no servidor: ${error.message}` });
   }
 }
 

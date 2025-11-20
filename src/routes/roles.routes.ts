@@ -1,11 +1,21 @@
 import {FastifyInstance} from "fastify";
-import { createRoleController, deleteRoleController, getAllRolesController, getRoleController, updateRoleController } from '../controllers/roles.controllers.js';
+import { createRoleController, deleteRoleController, getRoleController, updateRoleController } from '../controllers/roles.controllers.js';
 import { authorizePermissions } from '../middlewares/authorizePermissions.js';
+import { getRoleSchema, roleResponseSchema } from "../schemas/roles.schemas.js";
+import z from "zod";
 
 export default async function rolesRoutes(app: FastifyInstance){
-    app.get("/",{preHandler: authorizePermissions(9)}, getAllRolesController);
 
-    app.get("/id/:id", {preHandler: authorizePermissions(9)},getRoleController);
+    app.get("/", {preHandler: authorizePermissions(9), schema:{
+        description: "Realiza a consulta de cargos.",
+        querystring: getRoleSchema,
+        response: {
+            200: roleResponseSchema,
+            404: z.object({message: z.string()})
+        },
+        tags: ["Roles"],
+        summary: "Rota de consulta de cargos."
+    }},getRoleController);
 
     app.post("/", {preHandler: authorizePermissions(10)},createRoleController);
 

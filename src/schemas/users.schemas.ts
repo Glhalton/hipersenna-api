@@ -12,7 +12,7 @@ export const getUserSchema = z.object({
   branch_id: z.coerce.number().optional(),
 });
 
-export type GetUserInput = z.infer<typeof getUserSchema>
+export type GetUserInput = z.infer<typeof getUserSchema>;
 
 export const createUserSchema = z.object({
   name: z.string().min(1),
@@ -33,3 +33,21 @@ export const updateUserSchema = z.object({
 });
 
 export type UpdateUserInput = z.infer<typeof updateUserSchema>;
+
+export const userResponseSchema = z.object({
+  id: z.number(),
+  branch_id: z.number(),
+  winthor_id: z.number(),
+  name: z.string(),
+  username: z.string(),
+  created_at: z.date(),
+  modified_at: z.date(),
+  hsusers_roles: z.object({
+    role_id: z.number(),
+    hsroles: z.object({
+      id: z.number(),
+      name: z.string(),
+      description: z.string(),
+    }),
+  }),
+});

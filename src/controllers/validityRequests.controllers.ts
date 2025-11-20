@@ -36,6 +36,11 @@ export async function listValidityRequestsByEmployeeIdController(
     const userId = request.user?.id;
     const validityRequestsByEmployee =
       await listValidityRequestsByEmployeeIdService(userId!);
+    
+    if(!validityRequestsByEmployee || validityRequestsByEmployee.length == 0){
+      return reply.status(404).send({message: "Nenhum dado foi encontrado!"})
+    }
+
     return reply.status(200).send({ validityRequestsByEmployee });
   } catch (error: any) {
     return reply.status(400).send({ message: `${error.message}` });

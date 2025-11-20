@@ -34,7 +34,7 @@ export const getProductService = async (
     }
 
     if (conditions.length === 0) {
-      return 200;
+      return 400;
     }
 
     const whereClause =

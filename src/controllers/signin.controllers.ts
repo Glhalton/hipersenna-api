@@ -17,11 +17,10 @@ export async function signinController(
     const user = await signInService(parsedData);
 
     if (!user) {
-      throw new Error("Usuário ou senha inválidos!");
+      return reply.status(401).send({message: "Usuário ou senha estão incorretos!"})
     }
 
     const jwtSecret = process.env.JWT_SECRET;
-
     if (!jwtSecret) {
       throw new Error("JWT_SECRET não definido no .env");
     }

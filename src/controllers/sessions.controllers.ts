@@ -2,6 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { sessionIdSchema, sessionSchema } from "../schemas/sessions.schemas.js";
 import {
   deleteAllSessionsService,
+  deleteMySessionService,
   deleteSessionsService,
   getSessionsService,
 } from "../services/sessions.services.js";
@@ -18,6 +19,33 @@ export async function getSessionsController(
     return reply.status(200).send(sessionData);
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
+  }
+}
+
+export async function deleteMySessionController(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
+  try {
+    const token = request.headers.authorization?.replace("Bearer ", "");
+
+    if (!token) {
+      return reply.status(401).send({ message: "Token não fornecido" });
+    }
+
+    const deletedSession = await deleteMySessionService(token);
+
+    if (!deletedSession) {
+      return reply
+        .status(404)
+        .send({ message: "Sessão não encontrada ou já expirada" });
+    }
+
+    return reply.status(200).send({ message: "Signout realizado com sucesso" });
+  } catch (error: any) {
+    return reply
+      .status(400)
+      .send({ message: `Erro no servidor: ${error.message}` });
   }
 }
 

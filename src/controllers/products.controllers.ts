@@ -1,27 +1,31 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { getProductSchema } from '../schemas/products.schemas.js';
-import { getProductService } from '../services/products.services.js';
+import { getProductSchema } from "../schemas/products.schemas.js";
+import { getProductService } from "../services/products.services.js";
 
 export async function getProductController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
-    const { codprod, codauxiliar, descricao, codfilial } = getProductSchema.parse(
-      request.query
+    const { codprod, codauxiliar, descricao, codfilial } =
+      getProductSchema.parse(request.query);
+    const product = await getProductService(
+      codprod,
+      codauxiliar,
+      descricao,
+      codfilial
     );
-    const product = await getProductService(codprod, codauxiliar, descricao, codfilial);
 
-    if (product == 200) {
+    if (product == 400) {
       return reply
-        .status(404)
+        .status(400)
         .send({ message: "Informe pelo menos um filtro de busca" });
     }
 
     if (product == 404) {
-      return reply.status(404).send({ message: "Produto não encontrado!" });
+      return reply.status(404).send({ message: "Nenhum produto encontrado!" });
     }
-    
+
     return reply.status(200).send(product);
   } catch (error: any) {
     return reply
