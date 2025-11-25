@@ -10,4 +10,14 @@ export const userPermissionSchema = z.object({
   permission_id: z.coerce.number().array(),
 })
 
-export type UserPermissionInput = z.infer<typeof userPermissionSchema>;
+export type UserPermission = z.infer<typeof userPermissionSchema>;
+
+export const userPermissionsResponseSchema = z.object({
+  user_id: z.number(),
+  permission_id: z.number(),
+  hspermissions: z.object({
+    id: z.number(),
+    name: z.string(),
+    description: z.string(),
+  })
+})

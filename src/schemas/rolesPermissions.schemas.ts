@@ -9,4 +9,14 @@ export const rolePermissionSchema = z.object({
   permission_id: z.coerce.number().array(),
 })
 
-export type RolePermissionInput = z.infer<typeof rolePermissionSchema>;
+export type RolePermission = z.infer<typeof rolePermissionSchema>;
+
+export const rolePermissionResponseSchema = z.object({
+  role_id: z.number(),
+  permission_id: z.number(),
+  hspermissions: z.object({
+    id: z.number(),
+    name: z.string(),
+    description: z.string(),
+  })
+})

@@ -1,25 +1,36 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import {
   createValidityRequestService,
-  getAllValidityRequestService,
-  listValidityRequestsByEmployeeIdService,
+  getValidityRequestsService,
+  getMyValidityRequestsService,
   updateValidityRequestService,
 } from "../services/validityRequests.services.js";
-import z from "zod";
 import {
   createValidityRequestSchema,
+  getValidityRequestsSchema,
   updateValidityRequestsSchema,
 } from "../schemas/validityRequests.schemas.js";
 
-export async function getAllValidityRequestsController(
+export async function getValidityRequestsController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
-    const validityRequests = await getAllValidityRequestService();
+    const { id, branch_id, analyst_id, conferee_id, status } =
+      getValidityRequestsSchema.parse(request.query);
+
+    const validityRequests = await getValidityRequestsService({
+      id,
+      branch_id,
+      analyst_id,
+      conferee_id,
+      status,
+    });
 
     if (!validityRequests || validityRequests.length === 0) {
-      throw new Error("Nenhuma solicitação de validade encontrada");
+      return reply
+        .status(404)
+        .send({ message: "Solicitação de validade não encontrada!" });
     }
 
     return reply.status(200).send(validityRequests);
@@ -28,20 +39,21 @@ export async function getAllValidityRequestsController(
   }
 }
 
-export async function listValidityRequestsByEmployeeIdController(
+export async function getMyValidityRequestsController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
     const userId = request.user?.id;
-    const validityRequestsByEmployee =
-      await listValidityRequestsByEmployeeIdService(userId!);
-    
-    if(!validityRequestsByEmployee || validityRequestsByEmployee.length == 0){
-      return reply.status(404).send({message: "Nenhum dado foi encontrado!"})
+    const validityRequestsByEmployee = await getMyValidityRequestsService(
+      userId!
+    );
+
+    if (!validityRequestsByEmployee || validityRequestsByEmployee.length == 0) {
+      return reply.status(404).send({ message: "Nenhum dado foi encontrado!" });
     }
 
-    return reply.status(200).send({ validityRequestsByEmployee });
+    return reply.status(200).send(validityRequestsByEmployee);
   } catch (error: any) {
     return reply.status(400).send({ message: `${error.message}` });
   }
@@ -64,10 +76,7 @@ export async function createValidityRequestController(
       userId
     );
 
-    return reply.status(201).send({
-      message: "Solicitação de validade criada com sucesso!",
-      createdValidityRequest,
-    });
+    return reply.status(201).send(createdValidityRequest);
   } catch (error: any) {
     return reply.status(400).send({ message: `${error.message}` });
   }
@@ -83,7 +92,6 @@ export async function updateValidityRequestController(
 
     return reply.status(200).send({
       message: "Solicitação e produtos atualizados com sucesso",
-      validityRequestUpdate,
     });
   } catch (error: any) {
     return reply.status(400).send({ message: `${error.message}` });

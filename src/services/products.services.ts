@@ -87,10 +87,6 @@ export const getProductService = async (
       outFormat: oracledb.OUT_FORMAT_OBJECT,
     });
 
-    if (!result.rows || result.rows.length === 0) {
-      return 404;
-    }
-
     type ProductRow = {
       CODAUXILIAR: string;
       CODPROD: number;
@@ -119,20 +115,20 @@ export const getProductService = async (
       codFornec: row.CODFORNEC,
       codDepto: row.CODEPTO,
       descricao: row.DESCRICAO,
-      precotabela: row.PTABELA,
-      precovenda: row.PVENDA,
-      precotabelaatac: row.PTABELAATAC,
-      precovendaatac: row.PVENDAATAC,
-      fatorconversao: row.FATORCONVERSAO,
+      precoTabela: row.PTABELA,
+      precoVenda: row.PVENDA,
+      precoTabelaAtac: row.PTABELAATAC,
+      precoVendaAtac: row.PVENDAATAC,
+      fatorConversao: row.FATORCONVERSAO,
       unidade: row.UNIDADE,
       embalagem: row.EMBALAGEM,
-      dtinativo: row.DTINATIVO,
-      qtestger: row.QTESTGER,
-      qtreserv: row.QTRESERV,
-      qtbloqueada: row.QTBLOQUEADA,
-      qtestgerdp6: row.QTESTGERDP6,
-      qtreservdp6: row.QTRESERVDP6,
-      qtbloqueadadp6: row.QTBLOQUEADADP6,
+      dtInativo: row.DTINATIVO ? new Date(row.DTINATIVO).toISOString() : null,
+      qtEstGer: row.QTESTGER,
+      qtReserv: row.QTRESERV,
+      qtBloqueada: row.QTBLOQUEADA,
+      qtEstGerDp6: row.QTESTGERDP6,
+      qtReservDp6: row.QTRESERVDP6,
+      qtBloqueadaDp6: row.QTBLOQUEADADP6,
     }));
   } finally {
     await connection.close();

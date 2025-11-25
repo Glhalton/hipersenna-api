@@ -17,11 +17,11 @@ export async function getRoleController(
   reply: FastifyReply
 ) {
   try {
-    const { id, name, description } = getRoleSchema.parse(request.params);
+    const { id, name, description } = getRoleSchema.parse(request.query);
     const role = await getRoleService({ id, name, description });
 
     if (!role || role.length == 0) {
-      return reply.status(404).send({ message: "Nenhum cargo encontrado!" });
+      return reply.status(404).send({ message: "Cargo não encontrado!" });
     }
 
     return reply.status(201).send(role);
@@ -41,28 +41,9 @@ export async function createRoleController(
 
     return reply
       .status(201)
-      .send({ message: "Cargo criado com sucesso!", role });
+      .send(role);
   } catch (error: any) {
-    return reply.status(400).send({ messge: error.message });
-  }
-}
-
-export async function deleteRoleController(
-  request: FastifyRequest,
-  reply: FastifyReply
-) {
-  try {
-    const { id } = roleIdSchema.parse(request.params);
-
-    const roleExists = await getRoleService({id});
-    if (!roleExists) {
-      throw new Error("Cargo não encontrado");
-    }
-    const role = await deleteRoleService(id);
-
-    return reply.status(200).send(role);
-  } catch (error: any) {
-    return reply.status(400).send(error.message);
+    return reply.status(400).send({ message: error.message });
   }
 }
 
@@ -75,14 +56,33 @@ export async function updateRoleController(
 
     const data = updateRoleSchema.parse(request.body);
 
-    const roleExists = await getRoleService({id});
-    if (!roleExists) {
-      throw new Error("Cargo não encontrado");
+    const role = await getRoleService({ id });
+    if (!role || role.length === 0) {
+      return reply.status(404).send({ message: "Cargo não encontrado!" });
     }
 
-    const role = await updateRoleService(id, data);
+    const roleUpdated = await updateRoleService(id, data);
 
-    return reply.status(200).send(role);
+    return reply.status(200).send(roleUpdated);
+  } catch (error: any) {
+    return reply.status(400).send({ message: error.message });
+  }
+}
+
+export async function deleteRoleController(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
+  try {
+    const { id } = roleIdSchema.parse(request.params);
+
+    const role = await getRoleService({ id });
+    if (!role || role.length === 0) {
+      return reply.status(404).send({ message: "Cargo não encontrado!" });
+    }
+    const roleDeleted = await deleteRoleService(id);
+
+    return reply.status(200).send(roleDeleted);
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }

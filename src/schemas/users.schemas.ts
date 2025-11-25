@@ -40,14 +40,24 @@ export const userResponseSchema = z.object({
   winthor_id: z.number(),
   name: z.string(),
   username: z.string(),
-  created_at: z.date(),
-  modified_at: z.date(),
-  hsusers_roles: z.object({
-    role_id: z.number(),
-    hsroles: z.object({
-      id: z.number(),
-      name: z.string(),
-      description: z.string(),
-    }),
-  }),
+  created_at: z.coerce.date(),
+  modified_at: z.coerce.date(),
+  hsusers_roles: z.array(
+    z.object({
+      role_id: z.number(),
+      hsroles: z.object({
+        id: z.number(),
+        name: z.string(),
+        description: z.string(),
+      }),
+    })
+  ),
+  hsusers_permissions: z.array(
+    z.object({
+      permission_id: z.number(),
+      hspermissions: z.object({
+        description: z.string(),
+      }),
+    })
+  ),
 });

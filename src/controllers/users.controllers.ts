@@ -4,14 +4,14 @@ import {
   getUserSchema,
   updateUserSchema,
   userIdSchema,
-} from '../schemas/users.schemas.js';
+} from "../schemas/users.schemas.js";
 import {
   createUserService,
   deleteUserService,
   findUser,
   getUserService,
   updateUserService,
-} from '../services/users.services.js';
+} from "../services/users.services.js";
 
 export async function getUserController(
   request: FastifyRequest,
@@ -29,11 +29,25 @@ export async function getUserController(
       winthor_id,
     });
 
-    if (!user) {
-      return reply.status(404).send({message: "Usuário não encontrado!"})
+    if (!user || user.length === 0) {
+      return reply.status(404).send({ message: "Usuário não encontrado!" });
     }
 
-    return reply.status(200).send({ user });
+    return reply.status(200).send(user);
+  } catch (error: any) {
+    return reply.status(400).send({ message: ` ${error.message}` });
+  }
+}
+
+export async function getMeController(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
+  try {
+    const id = request.user?.id;
+    const user = await getUserService({ id });
+
+    return reply.status(200).send(user);
   } catch (error: any) {
     return reply.status(400).send({ message: ` ${error.message}` });
   }
@@ -57,28 +71,7 @@ export async function createUserController(
 
     return reply
       .status(201)
-      .send({ message: "Usuário criado com sucesso!", userCreated });
-  } catch (error: any) {
-    return reply.status(400).send({ message: `${error.message}` });
-  }
-}
-
-export async function deleteUserController(
-  request: FastifyRequest,
-  reply: FastifyReply
-) {
-  try {
-    const { id } = userIdSchema.parse(request.params);
-
-    const user = await getUserService({ id });
-    if (!user) {
-      throw new Error("Usuário não encontrado!");
-    }
-
-    const userDeleted = await deleteUserService(id);
-    return reply
-      .status(200)
-      .send({ message: "Usuário deletado com sucesso!", userDeleted });
+      .send(userCreated);
   } catch (error: any) {
     return reply.status(400).send({ message: `${error.message}` });
   }
@@ -92,16 +85,37 @@ export async function updateUserController(
     const { id } = userIdSchema.parse(request.params);
 
     const user = await getUserService({ id });
-    if (!user) {
-      throw new Error("Usuário não encontrado!");
+    if (!user || user.length === 0) {
+      return reply.status(404).send({ message: "Usuário não encontrado" });
     }
 
     const userData = updateUserSchema.parse(request.body);
 
     const userUpdated = await updateUserService(id, userData);
-    return reply.status(200).send({ userUpdated });
+    return reply.status(200).send(userUpdated);
   } catch (error: any) {
     return reply.status(400).send({ message: ` ${error.message}` });
+  }
+}
+
+export async function deleteUserController(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
+  try {
+    const { id } = userIdSchema.parse(request.params);
+
+    const user = await getUserService({ id });
+    if (!user || user.length === 0) {
+      return reply.status(404).send({ message: "Usuário não encontrado!" });
+    }
+
+    const userDeleted = await deleteUserService(id);
+    return reply
+      .status(200)
+      .send(userDeleted);
+  } catch (error: any) {
+    return reply.status(400).send({ message: `${error.message}` });
   }
 }
 

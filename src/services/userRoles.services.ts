@@ -1,5 +1,5 @@
 import { prisma } from '../lib/prisma.js';
-import { UserRoleInput } from '../schemas/userRoles.schemas.js';
+import { UserRole } from '../schemas/userRoles.schemas.js';
 
 export const getUserRolesService = async (user_id: number) => {
     return await prisma.hsusers_roles.findMany({
@@ -18,7 +18,7 @@ export const getUserRolesService = async (user_id: number) => {
     })
 }
 
-export const createUserRolesService = async ({role_id, user_id}: UserRoleInput) => {
+export const createUserRolesService = async ({user_id, role_id}: UserRole) => {
   return await prisma.hsusers_roles.create({
     data: {
       user_id,
@@ -27,7 +27,7 @@ export const createUserRolesService = async ({role_id, user_id}: UserRoleInput) 
   });
 };
 
-export const deleteUserRolesService = async ({role_id, user_id}: UserRoleInput) => {
+export const deleteUserRolesService = async ({ user_id, role_id}: UserRole) => {
   return await prisma.hsusers_roles.delete({
     where: {
       user_id_role_id: {

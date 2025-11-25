@@ -1,13 +1,13 @@
 import { prisma } from "../lib/prisma.js";
 import {
-  sessionIdSchemaInput,
-  sessionSchemaInput,
+  SessionId,
+  GetSession,
 } from "../schemas/sessions.schemas.js";
 
 export const getSessionsService = async ({
   sessionId,
   userId,
-}: sessionSchemaInput) => {
+}: GetSession) => {
   const whereClause: any = {};
 
   if (sessionId) whereClause.id = sessionId;
@@ -32,7 +32,7 @@ export const getSessionsService = async ({
 };
 
 export const deleteSessionsService = async (
-  { id }: sessionIdSchemaInput,
+  { id }: SessionId,
   userId: number
 ) => {
   const whereClause: any = {};

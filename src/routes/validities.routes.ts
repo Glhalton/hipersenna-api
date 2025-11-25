@@ -1,13 +1,90 @@
 import { FastifyInstance } from "fastify";
-import { createValidityController, getValidityByEmployeeController, getValidityController, updateValidityController } from '../controllers/validities.controllers.js';
-import { authorizePermissions } from '../middlewares/authorizePermissions.js';
+import {
+  createValidityController,
+  getMyValiditiesController,
+  getValidityController,
+  updateValidityController,
+} from "../controllers/validities.controllers.js";
+import { authorizePermissions } from "../middlewares/authorizePermissions.js";
+import {
+  createValiditySchema,
+  getValiditySchema,
+  updateValiditySchema,
+  validityResponseSchema,
+} from "../schemas/validities.schemas.js";
+import z from "zod";
 
-export default async function validitiesRoutes(app: FastifyInstance){
-    app.get("/",{preHandler: authorizePermissions(21)}, getValidityController);
+export default async function validitiesRoutes(app: FastifyInstance) {
+  app.get(
+    "/",
+    {
+      preHandler: authorizePermissions(21),
+      schema: {
+        description: "Realiza a consulta de validades.",
+        security: [{ BearerAuth: [] }],
+        querystring: getValiditySchema,
+        response: {
+          200: z.array(validityResponseSchema),
+          404: z.object({ message: z.string() }),
+        },
+        tags: ["Validities"],
+        summary: "Rota de consulta de validades.",
+      },
+    },
+    getValidityController
+  );
 
-    app.get("/employee", getValidityByEmployeeController);
+  app.get(
+    "/me",
+    {
+      schema: {
+        description:
+          "Realiza a consulta de validades vinculadas ao usuário que consultou.",
+        security: [{ BearerAuth: [] }],
+        response: {
+          200: z.array(validityResponseSchema),
+          404: z.object({ message: z.string() }),
+        },
+        tags: ["Validities"],
+        summary:
+          "Rota de consulta de validades vinculadas ao usuário que consultou.",
+      },
+    },
+    getMyValiditiesController
+  );
 
-    app.post("/", {preHandler: authorizePermissions(22)}, createValidityController);
+  app.post(
+    "/",
+    {
+      preHandler: authorizePermissions(22),
+      schema: {
+        description: "Realiza a criação de validades.",
+        security: [{ BearerAuth: [] }],
+        body: createValiditySchema,
+        response: {
+          201: validityResponseSchema,
+        },
+        tags: ["Validities"],
+        summary: "Rota de criação de validades",
+      },
+    },
+    createValidityController
+  );
 
-    app.patch("/", updateValidityController);
+  app.patch(
+    "/",
+    {
+      schema: {
+        description: "Realiza a atualização de tratamento de produtos das validades.",
+        security: [{ BearerAuth: [] }],
+        body: updateValiditySchema,
+        response: {
+          200: z.object({message: z.string()}),
+        },
+        tags: ["Validities"],
+        summary: "Rota de atualização de dados de validades.",
+      },
+    },
+    updateValidityController
+  );
 }

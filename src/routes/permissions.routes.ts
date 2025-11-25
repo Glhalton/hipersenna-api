@@ -21,7 +21,8 @@ export default async function permissionsRoutes(app: FastifyInstance) {
     {
       preHandler: authorizePermissions(9),
       schema: {
-        description: "Realiza a consulta de permissões",
+        description: "Realiza a consulta de permissões.",
+        security: [{ BearerAuth: [] }],
         querystring: getPermissionSchema,
         response: {
           200: z.array(permissionResponseSchema),
@@ -39,44 +40,50 @@ export default async function permissionsRoutes(app: FastifyInstance) {
       preHandler: authorizePermissions(6),
       schema: {
         description: "Realiza a criação de permissões.",
-        querystring: permissionSchema,
+        security: [{ BearerAuth: [] }],
+        body: permissionSchema,
         response: {
           201: permissionResponseSchema,
         },
         tags: ["Permissions"],
-        summary: "Rota de criação de permissões",
+        summary: "Rota de criação de permissões.",
       },
     },
     createPermissionController
   );
 
   app.patch(
-    "/id/:id",
+    "/:id",
     {
       preHandler: authorizePermissions(8),
       schema: {
         description: "Realiza a atualização de dados de permissões.",
+        security: [{ BearerAuth: [] }],
         params: permissionIdSchema,
         body: updatePermissionSchema,
+        response: {
+          200: permissionResponseSchema,
+        },
         tags: ["Permissions"],
-        summary: "Rota de atualização de permissões",
+        summary: "Rota de atualização de permissões.",
       },
     },
     updatePermissionController
   );
 
   app.delete(
-    "/id/:id",
+    "/:id",
     {
       preHandler: authorizePermissions(7),
       schema: {
         description: "Realiza a exclusão de permissões.",
+        security: [{ BearerAuth: [] }],
         params: permissionIdSchema,
         response: {
           200: permissionResponseSchema,
         },
         tags: ["Permissions"],
-        summary: "Rota de exclusão de permissões",
+        summary: "Rota de exclusão de permissões.",
       },
     },
     deletePermissionController

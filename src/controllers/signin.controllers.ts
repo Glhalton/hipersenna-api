@@ -32,6 +32,7 @@ export async function signinController(
         username: user.username,
         winthor_id: user.winthor_id,
         branch_id: user.branch_id,
+        roles: user.hsusers_roles,
       },
       jwtSecret,
       {

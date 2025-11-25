@@ -2,7 +2,7 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import {
   createValidityService,
   getValidityService,
-  listValiditiesByEmployeeIdService,
+  getMyValiditiesService,
   updateValidityService,
 } from "../services/validities.services.js";
 import {
@@ -36,28 +36,27 @@ export async function getValidityController(
       initialDate,
       descricao,
     });
-    if (!validity) {
-      throw new Error("Validade não encontrada");
+    if (!validity || validity.length == 0) {
+      return reply.status(404).send({ message: "Validade não encontrada" });
     }
+
     return reply.status(200).send(validity);
   } catch (error: any) {
     return reply.status(400).send({ message: `${error.message}` });
   }
 }
 
-export async function getValidityByEmployeeController(
+export async function getMyValiditiesController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
     const userId = request.user?.id;
-    const validitiesByEmployee = await listValiditiesByEmployeeIdService(
-      userId!
-    );
+    const validitiesByEmployee = await getMyValiditiesService(userId!);
     if (!validitiesByEmployee || validitiesByEmployee.length === 0) {
-      return reply.status(404).send({message: "Nenhum dado foi encontrado."})
+      return reply.status(404).send({ message: "Validade não encontrada" });
     }
-    return reply.status(200).send({ validitiesByEmployee });
+    return reply.status(200).send(validitiesByEmployee);
   } catch (error: any) {
     return reply.status(400).send({ message: `${error.message}` });
   }
@@ -75,10 +74,7 @@ export async function createValidityController(
     const validity = createValiditySchema.parse(request.body);
     const createdValidity = await createValidityService(validity, userId);
 
-    return reply.status(201).send({
-      message: "Validade criada com sucesso",
-      createdValidity,
-    });
+    return reply.status(201).send(createdValidity);
   } catch (error: any) {
     return reply.status(400).send({ message: `${error.message}` });
   }
@@ -92,10 +88,9 @@ export async function updateValidityController(
     const data = updateValiditySchema.parse(request.body);
 
     const updatedData = updateValidityService(data);
-
+  
     return reply.status(200).send({
       message: "Dados atualizados com sucesso!",
-      updatedData,
     });
   } catch (error: any) {
     return reply.status(400).send({ message: `${error.message}` });

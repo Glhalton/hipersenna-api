@@ -21,7 +21,7 @@ export async function getPermissionController(
 
     const permission = await getPermissionService({ id, name, description });
 
-    if (!permission) {
+    if (!permission || permission.length === 0) {
       return reply
         .status(404)
         .send({ message: "Nenhuma permissão encontrada!" });
@@ -55,16 +55,16 @@ export async function updatePermissionController(
     const { id } = permissionIdSchema.parse(request.params);
     const { name, description } = updatePermissionSchema.parse(request.body);
 
-    const permissionExists = await getPermissionService({ id });
-    if (!permissionExists) {
+    const permission = await getPermissionService({ id });
+    if (!permission || permission.length === 0) {
       return reply
         .status(404)
         .send({ message: "Nenhuma permissão encontrada!" });
     }
 
-    const permission = await updatePermissionService(id, { name, description });
+    const permissionDeleted = await updatePermissionService(id, { name, description });
 
-    return reply.status(200).send(permission);
+    return reply.status(200).send(permissionDeleted);
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }
@@ -77,16 +77,16 @@ export async function deletePermissionController(
   try {
     const { id } = permissionIdSchema.parse(request.params);
 
-    const permissionExists = await getPermissionService({ id });
-    if (!permissionExists) {
+    const permission = await getPermissionService({ id });
+    if (!permission || permission.length === 0) {
       return reply
         .status(404)
         .send({ message: "Nenhuma permissão encontrada!" });
     }
 
-    const permission = await deletePermissionService(id);
+    const permissionDeleted = await deletePermissionService(id);
 
-    return reply.status(200).send(permission);
+    return reply.status(200).send(permissionDeleted);
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }
