@@ -1,10 +1,6 @@
 import { prisma } from "../lib/prisma.js";
 import { UpdateRole, Role, GetRole } from "../schemas/roles.schemas.js";
 
-// export const getAllRolesService = async () => {
-//   return await prisma.hsroles.findMany();
-// };
-
 export const getRoleService = async ({ id, name, description }: GetRole) => {
   const whereClause: any = {};
 

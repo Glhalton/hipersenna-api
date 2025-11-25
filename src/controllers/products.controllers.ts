@@ -22,7 +22,7 @@ export async function getProductController(
         .send({ message: "Informe pelo menos um filtro de busca" });
     }
 
-    if (product == 404) {
+    if (!product || product.length === 0) {
       return reply.status(404).send({ message: "Nenhum produto encontrado!" });
     }
 

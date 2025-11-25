@@ -2,12 +2,12 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import {
   userIdSchema,
   userPermissionSchema,
-} from '../schemas/userPermissions.schemas.js';
+} from "../schemas/userPermissions.schemas.js";
 import {
   createUserPermissionsService,
   deleteUserPermissionsService,
   getUserPermissionsService,
-} from '../services/userPermissions.services.js';
+} from "../services/userPermissions.services.js";
 
 export async function getUserPermissionsController(
   request: FastifyRequest,
@@ -18,7 +18,9 @@ export async function getUserPermissionsController(
     const permissions = await getUserPermissionsService(id);
 
     if (permissions.length === 0) {
-      throw new Error("Nenhuma permissão encontrada para esse usuário");
+      return reply
+        .status(404)
+        .send({ message: "Nenhuma permissão encontrada para esse usuário" });
     }
 
     return reply.status(200).send(permissions);
@@ -32,10 +34,26 @@ export async function createUserPermissionsController(
   reply: FastifyReply
 ) {
   try {
-    const parsedData = userPermissionSchema.parse(request.body);
-    const userPermission = await createUserPermissionsService(parsedData);
+    const { user_id, permission_id } = userPermissionSchema.parse(request.body);
 
-    return reply.status(201).send(userPermission);
+    const permissions = await getUserPermissionsService(user_id);
+
+    if (
+      permissions.some((item) => permission_id.includes(item.permission_id))
+    ) {
+      return reply.status(400).send({
+        message: "O usuário já possui uma das permissões mencionadas.",
+      });
+    }
+
+    const userPermission = await createUserPermissionsService({
+      user_id,
+      permission_id,
+    });
+
+    return reply
+      .status(201)
+      .send({ message: "Permissões liberadas com sucesso!" });
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }
@@ -46,10 +64,26 @@ export async function deleteUserPermissionsController(
   reply: FastifyReply
 ) {
   try {
-    const parsedData = userPermissionSchema.parse(request.body);
-    const permissionsDeleted = await deleteUserPermissionsService(parsedData);
+    const { user_id, permission_id } = userPermissionSchema.parse(request.body);
 
-    return reply.status(201).send(permissionsDeleted);
+    const permissions = await getUserPermissionsService(user_id);
+
+    if (
+      !permissions.some((item) => permission_id.includes(item.permission_id))
+    ) {
+      return reply.status(400).send({
+        message: "O usuário não possui alguma das permissões mencionadas.",
+      });
+    }
+
+    const permissionsDeleted = await deleteUserPermissionsService({
+      user_id,
+      permission_id,
+    });
+
+    return reply
+      .status(200)
+      .send({ message: "Permissões deletadas com sucesso!" });
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }

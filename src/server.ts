@@ -28,6 +28,15 @@ await app.register(fastifySwagger, {
       description: "Documentação da API do Hipersenna",
       version: "1.0.0",
     },
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
     servers: [{ url: "http://localhost:3333", description: "Servidor local" }],
   },
   transform: jsonSchemaTransform,

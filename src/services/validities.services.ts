@@ -1,8 +1,8 @@
 import { prisma } from "../lib/prisma.js";
 import {
-  updateValidityInput,
-  createValidityInput,
-  getValidityInput,
+  UpdateValidity,
+  CreateValidity,
+  GetValidity,
 } from "../schemas/validities.schemas.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
@@ -15,7 +15,7 @@ export const getValidityService = async ({
   finalDate,
   initialDate,
   descricao,
-}: getValidityInput) => {
+}: GetValidity) => {
   if (expiresDays && (initialDate || finalDate)) {
     return "Você deve usar apenas 'expiresDays' ou 'initialDate/finalDate', não ambos";
   }
@@ -49,7 +49,7 @@ export const getValidityService = async ({
   if (codigosFiltrados) {
     whereClause.hsvalidity_products = {
       some: {
-        product_cod: { in: codigosFiltrados },
+        product_code: { in: codigosFiltrados },
       },
     };
   }
@@ -102,7 +102,7 @@ export const getValidityService = async ({
   });
 
   const allCodes = postgreData.flatMap((req) =>
-    req.hsvalidity_products.map((p) => p.product_cod)
+    req.hsvalidity_products.map((p) => p.product_code)
   );
 
   if (allCodes.length === 0) return postgreData;
@@ -130,39 +130,14 @@ export const getValidityService = async ({
     ...req,
     hsvalidity_products: req.hsvalidity_products.map((prod) => ({
       ...prod,
-      description: descricaoMap[prod.product_cod] || null,
+      description: descricaoMap[prod.product_code] || null,
     })),
   }));
 
   return enrichedData;
 };
 
-
-export const createValidityService = async (
-  validityData: createValidityInput,
-  userId: number
-) => {
-  return await prisma.hsvalidities.create({
-    data: {
-      branch_id: validityData.branch_id,
-      request_id: validityData.request_id ?? null,
-      employee_id: userId,
-      hsvalidity_products: {
-        create: validityData.products.map((p) => ({
-          product_cod: p.product_cod,
-          auxiliary_code: p.auxiliary_code,
-          quantity: p.quantity,
-          validity_date: p.validity_date,
-        })),
-      },
-    },
-    include: {
-      hsvalidity_products: true,
-    },
-  });
-};
-
-export const listValiditiesByEmployeeIdService = async (employeeId: number) => {
+export const getMyValiditiesService = async (employeeId: number) => {
   const postgreData = await prisma.hsvalidities.findMany({
     where: {
       employee_id: employeeId,
@@ -174,7 +149,7 @@ export const listValiditiesByEmployeeIdService = async (employeeId: number) => {
 
   if (postgreData.length > 0) {
     const allCodes = postgreData.flatMap((req) =>
-      req.hsvalidity_products.map((p) => p.product_cod)
+      req.hsvalidity_products.map((p) => p.product_code)
     );
 
     if (allCodes.length > 0) {
@@ -203,7 +178,7 @@ export const listValiditiesByEmployeeIdService = async (employeeId: number) => {
         ...req,
         hsvalidity_products: req.hsvalidity_products.map((prod) => ({
           ...prod,
-          description: descricaoMap[prod.product_cod] || null,
+          description: descricaoMap[prod.product_code] || null,
         })),
       }));
     }
@@ -212,7 +187,31 @@ export const listValiditiesByEmployeeIdService = async (employeeId: number) => {
   return postgreData;
 };
 
-export const updateValidityService = async (data: updateValidityInput) => {
+export const createValidityService = async (
+  validityData: CreateValidity,
+  userId: number
+) => {
+  return await prisma.hsvalidities.create({
+    data: {
+      branch_id: validityData.branch_id,
+      request_id: validityData.request_id ?? null,
+      employee_id: userId,
+      hsvalidity_products: {
+        create: validityData.products.map((p) => ({
+          product_code: p.product_code,
+          auxiliary_code: p.auxiliary_code,
+          quantity: p.quantity,
+          validity_date: p.validity_date,
+        })),
+      },
+    },
+    include: {
+      hsvalidity_products: true,
+    },
+  });
+};
+
+export const updateValidityService = async (data: UpdateValidity) => {
   const updates = data.flatMap((validity) =>
     validity.products.map((product) =>
       prisma.hsvalidity_products.updateMany({
@@ -229,7 +228,7 @@ export const updateValidityService = async (data: updateValidityInput) => {
 
   const results = await Promise.all(updates);
 
-  const totalUpdated = results.reduce((acc, r) => acc + r.count, 0);
+  const totalUpdated = results.reduce((acc, r) => acc + r.count, 0);''
 
   return { totalUpdated };
 };

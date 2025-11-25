@@ -1,20 +1,21 @@
 import { prisma } from "../lib/prisma.js"
-import { createValidityRequestInput } from "../schemas/validityRequests.schemas.js";
+import { createValidityRequestInput, GetValidityRequests } from "../schemas/validityRequests.schemas.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
 import { UpdateValidityRequestsInput } from "../schemas/validityRequests.schemas.js";
 
-export const getAllValidityRequestService = () => {
-    return prisma.hsvalidity_requests.findMany();
-}
+export const getValidityRequestsService = async ({id, branch_id, analyst_id, conferee_id, status} : GetValidityRequests) => {
 
-//Tambem retorna as descrições dos produtos com base no banco da oracle
-export const listValidityRequestsByEmployeeIdService = async (employeeId: number) => {
+    const whereClause: any = {}
+
+    if(id) whereClause.id = id;
+    if(branch_id) whereClause.branch_id = branch_id;
+    if(analyst_id) whereClause.analyst_id = analyst_id;
+    if(conferee_id) whereClause.conferee_id = conferee_id;
+    if(status) whereClause.status = status
+
     const dadosPostgres = await prisma.hsvalidity_requests.findMany({
-        where: {
-            conferee_id: employeeId,
-            status: "Pendente",
-        },
+        where: whereClause,
         include: {
             hsvalidity_request_products: true
         }
@@ -22,7 +23,7 @@ export const listValidityRequestsByEmployeeIdService = async (employeeId: number
 
     //
     const allCodes = dadosPostgres.flatMap(req =>
-        req.hsvalidity_request_products.map(p => p.product_cod)
+        req.hsvalidity_request_products.map(p => p.product_code)
     );
 
     if (allCodes.length === 0) return dadosPostgres;
@@ -52,7 +53,58 @@ export const listValidityRequestsByEmployeeIdService = async (employeeId: number
         ...req,
         hsvalidity_request_products: req.hsvalidity_request_products.map(prod => ({
             ...prod,
-            description: descricaoMap[prod.product_cod] || null,
+            description: descricaoMap[prod.product_code] || null,
+        })),
+    }));
+
+    return enrichedData;
+}
+
+//Tambem retorna as descrições dos produtos com base no banco da oracle
+export const getMyValidityRequestsService = async (employeeId: number) => {
+    const dadosPostgres = await prisma.hsvalidity_requests.findMany({
+        where: {
+            conferee_id: employeeId,
+            status: "Pendente",
+        },
+        include: {
+            hsvalidity_request_products: true
+        }
+    });
+
+    //
+    const allCodes = dadosPostgres.flatMap(req =>
+        req.hsvalidity_request_products.map(p => p.product_code)
+    );
+
+    if (allCodes.length === 0) return dadosPostgres;
+
+    const connection = await getOracleConnection();
+
+    const query = `
+        SELECT codprod, descricao
+        FROM pcprodut
+        WHERE codprod IN (${allCodes.map(() => ":code").join(",")})
+    `;
+
+    const result = await connection.execute(
+        query,
+        allCodes,
+        { outFormat: oracledb.OUT_FORMAT_OBJECT }
+    );
+
+    await connection.close();
+
+    const descricaoMap: Record<string, string> = {};
+    (result.rows || []).forEach((row: any) => {
+        descricaoMap[row.CODPROD] = row.DESCRICAO;
+    });
+
+    const enrichedData = dadosPostgres.map(req => ({
+        ...req,
+        hsvalidity_request_products: req.hsvalidity_request_products.map(prod => ({
+            ...prod,
+            description: descricaoMap[prod.product_code] || null,
         })),
     }));
 
@@ -70,7 +122,7 @@ export const createValidityRequestService = async (
       conferee_id: validityRequestData.conferee_id,
       hsvalidity_request_products: {
         create: validityRequestData.products.map((p) => ({
-          product_cod: p.product_cod,
+          product_code: p.product_code,
           auxiliary_code: p.auxiliary_code,
           validity_date: p.validity_date,
         })),
@@ -97,11 +149,11 @@ export async function updateValidityRequestService({requestId, status, products}
                 tx.hsvalidity_request_products.updateMany({
                     where: {
                         request_id: requestId,
-                        product_cod: p.product_cod,
+                        id: p.id,
                     },
                     data: {
                         status: p.status,
-                    },
+                    }, 
                 })
             )
         );

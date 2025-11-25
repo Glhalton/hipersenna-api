@@ -11,7 +11,7 @@ export async function getUserPermissions(userId: number): Promise<number[]> {
         include: {
           hsroles: {
             include: {
-              hspermissions_roles: {
+              hsroles_permissions: {
                 include: { hspermissions: true },
               },
             },
@@ -28,7 +28,7 @@ export async function getUserPermissions(userId: number): Promise<number[]> {
   );
 
   const rolePermissions = user.hsusers_roles.flatMap((r) =>
-    r.hsroles.hspermissions_roles.map((p) => p.hspermissions.id)
+    r.hsroles.hsroles_permissions.map((p) => p.hspermissions.id)
   );
 
   const allPermissions = new Set([...directPermissions, ...rolePermissions]);

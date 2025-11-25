@@ -1,5 +1,8 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { sessionIdSchema, sessionSchema } from "../schemas/sessions.schemas.js";
+import {
+  sessionIdSchema,
+  getSessionSchema,
+} from "../schemas/sessions.schemas.js";
 import {
   deleteAllSessionsService,
   deleteMySessionService,
@@ -12,9 +15,13 @@ export async function getSessionsController(
   reply: FastifyReply
 ) {
   try {
-    const { userId, sessionId } = sessionSchema.parse(request.query);
+    const { userId, sessionId } = getSessionSchema.parse(request.query);
 
     const sessionData = await getSessionsService({ sessionId, userId });
+
+    if (!sessionData || sessionData.length == 0) {
+      return reply.status(404).send({ message: "Sessão não encontrada!" });
+    }
 
     return reply.status(200).send(sessionData);
   } catch (error: any) {
@@ -54,17 +61,19 @@ export async function deleteSessionsController(
   reply: FastifyReply
 ) {
   try {
-    const {id} = sessionIdSchema.parse(request.params);
+    const { id } = sessionIdSchema.parse(request.params);
     const myId = request.user?.id;
 
     if (!myId) {
       throw new Error("Id de usuário inválido");
     }
 
-    const sessionDeleted = await deleteSessionsService(
-      {id},
-      myId
-    );
+    const session = await getSessionsService({ sessionId: id });
+    if (!session || session.length === 0) {
+      return reply.status(404).send({ message: "Sessão não encontrada!" });
+    }
+
+    const sessionDeleted = await deleteSessionsService({ id }, myId);
 
     return reply.status(200).send(sessionDeleted);
   } catch (error: any) {
@@ -83,9 +92,16 @@ export async function deleteAllSessionsController(
       throw new Error("Id de usuário inválido");
     }
 
+    const session = await getSessionsService({});
+    if (!session || session.length === 1) {
+      return reply.status(404).send({ message: "Nenhuma sessão encontrada!" });
+    }
+
     const deletedSessions = await deleteAllSessionsService(myId);
 
-    return reply.status(200).send(deletedSessions);
+    return reply
+      .status(200)
+      .send({ message: "Todas as sessões foram deletadas!" });
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }

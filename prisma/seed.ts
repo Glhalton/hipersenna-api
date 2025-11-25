@@ -114,7 +114,7 @@ async function main() {
     data: { name: "admin", description: "Administração" },
   });
 
-  await prisma.hspermissions_roles.createMany({
+  await prisma.hsroles_permissions.createMany({
     data: [
       { permission_id: 1, role_id: 1 },
       { permission_id: 2, role_id: 1 },
@@ -146,9 +146,9 @@ async function main() {
     ],
   });
 
-  const password = process.env.ADMIN_PASSWORD
-  if(!password){
-    throw new Error("Senha de admin padrão não configurada")
+  const password = process.env.ADMIN_PASSWORD;
+  if (!password) {
+    throw new Error("Senha de admin padrão não configurada");
   }
   const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -167,6 +167,20 @@ async function main() {
       role_id: 1,
       user_id: 1,
     },
+  });
+
+  await prisma.hsvalidity_treatments.createMany({
+    data: [
+      { description: "Pendente" },
+      { description: "Colocar em promoção" },
+      { description: "Troca com o fornecedor" },
+      { description: "Tranferência interna" },
+      { description: "Bloqueio para venda" },
+      { description: "Doação" },
+      { description: "Vencido" },
+      { description: "Produto vendável dentro do prazo" },
+      { description: "Inserção tardia" },
+    ],
   });
 }
 

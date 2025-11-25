@@ -1,15 +1,24 @@
-import { prisma } from '../lib/prisma.js';
+import { prisma } from "../lib/prisma.js";
 import bcrypt from "bcryptjs";
-import { UpdateUserInput, CreateUserInput, GetUserInput } from '../schemas/users.schemas.js';
+import {
+  UpdateUserInput,
+  CreateUserInput,
+  GetUserInput,
+} from "../schemas/users.schemas.js";
 
-export const getUserService = async ({id, name, winthor_id, username, branch_id} : GetUserInput) => {
-
+export const getUserService = async ({
+  id,
+  name,
+  winthor_id,
+  username,
+  branch_id,
+}: GetUserInput) => {
   const whereClause: any = {};
-  if(id) whereClause.id = id;
-  if(name) whereClause.name = name;
-  if(winthor_id) whereClause.winthor_id = winthor_id;
-  if(username) whereClause.username = username;
-  if(branch_id) whereClause.branch_id = branch_id;
+  if (id) whereClause.id = id;
+  if (name) whereClause.name = name;
+  if (winthor_id) whereClause.winthor_id = winthor_id;
+  if (username) whereClause.username = username;
+  if (branch_id) whereClause.branch_id = branch_id;
 
   return await prisma.hsemployees.findMany({
     where: whereClause,
@@ -33,11 +42,27 @@ export const getUserService = async ({id, name, winthor_id, username, branch_id}
           },
         },
       },
+      hsusers_permissions: {
+        select: {
+          permission_id: true,
+          hspermissions: {
+            select: {
+              description: true,
+            },
+          },
+        },
+      },
     },
   });
 };
 
-export const createUserService = async ({name, username, password, branch_id, winthor_id}: CreateUserInput) => {
+export const createUserService = async ({
+  name,
+  username,
+  password,
+  branch_id,
+  winthor_id,
+}: CreateUserInput) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   return await prisma.hsemployees.create({
@@ -51,14 +76,6 @@ export const createUserService = async ({name, username, password, branch_id, wi
   });
 };
 
-export const deleteUserService = async (userId: number) => {
-  return await prisma.hsemployees.delete({
-    where: {
-      id: userId,
-    },
-  });
-};
-
 export const updateUserService = async (id: number, data: UpdateUserInput) => {
   if (data.password) {
     data.password = await bcrypt.hash(data.password, 10);
@@ -67,6 +84,76 @@ export const updateUserService = async (id: number, data: UpdateUserInput) => {
   return await prisma.hsemployees.update({
     where: { id },
     data,
+    select: {
+      id: true,
+      branch_id: true,
+      winthor_id: true,
+      name: true,
+      username: true,
+      created_at: true,
+      modified_at: true,
+      hsusers_roles: {
+        select: {
+          role_id: true,
+          hsroles: {
+            select: {
+              id: true,
+              name: true,
+              description: true,
+            },
+          },
+        },
+      },
+      hsusers_permissions: {
+        select: {
+          permission_id: true,
+          hspermissions: {
+            select: {
+              description: true,
+            },
+          },
+        },
+      },
+    },
+  });
+};
+
+export const deleteUserService = async (userId: number) => {
+  return await prisma.hsemployees.delete({
+    where: {
+      id: userId,
+    },
+    select: {
+      id: true,
+      branch_id: true,
+      winthor_id: true,
+      name: true,
+      username: true,
+      created_at: true,
+      modified_at: true,
+      hsusers_roles: {
+        select: {
+          role_id: true,
+          hsroles: {
+            select: {
+              id: true,
+              name: true,
+              description: true,
+            },
+          },
+        },
+      },
+      hsusers_permissions: {
+        select: {
+          permission_id: true,
+          hspermissions: {
+            select: {
+              description: true,
+            },
+          },
+        },
+      },
+    },
   });
 };
 

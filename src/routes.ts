@@ -18,23 +18,23 @@ export default async function (app: FastifyInstance) {
 
   app.register(async (protectedRoutes) => {
     protectedRoutes.addHook("preHandler", authenticate);
-
-    protectedRoutes.register(usersRoutes, { prefix: "/users" });
+    protectedRoutes.register(bonusRoutes, { prefix: "/bonus" });
+    
+    protectedRoutes.register(permissionsRoutes, { prefix: "/permissions" });
+    protectedRoutes.register(productsRoutes, { prefix: "/products" });
     protectedRoutes.register(rolesRoutes, { prefix: "/roles" });
-    protectedRoutes.register(userRolesRoutes, { prefix: "/user-roles" });
     protectedRoutes.register(rolesPermissionsRoutes, {
       prefix: "/role-permissions",
     });
+    protectedRoutes.register(sessionsRoutes, { prefix: "/sessions" });
     protectedRoutes.register(userPermissionsRoutes, {
       prefix: "/user-permissions",
     });
-    protectedRoutes.register(permissionsRoutes, { prefix: "/permissions" });
-    protectedRoutes.register(productsRoutes, { prefix: "/products" });
+    protectedRoutes.register(usersRoutes, { prefix: "/users" });
+    protectedRoutes.register(userRolesRoutes, { prefix: "/user-roles" });
     protectedRoutes.register(validitiesRoutes, { prefix: "/validities" });
     protectedRoutes.register(validityRequestsRoutes, {
       prefix: "/validity-requests",
     });
-    protectedRoutes.register(bonusRoutes, { prefix: "/bonus" });
-    protectedRoutes.register(sessionsRoutes, {prefix: "/sessions"})
   });
 }
