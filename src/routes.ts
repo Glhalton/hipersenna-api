@@ -12,6 +12,7 @@ import rolesPermissionsRoutes from "./routes/rolesPermissions.routes.js";
 import userPermissionsRoutes from "./routes/userPermissions.routes.js";
 import { authenticate } from "./middlewares/authentication.js";
 import sessionsRoutes from "./routes/sessions.routes.js";
+import concurrentsRoutes from "./routes/concurrents.routes.js";
 
 export default async function (app: FastifyInstance) {
   app.register(signinRoutes, { prefix: "/signin" });
@@ -19,6 +20,7 @@ export default async function (app: FastifyInstance) {
   app.register(async (protectedRoutes) => {
     protectedRoutes.addHook("preHandler", authenticate);
     protectedRoutes.register(bonusRoutes, { prefix: "/bonus" });
+    protectedRoutes.register(concurrentsRoutes, {prefix: "/concurrents"})
     
     protectedRoutes.register(permissionsRoutes, { prefix: "/permissions" });
     protectedRoutes.register(productsRoutes, { prefix: "/products" });

@@ -11,8 +11,8 @@ export default async function userRolesRoutes(app: FastifyInstance){
         security: [{ BearerAuth: [] }],
         params: userIdSchema,
         response: {
-            200: z.array(userRolesResponseSchema),
-            404: z.object({message: z.string()})
+            // 200: z.array(userRolesResponseSchema),
+            // 404: z.object({message: z.string()})
         },
         tags: ["User-Roles"],
         summary: "Rota de consulta de cargos de usuários.",
@@ -23,7 +23,7 @@ export default async function userRolesRoutes(app: FastifyInstance){
         security: [{ BearerAuth: [] }],
         body: userRoleSchema,
         response:{
-            // 201: userRolesResponseSchema
+            201: userRolesResponseSchema
         },
         tags: ["User-Roles"],
         summary: "Rota de liberação de cargos à usuários."
