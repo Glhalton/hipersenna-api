@@ -45,9 +45,8 @@ export default async function usersRoutes(app: FastifyInstance) {
         description:
           "Retorna os dados do usuário que realizou a consulta.",
         security: [{ BearerAuth: [] }],
-        querystring: getUserSchema,
         response: {
-          // 200: userResponseSchema,
+          200: userResponseSchema,
         },
         tags: ["Users"],
         summary: "Rota de consulta de dados do usuário que consultou.",
