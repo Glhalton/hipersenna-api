@@ -57,7 +57,7 @@ export const validityRequestResponseSchema = z.object({
       product_code: z.number(),
       validity_date: z.coerce.date(),
       auxiliary_code: z.string(),
-      description: z.string(),
+      description: z.string().optional(),
     })
   ),
 });

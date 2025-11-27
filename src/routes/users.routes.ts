@@ -40,7 +40,6 @@ export default async function usersRoutes(app: FastifyInstance) {
     app.get(
     "/me",
     {
-      preHandler: authorizePermissions(1),
       schema: {
         description:
           "Retorna os dados do usuário que realizou a consulta.",

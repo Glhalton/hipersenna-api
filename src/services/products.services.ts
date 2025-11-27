@@ -85,6 +85,7 @@ export const getProductService = async (
 
     const result = await connection.execute(query, binds, {
       outFormat: oracledb.OUT_FORMAT_OBJECT,
+      maxRows: 250
     });
 
     type ProductRow = {
