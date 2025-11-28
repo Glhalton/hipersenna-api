@@ -1,4 +1,5 @@
 import fastify from "fastify";
+import "dotenv/config";
 import routes from "./routes.js";
 import { fastifySwagger } from "@fastify/swagger";
 import { fastifySwaggerUi } from "@fastify/swagger-ui";
@@ -50,6 +51,8 @@ await app.register(fastifySwaggerUi, {
 
 app.register(routes);
 
-app.listen({ port: 3333, host: "0.0.0.0" }).then(() => {
-  console.log("Server is running");
-});
+app
+  .listen({ port: Number(process.env.API_PORT) || 3333, host: "0.0.0.0" })
+  .then(() => {
+    console.log("Server is running");
+  });
