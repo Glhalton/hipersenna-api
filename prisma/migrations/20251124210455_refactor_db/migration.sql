@@ -21,12 +21,12 @@ ALTER TABLE "hsusers_permissions" DROP CONSTRAINT "hsusers_permissions_user_id_f
 ALTER TABLE "hsusers_roles" DROP CONSTRAINT "hsusers_roles_user_id_fkey";
 
 -- AlterTable
-ALTER TABLE "hsvalidity_products" DROP COLUMN "product_cod",
-ADD COLUMN     "product_code" INTEGER NOT NULL;
+ALTER TABLE "hsvalidity_products"
+RENAME COLUMN "product_cod" TO "product_code";
 
 -- AlterTable
-ALTER TABLE "hsvalidity_request_products" DROP COLUMN "product_cod",
-ADD COLUMN     "product_code" INTEGER NOT NULL;
+ALTER TABLE "hsvalidity_request_products"
+RENAME COLUMN "product_cod" TO "product_code";
 
 -- DropTable
 DROP TABLE "hspermissions_roles";
