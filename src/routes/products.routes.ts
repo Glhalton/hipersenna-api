@@ -11,7 +11,7 @@ export default async function productsRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: authorizePermissions(23),
+      preHandler: authorizePermissions(7),
       schema: {
         description:
           "Realiza a consulta de dados de um produto cadastrado no winthor.",

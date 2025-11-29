@@ -19,7 +19,7 @@ export default async function validityRequestsRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: authorizePermissions(16),
+      preHandler: authorizePermissions(31),
       schema: {
         description: "Realiza a consulta de Solicitações de validade.",
         security: [{ BearerAuth: [] }],
@@ -38,7 +38,6 @@ export default async function validityRequestsRoutes(app: FastifyInstance) {
   app.get(
     "/me",
     {
-      preHandler: authorizePermissions(17),
       schema: {
         description:
           "Realiza a consulta de Solicitações de validade vinculada ao usuario que consultou.",
@@ -58,7 +57,7 @@ export default async function validityRequestsRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: authorizePermissions(18),
+      preHandler: authorizePermissions(32),
       schema: {
         description: "Realiza a criação de Solicitações de validade.",
         security: [{ BearerAuth: [] }],
@@ -76,7 +75,7 @@ export default async function validityRequestsRoutes(app: FastifyInstance) {
   app.patch(
     "/",
     {
-      preHandler: authorizePermissions(19),
+      preHandler: authorizePermissions(33),
       schema: {
         description:
           "Realiza a atualização de dados de Solicitações de validade",

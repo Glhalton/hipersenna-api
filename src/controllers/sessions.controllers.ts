@@ -75,7 +75,7 @@ export async function deleteSessionsController(
 
     const sessionDeleted = await deleteSessionsService({ id }, myId);
 
-    return reply.status(200).send(sessionDeleted);
+    return reply.status(200).send({message: "Sessão deletada com sucesso!"});
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }

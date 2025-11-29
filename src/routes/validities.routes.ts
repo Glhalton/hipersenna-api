@@ -18,7 +18,7 @@ export default async function validitiesRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: authorizePermissions(21),
+      preHandler: authorizePermissions(28),
       schema: {
         description: "Realiza a consulta de validades.",
         security: [{ BearerAuth: [] }],
@@ -56,7 +56,7 @@ export default async function validitiesRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: authorizePermissions(22),
+      preHandler: authorizePermissions(29),
       schema: {
         description: "Realiza a criação de validades.",
         security: [{ BearerAuth: [] }],
@@ -74,12 +74,14 @@ export default async function validitiesRoutes(app: FastifyInstance) {
   app.patch(
     "/",
     {
+      preHandler: authorizePermissions(30),
       schema: {
-        description: "Realiza a atualização de tratamento de produtos das validades.",
+        description:
+          "Realiza a atualização de tratamento de produtos das validades.",
         security: [{ BearerAuth: [] }],
         body: updateValiditySchema,
         response: {
-          200: z.object({message: z.string()}),
+          200: z.object({ message: z.string() }),
         },
         tags: ["Validities"],
         summary: "Rota de atualização de dados de validades.",

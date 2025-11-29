@@ -5,7 +5,7 @@ import { bonusResponseSchema, getBonusSchema } from "../schemas/bonus.schemas.js
 import z from "zod";
 
 export default async function bonusRoutes(app: FastifyInstance) {
-  app.get("/",{preHandler: authorizePermissions(24), schema:{
+  app.get("/",{preHandler: authorizePermissions(1), schema:{
     description: "Realiza a consulta de bônus.",
     security: [{BearerAuth: []}],
     querystring: getBonusSchema,

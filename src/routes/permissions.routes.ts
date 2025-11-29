@@ -19,7 +19,7 @@ export default async function permissionsRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: authorizePermissions(9),
+      preHandler: authorizePermissions(3),
       schema: {
         description: "Realiza a consulta de permissões.",
         security: [{ BearerAuth: [] }],
@@ -37,7 +37,7 @@ export default async function permissionsRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: authorizePermissions(6),
+      preHandler: authorizePermissions(4),
       schema: {
         description: "Realiza a criação de permissões.",
         security: [{ BearerAuth: [] }],
@@ -55,7 +55,7 @@ export default async function permissionsRoutes(app: FastifyInstance) {
   app.patch(
     "/:id",
     {
-      preHandler: authorizePermissions(8),
+      preHandler: authorizePermissions(5),
       schema: {
         description: "Realiza a atualização de dados de permissões.",
         security: [{ BearerAuth: [] }],
@@ -74,7 +74,7 @@ export default async function permissionsRoutes(app: FastifyInstance) {
   app.delete(
     "/:id",
     {
-      preHandler: authorizePermissions(7),
+      preHandler: authorizePermissions(6),
       schema: {
         description: "Realiza a exclusão de permissões.",
         security: [{ BearerAuth: [] }],

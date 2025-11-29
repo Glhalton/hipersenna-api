@@ -16,6 +16,7 @@ export default async function rolesPermissionsRoutes(app: FastifyInstance) {
   app.get(
     "/:id",
     {
+      preHandler: authorizePermissions(12),
       schema: {
         description: "Realiza a consulta de permissões vinculadas a um cargo.",
         security: [{ BearerAuth: [] }],
@@ -34,7 +35,7 @@ export default async function rolesPermissionsRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: authorizePermissions(14),
+      preHandler: authorizePermissions(13),
       schema: {
         description: "Vincula permissões a um determinado cargo.",
         security: [{ BearerAuth: [] }],
@@ -52,7 +53,7 @@ export default async function rolesPermissionsRoutes(app: FastifyInstance) {
   app.delete(
     "/",
     {
-      preHandler: authorizePermissions(26),
+      preHandler: authorizePermissions(14),
       schema: {
         description:
           "Realiza a exclusão de permissões em um determinado cargo.",

@@ -16,6 +16,7 @@ export default async function userPermissionsRoutes(app: FastifyInstance) {
   app.get(
     "/:id",
     {
+      preHandler: authorizePermissions(18),
       schema: {
         description:
           "Realiza a consulta de permissões vinculadas a um determinado usuário.",
@@ -35,7 +36,7 @@ export default async function userPermissionsRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: authorizePermissions(15),
+      preHandler: authorizePermissions(19),
       schema: {
         description:
           "Realiza a liberação de permissões a um determiando usuário.",
@@ -54,6 +55,7 @@ export default async function userPermissionsRoutes(app: FastifyInstance) {
   app.delete(
     "/",
     {
+      preHandler: authorizePermissions(20),
       schema: {
         description:
           "Realiza a exclusão de permissões de um determinado usuário.",
