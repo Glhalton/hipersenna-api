@@ -18,15 +18,15 @@ export async function getUserController(
   reply: FastifyReply
 ) {
   try {
-    const { id, branch_id, name, username, winthor_id } = getUserSchema.parse(
-      request.query
-    );
+    const { id, branch_id, name, username, winthor_id, role_id } =
+      getUserSchema.parse(request.query);
     const user = await getUserService({
       id,
       branch_id,
       name,
       username,
       winthor_id,
+      role_id,
     });
 
     if (!user || user.length === 0) {
@@ -58,8 +58,9 @@ export async function createUserController(
   reply: FastifyReply
 ) {
   try {
-    const parsedData = createUserSchema.parse(request.body);
-    const user = await findUser(parsedData.winthor_id, parsedData.username);
+    const { name, username, password, branch_id, winthor_id, role_id } =
+      createUserSchema.parse(request.body);
+    const user = await findUser(winthor_id, username);
 
     if (user) {
       return reply.status(409).send({
@@ -67,11 +68,16 @@ export async function createUserController(
       });
     }
 
-    const userCreated = await createUserService(parsedData);
+    const userCreated = await createUserService({
+      name,
+      username,
+      password,
+      branch_id,
+      winthor_id,
+      role_id,
+    });
 
-    return reply
-      .status(201)
-      .send(userCreated);
+    return reply.status(201).send(userCreated);
   } catch (error: any) {
     return reply.status(400).send({ message: `${error.message}` });
   }
@@ -111,9 +117,7 @@ export async function deleteUserController(
     }
 
     const userDeleted = await deleteUserService(id);
-    return reply
-      .status(200)
-      .send(userDeleted);
+    return reply.status(200).send(userDeleted);
   } catch (error: any) {
     return reply.status(400).send({ message: `${error.message}` });
   }

@@ -127,6 +127,7 @@ exports.Prisma.HsemployeesScalarFieldEnum = {
   name: 'name',
   username: 'username',
   password: 'password',
+  role_id: 'role_id',
   created_at: 'created_at',
   modified_at: 'modified_at'
 };
@@ -155,11 +156,6 @@ exports.Prisma.Hsroles_permissionsScalarFieldEnum = {
 exports.Prisma.Hsusers_permissionsScalarFieldEnum = {
   user_id: 'user_id',
   permission_id: 'permission_id'
-};
-
-exports.Prisma.Hsusers_rolesScalarFieldEnum = {
-  user_id: 'user_id',
-  role_id: 'role_id'
 };
 
 exports.Prisma.HsbranchesScalarFieldEnum = {
@@ -219,6 +215,35 @@ exports.Prisma.HssessionsScalarFieldEnum = {
   expires_at: 'expires_at'
 };
 
+exports.Prisma.Hsconsumer_productsScalarFieldEnum = {
+  id: 'id',
+  consumption_id: 'consumption_id',
+  employee_id: 'employee_id',
+  branch_id: 'branch_id',
+  product_code: 'product_code',
+  auxiliary_code: 'auxiliary_code',
+  quantity: 'quantity',
+  unit_price: 'unit_price',
+  total_price: 'total_price',
+  group_id: 'group_id',
+  created_at: 'created_at',
+  modified_at: 'modified_at'
+};
+
+exports.Prisma.Hsconsumption_noteScalarFieldEnum = {
+  id: 'id',
+  branch_id: 'branch_id',
+  group_id: 'group_id',
+  total_price: 'total_price',
+  created_at: 'created_at',
+  modified_at: 'modified_at'
+};
+
+exports.Prisma.Hsconsumer_groupsScalarFieldEnum = {
+  id: 'id',
+  description: 'description'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -258,14 +283,16 @@ exports.Prisma.ModelName = {
   hspermissions: 'hspermissions',
   hsroles_permissions: 'hsroles_permissions',
   hsusers_permissions: 'hsusers_permissions',
-  hsusers_roles: 'hsusers_roles',
   hsbranches: 'hsbranches',
   hsvalidities: 'hsvalidities',
   hsvalidity_products: 'hsvalidity_products',
   hsvalidity_requests: 'hsvalidity_requests',
   hsvalidity_request_products: 'hsvalidity_request_products',
   hsvalidity_treatments: 'hsvalidity_treatments',
-  hssessions: 'hssessions'
+  hssessions: 'hssessions',
+  hsconsumer_products: 'hsconsumer_products',
+  hsconsumption_note: 'hsconsumption_note',
+  hsconsumer_groups: 'hsconsumer_groups'
 };
 
 /**

@@ -1,9 +1,10 @@
 import { prisma } from "../lib/prisma.js";
 import bcrypt from "bcryptjs";
 import { signInInput } from "../schemas/signin.schemas.js";
+import { includes } from "zod";
 
 export const signInService = async ({ password, username }: signInInput) => {
-  const responseSignIn = await prisma.hsemployees.findFirst({
+  const user = await prisma.hsemployees.findFirst({
     where: {
       username: username,
     },
@@ -11,33 +12,42 @@ export const signInService = async ({ password, username }: signInInput) => {
       id: true,
       branch_id: true,
       winthor_id: true,
+      role_id: true,
       name: true,
       password: true,
       username: true,
       created_at: true,
       modified_at: true,
-      hsusers_roles: {
+      hsusers_permissions: {
         select: {
-          role_id: true,
+          permission_id: true,
+          hspermissions: {
+            select: {
+              description: true,
+            },
+          },
         },
       },
     },
   });
 
-  if (!responseSignIn) {
+
+  if (!user) {
     return false;
   }
 
   const isCorrectPassword = await bcrypt.compare(
     password,
-    responseSignIn.password
+    user.password
   );
 
   if (!isCorrectPassword) {
     return false;
   }
 
-  return responseSignIn;
+  const {password: _, ...safeUser} = user;
+
+  return safeUser;
 };
 
 export const createSessionService = async (

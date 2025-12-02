@@ -26,22 +26,11 @@ export const getUserService = async ({
       id: true,
       branch_id: true,
       winthor_id: true,
+      role_id: true,
       name: true,
       username: true,
       created_at: true,
       modified_at: true,
-      hsusers_roles: {
-        select: {
-          role_id: true,
-          hsroles: {
-            select: {
-              id: true,
-              name: true,
-              description: true,
-            },
-          },
-        },
-      },
       hsusers_permissions: {
         select: {
           permission_id: true,
@@ -62,6 +51,7 @@ export const createUserService = async ({
   password,
   branch_id,
   winthor_id,
+  role_id,
 }: CreateUserInput) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -72,6 +62,7 @@ export const createUserService = async ({
       branch_id: branch_id,
       password: hashedPassword,
       winthor_id: winthor_id,
+      role_id: role_id
     },
   });
 };
@@ -88,22 +79,11 @@ export const updateUserService = async (id: number, data: UpdateUserInput) => {
       id: true,
       branch_id: true,
       winthor_id: true,
+      role_id: true,
       name: true,
       username: true,
       created_at: true,
       modified_at: true,
-      hsusers_roles: {
-        select: {
-          role_id: true,
-          hsroles: {
-            select: {
-              id: true,
-              name: true,
-              description: true,
-            },
-          },
-        },
-      },
       hsusers_permissions: {
         select: {
           permission_id: true,
@@ -127,22 +107,11 @@ export const deleteUserService = async (userId: number) => {
       id: true,
       branch_id: true,
       winthor_id: true,
+      role_id: true,
       name: true,
       username: true,
       created_at: true,
       modified_at: true,
-      hsusers_roles: {
-        select: {
-          role_id: true,
-          hsroles: {
-            select: {
-              id: true,
-              name: true,
-              description: true,
-            },
-          },
-        },
-      },
       hsusers_permissions: {
         select: {
           permission_id: true,

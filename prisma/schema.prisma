@@ -7,6 +7,8 @@ datasource db {
   provider = "postgresql"
 }
 
+// ### TABELAS ###
+
 model hsemployees {
   id                  Int                   @id @default(autoincrement())
   branch_id           Int
@@ -14,15 +16,17 @@ model hsemployees {
   name                String
   username            String                @unique
   password            String
+  role_id             Int                   @default(0)
   created_at          DateTime              @default(now()) @db.Timestamptz(6)
   modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
   branch              hsbranches            @relation(fields: [branch_id], references: [id])
+  role                hsroles               @relation(fields: [role_id], references: [id])
   sessions            hssessions[]
   hsusers_permissions hsusers_permissions[]
-  hsusers_roles       hsusers_roles[]
   hsvalidities        hsvalidities[]
   analystRequests     hsvalidity_requests[] @relation("AnalystRelation")
   confereeRequests    hsvalidity_requests[] @relation("ConfereeRelation")
+  hsconsumer_products hsconsumer_products[]
 
   @@map("hsemployees")
 }
@@ -34,7 +38,7 @@ model hsroles {
   created_at          DateTime              @default(now()) @db.Timestamptz(6)
   modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
   hsroles_permissions hsroles_permissions[]
-  hsusers_roles       hsusers_roles[]
+  hsemployees         hsemployees[]
 }
 
 model hspermissions {
@@ -65,21 +69,14 @@ model hsusers_permissions {
   @@id([user_id, permission_id])
 }
 
-model hsusers_roles {
-  user_id     Int
-  role_id     Int
-  hsroles     hsroles     @relation(fields: [role_id], references: [id])
-  hsemployees hsemployees @relation(fields: [user_id], references: [id], onDelete: Cascade)
-
-  @@id([user_id, role_id])
-}
-
 model hsbranches {
   id                  Int                   @id @default(autoincrement())
   description         String                @db.VarChar(150)
   hsemployees         hsemployees[]
   hsvalidities        hsvalidities[]
   hsvalidity_requests hsvalidity_requests[]
+  hsconsumerProducts  hsconsumer_products[]
+  consumptionNotes    hsconsumption_note[]
 }
 
 model hsvalidities {
@@ -149,6 +146,51 @@ model hssessions {
 
   @@map("hssessions")
 }
+
+/**
+ * Problema do preço: o preço dos produtos tambem devem ser passados para a tabela?
+ * Preço muda com o tempo, devo pegar os preços quando adiiconar o produto ou quando criar
+ * a nota de consumo?
+ */
+model hsconsumer_products {
+  id                 Int                 @id @default(autoincrement())
+  consumption_id     Int?
+  employee_id        Int
+  branch_id          Int
+  product_code       Int
+  auxiliary_code     String
+  quantity           Int
+  unit_price         Decimal
+  total_price        Decimal
+  group_id           Int
+  created_at         DateTime            @default(now()) @db.Timestamptz(6)
+  modified_at        DateTime            @default(now()) @updatedAt @db.Timestamptz(6)
+  hsemployees        hsemployees         @relation(fields: [employee_id], references: [id])
+  hsconsumer_groups  hsconsumer_groups   @relation(fields: [group_id], references: [id])
+  branch             hsbranches          @relation(fields: [branch_id], references: [id])
+  hsconsumption_note hsconsumption_note? @relation(fields: [consumption_id], references: [id])
+}
+
+model hsconsumption_note {
+  id                 Int                   @id @default(autoincrement())
+  branch_id          Int
+  group_id           Int
+  total_price        Decimal
+  created_at         DateTime              @default(now()) @db.Timestamptz(6)
+  modified_at        DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
+  hsconsumer_groups  hsconsumer_groups     @relation(fields: [group_id], references: [id])
+  branch             hsbranches            @relation(fields: [branch_id], references: [id])
+  hsconsumerProducts hsconsumer_products[]
+}
+
+model hsconsumer_groups {
+  id                  Int                   @id @default(autoincrement())
+  description         String
+  hsconsumer_products hsconsumer_products[]
+  consumptionNotes    hsconsumption_note[]
+}
+
+// ### ENUMS ###
 
 enum hsvalidities_status {
   Pendente

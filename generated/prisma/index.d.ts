@@ -39,11 +39,6 @@ export type hsroles_permissions = $Result.DefaultSelection<Prisma.$hsroles_permi
  */
 export type hsusers_permissions = $Result.DefaultSelection<Prisma.$hsusers_permissionsPayload>
 /**
- * Model hsusers_roles
- * 
- */
-export type hsusers_roles = $Result.DefaultSelection<Prisma.$hsusers_rolesPayload>
-/**
  * Model hsbranches
  * 
  */
@@ -78,6 +73,24 @@ export type hsvalidity_treatments = $Result.DefaultSelection<Prisma.$hsvalidity_
  * 
  */
 export type hssessions = $Result.DefaultSelection<Prisma.$hssessionsPayload>
+/**
+ * Model hsconsumer_products
+ * *
+ *  * Problema do preço: o preço dos produtos tambem devem ser passados para a tabela?
+ *  * Preço muda com o tempo, devo pegar os preços quando adiiconar o produto ou quando criar
+ *  * a nota de consumo?
+ */
+export type hsconsumer_products = $Result.DefaultSelection<Prisma.$hsconsumer_productsPayload>
+/**
+ * Model hsconsumption_note
+ * 
+ */
+export type hsconsumption_note = $Result.DefaultSelection<Prisma.$hsconsumption_notePayload>
+/**
+ * Model hsconsumer_groups
+ * 
+ */
+export type hsconsumer_groups = $Result.DefaultSelection<Prisma.$hsconsumer_groupsPayload>
 
 /**
  * Enums
@@ -292,16 +305,6 @@ export class PrismaClient<
   get hsusers_permissions(): Prisma.hsusers_permissionsDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.hsusers_roles`: Exposes CRUD operations for the **hsusers_roles** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Hsusers_roles
-    * const hsusers_roles = await prisma.hsusers_roles.findMany()
-    * ```
-    */
-  get hsusers_roles(): Prisma.hsusers_rolesDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.hsbranches`: Exposes CRUD operations for the **hsbranches** model.
     * Example usage:
     * ```ts
@@ -370,6 +373,36 @@ export class PrismaClient<
     * ```
     */
   get hssessions(): Prisma.hssessionsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hsconsumer_products`: Exposes CRUD operations for the **hsconsumer_products** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hsconsumer_products
+    * const hsconsumer_products = await prisma.hsconsumer_products.findMany()
+    * ```
+    */
+  get hsconsumer_products(): Prisma.hsconsumer_productsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hsconsumption_note`: Exposes CRUD operations for the **hsconsumption_note** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hsconsumption_notes
+    * const hsconsumption_notes = await prisma.hsconsumption_note.findMany()
+    * ```
+    */
+  get hsconsumption_note(): Prisma.hsconsumption_noteDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hsconsumer_groups`: Exposes CRUD operations for the **hsconsumer_groups** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hsconsumer_groups
+    * const hsconsumer_groups = await prisma.hsconsumer_groups.findMany()
+    * ```
+    */
+  get hsconsumer_groups(): Prisma.hsconsumer_groupsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -809,14 +842,16 @@ export namespace Prisma {
     hspermissions: 'hspermissions',
     hsroles_permissions: 'hsroles_permissions',
     hsusers_permissions: 'hsusers_permissions',
-    hsusers_roles: 'hsusers_roles',
     hsbranches: 'hsbranches',
     hsvalidities: 'hsvalidities',
     hsvalidity_products: 'hsvalidity_products',
     hsvalidity_requests: 'hsvalidity_requests',
     hsvalidity_request_products: 'hsvalidity_request_products',
     hsvalidity_treatments: 'hsvalidity_treatments',
-    hssessions: 'hssessions'
+    hssessions: 'hssessions',
+    hsconsumer_products: 'hsconsumer_products',
+    hsconsumption_note: 'hsconsumption_note',
+    hsconsumer_groups: 'hsconsumer_groups'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -832,7 +867,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "hsemployees" | "hsroles" | "hspermissions" | "hsroles_permissions" | "hsusers_permissions" | "hsusers_roles" | "hsbranches" | "hsvalidities" | "hsvalidity_products" | "hsvalidity_requests" | "hsvalidity_request_products" | "hsvalidity_treatments" | "hssessions"
+      modelProps: "hsemployees" | "hsroles" | "hspermissions" | "hsroles_permissions" | "hsusers_permissions" | "hsbranches" | "hsvalidities" | "hsvalidity_products" | "hsvalidity_requests" | "hsvalidity_request_products" | "hsvalidity_treatments" | "hssessions" | "hsconsumer_products" | "hsconsumption_note" | "hsconsumer_groups"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1203,80 +1238,6 @@ export namespace Prisma {
           count: {
             args: Prisma.hsusers_permissionsCountArgs<ExtArgs>
             result: $Utils.Optional<Hsusers_permissionsCountAggregateOutputType> | number
-          }
-        }
-      }
-      hsusers_roles: {
-        payload: Prisma.$hsusers_rolesPayload<ExtArgs>
-        fields: Prisma.hsusers_rolesFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.hsusers_rolesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.hsusers_rolesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>
-          }
-          findFirst: {
-            args: Prisma.hsusers_rolesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.hsusers_rolesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>
-          }
-          findMany: {
-            args: Prisma.hsusers_rolesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>[]
-          }
-          create: {
-            args: Prisma.hsusers_rolesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>
-          }
-          createMany: {
-            args: Prisma.hsusers_rolesCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.hsusers_rolesCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>[]
-          }
-          delete: {
-            args: Prisma.hsusers_rolesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>
-          }
-          update: {
-            args: Prisma.hsusers_rolesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>
-          }
-          deleteMany: {
-            args: Prisma.hsusers_rolesDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.hsusers_rolesUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.hsusers_rolesUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>[]
-          }
-          upsert: {
-            args: Prisma.hsusers_rolesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$hsusers_rolesPayload>
-          }
-          aggregate: {
-            args: Prisma.Hsusers_rolesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateHsusers_roles>
-          }
-          groupBy: {
-            args: Prisma.hsusers_rolesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Hsusers_rolesGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.hsusers_rolesCountArgs<ExtArgs>
-            result: $Utils.Optional<Hsusers_rolesCountAggregateOutputType> | number
           }
         }
       }
@@ -1798,6 +1759,228 @@ export namespace Prisma {
           }
         }
       }
+      hsconsumer_products: {
+        payload: Prisma.$hsconsumer_productsPayload<ExtArgs>
+        fields: Prisma.hsconsumer_productsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.hsconsumer_productsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_productsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.hsconsumer_productsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_productsPayload>
+          }
+          findFirst: {
+            args: Prisma.hsconsumer_productsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_productsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.hsconsumer_productsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_productsPayload>
+          }
+          findMany: {
+            args: Prisma.hsconsumer_productsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_productsPayload>[]
+          }
+          create: {
+            args: Prisma.hsconsumer_productsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_productsPayload>
+          }
+          createMany: {
+            args: Prisma.hsconsumer_productsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.hsconsumer_productsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_productsPayload>[]
+          }
+          delete: {
+            args: Prisma.hsconsumer_productsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_productsPayload>
+          }
+          update: {
+            args: Prisma.hsconsumer_productsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_productsPayload>
+          }
+          deleteMany: {
+            args: Prisma.hsconsumer_productsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.hsconsumer_productsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.hsconsumer_productsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_productsPayload>[]
+          }
+          upsert: {
+            args: Prisma.hsconsumer_productsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_productsPayload>
+          }
+          aggregate: {
+            args: Prisma.Hsconsumer_productsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHsconsumer_products>
+          }
+          groupBy: {
+            args: Prisma.hsconsumer_productsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Hsconsumer_productsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.hsconsumer_productsCountArgs<ExtArgs>
+            result: $Utils.Optional<Hsconsumer_productsCountAggregateOutputType> | number
+          }
+        }
+      }
+      hsconsumption_note: {
+        payload: Prisma.$hsconsumption_notePayload<ExtArgs>
+        fields: Prisma.hsconsumption_noteFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.hsconsumption_noteFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumption_notePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.hsconsumption_noteFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumption_notePayload>
+          }
+          findFirst: {
+            args: Prisma.hsconsumption_noteFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumption_notePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.hsconsumption_noteFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumption_notePayload>
+          }
+          findMany: {
+            args: Prisma.hsconsumption_noteFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumption_notePayload>[]
+          }
+          create: {
+            args: Prisma.hsconsumption_noteCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumption_notePayload>
+          }
+          createMany: {
+            args: Prisma.hsconsumption_noteCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.hsconsumption_noteCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumption_notePayload>[]
+          }
+          delete: {
+            args: Prisma.hsconsumption_noteDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumption_notePayload>
+          }
+          update: {
+            args: Prisma.hsconsumption_noteUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumption_notePayload>
+          }
+          deleteMany: {
+            args: Prisma.hsconsumption_noteDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.hsconsumption_noteUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.hsconsumption_noteUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumption_notePayload>[]
+          }
+          upsert: {
+            args: Prisma.hsconsumption_noteUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumption_notePayload>
+          }
+          aggregate: {
+            args: Prisma.Hsconsumption_noteAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHsconsumption_note>
+          }
+          groupBy: {
+            args: Prisma.hsconsumption_noteGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Hsconsumption_noteGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.hsconsumption_noteCountArgs<ExtArgs>
+            result: $Utils.Optional<Hsconsumption_noteCountAggregateOutputType> | number
+          }
+        }
+      }
+      hsconsumer_groups: {
+        payload: Prisma.$hsconsumer_groupsPayload<ExtArgs>
+        fields: Prisma.hsconsumer_groupsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.hsconsumer_groupsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_groupsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.hsconsumer_groupsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_groupsPayload>
+          }
+          findFirst: {
+            args: Prisma.hsconsumer_groupsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_groupsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.hsconsumer_groupsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_groupsPayload>
+          }
+          findMany: {
+            args: Prisma.hsconsumer_groupsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_groupsPayload>[]
+          }
+          create: {
+            args: Prisma.hsconsumer_groupsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_groupsPayload>
+          }
+          createMany: {
+            args: Prisma.hsconsumer_groupsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.hsconsumer_groupsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_groupsPayload>[]
+          }
+          delete: {
+            args: Prisma.hsconsumer_groupsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_groupsPayload>
+          }
+          update: {
+            args: Prisma.hsconsumer_groupsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_groupsPayload>
+          }
+          deleteMany: {
+            args: Prisma.hsconsumer_groupsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.hsconsumer_groupsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.hsconsumer_groupsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_groupsPayload>[]
+          }
+          upsert: {
+            args: Prisma.hsconsumer_groupsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsconsumer_groupsPayload>
+          }
+          aggregate: {
+            args: Prisma.Hsconsumer_groupsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHsconsumer_groups>
+          }
+          groupBy: {
+            args: Prisma.hsconsumer_groupsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Hsconsumer_groupsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.hsconsumer_groupsCountArgs<ExtArgs>
+            result: $Utils.Optional<Hsconsumer_groupsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1895,7 +2078,6 @@ export namespace Prisma {
     hspermissions?: hspermissionsOmit
     hsroles_permissions?: hsroles_permissionsOmit
     hsusers_permissions?: hsusers_permissionsOmit
-    hsusers_roles?: hsusers_rolesOmit
     hsbranches?: hsbranchesOmit
     hsvalidities?: hsvaliditiesOmit
     hsvalidity_products?: hsvalidity_productsOmit
@@ -1903,6 +2085,9 @@ export namespace Prisma {
     hsvalidity_request_products?: hsvalidity_request_productsOmit
     hsvalidity_treatments?: hsvalidity_treatmentsOmit
     hssessions?: hssessionsOmit
+    hsconsumer_products?: hsconsumer_productsOmit
+    hsconsumption_note?: hsconsumption_noteOmit
+    hsconsumer_groups?: hsconsumer_groupsOmit
   }
 
   /* Types for Logging */
@@ -1985,19 +2170,19 @@ export namespace Prisma {
   export type HsemployeesCountOutputType = {
     sessions: number
     hsusers_permissions: number
-    hsusers_roles: number
     hsvalidities: number
     analystRequests: number
     confereeRequests: number
+    hsconsumer_products: number
   }
 
   export type HsemployeesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | HsemployeesCountOutputTypeCountSessionsArgs
     hsusers_permissions?: boolean | HsemployeesCountOutputTypeCountHsusers_permissionsArgs
-    hsusers_roles?: boolean | HsemployeesCountOutputTypeCountHsusers_rolesArgs
     hsvalidities?: boolean | HsemployeesCountOutputTypeCountHsvaliditiesArgs
     analystRequests?: boolean | HsemployeesCountOutputTypeCountAnalystRequestsArgs
     confereeRequests?: boolean | HsemployeesCountOutputTypeCountConfereeRequestsArgs
+    hsconsumer_products?: boolean | HsemployeesCountOutputTypeCountHsconsumer_productsArgs
   }
 
   // Custom InputTypes
@@ -2028,13 +2213,6 @@ export namespace Prisma {
   /**
    * HsemployeesCountOutputType without action
    */
-  export type HsemployeesCountOutputTypeCountHsusers_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsusers_rolesWhereInput
-  }
-
-  /**
-   * HsemployeesCountOutputType without action
-   */
   export type HsemployeesCountOutputTypeCountHsvaliditiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: hsvaliditiesWhereInput
   }
@@ -2053,6 +2231,13 @@ export namespace Prisma {
     where?: hsvalidity_requestsWhereInput
   }
 
+  /**
+   * HsemployeesCountOutputType without action
+   */
+  export type HsemployeesCountOutputTypeCountHsconsumer_productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsconsumer_productsWhereInput
+  }
+
 
   /**
    * Count Type HsrolesCountOutputType
@@ -2060,12 +2245,12 @@ export namespace Prisma {
 
   export type HsrolesCountOutputType = {
     hsroles_permissions: number
-    hsusers_roles: number
+    hsemployees: number
   }
 
   export type HsrolesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hsroles_permissions?: boolean | HsrolesCountOutputTypeCountHsroles_permissionsArgs
-    hsusers_roles?: boolean | HsrolesCountOutputTypeCountHsusers_rolesArgs
+    hsemployees?: boolean | HsrolesCountOutputTypeCountHsemployeesArgs
   }
 
   // Custom InputTypes
@@ -2089,8 +2274,8 @@ export namespace Prisma {
   /**
    * HsrolesCountOutputType without action
    */
-  export type HsrolesCountOutputTypeCountHsusers_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsusers_rolesWhereInput
+  export type HsrolesCountOutputTypeCountHsemployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsemployeesWhereInput
   }
 
 
@@ -2142,12 +2327,16 @@ export namespace Prisma {
     hsemployees: number
     hsvalidities: number
     hsvalidity_requests: number
+    hsconsumerProducts: number
+    consumptionNotes: number
   }
 
   export type HsbranchesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hsemployees?: boolean | HsbranchesCountOutputTypeCountHsemployeesArgs
     hsvalidities?: boolean | HsbranchesCountOutputTypeCountHsvaliditiesArgs
     hsvalidity_requests?: boolean | HsbranchesCountOutputTypeCountHsvalidity_requestsArgs
+    hsconsumerProducts?: boolean | HsbranchesCountOutputTypeCountHsconsumerProductsArgs
+    consumptionNotes?: boolean | HsbranchesCountOutputTypeCountConsumptionNotesArgs
   }
 
   // Custom InputTypes
@@ -2180,6 +2369,20 @@ export namespace Prisma {
    */
   export type HsbranchesCountOutputTypeCountHsvalidity_requestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: hsvalidity_requestsWhereInput
+  }
+
+  /**
+   * HsbranchesCountOutputType without action
+   */
+  export type HsbranchesCountOutputTypeCountHsconsumerProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsconsumer_productsWhereInput
+  }
+
+  /**
+   * HsbranchesCountOutputType without action
+   */
+  export type HsbranchesCountOutputTypeCountConsumptionNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsconsumption_noteWhereInput
   }
 
 
@@ -2286,6 +2489,77 @@ export namespace Prisma {
 
 
   /**
+   * Count Type Hsconsumption_noteCountOutputType
+   */
+
+  export type Hsconsumption_noteCountOutputType = {
+    hsconsumerProducts: number
+  }
+
+  export type Hsconsumption_noteCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsconsumerProducts?: boolean | Hsconsumption_noteCountOutputTypeCountHsconsumerProductsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Hsconsumption_noteCountOutputType without action
+   */
+  export type Hsconsumption_noteCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hsconsumption_noteCountOutputType
+     */
+    select?: Hsconsumption_noteCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Hsconsumption_noteCountOutputType without action
+   */
+  export type Hsconsumption_noteCountOutputTypeCountHsconsumerProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsconsumer_productsWhereInput
+  }
+
+
+  /**
+   * Count Type Hsconsumer_groupsCountOutputType
+   */
+
+  export type Hsconsumer_groupsCountOutputType = {
+    hsconsumer_products: number
+    consumptionNotes: number
+  }
+
+  export type Hsconsumer_groupsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsconsumer_products?: boolean | Hsconsumer_groupsCountOutputTypeCountHsconsumer_productsArgs
+    consumptionNotes?: boolean | Hsconsumer_groupsCountOutputTypeCountConsumptionNotesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Hsconsumer_groupsCountOutputType without action
+   */
+  export type Hsconsumer_groupsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hsconsumer_groupsCountOutputType
+     */
+    select?: Hsconsumer_groupsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Hsconsumer_groupsCountOutputType without action
+   */
+  export type Hsconsumer_groupsCountOutputTypeCountHsconsumer_productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsconsumer_productsWhereInput
+  }
+
+  /**
+   * Hsconsumer_groupsCountOutputType without action
+   */
+  export type Hsconsumer_groupsCountOutputTypeCountConsumptionNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsconsumption_noteWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -2305,12 +2579,14 @@ export namespace Prisma {
     id: number | null
     branch_id: number | null
     winthor_id: number | null
+    role_id: number | null
   }
 
   export type HsemployeesSumAggregateOutputType = {
     id: number | null
     branch_id: number | null
     winthor_id: number | null
+    role_id: number | null
   }
 
   export type HsemployeesMinAggregateOutputType = {
@@ -2320,6 +2596,7 @@ export namespace Prisma {
     name: string | null
     username: string | null
     password: string | null
+    role_id: number | null
     created_at: Date | null
     modified_at: Date | null
   }
@@ -2331,6 +2608,7 @@ export namespace Prisma {
     name: string | null
     username: string | null
     password: string | null
+    role_id: number | null
     created_at: Date | null
     modified_at: Date | null
   }
@@ -2342,6 +2620,7 @@ export namespace Prisma {
     name: number
     username: number
     password: number
+    role_id: number
     created_at: number
     modified_at: number
     _all: number
@@ -2352,12 +2631,14 @@ export namespace Prisma {
     id?: true
     branch_id?: true
     winthor_id?: true
+    role_id?: true
   }
 
   export type HsemployeesSumAggregateInputType = {
     id?: true
     branch_id?: true
     winthor_id?: true
+    role_id?: true
   }
 
   export type HsemployeesMinAggregateInputType = {
@@ -2367,6 +2648,7 @@ export namespace Prisma {
     name?: true
     username?: true
     password?: true
+    role_id?: true
     created_at?: true
     modified_at?: true
   }
@@ -2378,6 +2660,7 @@ export namespace Prisma {
     name?: true
     username?: true
     password?: true
+    role_id?: true
     created_at?: true
     modified_at?: true
   }
@@ -2389,6 +2672,7 @@ export namespace Prisma {
     name?: true
     username?: true
     password?: true
+    role_id?: true
     created_at?: true
     modified_at?: true
     _all?: true
@@ -2487,6 +2771,7 @@ export namespace Prisma {
     name: string
     username: string
     password: string
+    role_id: number
     created_at: Date
     modified_at: Date
     _count: HsemployeesCountAggregateOutputType | null
@@ -2517,15 +2802,17 @@ export namespace Prisma {
     name?: boolean
     username?: boolean
     password?: boolean
+    role_id?: boolean
     created_at?: boolean
     modified_at?: boolean
     branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    role?: boolean | hsrolesDefaultArgs<ExtArgs>
     sessions?: boolean | hsemployees$sessionsArgs<ExtArgs>
     hsusers_permissions?: boolean | hsemployees$hsusers_permissionsArgs<ExtArgs>
-    hsusers_roles?: boolean | hsemployees$hsusers_rolesArgs<ExtArgs>
     hsvalidities?: boolean | hsemployees$hsvaliditiesArgs<ExtArgs>
     analystRequests?: boolean | hsemployees$analystRequestsArgs<ExtArgs>
     confereeRequests?: boolean | hsemployees$confereeRequestsArgs<ExtArgs>
+    hsconsumer_products?: boolean | hsemployees$hsconsumer_productsArgs<ExtArgs>
     _count?: boolean | HsemployeesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsemployees"]>
 
@@ -2536,9 +2823,11 @@ export namespace Prisma {
     name?: boolean
     username?: boolean
     password?: boolean
+    role_id?: boolean
     created_at?: boolean
     modified_at?: boolean
     branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    role?: boolean | hsrolesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsemployees"]>
 
   export type hsemployeesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2548,9 +2837,11 @@ export namespace Prisma {
     name?: boolean
     username?: boolean
     password?: boolean
+    role_id?: boolean
     created_at?: boolean
     modified_at?: boolean
     branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    role?: boolean | hsrolesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsemployees"]>
 
   export type hsemployeesSelectScalar = {
@@ -2560,38 +2851,43 @@ export namespace Prisma {
     name?: boolean
     username?: boolean
     password?: boolean
+    role_id?: boolean
     created_at?: boolean
     modified_at?: boolean
   }
 
-  export type hsemployeesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branch_id" | "winthor_id" | "name" | "username" | "password" | "created_at" | "modified_at", ExtArgs["result"]["hsemployees"]>
+  export type hsemployeesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branch_id" | "winthor_id" | "name" | "username" | "password" | "role_id" | "created_at" | "modified_at", ExtArgs["result"]["hsemployees"]>
   export type hsemployeesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    role?: boolean | hsrolesDefaultArgs<ExtArgs>
     sessions?: boolean | hsemployees$sessionsArgs<ExtArgs>
     hsusers_permissions?: boolean | hsemployees$hsusers_permissionsArgs<ExtArgs>
-    hsusers_roles?: boolean | hsemployees$hsusers_rolesArgs<ExtArgs>
     hsvalidities?: boolean | hsemployees$hsvaliditiesArgs<ExtArgs>
     analystRequests?: boolean | hsemployees$analystRequestsArgs<ExtArgs>
     confereeRequests?: boolean | hsemployees$confereeRequestsArgs<ExtArgs>
+    hsconsumer_products?: boolean | hsemployees$hsconsumer_productsArgs<ExtArgs>
     _count?: boolean | HsemployeesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type hsemployeesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    role?: boolean | hsrolesDefaultArgs<ExtArgs>
   }
   export type hsemployeesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    role?: boolean | hsrolesDefaultArgs<ExtArgs>
   }
 
   export type $hsemployeesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "hsemployees"
     objects: {
       branch: Prisma.$hsbranchesPayload<ExtArgs>
+      role: Prisma.$hsrolesPayload<ExtArgs>
       sessions: Prisma.$hssessionsPayload<ExtArgs>[]
       hsusers_permissions: Prisma.$hsusers_permissionsPayload<ExtArgs>[]
-      hsusers_roles: Prisma.$hsusers_rolesPayload<ExtArgs>[]
       hsvalidities: Prisma.$hsvaliditiesPayload<ExtArgs>[]
       analystRequests: Prisma.$hsvalidity_requestsPayload<ExtArgs>[]
       confereeRequests: Prisma.$hsvalidity_requestsPayload<ExtArgs>[]
+      hsconsumer_products: Prisma.$hsconsumer_productsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2600,6 +2896,7 @@ export namespace Prisma {
       name: string
       username: string
       password: string
+      role_id: number
       created_at: Date
       modified_at: Date
     }, ExtArgs["result"]["hsemployees"]>
@@ -2997,12 +3294,13 @@ export namespace Prisma {
   export interface Prisma__hsemployeesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     branch<T extends hsbranchesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsbranchesDefaultArgs<ExtArgs>>): Prisma__hsbranchesClient<$Result.GetResult<Prisma.$hsbranchesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    role<T extends hsrolesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsrolesDefaultArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     sessions<T extends hsemployees$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hssessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hsusers_permissions<T extends hsemployees$hsusers_permissionsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$hsusers_permissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_permissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    hsusers_roles<T extends hsemployees$hsusers_rolesArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$hsusers_rolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hsvalidities<T extends hsemployees$hsvaliditiesArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$hsvaliditiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvaliditiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     analystRequests<T extends hsemployees$analystRequestsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$analystRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     confereeRequests<T extends hsemployees$confereeRequestsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$confereeRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hsconsumer_products<T extends hsemployees$hsconsumer_productsArgs<ExtArgs> = {}>(args?: Subset<T, hsemployees$hsconsumer_productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3038,6 +3336,7 @@ export namespace Prisma {
     readonly name: FieldRef<"hsemployees", 'String'>
     readonly username: FieldRef<"hsemployees", 'String'>
     readonly password: FieldRef<"hsemployees", 'String'>
+    readonly role_id: FieldRef<"hsemployees", 'Int'>
     readonly created_at: FieldRef<"hsemployees", 'DateTime'>
     readonly modified_at: FieldRef<"hsemployees", 'DateTime'>
   }
@@ -3484,30 +3783,6 @@ export namespace Prisma {
   }
 
   /**
-   * hsemployees.hsusers_roles
-   */
-  export type hsemployees$hsusers_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesInclude<ExtArgs> | null
-    where?: hsusers_rolesWhereInput
-    orderBy?: hsusers_rolesOrderByWithRelationInput | hsusers_rolesOrderByWithRelationInput[]
-    cursor?: hsusers_rolesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Hsusers_rolesScalarFieldEnum | Hsusers_rolesScalarFieldEnum[]
-  }
-
-  /**
    * hsemployees.hsvalidities
    */
   export type hsemployees$hsvaliditiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3577,6 +3852,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Hsvalidity_requestsScalarFieldEnum | Hsvalidity_requestsScalarFieldEnum[]
+  }
+
+  /**
+   * hsemployees.hsconsumer_products
+   */
+  export type hsemployees$hsconsumer_productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    where?: hsconsumer_productsWhereInput
+    orderBy?: hsconsumer_productsOrderByWithRelationInput | hsconsumer_productsOrderByWithRelationInput[]
+    cursor?: hsconsumer_productsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsconsumer_productsScalarFieldEnum | Hsconsumer_productsScalarFieldEnum[]
   }
 
   /**
@@ -3797,7 +4096,7 @@ export namespace Prisma {
     created_at?: boolean
     modified_at?: boolean
     hsroles_permissions?: boolean | hsroles$hsroles_permissionsArgs<ExtArgs>
-    hsusers_roles?: boolean | hsroles$hsusers_rolesArgs<ExtArgs>
+    hsemployees?: boolean | hsroles$hsemployeesArgs<ExtArgs>
     _count?: boolean | HsrolesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsroles"]>
 
@@ -3828,7 +4127,7 @@ export namespace Prisma {
   export type hsrolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "created_at" | "modified_at", ExtArgs["result"]["hsroles"]>
   export type hsrolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hsroles_permissions?: boolean | hsroles$hsroles_permissionsArgs<ExtArgs>
-    hsusers_roles?: boolean | hsroles$hsusers_rolesArgs<ExtArgs>
+    hsemployees?: boolean | hsroles$hsemployeesArgs<ExtArgs>
     _count?: boolean | HsrolesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type hsrolesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3838,7 +4137,7 @@ export namespace Prisma {
     name: "hsroles"
     objects: {
       hsroles_permissions: Prisma.$hsroles_permissionsPayload<ExtArgs>[]
-      hsusers_roles: Prisma.$hsusers_rolesPayload<ExtArgs>[]
+      hsemployees: Prisma.$hsemployeesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4241,7 +4540,7 @@ export namespace Prisma {
   export interface Prisma__hsrolesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     hsroles_permissions<T extends hsroles$hsroles_permissionsArgs<ExtArgs> = {}>(args?: Subset<T, hsroles$hsroles_permissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsroles_permissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    hsusers_roles<T extends hsroles$hsusers_rolesArgs<ExtArgs> = {}>(args?: Subset<T, hsroles$hsusers_rolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hsemployees<T extends hsroles$hsemployeesArgs<ExtArgs> = {}>(args?: Subset<T, hsroles$hsemployeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4688,27 +4987,27 @@ export namespace Prisma {
   }
 
   /**
-   * hsroles.hsusers_roles
+   * hsroles.hsemployees
    */
-  export type hsroles$hsusers_rolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type hsroles$hsemployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the hsusers_roles
+     * Select specific fields to fetch from the hsemployees
      */
-    select?: hsusers_rolesSelect<ExtArgs> | null
+    select?: hsemployeesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the hsusers_roles
+     * Omit specific fields from the hsemployees
      */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
+    omit?: hsemployeesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: hsusers_rolesInclude<ExtArgs> | null
-    where?: hsusers_rolesWhereInput
-    orderBy?: hsusers_rolesOrderByWithRelationInput | hsusers_rolesOrderByWithRelationInput[]
-    cursor?: hsusers_rolesWhereUniqueInput
+    include?: hsemployeesInclude<ExtArgs> | null
+    where?: hsemployeesWhereInput
+    orderBy?: hsemployeesOrderByWithRelationInput | hsemployeesOrderByWithRelationInput[]
+    cursor?: hsemployeesWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Hsusers_rolesScalarFieldEnum | Hsusers_rolesScalarFieldEnum[]
+    distinct?: HsemployeesScalarFieldEnum | HsemployeesScalarFieldEnum[]
   }
 
   /**
@@ -7993,1071 +8292,6 @@ export namespace Prisma {
 
 
   /**
-   * Model hsusers_roles
-   */
-
-  export type AggregateHsusers_roles = {
-    _count: Hsusers_rolesCountAggregateOutputType | null
-    _avg: Hsusers_rolesAvgAggregateOutputType | null
-    _sum: Hsusers_rolesSumAggregateOutputType | null
-    _min: Hsusers_rolesMinAggregateOutputType | null
-    _max: Hsusers_rolesMaxAggregateOutputType | null
-  }
-
-  export type Hsusers_rolesAvgAggregateOutputType = {
-    user_id: number | null
-    role_id: number | null
-  }
-
-  export type Hsusers_rolesSumAggregateOutputType = {
-    user_id: number | null
-    role_id: number | null
-  }
-
-  export type Hsusers_rolesMinAggregateOutputType = {
-    user_id: number | null
-    role_id: number | null
-  }
-
-  export type Hsusers_rolesMaxAggregateOutputType = {
-    user_id: number | null
-    role_id: number | null
-  }
-
-  export type Hsusers_rolesCountAggregateOutputType = {
-    user_id: number
-    role_id: number
-    _all: number
-  }
-
-
-  export type Hsusers_rolesAvgAggregateInputType = {
-    user_id?: true
-    role_id?: true
-  }
-
-  export type Hsusers_rolesSumAggregateInputType = {
-    user_id?: true
-    role_id?: true
-  }
-
-  export type Hsusers_rolesMinAggregateInputType = {
-    user_id?: true
-    role_id?: true
-  }
-
-  export type Hsusers_rolesMaxAggregateInputType = {
-    user_id?: true
-    role_id?: true
-  }
-
-  export type Hsusers_rolesCountAggregateInputType = {
-    user_id?: true
-    role_id?: true
-    _all?: true
-  }
-
-  export type Hsusers_rolesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which hsusers_roles to aggregate.
-     */
-    where?: hsusers_rolesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of hsusers_roles to fetch.
-     */
-    orderBy?: hsusers_rolesOrderByWithRelationInput | hsusers_rolesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: hsusers_rolesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` hsusers_roles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` hsusers_roles.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned hsusers_roles
-    **/
-    _count?: true | Hsusers_rolesCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: Hsusers_rolesAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: Hsusers_rolesSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: Hsusers_rolesMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: Hsusers_rolesMaxAggregateInputType
-  }
-
-  export type GetHsusers_rolesAggregateType<T extends Hsusers_rolesAggregateArgs> = {
-        [P in keyof T & keyof AggregateHsusers_roles]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateHsusers_roles[P]>
-      : GetScalarType<T[P], AggregateHsusers_roles[P]>
-  }
-
-
-
-
-  export type hsusers_rolesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: hsusers_rolesWhereInput
-    orderBy?: hsusers_rolesOrderByWithAggregationInput | hsusers_rolesOrderByWithAggregationInput[]
-    by: Hsusers_rolesScalarFieldEnum[] | Hsusers_rolesScalarFieldEnum
-    having?: hsusers_rolesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: Hsusers_rolesCountAggregateInputType | true
-    _avg?: Hsusers_rolesAvgAggregateInputType
-    _sum?: Hsusers_rolesSumAggregateInputType
-    _min?: Hsusers_rolesMinAggregateInputType
-    _max?: Hsusers_rolesMaxAggregateInputType
-  }
-
-  export type Hsusers_rolesGroupByOutputType = {
-    user_id: number
-    role_id: number
-    _count: Hsusers_rolesCountAggregateOutputType | null
-    _avg: Hsusers_rolesAvgAggregateOutputType | null
-    _sum: Hsusers_rolesSumAggregateOutputType | null
-    _min: Hsusers_rolesMinAggregateOutputType | null
-    _max: Hsusers_rolesMaxAggregateOutputType | null
-  }
-
-  type GetHsusers_rolesGroupByPayload<T extends hsusers_rolesGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<Hsusers_rolesGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof Hsusers_rolesGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], Hsusers_rolesGroupByOutputType[P]>
-            : GetScalarType<T[P], Hsusers_rolesGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type hsusers_rolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    user_id?: boolean
-    role_id?: boolean
-    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
-    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hsusers_roles"]>
-
-  export type hsusers_rolesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    user_id?: boolean
-    role_id?: boolean
-    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
-    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hsusers_roles"]>
-
-  export type hsusers_rolesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    user_id?: boolean
-    role_id?: boolean
-    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
-    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hsusers_roles"]>
-
-  export type hsusers_rolesSelectScalar = {
-    user_id?: boolean
-    role_id?: boolean
-  }
-
-  export type hsusers_rolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "role_id", ExtArgs["result"]["hsusers_roles"]>
-  export type hsusers_rolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
-    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
-  }
-  export type hsusers_rolesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
-    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
-  }
-  export type hsusers_rolesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    hsroles?: boolean | hsrolesDefaultArgs<ExtArgs>
-    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
-  }
-
-  export type $hsusers_rolesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "hsusers_roles"
-    objects: {
-      hsroles: Prisma.$hsrolesPayload<ExtArgs>
-      hsemployees: Prisma.$hsemployeesPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      user_id: number
-      role_id: number
-    }, ExtArgs["result"]["hsusers_roles"]>
-    composites: {}
-  }
-
-  type hsusers_rolesGetPayload<S extends boolean | null | undefined | hsusers_rolesDefaultArgs> = $Result.GetResult<Prisma.$hsusers_rolesPayload, S>
-
-  type hsusers_rolesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<hsusers_rolesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Hsusers_rolesCountAggregateInputType | true
-    }
-
-  export interface hsusers_rolesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hsusers_roles'], meta: { name: 'hsusers_roles' } }
-    /**
-     * Find zero or one Hsusers_roles that matches the filter.
-     * @param {hsusers_rolesFindUniqueArgs} args - Arguments to find a Hsusers_roles
-     * @example
-     * // Get one Hsusers_roles
-     * const hsusers_roles = await prisma.hsusers_roles.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends hsusers_rolesFindUniqueArgs>(args: SelectSubset<T, hsusers_rolesFindUniqueArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Hsusers_roles that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {hsusers_rolesFindUniqueOrThrowArgs} args - Arguments to find a Hsusers_roles
-     * @example
-     * // Get one Hsusers_roles
-     * const hsusers_roles = await prisma.hsusers_roles.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends hsusers_rolesFindUniqueOrThrowArgs>(args: SelectSubset<T, hsusers_rolesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Hsusers_roles that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsusers_rolesFindFirstArgs} args - Arguments to find a Hsusers_roles
-     * @example
-     * // Get one Hsusers_roles
-     * const hsusers_roles = await prisma.hsusers_roles.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends hsusers_rolesFindFirstArgs>(args?: SelectSubset<T, hsusers_rolesFindFirstArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Hsusers_roles that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsusers_rolesFindFirstOrThrowArgs} args - Arguments to find a Hsusers_roles
-     * @example
-     * // Get one Hsusers_roles
-     * const hsusers_roles = await prisma.hsusers_roles.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends hsusers_rolesFindFirstOrThrowArgs>(args?: SelectSubset<T, hsusers_rolesFindFirstOrThrowArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Hsusers_roles that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsusers_rolesFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Hsusers_roles
-     * const hsusers_roles = await prisma.hsusers_roles.findMany()
-     * 
-     * // Get first 10 Hsusers_roles
-     * const hsusers_roles = await prisma.hsusers_roles.findMany({ take: 10 })
-     * 
-     * // Only select the `user_id`
-     * const hsusers_rolesWithUser_idOnly = await prisma.hsusers_roles.findMany({ select: { user_id: true } })
-     * 
-     */
-    findMany<T extends hsusers_rolesFindManyArgs>(args?: SelectSubset<T, hsusers_rolesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Hsusers_roles.
-     * @param {hsusers_rolesCreateArgs} args - Arguments to create a Hsusers_roles.
-     * @example
-     * // Create one Hsusers_roles
-     * const Hsusers_roles = await prisma.hsusers_roles.create({
-     *   data: {
-     *     // ... data to create a Hsusers_roles
-     *   }
-     * })
-     * 
-     */
-    create<T extends hsusers_rolesCreateArgs>(args: SelectSubset<T, hsusers_rolesCreateArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Hsusers_roles.
-     * @param {hsusers_rolesCreateManyArgs} args - Arguments to create many Hsusers_roles.
-     * @example
-     * // Create many Hsusers_roles
-     * const hsusers_roles = await prisma.hsusers_roles.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends hsusers_rolesCreateManyArgs>(args?: SelectSubset<T, hsusers_rolesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Hsusers_roles and returns the data saved in the database.
-     * @param {hsusers_rolesCreateManyAndReturnArgs} args - Arguments to create many Hsusers_roles.
-     * @example
-     * // Create many Hsusers_roles
-     * const hsusers_roles = await prisma.hsusers_roles.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Hsusers_roles and only return the `user_id`
-     * const hsusers_rolesWithUser_idOnly = await prisma.hsusers_roles.createManyAndReturn({
-     *   select: { user_id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends hsusers_rolesCreateManyAndReturnArgs>(args?: SelectSubset<T, hsusers_rolesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Hsusers_roles.
-     * @param {hsusers_rolesDeleteArgs} args - Arguments to delete one Hsusers_roles.
-     * @example
-     * // Delete one Hsusers_roles
-     * const Hsusers_roles = await prisma.hsusers_roles.delete({
-     *   where: {
-     *     // ... filter to delete one Hsusers_roles
-     *   }
-     * })
-     * 
-     */
-    delete<T extends hsusers_rolesDeleteArgs>(args: SelectSubset<T, hsusers_rolesDeleteArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Hsusers_roles.
-     * @param {hsusers_rolesUpdateArgs} args - Arguments to update one Hsusers_roles.
-     * @example
-     * // Update one Hsusers_roles
-     * const hsusers_roles = await prisma.hsusers_roles.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends hsusers_rolesUpdateArgs>(args: SelectSubset<T, hsusers_rolesUpdateArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Hsusers_roles.
-     * @param {hsusers_rolesDeleteManyArgs} args - Arguments to filter Hsusers_roles to delete.
-     * @example
-     * // Delete a few Hsusers_roles
-     * const { count } = await prisma.hsusers_roles.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends hsusers_rolesDeleteManyArgs>(args?: SelectSubset<T, hsusers_rolesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Hsusers_roles.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsusers_rolesUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Hsusers_roles
-     * const hsusers_roles = await prisma.hsusers_roles.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends hsusers_rolesUpdateManyArgs>(args: SelectSubset<T, hsusers_rolesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Hsusers_roles and returns the data updated in the database.
-     * @param {hsusers_rolesUpdateManyAndReturnArgs} args - Arguments to update many Hsusers_roles.
-     * @example
-     * // Update many Hsusers_roles
-     * const hsusers_roles = await prisma.hsusers_roles.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Hsusers_roles and only return the `user_id`
-     * const hsusers_rolesWithUser_idOnly = await prisma.hsusers_roles.updateManyAndReturn({
-     *   select: { user_id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends hsusers_rolesUpdateManyAndReturnArgs>(args: SelectSubset<T, hsusers_rolesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Hsusers_roles.
-     * @param {hsusers_rolesUpsertArgs} args - Arguments to update or create a Hsusers_roles.
-     * @example
-     * // Update or create a Hsusers_roles
-     * const hsusers_roles = await prisma.hsusers_roles.upsert({
-     *   create: {
-     *     // ... data to create a Hsusers_roles
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Hsusers_roles we want to update
-     *   }
-     * })
-     */
-    upsert<T extends hsusers_rolesUpsertArgs>(args: SelectSubset<T, hsusers_rolesUpsertArgs<ExtArgs>>): Prisma__hsusers_rolesClient<$Result.GetResult<Prisma.$hsusers_rolesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Hsusers_roles.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsusers_rolesCountArgs} args - Arguments to filter Hsusers_roles to count.
-     * @example
-     * // Count the number of Hsusers_roles
-     * const count = await prisma.hsusers_roles.count({
-     *   where: {
-     *     // ... the filter for the Hsusers_roles we want to count
-     *   }
-     * })
-    **/
-    count<T extends hsusers_rolesCountArgs>(
-      args?: Subset<T, hsusers_rolesCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], Hsusers_rolesCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Hsusers_roles.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Hsusers_rolesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends Hsusers_rolesAggregateArgs>(args: Subset<T, Hsusers_rolesAggregateArgs>): Prisma.PrismaPromise<GetHsusers_rolesAggregateType<T>>
-
-    /**
-     * Group by Hsusers_roles.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {hsusers_rolesGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends hsusers_rolesGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: hsusers_rolesGroupByArgs['orderBy'] }
-        : { orderBy?: hsusers_rolesGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, hsusers_rolesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHsusers_rolesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the hsusers_roles model
-   */
-  readonly fields: hsusers_rolesFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for hsusers_roles.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__hsusers_rolesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    hsroles<T extends hsrolesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsrolesDefaultArgs<ExtArgs>>): Prisma__hsrolesClient<$Result.GetResult<Prisma.$hsrolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    hsemployees<T extends hsemployeesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsemployeesDefaultArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the hsusers_roles model
-   */
-  interface hsusers_rolesFieldRefs {
-    readonly user_id: FieldRef<"hsusers_roles", 'Int'>
-    readonly role_id: FieldRef<"hsusers_roles", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * hsusers_roles findUnique
-   */
-  export type hsusers_rolesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesInclude<ExtArgs> | null
-    /**
-     * Filter, which hsusers_roles to fetch.
-     */
-    where: hsusers_rolesWhereUniqueInput
-  }
-
-  /**
-   * hsusers_roles findUniqueOrThrow
-   */
-  export type hsusers_rolesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesInclude<ExtArgs> | null
-    /**
-     * Filter, which hsusers_roles to fetch.
-     */
-    where: hsusers_rolesWhereUniqueInput
-  }
-
-  /**
-   * hsusers_roles findFirst
-   */
-  export type hsusers_rolesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesInclude<ExtArgs> | null
-    /**
-     * Filter, which hsusers_roles to fetch.
-     */
-    where?: hsusers_rolesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of hsusers_roles to fetch.
-     */
-    orderBy?: hsusers_rolesOrderByWithRelationInput | hsusers_rolesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for hsusers_roles.
-     */
-    cursor?: hsusers_rolesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` hsusers_roles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` hsusers_roles.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of hsusers_roles.
-     */
-    distinct?: Hsusers_rolesScalarFieldEnum | Hsusers_rolesScalarFieldEnum[]
-  }
-
-  /**
-   * hsusers_roles findFirstOrThrow
-   */
-  export type hsusers_rolesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesInclude<ExtArgs> | null
-    /**
-     * Filter, which hsusers_roles to fetch.
-     */
-    where?: hsusers_rolesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of hsusers_roles to fetch.
-     */
-    orderBy?: hsusers_rolesOrderByWithRelationInput | hsusers_rolesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for hsusers_roles.
-     */
-    cursor?: hsusers_rolesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` hsusers_roles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` hsusers_roles.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of hsusers_roles.
-     */
-    distinct?: Hsusers_rolesScalarFieldEnum | Hsusers_rolesScalarFieldEnum[]
-  }
-
-  /**
-   * hsusers_roles findMany
-   */
-  export type hsusers_rolesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesInclude<ExtArgs> | null
-    /**
-     * Filter, which hsusers_roles to fetch.
-     */
-    where?: hsusers_rolesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of hsusers_roles to fetch.
-     */
-    orderBy?: hsusers_rolesOrderByWithRelationInput | hsusers_rolesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing hsusers_roles.
-     */
-    cursor?: hsusers_rolesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` hsusers_roles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` hsusers_roles.
-     */
-    skip?: number
-    distinct?: Hsusers_rolesScalarFieldEnum | Hsusers_rolesScalarFieldEnum[]
-  }
-
-  /**
-   * hsusers_roles create
-   */
-  export type hsusers_rolesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesInclude<ExtArgs> | null
-    /**
-     * The data needed to create a hsusers_roles.
-     */
-    data: XOR<hsusers_rolesCreateInput, hsusers_rolesUncheckedCreateInput>
-  }
-
-  /**
-   * hsusers_roles createMany
-   */
-  export type hsusers_rolesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many hsusers_roles.
-     */
-    data: hsusers_rolesCreateManyInput | hsusers_rolesCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * hsusers_roles createManyAndReturn
-   */
-  export type hsusers_rolesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * The data used to create many hsusers_roles.
-     */
-    data: hsusers_rolesCreateManyInput | hsusers_rolesCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * hsusers_roles update
-   */
-  export type hsusers_rolesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesInclude<ExtArgs> | null
-    /**
-     * The data needed to update a hsusers_roles.
-     */
-    data: XOR<hsusers_rolesUpdateInput, hsusers_rolesUncheckedUpdateInput>
-    /**
-     * Choose, which hsusers_roles to update.
-     */
-    where: hsusers_rolesWhereUniqueInput
-  }
-
-  /**
-   * hsusers_roles updateMany
-   */
-  export type hsusers_rolesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update hsusers_roles.
-     */
-    data: XOR<hsusers_rolesUpdateManyMutationInput, hsusers_rolesUncheckedUpdateManyInput>
-    /**
-     * Filter which hsusers_roles to update
-     */
-    where?: hsusers_rolesWhereInput
-    /**
-     * Limit how many hsusers_roles to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * hsusers_roles updateManyAndReturn
-   */
-  export type hsusers_rolesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * The data used to update hsusers_roles.
-     */
-    data: XOR<hsusers_rolesUpdateManyMutationInput, hsusers_rolesUncheckedUpdateManyInput>
-    /**
-     * Filter which hsusers_roles to update
-     */
-    where?: hsusers_rolesWhereInput
-    /**
-     * Limit how many hsusers_roles to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * hsusers_roles upsert
-   */
-  export type hsusers_rolesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesInclude<ExtArgs> | null
-    /**
-     * The filter to search for the hsusers_roles to update in case it exists.
-     */
-    where: hsusers_rolesWhereUniqueInput
-    /**
-     * In case the hsusers_roles found by the `where` argument doesn't exist, create a new hsusers_roles with this data.
-     */
-    create: XOR<hsusers_rolesCreateInput, hsusers_rolesUncheckedCreateInput>
-    /**
-     * In case the hsusers_roles was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<hsusers_rolesUpdateInput, hsusers_rolesUncheckedUpdateInput>
-  }
-
-  /**
-   * hsusers_roles delete
-   */
-  export type hsusers_rolesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesInclude<ExtArgs> | null
-    /**
-     * Filter which hsusers_roles to delete.
-     */
-    where: hsusers_rolesWhereUniqueInput
-  }
-
-  /**
-   * hsusers_roles deleteMany
-   */
-  export type hsusers_rolesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which hsusers_roles to delete
-     */
-    where?: hsusers_rolesWhereInput
-    /**
-     * Limit how many hsusers_roles to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * hsusers_roles without action
-   */
-  export type hsusers_rolesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the hsusers_roles
-     */
-    select?: hsusers_rolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the hsusers_roles
-     */
-    omit?: hsusers_rolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: hsusers_rolesInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model hsbranches
    */
 
@@ -9234,6 +8468,8 @@ export namespace Prisma {
     hsemployees?: boolean | hsbranches$hsemployeesArgs<ExtArgs>
     hsvalidities?: boolean | hsbranches$hsvaliditiesArgs<ExtArgs>
     hsvalidity_requests?: boolean | hsbranches$hsvalidity_requestsArgs<ExtArgs>
+    hsconsumerProducts?: boolean | hsbranches$hsconsumerProductsArgs<ExtArgs>
+    consumptionNotes?: boolean | hsbranches$consumptionNotesArgs<ExtArgs>
     _count?: boolean | HsbranchesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hsbranches"]>
 
@@ -9257,6 +8493,8 @@ export namespace Prisma {
     hsemployees?: boolean | hsbranches$hsemployeesArgs<ExtArgs>
     hsvalidities?: boolean | hsbranches$hsvaliditiesArgs<ExtArgs>
     hsvalidity_requests?: boolean | hsbranches$hsvalidity_requestsArgs<ExtArgs>
+    hsconsumerProducts?: boolean | hsbranches$hsconsumerProductsArgs<ExtArgs>
+    consumptionNotes?: boolean | hsbranches$consumptionNotesArgs<ExtArgs>
     _count?: boolean | HsbranchesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type hsbranchesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -9268,6 +8506,8 @@ export namespace Prisma {
       hsemployees: Prisma.$hsemployeesPayload<ExtArgs>[]
       hsvalidities: Prisma.$hsvaliditiesPayload<ExtArgs>[]
       hsvalidity_requests: Prisma.$hsvalidity_requestsPayload<ExtArgs>[]
+      hsconsumerProducts: Prisma.$hsconsumer_productsPayload<ExtArgs>[]
+      consumptionNotes: Prisma.$hsconsumption_notePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -9669,6 +8909,8 @@ export namespace Prisma {
     hsemployees<T extends hsbranches$hsemployeesArgs<ExtArgs> = {}>(args?: Subset<T, hsbranches$hsemployeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hsvalidities<T extends hsbranches$hsvaliditiesArgs<ExtArgs> = {}>(args?: Subset<T, hsbranches$hsvaliditiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvaliditiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hsvalidity_requests<T extends hsbranches$hsvalidity_requestsArgs<ExtArgs> = {}>(args?: Subset<T, hsbranches$hsvalidity_requestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsvalidity_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hsconsumerProducts<T extends hsbranches$hsconsumerProductsArgs<ExtArgs> = {}>(args?: Subset<T, hsbranches$hsconsumerProductsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    consumptionNotes<T extends hsbranches$consumptionNotesArgs<ExtArgs> = {}>(args?: Subset<T, hsbranches$consumptionNotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10157,6 +9399,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Hsvalidity_requestsScalarFieldEnum | Hsvalidity_requestsScalarFieldEnum[]
+  }
+
+  /**
+   * hsbranches.hsconsumerProducts
+   */
+  export type hsbranches$hsconsumerProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    where?: hsconsumer_productsWhereInput
+    orderBy?: hsconsumer_productsOrderByWithRelationInput | hsconsumer_productsOrderByWithRelationInput[]
+    cursor?: hsconsumer_productsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsconsumer_productsScalarFieldEnum | Hsconsumer_productsScalarFieldEnum[]
+  }
+
+  /**
+   * hsbranches.consumptionNotes
+   */
+  export type hsbranches$consumptionNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+    where?: hsconsumption_noteWhereInput
+    orderBy?: hsconsumption_noteOrderByWithRelationInput | hsconsumption_noteOrderByWithRelationInput[]
+    cursor?: hsconsumption_noteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsconsumption_noteScalarFieldEnum | Hsconsumption_noteScalarFieldEnum[]
   }
 
   /**
@@ -16990,6 +16280,3512 @@ export namespace Prisma {
 
 
   /**
+   * Model hsconsumer_products
+   */
+
+  export type AggregateHsconsumer_products = {
+    _count: Hsconsumer_productsCountAggregateOutputType | null
+    _avg: Hsconsumer_productsAvgAggregateOutputType | null
+    _sum: Hsconsumer_productsSumAggregateOutputType | null
+    _min: Hsconsumer_productsMinAggregateOutputType | null
+    _max: Hsconsumer_productsMaxAggregateOutputType | null
+  }
+
+  export type Hsconsumer_productsAvgAggregateOutputType = {
+    id: number | null
+    consumption_id: number | null
+    employee_id: number | null
+    branch_id: number | null
+    product_code: number | null
+    quantity: number | null
+    unit_price: Decimal | null
+    total_price: Decimal | null
+    group_id: number | null
+  }
+
+  export type Hsconsumer_productsSumAggregateOutputType = {
+    id: number | null
+    consumption_id: number | null
+    employee_id: number | null
+    branch_id: number | null
+    product_code: number | null
+    quantity: number | null
+    unit_price: Decimal | null
+    total_price: Decimal | null
+    group_id: number | null
+  }
+
+  export type Hsconsumer_productsMinAggregateOutputType = {
+    id: number | null
+    consumption_id: number | null
+    employee_id: number | null
+    branch_id: number | null
+    product_code: number | null
+    auxiliary_code: string | null
+    quantity: number | null
+    unit_price: Decimal | null
+    total_price: Decimal | null
+    group_id: number | null
+    created_at: Date | null
+    modified_at: Date | null
+  }
+
+  export type Hsconsumer_productsMaxAggregateOutputType = {
+    id: number | null
+    consumption_id: number | null
+    employee_id: number | null
+    branch_id: number | null
+    product_code: number | null
+    auxiliary_code: string | null
+    quantity: number | null
+    unit_price: Decimal | null
+    total_price: Decimal | null
+    group_id: number | null
+    created_at: Date | null
+    modified_at: Date | null
+  }
+
+  export type Hsconsumer_productsCountAggregateOutputType = {
+    id: number
+    consumption_id: number
+    employee_id: number
+    branch_id: number
+    product_code: number
+    auxiliary_code: number
+    quantity: number
+    unit_price: number
+    total_price: number
+    group_id: number
+    created_at: number
+    modified_at: number
+    _all: number
+  }
+
+
+  export type Hsconsumer_productsAvgAggregateInputType = {
+    id?: true
+    consumption_id?: true
+    employee_id?: true
+    branch_id?: true
+    product_code?: true
+    quantity?: true
+    unit_price?: true
+    total_price?: true
+    group_id?: true
+  }
+
+  export type Hsconsumer_productsSumAggregateInputType = {
+    id?: true
+    consumption_id?: true
+    employee_id?: true
+    branch_id?: true
+    product_code?: true
+    quantity?: true
+    unit_price?: true
+    total_price?: true
+    group_id?: true
+  }
+
+  export type Hsconsumer_productsMinAggregateInputType = {
+    id?: true
+    consumption_id?: true
+    employee_id?: true
+    branch_id?: true
+    product_code?: true
+    auxiliary_code?: true
+    quantity?: true
+    unit_price?: true
+    total_price?: true
+    group_id?: true
+    created_at?: true
+    modified_at?: true
+  }
+
+  export type Hsconsumer_productsMaxAggregateInputType = {
+    id?: true
+    consumption_id?: true
+    employee_id?: true
+    branch_id?: true
+    product_code?: true
+    auxiliary_code?: true
+    quantity?: true
+    unit_price?: true
+    total_price?: true
+    group_id?: true
+    created_at?: true
+    modified_at?: true
+  }
+
+  export type Hsconsumer_productsCountAggregateInputType = {
+    id?: true
+    consumption_id?: true
+    employee_id?: true
+    branch_id?: true
+    product_code?: true
+    auxiliary_code?: true
+    quantity?: true
+    unit_price?: true
+    total_price?: true
+    group_id?: true
+    created_at?: true
+    modified_at?: true
+    _all?: true
+  }
+
+  export type Hsconsumer_productsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsconsumer_products to aggregate.
+     */
+    where?: hsconsumer_productsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsconsumer_products to fetch.
+     */
+    orderBy?: hsconsumer_productsOrderByWithRelationInput | hsconsumer_productsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: hsconsumer_productsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsconsumer_products from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsconsumer_products.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned hsconsumer_products
+    **/
+    _count?: true | Hsconsumer_productsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Hsconsumer_productsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Hsconsumer_productsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Hsconsumer_productsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Hsconsumer_productsMaxAggregateInputType
+  }
+
+  export type GetHsconsumer_productsAggregateType<T extends Hsconsumer_productsAggregateArgs> = {
+        [P in keyof T & keyof AggregateHsconsumer_products]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHsconsumer_products[P]>
+      : GetScalarType<T[P], AggregateHsconsumer_products[P]>
+  }
+
+
+
+
+  export type hsconsumer_productsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsconsumer_productsWhereInput
+    orderBy?: hsconsumer_productsOrderByWithAggregationInput | hsconsumer_productsOrderByWithAggregationInput[]
+    by: Hsconsumer_productsScalarFieldEnum[] | Hsconsumer_productsScalarFieldEnum
+    having?: hsconsumer_productsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Hsconsumer_productsCountAggregateInputType | true
+    _avg?: Hsconsumer_productsAvgAggregateInputType
+    _sum?: Hsconsumer_productsSumAggregateInputType
+    _min?: Hsconsumer_productsMinAggregateInputType
+    _max?: Hsconsumer_productsMaxAggregateInputType
+  }
+
+  export type Hsconsumer_productsGroupByOutputType = {
+    id: number
+    consumption_id: number | null
+    employee_id: number
+    branch_id: number
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal
+    total_price: Decimal
+    group_id: number
+    created_at: Date
+    modified_at: Date
+    _count: Hsconsumer_productsCountAggregateOutputType | null
+    _avg: Hsconsumer_productsAvgAggregateOutputType | null
+    _sum: Hsconsumer_productsSumAggregateOutputType | null
+    _min: Hsconsumer_productsMinAggregateOutputType | null
+    _max: Hsconsumer_productsMaxAggregateOutputType | null
+  }
+
+  type GetHsconsumer_productsGroupByPayload<T extends hsconsumer_productsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Hsconsumer_productsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Hsconsumer_productsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Hsconsumer_productsGroupByOutputType[P]>
+            : GetScalarType<T[P], Hsconsumer_productsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type hsconsumer_productsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    consumption_id?: boolean
+    employee_id?: boolean
+    branch_id?: boolean
+    product_code?: boolean
+    auxiliary_code?: boolean
+    quantity?: boolean
+    unit_price?: boolean
+    total_price?: boolean
+    group_id?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    hsconsumption_note?: boolean | hsconsumer_products$hsconsumption_noteArgs<ExtArgs>
+  }, ExtArgs["result"]["hsconsumer_products"]>
+
+  export type hsconsumer_productsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    consumption_id?: boolean
+    employee_id?: boolean
+    branch_id?: boolean
+    product_code?: boolean
+    auxiliary_code?: boolean
+    quantity?: boolean
+    unit_price?: boolean
+    total_price?: boolean
+    group_id?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    hsconsumption_note?: boolean | hsconsumer_products$hsconsumption_noteArgs<ExtArgs>
+  }, ExtArgs["result"]["hsconsumer_products"]>
+
+  export type hsconsumer_productsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    consumption_id?: boolean
+    employee_id?: boolean
+    branch_id?: boolean
+    product_code?: boolean
+    auxiliary_code?: boolean
+    quantity?: boolean
+    unit_price?: boolean
+    total_price?: boolean
+    group_id?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    hsconsumption_note?: boolean | hsconsumer_products$hsconsumption_noteArgs<ExtArgs>
+  }, ExtArgs["result"]["hsconsumer_products"]>
+
+  export type hsconsumer_productsSelectScalar = {
+    id?: boolean
+    consumption_id?: boolean
+    employee_id?: boolean
+    branch_id?: boolean
+    product_code?: boolean
+    auxiliary_code?: boolean
+    quantity?: boolean
+    unit_price?: boolean
+    total_price?: boolean
+    group_id?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+  }
+
+  export type hsconsumer_productsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "consumption_id" | "employee_id" | "branch_id" | "product_code" | "auxiliary_code" | "quantity" | "unit_price" | "total_price" | "group_id" | "created_at" | "modified_at", ExtArgs["result"]["hsconsumer_products"]>
+  export type hsconsumer_productsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    hsconsumption_note?: boolean | hsconsumer_products$hsconsumption_noteArgs<ExtArgs>
+  }
+  export type hsconsumer_productsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    hsconsumption_note?: boolean | hsconsumer_products$hsconsumption_noteArgs<ExtArgs>
+  }
+  export type hsconsumer_productsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsemployees?: boolean | hsemployeesDefaultArgs<ExtArgs>
+    hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    hsconsumption_note?: boolean | hsconsumer_products$hsconsumption_noteArgs<ExtArgs>
+  }
+
+  export type $hsconsumer_productsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "hsconsumer_products"
+    objects: {
+      hsemployees: Prisma.$hsemployeesPayload<ExtArgs>
+      hsconsumer_groups: Prisma.$hsconsumer_groupsPayload<ExtArgs>
+      branch: Prisma.$hsbranchesPayload<ExtArgs>
+      hsconsumption_note: Prisma.$hsconsumption_notePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      consumption_id: number | null
+      employee_id: number
+      branch_id: number
+      product_code: number
+      auxiliary_code: string
+      quantity: number
+      unit_price: Prisma.Decimal
+      total_price: Prisma.Decimal
+      group_id: number
+      created_at: Date
+      modified_at: Date
+    }, ExtArgs["result"]["hsconsumer_products"]>
+    composites: {}
+  }
+
+  type hsconsumer_productsGetPayload<S extends boolean | null | undefined | hsconsumer_productsDefaultArgs> = $Result.GetResult<Prisma.$hsconsumer_productsPayload, S>
+
+  type hsconsumer_productsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<hsconsumer_productsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Hsconsumer_productsCountAggregateInputType | true
+    }
+
+  export interface hsconsumer_productsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hsconsumer_products'], meta: { name: 'hsconsumer_products' } }
+    /**
+     * Find zero or one Hsconsumer_products that matches the filter.
+     * @param {hsconsumer_productsFindUniqueArgs} args - Arguments to find a Hsconsumer_products
+     * @example
+     * // Get one Hsconsumer_products
+     * const hsconsumer_products = await prisma.hsconsumer_products.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends hsconsumer_productsFindUniqueArgs>(args: SelectSubset<T, hsconsumer_productsFindUniqueArgs<ExtArgs>>): Prisma__hsconsumer_productsClient<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hsconsumer_products that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {hsconsumer_productsFindUniqueOrThrowArgs} args - Arguments to find a Hsconsumer_products
+     * @example
+     * // Get one Hsconsumer_products
+     * const hsconsumer_products = await prisma.hsconsumer_products.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends hsconsumer_productsFindUniqueOrThrowArgs>(args: SelectSubset<T, hsconsumer_productsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hsconsumer_productsClient<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsconsumer_products that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumer_productsFindFirstArgs} args - Arguments to find a Hsconsumer_products
+     * @example
+     * // Get one Hsconsumer_products
+     * const hsconsumer_products = await prisma.hsconsumer_products.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends hsconsumer_productsFindFirstArgs>(args?: SelectSubset<T, hsconsumer_productsFindFirstArgs<ExtArgs>>): Prisma__hsconsumer_productsClient<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsconsumer_products that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumer_productsFindFirstOrThrowArgs} args - Arguments to find a Hsconsumer_products
+     * @example
+     * // Get one Hsconsumer_products
+     * const hsconsumer_products = await prisma.hsconsumer_products.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends hsconsumer_productsFindFirstOrThrowArgs>(args?: SelectSubset<T, hsconsumer_productsFindFirstOrThrowArgs<ExtArgs>>): Prisma__hsconsumer_productsClient<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hsconsumer_products that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumer_productsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hsconsumer_products
+     * const hsconsumer_products = await prisma.hsconsumer_products.findMany()
+     * 
+     * // Get first 10 Hsconsumer_products
+     * const hsconsumer_products = await prisma.hsconsumer_products.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hsconsumer_productsWithIdOnly = await prisma.hsconsumer_products.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends hsconsumer_productsFindManyArgs>(args?: SelectSubset<T, hsconsumer_productsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hsconsumer_products.
+     * @param {hsconsumer_productsCreateArgs} args - Arguments to create a Hsconsumer_products.
+     * @example
+     * // Create one Hsconsumer_products
+     * const Hsconsumer_products = await prisma.hsconsumer_products.create({
+     *   data: {
+     *     // ... data to create a Hsconsumer_products
+     *   }
+     * })
+     * 
+     */
+    create<T extends hsconsumer_productsCreateArgs>(args: SelectSubset<T, hsconsumer_productsCreateArgs<ExtArgs>>): Prisma__hsconsumer_productsClient<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hsconsumer_products.
+     * @param {hsconsumer_productsCreateManyArgs} args - Arguments to create many Hsconsumer_products.
+     * @example
+     * // Create many Hsconsumer_products
+     * const hsconsumer_products = await prisma.hsconsumer_products.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends hsconsumer_productsCreateManyArgs>(args?: SelectSubset<T, hsconsumer_productsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hsconsumer_products and returns the data saved in the database.
+     * @param {hsconsumer_productsCreateManyAndReturnArgs} args - Arguments to create many Hsconsumer_products.
+     * @example
+     * // Create many Hsconsumer_products
+     * const hsconsumer_products = await prisma.hsconsumer_products.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hsconsumer_products and only return the `id`
+     * const hsconsumer_productsWithIdOnly = await prisma.hsconsumer_products.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends hsconsumer_productsCreateManyAndReturnArgs>(args?: SelectSubset<T, hsconsumer_productsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hsconsumer_products.
+     * @param {hsconsumer_productsDeleteArgs} args - Arguments to delete one Hsconsumer_products.
+     * @example
+     * // Delete one Hsconsumer_products
+     * const Hsconsumer_products = await prisma.hsconsumer_products.delete({
+     *   where: {
+     *     // ... filter to delete one Hsconsumer_products
+     *   }
+     * })
+     * 
+     */
+    delete<T extends hsconsumer_productsDeleteArgs>(args: SelectSubset<T, hsconsumer_productsDeleteArgs<ExtArgs>>): Prisma__hsconsumer_productsClient<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hsconsumer_products.
+     * @param {hsconsumer_productsUpdateArgs} args - Arguments to update one Hsconsumer_products.
+     * @example
+     * // Update one Hsconsumer_products
+     * const hsconsumer_products = await prisma.hsconsumer_products.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends hsconsumer_productsUpdateArgs>(args: SelectSubset<T, hsconsumer_productsUpdateArgs<ExtArgs>>): Prisma__hsconsumer_productsClient<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hsconsumer_products.
+     * @param {hsconsumer_productsDeleteManyArgs} args - Arguments to filter Hsconsumer_products to delete.
+     * @example
+     * // Delete a few Hsconsumer_products
+     * const { count } = await prisma.hsconsumer_products.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends hsconsumer_productsDeleteManyArgs>(args?: SelectSubset<T, hsconsumer_productsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsconsumer_products.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumer_productsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hsconsumer_products
+     * const hsconsumer_products = await prisma.hsconsumer_products.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends hsconsumer_productsUpdateManyArgs>(args: SelectSubset<T, hsconsumer_productsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsconsumer_products and returns the data updated in the database.
+     * @param {hsconsumer_productsUpdateManyAndReturnArgs} args - Arguments to update many Hsconsumer_products.
+     * @example
+     * // Update many Hsconsumer_products
+     * const hsconsumer_products = await prisma.hsconsumer_products.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hsconsumer_products and only return the `id`
+     * const hsconsumer_productsWithIdOnly = await prisma.hsconsumer_products.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends hsconsumer_productsUpdateManyAndReturnArgs>(args: SelectSubset<T, hsconsumer_productsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hsconsumer_products.
+     * @param {hsconsumer_productsUpsertArgs} args - Arguments to update or create a Hsconsumer_products.
+     * @example
+     * // Update or create a Hsconsumer_products
+     * const hsconsumer_products = await prisma.hsconsumer_products.upsert({
+     *   create: {
+     *     // ... data to create a Hsconsumer_products
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hsconsumer_products we want to update
+     *   }
+     * })
+     */
+    upsert<T extends hsconsumer_productsUpsertArgs>(args: SelectSubset<T, hsconsumer_productsUpsertArgs<ExtArgs>>): Prisma__hsconsumer_productsClient<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hsconsumer_products.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumer_productsCountArgs} args - Arguments to filter Hsconsumer_products to count.
+     * @example
+     * // Count the number of Hsconsumer_products
+     * const count = await prisma.hsconsumer_products.count({
+     *   where: {
+     *     // ... the filter for the Hsconsumer_products we want to count
+     *   }
+     * })
+    **/
+    count<T extends hsconsumer_productsCountArgs>(
+      args?: Subset<T, hsconsumer_productsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Hsconsumer_productsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hsconsumer_products.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Hsconsumer_productsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Hsconsumer_productsAggregateArgs>(args: Subset<T, Hsconsumer_productsAggregateArgs>): Prisma.PrismaPromise<GetHsconsumer_productsAggregateType<T>>
+
+    /**
+     * Group by Hsconsumer_products.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumer_productsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends hsconsumer_productsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: hsconsumer_productsGroupByArgs['orderBy'] }
+        : { orderBy?: hsconsumer_productsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, hsconsumer_productsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHsconsumer_productsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the hsconsumer_products model
+   */
+  readonly fields: hsconsumer_productsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for hsconsumer_products.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__hsconsumer_productsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    hsemployees<T extends hsemployeesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsemployeesDefaultArgs<ExtArgs>>): Prisma__hsemployeesClient<$Result.GetResult<Prisma.$hsemployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    hsconsumer_groups<T extends hsconsumer_groupsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsconsumer_groupsDefaultArgs<ExtArgs>>): Prisma__hsconsumer_groupsClient<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    branch<T extends hsbranchesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsbranchesDefaultArgs<ExtArgs>>): Prisma__hsbranchesClient<$Result.GetResult<Prisma.$hsbranchesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    hsconsumption_note<T extends hsconsumer_products$hsconsumption_noteArgs<ExtArgs> = {}>(args?: Subset<T, hsconsumer_products$hsconsumption_noteArgs<ExtArgs>>): Prisma__hsconsumption_noteClient<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the hsconsumer_products model
+   */
+  interface hsconsumer_productsFieldRefs {
+    readonly id: FieldRef<"hsconsumer_products", 'Int'>
+    readonly consumption_id: FieldRef<"hsconsumer_products", 'Int'>
+    readonly employee_id: FieldRef<"hsconsumer_products", 'Int'>
+    readonly branch_id: FieldRef<"hsconsumer_products", 'Int'>
+    readonly product_code: FieldRef<"hsconsumer_products", 'Int'>
+    readonly auxiliary_code: FieldRef<"hsconsumer_products", 'String'>
+    readonly quantity: FieldRef<"hsconsumer_products", 'Int'>
+    readonly unit_price: FieldRef<"hsconsumer_products", 'Decimal'>
+    readonly total_price: FieldRef<"hsconsumer_products", 'Decimal'>
+    readonly group_id: FieldRef<"hsconsumer_products", 'Int'>
+    readonly created_at: FieldRef<"hsconsumer_products", 'DateTime'>
+    readonly modified_at: FieldRef<"hsconsumer_products", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * hsconsumer_products findUnique
+   */
+  export type hsconsumer_productsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumer_products to fetch.
+     */
+    where: hsconsumer_productsWhereUniqueInput
+  }
+
+  /**
+   * hsconsumer_products findUniqueOrThrow
+   */
+  export type hsconsumer_productsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumer_products to fetch.
+     */
+    where: hsconsumer_productsWhereUniqueInput
+  }
+
+  /**
+   * hsconsumer_products findFirst
+   */
+  export type hsconsumer_productsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumer_products to fetch.
+     */
+    where?: hsconsumer_productsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsconsumer_products to fetch.
+     */
+    orderBy?: hsconsumer_productsOrderByWithRelationInput | hsconsumer_productsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsconsumer_products.
+     */
+    cursor?: hsconsumer_productsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsconsumer_products from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsconsumer_products.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsconsumer_products.
+     */
+    distinct?: Hsconsumer_productsScalarFieldEnum | Hsconsumer_productsScalarFieldEnum[]
+  }
+
+  /**
+   * hsconsumer_products findFirstOrThrow
+   */
+  export type hsconsumer_productsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumer_products to fetch.
+     */
+    where?: hsconsumer_productsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsconsumer_products to fetch.
+     */
+    orderBy?: hsconsumer_productsOrderByWithRelationInput | hsconsumer_productsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsconsumer_products.
+     */
+    cursor?: hsconsumer_productsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsconsumer_products from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsconsumer_products.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsconsumer_products.
+     */
+    distinct?: Hsconsumer_productsScalarFieldEnum | Hsconsumer_productsScalarFieldEnum[]
+  }
+
+  /**
+   * hsconsumer_products findMany
+   */
+  export type hsconsumer_productsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumer_products to fetch.
+     */
+    where?: hsconsumer_productsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsconsumer_products to fetch.
+     */
+    orderBy?: hsconsumer_productsOrderByWithRelationInput | hsconsumer_productsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing hsconsumer_products.
+     */
+    cursor?: hsconsumer_productsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsconsumer_products from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsconsumer_products.
+     */
+    skip?: number
+    distinct?: Hsconsumer_productsScalarFieldEnum | Hsconsumer_productsScalarFieldEnum[]
+  }
+
+  /**
+   * hsconsumer_products create
+   */
+  export type hsconsumer_productsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a hsconsumer_products.
+     */
+    data: XOR<hsconsumer_productsCreateInput, hsconsumer_productsUncheckedCreateInput>
+  }
+
+  /**
+   * hsconsumer_products createMany
+   */
+  export type hsconsumer_productsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many hsconsumer_products.
+     */
+    data: hsconsumer_productsCreateManyInput | hsconsumer_productsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hsconsumer_products createManyAndReturn
+   */
+  export type hsconsumer_productsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * The data used to create many hsconsumer_products.
+     */
+    data: hsconsumer_productsCreateManyInput | hsconsumer_productsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hsconsumer_products update
+   */
+  export type hsconsumer_productsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a hsconsumer_products.
+     */
+    data: XOR<hsconsumer_productsUpdateInput, hsconsumer_productsUncheckedUpdateInput>
+    /**
+     * Choose, which hsconsumer_products to update.
+     */
+    where: hsconsumer_productsWhereUniqueInput
+  }
+
+  /**
+   * hsconsumer_products updateMany
+   */
+  export type hsconsumer_productsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update hsconsumer_products.
+     */
+    data: XOR<hsconsumer_productsUpdateManyMutationInput, hsconsumer_productsUncheckedUpdateManyInput>
+    /**
+     * Filter which hsconsumer_products to update
+     */
+    where?: hsconsumer_productsWhereInput
+    /**
+     * Limit how many hsconsumer_products to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsconsumer_products updateManyAndReturn
+   */
+  export type hsconsumer_productsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * The data used to update hsconsumer_products.
+     */
+    data: XOR<hsconsumer_productsUpdateManyMutationInput, hsconsumer_productsUncheckedUpdateManyInput>
+    /**
+     * Filter which hsconsumer_products to update
+     */
+    where?: hsconsumer_productsWhereInput
+    /**
+     * Limit how many hsconsumer_products to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hsconsumer_products upsert
+   */
+  export type hsconsumer_productsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the hsconsumer_products to update in case it exists.
+     */
+    where: hsconsumer_productsWhereUniqueInput
+    /**
+     * In case the hsconsumer_products found by the `where` argument doesn't exist, create a new hsconsumer_products with this data.
+     */
+    create: XOR<hsconsumer_productsCreateInput, hsconsumer_productsUncheckedCreateInput>
+    /**
+     * In case the hsconsumer_products was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<hsconsumer_productsUpdateInput, hsconsumer_productsUncheckedUpdateInput>
+  }
+
+  /**
+   * hsconsumer_products delete
+   */
+  export type hsconsumer_productsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    /**
+     * Filter which hsconsumer_products to delete.
+     */
+    where: hsconsumer_productsWhereUniqueInput
+  }
+
+  /**
+   * hsconsumer_products deleteMany
+   */
+  export type hsconsumer_productsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsconsumer_products to delete
+     */
+    where?: hsconsumer_productsWhereInput
+    /**
+     * Limit how many hsconsumer_products to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsconsumer_products.hsconsumption_note
+   */
+  export type hsconsumer_products$hsconsumption_noteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+    where?: hsconsumption_noteWhereInput
+  }
+
+  /**
+   * hsconsumer_products without action
+   */
+  export type hsconsumer_productsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model hsconsumption_note
+   */
+
+  export type AggregateHsconsumption_note = {
+    _count: Hsconsumption_noteCountAggregateOutputType | null
+    _avg: Hsconsumption_noteAvgAggregateOutputType | null
+    _sum: Hsconsumption_noteSumAggregateOutputType | null
+    _min: Hsconsumption_noteMinAggregateOutputType | null
+    _max: Hsconsumption_noteMaxAggregateOutputType | null
+  }
+
+  export type Hsconsumption_noteAvgAggregateOutputType = {
+    id: number | null
+    branch_id: number | null
+    group_id: number | null
+    total_price: Decimal | null
+  }
+
+  export type Hsconsumption_noteSumAggregateOutputType = {
+    id: number | null
+    branch_id: number | null
+    group_id: number | null
+    total_price: Decimal | null
+  }
+
+  export type Hsconsumption_noteMinAggregateOutputType = {
+    id: number | null
+    branch_id: number | null
+    group_id: number | null
+    total_price: Decimal | null
+    created_at: Date | null
+    modified_at: Date | null
+  }
+
+  export type Hsconsumption_noteMaxAggregateOutputType = {
+    id: number | null
+    branch_id: number | null
+    group_id: number | null
+    total_price: Decimal | null
+    created_at: Date | null
+    modified_at: Date | null
+  }
+
+  export type Hsconsumption_noteCountAggregateOutputType = {
+    id: number
+    branch_id: number
+    group_id: number
+    total_price: number
+    created_at: number
+    modified_at: number
+    _all: number
+  }
+
+
+  export type Hsconsumption_noteAvgAggregateInputType = {
+    id?: true
+    branch_id?: true
+    group_id?: true
+    total_price?: true
+  }
+
+  export type Hsconsumption_noteSumAggregateInputType = {
+    id?: true
+    branch_id?: true
+    group_id?: true
+    total_price?: true
+  }
+
+  export type Hsconsumption_noteMinAggregateInputType = {
+    id?: true
+    branch_id?: true
+    group_id?: true
+    total_price?: true
+    created_at?: true
+    modified_at?: true
+  }
+
+  export type Hsconsumption_noteMaxAggregateInputType = {
+    id?: true
+    branch_id?: true
+    group_id?: true
+    total_price?: true
+    created_at?: true
+    modified_at?: true
+  }
+
+  export type Hsconsumption_noteCountAggregateInputType = {
+    id?: true
+    branch_id?: true
+    group_id?: true
+    total_price?: true
+    created_at?: true
+    modified_at?: true
+    _all?: true
+  }
+
+  export type Hsconsumption_noteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsconsumption_note to aggregate.
+     */
+    where?: hsconsumption_noteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsconsumption_notes to fetch.
+     */
+    orderBy?: hsconsumption_noteOrderByWithRelationInput | hsconsumption_noteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: hsconsumption_noteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsconsumption_notes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsconsumption_notes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned hsconsumption_notes
+    **/
+    _count?: true | Hsconsumption_noteCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Hsconsumption_noteAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Hsconsumption_noteSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Hsconsumption_noteMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Hsconsumption_noteMaxAggregateInputType
+  }
+
+  export type GetHsconsumption_noteAggregateType<T extends Hsconsumption_noteAggregateArgs> = {
+        [P in keyof T & keyof AggregateHsconsumption_note]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHsconsumption_note[P]>
+      : GetScalarType<T[P], AggregateHsconsumption_note[P]>
+  }
+
+
+
+
+  export type hsconsumption_noteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsconsumption_noteWhereInput
+    orderBy?: hsconsumption_noteOrderByWithAggregationInput | hsconsumption_noteOrderByWithAggregationInput[]
+    by: Hsconsumption_noteScalarFieldEnum[] | Hsconsumption_noteScalarFieldEnum
+    having?: hsconsumption_noteScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Hsconsumption_noteCountAggregateInputType | true
+    _avg?: Hsconsumption_noteAvgAggregateInputType
+    _sum?: Hsconsumption_noteSumAggregateInputType
+    _min?: Hsconsumption_noteMinAggregateInputType
+    _max?: Hsconsumption_noteMaxAggregateInputType
+  }
+
+  export type Hsconsumption_noteGroupByOutputType = {
+    id: number
+    branch_id: number
+    group_id: number
+    total_price: Decimal
+    created_at: Date
+    modified_at: Date
+    _count: Hsconsumption_noteCountAggregateOutputType | null
+    _avg: Hsconsumption_noteAvgAggregateOutputType | null
+    _sum: Hsconsumption_noteSumAggregateOutputType | null
+    _min: Hsconsumption_noteMinAggregateOutputType | null
+    _max: Hsconsumption_noteMaxAggregateOutputType | null
+  }
+
+  type GetHsconsumption_noteGroupByPayload<T extends hsconsumption_noteGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Hsconsumption_noteGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Hsconsumption_noteGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Hsconsumption_noteGroupByOutputType[P]>
+            : GetScalarType<T[P], Hsconsumption_noteGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type hsconsumption_noteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    branch_id?: boolean
+    group_id?: boolean
+    total_price?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    hsconsumerProducts?: boolean | hsconsumption_note$hsconsumerProductsArgs<ExtArgs>
+    _count?: boolean | Hsconsumption_noteCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsconsumption_note"]>
+
+  export type hsconsumption_noteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    branch_id?: boolean
+    group_id?: boolean
+    total_price?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsconsumption_note"]>
+
+  export type hsconsumption_noteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    branch_id?: boolean
+    group_id?: boolean
+    total_price?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsconsumption_note"]>
+
+  export type hsconsumption_noteSelectScalar = {
+    id?: boolean
+    branch_id?: boolean
+    group_id?: boolean
+    total_price?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+  }
+
+  export type hsconsumption_noteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branch_id" | "group_id" | "total_price" | "created_at" | "modified_at", ExtArgs["result"]["hsconsumption_note"]>
+  export type hsconsumption_noteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+    hsconsumerProducts?: boolean | hsconsumption_note$hsconsumerProductsArgs<ExtArgs>
+    _count?: boolean | Hsconsumption_noteCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type hsconsumption_noteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+  }
+  export type hsconsumption_noteIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
+    branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
+  }
+
+  export type $hsconsumption_notePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "hsconsumption_note"
+    objects: {
+      hsconsumer_groups: Prisma.$hsconsumer_groupsPayload<ExtArgs>
+      branch: Prisma.$hsbranchesPayload<ExtArgs>
+      hsconsumerProducts: Prisma.$hsconsumer_productsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      branch_id: number
+      group_id: number
+      total_price: Prisma.Decimal
+      created_at: Date
+      modified_at: Date
+    }, ExtArgs["result"]["hsconsumption_note"]>
+    composites: {}
+  }
+
+  type hsconsumption_noteGetPayload<S extends boolean | null | undefined | hsconsumption_noteDefaultArgs> = $Result.GetResult<Prisma.$hsconsumption_notePayload, S>
+
+  type hsconsumption_noteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<hsconsumption_noteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Hsconsumption_noteCountAggregateInputType | true
+    }
+
+  export interface hsconsumption_noteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hsconsumption_note'], meta: { name: 'hsconsumption_note' } }
+    /**
+     * Find zero or one Hsconsumption_note that matches the filter.
+     * @param {hsconsumption_noteFindUniqueArgs} args - Arguments to find a Hsconsumption_note
+     * @example
+     * // Get one Hsconsumption_note
+     * const hsconsumption_note = await prisma.hsconsumption_note.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends hsconsumption_noteFindUniqueArgs>(args: SelectSubset<T, hsconsumption_noteFindUniqueArgs<ExtArgs>>): Prisma__hsconsumption_noteClient<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hsconsumption_note that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {hsconsumption_noteFindUniqueOrThrowArgs} args - Arguments to find a Hsconsumption_note
+     * @example
+     * // Get one Hsconsumption_note
+     * const hsconsumption_note = await prisma.hsconsumption_note.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends hsconsumption_noteFindUniqueOrThrowArgs>(args: SelectSubset<T, hsconsumption_noteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hsconsumption_noteClient<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsconsumption_note that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumption_noteFindFirstArgs} args - Arguments to find a Hsconsumption_note
+     * @example
+     * // Get one Hsconsumption_note
+     * const hsconsumption_note = await prisma.hsconsumption_note.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends hsconsumption_noteFindFirstArgs>(args?: SelectSubset<T, hsconsumption_noteFindFirstArgs<ExtArgs>>): Prisma__hsconsumption_noteClient<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsconsumption_note that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumption_noteFindFirstOrThrowArgs} args - Arguments to find a Hsconsumption_note
+     * @example
+     * // Get one Hsconsumption_note
+     * const hsconsumption_note = await prisma.hsconsumption_note.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends hsconsumption_noteFindFirstOrThrowArgs>(args?: SelectSubset<T, hsconsumption_noteFindFirstOrThrowArgs<ExtArgs>>): Prisma__hsconsumption_noteClient<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hsconsumption_notes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumption_noteFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hsconsumption_notes
+     * const hsconsumption_notes = await prisma.hsconsumption_note.findMany()
+     * 
+     * // Get first 10 Hsconsumption_notes
+     * const hsconsumption_notes = await prisma.hsconsumption_note.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hsconsumption_noteWithIdOnly = await prisma.hsconsumption_note.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends hsconsumption_noteFindManyArgs>(args?: SelectSubset<T, hsconsumption_noteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hsconsumption_note.
+     * @param {hsconsumption_noteCreateArgs} args - Arguments to create a Hsconsumption_note.
+     * @example
+     * // Create one Hsconsumption_note
+     * const Hsconsumption_note = await prisma.hsconsumption_note.create({
+     *   data: {
+     *     // ... data to create a Hsconsumption_note
+     *   }
+     * })
+     * 
+     */
+    create<T extends hsconsumption_noteCreateArgs>(args: SelectSubset<T, hsconsumption_noteCreateArgs<ExtArgs>>): Prisma__hsconsumption_noteClient<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hsconsumption_notes.
+     * @param {hsconsumption_noteCreateManyArgs} args - Arguments to create many Hsconsumption_notes.
+     * @example
+     * // Create many Hsconsumption_notes
+     * const hsconsumption_note = await prisma.hsconsumption_note.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends hsconsumption_noteCreateManyArgs>(args?: SelectSubset<T, hsconsumption_noteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hsconsumption_notes and returns the data saved in the database.
+     * @param {hsconsumption_noteCreateManyAndReturnArgs} args - Arguments to create many Hsconsumption_notes.
+     * @example
+     * // Create many Hsconsumption_notes
+     * const hsconsumption_note = await prisma.hsconsumption_note.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hsconsumption_notes and only return the `id`
+     * const hsconsumption_noteWithIdOnly = await prisma.hsconsumption_note.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends hsconsumption_noteCreateManyAndReturnArgs>(args?: SelectSubset<T, hsconsumption_noteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hsconsumption_note.
+     * @param {hsconsumption_noteDeleteArgs} args - Arguments to delete one Hsconsumption_note.
+     * @example
+     * // Delete one Hsconsumption_note
+     * const Hsconsumption_note = await prisma.hsconsumption_note.delete({
+     *   where: {
+     *     // ... filter to delete one Hsconsumption_note
+     *   }
+     * })
+     * 
+     */
+    delete<T extends hsconsumption_noteDeleteArgs>(args: SelectSubset<T, hsconsumption_noteDeleteArgs<ExtArgs>>): Prisma__hsconsumption_noteClient<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hsconsumption_note.
+     * @param {hsconsumption_noteUpdateArgs} args - Arguments to update one Hsconsumption_note.
+     * @example
+     * // Update one Hsconsumption_note
+     * const hsconsumption_note = await prisma.hsconsumption_note.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends hsconsumption_noteUpdateArgs>(args: SelectSubset<T, hsconsumption_noteUpdateArgs<ExtArgs>>): Prisma__hsconsumption_noteClient<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hsconsumption_notes.
+     * @param {hsconsumption_noteDeleteManyArgs} args - Arguments to filter Hsconsumption_notes to delete.
+     * @example
+     * // Delete a few Hsconsumption_notes
+     * const { count } = await prisma.hsconsumption_note.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends hsconsumption_noteDeleteManyArgs>(args?: SelectSubset<T, hsconsumption_noteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsconsumption_notes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumption_noteUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hsconsumption_notes
+     * const hsconsumption_note = await prisma.hsconsumption_note.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends hsconsumption_noteUpdateManyArgs>(args: SelectSubset<T, hsconsumption_noteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsconsumption_notes and returns the data updated in the database.
+     * @param {hsconsumption_noteUpdateManyAndReturnArgs} args - Arguments to update many Hsconsumption_notes.
+     * @example
+     * // Update many Hsconsumption_notes
+     * const hsconsumption_note = await prisma.hsconsumption_note.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hsconsumption_notes and only return the `id`
+     * const hsconsumption_noteWithIdOnly = await prisma.hsconsumption_note.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends hsconsumption_noteUpdateManyAndReturnArgs>(args: SelectSubset<T, hsconsumption_noteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hsconsumption_note.
+     * @param {hsconsumption_noteUpsertArgs} args - Arguments to update or create a Hsconsumption_note.
+     * @example
+     * // Update or create a Hsconsumption_note
+     * const hsconsumption_note = await prisma.hsconsumption_note.upsert({
+     *   create: {
+     *     // ... data to create a Hsconsumption_note
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hsconsumption_note we want to update
+     *   }
+     * })
+     */
+    upsert<T extends hsconsumption_noteUpsertArgs>(args: SelectSubset<T, hsconsumption_noteUpsertArgs<ExtArgs>>): Prisma__hsconsumption_noteClient<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hsconsumption_notes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumption_noteCountArgs} args - Arguments to filter Hsconsumption_notes to count.
+     * @example
+     * // Count the number of Hsconsumption_notes
+     * const count = await prisma.hsconsumption_note.count({
+     *   where: {
+     *     // ... the filter for the Hsconsumption_notes we want to count
+     *   }
+     * })
+    **/
+    count<T extends hsconsumption_noteCountArgs>(
+      args?: Subset<T, hsconsumption_noteCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Hsconsumption_noteCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hsconsumption_note.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Hsconsumption_noteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Hsconsumption_noteAggregateArgs>(args: Subset<T, Hsconsumption_noteAggregateArgs>): Prisma.PrismaPromise<GetHsconsumption_noteAggregateType<T>>
+
+    /**
+     * Group by Hsconsumption_note.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumption_noteGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends hsconsumption_noteGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: hsconsumption_noteGroupByArgs['orderBy'] }
+        : { orderBy?: hsconsumption_noteGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, hsconsumption_noteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHsconsumption_noteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the hsconsumption_note model
+   */
+  readonly fields: hsconsumption_noteFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for hsconsumption_note.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__hsconsumption_noteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    hsconsumer_groups<T extends hsconsumer_groupsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsconsumer_groupsDefaultArgs<ExtArgs>>): Prisma__hsconsumer_groupsClient<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    branch<T extends hsbranchesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsbranchesDefaultArgs<ExtArgs>>): Prisma__hsbranchesClient<$Result.GetResult<Prisma.$hsbranchesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    hsconsumerProducts<T extends hsconsumption_note$hsconsumerProductsArgs<ExtArgs> = {}>(args?: Subset<T, hsconsumption_note$hsconsumerProductsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the hsconsumption_note model
+   */
+  interface hsconsumption_noteFieldRefs {
+    readonly id: FieldRef<"hsconsumption_note", 'Int'>
+    readonly branch_id: FieldRef<"hsconsumption_note", 'Int'>
+    readonly group_id: FieldRef<"hsconsumption_note", 'Int'>
+    readonly total_price: FieldRef<"hsconsumption_note", 'Decimal'>
+    readonly created_at: FieldRef<"hsconsumption_note", 'DateTime'>
+    readonly modified_at: FieldRef<"hsconsumption_note", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * hsconsumption_note findUnique
+   */
+  export type hsconsumption_noteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumption_note to fetch.
+     */
+    where: hsconsumption_noteWhereUniqueInput
+  }
+
+  /**
+   * hsconsumption_note findUniqueOrThrow
+   */
+  export type hsconsumption_noteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumption_note to fetch.
+     */
+    where: hsconsumption_noteWhereUniqueInput
+  }
+
+  /**
+   * hsconsumption_note findFirst
+   */
+  export type hsconsumption_noteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumption_note to fetch.
+     */
+    where?: hsconsumption_noteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsconsumption_notes to fetch.
+     */
+    orderBy?: hsconsumption_noteOrderByWithRelationInput | hsconsumption_noteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsconsumption_notes.
+     */
+    cursor?: hsconsumption_noteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsconsumption_notes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsconsumption_notes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsconsumption_notes.
+     */
+    distinct?: Hsconsumption_noteScalarFieldEnum | Hsconsumption_noteScalarFieldEnum[]
+  }
+
+  /**
+   * hsconsumption_note findFirstOrThrow
+   */
+  export type hsconsumption_noteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumption_note to fetch.
+     */
+    where?: hsconsumption_noteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsconsumption_notes to fetch.
+     */
+    orderBy?: hsconsumption_noteOrderByWithRelationInput | hsconsumption_noteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsconsumption_notes.
+     */
+    cursor?: hsconsumption_noteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsconsumption_notes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsconsumption_notes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsconsumption_notes.
+     */
+    distinct?: Hsconsumption_noteScalarFieldEnum | Hsconsumption_noteScalarFieldEnum[]
+  }
+
+  /**
+   * hsconsumption_note findMany
+   */
+  export type hsconsumption_noteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumption_notes to fetch.
+     */
+    where?: hsconsumption_noteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsconsumption_notes to fetch.
+     */
+    orderBy?: hsconsumption_noteOrderByWithRelationInput | hsconsumption_noteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing hsconsumption_notes.
+     */
+    cursor?: hsconsumption_noteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsconsumption_notes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsconsumption_notes.
+     */
+    skip?: number
+    distinct?: Hsconsumption_noteScalarFieldEnum | Hsconsumption_noteScalarFieldEnum[]
+  }
+
+  /**
+   * hsconsumption_note create
+   */
+  export type hsconsumption_noteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+    /**
+     * The data needed to create a hsconsumption_note.
+     */
+    data: XOR<hsconsumption_noteCreateInput, hsconsumption_noteUncheckedCreateInput>
+  }
+
+  /**
+   * hsconsumption_note createMany
+   */
+  export type hsconsumption_noteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many hsconsumption_notes.
+     */
+    data: hsconsumption_noteCreateManyInput | hsconsumption_noteCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hsconsumption_note createManyAndReturn
+   */
+  export type hsconsumption_noteCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * The data used to create many hsconsumption_notes.
+     */
+    data: hsconsumption_noteCreateManyInput | hsconsumption_noteCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hsconsumption_note update
+   */
+  export type hsconsumption_noteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+    /**
+     * The data needed to update a hsconsumption_note.
+     */
+    data: XOR<hsconsumption_noteUpdateInput, hsconsumption_noteUncheckedUpdateInput>
+    /**
+     * Choose, which hsconsumption_note to update.
+     */
+    where: hsconsumption_noteWhereUniqueInput
+  }
+
+  /**
+   * hsconsumption_note updateMany
+   */
+  export type hsconsumption_noteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update hsconsumption_notes.
+     */
+    data: XOR<hsconsumption_noteUpdateManyMutationInput, hsconsumption_noteUncheckedUpdateManyInput>
+    /**
+     * Filter which hsconsumption_notes to update
+     */
+    where?: hsconsumption_noteWhereInput
+    /**
+     * Limit how many hsconsumption_notes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsconsumption_note updateManyAndReturn
+   */
+  export type hsconsumption_noteUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * The data used to update hsconsumption_notes.
+     */
+    data: XOR<hsconsumption_noteUpdateManyMutationInput, hsconsumption_noteUncheckedUpdateManyInput>
+    /**
+     * Filter which hsconsumption_notes to update
+     */
+    where?: hsconsumption_noteWhereInput
+    /**
+     * Limit how many hsconsumption_notes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hsconsumption_note upsert
+   */
+  export type hsconsumption_noteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+    /**
+     * The filter to search for the hsconsumption_note to update in case it exists.
+     */
+    where: hsconsumption_noteWhereUniqueInput
+    /**
+     * In case the hsconsumption_note found by the `where` argument doesn't exist, create a new hsconsumption_note with this data.
+     */
+    create: XOR<hsconsumption_noteCreateInput, hsconsumption_noteUncheckedCreateInput>
+    /**
+     * In case the hsconsumption_note was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<hsconsumption_noteUpdateInput, hsconsumption_noteUncheckedUpdateInput>
+  }
+
+  /**
+   * hsconsumption_note delete
+   */
+  export type hsconsumption_noteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+    /**
+     * Filter which hsconsumption_note to delete.
+     */
+    where: hsconsumption_noteWhereUniqueInput
+  }
+
+  /**
+   * hsconsumption_note deleteMany
+   */
+  export type hsconsumption_noteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsconsumption_notes to delete
+     */
+    where?: hsconsumption_noteWhereInput
+    /**
+     * Limit how many hsconsumption_notes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsconsumption_note.hsconsumerProducts
+   */
+  export type hsconsumption_note$hsconsumerProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    where?: hsconsumer_productsWhereInput
+    orderBy?: hsconsumer_productsOrderByWithRelationInput | hsconsumer_productsOrderByWithRelationInput[]
+    cursor?: hsconsumer_productsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsconsumer_productsScalarFieldEnum | Hsconsumer_productsScalarFieldEnum[]
+  }
+
+  /**
+   * hsconsumption_note without action
+   */
+  export type hsconsumption_noteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model hsconsumer_groups
+   */
+
+  export type AggregateHsconsumer_groups = {
+    _count: Hsconsumer_groupsCountAggregateOutputType | null
+    _avg: Hsconsumer_groupsAvgAggregateOutputType | null
+    _sum: Hsconsumer_groupsSumAggregateOutputType | null
+    _min: Hsconsumer_groupsMinAggregateOutputType | null
+    _max: Hsconsumer_groupsMaxAggregateOutputType | null
+  }
+
+  export type Hsconsumer_groupsAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Hsconsumer_groupsSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Hsconsumer_groupsMinAggregateOutputType = {
+    id: number | null
+    description: string | null
+  }
+
+  export type Hsconsumer_groupsMaxAggregateOutputType = {
+    id: number | null
+    description: string | null
+  }
+
+  export type Hsconsumer_groupsCountAggregateOutputType = {
+    id: number
+    description: number
+    _all: number
+  }
+
+
+  export type Hsconsumer_groupsAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type Hsconsumer_groupsSumAggregateInputType = {
+    id?: true
+  }
+
+  export type Hsconsumer_groupsMinAggregateInputType = {
+    id?: true
+    description?: true
+  }
+
+  export type Hsconsumer_groupsMaxAggregateInputType = {
+    id?: true
+    description?: true
+  }
+
+  export type Hsconsumer_groupsCountAggregateInputType = {
+    id?: true
+    description?: true
+    _all?: true
+  }
+
+  export type Hsconsumer_groupsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsconsumer_groups to aggregate.
+     */
+    where?: hsconsumer_groupsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsconsumer_groups to fetch.
+     */
+    orderBy?: hsconsumer_groupsOrderByWithRelationInput | hsconsumer_groupsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: hsconsumer_groupsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsconsumer_groups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsconsumer_groups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned hsconsumer_groups
+    **/
+    _count?: true | Hsconsumer_groupsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Hsconsumer_groupsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Hsconsumer_groupsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Hsconsumer_groupsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Hsconsumer_groupsMaxAggregateInputType
+  }
+
+  export type GetHsconsumer_groupsAggregateType<T extends Hsconsumer_groupsAggregateArgs> = {
+        [P in keyof T & keyof AggregateHsconsumer_groups]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHsconsumer_groups[P]>
+      : GetScalarType<T[P], AggregateHsconsumer_groups[P]>
+  }
+
+
+
+
+  export type hsconsumer_groupsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsconsumer_groupsWhereInput
+    orderBy?: hsconsumer_groupsOrderByWithAggregationInput | hsconsumer_groupsOrderByWithAggregationInput[]
+    by: Hsconsumer_groupsScalarFieldEnum[] | Hsconsumer_groupsScalarFieldEnum
+    having?: hsconsumer_groupsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Hsconsumer_groupsCountAggregateInputType | true
+    _avg?: Hsconsumer_groupsAvgAggregateInputType
+    _sum?: Hsconsumer_groupsSumAggregateInputType
+    _min?: Hsconsumer_groupsMinAggregateInputType
+    _max?: Hsconsumer_groupsMaxAggregateInputType
+  }
+
+  export type Hsconsumer_groupsGroupByOutputType = {
+    id: number
+    description: string
+    _count: Hsconsumer_groupsCountAggregateOutputType | null
+    _avg: Hsconsumer_groupsAvgAggregateOutputType | null
+    _sum: Hsconsumer_groupsSumAggregateOutputType | null
+    _min: Hsconsumer_groupsMinAggregateOutputType | null
+    _max: Hsconsumer_groupsMaxAggregateOutputType | null
+  }
+
+  type GetHsconsumer_groupsGroupByPayload<T extends hsconsumer_groupsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Hsconsumer_groupsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Hsconsumer_groupsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Hsconsumer_groupsGroupByOutputType[P]>
+            : GetScalarType<T[P], Hsconsumer_groupsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type hsconsumer_groupsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    description?: boolean
+    hsconsumer_products?: boolean | hsconsumer_groups$hsconsumer_productsArgs<ExtArgs>
+    consumptionNotes?: boolean | hsconsumer_groups$consumptionNotesArgs<ExtArgs>
+    _count?: boolean | Hsconsumer_groupsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsconsumer_groups"]>
+
+  export type hsconsumer_groupsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["hsconsumer_groups"]>
+
+  export type hsconsumer_groupsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["hsconsumer_groups"]>
+
+  export type hsconsumer_groupsSelectScalar = {
+    id?: boolean
+    description?: boolean
+  }
+
+  export type hsconsumer_groupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description", ExtArgs["result"]["hsconsumer_groups"]>
+  export type hsconsumer_groupsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsconsumer_products?: boolean | hsconsumer_groups$hsconsumer_productsArgs<ExtArgs>
+    consumptionNotes?: boolean | hsconsumer_groups$consumptionNotesArgs<ExtArgs>
+    _count?: boolean | Hsconsumer_groupsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type hsconsumer_groupsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type hsconsumer_groupsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $hsconsumer_groupsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "hsconsumer_groups"
+    objects: {
+      hsconsumer_products: Prisma.$hsconsumer_productsPayload<ExtArgs>[]
+      consumptionNotes: Prisma.$hsconsumption_notePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      description: string
+    }, ExtArgs["result"]["hsconsumer_groups"]>
+    composites: {}
+  }
+
+  type hsconsumer_groupsGetPayload<S extends boolean | null | undefined | hsconsumer_groupsDefaultArgs> = $Result.GetResult<Prisma.$hsconsumer_groupsPayload, S>
+
+  type hsconsumer_groupsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<hsconsumer_groupsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Hsconsumer_groupsCountAggregateInputType | true
+    }
+
+  export interface hsconsumer_groupsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hsconsumer_groups'], meta: { name: 'hsconsumer_groups' } }
+    /**
+     * Find zero or one Hsconsumer_groups that matches the filter.
+     * @param {hsconsumer_groupsFindUniqueArgs} args - Arguments to find a Hsconsumer_groups
+     * @example
+     * // Get one Hsconsumer_groups
+     * const hsconsumer_groups = await prisma.hsconsumer_groups.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends hsconsumer_groupsFindUniqueArgs>(args: SelectSubset<T, hsconsumer_groupsFindUniqueArgs<ExtArgs>>): Prisma__hsconsumer_groupsClient<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hsconsumer_groups that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {hsconsumer_groupsFindUniqueOrThrowArgs} args - Arguments to find a Hsconsumer_groups
+     * @example
+     * // Get one Hsconsumer_groups
+     * const hsconsumer_groups = await prisma.hsconsumer_groups.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends hsconsumer_groupsFindUniqueOrThrowArgs>(args: SelectSubset<T, hsconsumer_groupsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hsconsumer_groupsClient<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsconsumer_groups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumer_groupsFindFirstArgs} args - Arguments to find a Hsconsumer_groups
+     * @example
+     * // Get one Hsconsumer_groups
+     * const hsconsumer_groups = await prisma.hsconsumer_groups.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends hsconsumer_groupsFindFirstArgs>(args?: SelectSubset<T, hsconsumer_groupsFindFirstArgs<ExtArgs>>): Prisma__hsconsumer_groupsClient<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsconsumer_groups that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumer_groupsFindFirstOrThrowArgs} args - Arguments to find a Hsconsumer_groups
+     * @example
+     * // Get one Hsconsumer_groups
+     * const hsconsumer_groups = await prisma.hsconsumer_groups.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends hsconsumer_groupsFindFirstOrThrowArgs>(args?: SelectSubset<T, hsconsumer_groupsFindFirstOrThrowArgs<ExtArgs>>): Prisma__hsconsumer_groupsClient<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hsconsumer_groups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumer_groupsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hsconsumer_groups
+     * const hsconsumer_groups = await prisma.hsconsumer_groups.findMany()
+     * 
+     * // Get first 10 Hsconsumer_groups
+     * const hsconsumer_groups = await prisma.hsconsumer_groups.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hsconsumer_groupsWithIdOnly = await prisma.hsconsumer_groups.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends hsconsumer_groupsFindManyArgs>(args?: SelectSubset<T, hsconsumer_groupsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hsconsumer_groups.
+     * @param {hsconsumer_groupsCreateArgs} args - Arguments to create a Hsconsumer_groups.
+     * @example
+     * // Create one Hsconsumer_groups
+     * const Hsconsumer_groups = await prisma.hsconsumer_groups.create({
+     *   data: {
+     *     // ... data to create a Hsconsumer_groups
+     *   }
+     * })
+     * 
+     */
+    create<T extends hsconsumer_groupsCreateArgs>(args: SelectSubset<T, hsconsumer_groupsCreateArgs<ExtArgs>>): Prisma__hsconsumer_groupsClient<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hsconsumer_groups.
+     * @param {hsconsumer_groupsCreateManyArgs} args - Arguments to create many Hsconsumer_groups.
+     * @example
+     * // Create many Hsconsumer_groups
+     * const hsconsumer_groups = await prisma.hsconsumer_groups.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends hsconsumer_groupsCreateManyArgs>(args?: SelectSubset<T, hsconsumer_groupsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hsconsumer_groups and returns the data saved in the database.
+     * @param {hsconsumer_groupsCreateManyAndReturnArgs} args - Arguments to create many Hsconsumer_groups.
+     * @example
+     * // Create many Hsconsumer_groups
+     * const hsconsumer_groups = await prisma.hsconsumer_groups.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hsconsumer_groups and only return the `id`
+     * const hsconsumer_groupsWithIdOnly = await prisma.hsconsumer_groups.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends hsconsumer_groupsCreateManyAndReturnArgs>(args?: SelectSubset<T, hsconsumer_groupsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hsconsumer_groups.
+     * @param {hsconsumer_groupsDeleteArgs} args - Arguments to delete one Hsconsumer_groups.
+     * @example
+     * // Delete one Hsconsumer_groups
+     * const Hsconsumer_groups = await prisma.hsconsumer_groups.delete({
+     *   where: {
+     *     // ... filter to delete one Hsconsumer_groups
+     *   }
+     * })
+     * 
+     */
+    delete<T extends hsconsumer_groupsDeleteArgs>(args: SelectSubset<T, hsconsumer_groupsDeleteArgs<ExtArgs>>): Prisma__hsconsumer_groupsClient<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hsconsumer_groups.
+     * @param {hsconsumer_groupsUpdateArgs} args - Arguments to update one Hsconsumer_groups.
+     * @example
+     * // Update one Hsconsumer_groups
+     * const hsconsumer_groups = await prisma.hsconsumer_groups.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends hsconsumer_groupsUpdateArgs>(args: SelectSubset<T, hsconsumer_groupsUpdateArgs<ExtArgs>>): Prisma__hsconsumer_groupsClient<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hsconsumer_groups.
+     * @param {hsconsumer_groupsDeleteManyArgs} args - Arguments to filter Hsconsumer_groups to delete.
+     * @example
+     * // Delete a few Hsconsumer_groups
+     * const { count } = await prisma.hsconsumer_groups.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends hsconsumer_groupsDeleteManyArgs>(args?: SelectSubset<T, hsconsumer_groupsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsconsumer_groups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumer_groupsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hsconsumer_groups
+     * const hsconsumer_groups = await prisma.hsconsumer_groups.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends hsconsumer_groupsUpdateManyArgs>(args: SelectSubset<T, hsconsumer_groupsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsconsumer_groups and returns the data updated in the database.
+     * @param {hsconsumer_groupsUpdateManyAndReturnArgs} args - Arguments to update many Hsconsumer_groups.
+     * @example
+     * // Update many Hsconsumer_groups
+     * const hsconsumer_groups = await prisma.hsconsumer_groups.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hsconsumer_groups and only return the `id`
+     * const hsconsumer_groupsWithIdOnly = await prisma.hsconsumer_groups.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends hsconsumer_groupsUpdateManyAndReturnArgs>(args: SelectSubset<T, hsconsumer_groupsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hsconsumer_groups.
+     * @param {hsconsumer_groupsUpsertArgs} args - Arguments to update or create a Hsconsumer_groups.
+     * @example
+     * // Update or create a Hsconsumer_groups
+     * const hsconsumer_groups = await prisma.hsconsumer_groups.upsert({
+     *   create: {
+     *     // ... data to create a Hsconsumer_groups
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hsconsumer_groups we want to update
+     *   }
+     * })
+     */
+    upsert<T extends hsconsumer_groupsUpsertArgs>(args: SelectSubset<T, hsconsumer_groupsUpsertArgs<ExtArgs>>): Prisma__hsconsumer_groupsClient<$Result.GetResult<Prisma.$hsconsumer_groupsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hsconsumer_groups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumer_groupsCountArgs} args - Arguments to filter Hsconsumer_groups to count.
+     * @example
+     * // Count the number of Hsconsumer_groups
+     * const count = await prisma.hsconsumer_groups.count({
+     *   where: {
+     *     // ... the filter for the Hsconsumer_groups we want to count
+     *   }
+     * })
+    **/
+    count<T extends hsconsumer_groupsCountArgs>(
+      args?: Subset<T, hsconsumer_groupsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Hsconsumer_groupsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hsconsumer_groups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Hsconsumer_groupsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Hsconsumer_groupsAggregateArgs>(args: Subset<T, Hsconsumer_groupsAggregateArgs>): Prisma.PrismaPromise<GetHsconsumer_groupsAggregateType<T>>
+
+    /**
+     * Group by Hsconsumer_groups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsconsumer_groupsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends hsconsumer_groupsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: hsconsumer_groupsGroupByArgs['orderBy'] }
+        : { orderBy?: hsconsumer_groupsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, hsconsumer_groupsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHsconsumer_groupsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the hsconsumer_groups model
+   */
+  readonly fields: hsconsumer_groupsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for hsconsumer_groups.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__hsconsumer_groupsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    hsconsumer_products<T extends hsconsumer_groups$hsconsumer_productsArgs<ExtArgs> = {}>(args?: Subset<T, hsconsumer_groups$hsconsumer_productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumer_productsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    consumptionNotes<T extends hsconsumer_groups$consumptionNotesArgs<ExtArgs> = {}>(args?: Subset<T, hsconsumer_groups$consumptionNotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsconsumption_notePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the hsconsumer_groups model
+   */
+  interface hsconsumer_groupsFieldRefs {
+    readonly id: FieldRef<"hsconsumer_groups", 'Int'>
+    readonly description: FieldRef<"hsconsumer_groups", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * hsconsumer_groups findUnique
+   */
+  export type hsconsumer_groupsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_groups
+     */
+    select?: hsconsumer_groupsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_groups
+     */
+    omit?: hsconsumer_groupsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_groupsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumer_groups to fetch.
+     */
+    where: hsconsumer_groupsWhereUniqueInput
+  }
+
+  /**
+   * hsconsumer_groups findUniqueOrThrow
+   */
+  export type hsconsumer_groupsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_groups
+     */
+    select?: hsconsumer_groupsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_groups
+     */
+    omit?: hsconsumer_groupsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_groupsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumer_groups to fetch.
+     */
+    where: hsconsumer_groupsWhereUniqueInput
+  }
+
+  /**
+   * hsconsumer_groups findFirst
+   */
+  export type hsconsumer_groupsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_groups
+     */
+    select?: hsconsumer_groupsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_groups
+     */
+    omit?: hsconsumer_groupsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_groupsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumer_groups to fetch.
+     */
+    where?: hsconsumer_groupsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsconsumer_groups to fetch.
+     */
+    orderBy?: hsconsumer_groupsOrderByWithRelationInput | hsconsumer_groupsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsconsumer_groups.
+     */
+    cursor?: hsconsumer_groupsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsconsumer_groups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsconsumer_groups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsconsumer_groups.
+     */
+    distinct?: Hsconsumer_groupsScalarFieldEnum | Hsconsumer_groupsScalarFieldEnum[]
+  }
+
+  /**
+   * hsconsumer_groups findFirstOrThrow
+   */
+  export type hsconsumer_groupsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_groups
+     */
+    select?: hsconsumer_groupsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_groups
+     */
+    omit?: hsconsumer_groupsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_groupsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumer_groups to fetch.
+     */
+    where?: hsconsumer_groupsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsconsumer_groups to fetch.
+     */
+    orderBy?: hsconsumer_groupsOrderByWithRelationInput | hsconsumer_groupsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsconsumer_groups.
+     */
+    cursor?: hsconsumer_groupsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsconsumer_groups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsconsumer_groups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsconsumer_groups.
+     */
+    distinct?: Hsconsumer_groupsScalarFieldEnum | Hsconsumer_groupsScalarFieldEnum[]
+  }
+
+  /**
+   * hsconsumer_groups findMany
+   */
+  export type hsconsumer_groupsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_groups
+     */
+    select?: hsconsumer_groupsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_groups
+     */
+    omit?: hsconsumer_groupsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_groupsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsconsumer_groups to fetch.
+     */
+    where?: hsconsumer_groupsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsconsumer_groups to fetch.
+     */
+    orderBy?: hsconsumer_groupsOrderByWithRelationInput | hsconsumer_groupsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing hsconsumer_groups.
+     */
+    cursor?: hsconsumer_groupsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsconsumer_groups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsconsumer_groups.
+     */
+    skip?: number
+    distinct?: Hsconsumer_groupsScalarFieldEnum | Hsconsumer_groupsScalarFieldEnum[]
+  }
+
+  /**
+   * hsconsumer_groups create
+   */
+  export type hsconsumer_groupsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_groups
+     */
+    select?: hsconsumer_groupsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_groups
+     */
+    omit?: hsconsumer_groupsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_groupsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a hsconsumer_groups.
+     */
+    data: XOR<hsconsumer_groupsCreateInput, hsconsumer_groupsUncheckedCreateInput>
+  }
+
+  /**
+   * hsconsumer_groups createMany
+   */
+  export type hsconsumer_groupsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many hsconsumer_groups.
+     */
+    data: hsconsumer_groupsCreateManyInput | hsconsumer_groupsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hsconsumer_groups createManyAndReturn
+   */
+  export type hsconsumer_groupsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_groups
+     */
+    select?: hsconsumer_groupsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_groups
+     */
+    omit?: hsconsumer_groupsOmit<ExtArgs> | null
+    /**
+     * The data used to create many hsconsumer_groups.
+     */
+    data: hsconsumer_groupsCreateManyInput | hsconsumer_groupsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hsconsumer_groups update
+   */
+  export type hsconsumer_groupsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_groups
+     */
+    select?: hsconsumer_groupsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_groups
+     */
+    omit?: hsconsumer_groupsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_groupsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a hsconsumer_groups.
+     */
+    data: XOR<hsconsumer_groupsUpdateInput, hsconsumer_groupsUncheckedUpdateInput>
+    /**
+     * Choose, which hsconsumer_groups to update.
+     */
+    where: hsconsumer_groupsWhereUniqueInput
+  }
+
+  /**
+   * hsconsumer_groups updateMany
+   */
+  export type hsconsumer_groupsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update hsconsumer_groups.
+     */
+    data: XOR<hsconsumer_groupsUpdateManyMutationInput, hsconsumer_groupsUncheckedUpdateManyInput>
+    /**
+     * Filter which hsconsumer_groups to update
+     */
+    where?: hsconsumer_groupsWhereInput
+    /**
+     * Limit how many hsconsumer_groups to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsconsumer_groups updateManyAndReturn
+   */
+  export type hsconsumer_groupsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_groups
+     */
+    select?: hsconsumer_groupsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_groups
+     */
+    omit?: hsconsumer_groupsOmit<ExtArgs> | null
+    /**
+     * The data used to update hsconsumer_groups.
+     */
+    data: XOR<hsconsumer_groupsUpdateManyMutationInput, hsconsumer_groupsUncheckedUpdateManyInput>
+    /**
+     * Filter which hsconsumer_groups to update
+     */
+    where?: hsconsumer_groupsWhereInput
+    /**
+     * Limit how many hsconsumer_groups to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsconsumer_groups upsert
+   */
+  export type hsconsumer_groupsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_groups
+     */
+    select?: hsconsumer_groupsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_groups
+     */
+    omit?: hsconsumer_groupsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_groupsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the hsconsumer_groups to update in case it exists.
+     */
+    where: hsconsumer_groupsWhereUniqueInput
+    /**
+     * In case the hsconsumer_groups found by the `where` argument doesn't exist, create a new hsconsumer_groups with this data.
+     */
+    create: XOR<hsconsumer_groupsCreateInput, hsconsumer_groupsUncheckedCreateInput>
+    /**
+     * In case the hsconsumer_groups was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<hsconsumer_groupsUpdateInput, hsconsumer_groupsUncheckedUpdateInput>
+  }
+
+  /**
+   * hsconsumer_groups delete
+   */
+  export type hsconsumer_groupsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_groups
+     */
+    select?: hsconsumer_groupsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_groups
+     */
+    omit?: hsconsumer_groupsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_groupsInclude<ExtArgs> | null
+    /**
+     * Filter which hsconsumer_groups to delete.
+     */
+    where: hsconsumer_groupsWhereUniqueInput
+  }
+
+  /**
+   * hsconsumer_groups deleteMany
+   */
+  export type hsconsumer_groupsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsconsumer_groups to delete
+     */
+    where?: hsconsumer_groupsWhereInput
+    /**
+     * Limit how many hsconsumer_groups to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsconsumer_groups.hsconsumer_products
+   */
+  export type hsconsumer_groups$hsconsumer_productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_products
+     */
+    select?: hsconsumer_productsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_products
+     */
+    omit?: hsconsumer_productsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_productsInclude<ExtArgs> | null
+    where?: hsconsumer_productsWhereInput
+    orderBy?: hsconsumer_productsOrderByWithRelationInput | hsconsumer_productsOrderByWithRelationInput[]
+    cursor?: hsconsumer_productsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsconsumer_productsScalarFieldEnum | Hsconsumer_productsScalarFieldEnum[]
+  }
+
+  /**
+   * hsconsumer_groups.consumptionNotes
+   */
+  export type hsconsumer_groups$consumptionNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumption_note
+     */
+    select?: hsconsumption_noteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumption_note
+     */
+    omit?: hsconsumption_noteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumption_noteInclude<ExtArgs> | null
+    where?: hsconsumption_noteWhereInput
+    orderBy?: hsconsumption_noteOrderByWithRelationInput | hsconsumption_noteOrderByWithRelationInput[]
+    cursor?: hsconsumption_noteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hsconsumption_noteScalarFieldEnum | Hsconsumption_noteScalarFieldEnum[]
+  }
+
+  /**
+   * hsconsumer_groups without action
+   */
+  export type hsconsumer_groupsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsconsumer_groups
+     */
+    select?: hsconsumer_groupsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsconsumer_groups
+     */
+    omit?: hsconsumer_groupsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsconsumer_groupsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -17010,6 +19806,7 @@ export namespace Prisma {
     name: 'name',
     username: 'username',
     password: 'password',
+    role_id: 'role_id',
     created_at: 'created_at',
     modified_at: 'modified_at'
   };
@@ -17053,14 +19850,6 @@ export namespace Prisma {
   };
 
   export type Hsusers_permissionsScalarFieldEnum = (typeof Hsusers_permissionsScalarFieldEnum)[keyof typeof Hsusers_permissionsScalarFieldEnum]
-
-
-  export const Hsusers_rolesScalarFieldEnum: {
-    user_id: 'user_id',
-    role_id: 'role_id'
-  };
-
-  export type Hsusers_rolesScalarFieldEnum = (typeof Hsusers_rolesScalarFieldEnum)[keyof typeof Hsusers_rolesScalarFieldEnum]
 
 
   export const HsbranchesScalarFieldEnum: {
@@ -17139,6 +19928,44 @@ export namespace Prisma {
   };
 
   export type HssessionsScalarFieldEnum = (typeof HssessionsScalarFieldEnum)[keyof typeof HssessionsScalarFieldEnum]
+
+
+  export const Hsconsumer_productsScalarFieldEnum: {
+    id: 'id',
+    consumption_id: 'consumption_id',
+    employee_id: 'employee_id',
+    branch_id: 'branch_id',
+    product_code: 'product_code',
+    auxiliary_code: 'auxiliary_code',
+    quantity: 'quantity',
+    unit_price: 'unit_price',
+    total_price: 'total_price',
+    group_id: 'group_id',
+    created_at: 'created_at',
+    modified_at: 'modified_at'
+  };
+
+  export type Hsconsumer_productsScalarFieldEnum = (typeof Hsconsumer_productsScalarFieldEnum)[keyof typeof Hsconsumer_productsScalarFieldEnum]
+
+
+  export const Hsconsumption_noteScalarFieldEnum: {
+    id: 'id',
+    branch_id: 'branch_id',
+    group_id: 'group_id',
+    total_price: 'total_price',
+    created_at: 'created_at',
+    modified_at: 'modified_at'
+  };
+
+  export type Hsconsumption_noteScalarFieldEnum = (typeof Hsconsumption_noteScalarFieldEnum)[keyof typeof Hsconsumption_noteScalarFieldEnum]
+
+
+  export const Hsconsumer_groupsScalarFieldEnum: {
+    id: 'id',
+    description: 'description'
+  };
+
+  export type Hsconsumer_groupsScalarFieldEnum = (typeof Hsconsumer_groupsScalarFieldEnum)[keyof typeof Hsconsumer_groupsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -17255,6 +20082,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal[]'
+   */
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -17281,15 +20122,17 @@ export namespace Prisma {
     name?: StringFilter<"hsemployees"> | string
     username?: StringFilter<"hsemployees"> | string
     password?: StringFilter<"hsemployees"> | string
+    role_id?: IntFilter<"hsemployees"> | number
     created_at?: DateTimeFilter<"hsemployees"> | Date | string
     modified_at?: DateTimeFilter<"hsemployees"> | Date | string
     branch?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
+    role?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
     sessions?: HssessionsListRelationFilter
     hsusers_permissions?: Hsusers_permissionsListRelationFilter
-    hsusers_roles?: Hsusers_rolesListRelationFilter
     hsvalidities?: HsvaliditiesListRelationFilter
     analystRequests?: Hsvalidity_requestsListRelationFilter
     confereeRequests?: Hsvalidity_requestsListRelationFilter
+    hsconsumer_products?: Hsconsumer_productsListRelationFilter
   }
 
   export type hsemployeesOrderByWithRelationInput = {
@@ -17299,15 +20142,17 @@ export namespace Prisma {
     name?: SortOrder
     username?: SortOrder
     password?: SortOrder
+    role_id?: SortOrder
     created_at?: SortOrder
     modified_at?: SortOrder
     branch?: hsbranchesOrderByWithRelationInput
+    role?: hsrolesOrderByWithRelationInput
     sessions?: hssessionsOrderByRelationAggregateInput
     hsusers_permissions?: hsusers_permissionsOrderByRelationAggregateInput
-    hsusers_roles?: hsusers_rolesOrderByRelationAggregateInput
     hsvalidities?: hsvaliditiesOrderByRelationAggregateInput
     analystRequests?: hsvalidity_requestsOrderByRelationAggregateInput
     confereeRequests?: hsvalidity_requestsOrderByRelationAggregateInput
+    hsconsumer_products?: hsconsumer_productsOrderByRelationAggregateInput
   }
 
   export type hsemployeesWhereUniqueInput = Prisma.AtLeast<{
@@ -17320,15 +20165,17 @@ export namespace Prisma {
     branch_id?: IntFilter<"hsemployees"> | number
     name?: StringFilter<"hsemployees"> | string
     password?: StringFilter<"hsemployees"> | string
+    role_id?: IntFilter<"hsemployees"> | number
     created_at?: DateTimeFilter<"hsemployees"> | Date | string
     modified_at?: DateTimeFilter<"hsemployees"> | Date | string
     branch?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
+    role?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
     sessions?: HssessionsListRelationFilter
     hsusers_permissions?: Hsusers_permissionsListRelationFilter
-    hsusers_roles?: Hsusers_rolesListRelationFilter
     hsvalidities?: HsvaliditiesListRelationFilter
     analystRequests?: Hsvalidity_requestsListRelationFilter
     confereeRequests?: Hsvalidity_requestsListRelationFilter
+    hsconsumer_products?: Hsconsumer_productsListRelationFilter
   }, "id" | "winthor_id" | "username">
 
   export type hsemployeesOrderByWithAggregationInput = {
@@ -17338,6 +20185,7 @@ export namespace Prisma {
     name?: SortOrder
     username?: SortOrder
     password?: SortOrder
+    role_id?: SortOrder
     created_at?: SortOrder
     modified_at?: SortOrder
     _count?: hsemployeesCountOrderByAggregateInput
@@ -17357,6 +20205,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"hsemployees"> | string
     username?: StringWithAggregatesFilter<"hsemployees"> | string
     password?: StringWithAggregatesFilter<"hsemployees"> | string
+    role_id?: IntWithAggregatesFilter<"hsemployees"> | number
     created_at?: DateTimeWithAggregatesFilter<"hsemployees"> | Date | string
     modified_at?: DateTimeWithAggregatesFilter<"hsemployees"> | Date | string
   }
@@ -17371,7 +20220,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"hsroles"> | Date | string
     modified_at?: DateTimeFilter<"hsroles"> | Date | string
     hsroles_permissions?: Hsroles_permissionsListRelationFilter
-    hsusers_roles?: Hsusers_rolesListRelationFilter
+    hsemployees?: HsemployeesListRelationFilter
   }
 
   export type hsrolesOrderByWithRelationInput = {
@@ -17381,7 +20230,7 @@ export namespace Prisma {
     created_at?: SortOrder
     modified_at?: SortOrder
     hsroles_permissions?: hsroles_permissionsOrderByRelationAggregateInput
-    hsusers_roles?: hsusers_rolesOrderByRelationAggregateInput
+    hsemployees?: hsemployeesOrderByRelationAggregateInput
   }
 
   export type hsrolesWhereUniqueInput = Prisma.AtLeast<{
@@ -17394,7 +20243,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"hsroles"> | Date | string
     modified_at?: DateTimeFilter<"hsroles"> | Date | string
     hsroles_permissions?: Hsroles_permissionsListRelationFilter
-    hsusers_roles?: Hsusers_rolesListRelationFilter
+    hsemployees?: HsemployeesListRelationFilter
   }, "id" | "name">
 
   export type hsrolesOrderByWithAggregationInput = {
@@ -17573,52 +20422,6 @@ export namespace Prisma {
     permission_id?: IntWithAggregatesFilter<"hsusers_permissions"> | number
   }
 
-  export type hsusers_rolesWhereInput = {
-    AND?: hsusers_rolesWhereInput | hsusers_rolesWhereInput[]
-    OR?: hsusers_rolesWhereInput[]
-    NOT?: hsusers_rolesWhereInput | hsusers_rolesWhereInput[]
-    user_id?: IntFilter<"hsusers_roles"> | number
-    role_id?: IntFilter<"hsusers_roles"> | number
-    hsroles?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
-    hsemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
-  }
-
-  export type hsusers_rolesOrderByWithRelationInput = {
-    user_id?: SortOrder
-    role_id?: SortOrder
-    hsroles?: hsrolesOrderByWithRelationInput
-    hsemployees?: hsemployeesOrderByWithRelationInput
-  }
-
-  export type hsusers_rolesWhereUniqueInput = Prisma.AtLeast<{
-    user_id_role_id?: hsusers_rolesUser_idRole_idCompoundUniqueInput
-    AND?: hsusers_rolesWhereInput | hsusers_rolesWhereInput[]
-    OR?: hsusers_rolesWhereInput[]
-    NOT?: hsusers_rolesWhereInput | hsusers_rolesWhereInput[]
-    user_id?: IntFilter<"hsusers_roles"> | number
-    role_id?: IntFilter<"hsusers_roles"> | number
-    hsroles?: XOR<HsrolesScalarRelationFilter, hsrolesWhereInput>
-    hsemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
-  }, "user_id_role_id">
-
-  export type hsusers_rolesOrderByWithAggregationInput = {
-    user_id?: SortOrder
-    role_id?: SortOrder
-    _count?: hsusers_rolesCountOrderByAggregateInput
-    _avg?: hsusers_rolesAvgOrderByAggregateInput
-    _max?: hsusers_rolesMaxOrderByAggregateInput
-    _min?: hsusers_rolesMinOrderByAggregateInput
-    _sum?: hsusers_rolesSumOrderByAggregateInput
-  }
-
-  export type hsusers_rolesScalarWhereWithAggregatesInput = {
-    AND?: hsusers_rolesScalarWhereWithAggregatesInput | hsusers_rolesScalarWhereWithAggregatesInput[]
-    OR?: hsusers_rolesScalarWhereWithAggregatesInput[]
-    NOT?: hsusers_rolesScalarWhereWithAggregatesInput | hsusers_rolesScalarWhereWithAggregatesInput[]
-    user_id?: IntWithAggregatesFilter<"hsusers_roles"> | number
-    role_id?: IntWithAggregatesFilter<"hsusers_roles"> | number
-  }
-
   export type hsbranchesWhereInput = {
     AND?: hsbranchesWhereInput | hsbranchesWhereInput[]
     OR?: hsbranchesWhereInput[]
@@ -17628,6 +20431,8 @@ export namespace Prisma {
     hsemployees?: HsemployeesListRelationFilter
     hsvalidities?: HsvaliditiesListRelationFilter
     hsvalidity_requests?: Hsvalidity_requestsListRelationFilter
+    hsconsumerProducts?: Hsconsumer_productsListRelationFilter
+    consumptionNotes?: Hsconsumption_noteListRelationFilter
   }
 
   export type hsbranchesOrderByWithRelationInput = {
@@ -17636,6 +20441,8 @@ export namespace Prisma {
     hsemployees?: hsemployeesOrderByRelationAggregateInput
     hsvalidities?: hsvaliditiesOrderByRelationAggregateInput
     hsvalidity_requests?: hsvalidity_requestsOrderByRelationAggregateInput
+    hsconsumerProducts?: hsconsumer_productsOrderByRelationAggregateInput
+    consumptionNotes?: hsconsumption_noteOrderByRelationAggregateInput
   }
 
   export type hsbranchesWhereUniqueInput = Prisma.AtLeast<{
@@ -17647,6 +20454,8 @@ export namespace Prisma {
     hsemployees?: HsemployeesListRelationFilter
     hsvalidities?: HsvaliditiesListRelationFilter
     hsvalidity_requests?: Hsvalidity_requestsListRelationFilter
+    hsconsumerProducts?: Hsconsumer_productsListRelationFilter
+    consumptionNotes?: Hsconsumption_noteListRelationFilter
   }, "id">
 
   export type hsbranchesOrderByWithAggregationInput = {
@@ -18053,6 +20862,220 @@ export namespace Prisma {
     expires_at?: DateTimeNullableWithAggregatesFilter<"hssessions"> | Date | string | null
   }
 
+  export type hsconsumer_productsWhereInput = {
+    AND?: hsconsumer_productsWhereInput | hsconsumer_productsWhereInput[]
+    OR?: hsconsumer_productsWhereInput[]
+    NOT?: hsconsumer_productsWhereInput | hsconsumer_productsWhereInput[]
+    id?: IntFilter<"hsconsumer_products"> | number
+    consumption_id?: IntNullableFilter<"hsconsumer_products"> | number | null
+    employee_id?: IntFilter<"hsconsumer_products"> | number
+    branch_id?: IntFilter<"hsconsumer_products"> | number
+    product_code?: IntFilter<"hsconsumer_products"> | number
+    auxiliary_code?: StringFilter<"hsconsumer_products"> | string
+    quantity?: IntFilter<"hsconsumer_products"> | number
+    unit_price?: DecimalFilter<"hsconsumer_products"> | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFilter<"hsconsumer_products"> | Decimal | DecimalJsLike | number | string
+    group_id?: IntFilter<"hsconsumer_products"> | number
+    created_at?: DateTimeFilter<"hsconsumer_products"> | Date | string
+    modified_at?: DateTimeFilter<"hsconsumer_products"> | Date | string
+    hsemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
+    hsconsumer_groups?: XOR<Hsconsumer_groupsScalarRelationFilter, hsconsumer_groupsWhereInput>
+    branch?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
+    hsconsumption_note?: XOR<Hsconsumption_noteNullableScalarRelationFilter, hsconsumption_noteWhereInput> | null
+  }
+
+  export type hsconsumer_productsOrderByWithRelationInput = {
+    id?: SortOrder
+    consumption_id?: SortOrderInput | SortOrder
+    employee_id?: SortOrder
+    branch_id?: SortOrder
+    product_code?: SortOrder
+    auxiliary_code?: SortOrder
+    quantity?: SortOrder
+    unit_price?: SortOrder
+    total_price?: SortOrder
+    group_id?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    hsemployees?: hsemployeesOrderByWithRelationInput
+    hsconsumer_groups?: hsconsumer_groupsOrderByWithRelationInput
+    branch?: hsbranchesOrderByWithRelationInput
+    hsconsumption_note?: hsconsumption_noteOrderByWithRelationInput
+  }
+
+  export type hsconsumer_productsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: hsconsumer_productsWhereInput | hsconsumer_productsWhereInput[]
+    OR?: hsconsumer_productsWhereInput[]
+    NOT?: hsconsumer_productsWhereInput | hsconsumer_productsWhereInput[]
+    consumption_id?: IntNullableFilter<"hsconsumer_products"> | number | null
+    employee_id?: IntFilter<"hsconsumer_products"> | number
+    branch_id?: IntFilter<"hsconsumer_products"> | number
+    product_code?: IntFilter<"hsconsumer_products"> | number
+    auxiliary_code?: StringFilter<"hsconsumer_products"> | string
+    quantity?: IntFilter<"hsconsumer_products"> | number
+    unit_price?: DecimalFilter<"hsconsumer_products"> | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFilter<"hsconsumer_products"> | Decimal | DecimalJsLike | number | string
+    group_id?: IntFilter<"hsconsumer_products"> | number
+    created_at?: DateTimeFilter<"hsconsumer_products"> | Date | string
+    modified_at?: DateTimeFilter<"hsconsumer_products"> | Date | string
+    hsemployees?: XOR<HsemployeesScalarRelationFilter, hsemployeesWhereInput>
+    hsconsumer_groups?: XOR<Hsconsumer_groupsScalarRelationFilter, hsconsumer_groupsWhereInput>
+    branch?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
+    hsconsumption_note?: XOR<Hsconsumption_noteNullableScalarRelationFilter, hsconsumption_noteWhereInput> | null
+  }, "id">
+
+  export type hsconsumer_productsOrderByWithAggregationInput = {
+    id?: SortOrder
+    consumption_id?: SortOrderInput | SortOrder
+    employee_id?: SortOrder
+    branch_id?: SortOrder
+    product_code?: SortOrder
+    auxiliary_code?: SortOrder
+    quantity?: SortOrder
+    unit_price?: SortOrder
+    total_price?: SortOrder
+    group_id?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    _count?: hsconsumer_productsCountOrderByAggregateInput
+    _avg?: hsconsumer_productsAvgOrderByAggregateInput
+    _max?: hsconsumer_productsMaxOrderByAggregateInput
+    _min?: hsconsumer_productsMinOrderByAggregateInput
+    _sum?: hsconsumer_productsSumOrderByAggregateInput
+  }
+
+  export type hsconsumer_productsScalarWhereWithAggregatesInput = {
+    AND?: hsconsumer_productsScalarWhereWithAggregatesInput | hsconsumer_productsScalarWhereWithAggregatesInput[]
+    OR?: hsconsumer_productsScalarWhereWithAggregatesInput[]
+    NOT?: hsconsumer_productsScalarWhereWithAggregatesInput | hsconsumer_productsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"hsconsumer_products"> | number
+    consumption_id?: IntNullableWithAggregatesFilter<"hsconsumer_products"> | number | null
+    employee_id?: IntWithAggregatesFilter<"hsconsumer_products"> | number
+    branch_id?: IntWithAggregatesFilter<"hsconsumer_products"> | number
+    product_code?: IntWithAggregatesFilter<"hsconsumer_products"> | number
+    auxiliary_code?: StringWithAggregatesFilter<"hsconsumer_products"> | string
+    quantity?: IntWithAggregatesFilter<"hsconsumer_products"> | number
+    unit_price?: DecimalWithAggregatesFilter<"hsconsumer_products"> | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalWithAggregatesFilter<"hsconsumer_products"> | Decimal | DecimalJsLike | number | string
+    group_id?: IntWithAggregatesFilter<"hsconsumer_products"> | number
+    created_at?: DateTimeWithAggregatesFilter<"hsconsumer_products"> | Date | string
+    modified_at?: DateTimeWithAggregatesFilter<"hsconsumer_products"> | Date | string
+  }
+
+  export type hsconsumption_noteWhereInput = {
+    AND?: hsconsumption_noteWhereInput | hsconsumption_noteWhereInput[]
+    OR?: hsconsumption_noteWhereInput[]
+    NOT?: hsconsumption_noteWhereInput | hsconsumption_noteWhereInput[]
+    id?: IntFilter<"hsconsumption_note"> | number
+    branch_id?: IntFilter<"hsconsumption_note"> | number
+    group_id?: IntFilter<"hsconsumption_note"> | number
+    total_price?: DecimalFilter<"hsconsumption_note"> | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFilter<"hsconsumption_note"> | Date | string
+    modified_at?: DateTimeFilter<"hsconsumption_note"> | Date | string
+    hsconsumer_groups?: XOR<Hsconsumer_groupsScalarRelationFilter, hsconsumer_groupsWhereInput>
+    branch?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
+    hsconsumerProducts?: Hsconsumer_productsListRelationFilter
+  }
+
+  export type hsconsumption_noteOrderByWithRelationInput = {
+    id?: SortOrder
+    branch_id?: SortOrder
+    group_id?: SortOrder
+    total_price?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    hsconsumer_groups?: hsconsumer_groupsOrderByWithRelationInput
+    branch?: hsbranchesOrderByWithRelationInput
+    hsconsumerProducts?: hsconsumer_productsOrderByRelationAggregateInput
+  }
+
+  export type hsconsumption_noteWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: hsconsumption_noteWhereInput | hsconsumption_noteWhereInput[]
+    OR?: hsconsumption_noteWhereInput[]
+    NOT?: hsconsumption_noteWhereInput | hsconsumption_noteWhereInput[]
+    branch_id?: IntFilter<"hsconsumption_note"> | number
+    group_id?: IntFilter<"hsconsumption_note"> | number
+    total_price?: DecimalFilter<"hsconsumption_note"> | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFilter<"hsconsumption_note"> | Date | string
+    modified_at?: DateTimeFilter<"hsconsumption_note"> | Date | string
+    hsconsumer_groups?: XOR<Hsconsumer_groupsScalarRelationFilter, hsconsumer_groupsWhereInput>
+    branch?: XOR<HsbranchesScalarRelationFilter, hsbranchesWhereInput>
+    hsconsumerProducts?: Hsconsumer_productsListRelationFilter
+  }, "id">
+
+  export type hsconsumption_noteOrderByWithAggregationInput = {
+    id?: SortOrder
+    branch_id?: SortOrder
+    group_id?: SortOrder
+    total_price?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    _count?: hsconsumption_noteCountOrderByAggregateInput
+    _avg?: hsconsumption_noteAvgOrderByAggregateInput
+    _max?: hsconsumption_noteMaxOrderByAggregateInput
+    _min?: hsconsumption_noteMinOrderByAggregateInput
+    _sum?: hsconsumption_noteSumOrderByAggregateInput
+  }
+
+  export type hsconsumption_noteScalarWhereWithAggregatesInput = {
+    AND?: hsconsumption_noteScalarWhereWithAggregatesInput | hsconsumption_noteScalarWhereWithAggregatesInput[]
+    OR?: hsconsumption_noteScalarWhereWithAggregatesInput[]
+    NOT?: hsconsumption_noteScalarWhereWithAggregatesInput | hsconsumption_noteScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"hsconsumption_note"> | number
+    branch_id?: IntWithAggregatesFilter<"hsconsumption_note"> | number
+    group_id?: IntWithAggregatesFilter<"hsconsumption_note"> | number
+    total_price?: DecimalWithAggregatesFilter<"hsconsumption_note"> | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeWithAggregatesFilter<"hsconsumption_note"> | Date | string
+    modified_at?: DateTimeWithAggregatesFilter<"hsconsumption_note"> | Date | string
+  }
+
+  export type hsconsumer_groupsWhereInput = {
+    AND?: hsconsumer_groupsWhereInput | hsconsumer_groupsWhereInput[]
+    OR?: hsconsumer_groupsWhereInput[]
+    NOT?: hsconsumer_groupsWhereInput | hsconsumer_groupsWhereInput[]
+    id?: IntFilter<"hsconsumer_groups"> | number
+    description?: StringFilter<"hsconsumer_groups"> | string
+    hsconsumer_products?: Hsconsumer_productsListRelationFilter
+    consumptionNotes?: Hsconsumption_noteListRelationFilter
+  }
+
+  export type hsconsumer_groupsOrderByWithRelationInput = {
+    id?: SortOrder
+    description?: SortOrder
+    hsconsumer_products?: hsconsumer_productsOrderByRelationAggregateInput
+    consumptionNotes?: hsconsumption_noteOrderByRelationAggregateInput
+  }
+
+  export type hsconsumer_groupsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: hsconsumer_groupsWhereInput | hsconsumer_groupsWhereInput[]
+    OR?: hsconsumer_groupsWhereInput[]
+    NOT?: hsconsumer_groupsWhereInput | hsconsumer_groupsWhereInput[]
+    description?: StringFilter<"hsconsumer_groups"> | string
+    hsconsumer_products?: Hsconsumer_productsListRelationFilter
+    consumptionNotes?: Hsconsumption_noteListRelationFilter
+  }, "id">
+
+  export type hsconsumer_groupsOrderByWithAggregationInput = {
+    id?: SortOrder
+    description?: SortOrder
+    _count?: hsconsumer_groupsCountOrderByAggregateInput
+    _avg?: hsconsumer_groupsAvgOrderByAggregateInput
+    _max?: hsconsumer_groupsMaxOrderByAggregateInput
+    _min?: hsconsumer_groupsMinOrderByAggregateInput
+    _sum?: hsconsumer_groupsSumOrderByAggregateInput
+  }
+
+  export type hsconsumer_groupsScalarWhereWithAggregatesInput = {
+    AND?: hsconsumer_groupsScalarWhereWithAggregatesInput | hsconsumer_groupsScalarWhereWithAggregatesInput[]
+    OR?: hsconsumer_groupsScalarWhereWithAggregatesInput[]
+    NOT?: hsconsumer_groupsScalarWhereWithAggregatesInput | hsconsumer_groupsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"hsconsumer_groups"> | number
+    description?: StringWithAggregatesFilter<"hsconsumer_groups"> | string
+  }
+
   export type hsemployeesCreateInput = {
     winthor_id?: number
     name: string
@@ -18061,12 +21084,13 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
+    role?: hsrolesCreateNestedOneWithoutHsemployeesInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
     hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsemployeesInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesUncheckedCreateInput = {
@@ -18076,14 +21100,15 @@ export namespace Prisma {
     name: string
     username: string
     password: string
+    role_id?: number
     created_at?: Date | string
     modified_at?: Date | string
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
     hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsemployeesInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesUpdateInput = {
@@ -18094,12 +21119,13 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    role?: hsrolesUpdateOneRequiredWithoutHsemployeesNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
     hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsemployeesNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateInput = {
@@ -18109,14 +21135,15 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
     hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUncheckedUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsemployeesCreateManyInput = {
@@ -18126,6 +21153,7 @@ export namespace Prisma {
     name: string
     username: string
     password: string
+    role_id?: number
     created_at?: Date | string
     modified_at?: Date | string
   }
@@ -18146,6 +21174,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18156,7 +21185,7 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     hsroles_permissions?: hsroles_permissionsCreateNestedManyWithoutHsrolesInput
-    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsrolesInput
+    hsemployees?: hsemployeesCreateNestedManyWithoutRoleInput
   }
 
   export type hsrolesUncheckedCreateInput = {
@@ -18166,7 +21195,7 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     hsroles_permissions?: hsroles_permissionsUncheckedCreateNestedManyWithoutHsrolesInput
-    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsrolesInput
+    hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutRoleInput
   }
 
   export type hsrolesUpdateInput = {
@@ -18175,7 +21204,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsroles_permissions?: hsroles_permissionsUpdateManyWithoutHsrolesNestedInput
-    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsrolesNestedInput
+    hsemployees?: hsemployeesUpdateManyWithoutRoleNestedInput
   }
 
   export type hsrolesUncheckedUpdateInput = {
@@ -18185,7 +21214,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsroles_permissions?: hsroles_permissionsUncheckedUpdateManyWithoutHsrolesNestedInput
-    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsrolesNestedInput
+    hsemployees?: hsemployeesUncheckedUpdateManyWithoutRoleNestedInput
   }
 
   export type hsrolesCreateManyInput = {
@@ -18340,45 +21369,13 @@ export namespace Prisma {
     permission_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type hsusers_rolesCreateInput = {
-    hsroles: hsrolesCreateNestedOneWithoutHsusers_rolesInput
-    hsemployees: hsemployeesCreateNestedOneWithoutHsusers_rolesInput
-  }
-
-  export type hsusers_rolesUncheckedCreateInput = {
-    user_id: number
-    role_id: number
-  }
-
-  export type hsusers_rolesUpdateInput = {
-    hsroles?: hsrolesUpdateOneRequiredWithoutHsusers_rolesNestedInput
-    hsemployees?: hsemployeesUpdateOneRequiredWithoutHsusers_rolesNestedInput
-  }
-
-  export type hsusers_rolesUncheckedUpdateInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
-    role_id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type hsusers_rolesCreateManyInput = {
-    user_id: number
-    role_id: number
-  }
-
-  export type hsusers_rolesUpdateManyMutationInput = {
-
-  }
-
-  export type hsusers_rolesUncheckedUpdateManyInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
-    role_id?: IntFieldUpdateOperationsInput | number
-  }
-
   export type hsbranchesCreateInput = {
     description: string
     hsemployees?: hsemployeesCreateNestedManyWithoutBranchInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsbranchesInput
     hsvalidity_requests?: hsvalidity_requestsCreateNestedManyWithoutHsbranchesInput
+    hsconsumerProducts?: hsconsumer_productsCreateNestedManyWithoutBranchInput
+    consumptionNotes?: hsconsumption_noteCreateNestedManyWithoutBranchInput
   }
 
   export type hsbranchesUncheckedCreateInput = {
@@ -18387,6 +21384,8 @@ export namespace Prisma {
     hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutBranchInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsbranchesInput
     hsvalidity_requests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutHsbranchesInput
+    hsconsumerProducts?: hsconsumer_productsUncheckedCreateNestedManyWithoutBranchInput
+    consumptionNotes?: hsconsumption_noteUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type hsbranchesUpdateInput = {
@@ -18394,6 +21393,8 @@ export namespace Prisma {
     hsemployees?: hsemployeesUpdateManyWithoutBranchNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsbranchesNestedInput
     hsvalidity_requests?: hsvalidity_requestsUpdateManyWithoutHsbranchesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUpdateManyWithoutBranchNestedInput
+    consumptionNotes?: hsconsumption_noteUpdateManyWithoutBranchNestedInput
   }
 
   export type hsbranchesUncheckedUpdateInput = {
@@ -18402,6 +21403,8 @@ export namespace Prisma {
     hsemployees?: hsemployeesUncheckedUpdateManyWithoutBranchNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsbranchesNestedInput
     hsvalidity_requests?: hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUncheckedUpdateManyWithoutBranchNestedInput
+    consumptionNotes?: hsconsumption_noteUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type hsbranchesCreateManyInput = {
@@ -18773,6 +21776,206 @@ export namespace Prisma {
     expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type hsconsumer_productsCreateInput = {
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsemployees: hsemployeesCreateNestedOneWithoutHsconsumer_productsInput
+    hsconsumer_groups: hsconsumer_groupsCreateNestedOneWithoutHsconsumer_productsInput
+    branch: hsbranchesCreateNestedOneWithoutHsconsumerProductsInput
+    hsconsumption_note?: hsconsumption_noteCreateNestedOneWithoutHsconsumerProductsInput
+  }
+
+  export type hsconsumer_productsUncheckedCreateInput = {
+    id?: number
+    consumption_id?: number | null
+    employee_id: number
+    branch_id: number
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    group_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumer_productsUpdateInput = {
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsemployees?: hsemployeesUpdateOneRequiredWithoutHsconsumer_productsNestedInput
+    hsconsumer_groups?: hsconsumer_groupsUpdateOneRequiredWithoutHsconsumer_productsNestedInput
+    branch?: hsbranchesUpdateOneRequiredWithoutHsconsumerProductsNestedInput
+    hsconsumption_note?: hsconsumption_noteUpdateOneWithoutHsconsumerProductsNestedInput
+  }
+
+  export type hsconsumer_productsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    consumption_id?: NullableIntFieldUpdateOperationsInput | number | null
+    employee_id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    group_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumer_productsCreateManyInput = {
+    id?: number
+    consumption_id?: number | null
+    employee_id: number
+    branch_id: number
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    group_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumer_productsUpdateManyMutationInput = {
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumer_productsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    consumption_id?: NullableIntFieldUpdateOperationsInput | number | null
+    employee_id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    group_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumption_noteCreateInput = {
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsconsumer_groups: hsconsumer_groupsCreateNestedOneWithoutConsumptionNotesInput
+    branch: hsbranchesCreateNestedOneWithoutConsumptionNotesInput
+    hsconsumerProducts?: hsconsumer_productsCreateNestedManyWithoutHsconsumption_noteInput
+  }
+
+  export type hsconsumption_noteUncheckedCreateInput = {
+    id?: number
+    branch_id: number
+    group_id: number
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsconsumerProducts?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsconsumption_noteInput
+  }
+
+  export type hsconsumption_noteUpdateInput = {
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsconsumer_groups?: hsconsumer_groupsUpdateOneRequiredWithoutConsumptionNotesNestedInput
+    branch?: hsbranchesUpdateOneRequiredWithoutConsumptionNotesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUpdateManyWithoutHsconsumption_noteNestedInput
+  }
+
+  export type hsconsumption_noteUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    group_id?: IntFieldUpdateOperationsInput | number
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsconsumerProducts?: hsconsumer_productsUncheckedUpdateManyWithoutHsconsumption_noteNestedInput
+  }
+
+  export type hsconsumption_noteCreateManyInput = {
+    id?: number
+    branch_id: number
+    group_id: number
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumption_noteUpdateManyMutationInput = {
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumption_noteUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    group_id?: IntFieldUpdateOperationsInput | number
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumer_groupsCreateInput = {
+    description: string
+    hsconsumer_products?: hsconsumer_productsCreateNestedManyWithoutHsconsumer_groupsInput
+    consumptionNotes?: hsconsumption_noteCreateNestedManyWithoutHsconsumer_groupsInput
+  }
+
+  export type hsconsumer_groupsUncheckedCreateInput = {
+    id?: number
+    description: string
+    hsconsumer_products?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsconsumer_groupsInput
+    consumptionNotes?: hsconsumption_noteUncheckedCreateNestedManyWithoutHsconsumer_groupsInput
+  }
+
+  export type hsconsumer_groupsUpdateInput = {
+    description?: StringFieldUpdateOperationsInput | string
+    hsconsumer_products?: hsconsumer_productsUpdateManyWithoutHsconsumer_groupsNestedInput
+    consumptionNotes?: hsconsumption_noteUpdateManyWithoutHsconsumer_groupsNestedInput
+  }
+
+  export type hsconsumer_groupsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    hsconsumer_products?: hsconsumer_productsUncheckedUpdateManyWithoutHsconsumer_groupsNestedInput
+    consumptionNotes?: hsconsumption_noteUncheckedUpdateManyWithoutHsconsumer_groupsNestedInput
+  }
+
+  export type hsconsumer_groupsCreateManyInput = {
+    id?: number
+    description: string
+  }
+
+  export type hsconsumer_groupsUpdateManyMutationInput = {
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type hsconsumer_groupsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -18815,6 +22018,11 @@ export namespace Prisma {
     isNot?: hsbranchesWhereInput
   }
 
+  export type HsrolesScalarRelationFilter = {
+    is?: hsrolesWhereInput
+    isNot?: hsrolesWhereInput
+  }
+
   export type HssessionsListRelationFilter = {
     every?: hssessionsWhereInput
     some?: hssessionsWhereInput
@@ -18825,12 +22033,6 @@ export namespace Prisma {
     every?: hsusers_permissionsWhereInput
     some?: hsusers_permissionsWhereInput
     none?: hsusers_permissionsWhereInput
-  }
-
-  export type Hsusers_rolesListRelationFilter = {
-    every?: hsusers_rolesWhereInput
-    some?: hsusers_rolesWhereInput
-    none?: hsusers_rolesWhereInput
   }
 
   export type HsvaliditiesListRelationFilter = {
@@ -18845,15 +22047,17 @@ export namespace Prisma {
     none?: hsvalidity_requestsWhereInput
   }
 
+  export type Hsconsumer_productsListRelationFilter = {
+    every?: hsconsumer_productsWhereInput
+    some?: hsconsumer_productsWhereInput
+    none?: hsconsumer_productsWhereInput
+  }
+
   export type hssessionsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type hsusers_permissionsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type hsusers_rolesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18865,6 +22069,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type hsconsumer_productsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type hsemployeesCountOrderByAggregateInput = {
     id?: SortOrder
     branch_id?: SortOrder
@@ -18872,6 +22080,7 @@ export namespace Prisma {
     name?: SortOrder
     username?: SortOrder
     password?: SortOrder
+    role_id?: SortOrder
     created_at?: SortOrder
     modified_at?: SortOrder
   }
@@ -18880,6 +22089,7 @@ export namespace Prisma {
     id?: SortOrder
     branch_id?: SortOrder
     winthor_id?: SortOrder
+    role_id?: SortOrder
   }
 
   export type hsemployeesMaxOrderByAggregateInput = {
@@ -18889,6 +22099,7 @@ export namespace Prisma {
     name?: SortOrder
     username?: SortOrder
     password?: SortOrder
+    role_id?: SortOrder
     created_at?: SortOrder
     modified_at?: SortOrder
   }
@@ -18900,6 +22111,7 @@ export namespace Prisma {
     name?: SortOrder
     username?: SortOrder
     password?: SortOrder
+    role_id?: SortOrder
     created_at?: SortOrder
     modified_at?: SortOrder
   }
@@ -18908,6 +22120,7 @@ export namespace Prisma {
     id?: SortOrder
     branch_id?: SortOrder
     winthor_id?: SortOrder
+    role_id?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -18964,7 +22177,17 @@ export namespace Prisma {
     none?: hsroles_permissionsWhereInput
   }
 
+  export type HsemployeesListRelationFilter = {
+    every?: hsemployeesWhereInput
+    some?: hsemployeesWhereInput
+    none?: hsemployeesWhereInput
+  }
+
   export type hsroles_permissionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type hsemployeesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -19037,11 +22260,6 @@ export namespace Prisma {
     isNot?: hspermissionsWhereInput
   }
 
-  export type HsrolesScalarRelationFilter = {
-    is?: hsrolesWhereInput
-    isNot?: hsrolesWhereInput
-  }
-
   export type hsroles_permissionsRole_idPermission_idCompoundUniqueInput = {
     role_id: number
     permission_id: number
@@ -19107,43 +22325,13 @@ export namespace Prisma {
     permission_id?: SortOrder
   }
 
-  export type hsusers_rolesUser_idRole_idCompoundUniqueInput = {
-    user_id: number
-    role_id: number
+  export type Hsconsumption_noteListRelationFilter = {
+    every?: hsconsumption_noteWhereInput
+    some?: hsconsumption_noteWhereInput
+    none?: hsconsumption_noteWhereInput
   }
 
-  export type hsusers_rolesCountOrderByAggregateInput = {
-    user_id?: SortOrder
-    role_id?: SortOrder
-  }
-
-  export type hsusers_rolesAvgOrderByAggregateInput = {
-    user_id?: SortOrder
-    role_id?: SortOrder
-  }
-
-  export type hsusers_rolesMaxOrderByAggregateInput = {
-    user_id?: SortOrder
-    role_id?: SortOrder
-  }
-
-  export type hsusers_rolesMinOrderByAggregateInput = {
-    user_id?: SortOrder
-    role_id?: SortOrder
-  }
-
-  export type hsusers_rolesSumOrderByAggregateInput = {
-    user_id?: SortOrder
-    role_id?: SortOrder
-  }
-
-  export type HsemployeesListRelationFilter = {
-    every?: hsemployeesWhereInput
-    some?: hsemployeesWhereInput
-    none?: hsemployeesWhereInput
-  }
-
-  export type hsemployeesOrderByRelationAggregateInput = {
+  export type hsconsumption_noteOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -19573,10 +22761,186 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type Hsconsumer_groupsScalarRelationFilter = {
+    is?: hsconsumer_groupsWhereInput
+    isNot?: hsconsumer_groupsWhereInput
+  }
+
+  export type Hsconsumption_noteNullableScalarRelationFilter = {
+    is?: hsconsumption_noteWhereInput | null
+    isNot?: hsconsumption_noteWhereInput | null
+  }
+
+  export type hsconsumer_productsCountOrderByAggregateInput = {
+    id?: SortOrder
+    consumption_id?: SortOrder
+    employee_id?: SortOrder
+    branch_id?: SortOrder
+    product_code?: SortOrder
+    auxiliary_code?: SortOrder
+    quantity?: SortOrder
+    unit_price?: SortOrder
+    total_price?: SortOrder
+    group_id?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsconsumer_productsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    consumption_id?: SortOrder
+    employee_id?: SortOrder
+    branch_id?: SortOrder
+    product_code?: SortOrder
+    quantity?: SortOrder
+    unit_price?: SortOrder
+    total_price?: SortOrder
+    group_id?: SortOrder
+  }
+
+  export type hsconsumer_productsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    consumption_id?: SortOrder
+    employee_id?: SortOrder
+    branch_id?: SortOrder
+    product_code?: SortOrder
+    auxiliary_code?: SortOrder
+    quantity?: SortOrder
+    unit_price?: SortOrder
+    total_price?: SortOrder
+    group_id?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsconsumer_productsMinOrderByAggregateInput = {
+    id?: SortOrder
+    consumption_id?: SortOrder
+    employee_id?: SortOrder
+    branch_id?: SortOrder
+    product_code?: SortOrder
+    auxiliary_code?: SortOrder
+    quantity?: SortOrder
+    unit_price?: SortOrder
+    total_price?: SortOrder
+    group_id?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsconsumer_productsSumOrderByAggregateInput = {
+    id?: SortOrder
+    consumption_id?: SortOrder
+    employee_id?: SortOrder
+    branch_id?: SortOrder
+    product_code?: SortOrder
+    quantity?: SortOrder
+    unit_price?: SortOrder
+    total_price?: SortOrder
+    group_id?: SortOrder
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type hsconsumption_noteCountOrderByAggregateInput = {
+    id?: SortOrder
+    branch_id?: SortOrder
+    group_id?: SortOrder
+    total_price?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsconsumption_noteAvgOrderByAggregateInput = {
+    id?: SortOrder
+    branch_id?: SortOrder
+    group_id?: SortOrder
+    total_price?: SortOrder
+  }
+
+  export type hsconsumption_noteMaxOrderByAggregateInput = {
+    id?: SortOrder
+    branch_id?: SortOrder
+    group_id?: SortOrder
+    total_price?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsconsumption_noteMinOrderByAggregateInput = {
+    id?: SortOrder
+    branch_id?: SortOrder
+    group_id?: SortOrder
+    total_price?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsconsumption_noteSumOrderByAggregateInput = {
+    id?: SortOrder
+    branch_id?: SortOrder
+    group_id?: SortOrder
+    total_price?: SortOrder
+  }
+
+  export type hsconsumer_groupsCountOrderByAggregateInput = {
+    id?: SortOrder
+    description?: SortOrder
+  }
+
+  export type hsconsumer_groupsAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type hsconsumer_groupsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    description?: SortOrder
+  }
+
+  export type hsconsumer_groupsMinOrderByAggregateInput = {
+    id?: SortOrder
+    description?: SortOrder
+  }
+
+  export type hsconsumer_groupsSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
   export type hsbranchesCreateNestedOneWithoutHsemployeesInput = {
     create?: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
     connectOrCreate?: hsbranchesCreateOrConnectWithoutHsemployeesInput
     connect?: hsbranchesWhereUniqueInput
+  }
+
+  export type hsrolesCreateNestedOneWithoutHsemployeesInput = {
+    create?: XOR<hsrolesCreateWithoutHsemployeesInput, hsrolesUncheckedCreateWithoutHsemployeesInput>
+    connectOrCreate?: hsrolesCreateOrConnectWithoutHsemployeesInput
+    connect?: hsrolesWhereUniqueInput
   }
 
   export type hssessionsCreateNestedManyWithoutUserInput = {
@@ -19591,13 +22955,6 @@ export namespace Prisma {
     connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHsemployeesInput | hsusers_permissionsCreateOrConnectWithoutHsemployeesInput[]
     createMany?: hsusers_permissionsCreateManyHsemployeesInputEnvelope
     connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
-  }
-
-  export type hsusers_rolesCreateNestedManyWithoutHsemployeesInput = {
-    create?: XOR<hsusers_rolesCreateWithoutHsemployeesInput, hsusers_rolesUncheckedCreateWithoutHsemployeesInput> | hsusers_rolesCreateWithoutHsemployeesInput[] | hsusers_rolesUncheckedCreateWithoutHsemployeesInput[]
-    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHsemployeesInput | hsusers_rolesCreateOrConnectWithoutHsemployeesInput[]
-    createMany?: hsusers_rolesCreateManyHsemployeesInputEnvelope
-    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
   }
 
   export type hsvaliditiesCreateNestedManyWithoutHsemployeesInput = {
@@ -19621,6 +22978,13 @@ export namespace Prisma {
     connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
   }
 
+  export type hsconsumer_productsCreateNestedManyWithoutHsemployeesInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutHsemployeesInput, hsconsumer_productsUncheckedCreateWithoutHsemployeesInput> | hsconsumer_productsCreateWithoutHsemployeesInput[] | hsconsumer_productsUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutHsemployeesInput | hsconsumer_productsCreateOrConnectWithoutHsemployeesInput[]
+    createMany?: hsconsumer_productsCreateManyHsemployeesInputEnvelope
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+  }
+
   export type hssessionsUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput> | hssessionsCreateWithoutUserInput[] | hssessionsUncheckedCreateWithoutUserInput[]
     connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
@@ -19633,13 +22997,6 @@ export namespace Prisma {
     connectOrCreate?: hsusers_permissionsCreateOrConnectWithoutHsemployeesInput | hsusers_permissionsCreateOrConnectWithoutHsemployeesInput[]
     createMany?: hsusers_permissionsCreateManyHsemployeesInputEnvelope
     connect?: hsusers_permissionsWhereUniqueInput | hsusers_permissionsWhereUniqueInput[]
-  }
-
-  export type hsusers_rolesUncheckedCreateNestedManyWithoutHsemployeesInput = {
-    create?: XOR<hsusers_rolesCreateWithoutHsemployeesInput, hsusers_rolesUncheckedCreateWithoutHsemployeesInput> | hsusers_rolesCreateWithoutHsemployeesInput[] | hsusers_rolesUncheckedCreateWithoutHsemployeesInput[]
-    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHsemployeesInput | hsusers_rolesCreateOrConnectWithoutHsemployeesInput[]
-    createMany?: hsusers_rolesCreateManyHsemployeesInputEnvelope
-    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
   }
 
   export type hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput = {
@@ -19661,6 +23018,13 @@ export namespace Prisma {
     connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutConfereeInput | hsvalidity_requestsCreateOrConnectWithoutConfereeInput[]
     createMany?: hsvalidity_requestsCreateManyConfereeInputEnvelope
     connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+  }
+
+  export type hsconsumer_productsUncheckedCreateNestedManyWithoutHsemployeesInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutHsemployeesInput, hsconsumer_productsUncheckedCreateWithoutHsemployeesInput> | hsconsumer_productsCreateWithoutHsemployeesInput[] | hsconsumer_productsUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutHsemployeesInput | hsconsumer_productsCreateOrConnectWithoutHsemployeesInput[]
+    createMany?: hsconsumer_productsCreateManyHsemployeesInputEnvelope
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -19685,6 +23049,14 @@ export namespace Prisma {
     upsert?: hsbranchesUpsertWithoutHsemployeesInput
     connect?: hsbranchesWhereUniqueInput
     update?: XOR<XOR<hsbranchesUpdateToOneWithWhereWithoutHsemployeesInput, hsbranchesUpdateWithoutHsemployeesInput>, hsbranchesUncheckedUpdateWithoutHsemployeesInput>
+  }
+
+  export type hsrolesUpdateOneRequiredWithoutHsemployeesNestedInput = {
+    create?: XOR<hsrolesCreateWithoutHsemployeesInput, hsrolesUncheckedCreateWithoutHsemployeesInput>
+    connectOrCreate?: hsrolesCreateOrConnectWithoutHsemployeesInput
+    upsert?: hsrolesUpsertWithoutHsemployeesInput
+    connect?: hsrolesWhereUniqueInput
+    update?: XOR<XOR<hsrolesUpdateToOneWithWhereWithoutHsemployeesInput, hsrolesUpdateWithoutHsemployeesInput>, hsrolesUncheckedUpdateWithoutHsemployeesInput>
   }
 
   export type hssessionsUpdateManyWithoutUserNestedInput = {
@@ -19713,20 +23085,6 @@ export namespace Prisma {
     update?: hsusers_permissionsUpdateWithWhereUniqueWithoutHsemployeesInput | hsusers_permissionsUpdateWithWhereUniqueWithoutHsemployeesInput[]
     updateMany?: hsusers_permissionsUpdateManyWithWhereWithoutHsemployeesInput | hsusers_permissionsUpdateManyWithWhereWithoutHsemployeesInput[]
     deleteMany?: hsusers_permissionsScalarWhereInput | hsusers_permissionsScalarWhereInput[]
-  }
-
-  export type hsusers_rolesUpdateManyWithoutHsemployeesNestedInput = {
-    create?: XOR<hsusers_rolesCreateWithoutHsemployeesInput, hsusers_rolesUncheckedCreateWithoutHsemployeesInput> | hsusers_rolesCreateWithoutHsemployeesInput[] | hsusers_rolesUncheckedCreateWithoutHsemployeesInput[]
-    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHsemployeesInput | hsusers_rolesCreateOrConnectWithoutHsemployeesInput[]
-    upsert?: hsusers_rolesUpsertWithWhereUniqueWithoutHsemployeesInput | hsusers_rolesUpsertWithWhereUniqueWithoutHsemployeesInput[]
-    createMany?: hsusers_rolesCreateManyHsemployeesInputEnvelope
-    set?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    disconnect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    delete?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    update?: hsusers_rolesUpdateWithWhereUniqueWithoutHsemployeesInput | hsusers_rolesUpdateWithWhereUniqueWithoutHsemployeesInput[]
-    updateMany?: hsusers_rolesUpdateManyWithWhereWithoutHsemployeesInput | hsusers_rolesUpdateManyWithWhereWithoutHsemployeesInput[]
-    deleteMany?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
   }
 
   export type hsvaliditiesUpdateManyWithoutHsemployeesNestedInput = {
@@ -19771,6 +23129,20 @@ export namespace Prisma {
     deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
   }
 
+  export type hsconsumer_productsUpdateManyWithoutHsemployeesNestedInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutHsemployeesInput, hsconsumer_productsUncheckedCreateWithoutHsemployeesInput> | hsconsumer_productsCreateWithoutHsemployeesInput[] | hsconsumer_productsUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutHsemployeesInput | hsconsumer_productsCreateOrConnectWithoutHsemployeesInput[]
+    upsert?: hsconsumer_productsUpsertWithWhereUniqueWithoutHsemployeesInput | hsconsumer_productsUpsertWithWhereUniqueWithoutHsemployeesInput[]
+    createMany?: hsconsumer_productsCreateManyHsemployeesInputEnvelope
+    set?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    disconnect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    delete?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    update?: hsconsumer_productsUpdateWithWhereUniqueWithoutHsemployeesInput | hsconsumer_productsUpdateWithWhereUniqueWithoutHsemployeesInput[]
+    updateMany?: hsconsumer_productsUpdateManyWithWhereWithoutHsemployeesInput | hsconsumer_productsUpdateManyWithWhereWithoutHsemployeesInput[]
+    deleteMany?: hsconsumer_productsScalarWhereInput | hsconsumer_productsScalarWhereInput[]
+  }
+
   export type hssessionsUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<hssessionsCreateWithoutUserInput, hssessionsUncheckedCreateWithoutUserInput> | hssessionsCreateWithoutUserInput[] | hssessionsUncheckedCreateWithoutUserInput[]
     connectOrCreate?: hssessionsCreateOrConnectWithoutUserInput | hssessionsCreateOrConnectWithoutUserInput[]
@@ -19797,20 +23169,6 @@ export namespace Prisma {
     update?: hsusers_permissionsUpdateWithWhereUniqueWithoutHsemployeesInput | hsusers_permissionsUpdateWithWhereUniqueWithoutHsemployeesInput[]
     updateMany?: hsusers_permissionsUpdateManyWithWhereWithoutHsemployeesInput | hsusers_permissionsUpdateManyWithWhereWithoutHsemployeesInput[]
     deleteMany?: hsusers_permissionsScalarWhereInput | hsusers_permissionsScalarWhereInput[]
-  }
-
-  export type hsusers_rolesUncheckedUpdateManyWithoutHsemployeesNestedInput = {
-    create?: XOR<hsusers_rolesCreateWithoutHsemployeesInput, hsusers_rolesUncheckedCreateWithoutHsemployeesInput> | hsusers_rolesCreateWithoutHsemployeesInput[] | hsusers_rolesUncheckedCreateWithoutHsemployeesInput[]
-    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHsemployeesInput | hsusers_rolesCreateOrConnectWithoutHsemployeesInput[]
-    upsert?: hsusers_rolesUpsertWithWhereUniqueWithoutHsemployeesInput | hsusers_rolesUpsertWithWhereUniqueWithoutHsemployeesInput[]
-    createMany?: hsusers_rolesCreateManyHsemployeesInputEnvelope
-    set?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    disconnect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    delete?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    update?: hsusers_rolesUpdateWithWhereUniqueWithoutHsemployeesInput | hsusers_rolesUpdateWithWhereUniqueWithoutHsemployeesInput[]
-    updateMany?: hsusers_rolesUpdateManyWithWhereWithoutHsemployeesInput | hsusers_rolesUpdateManyWithWhereWithoutHsemployeesInput[]
-    deleteMany?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
   }
 
   export type hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput = {
@@ -19855,6 +23213,20 @@ export namespace Prisma {
     deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
   }
 
+  export type hsconsumer_productsUncheckedUpdateManyWithoutHsemployeesNestedInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutHsemployeesInput, hsconsumer_productsUncheckedCreateWithoutHsemployeesInput> | hsconsumer_productsCreateWithoutHsemployeesInput[] | hsconsumer_productsUncheckedCreateWithoutHsemployeesInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutHsemployeesInput | hsconsumer_productsCreateOrConnectWithoutHsemployeesInput[]
+    upsert?: hsconsumer_productsUpsertWithWhereUniqueWithoutHsemployeesInput | hsconsumer_productsUpsertWithWhereUniqueWithoutHsemployeesInput[]
+    createMany?: hsconsumer_productsCreateManyHsemployeesInputEnvelope
+    set?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    disconnect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    delete?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    update?: hsconsumer_productsUpdateWithWhereUniqueWithoutHsemployeesInput | hsconsumer_productsUpdateWithWhereUniqueWithoutHsemployeesInput[]
+    updateMany?: hsconsumer_productsUpdateManyWithWhereWithoutHsemployeesInput | hsconsumer_productsUpdateManyWithWhereWithoutHsemployeesInput[]
+    deleteMany?: hsconsumer_productsScalarWhereInput | hsconsumer_productsScalarWhereInput[]
+  }
+
   export type hsroles_permissionsCreateNestedManyWithoutHsrolesInput = {
     create?: XOR<hsroles_permissionsCreateWithoutHsrolesInput, hsroles_permissionsUncheckedCreateWithoutHsrolesInput> | hsroles_permissionsCreateWithoutHsrolesInput[] | hsroles_permissionsUncheckedCreateWithoutHsrolesInput[]
     connectOrCreate?: hsroles_permissionsCreateOrConnectWithoutHsrolesInput | hsroles_permissionsCreateOrConnectWithoutHsrolesInput[]
@@ -19862,11 +23234,11 @@ export namespace Prisma {
     connect?: hsroles_permissionsWhereUniqueInput | hsroles_permissionsWhereUniqueInput[]
   }
 
-  export type hsusers_rolesCreateNestedManyWithoutHsrolesInput = {
-    create?: XOR<hsusers_rolesCreateWithoutHsrolesInput, hsusers_rolesUncheckedCreateWithoutHsrolesInput> | hsusers_rolesCreateWithoutHsrolesInput[] | hsusers_rolesUncheckedCreateWithoutHsrolesInput[]
-    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHsrolesInput | hsusers_rolesCreateOrConnectWithoutHsrolesInput[]
-    createMany?: hsusers_rolesCreateManyHsrolesInputEnvelope
-    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+  export type hsemployeesCreateNestedManyWithoutRoleInput = {
+    create?: XOR<hsemployeesCreateWithoutRoleInput, hsemployeesUncheckedCreateWithoutRoleInput> | hsemployeesCreateWithoutRoleInput[] | hsemployeesUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutRoleInput | hsemployeesCreateOrConnectWithoutRoleInput[]
+    createMany?: hsemployeesCreateManyRoleInputEnvelope
+    connect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
   }
 
   export type hsroles_permissionsUncheckedCreateNestedManyWithoutHsrolesInput = {
@@ -19876,11 +23248,11 @@ export namespace Prisma {
     connect?: hsroles_permissionsWhereUniqueInput | hsroles_permissionsWhereUniqueInput[]
   }
 
-  export type hsusers_rolesUncheckedCreateNestedManyWithoutHsrolesInput = {
-    create?: XOR<hsusers_rolesCreateWithoutHsrolesInput, hsusers_rolesUncheckedCreateWithoutHsrolesInput> | hsusers_rolesCreateWithoutHsrolesInput[] | hsusers_rolesUncheckedCreateWithoutHsrolesInput[]
-    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHsrolesInput | hsusers_rolesCreateOrConnectWithoutHsrolesInput[]
-    createMany?: hsusers_rolesCreateManyHsrolesInputEnvelope
-    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
+  export type hsemployeesUncheckedCreateNestedManyWithoutRoleInput = {
+    create?: XOR<hsemployeesCreateWithoutRoleInput, hsemployeesUncheckedCreateWithoutRoleInput> | hsemployeesCreateWithoutRoleInput[] | hsemployeesUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutRoleInput | hsemployeesCreateOrConnectWithoutRoleInput[]
+    createMany?: hsemployeesCreateManyRoleInputEnvelope
+    connect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
   }
 
   export type hsroles_permissionsUpdateManyWithoutHsrolesNestedInput = {
@@ -19897,18 +23269,18 @@ export namespace Prisma {
     deleteMany?: hsroles_permissionsScalarWhereInput | hsroles_permissionsScalarWhereInput[]
   }
 
-  export type hsusers_rolesUpdateManyWithoutHsrolesNestedInput = {
-    create?: XOR<hsusers_rolesCreateWithoutHsrolesInput, hsusers_rolesUncheckedCreateWithoutHsrolesInput> | hsusers_rolesCreateWithoutHsrolesInput[] | hsusers_rolesUncheckedCreateWithoutHsrolesInput[]
-    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHsrolesInput | hsusers_rolesCreateOrConnectWithoutHsrolesInput[]
-    upsert?: hsusers_rolesUpsertWithWhereUniqueWithoutHsrolesInput | hsusers_rolesUpsertWithWhereUniqueWithoutHsrolesInput[]
-    createMany?: hsusers_rolesCreateManyHsrolesInputEnvelope
-    set?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    disconnect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    delete?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    update?: hsusers_rolesUpdateWithWhereUniqueWithoutHsrolesInput | hsusers_rolesUpdateWithWhereUniqueWithoutHsrolesInput[]
-    updateMany?: hsusers_rolesUpdateManyWithWhereWithoutHsrolesInput | hsusers_rolesUpdateManyWithWhereWithoutHsrolesInput[]
-    deleteMany?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
+  export type hsemployeesUpdateManyWithoutRoleNestedInput = {
+    create?: XOR<hsemployeesCreateWithoutRoleInput, hsemployeesUncheckedCreateWithoutRoleInput> | hsemployeesCreateWithoutRoleInput[] | hsemployeesUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutRoleInput | hsemployeesCreateOrConnectWithoutRoleInput[]
+    upsert?: hsemployeesUpsertWithWhereUniqueWithoutRoleInput | hsemployeesUpsertWithWhereUniqueWithoutRoleInput[]
+    createMany?: hsemployeesCreateManyRoleInputEnvelope
+    set?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+    disconnect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+    delete?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+    connect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+    update?: hsemployeesUpdateWithWhereUniqueWithoutRoleInput | hsemployeesUpdateWithWhereUniqueWithoutRoleInput[]
+    updateMany?: hsemployeesUpdateManyWithWhereWithoutRoleInput | hsemployeesUpdateManyWithWhereWithoutRoleInput[]
+    deleteMany?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
   }
 
   export type hsroles_permissionsUncheckedUpdateManyWithoutHsrolesNestedInput = {
@@ -19925,18 +23297,18 @@ export namespace Prisma {
     deleteMany?: hsroles_permissionsScalarWhereInput | hsroles_permissionsScalarWhereInput[]
   }
 
-  export type hsusers_rolesUncheckedUpdateManyWithoutHsrolesNestedInput = {
-    create?: XOR<hsusers_rolesCreateWithoutHsrolesInput, hsusers_rolesUncheckedCreateWithoutHsrolesInput> | hsusers_rolesCreateWithoutHsrolesInput[] | hsusers_rolesUncheckedCreateWithoutHsrolesInput[]
-    connectOrCreate?: hsusers_rolesCreateOrConnectWithoutHsrolesInput | hsusers_rolesCreateOrConnectWithoutHsrolesInput[]
-    upsert?: hsusers_rolesUpsertWithWhereUniqueWithoutHsrolesInput | hsusers_rolesUpsertWithWhereUniqueWithoutHsrolesInput[]
-    createMany?: hsusers_rolesCreateManyHsrolesInputEnvelope
-    set?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    disconnect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    delete?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    connect?: hsusers_rolesWhereUniqueInput | hsusers_rolesWhereUniqueInput[]
-    update?: hsusers_rolesUpdateWithWhereUniqueWithoutHsrolesInput | hsusers_rolesUpdateWithWhereUniqueWithoutHsrolesInput[]
-    updateMany?: hsusers_rolesUpdateManyWithWhereWithoutHsrolesInput | hsusers_rolesUpdateManyWithWhereWithoutHsrolesInput[]
-    deleteMany?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
+  export type hsemployeesUncheckedUpdateManyWithoutRoleNestedInput = {
+    create?: XOR<hsemployeesCreateWithoutRoleInput, hsemployeesUncheckedCreateWithoutRoleInput> | hsemployeesCreateWithoutRoleInput[] | hsemployeesUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutRoleInput | hsemployeesCreateOrConnectWithoutRoleInput[]
+    upsert?: hsemployeesUpsertWithWhereUniqueWithoutRoleInput | hsemployeesUpsertWithWhereUniqueWithoutRoleInput[]
+    createMany?: hsemployeesCreateManyRoleInputEnvelope
+    set?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+    disconnect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+    delete?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+    connect?: hsemployeesWhereUniqueInput | hsemployeesWhereUniqueInput[]
+    update?: hsemployeesUpdateWithWhereUniqueWithoutRoleInput | hsemployeesUpdateWithWhereUniqueWithoutRoleInput[]
+    updateMany?: hsemployeesUpdateManyWithWhereWithoutRoleInput | hsemployeesUpdateManyWithWhereWithoutRoleInput[]
+    deleteMany?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
   }
 
   export type hsroles_permissionsCreateNestedManyWithoutHspermissionsInput = {
@@ -20079,34 +23451,6 @@ export namespace Prisma {
     update?: XOR<XOR<hsemployeesUpdateToOneWithWhereWithoutHsusers_permissionsInput, hsemployeesUpdateWithoutHsusers_permissionsInput>, hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput>
   }
 
-  export type hsrolesCreateNestedOneWithoutHsusers_rolesInput = {
-    create?: XOR<hsrolesCreateWithoutHsusers_rolesInput, hsrolesUncheckedCreateWithoutHsusers_rolesInput>
-    connectOrCreate?: hsrolesCreateOrConnectWithoutHsusers_rolesInput
-    connect?: hsrolesWhereUniqueInput
-  }
-
-  export type hsemployeesCreateNestedOneWithoutHsusers_rolesInput = {
-    create?: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
-    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsusers_rolesInput
-    connect?: hsemployeesWhereUniqueInput
-  }
-
-  export type hsrolesUpdateOneRequiredWithoutHsusers_rolesNestedInput = {
-    create?: XOR<hsrolesCreateWithoutHsusers_rolesInput, hsrolesUncheckedCreateWithoutHsusers_rolesInput>
-    connectOrCreate?: hsrolesCreateOrConnectWithoutHsusers_rolesInput
-    upsert?: hsrolesUpsertWithoutHsusers_rolesInput
-    connect?: hsrolesWhereUniqueInput
-    update?: XOR<XOR<hsrolesUpdateToOneWithWhereWithoutHsusers_rolesInput, hsrolesUpdateWithoutHsusers_rolesInput>, hsrolesUncheckedUpdateWithoutHsusers_rolesInput>
-  }
-
-  export type hsemployeesUpdateOneRequiredWithoutHsusers_rolesNestedInput = {
-    create?: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
-    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsusers_rolesInput
-    upsert?: hsemployeesUpsertWithoutHsusers_rolesInput
-    connect?: hsemployeesWhereUniqueInput
-    update?: XOR<XOR<hsemployeesUpdateToOneWithWhereWithoutHsusers_rolesInput, hsemployeesUpdateWithoutHsusers_rolesInput>, hsemployeesUncheckedUpdateWithoutHsusers_rolesInput>
-  }
-
   export type hsemployeesCreateNestedManyWithoutBranchInput = {
     create?: XOR<hsemployeesCreateWithoutBranchInput, hsemployeesUncheckedCreateWithoutBranchInput> | hsemployeesCreateWithoutBranchInput[] | hsemployeesUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: hsemployeesCreateOrConnectWithoutBranchInput | hsemployeesCreateOrConnectWithoutBranchInput[]
@@ -20128,6 +23472,20 @@ export namespace Prisma {
     connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
   }
 
+  export type hsconsumer_productsCreateNestedManyWithoutBranchInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutBranchInput, hsconsumer_productsUncheckedCreateWithoutBranchInput> | hsconsumer_productsCreateWithoutBranchInput[] | hsconsumer_productsUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutBranchInput | hsconsumer_productsCreateOrConnectWithoutBranchInput[]
+    createMany?: hsconsumer_productsCreateManyBranchInputEnvelope
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+  }
+
+  export type hsconsumption_noteCreateNestedManyWithoutBranchInput = {
+    create?: XOR<hsconsumption_noteCreateWithoutBranchInput, hsconsumption_noteUncheckedCreateWithoutBranchInput> | hsconsumption_noteCreateWithoutBranchInput[] | hsconsumption_noteUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: hsconsumption_noteCreateOrConnectWithoutBranchInput | hsconsumption_noteCreateOrConnectWithoutBranchInput[]
+    createMany?: hsconsumption_noteCreateManyBranchInputEnvelope
+    connect?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+  }
+
   export type hsemployeesUncheckedCreateNestedManyWithoutBranchInput = {
     create?: XOR<hsemployeesCreateWithoutBranchInput, hsemployeesUncheckedCreateWithoutBranchInput> | hsemployeesCreateWithoutBranchInput[] | hsemployeesUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: hsemployeesCreateOrConnectWithoutBranchInput | hsemployeesCreateOrConnectWithoutBranchInput[]
@@ -20147,6 +23505,20 @@ export namespace Prisma {
     connectOrCreate?: hsvalidity_requestsCreateOrConnectWithoutHsbranchesInput | hsvalidity_requestsCreateOrConnectWithoutHsbranchesInput[]
     createMany?: hsvalidity_requestsCreateManyHsbranchesInputEnvelope
     connect?: hsvalidity_requestsWhereUniqueInput | hsvalidity_requestsWhereUniqueInput[]
+  }
+
+  export type hsconsumer_productsUncheckedCreateNestedManyWithoutBranchInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutBranchInput, hsconsumer_productsUncheckedCreateWithoutBranchInput> | hsconsumer_productsCreateWithoutBranchInput[] | hsconsumer_productsUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutBranchInput | hsconsumer_productsCreateOrConnectWithoutBranchInput[]
+    createMany?: hsconsumer_productsCreateManyBranchInputEnvelope
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+  }
+
+  export type hsconsumption_noteUncheckedCreateNestedManyWithoutBranchInput = {
+    create?: XOR<hsconsumption_noteCreateWithoutBranchInput, hsconsumption_noteUncheckedCreateWithoutBranchInput> | hsconsumption_noteCreateWithoutBranchInput[] | hsconsumption_noteUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: hsconsumption_noteCreateOrConnectWithoutBranchInput | hsconsumption_noteCreateOrConnectWithoutBranchInput[]
+    createMany?: hsconsumption_noteCreateManyBranchInputEnvelope
+    connect?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
   }
 
   export type hsemployeesUpdateManyWithoutBranchNestedInput = {
@@ -20191,6 +23563,34 @@ export namespace Prisma {
     deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
   }
 
+  export type hsconsumer_productsUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutBranchInput, hsconsumer_productsUncheckedCreateWithoutBranchInput> | hsconsumer_productsCreateWithoutBranchInput[] | hsconsumer_productsUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutBranchInput | hsconsumer_productsCreateOrConnectWithoutBranchInput[]
+    upsert?: hsconsumer_productsUpsertWithWhereUniqueWithoutBranchInput | hsconsumer_productsUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: hsconsumer_productsCreateManyBranchInputEnvelope
+    set?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    disconnect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    delete?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    update?: hsconsumer_productsUpdateWithWhereUniqueWithoutBranchInput | hsconsumer_productsUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: hsconsumer_productsUpdateManyWithWhereWithoutBranchInput | hsconsumer_productsUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: hsconsumer_productsScalarWhereInput | hsconsumer_productsScalarWhereInput[]
+  }
+
+  export type hsconsumption_noteUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<hsconsumption_noteCreateWithoutBranchInput, hsconsumption_noteUncheckedCreateWithoutBranchInput> | hsconsumption_noteCreateWithoutBranchInput[] | hsconsumption_noteUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: hsconsumption_noteCreateOrConnectWithoutBranchInput | hsconsumption_noteCreateOrConnectWithoutBranchInput[]
+    upsert?: hsconsumption_noteUpsertWithWhereUniqueWithoutBranchInput | hsconsumption_noteUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: hsconsumption_noteCreateManyBranchInputEnvelope
+    set?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    disconnect?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    delete?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    connect?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    update?: hsconsumption_noteUpdateWithWhereUniqueWithoutBranchInput | hsconsumption_noteUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: hsconsumption_noteUpdateManyWithWhereWithoutBranchInput | hsconsumption_noteUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: hsconsumption_noteScalarWhereInput | hsconsumption_noteScalarWhereInput[]
+  }
+
   export type hsemployeesUncheckedUpdateManyWithoutBranchNestedInput = {
     create?: XOR<hsemployeesCreateWithoutBranchInput, hsemployeesUncheckedCreateWithoutBranchInput> | hsemployeesCreateWithoutBranchInput[] | hsemployeesUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: hsemployeesCreateOrConnectWithoutBranchInput | hsemployeesCreateOrConnectWithoutBranchInput[]
@@ -20231,6 +23631,34 @@ export namespace Prisma {
     update?: hsvalidity_requestsUpdateWithWhereUniqueWithoutHsbranchesInput | hsvalidity_requestsUpdateWithWhereUniqueWithoutHsbranchesInput[]
     updateMany?: hsvalidity_requestsUpdateManyWithWhereWithoutHsbranchesInput | hsvalidity_requestsUpdateManyWithWhereWithoutHsbranchesInput[]
     deleteMany?: hsvalidity_requestsScalarWhereInput | hsvalidity_requestsScalarWhereInput[]
+  }
+
+  export type hsconsumer_productsUncheckedUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutBranchInput, hsconsumer_productsUncheckedCreateWithoutBranchInput> | hsconsumer_productsCreateWithoutBranchInput[] | hsconsumer_productsUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutBranchInput | hsconsumer_productsCreateOrConnectWithoutBranchInput[]
+    upsert?: hsconsumer_productsUpsertWithWhereUniqueWithoutBranchInput | hsconsumer_productsUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: hsconsumer_productsCreateManyBranchInputEnvelope
+    set?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    disconnect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    delete?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    update?: hsconsumer_productsUpdateWithWhereUniqueWithoutBranchInput | hsconsumer_productsUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: hsconsumer_productsUpdateManyWithWhereWithoutBranchInput | hsconsumer_productsUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: hsconsumer_productsScalarWhereInput | hsconsumer_productsScalarWhereInput[]
+  }
+
+  export type hsconsumption_noteUncheckedUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<hsconsumption_noteCreateWithoutBranchInput, hsconsumption_noteUncheckedCreateWithoutBranchInput> | hsconsumption_noteCreateWithoutBranchInput[] | hsconsumption_noteUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: hsconsumption_noteCreateOrConnectWithoutBranchInput | hsconsumption_noteCreateOrConnectWithoutBranchInput[]
+    upsert?: hsconsumption_noteUpsertWithWhereUniqueWithoutBranchInput | hsconsumption_noteUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: hsconsumption_noteCreateManyBranchInputEnvelope
+    set?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    disconnect?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    delete?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    connect?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    update?: hsconsumption_noteUpdateWithWhereUniqueWithoutBranchInput | hsconsumption_noteUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: hsconsumption_noteUpdateManyWithWhereWithoutBranchInput | hsconsumption_noteUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: hsconsumption_noteScalarWhereInput | hsconsumption_noteScalarWhereInput[]
   }
 
   export type hsbranchesCreateNestedOneWithoutHsvaliditiesInput = {
@@ -20567,6 +23995,226 @@ export namespace Prisma {
     update?: XOR<XOR<hsemployeesUpdateToOneWithWhereWithoutSessionsInput, hsemployeesUpdateWithoutSessionsInput>, hsemployeesUncheckedUpdateWithoutSessionsInput>
   }
 
+  export type hsemployeesCreateNestedOneWithoutHsconsumer_productsInput = {
+    create?: XOR<hsemployeesCreateWithoutHsconsumer_productsInput, hsemployeesUncheckedCreateWithoutHsconsumer_productsInput>
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsconsumer_productsInput
+    connect?: hsemployeesWhereUniqueInput
+  }
+
+  export type hsconsumer_groupsCreateNestedOneWithoutHsconsumer_productsInput = {
+    create?: XOR<hsconsumer_groupsCreateWithoutHsconsumer_productsInput, hsconsumer_groupsUncheckedCreateWithoutHsconsumer_productsInput>
+    connectOrCreate?: hsconsumer_groupsCreateOrConnectWithoutHsconsumer_productsInput
+    connect?: hsconsumer_groupsWhereUniqueInput
+  }
+
+  export type hsbranchesCreateNestedOneWithoutHsconsumerProductsInput = {
+    create?: XOR<hsbranchesCreateWithoutHsconsumerProductsInput, hsbranchesUncheckedCreateWithoutHsconsumerProductsInput>
+    connectOrCreate?: hsbranchesCreateOrConnectWithoutHsconsumerProductsInput
+    connect?: hsbranchesWhereUniqueInput
+  }
+
+  export type hsconsumption_noteCreateNestedOneWithoutHsconsumerProductsInput = {
+    create?: XOR<hsconsumption_noteCreateWithoutHsconsumerProductsInput, hsconsumption_noteUncheckedCreateWithoutHsconsumerProductsInput>
+    connectOrCreate?: hsconsumption_noteCreateOrConnectWithoutHsconsumerProductsInput
+    connect?: hsconsumption_noteWhereUniqueInput
+  }
+
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type hsemployeesUpdateOneRequiredWithoutHsconsumer_productsNestedInput = {
+    create?: XOR<hsemployeesCreateWithoutHsconsumer_productsInput, hsemployeesUncheckedCreateWithoutHsconsumer_productsInput>
+    connectOrCreate?: hsemployeesCreateOrConnectWithoutHsconsumer_productsInput
+    upsert?: hsemployeesUpsertWithoutHsconsumer_productsInput
+    connect?: hsemployeesWhereUniqueInput
+    update?: XOR<XOR<hsemployeesUpdateToOneWithWhereWithoutHsconsumer_productsInput, hsemployeesUpdateWithoutHsconsumer_productsInput>, hsemployeesUncheckedUpdateWithoutHsconsumer_productsInput>
+  }
+
+  export type hsconsumer_groupsUpdateOneRequiredWithoutHsconsumer_productsNestedInput = {
+    create?: XOR<hsconsumer_groupsCreateWithoutHsconsumer_productsInput, hsconsumer_groupsUncheckedCreateWithoutHsconsumer_productsInput>
+    connectOrCreate?: hsconsumer_groupsCreateOrConnectWithoutHsconsumer_productsInput
+    upsert?: hsconsumer_groupsUpsertWithoutHsconsumer_productsInput
+    connect?: hsconsumer_groupsWhereUniqueInput
+    update?: XOR<XOR<hsconsumer_groupsUpdateToOneWithWhereWithoutHsconsumer_productsInput, hsconsumer_groupsUpdateWithoutHsconsumer_productsInput>, hsconsumer_groupsUncheckedUpdateWithoutHsconsumer_productsInput>
+  }
+
+  export type hsbranchesUpdateOneRequiredWithoutHsconsumerProductsNestedInput = {
+    create?: XOR<hsbranchesCreateWithoutHsconsumerProductsInput, hsbranchesUncheckedCreateWithoutHsconsumerProductsInput>
+    connectOrCreate?: hsbranchesCreateOrConnectWithoutHsconsumerProductsInput
+    upsert?: hsbranchesUpsertWithoutHsconsumerProductsInput
+    connect?: hsbranchesWhereUniqueInput
+    update?: XOR<XOR<hsbranchesUpdateToOneWithWhereWithoutHsconsumerProductsInput, hsbranchesUpdateWithoutHsconsumerProductsInput>, hsbranchesUncheckedUpdateWithoutHsconsumerProductsInput>
+  }
+
+  export type hsconsumption_noteUpdateOneWithoutHsconsumerProductsNestedInput = {
+    create?: XOR<hsconsumption_noteCreateWithoutHsconsumerProductsInput, hsconsumption_noteUncheckedCreateWithoutHsconsumerProductsInput>
+    connectOrCreate?: hsconsumption_noteCreateOrConnectWithoutHsconsumerProductsInput
+    upsert?: hsconsumption_noteUpsertWithoutHsconsumerProductsInput
+    disconnect?: hsconsumption_noteWhereInput | boolean
+    delete?: hsconsumption_noteWhereInput | boolean
+    connect?: hsconsumption_noteWhereUniqueInput
+    update?: XOR<XOR<hsconsumption_noteUpdateToOneWithWhereWithoutHsconsumerProductsInput, hsconsumption_noteUpdateWithoutHsconsumerProductsInput>, hsconsumption_noteUncheckedUpdateWithoutHsconsumerProductsInput>
+  }
+
+  export type hsconsumer_groupsCreateNestedOneWithoutConsumptionNotesInput = {
+    create?: XOR<hsconsumer_groupsCreateWithoutConsumptionNotesInput, hsconsumer_groupsUncheckedCreateWithoutConsumptionNotesInput>
+    connectOrCreate?: hsconsumer_groupsCreateOrConnectWithoutConsumptionNotesInput
+    connect?: hsconsumer_groupsWhereUniqueInput
+  }
+
+  export type hsbranchesCreateNestedOneWithoutConsumptionNotesInput = {
+    create?: XOR<hsbranchesCreateWithoutConsumptionNotesInput, hsbranchesUncheckedCreateWithoutConsumptionNotesInput>
+    connectOrCreate?: hsbranchesCreateOrConnectWithoutConsumptionNotesInput
+    connect?: hsbranchesWhereUniqueInput
+  }
+
+  export type hsconsumer_productsCreateNestedManyWithoutHsconsumption_noteInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutHsconsumption_noteInput, hsconsumer_productsUncheckedCreateWithoutHsconsumption_noteInput> | hsconsumer_productsCreateWithoutHsconsumption_noteInput[] | hsconsumer_productsUncheckedCreateWithoutHsconsumption_noteInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutHsconsumption_noteInput | hsconsumer_productsCreateOrConnectWithoutHsconsumption_noteInput[]
+    createMany?: hsconsumer_productsCreateManyHsconsumption_noteInputEnvelope
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+  }
+
+  export type hsconsumer_productsUncheckedCreateNestedManyWithoutHsconsumption_noteInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutHsconsumption_noteInput, hsconsumer_productsUncheckedCreateWithoutHsconsumption_noteInput> | hsconsumer_productsCreateWithoutHsconsumption_noteInput[] | hsconsumer_productsUncheckedCreateWithoutHsconsumption_noteInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutHsconsumption_noteInput | hsconsumer_productsCreateOrConnectWithoutHsconsumption_noteInput[]
+    createMany?: hsconsumer_productsCreateManyHsconsumption_noteInputEnvelope
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+  }
+
+  export type hsconsumer_groupsUpdateOneRequiredWithoutConsumptionNotesNestedInput = {
+    create?: XOR<hsconsumer_groupsCreateWithoutConsumptionNotesInput, hsconsumer_groupsUncheckedCreateWithoutConsumptionNotesInput>
+    connectOrCreate?: hsconsumer_groupsCreateOrConnectWithoutConsumptionNotesInput
+    upsert?: hsconsumer_groupsUpsertWithoutConsumptionNotesInput
+    connect?: hsconsumer_groupsWhereUniqueInput
+    update?: XOR<XOR<hsconsumer_groupsUpdateToOneWithWhereWithoutConsumptionNotesInput, hsconsumer_groupsUpdateWithoutConsumptionNotesInput>, hsconsumer_groupsUncheckedUpdateWithoutConsumptionNotesInput>
+  }
+
+  export type hsbranchesUpdateOneRequiredWithoutConsumptionNotesNestedInput = {
+    create?: XOR<hsbranchesCreateWithoutConsumptionNotesInput, hsbranchesUncheckedCreateWithoutConsumptionNotesInput>
+    connectOrCreate?: hsbranchesCreateOrConnectWithoutConsumptionNotesInput
+    upsert?: hsbranchesUpsertWithoutConsumptionNotesInput
+    connect?: hsbranchesWhereUniqueInput
+    update?: XOR<XOR<hsbranchesUpdateToOneWithWhereWithoutConsumptionNotesInput, hsbranchesUpdateWithoutConsumptionNotesInput>, hsbranchesUncheckedUpdateWithoutConsumptionNotesInput>
+  }
+
+  export type hsconsumer_productsUpdateManyWithoutHsconsumption_noteNestedInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutHsconsumption_noteInput, hsconsumer_productsUncheckedCreateWithoutHsconsumption_noteInput> | hsconsumer_productsCreateWithoutHsconsumption_noteInput[] | hsconsumer_productsUncheckedCreateWithoutHsconsumption_noteInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutHsconsumption_noteInput | hsconsumer_productsCreateOrConnectWithoutHsconsumption_noteInput[]
+    upsert?: hsconsumer_productsUpsertWithWhereUniqueWithoutHsconsumption_noteInput | hsconsumer_productsUpsertWithWhereUniqueWithoutHsconsumption_noteInput[]
+    createMany?: hsconsumer_productsCreateManyHsconsumption_noteInputEnvelope
+    set?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    disconnect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    delete?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    update?: hsconsumer_productsUpdateWithWhereUniqueWithoutHsconsumption_noteInput | hsconsumer_productsUpdateWithWhereUniqueWithoutHsconsumption_noteInput[]
+    updateMany?: hsconsumer_productsUpdateManyWithWhereWithoutHsconsumption_noteInput | hsconsumer_productsUpdateManyWithWhereWithoutHsconsumption_noteInput[]
+    deleteMany?: hsconsumer_productsScalarWhereInput | hsconsumer_productsScalarWhereInput[]
+  }
+
+  export type hsconsumer_productsUncheckedUpdateManyWithoutHsconsumption_noteNestedInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutHsconsumption_noteInput, hsconsumer_productsUncheckedCreateWithoutHsconsumption_noteInput> | hsconsumer_productsCreateWithoutHsconsumption_noteInput[] | hsconsumer_productsUncheckedCreateWithoutHsconsumption_noteInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutHsconsumption_noteInput | hsconsumer_productsCreateOrConnectWithoutHsconsumption_noteInput[]
+    upsert?: hsconsumer_productsUpsertWithWhereUniqueWithoutHsconsumption_noteInput | hsconsumer_productsUpsertWithWhereUniqueWithoutHsconsumption_noteInput[]
+    createMany?: hsconsumer_productsCreateManyHsconsumption_noteInputEnvelope
+    set?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    disconnect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    delete?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    update?: hsconsumer_productsUpdateWithWhereUniqueWithoutHsconsumption_noteInput | hsconsumer_productsUpdateWithWhereUniqueWithoutHsconsumption_noteInput[]
+    updateMany?: hsconsumer_productsUpdateManyWithWhereWithoutHsconsumption_noteInput | hsconsumer_productsUpdateManyWithWhereWithoutHsconsumption_noteInput[]
+    deleteMany?: hsconsumer_productsScalarWhereInput | hsconsumer_productsScalarWhereInput[]
+  }
+
+  export type hsconsumer_productsCreateNestedManyWithoutHsconsumer_groupsInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutHsconsumer_groupsInput, hsconsumer_productsUncheckedCreateWithoutHsconsumer_groupsInput> | hsconsumer_productsCreateWithoutHsconsumer_groupsInput[] | hsconsumer_productsUncheckedCreateWithoutHsconsumer_groupsInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutHsconsumer_groupsInput | hsconsumer_productsCreateOrConnectWithoutHsconsumer_groupsInput[]
+    createMany?: hsconsumer_productsCreateManyHsconsumer_groupsInputEnvelope
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+  }
+
+  export type hsconsumption_noteCreateNestedManyWithoutHsconsumer_groupsInput = {
+    create?: XOR<hsconsumption_noteCreateWithoutHsconsumer_groupsInput, hsconsumption_noteUncheckedCreateWithoutHsconsumer_groupsInput> | hsconsumption_noteCreateWithoutHsconsumer_groupsInput[] | hsconsumption_noteUncheckedCreateWithoutHsconsumer_groupsInput[]
+    connectOrCreate?: hsconsumption_noteCreateOrConnectWithoutHsconsumer_groupsInput | hsconsumption_noteCreateOrConnectWithoutHsconsumer_groupsInput[]
+    createMany?: hsconsumption_noteCreateManyHsconsumer_groupsInputEnvelope
+    connect?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+  }
+
+  export type hsconsumer_productsUncheckedCreateNestedManyWithoutHsconsumer_groupsInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutHsconsumer_groupsInput, hsconsumer_productsUncheckedCreateWithoutHsconsumer_groupsInput> | hsconsumer_productsCreateWithoutHsconsumer_groupsInput[] | hsconsumer_productsUncheckedCreateWithoutHsconsumer_groupsInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutHsconsumer_groupsInput | hsconsumer_productsCreateOrConnectWithoutHsconsumer_groupsInput[]
+    createMany?: hsconsumer_productsCreateManyHsconsumer_groupsInputEnvelope
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+  }
+
+  export type hsconsumption_noteUncheckedCreateNestedManyWithoutHsconsumer_groupsInput = {
+    create?: XOR<hsconsumption_noteCreateWithoutHsconsumer_groupsInput, hsconsumption_noteUncheckedCreateWithoutHsconsumer_groupsInput> | hsconsumption_noteCreateWithoutHsconsumer_groupsInput[] | hsconsumption_noteUncheckedCreateWithoutHsconsumer_groupsInput[]
+    connectOrCreate?: hsconsumption_noteCreateOrConnectWithoutHsconsumer_groupsInput | hsconsumption_noteCreateOrConnectWithoutHsconsumer_groupsInput[]
+    createMany?: hsconsumption_noteCreateManyHsconsumer_groupsInputEnvelope
+    connect?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+  }
+
+  export type hsconsumer_productsUpdateManyWithoutHsconsumer_groupsNestedInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutHsconsumer_groupsInput, hsconsumer_productsUncheckedCreateWithoutHsconsumer_groupsInput> | hsconsumer_productsCreateWithoutHsconsumer_groupsInput[] | hsconsumer_productsUncheckedCreateWithoutHsconsumer_groupsInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutHsconsumer_groupsInput | hsconsumer_productsCreateOrConnectWithoutHsconsumer_groupsInput[]
+    upsert?: hsconsumer_productsUpsertWithWhereUniqueWithoutHsconsumer_groupsInput | hsconsumer_productsUpsertWithWhereUniqueWithoutHsconsumer_groupsInput[]
+    createMany?: hsconsumer_productsCreateManyHsconsumer_groupsInputEnvelope
+    set?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    disconnect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    delete?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    update?: hsconsumer_productsUpdateWithWhereUniqueWithoutHsconsumer_groupsInput | hsconsumer_productsUpdateWithWhereUniqueWithoutHsconsumer_groupsInput[]
+    updateMany?: hsconsumer_productsUpdateManyWithWhereWithoutHsconsumer_groupsInput | hsconsumer_productsUpdateManyWithWhereWithoutHsconsumer_groupsInput[]
+    deleteMany?: hsconsumer_productsScalarWhereInput | hsconsumer_productsScalarWhereInput[]
+  }
+
+  export type hsconsumption_noteUpdateManyWithoutHsconsumer_groupsNestedInput = {
+    create?: XOR<hsconsumption_noteCreateWithoutHsconsumer_groupsInput, hsconsumption_noteUncheckedCreateWithoutHsconsumer_groupsInput> | hsconsumption_noteCreateWithoutHsconsumer_groupsInput[] | hsconsumption_noteUncheckedCreateWithoutHsconsumer_groupsInput[]
+    connectOrCreate?: hsconsumption_noteCreateOrConnectWithoutHsconsumer_groupsInput | hsconsumption_noteCreateOrConnectWithoutHsconsumer_groupsInput[]
+    upsert?: hsconsumption_noteUpsertWithWhereUniqueWithoutHsconsumer_groupsInput | hsconsumption_noteUpsertWithWhereUniqueWithoutHsconsumer_groupsInput[]
+    createMany?: hsconsumption_noteCreateManyHsconsumer_groupsInputEnvelope
+    set?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    disconnect?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    delete?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    connect?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    update?: hsconsumption_noteUpdateWithWhereUniqueWithoutHsconsumer_groupsInput | hsconsumption_noteUpdateWithWhereUniqueWithoutHsconsumer_groupsInput[]
+    updateMany?: hsconsumption_noteUpdateManyWithWhereWithoutHsconsumer_groupsInput | hsconsumption_noteUpdateManyWithWhereWithoutHsconsumer_groupsInput[]
+    deleteMany?: hsconsumption_noteScalarWhereInput | hsconsumption_noteScalarWhereInput[]
+  }
+
+  export type hsconsumer_productsUncheckedUpdateManyWithoutHsconsumer_groupsNestedInput = {
+    create?: XOR<hsconsumer_productsCreateWithoutHsconsumer_groupsInput, hsconsumer_productsUncheckedCreateWithoutHsconsumer_groupsInput> | hsconsumer_productsCreateWithoutHsconsumer_groupsInput[] | hsconsumer_productsUncheckedCreateWithoutHsconsumer_groupsInput[]
+    connectOrCreate?: hsconsumer_productsCreateOrConnectWithoutHsconsumer_groupsInput | hsconsumer_productsCreateOrConnectWithoutHsconsumer_groupsInput[]
+    upsert?: hsconsumer_productsUpsertWithWhereUniqueWithoutHsconsumer_groupsInput | hsconsumer_productsUpsertWithWhereUniqueWithoutHsconsumer_groupsInput[]
+    createMany?: hsconsumer_productsCreateManyHsconsumer_groupsInputEnvelope
+    set?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    disconnect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    delete?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    connect?: hsconsumer_productsWhereUniqueInput | hsconsumer_productsWhereUniqueInput[]
+    update?: hsconsumer_productsUpdateWithWhereUniqueWithoutHsconsumer_groupsInput | hsconsumer_productsUpdateWithWhereUniqueWithoutHsconsumer_groupsInput[]
+    updateMany?: hsconsumer_productsUpdateManyWithWhereWithoutHsconsumer_groupsInput | hsconsumer_productsUpdateManyWithWhereWithoutHsconsumer_groupsInput[]
+    deleteMany?: hsconsumer_productsScalarWhereInput | hsconsumer_productsScalarWhereInput[]
+  }
+
+  export type hsconsumption_noteUncheckedUpdateManyWithoutHsconsumer_groupsNestedInput = {
+    create?: XOR<hsconsumption_noteCreateWithoutHsconsumer_groupsInput, hsconsumption_noteUncheckedCreateWithoutHsconsumer_groupsInput> | hsconsumption_noteCreateWithoutHsconsumer_groupsInput[] | hsconsumption_noteUncheckedCreateWithoutHsconsumer_groupsInput[]
+    connectOrCreate?: hsconsumption_noteCreateOrConnectWithoutHsconsumer_groupsInput | hsconsumption_noteCreateOrConnectWithoutHsconsumer_groupsInput[]
+    upsert?: hsconsumption_noteUpsertWithWhereUniqueWithoutHsconsumer_groupsInput | hsconsumption_noteUpsertWithWhereUniqueWithoutHsconsumer_groupsInput[]
+    createMany?: hsconsumption_noteCreateManyHsconsumer_groupsInputEnvelope
+    set?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    disconnect?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    delete?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    connect?: hsconsumption_noteWhereUniqueInput | hsconsumption_noteWhereUniqueInput[]
+    update?: hsconsumption_noteUpdateWithWhereUniqueWithoutHsconsumer_groupsInput | hsconsumption_noteUpdateWithWhereUniqueWithoutHsconsumer_groupsInput[]
+    updateMany?: hsconsumption_noteUpdateManyWithWhereWithoutHsconsumer_groupsInput | hsconsumption_noteUpdateManyWithWhereWithoutHsconsumer_groupsInput[]
+    deleteMany?: hsconsumption_noteScalarWhereInput | hsconsumption_noteScalarWhereInput[]
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -20800,10 +24448,39 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type hsbranchesCreateWithoutHsemployeesInput = {
     description: string
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsbranchesInput
     hsvalidity_requests?: hsvalidity_requestsCreateNestedManyWithoutHsbranchesInput
+    hsconsumerProducts?: hsconsumer_productsCreateNestedManyWithoutBranchInput
+    consumptionNotes?: hsconsumption_noteCreateNestedManyWithoutBranchInput
   }
 
   export type hsbranchesUncheckedCreateWithoutHsemployeesInput = {
@@ -20811,11 +24488,35 @@ export namespace Prisma {
     description: string
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsbranchesInput
     hsvalidity_requests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutHsbranchesInput
+    hsconsumerProducts?: hsconsumer_productsUncheckedCreateNestedManyWithoutBranchInput
+    consumptionNotes?: hsconsumption_noteUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type hsbranchesCreateOrConnectWithoutHsemployeesInput = {
     where: hsbranchesWhereUniqueInput
     create: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
+  }
+
+  export type hsrolesCreateWithoutHsemployeesInput = {
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsroles_permissions?: hsroles_permissionsCreateNestedManyWithoutHsrolesInput
+  }
+
+  export type hsrolesUncheckedCreateWithoutHsemployeesInput = {
+    id?: number
+    name: string
+    description: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsroles_permissions?: hsroles_permissionsUncheckedCreateNestedManyWithoutHsrolesInput
+  }
+
+  export type hsrolesCreateOrConnectWithoutHsemployeesInput = {
+    where: hsrolesWhereUniqueInput
+    create: XOR<hsrolesCreateWithoutHsemployeesInput, hsrolesUncheckedCreateWithoutHsemployeesInput>
   }
 
   export type hssessionsCreateWithoutUserInput = {
@@ -20857,24 +24558,6 @@ export namespace Prisma {
 
   export type hsusers_permissionsCreateManyHsemployeesInputEnvelope = {
     data: hsusers_permissionsCreateManyHsemployeesInput | hsusers_permissionsCreateManyHsemployeesInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type hsusers_rolesCreateWithoutHsemployeesInput = {
-    hsroles: hsrolesCreateNestedOneWithoutHsusers_rolesInput
-  }
-
-  export type hsusers_rolesUncheckedCreateWithoutHsemployeesInput = {
-    role_id: number
-  }
-
-  export type hsusers_rolesCreateOrConnectWithoutHsemployeesInput = {
-    where: hsusers_rolesWhereUniqueInput
-    create: XOR<hsusers_rolesCreateWithoutHsemployeesInput, hsusers_rolesUncheckedCreateWithoutHsemployeesInput>
-  }
-
-  export type hsusers_rolesCreateManyHsemployeesInputEnvelope = {
-    data: hsusers_rolesCreateManyHsemployeesInput | hsusers_rolesCreateManyHsemployeesInput[]
     skipDuplicates?: boolean
   }
 
@@ -20969,6 +24652,43 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type hsconsumer_productsCreateWithoutHsemployeesInput = {
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsconsumer_groups: hsconsumer_groupsCreateNestedOneWithoutHsconsumer_productsInput
+    branch: hsbranchesCreateNestedOneWithoutHsconsumerProductsInput
+    hsconsumption_note?: hsconsumption_noteCreateNestedOneWithoutHsconsumerProductsInput
+  }
+
+  export type hsconsumer_productsUncheckedCreateWithoutHsemployeesInput = {
+    id?: number
+    consumption_id?: number | null
+    branch_id: number
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    group_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumer_productsCreateOrConnectWithoutHsemployeesInput = {
+    where: hsconsumer_productsWhereUniqueInput
+    create: XOR<hsconsumer_productsCreateWithoutHsemployeesInput, hsconsumer_productsUncheckedCreateWithoutHsemployeesInput>
+  }
+
+  export type hsconsumer_productsCreateManyHsemployeesInputEnvelope = {
+    data: hsconsumer_productsCreateManyHsemployeesInput | hsconsumer_productsCreateManyHsemployeesInput[]
+    skipDuplicates?: boolean
+  }
+
   export type hsbranchesUpsertWithoutHsemployeesInput = {
     update: XOR<hsbranchesUpdateWithoutHsemployeesInput, hsbranchesUncheckedUpdateWithoutHsemployeesInput>
     create: XOR<hsbranchesCreateWithoutHsemployeesInput, hsbranchesUncheckedCreateWithoutHsemployeesInput>
@@ -20984,6 +24704,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsbranchesNestedInput
     hsvalidity_requests?: hsvalidity_requestsUpdateManyWithoutHsbranchesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUpdateManyWithoutBranchNestedInput
+    consumptionNotes?: hsconsumption_noteUpdateManyWithoutBranchNestedInput
   }
 
   export type hsbranchesUncheckedUpdateWithoutHsemployeesInput = {
@@ -20991,6 +24713,36 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsbranchesNestedInput
     hsvalidity_requests?: hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUncheckedUpdateManyWithoutBranchNestedInput
+    consumptionNotes?: hsconsumption_noteUncheckedUpdateManyWithoutBranchNestedInput
+  }
+
+  export type hsrolesUpsertWithoutHsemployeesInput = {
+    update: XOR<hsrolesUpdateWithoutHsemployeesInput, hsrolesUncheckedUpdateWithoutHsemployeesInput>
+    create: XOR<hsrolesCreateWithoutHsemployeesInput, hsrolesUncheckedCreateWithoutHsemployeesInput>
+    where?: hsrolesWhereInput
+  }
+
+  export type hsrolesUpdateToOneWithWhereWithoutHsemployeesInput = {
+    where?: hsrolesWhereInput
+    data: XOR<hsrolesUpdateWithoutHsemployeesInput, hsrolesUncheckedUpdateWithoutHsemployeesInput>
+  }
+
+  export type hsrolesUpdateWithoutHsemployeesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsroles_permissions?: hsroles_permissionsUpdateManyWithoutHsrolesNestedInput
+  }
+
+  export type hsrolesUncheckedUpdateWithoutHsemployeesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsroles_permissions?: hsroles_permissionsUncheckedUpdateManyWithoutHsrolesNestedInput
   }
 
   export type hssessionsUpsertWithWhereUniqueWithoutUserInput = {
@@ -21042,30 +24794,6 @@ export namespace Prisma {
     NOT?: hsusers_permissionsScalarWhereInput | hsusers_permissionsScalarWhereInput[]
     user_id?: IntFilter<"hsusers_permissions"> | number
     permission_id?: IntFilter<"hsusers_permissions"> | number
-  }
-
-  export type hsusers_rolesUpsertWithWhereUniqueWithoutHsemployeesInput = {
-    where: hsusers_rolesWhereUniqueInput
-    update: XOR<hsusers_rolesUpdateWithoutHsemployeesInput, hsusers_rolesUncheckedUpdateWithoutHsemployeesInput>
-    create: XOR<hsusers_rolesCreateWithoutHsemployeesInput, hsusers_rolesUncheckedCreateWithoutHsemployeesInput>
-  }
-
-  export type hsusers_rolesUpdateWithWhereUniqueWithoutHsemployeesInput = {
-    where: hsusers_rolesWhereUniqueInput
-    data: XOR<hsusers_rolesUpdateWithoutHsemployeesInput, hsusers_rolesUncheckedUpdateWithoutHsemployeesInput>
-  }
-
-  export type hsusers_rolesUpdateManyWithWhereWithoutHsemployeesInput = {
-    where: hsusers_rolesScalarWhereInput
-    data: XOR<hsusers_rolesUpdateManyMutationInput, hsusers_rolesUncheckedUpdateManyWithoutHsemployeesInput>
-  }
-
-  export type hsusers_rolesScalarWhereInput = {
-    AND?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
-    OR?: hsusers_rolesScalarWhereInput[]
-    NOT?: hsusers_rolesScalarWhereInput | hsusers_rolesScalarWhereInput[]
-    user_id?: IntFilter<"hsusers_roles"> | number
-    role_id?: IntFilter<"hsusers_roles"> | number
   }
 
   export type hsvaliditiesUpsertWithWhereUniqueWithoutHsemployeesInput = {
@@ -21142,6 +24870,40 @@ export namespace Prisma {
     data: XOR<hsvalidity_requestsUpdateManyMutationInput, hsvalidity_requestsUncheckedUpdateManyWithoutConfereeInput>
   }
 
+  export type hsconsumer_productsUpsertWithWhereUniqueWithoutHsemployeesInput = {
+    where: hsconsumer_productsWhereUniqueInput
+    update: XOR<hsconsumer_productsUpdateWithoutHsemployeesInput, hsconsumer_productsUncheckedUpdateWithoutHsemployeesInput>
+    create: XOR<hsconsumer_productsCreateWithoutHsemployeesInput, hsconsumer_productsUncheckedCreateWithoutHsemployeesInput>
+  }
+
+  export type hsconsumer_productsUpdateWithWhereUniqueWithoutHsemployeesInput = {
+    where: hsconsumer_productsWhereUniqueInput
+    data: XOR<hsconsumer_productsUpdateWithoutHsemployeesInput, hsconsumer_productsUncheckedUpdateWithoutHsemployeesInput>
+  }
+
+  export type hsconsumer_productsUpdateManyWithWhereWithoutHsemployeesInput = {
+    where: hsconsumer_productsScalarWhereInput
+    data: XOR<hsconsumer_productsUpdateManyMutationInput, hsconsumer_productsUncheckedUpdateManyWithoutHsemployeesInput>
+  }
+
+  export type hsconsumer_productsScalarWhereInput = {
+    AND?: hsconsumer_productsScalarWhereInput | hsconsumer_productsScalarWhereInput[]
+    OR?: hsconsumer_productsScalarWhereInput[]
+    NOT?: hsconsumer_productsScalarWhereInput | hsconsumer_productsScalarWhereInput[]
+    id?: IntFilter<"hsconsumer_products"> | number
+    consumption_id?: IntNullableFilter<"hsconsumer_products"> | number | null
+    employee_id?: IntFilter<"hsconsumer_products"> | number
+    branch_id?: IntFilter<"hsconsumer_products"> | number
+    product_code?: IntFilter<"hsconsumer_products"> | number
+    auxiliary_code?: StringFilter<"hsconsumer_products"> | string
+    quantity?: IntFilter<"hsconsumer_products"> | number
+    unit_price?: DecimalFilter<"hsconsumer_products"> | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFilter<"hsconsumer_products"> | Decimal | DecimalJsLike | number | string
+    group_id?: IntFilter<"hsconsumer_products"> | number
+    created_at?: DateTimeFilter<"hsconsumer_products"> | Date | string
+    modified_at?: DateTimeFilter<"hsconsumer_products"> | Date | string
+  }
+
   export type hsroles_permissionsCreateWithoutHsrolesInput = {
     hspermissions: hspermissionsCreateNestedOneWithoutHsroles_permissionsInput
   }
@@ -21160,21 +24922,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type hsusers_rolesCreateWithoutHsrolesInput = {
-    hsemployees: hsemployeesCreateNestedOneWithoutHsusers_rolesInput
+  export type hsemployeesCreateWithoutRoleInput = {
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
+    sessions?: hssessionsCreateNestedManyWithoutUserInput
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsCreateNestedManyWithoutHsemployeesInput
   }
 
-  export type hsusers_rolesUncheckedCreateWithoutHsrolesInput = {
-    user_id: number
+  export type hsemployeesUncheckedCreateWithoutRoleInput = {
+    id?: number
+    branch_id: number
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsemployeesInput
   }
 
-  export type hsusers_rolesCreateOrConnectWithoutHsrolesInput = {
-    where: hsusers_rolesWhereUniqueInput
-    create: XOR<hsusers_rolesCreateWithoutHsrolesInput, hsusers_rolesUncheckedCreateWithoutHsrolesInput>
+  export type hsemployeesCreateOrConnectWithoutRoleInput = {
+    where: hsemployeesWhereUniqueInput
+    create: XOR<hsemployeesCreateWithoutRoleInput, hsemployeesUncheckedCreateWithoutRoleInput>
   }
 
-  export type hsusers_rolesCreateManyHsrolesInputEnvelope = {
-    data: hsusers_rolesCreateManyHsrolesInput | hsusers_rolesCreateManyHsrolesInput[]
+  export type hsemployeesCreateManyRoleInputEnvelope = {
+    data: hsemployeesCreateManyRoleInput | hsemployeesCreateManyRoleInput[]
     skipDuplicates?: boolean
   }
 
@@ -21202,20 +24989,35 @@ export namespace Prisma {
     permission_id?: IntFilter<"hsroles_permissions"> | number
   }
 
-  export type hsusers_rolesUpsertWithWhereUniqueWithoutHsrolesInput = {
-    where: hsusers_rolesWhereUniqueInput
-    update: XOR<hsusers_rolesUpdateWithoutHsrolesInput, hsusers_rolesUncheckedUpdateWithoutHsrolesInput>
-    create: XOR<hsusers_rolesCreateWithoutHsrolesInput, hsusers_rolesUncheckedCreateWithoutHsrolesInput>
+  export type hsemployeesUpsertWithWhereUniqueWithoutRoleInput = {
+    where: hsemployeesWhereUniqueInput
+    update: XOR<hsemployeesUpdateWithoutRoleInput, hsemployeesUncheckedUpdateWithoutRoleInput>
+    create: XOR<hsemployeesCreateWithoutRoleInput, hsemployeesUncheckedCreateWithoutRoleInput>
   }
 
-  export type hsusers_rolesUpdateWithWhereUniqueWithoutHsrolesInput = {
-    where: hsusers_rolesWhereUniqueInput
-    data: XOR<hsusers_rolesUpdateWithoutHsrolesInput, hsusers_rolesUncheckedUpdateWithoutHsrolesInput>
+  export type hsemployeesUpdateWithWhereUniqueWithoutRoleInput = {
+    where: hsemployeesWhereUniqueInput
+    data: XOR<hsemployeesUpdateWithoutRoleInput, hsemployeesUncheckedUpdateWithoutRoleInput>
   }
 
-  export type hsusers_rolesUpdateManyWithWhereWithoutHsrolesInput = {
-    where: hsusers_rolesScalarWhereInput
-    data: XOR<hsusers_rolesUpdateManyMutationInput, hsusers_rolesUncheckedUpdateManyWithoutHsrolesInput>
+  export type hsemployeesUpdateManyWithWhereWithoutRoleInput = {
+    where: hsemployeesScalarWhereInput
+    data: XOR<hsemployeesUpdateManyMutationInput, hsemployeesUncheckedUpdateManyWithoutRoleInput>
+  }
+
+  export type hsemployeesScalarWhereInput = {
+    AND?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
+    OR?: hsemployeesScalarWhereInput[]
+    NOT?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
+    id?: IntFilter<"hsemployees"> | number
+    branch_id?: IntFilter<"hsemployees"> | number
+    winthor_id?: IntFilter<"hsemployees"> | number
+    name?: StringFilter<"hsemployees"> | string
+    username?: StringFilter<"hsemployees"> | string
+    password?: StringFilter<"hsemployees"> | string
+    role_id?: IntFilter<"hsemployees"> | number
+    created_at?: DateTimeFilter<"hsemployees"> | Date | string
+    modified_at?: DateTimeFilter<"hsemployees"> | Date | string
   }
 
   export type hsroles_permissionsCreateWithoutHspermissionsInput = {
@@ -21313,7 +25115,7 @@ export namespace Prisma {
     description: string
     created_at?: Date | string
     modified_at?: Date | string
-    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsrolesInput
+    hsemployees?: hsemployeesCreateNestedManyWithoutRoleInput
   }
 
   export type hsrolesUncheckedCreateWithoutHsroles_permissionsInput = {
@@ -21322,7 +25124,7 @@ export namespace Prisma {
     description: string
     created_at?: Date | string
     modified_at?: Date | string
-    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsrolesInput
+    hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutRoleInput
   }
 
   export type hsrolesCreateOrConnectWithoutHsroles_permissionsInput = {
@@ -21374,7 +25176,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsrolesNestedInput
+    hsemployees?: hsemployeesUpdateManyWithoutRoleNestedInput
   }
 
   export type hsrolesUncheckedUpdateWithoutHsroles_permissionsInput = {
@@ -21383,7 +25185,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsrolesNestedInput
+    hsemployees?: hsemployeesUncheckedUpdateManyWithoutRoleNestedInput
   }
 
   export type hspermissionsCreateWithoutHsusers_permissionsInput = {
@@ -21416,11 +25218,12 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
+    role?: hsrolesCreateNestedOneWithoutHsemployeesInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
-    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsemployeesInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesUncheckedCreateWithoutHsusers_permissionsInput = {
@@ -21430,13 +25233,14 @@ export namespace Prisma {
     name: string
     username: string
     password: string
+    role_id?: number
     created_at?: Date | string
     modified_at?: Date | string
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
-    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsemployeesInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesCreateOrConnectWithoutHsusers_permissionsInput = {
@@ -21491,11 +25295,12 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    role?: hsrolesUpdateOneRequiredWithoutHsemployeesNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
-    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsemployeesNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutHsusers_permissionsInput = {
@@ -21505,141 +25310,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
-    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
-  }
-
-  export type hsrolesCreateWithoutHsusers_rolesInput = {
-    name: string
-    description: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    hsroles_permissions?: hsroles_permissionsCreateNestedManyWithoutHsrolesInput
-  }
-
-  export type hsrolesUncheckedCreateWithoutHsusers_rolesInput = {
-    id?: number
-    name: string
-    description: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    hsroles_permissions?: hsroles_permissionsUncheckedCreateNestedManyWithoutHsrolesInput
-  }
-
-  export type hsrolesCreateOrConnectWithoutHsusers_rolesInput = {
-    where: hsrolesWhereUniqueInput
-    create: XOR<hsrolesCreateWithoutHsusers_rolesInput, hsrolesUncheckedCreateWithoutHsusers_rolesInput>
-  }
-
-  export type hsemployeesCreateWithoutHsusers_rolesInput = {
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
-    sessions?: hssessionsCreateNestedManyWithoutUserInput
-    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
-    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
-    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
-  }
-
-  export type hsemployeesUncheckedCreateWithoutHsusers_rolesInput = {
-    id?: number
-    branch_id: number
-    winthor_id?: number
-    name: string
-    username: string
-    password: string
-    created_at?: Date | string
-    modified_at?: Date | string
-    sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
-    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
-    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
-    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
-    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
-  }
-
-  export type hsemployeesCreateOrConnectWithoutHsusers_rolesInput = {
-    where: hsemployeesWhereUniqueInput
-    create: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
-  }
-
-  export type hsrolesUpsertWithoutHsusers_rolesInput = {
-    update: XOR<hsrolesUpdateWithoutHsusers_rolesInput, hsrolesUncheckedUpdateWithoutHsusers_rolesInput>
-    create: XOR<hsrolesCreateWithoutHsusers_rolesInput, hsrolesUncheckedCreateWithoutHsusers_rolesInput>
-    where?: hsrolesWhereInput
-  }
-
-  export type hsrolesUpdateToOneWithWhereWithoutHsusers_rolesInput = {
-    where?: hsrolesWhereInput
-    data: XOR<hsrolesUpdateWithoutHsusers_rolesInput, hsrolesUncheckedUpdateWithoutHsusers_rolesInput>
-  }
-
-  export type hsrolesUpdateWithoutHsusers_rolesInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsroles_permissions?: hsroles_permissionsUpdateManyWithoutHsrolesNestedInput
-  }
-
-  export type hsrolesUncheckedUpdateWithoutHsusers_rolesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    hsroles_permissions?: hsroles_permissionsUncheckedUpdateManyWithoutHsrolesNestedInput
-  }
-
-  export type hsemployeesUpsertWithoutHsusers_rolesInput = {
-    update: XOR<hsemployeesUpdateWithoutHsusers_rolesInput, hsemployeesUncheckedUpdateWithoutHsusers_rolesInput>
-    create: XOR<hsemployeesCreateWithoutHsusers_rolesInput, hsemployeesUncheckedCreateWithoutHsusers_rolesInput>
-    where?: hsemployeesWhereInput
-  }
-
-  export type hsemployeesUpdateToOneWithWhereWithoutHsusers_rolesInput = {
-    where?: hsemployeesWhereInput
-    data: XOR<hsemployeesUpdateWithoutHsusers_rolesInput, hsemployeesUncheckedUpdateWithoutHsusers_rolesInput>
-  }
-
-  export type hsemployeesUpdateWithoutHsusers_rolesInput = {
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
-    sessions?: hssessionsUpdateManyWithoutUserNestedInput
-    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
-    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
-    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
-  }
-
-  export type hsemployeesUncheckedUpdateWithoutHsusers_rolesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    branch_id?: IntFieldUpdateOperationsInput | number
-    winthor_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
-    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
-    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
-    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
-    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUncheckedUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsemployeesCreateWithoutBranchInput = {
@@ -21649,12 +25327,13 @@ export namespace Prisma {
     password: string
     created_at?: Date | string
     modified_at?: Date | string
+    role?: hsrolesCreateNestedOneWithoutHsemployeesInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
     hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsemployeesInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesUncheckedCreateWithoutBranchInput = {
@@ -21663,14 +25342,15 @@ export namespace Prisma {
     name: string
     username: string
     password: string
+    role_id?: number
     created_at?: Date | string
     modified_at?: Date | string
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
     hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsemployeesInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesCreateOrConnectWithoutBranchInput = {
@@ -21743,6 +25423,70 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type hsconsumer_productsCreateWithoutBranchInput = {
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsemployees: hsemployeesCreateNestedOneWithoutHsconsumer_productsInput
+    hsconsumer_groups: hsconsumer_groupsCreateNestedOneWithoutHsconsumer_productsInput
+    hsconsumption_note?: hsconsumption_noteCreateNestedOneWithoutHsconsumerProductsInput
+  }
+
+  export type hsconsumer_productsUncheckedCreateWithoutBranchInput = {
+    id?: number
+    consumption_id?: number | null
+    employee_id: number
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    group_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumer_productsCreateOrConnectWithoutBranchInput = {
+    where: hsconsumer_productsWhereUniqueInput
+    create: XOR<hsconsumer_productsCreateWithoutBranchInput, hsconsumer_productsUncheckedCreateWithoutBranchInput>
+  }
+
+  export type hsconsumer_productsCreateManyBranchInputEnvelope = {
+    data: hsconsumer_productsCreateManyBranchInput | hsconsumer_productsCreateManyBranchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsconsumption_noteCreateWithoutBranchInput = {
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsconsumer_groups: hsconsumer_groupsCreateNestedOneWithoutConsumptionNotesInput
+    hsconsumerProducts?: hsconsumer_productsCreateNestedManyWithoutHsconsumption_noteInput
+  }
+
+  export type hsconsumption_noteUncheckedCreateWithoutBranchInput = {
+    id?: number
+    group_id: number
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsconsumerProducts?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsconsumption_noteInput
+  }
+
+  export type hsconsumption_noteCreateOrConnectWithoutBranchInput = {
+    where: hsconsumption_noteWhereUniqueInput
+    create: XOR<hsconsumption_noteCreateWithoutBranchInput, hsconsumption_noteUncheckedCreateWithoutBranchInput>
+  }
+
+  export type hsconsumption_noteCreateManyBranchInputEnvelope = {
+    data: hsconsumption_noteCreateManyBranchInput | hsconsumption_noteCreateManyBranchInput[]
+    skipDuplicates?: boolean
+  }
+
   export type hsemployeesUpsertWithWhereUniqueWithoutBranchInput = {
     where: hsemployeesWhereUniqueInput
     update: XOR<hsemployeesUpdateWithoutBranchInput, hsemployeesUncheckedUpdateWithoutBranchInput>
@@ -21757,20 +25501,6 @@ export namespace Prisma {
   export type hsemployeesUpdateManyWithWhereWithoutBranchInput = {
     where: hsemployeesScalarWhereInput
     data: XOR<hsemployeesUpdateManyMutationInput, hsemployeesUncheckedUpdateManyWithoutBranchInput>
-  }
-
-  export type hsemployeesScalarWhereInput = {
-    AND?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
-    OR?: hsemployeesScalarWhereInput[]
-    NOT?: hsemployeesScalarWhereInput | hsemployeesScalarWhereInput[]
-    id?: IntFilter<"hsemployees"> | number
-    branch_id?: IntFilter<"hsemployees"> | number
-    winthor_id?: IntFilter<"hsemployees"> | number
-    name?: StringFilter<"hsemployees"> | string
-    username?: StringFilter<"hsemployees"> | string
-    password?: StringFilter<"hsemployees"> | string
-    created_at?: DateTimeFilter<"hsemployees"> | Date | string
-    modified_at?: DateTimeFilter<"hsemployees"> | Date | string
   }
 
   export type hsvaliditiesUpsertWithWhereUniqueWithoutHsbranchesInput = {
@@ -21805,10 +25535,56 @@ export namespace Prisma {
     data: XOR<hsvalidity_requestsUpdateManyMutationInput, hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesInput>
   }
 
+  export type hsconsumer_productsUpsertWithWhereUniqueWithoutBranchInput = {
+    where: hsconsumer_productsWhereUniqueInput
+    update: XOR<hsconsumer_productsUpdateWithoutBranchInput, hsconsumer_productsUncheckedUpdateWithoutBranchInput>
+    create: XOR<hsconsumer_productsCreateWithoutBranchInput, hsconsumer_productsUncheckedCreateWithoutBranchInput>
+  }
+
+  export type hsconsumer_productsUpdateWithWhereUniqueWithoutBranchInput = {
+    where: hsconsumer_productsWhereUniqueInput
+    data: XOR<hsconsumer_productsUpdateWithoutBranchInput, hsconsumer_productsUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type hsconsumer_productsUpdateManyWithWhereWithoutBranchInput = {
+    where: hsconsumer_productsScalarWhereInput
+    data: XOR<hsconsumer_productsUpdateManyMutationInput, hsconsumer_productsUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type hsconsumption_noteUpsertWithWhereUniqueWithoutBranchInput = {
+    where: hsconsumption_noteWhereUniqueInput
+    update: XOR<hsconsumption_noteUpdateWithoutBranchInput, hsconsumption_noteUncheckedUpdateWithoutBranchInput>
+    create: XOR<hsconsumption_noteCreateWithoutBranchInput, hsconsumption_noteUncheckedCreateWithoutBranchInput>
+  }
+
+  export type hsconsumption_noteUpdateWithWhereUniqueWithoutBranchInput = {
+    where: hsconsumption_noteWhereUniqueInput
+    data: XOR<hsconsumption_noteUpdateWithoutBranchInput, hsconsumption_noteUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type hsconsumption_noteUpdateManyWithWhereWithoutBranchInput = {
+    where: hsconsumption_noteScalarWhereInput
+    data: XOR<hsconsumption_noteUpdateManyMutationInput, hsconsumption_noteUncheckedUpdateManyWithoutBranchInput>
+  }
+
+  export type hsconsumption_noteScalarWhereInput = {
+    AND?: hsconsumption_noteScalarWhereInput | hsconsumption_noteScalarWhereInput[]
+    OR?: hsconsumption_noteScalarWhereInput[]
+    NOT?: hsconsumption_noteScalarWhereInput | hsconsumption_noteScalarWhereInput[]
+    id?: IntFilter<"hsconsumption_note"> | number
+    branch_id?: IntFilter<"hsconsumption_note"> | number
+    group_id?: IntFilter<"hsconsumption_note"> | number
+    total_price?: DecimalFilter<"hsconsumption_note"> | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFilter<"hsconsumption_note"> | Date | string
+    modified_at?: DateTimeFilter<"hsconsumption_note"> | Date | string
+  }
+
   export type hsbranchesCreateWithoutHsvaliditiesInput = {
     description: string
     hsemployees?: hsemployeesCreateNestedManyWithoutBranchInput
     hsvalidity_requests?: hsvalidity_requestsCreateNestedManyWithoutHsbranchesInput
+    hsconsumerProducts?: hsconsumer_productsCreateNestedManyWithoutBranchInput
+    consumptionNotes?: hsconsumption_noteCreateNestedManyWithoutBranchInput
   }
 
   export type hsbranchesUncheckedCreateWithoutHsvaliditiesInput = {
@@ -21816,6 +25592,8 @@ export namespace Prisma {
     description: string
     hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutBranchInput
     hsvalidity_requests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutHsbranchesInput
+    hsconsumerProducts?: hsconsumer_productsUncheckedCreateNestedManyWithoutBranchInput
+    consumptionNotes?: hsconsumption_noteUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type hsbranchesCreateOrConnectWithoutHsvaliditiesInput = {
@@ -21831,11 +25609,12 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
+    role?: hsrolesCreateNestedOneWithoutHsemployeesInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
     hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesUncheckedCreateWithoutHsvaliditiesInput = {
@@ -21845,13 +25624,14 @@ export namespace Prisma {
     name: string
     username: string
     password: string
+    role_id?: number
     created_at?: Date | string
     modified_at?: Date | string
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
     hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesCreateOrConnectWithoutHsvaliditiesInput = {
@@ -21927,6 +25707,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     hsemployees?: hsemployeesUpdateManyWithoutBranchNestedInput
     hsvalidity_requests?: hsvalidity_requestsUpdateManyWithoutHsbranchesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUpdateManyWithoutBranchNestedInput
+    consumptionNotes?: hsconsumption_noteUpdateManyWithoutBranchNestedInput
   }
 
   export type hsbranchesUncheckedUpdateWithoutHsvaliditiesInput = {
@@ -21934,6 +25716,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     hsemployees?: hsemployeesUncheckedUpdateManyWithoutBranchNestedInput
     hsvalidity_requests?: hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUncheckedUpdateManyWithoutBranchNestedInput
+    consumptionNotes?: hsconsumption_noteUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type hsemployeesUpsertWithoutHsvaliditiesInput = {
@@ -21955,11 +25739,12 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    role?: hsrolesUpdateOneRequiredWithoutHsemployeesNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
     hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutHsvaliditiesInput = {
@@ -21969,13 +25754,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
     hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUncheckedUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsvalidity_requestsUpsertWithoutHsvaliditiesInput = {
@@ -22189,11 +25975,12 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
+    role?: hsrolesCreateNestedOneWithoutHsemployeesInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
     hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsemployeesInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
     confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesUncheckedCreateWithoutAnalystRequestsInput = {
@@ -22203,13 +25990,14 @@ export namespace Prisma {
     name: string
     username: string
     password: string
+    role_id?: number
     created_at?: Date | string
     modified_at?: Date | string
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
     hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsemployeesInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
     confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesCreateOrConnectWithoutAnalystRequestsInput = {
@@ -22221,6 +26009,8 @@ export namespace Prisma {
     description: string
     hsemployees?: hsemployeesCreateNestedManyWithoutBranchInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsbranchesInput
+    hsconsumerProducts?: hsconsumer_productsCreateNestedManyWithoutBranchInput
+    consumptionNotes?: hsconsumption_noteCreateNestedManyWithoutBranchInput
   }
 
   export type hsbranchesUncheckedCreateWithoutHsvalidity_requestsInput = {
@@ -22228,6 +26018,8 @@ export namespace Prisma {
     description: string
     hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutBranchInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsbranchesInput
+    hsconsumerProducts?: hsconsumer_productsUncheckedCreateNestedManyWithoutBranchInput
+    consumptionNotes?: hsconsumption_noteUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type hsbranchesCreateOrConnectWithoutHsvalidity_requestsInput = {
@@ -22243,11 +26035,12 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
+    role?: hsrolesCreateNestedOneWithoutHsemployeesInput
     sessions?: hssessionsCreateNestedManyWithoutUserInput
     hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsemployeesInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
+    hsconsumer_products?: hsconsumer_productsCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesUncheckedCreateWithoutConfereeRequestsInput = {
@@ -22257,13 +26050,14 @@ export namespace Prisma {
     name: string
     username: string
     password: string
+    role_id?: number
     created_at?: Date | string
     modified_at?: Date | string
     sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
     hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsemployeesInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
+    hsconsumer_products?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesCreateOrConnectWithoutConfereeRequestsInput = {
@@ -22334,11 +26128,12 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    role?: hsrolesUpdateOneRequiredWithoutHsemployeesNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
     hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsemployeesNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
     confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutAnalystRequestsInput = {
@@ -22348,13 +26143,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
     hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
     confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUncheckedUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsbranchesUpsertWithoutHsvalidity_requestsInput = {
@@ -22372,6 +26168,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     hsemployees?: hsemployeesUpdateManyWithoutBranchNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsbranchesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUpdateManyWithoutBranchNestedInput
+    consumptionNotes?: hsconsumption_noteUpdateManyWithoutBranchNestedInput
   }
 
   export type hsbranchesUncheckedUpdateWithoutHsvalidity_requestsInput = {
@@ -22379,6 +26177,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     hsemployees?: hsemployeesUncheckedUpdateManyWithoutBranchNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsbranchesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUncheckedUpdateManyWithoutBranchNestedInput
+    consumptionNotes?: hsconsumption_noteUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type hsemployeesUpsertWithoutConfereeRequestsInput = {
@@ -22400,11 +26200,12 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    role?: hsrolesUpdateOneRequiredWithoutHsemployeesNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
     hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsemployeesNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
+    hsconsumer_products?: hsconsumer_productsUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutConfereeRequestsInput = {
@@ -22414,13 +26215,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
     hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
+    hsconsumer_products?: hsconsumer_productsUncheckedUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsvalidity_requestsCreateWithoutHsvalidity_request_productsInput = {
@@ -22532,11 +26334,12 @@ export namespace Prisma {
     created_at?: Date | string
     modified_at?: Date | string
     branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
+    role?: hsrolesCreateNestedOneWithoutHsemployeesInput
     hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesCreateNestedManyWithoutHsemployeesInput
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesUncheckedCreateWithoutSessionsInput = {
@@ -22546,13 +26349,14 @@ export namespace Prisma {
     name: string
     username: string
     password: string
+    role_id?: number
     created_at?: Date | string
     modified_at?: Date | string
     hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
-    hsusers_roles?: hsusers_rolesUncheckedCreateNestedManyWithoutHsemployeesInput
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
     analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
     confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+    hsconsumer_products?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsemployeesInput
   }
 
   export type hsemployeesCreateOrConnectWithoutSessionsInput = {
@@ -22579,11 +26383,12 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    role?: hsrolesUpdateOneRequiredWithoutHsemployeesNestedInput
     hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsemployeesNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutSessionsInput = {
@@ -22593,13 +26398,471 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUncheckedUpdateManyWithoutHsemployeesNestedInput
+  }
+
+  export type hsemployeesCreateWithoutHsconsumer_productsInput = {
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    branch: hsbranchesCreateNestedOneWithoutHsemployeesInput
+    role?: hsrolesCreateNestedOneWithoutHsemployeesInput
+    sessions?: hssessionsCreateNestedManyWithoutUserInput
+    hsusers_permissions?: hsusers_permissionsCreateNestedManyWithoutHsemployeesInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsCreateNestedManyWithoutConfereeInput
+  }
+
+  export type hsemployeesUncheckedCreateWithoutHsconsumer_productsInput = {
+    id?: number
+    branch_id: number
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    role_id?: number
+    created_at?: Date | string
+    modified_at?: Date | string
+    sessions?: hssessionsUncheckedCreateNestedManyWithoutUserInput
+    hsusers_permissions?: hsusers_permissionsUncheckedCreateNestedManyWithoutHsemployeesInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsemployeesInput
+    analystRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutAnalystInput
+    confereeRequests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutConfereeInput
+  }
+
+  export type hsemployeesCreateOrConnectWithoutHsconsumer_productsInput = {
+    where: hsemployeesWhereUniqueInput
+    create: XOR<hsemployeesCreateWithoutHsconsumer_productsInput, hsemployeesUncheckedCreateWithoutHsconsumer_productsInput>
+  }
+
+  export type hsconsumer_groupsCreateWithoutHsconsumer_productsInput = {
+    description: string
+    consumptionNotes?: hsconsumption_noteCreateNestedManyWithoutHsconsumer_groupsInput
+  }
+
+  export type hsconsumer_groupsUncheckedCreateWithoutHsconsumer_productsInput = {
+    id?: number
+    description: string
+    consumptionNotes?: hsconsumption_noteUncheckedCreateNestedManyWithoutHsconsumer_groupsInput
+  }
+
+  export type hsconsumer_groupsCreateOrConnectWithoutHsconsumer_productsInput = {
+    where: hsconsumer_groupsWhereUniqueInput
+    create: XOR<hsconsumer_groupsCreateWithoutHsconsumer_productsInput, hsconsumer_groupsUncheckedCreateWithoutHsconsumer_productsInput>
+  }
+
+  export type hsbranchesCreateWithoutHsconsumerProductsInput = {
+    description: string
+    hsemployees?: hsemployeesCreateNestedManyWithoutBranchInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsbranchesInput
+    hsvalidity_requests?: hsvalidity_requestsCreateNestedManyWithoutHsbranchesInput
+    consumptionNotes?: hsconsumption_noteCreateNestedManyWithoutBranchInput
+  }
+
+  export type hsbranchesUncheckedCreateWithoutHsconsumerProductsInput = {
+    id?: number
+    description: string
+    hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutBranchInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsbranchesInput
+    hsvalidity_requests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutHsbranchesInput
+    consumptionNotes?: hsconsumption_noteUncheckedCreateNestedManyWithoutBranchInput
+  }
+
+  export type hsbranchesCreateOrConnectWithoutHsconsumerProductsInput = {
+    where: hsbranchesWhereUniqueInput
+    create: XOR<hsbranchesCreateWithoutHsconsumerProductsInput, hsbranchesUncheckedCreateWithoutHsconsumerProductsInput>
+  }
+
+  export type hsconsumption_noteCreateWithoutHsconsumerProductsInput = {
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsconsumer_groups: hsconsumer_groupsCreateNestedOneWithoutConsumptionNotesInput
+    branch: hsbranchesCreateNestedOneWithoutConsumptionNotesInput
+  }
+
+  export type hsconsumption_noteUncheckedCreateWithoutHsconsumerProductsInput = {
+    id?: number
+    branch_id: number
+    group_id: number
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumption_noteCreateOrConnectWithoutHsconsumerProductsInput = {
+    where: hsconsumption_noteWhereUniqueInput
+    create: XOR<hsconsumption_noteCreateWithoutHsconsumerProductsInput, hsconsumption_noteUncheckedCreateWithoutHsconsumerProductsInput>
+  }
+
+  export type hsemployeesUpsertWithoutHsconsumer_productsInput = {
+    update: XOR<hsemployeesUpdateWithoutHsconsumer_productsInput, hsemployeesUncheckedUpdateWithoutHsconsumer_productsInput>
+    create: XOR<hsemployeesCreateWithoutHsconsumer_productsInput, hsemployeesUncheckedCreateWithoutHsconsumer_productsInput>
+    where?: hsemployeesWhereInput
+  }
+
+  export type hsemployeesUpdateToOneWithWhereWithoutHsconsumer_productsInput = {
+    where?: hsemployeesWhereInput
+    data: XOR<hsemployeesUpdateWithoutHsconsumer_productsInput, hsemployeesUncheckedUpdateWithoutHsconsumer_productsInput>
+  }
+
+  export type hsemployeesUpdateWithoutHsconsumer_productsInput = {
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    role?: hsrolesUpdateOneRequiredWithoutHsemployeesNestedInput
+    sessions?: hssessionsUpdateManyWithoutUserNestedInput
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+  }
+
+  export type hsemployeesUncheckedUpdateWithoutHsconsumer_productsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+  }
+
+  export type hsconsumer_groupsUpsertWithoutHsconsumer_productsInput = {
+    update: XOR<hsconsumer_groupsUpdateWithoutHsconsumer_productsInput, hsconsumer_groupsUncheckedUpdateWithoutHsconsumer_productsInput>
+    create: XOR<hsconsumer_groupsCreateWithoutHsconsumer_productsInput, hsconsumer_groupsUncheckedCreateWithoutHsconsumer_productsInput>
+    where?: hsconsumer_groupsWhereInput
+  }
+
+  export type hsconsumer_groupsUpdateToOneWithWhereWithoutHsconsumer_productsInput = {
+    where?: hsconsumer_groupsWhereInput
+    data: XOR<hsconsumer_groupsUpdateWithoutHsconsumer_productsInput, hsconsumer_groupsUncheckedUpdateWithoutHsconsumer_productsInput>
+  }
+
+  export type hsconsumer_groupsUpdateWithoutHsconsumer_productsInput = {
+    description?: StringFieldUpdateOperationsInput | string
+    consumptionNotes?: hsconsumption_noteUpdateManyWithoutHsconsumer_groupsNestedInput
+  }
+
+  export type hsconsumer_groupsUncheckedUpdateWithoutHsconsumer_productsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    consumptionNotes?: hsconsumption_noteUncheckedUpdateManyWithoutHsconsumer_groupsNestedInput
+  }
+
+  export type hsbranchesUpsertWithoutHsconsumerProductsInput = {
+    update: XOR<hsbranchesUpdateWithoutHsconsumerProductsInput, hsbranchesUncheckedUpdateWithoutHsconsumerProductsInput>
+    create: XOR<hsbranchesCreateWithoutHsconsumerProductsInput, hsbranchesUncheckedCreateWithoutHsconsumerProductsInput>
+    where?: hsbranchesWhereInput
+  }
+
+  export type hsbranchesUpdateToOneWithWhereWithoutHsconsumerProductsInput = {
+    where?: hsbranchesWhereInput
+    data: XOR<hsbranchesUpdateWithoutHsconsumerProductsInput, hsbranchesUncheckedUpdateWithoutHsconsumerProductsInput>
+  }
+
+  export type hsbranchesUpdateWithoutHsconsumerProductsInput = {
+    description?: StringFieldUpdateOperationsInput | string
+    hsemployees?: hsemployeesUpdateManyWithoutBranchNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsbranchesNestedInput
+    hsvalidity_requests?: hsvalidity_requestsUpdateManyWithoutHsbranchesNestedInput
+    consumptionNotes?: hsconsumption_noteUpdateManyWithoutBranchNestedInput
+  }
+
+  export type hsbranchesUncheckedUpdateWithoutHsconsumerProductsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    hsemployees?: hsemployeesUncheckedUpdateManyWithoutBranchNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsbranchesNestedInput
+    hsvalidity_requests?: hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesNestedInput
+    consumptionNotes?: hsconsumption_noteUncheckedUpdateManyWithoutBranchNestedInput
+  }
+
+  export type hsconsumption_noteUpsertWithoutHsconsumerProductsInput = {
+    update: XOR<hsconsumption_noteUpdateWithoutHsconsumerProductsInput, hsconsumption_noteUncheckedUpdateWithoutHsconsumerProductsInput>
+    create: XOR<hsconsumption_noteCreateWithoutHsconsumerProductsInput, hsconsumption_noteUncheckedCreateWithoutHsconsumerProductsInput>
+    where?: hsconsumption_noteWhereInput
+  }
+
+  export type hsconsumption_noteUpdateToOneWithWhereWithoutHsconsumerProductsInput = {
+    where?: hsconsumption_noteWhereInput
+    data: XOR<hsconsumption_noteUpdateWithoutHsconsumerProductsInput, hsconsumption_noteUncheckedUpdateWithoutHsconsumerProductsInput>
+  }
+
+  export type hsconsumption_noteUpdateWithoutHsconsumerProductsInput = {
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsconsumer_groups?: hsconsumer_groupsUpdateOneRequiredWithoutConsumptionNotesNestedInput
+    branch?: hsbranchesUpdateOneRequiredWithoutConsumptionNotesNestedInput
+  }
+
+  export type hsconsumption_noteUncheckedUpdateWithoutHsconsumerProductsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    group_id?: IntFieldUpdateOperationsInput | number
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumer_groupsCreateWithoutConsumptionNotesInput = {
+    description: string
+    hsconsumer_products?: hsconsumer_productsCreateNestedManyWithoutHsconsumer_groupsInput
+  }
+
+  export type hsconsumer_groupsUncheckedCreateWithoutConsumptionNotesInput = {
+    id?: number
+    description: string
+    hsconsumer_products?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsconsumer_groupsInput
+  }
+
+  export type hsconsumer_groupsCreateOrConnectWithoutConsumptionNotesInput = {
+    where: hsconsumer_groupsWhereUniqueInput
+    create: XOR<hsconsumer_groupsCreateWithoutConsumptionNotesInput, hsconsumer_groupsUncheckedCreateWithoutConsumptionNotesInput>
+  }
+
+  export type hsbranchesCreateWithoutConsumptionNotesInput = {
+    description: string
+    hsemployees?: hsemployeesCreateNestedManyWithoutBranchInput
+    hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsbranchesInput
+    hsvalidity_requests?: hsvalidity_requestsCreateNestedManyWithoutHsbranchesInput
+    hsconsumerProducts?: hsconsumer_productsCreateNestedManyWithoutBranchInput
+  }
+
+  export type hsbranchesUncheckedCreateWithoutConsumptionNotesInput = {
+    id?: number
+    description: string
+    hsemployees?: hsemployeesUncheckedCreateNestedManyWithoutBranchInput
+    hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsbranchesInput
+    hsvalidity_requests?: hsvalidity_requestsUncheckedCreateNestedManyWithoutHsbranchesInput
+    hsconsumerProducts?: hsconsumer_productsUncheckedCreateNestedManyWithoutBranchInput
+  }
+
+  export type hsbranchesCreateOrConnectWithoutConsumptionNotesInput = {
+    where: hsbranchesWhereUniqueInput
+    create: XOR<hsbranchesCreateWithoutConsumptionNotesInput, hsbranchesUncheckedCreateWithoutConsumptionNotesInput>
+  }
+
+  export type hsconsumer_productsCreateWithoutHsconsumption_noteInput = {
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsemployees: hsemployeesCreateNestedOneWithoutHsconsumer_productsInput
+    hsconsumer_groups: hsconsumer_groupsCreateNestedOneWithoutHsconsumer_productsInput
+    branch: hsbranchesCreateNestedOneWithoutHsconsumerProductsInput
+  }
+
+  export type hsconsumer_productsUncheckedCreateWithoutHsconsumption_noteInput = {
+    id?: number
+    employee_id: number
+    branch_id: number
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    group_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumer_productsCreateOrConnectWithoutHsconsumption_noteInput = {
+    where: hsconsumer_productsWhereUniqueInput
+    create: XOR<hsconsumer_productsCreateWithoutHsconsumption_noteInput, hsconsumer_productsUncheckedCreateWithoutHsconsumption_noteInput>
+  }
+
+  export type hsconsumer_productsCreateManyHsconsumption_noteInputEnvelope = {
+    data: hsconsumer_productsCreateManyHsconsumption_noteInput | hsconsumer_productsCreateManyHsconsumption_noteInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsconsumer_groupsUpsertWithoutConsumptionNotesInput = {
+    update: XOR<hsconsumer_groupsUpdateWithoutConsumptionNotesInput, hsconsumer_groupsUncheckedUpdateWithoutConsumptionNotesInput>
+    create: XOR<hsconsumer_groupsCreateWithoutConsumptionNotesInput, hsconsumer_groupsUncheckedCreateWithoutConsumptionNotesInput>
+    where?: hsconsumer_groupsWhereInput
+  }
+
+  export type hsconsumer_groupsUpdateToOneWithWhereWithoutConsumptionNotesInput = {
+    where?: hsconsumer_groupsWhereInput
+    data: XOR<hsconsumer_groupsUpdateWithoutConsumptionNotesInput, hsconsumer_groupsUncheckedUpdateWithoutConsumptionNotesInput>
+  }
+
+  export type hsconsumer_groupsUpdateWithoutConsumptionNotesInput = {
+    description?: StringFieldUpdateOperationsInput | string
+    hsconsumer_products?: hsconsumer_productsUpdateManyWithoutHsconsumer_groupsNestedInput
+  }
+
+  export type hsconsumer_groupsUncheckedUpdateWithoutConsumptionNotesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    hsconsumer_products?: hsconsumer_productsUncheckedUpdateManyWithoutHsconsumer_groupsNestedInput
+  }
+
+  export type hsbranchesUpsertWithoutConsumptionNotesInput = {
+    update: XOR<hsbranchesUpdateWithoutConsumptionNotesInput, hsbranchesUncheckedUpdateWithoutConsumptionNotesInput>
+    create: XOR<hsbranchesCreateWithoutConsumptionNotesInput, hsbranchesUncheckedCreateWithoutConsumptionNotesInput>
+    where?: hsbranchesWhereInput
+  }
+
+  export type hsbranchesUpdateToOneWithWhereWithoutConsumptionNotesInput = {
+    where?: hsbranchesWhereInput
+    data: XOR<hsbranchesUpdateWithoutConsumptionNotesInput, hsbranchesUncheckedUpdateWithoutConsumptionNotesInput>
+  }
+
+  export type hsbranchesUpdateWithoutConsumptionNotesInput = {
+    description?: StringFieldUpdateOperationsInput | string
+    hsemployees?: hsemployeesUpdateManyWithoutBranchNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsbranchesNestedInput
+    hsvalidity_requests?: hsvalidity_requestsUpdateManyWithoutHsbranchesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUpdateManyWithoutBranchNestedInput
+  }
+
+  export type hsbranchesUncheckedUpdateWithoutConsumptionNotesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    hsemployees?: hsemployeesUncheckedUpdateManyWithoutBranchNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsbranchesNestedInput
+    hsvalidity_requests?: hsvalidity_requestsUncheckedUpdateManyWithoutHsbranchesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUncheckedUpdateManyWithoutBranchNestedInput
+  }
+
+  export type hsconsumer_productsUpsertWithWhereUniqueWithoutHsconsumption_noteInput = {
+    where: hsconsumer_productsWhereUniqueInput
+    update: XOR<hsconsumer_productsUpdateWithoutHsconsumption_noteInput, hsconsumer_productsUncheckedUpdateWithoutHsconsumption_noteInput>
+    create: XOR<hsconsumer_productsCreateWithoutHsconsumption_noteInput, hsconsumer_productsUncheckedCreateWithoutHsconsumption_noteInput>
+  }
+
+  export type hsconsumer_productsUpdateWithWhereUniqueWithoutHsconsumption_noteInput = {
+    where: hsconsumer_productsWhereUniqueInput
+    data: XOR<hsconsumer_productsUpdateWithoutHsconsumption_noteInput, hsconsumer_productsUncheckedUpdateWithoutHsconsumption_noteInput>
+  }
+
+  export type hsconsumer_productsUpdateManyWithWhereWithoutHsconsumption_noteInput = {
+    where: hsconsumer_productsScalarWhereInput
+    data: XOR<hsconsumer_productsUpdateManyMutationInput, hsconsumer_productsUncheckedUpdateManyWithoutHsconsumption_noteInput>
+  }
+
+  export type hsconsumer_productsCreateWithoutHsconsumer_groupsInput = {
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsemployees: hsemployeesCreateNestedOneWithoutHsconsumer_productsInput
+    branch: hsbranchesCreateNestedOneWithoutHsconsumerProductsInput
+    hsconsumption_note?: hsconsumption_noteCreateNestedOneWithoutHsconsumerProductsInput
+  }
+
+  export type hsconsumer_productsUncheckedCreateWithoutHsconsumer_groupsInput = {
+    id?: number
+    consumption_id?: number | null
+    employee_id: number
+    branch_id: number
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumer_productsCreateOrConnectWithoutHsconsumer_groupsInput = {
+    where: hsconsumer_productsWhereUniqueInput
+    create: XOR<hsconsumer_productsCreateWithoutHsconsumer_groupsInput, hsconsumer_productsUncheckedCreateWithoutHsconsumer_groupsInput>
+  }
+
+  export type hsconsumer_productsCreateManyHsconsumer_groupsInputEnvelope = {
+    data: hsconsumer_productsCreateManyHsconsumer_groupsInput | hsconsumer_productsCreateManyHsconsumer_groupsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsconsumption_noteCreateWithoutHsconsumer_groupsInput = {
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+    branch: hsbranchesCreateNestedOneWithoutConsumptionNotesInput
+    hsconsumerProducts?: hsconsumer_productsCreateNestedManyWithoutHsconsumption_noteInput
+  }
+
+  export type hsconsumption_noteUncheckedCreateWithoutHsconsumer_groupsInput = {
+    id?: number
+    branch_id: number
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsconsumerProducts?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsconsumption_noteInput
+  }
+
+  export type hsconsumption_noteCreateOrConnectWithoutHsconsumer_groupsInput = {
+    where: hsconsumption_noteWhereUniqueInput
+    create: XOR<hsconsumption_noteCreateWithoutHsconsumer_groupsInput, hsconsumption_noteUncheckedCreateWithoutHsconsumer_groupsInput>
+  }
+
+  export type hsconsumption_noteCreateManyHsconsumer_groupsInputEnvelope = {
+    data: hsconsumption_noteCreateManyHsconsumer_groupsInput | hsconsumption_noteCreateManyHsconsumer_groupsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsconsumer_productsUpsertWithWhereUniqueWithoutHsconsumer_groupsInput = {
+    where: hsconsumer_productsWhereUniqueInput
+    update: XOR<hsconsumer_productsUpdateWithoutHsconsumer_groupsInput, hsconsumer_productsUncheckedUpdateWithoutHsconsumer_groupsInput>
+    create: XOR<hsconsumer_productsCreateWithoutHsconsumer_groupsInput, hsconsumer_productsUncheckedCreateWithoutHsconsumer_groupsInput>
+  }
+
+  export type hsconsumer_productsUpdateWithWhereUniqueWithoutHsconsumer_groupsInput = {
+    where: hsconsumer_productsWhereUniqueInput
+    data: XOR<hsconsumer_productsUpdateWithoutHsconsumer_groupsInput, hsconsumer_productsUncheckedUpdateWithoutHsconsumer_groupsInput>
+  }
+
+  export type hsconsumer_productsUpdateManyWithWhereWithoutHsconsumer_groupsInput = {
+    where: hsconsumer_productsScalarWhereInput
+    data: XOR<hsconsumer_productsUpdateManyMutationInput, hsconsumer_productsUncheckedUpdateManyWithoutHsconsumer_groupsInput>
+  }
+
+  export type hsconsumption_noteUpsertWithWhereUniqueWithoutHsconsumer_groupsInput = {
+    where: hsconsumption_noteWhereUniqueInput
+    update: XOR<hsconsumption_noteUpdateWithoutHsconsumer_groupsInput, hsconsumption_noteUncheckedUpdateWithoutHsconsumer_groupsInput>
+    create: XOR<hsconsumption_noteCreateWithoutHsconsumer_groupsInput, hsconsumption_noteUncheckedCreateWithoutHsconsumer_groupsInput>
+  }
+
+  export type hsconsumption_noteUpdateWithWhereUniqueWithoutHsconsumer_groupsInput = {
+    where: hsconsumption_noteWhereUniqueInput
+    data: XOR<hsconsumption_noteUpdateWithoutHsconsumer_groupsInput, hsconsumption_noteUncheckedUpdateWithoutHsconsumer_groupsInput>
+  }
+
+  export type hsconsumption_noteUpdateManyWithWhereWithoutHsconsumer_groupsInput = {
+    where: hsconsumption_noteScalarWhereInput
+    data: XOR<hsconsumption_noteUpdateManyMutationInput, hsconsumption_noteUncheckedUpdateManyWithoutHsconsumer_groupsInput>
   }
 
   export type hssessionsCreateManyUserInput = {
@@ -22611,10 +26874,6 @@ export namespace Prisma {
 
   export type hsusers_permissionsCreateManyHsemployeesInput = {
     permission_id: number
-  }
-
-  export type hsusers_rolesCreateManyHsemployeesInput = {
-    role_id: number
   }
 
   export type hsvaliditiesCreateManyHsemployeesInput = {
@@ -22640,6 +26899,20 @@ export namespace Prisma {
     branch_id: number
     analyst_id: number
     status?: $Enums.hsvalidity_requests_status
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumer_productsCreateManyHsemployeesInput = {
+    id?: number
+    consumption_id?: number | null
+    branch_id: number
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    group_id: number
     created_at?: Date | string
     modified_at?: Date | string
   }
@@ -22675,18 +26948,6 @@ export namespace Prisma {
 
   export type hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesInput = {
     permission_id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type hsusers_rolesUpdateWithoutHsemployeesInput = {
-    hsroles?: hsrolesUpdateOneRequiredWithoutHsusers_rolesNestedInput
-  }
-
-  export type hsusers_rolesUncheckedUpdateWithoutHsemployeesInput = {
-    role_id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type hsusers_rolesUncheckedUpdateManyWithoutHsemployeesInput = {
-    role_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type hsvaliditiesUpdateWithoutHsemployeesInput = {
@@ -22777,12 +27038,60 @@ export namespace Prisma {
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type hsconsumer_productsUpdateWithoutHsemployeesInput = {
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsconsumer_groups?: hsconsumer_groupsUpdateOneRequiredWithoutHsconsumer_productsNestedInput
+    branch?: hsbranchesUpdateOneRequiredWithoutHsconsumerProductsNestedInput
+    hsconsumption_note?: hsconsumption_noteUpdateOneWithoutHsconsumerProductsNestedInput
+  }
+
+  export type hsconsumer_productsUncheckedUpdateWithoutHsemployeesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    consumption_id?: NullableIntFieldUpdateOperationsInput | number | null
+    branch_id?: IntFieldUpdateOperationsInput | number
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    group_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumer_productsUncheckedUpdateManyWithoutHsemployeesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    consumption_id?: NullableIntFieldUpdateOperationsInput | number | null
+    branch_id?: IntFieldUpdateOperationsInput | number
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    group_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type hsroles_permissionsCreateManyHsrolesInput = {
     permission_id: number
   }
 
-  export type hsusers_rolesCreateManyHsrolesInput = {
-    user_id: number
+  export type hsemployeesCreateManyRoleInput = {
+    id?: number
+    branch_id: number
+    winthor_id?: number
+    name: string
+    username: string
+    password: string
+    created_at?: Date | string
+    modified_at?: Date | string
   }
 
   export type hsroles_permissionsUpdateWithoutHsrolesInput = {
@@ -22797,16 +27106,48 @@ export namespace Prisma {
     permission_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type hsusers_rolesUpdateWithoutHsrolesInput = {
-    hsemployees?: hsemployeesUpdateOneRequiredWithoutHsusers_rolesNestedInput
+  export type hsemployeesUpdateWithoutRoleInput = {
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: hsbranchesUpdateOneRequiredWithoutHsemployeesNestedInput
+    sessions?: hssessionsUpdateManyWithoutUserNestedInput
+    hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
+    hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUpdateManyWithoutHsemployeesNestedInput
   }
 
-  export type hsusers_rolesUncheckedUpdateWithoutHsrolesInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
+  export type hsemployeesUncheckedUpdateWithoutRoleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
+    hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
+    hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
+    analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
+    confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUncheckedUpdateManyWithoutHsemployeesNestedInput
   }
 
-  export type hsusers_rolesUncheckedUpdateManyWithoutHsrolesInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
+  export type hsemployeesUncheckedUpdateManyWithoutRoleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    winthor_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type hsroles_permissionsCreateManyHspermissionsInput = {
@@ -22847,6 +27188,7 @@ export namespace Prisma {
     name: string
     username: string
     password: string
+    role_id?: number
     created_at?: Date | string
     modified_at?: Date | string
   }
@@ -22869,6 +27211,28 @@ export namespace Prisma {
     modified_at?: Date | string
   }
 
+  export type hsconsumer_productsCreateManyBranchInput = {
+    id?: number
+    consumption_id?: number | null
+    employee_id: number
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    group_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumption_noteCreateManyBranchInput = {
+    id?: number
+    group_id: number
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
   export type hsemployeesUpdateWithoutBranchInput = {
     winthor_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
@@ -22876,12 +27240,13 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: hsrolesUpdateOneRequiredWithoutHsemployeesNestedInput
     sessions?: hssessionsUpdateManyWithoutUserNestedInput
     hsusers_permissions?: hsusers_permissionsUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUpdateManyWithoutHsemployeesNestedInput
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateWithoutBranchInput = {
@@ -22890,14 +27255,15 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: hssessionsUncheckedUpdateManyWithoutUserNestedInput
     hsusers_permissions?: hsusers_permissionsUncheckedUpdateManyWithoutHsemployeesNestedInput
-    hsusers_roles?: hsusers_rolesUncheckedUpdateManyWithoutHsemployeesNestedInput
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsemployeesNestedInput
     analystRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutAnalystNestedInput
     confereeRequests?: hsvalidity_requestsUncheckedUpdateManyWithoutConfereeNestedInput
+    hsconsumer_products?: hsconsumer_productsUncheckedUpdateManyWithoutHsemployeesNestedInput
   }
 
   export type hsemployeesUncheckedUpdateManyWithoutBranchInput = {
@@ -22906,6 +27272,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -22964,6 +27331,72 @@ export namespace Prisma {
     analyst_id?: IntFieldUpdateOperationsInput | number
     conferee_id?: IntFieldUpdateOperationsInput | number
     status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumer_productsUpdateWithoutBranchInput = {
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsemployees?: hsemployeesUpdateOneRequiredWithoutHsconsumer_productsNestedInput
+    hsconsumer_groups?: hsconsumer_groupsUpdateOneRequiredWithoutHsconsumer_productsNestedInput
+    hsconsumption_note?: hsconsumption_noteUpdateOneWithoutHsconsumerProductsNestedInput
+  }
+
+  export type hsconsumer_productsUncheckedUpdateWithoutBranchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    consumption_id?: NullableIntFieldUpdateOperationsInput | number | null
+    employee_id?: IntFieldUpdateOperationsInput | number
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    group_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumer_productsUncheckedUpdateManyWithoutBranchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    consumption_id?: NullableIntFieldUpdateOperationsInput | number | null
+    employee_id?: IntFieldUpdateOperationsInput | number
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    group_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumption_noteUpdateWithoutBranchInput = {
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsconsumer_groups?: hsconsumer_groupsUpdateOneRequiredWithoutConsumptionNotesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUpdateManyWithoutHsconsumption_noteNestedInput
+  }
+
+  export type hsconsumption_noteUncheckedUpdateWithoutBranchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    group_id?: IntFieldUpdateOperationsInput | number
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsconsumerProducts?: hsconsumer_productsUncheckedUpdateManyWithoutHsconsumption_noteNestedInput
+  }
+
+  export type hsconsumption_noteUncheckedUpdateManyWithoutBranchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    group_id?: IntFieldUpdateOperationsInput | number
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23104,6 +27537,149 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
     auxiliary_code?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type hsconsumer_productsCreateManyHsconsumption_noteInput = {
+    id?: number
+    employee_id: number
+    branch_id: number
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    group_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumer_productsUpdateWithoutHsconsumption_noteInput = {
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsemployees?: hsemployeesUpdateOneRequiredWithoutHsconsumer_productsNestedInput
+    hsconsumer_groups?: hsconsumer_groupsUpdateOneRequiredWithoutHsconsumer_productsNestedInput
+    branch?: hsbranchesUpdateOneRequiredWithoutHsconsumerProductsNestedInput
+  }
+
+  export type hsconsumer_productsUncheckedUpdateWithoutHsconsumption_noteInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    employee_id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    group_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumer_productsUncheckedUpdateManyWithoutHsconsumption_noteInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    employee_id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    group_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumer_productsCreateManyHsconsumer_groupsInput = {
+    id?: number
+    consumption_id?: number | null
+    employee_id: number
+    branch_id: number
+    product_code: number
+    auxiliary_code: string
+    quantity: number
+    unit_price: Decimal | DecimalJsLike | number | string
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumption_noteCreateManyHsconsumer_groupsInput = {
+    id?: number
+    branch_id: number
+    total_price: Decimal | DecimalJsLike | number | string
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsconsumer_productsUpdateWithoutHsconsumer_groupsInput = {
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsemployees?: hsemployeesUpdateOneRequiredWithoutHsconsumer_productsNestedInput
+    branch?: hsbranchesUpdateOneRequiredWithoutHsconsumerProductsNestedInput
+    hsconsumption_note?: hsconsumption_noteUpdateOneWithoutHsconsumerProductsNestedInput
+  }
+
+  export type hsconsumer_productsUncheckedUpdateWithoutHsconsumer_groupsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    consumption_id?: NullableIntFieldUpdateOperationsInput | number | null
+    employee_id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumer_productsUncheckedUpdateManyWithoutHsconsumer_groupsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    consumption_id?: NullableIntFieldUpdateOperationsInput | number | null
+    employee_id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    product_code?: IntFieldUpdateOperationsInput | number
+    auxiliary_code?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsconsumption_noteUpdateWithoutHsconsumer_groupsInput = {
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    branch?: hsbranchesUpdateOneRequiredWithoutConsumptionNotesNestedInput
+    hsconsumerProducts?: hsconsumer_productsUpdateManyWithoutHsconsumption_noteNestedInput
+  }
+
+  export type hsconsumption_noteUncheckedUpdateWithoutHsconsumer_groupsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsconsumerProducts?: hsconsumer_productsUncheckedUpdateManyWithoutHsconsumption_noteNestedInput
+  }
+
+  export type hsconsumption_noteUncheckedUpdateManyWithoutHsconsumer_groupsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    branch_id?: IntFieldUpdateOperationsInput | number
+    total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

@@ -1,4 +1,4 @@
-import { prisma } from '../lib/prisma.js';
+import { prisma } from "../lib/prisma.js";
 
 export async function getUserPermissions(userId: number): Promise<number[]> {
   const user = await prisma.hsemployees.findUnique({
@@ -7,14 +7,10 @@ export async function getUserPermissions(userId: number): Promise<number[]> {
       hsusers_permissions: {
         include: { hspermissions: true },
       },
-      hsusers_roles: {
+      role: {
         include: {
-          hsroles: {
-            include: {
-              hsroles_permissions: {
-                include: { hspermissions: true },
-              },
-            },
+          hsroles_permissions: {
+            include: { hspermissions: true },
           },
         },
       },
@@ -27,11 +23,11 @@ export async function getUserPermissions(userId: number): Promise<number[]> {
     (p) => p.hspermissions.id
   );
 
-  const rolePermissions = user.hsusers_roles.flatMap((r) =>
-    r.hsroles.hsroles_permissions.map((p) => p.hspermissions.id)
+  const rolePermissions = user.role.hsroles_permissions.map(
+    (p) => p.hspermissions.id
   );
 
   const allPermissions = new Set([...directPermissions, ...rolePermissions]);
-  
+
   return Array.from(allPermissions);
 }

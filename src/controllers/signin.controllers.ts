@@ -1,10 +1,10 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { signInSchema } from '../schemas/signin.schemas.js';
-import { signInService } from '../services/signin.services.js';
+import { signInSchema } from "../schemas/signin.schemas.js";
+import { signInService } from "../services/signin.services.js";
 import {
   deleteSessionService,
   createSessionService,
-} from '../services/signin.services.js';
+} from "../services/signin.services.js";
 import jwt from "jsonwebtoken";
 import { ZodError } from "zod";
 
@@ -17,7 +17,9 @@ export async function signinController(
     const user = await signInService(parsedData);
 
     if (!user) {
-      return reply.status(401).send({message: "Usuário ou senha estão incorretos!"})
+      return reply
+        .status(401)
+        .send({ message: "Usuário ou senha estão incorretos!" });
     }
 
     const jwtSecret = process.env.JWT_SECRET;
@@ -32,7 +34,6 @@ export async function signinController(
         username: user.username,
         winthor_id: user.winthor_id,
         branch_id: user.branch_id,
-        roles: user.hsusers_roles,
       },
       jwtSecret,
       {
@@ -49,9 +50,11 @@ export async function signinController(
       expires_at
     );
 
+    console.log(user)
+
     return reply
       .status(200)
-      .send({ message: "Usuário logado com sucesso!", token });
+      .send({ message: "Usuário logado com sucesso!", token, user });
   } catch (error: any) {
     if (error instanceof ZodError) {
       const messages = error.issues.map((e) => e.message);
