@@ -1,7 +1,7 @@
 import { prisma } from "../lib/prisma.js";
-import { ConsumerGroups } from "../schemas/consumerGroups.schemas.js";
+import { ConsumerGroups, GetConsumerGroups } from "../schemas/consumerGroups.schemas.js";
 
-export const getConsumerGroupsService = async (id: number) => {
+export const getConsumerGroupsService = async ({id} : GetConsumerGroups) => {
   return prisma.hsconsumer_groups.findMany({
     where: {
       id,

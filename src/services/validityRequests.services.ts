@@ -65,7 +65,7 @@ export const getMyValidityRequestsService = async (employeeId: number) => {
     const dadosPostgres = await prisma.hsvalidity_requests.findMany({
         where: {
             conferee_id: employeeId,
-            status: "Pendente",
+            status: "PENDENTE",
         },
         include: {
             hsvalidity_request_products: true

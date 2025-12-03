@@ -232,6 +232,7 @@ exports.Prisma.Hsconsumer_productsScalarFieldEnum = {
 
 exports.Prisma.Hsconsumption_noteScalarFieldEnum = {
   id: 'id',
+  employee_id: 'employee_id',
   branch_id: 'branch_id',
   group_id: 'group_id',
   total_price: 'total_price',
@@ -241,7 +242,28 @@ exports.Prisma.Hsconsumption_noteScalarFieldEnum = {
 
 exports.Prisma.Hsconsumer_groupsScalarFieldEnum = {
   id: 'id',
-  description: 'description'
+  description: 'description',
+  created_at: 'created_at',
+  modified_at: 'modified_at'
+};
+
+exports.Prisma.HsrafflesScalarFieldEnum = {
+  id: 'id',
+  client_id: 'client_id',
+  status: 'status',
+  nfc_key: 'nfc_key',
+  raffle_number: 'raffle_number',
+  branch_id: 'branch_id',
+  created_at: 'created_at',
+  modified_at: 'modified_at'
+};
+
+exports.Prisma.Hsraffle_clientsScalarFieldEnum = {
+  id: 'id',
+  cpf: 'cpf',
+  name: 'name',
+  created_at: 'created_at',
+  modified_at: 'modified_at'
 };
 
 exports.Prisma.SortOrder = {
@@ -258,23 +280,30 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.hsvalidities_status = exports.$Enums.hsvalidities_status = {
-  Pendente: 'Pendente',
-  Em_andamento: 'Em_andamento',
-  Concluido: 'Concluido'
+exports.HsValiditiesStatus = exports.$Enums.HsValiditiesStatus = {
+  PENDENTE: 'PENDENTE',
+  EM_ANDAMENTO: 'EM_ANDAMENTO',
+  CONCLUIDO: 'CONCLUIDO'
 };
 
-exports.hsvalidity_requests_status = exports.$Enums.hsvalidity_requests_status = {
-  Pendente: 'Pendente',
-  Em_andamento: 'Em_andamento',
-  Concluido: 'Concluido',
-  Expirado: 'Expirado'
+exports.HsValidityRequestsStatus = exports.$Enums.HsValidityRequestsStatus = {
+  PENDENTE: 'PENDENTE',
+  EM_ANDAMENTO: 'EM_ANDAMENTO',
+  CONCLUIDO: 'CONCLUIDO',
+  EXPIRADO: 'EXPIRADO'
 };
 
-exports.hsvalidity_request_products_status = exports.$Enums.hsvalidity_request_products_status = {
-  Nao_encontrado: 'Nao_encontrado',
-  Nao_vistoriado: 'Nao_vistoriado',
-  Vistoriado: 'Vistoriado'
+exports.HsValidityRequestProductsStatus = exports.$Enums.HsValidityRequestProductsStatus = {
+  NAO_ENCONTRADO: 'NAO_ENCONTRADO',
+  NAO_VISTORIADO: 'NAO_VISTORIADO',
+  VISTORIADO: 'VISTORIADO'
+};
+
+exports.HsRafflesStatus = exports.$Enums.HsRafflesStatus = {
+  ATIVO: 'ATIVO',
+  INATIVO: 'INATIVO',
+  SORTEADO: 'SORTEADO',
+  CANCELADO: 'CANCELADO'
 };
 
 exports.Prisma.ModelName = {
@@ -292,7 +321,9 @@ exports.Prisma.ModelName = {
   hssessions: 'hssessions',
   hsconsumer_products: 'hsconsumer_products',
   hsconsumption_note: 'hsconsumption_note',
-  hsconsumer_groups: 'hsconsumer_groups'
+  hsconsumer_groups: 'hsconsumer_groups',
+  hsraffles: 'hsraffles',
+  hsraffle_clients: 'hsraffle_clients'
 };
 
 /**

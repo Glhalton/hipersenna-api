@@ -91,51 +91,75 @@ export type hsconsumption_note = $Result.DefaultSelection<Prisma.$hsconsumption_
  * 
  */
 export type hsconsumer_groups = $Result.DefaultSelection<Prisma.$hsconsumer_groupsPayload>
+/**
+ * Model hsraffles
+ * 
+ */
+export type hsraffles = $Result.DefaultSelection<Prisma.$hsrafflesPayload>
+/**
+ * Model hsraffle_clients
+ * 
+ */
+export type hsraffle_clients = $Result.DefaultSelection<Prisma.$hsraffle_clientsPayload>
 
 /**
  * Enums
  */
 export namespace $Enums {
-  export const hsvalidities_status: {
-  Pendente: 'Pendente',
-  Em_andamento: 'Em andamento',
-  Concluido: 'Concluído'
+  export const HsValiditiesStatus: {
+  PENDENTE: 'PENDENTE',
+  EM_ANDAMENTO: 'EM_ANDAMENTO',
+  CONCLUIDO: 'CONCLUIDO'
 };
 
-export type hsvalidities_status = (typeof hsvalidities_status)[keyof typeof hsvalidities_status]
+export type HsValiditiesStatus = (typeof HsValiditiesStatus)[keyof typeof HsValiditiesStatus]
 
 
-export const hsvalidity_request_products_status: {
-  Nao_encontrado: 'Não encontrado',
-  Nao_vistoriado: 'Não vistoriado',
-  Vistoriado: 'Vistoriado'
+export const HsValidityRequestProductsStatus: {
+  NAO_ENCONTRADO: 'NAO_ENCONTRADO',
+  NAO_VISTORIADO: 'NAO_VISTORIADO',
+  VISTORIADO: 'VISTORIADO'
 };
 
-export type hsvalidity_request_products_status = (typeof hsvalidity_request_products_status)[keyof typeof hsvalidity_request_products_status]
+export type HsValidityRequestProductsStatus = (typeof HsValidityRequestProductsStatus)[keyof typeof HsValidityRequestProductsStatus]
 
 
-export const hsvalidity_requests_status: {
-  Pendente: 'Pendente',
-  Em_andamento: 'Em andamento',
-  Concluido: 'Concluído',
-  Expirado: 'Expirado'
+export const HsValidityRequestsStatus: {
+  PENDENTE: 'PENDENTE',
+  EM_ANDAMENTO: 'EM_ANDAMENTO',
+  CONCLUIDO: 'CONCLUIDO',
+  EXPIRADO: 'EXPIRADO'
 };
 
-export type hsvalidity_requests_status = (typeof hsvalidity_requests_status)[keyof typeof hsvalidity_requests_status]
+export type HsValidityRequestsStatus = (typeof HsValidityRequestsStatus)[keyof typeof HsValidityRequestsStatus]
+
+
+export const HsRafflesStatus: {
+  ATIVO: 'ATIVO',
+  INATIVO: 'INATIVO',
+  SORTEADO: 'SORTEADO',
+  CANCELADO: 'CANCELADO'
+};
+
+export type HsRafflesStatus = (typeof HsRafflesStatus)[keyof typeof HsRafflesStatus]
 
 }
 
-export type hsvalidities_status = $Enums.hsvalidities_status
+export type HsValiditiesStatus = $Enums.HsValiditiesStatus
 
-export const hsvalidities_status: typeof $Enums.hsvalidities_status
+export const HsValiditiesStatus: typeof $Enums.HsValiditiesStatus
 
-export type hsvalidity_request_products_status = $Enums.hsvalidity_request_products_status
+export type HsValidityRequestProductsStatus = $Enums.HsValidityRequestProductsStatus
 
-export const hsvalidity_request_products_status: typeof $Enums.hsvalidity_request_products_status
+export const HsValidityRequestProductsStatus: typeof $Enums.HsValidityRequestProductsStatus
 
-export type hsvalidity_requests_status = $Enums.hsvalidity_requests_status
+export type HsValidityRequestsStatus = $Enums.HsValidityRequestsStatus
 
-export const hsvalidity_requests_status: typeof $Enums.hsvalidity_requests_status
+export const HsValidityRequestsStatus: typeof $Enums.HsValidityRequestsStatus
+
+export type HsRafflesStatus = $Enums.HsRafflesStatus
+
+export const HsRafflesStatus: typeof $Enums.HsRafflesStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -403,6 +427,26 @@ export class PrismaClient<
     * ```
     */
   get hsconsumer_groups(): Prisma.hsconsumer_groupsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hsraffles`: Exposes CRUD operations for the **hsraffles** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hsraffles
+    * const hsraffles = await prisma.hsraffles.findMany()
+    * ```
+    */
+  get hsraffles(): Prisma.hsrafflesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hsraffle_clients`: Exposes CRUD operations for the **hsraffle_clients** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hsraffle_clients
+    * const hsraffle_clients = await prisma.hsraffle_clients.findMany()
+    * ```
+    */
+  get hsraffle_clients(): Prisma.hsraffle_clientsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -851,7 +895,9 @@ export namespace Prisma {
     hssessions: 'hssessions',
     hsconsumer_products: 'hsconsumer_products',
     hsconsumption_note: 'hsconsumption_note',
-    hsconsumer_groups: 'hsconsumer_groups'
+    hsconsumer_groups: 'hsconsumer_groups',
+    hsraffles: 'hsraffles',
+    hsraffle_clients: 'hsraffle_clients'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -867,7 +913,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "hsemployees" | "hsroles" | "hspermissions" | "hsroles_permissions" | "hsusers_permissions" | "hsbranches" | "hsvalidities" | "hsvalidity_products" | "hsvalidity_requests" | "hsvalidity_request_products" | "hsvalidity_treatments" | "hssessions" | "hsconsumer_products" | "hsconsumption_note" | "hsconsumer_groups"
+      modelProps: "hsemployees" | "hsroles" | "hspermissions" | "hsroles_permissions" | "hsusers_permissions" | "hsbranches" | "hsvalidities" | "hsvalidity_products" | "hsvalidity_requests" | "hsvalidity_request_products" | "hsvalidity_treatments" | "hssessions" | "hsconsumer_products" | "hsconsumption_note" | "hsconsumer_groups" | "hsraffles" | "hsraffle_clients"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1981,6 +2027,154 @@ export namespace Prisma {
           }
         }
       }
+      hsraffles: {
+        payload: Prisma.$hsrafflesPayload<ExtArgs>
+        fields: Prisma.hsrafflesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.hsrafflesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrafflesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.hsrafflesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrafflesPayload>
+          }
+          findFirst: {
+            args: Prisma.hsrafflesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrafflesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.hsrafflesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrafflesPayload>
+          }
+          findMany: {
+            args: Prisma.hsrafflesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrafflesPayload>[]
+          }
+          create: {
+            args: Prisma.hsrafflesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrafflesPayload>
+          }
+          createMany: {
+            args: Prisma.hsrafflesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.hsrafflesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrafflesPayload>[]
+          }
+          delete: {
+            args: Prisma.hsrafflesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrafflesPayload>
+          }
+          update: {
+            args: Prisma.hsrafflesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrafflesPayload>
+          }
+          deleteMany: {
+            args: Prisma.hsrafflesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.hsrafflesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.hsrafflesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrafflesPayload>[]
+          }
+          upsert: {
+            args: Prisma.hsrafflesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsrafflesPayload>
+          }
+          aggregate: {
+            args: Prisma.HsrafflesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHsraffles>
+          }
+          groupBy: {
+            args: Prisma.hsrafflesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HsrafflesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.hsrafflesCountArgs<ExtArgs>
+            result: $Utils.Optional<HsrafflesCountAggregateOutputType> | number
+          }
+        }
+      }
+      hsraffle_clients: {
+        payload: Prisma.$hsraffle_clientsPayload<ExtArgs>
+        fields: Prisma.hsraffle_clientsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.hsraffle_clientsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsraffle_clientsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.hsraffle_clientsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsraffle_clientsPayload>
+          }
+          findFirst: {
+            args: Prisma.hsraffle_clientsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsraffle_clientsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.hsraffle_clientsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsraffle_clientsPayload>
+          }
+          findMany: {
+            args: Prisma.hsraffle_clientsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsraffle_clientsPayload>[]
+          }
+          create: {
+            args: Prisma.hsraffle_clientsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsraffle_clientsPayload>
+          }
+          createMany: {
+            args: Prisma.hsraffle_clientsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.hsraffle_clientsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsraffle_clientsPayload>[]
+          }
+          delete: {
+            args: Prisma.hsraffle_clientsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsraffle_clientsPayload>
+          }
+          update: {
+            args: Prisma.hsraffle_clientsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsraffle_clientsPayload>
+          }
+          deleteMany: {
+            args: Prisma.hsraffle_clientsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.hsraffle_clientsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.hsraffle_clientsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsraffle_clientsPayload>[]
+          }
+          upsert: {
+            args: Prisma.hsraffle_clientsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hsraffle_clientsPayload>
+          }
+          aggregate: {
+            args: Prisma.Hsraffle_clientsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHsraffle_clients>
+          }
+          groupBy: {
+            args: Prisma.hsraffle_clientsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Hsraffle_clientsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.hsraffle_clientsCountArgs<ExtArgs>
+            result: $Utils.Optional<Hsraffle_clientsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2088,6 +2282,8 @@ export namespace Prisma {
     hsconsumer_products?: hsconsumer_productsOmit
     hsconsumption_note?: hsconsumption_noteOmit
     hsconsumer_groups?: hsconsumer_groupsOmit
+    hsraffles?: hsrafflesOmit
+    hsraffle_clients?: hsraffle_clientsOmit
   }
 
   /* Types for Logging */
@@ -2556,6 +2752,37 @@ export namespace Prisma {
    */
   export type Hsconsumer_groupsCountOutputTypeCountConsumptionNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: hsconsumption_noteWhereInput
+  }
+
+
+  /**
+   * Count Type Hsraffle_clientsCountOutputType
+   */
+
+  export type Hsraffle_clientsCountOutputType = {
+    hsraffles: number
+  }
+
+  export type Hsraffle_clientsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsraffles?: boolean | Hsraffle_clientsCountOutputTypeCountHsrafflesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Hsraffle_clientsCountOutputType without action
+   */
+  export type Hsraffle_clientsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hsraffle_clientsCountOutputType
+     */
+    select?: Hsraffle_clientsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Hsraffle_clientsCountOutputType without action
+   */
+  export type Hsraffle_clientsCountOutputTypeCountHsrafflesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsrafflesWhereInput
   }
 
 
@@ -9498,7 +9725,7 @@ export namespace Prisma {
     id: number | null
     branch_id: number | null
     employee_id: number | null
-    status: $Enums.hsvalidities_status | null
+    status: $Enums.HsValiditiesStatus | null
     request_id: number | null
     created_at: Date | null
     modified_at: Date | null
@@ -9508,7 +9735,7 @@ export namespace Prisma {
     id: number | null
     branch_id: number | null
     employee_id: number | null
-    status: $Enums.hsvalidities_status | null
+    status: $Enums.HsValiditiesStatus | null
     request_id: number | null
     created_at: Date | null
     modified_at: Date | null
@@ -9661,7 +9888,7 @@ export namespace Prisma {
     id: number
     branch_id: number
     employee_id: number
-    status: $Enums.hsvalidities_status
+    status: $Enums.HsValiditiesStatus
     request_id: number | null
     created_at: Date
     modified_at: Date
@@ -9768,7 +9995,7 @@ export namespace Prisma {
       id: number
       branch_id: number
       employee_id: number
-      status: $Enums.hsvalidities_status
+      status: $Enums.HsValiditiesStatus
       request_id: number | null
       created_at: Date
       modified_at: Date
@@ -10202,7 +10429,7 @@ export namespace Prisma {
     readonly id: FieldRef<"hsvalidities", 'Int'>
     readonly branch_id: FieldRef<"hsvalidities", 'Int'>
     readonly employee_id: FieldRef<"hsvalidities", 'Int'>
-    readonly status: FieldRef<"hsvalidities", 'hsvalidities_status'>
+    readonly status: FieldRef<"hsvalidities", 'HsValiditiesStatus'>
     readonly request_id: FieldRef<"hsvalidities", 'Int'>
     readonly created_at: FieldRef<"hsvalidities", 'DateTime'>
     readonly modified_at: FieldRef<"hsvalidities", 'DateTime'>
@@ -11836,7 +12063,7 @@ export namespace Prisma {
     branch_id: number | null
     analyst_id: number | null
     conferee_id: number | null
-    status: $Enums.hsvalidity_requests_status | null
+    status: $Enums.HsValidityRequestsStatus | null
     created_at: Date | null
     modified_at: Date | null
   }
@@ -11846,7 +12073,7 @@ export namespace Prisma {
     branch_id: number | null
     analyst_id: number | null
     conferee_id: number | null
-    status: $Enums.hsvalidity_requests_status | null
+    status: $Enums.HsValidityRequestsStatus | null
     created_at: Date | null
     modified_at: Date | null
   }
@@ -11999,7 +12226,7 @@ export namespace Prisma {
     branch_id: number
     analyst_id: number
     conferee_id: number
-    status: $Enums.hsvalidity_requests_status
+    status: $Enums.HsValidityRequestsStatus
     created_at: Date
     modified_at: Date
     _count: Hsvalidity_requestsCountAggregateOutputType | null
@@ -12109,7 +12336,7 @@ export namespace Prisma {
       branch_id: number
       analyst_id: number
       conferee_id: number
-      status: $Enums.hsvalidity_requests_status
+      status: $Enums.HsValidityRequestsStatus
       created_at: Date
       modified_at: Date
     }, ExtArgs["result"]["hsvalidity_requests"]>
@@ -12544,7 +12771,7 @@ export namespace Prisma {
     readonly branch_id: FieldRef<"hsvalidity_requests", 'Int'>
     readonly analyst_id: FieldRef<"hsvalidity_requests", 'Int'>
     readonly conferee_id: FieldRef<"hsvalidity_requests", 'Int'>
-    readonly status: FieldRef<"hsvalidity_requests", 'hsvalidity_requests_status'>
+    readonly status: FieldRef<"hsvalidity_requests", 'HsValidityRequestsStatus'>
     readonly created_at: FieldRef<"hsvalidity_requests", 'DateTime'>
     readonly modified_at: FieldRef<"hsvalidity_requests", 'DateTime'>
   }
@@ -13036,7 +13263,7 @@ export namespace Prisma {
   export type Hsvalidity_request_productsMinAggregateOutputType = {
     id: number | null
     request_id: number | null
-    status: $Enums.hsvalidity_request_products_status | null
+    status: $Enums.HsValidityRequestProductsStatus | null
     product_code: number | null
     validity_date: Date | null
     auxiliary_code: string | null
@@ -13045,7 +13272,7 @@ export namespace Prisma {
   export type Hsvalidity_request_productsMaxAggregateOutputType = {
     id: number | null
     request_id: number | null
-    status: $Enums.hsvalidity_request_products_status | null
+    status: $Enums.HsValidityRequestProductsStatus | null
     product_code: number | null
     validity_date: Date | null
     auxiliary_code: string | null
@@ -13191,7 +13418,7 @@ export namespace Prisma {
   export type Hsvalidity_request_productsGroupByOutputType = {
     id: number
     request_id: number
-    status: $Enums.hsvalidity_request_products_status
+    status: $Enums.HsValidityRequestProductsStatus
     product_code: number
     validity_date: Date
     auxiliary_code: string
@@ -13274,7 +13501,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       request_id: number
-      status: $Enums.hsvalidity_request_products_status
+      status: $Enums.HsValidityRequestProductsStatus
       product_code: number
       validity_date: Date
       auxiliary_code: string
@@ -13704,7 +13931,7 @@ export namespace Prisma {
   interface hsvalidity_request_productsFieldRefs {
     readonly id: FieldRef<"hsvalidity_request_products", 'Int'>
     readonly request_id: FieldRef<"hsvalidity_request_products", 'Int'>
-    readonly status: FieldRef<"hsvalidity_request_products", 'hsvalidity_request_products_status'>
+    readonly status: FieldRef<"hsvalidity_request_products", 'HsValidityRequestProductsStatus'>
     readonly product_code: FieldRef<"hsvalidity_request_products", 'Int'>
     readonly validity_date: FieldRef<"hsvalidity_request_products", 'DateTime'>
     readonly auxiliary_code: FieldRef<"hsvalidity_request_products", 'String'>
@@ -17551,6 +17778,7 @@ export namespace Prisma {
 
   export type Hsconsumption_noteAvgAggregateOutputType = {
     id: number | null
+    employee_id: number | null
     branch_id: number | null
     group_id: number | null
     total_price: Decimal | null
@@ -17558,6 +17786,7 @@ export namespace Prisma {
 
   export type Hsconsumption_noteSumAggregateOutputType = {
     id: number | null
+    employee_id: number | null
     branch_id: number | null
     group_id: number | null
     total_price: Decimal | null
@@ -17565,6 +17794,7 @@ export namespace Prisma {
 
   export type Hsconsumption_noteMinAggregateOutputType = {
     id: number | null
+    employee_id: number | null
     branch_id: number | null
     group_id: number | null
     total_price: Decimal | null
@@ -17574,6 +17804,7 @@ export namespace Prisma {
 
   export type Hsconsumption_noteMaxAggregateOutputType = {
     id: number | null
+    employee_id: number | null
     branch_id: number | null
     group_id: number | null
     total_price: Decimal | null
@@ -17583,6 +17814,7 @@ export namespace Prisma {
 
   export type Hsconsumption_noteCountAggregateOutputType = {
     id: number
+    employee_id: number
     branch_id: number
     group_id: number
     total_price: number
@@ -17594,6 +17826,7 @@ export namespace Prisma {
 
   export type Hsconsumption_noteAvgAggregateInputType = {
     id?: true
+    employee_id?: true
     branch_id?: true
     group_id?: true
     total_price?: true
@@ -17601,6 +17834,7 @@ export namespace Prisma {
 
   export type Hsconsumption_noteSumAggregateInputType = {
     id?: true
+    employee_id?: true
     branch_id?: true
     group_id?: true
     total_price?: true
@@ -17608,6 +17842,7 @@ export namespace Prisma {
 
   export type Hsconsumption_noteMinAggregateInputType = {
     id?: true
+    employee_id?: true
     branch_id?: true
     group_id?: true
     total_price?: true
@@ -17617,6 +17852,7 @@ export namespace Prisma {
 
   export type Hsconsumption_noteMaxAggregateInputType = {
     id?: true
+    employee_id?: true
     branch_id?: true
     group_id?: true
     total_price?: true
@@ -17626,6 +17862,7 @@ export namespace Prisma {
 
   export type Hsconsumption_noteCountAggregateInputType = {
     id?: true
+    employee_id?: true
     branch_id?: true
     group_id?: true
     total_price?: true
@@ -17722,6 +17959,7 @@ export namespace Prisma {
 
   export type Hsconsumption_noteGroupByOutputType = {
     id: number
+    employee_id: number
     branch_id: number
     group_id: number
     total_price: Decimal
@@ -17750,6 +17988,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    employee_id?: boolean
     branch_id?: boolean
     group_id?: boolean
     total_price?: boolean
@@ -17763,6 +18002,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    employee_id?: boolean
     branch_id?: boolean
     group_id?: boolean
     total_price?: boolean
@@ -17774,6 +18014,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    employee_id?: boolean
     branch_id?: boolean
     group_id?: boolean
     total_price?: boolean
@@ -17785,6 +18026,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteSelectScalar = {
     id?: boolean
+    employee_id?: boolean
     branch_id?: boolean
     group_id?: boolean
     total_price?: boolean
@@ -17792,7 +18034,7 @@ export namespace Prisma {
     modified_at?: boolean
   }
 
-  export type hsconsumption_noteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "branch_id" | "group_id" | "total_price" | "created_at" | "modified_at", ExtArgs["result"]["hsconsumption_note"]>
+  export type hsconsumption_noteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employee_id" | "branch_id" | "group_id" | "total_price" | "created_at" | "modified_at", ExtArgs["result"]["hsconsumption_note"]>
   export type hsconsumption_noteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hsconsumer_groups?: boolean | hsconsumer_groupsDefaultArgs<ExtArgs>
     branch?: boolean | hsbranchesDefaultArgs<ExtArgs>
@@ -17817,6 +18059,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      employee_id: number
       branch_id: number
       group_id: number
       total_price: Prisma.Decimal
@@ -18249,6 +18492,7 @@ export namespace Prisma {
    */
   interface hsconsumption_noteFieldRefs {
     readonly id: FieldRef<"hsconsumption_note", 'Int'>
+    readonly employee_id: FieldRef<"hsconsumption_note", 'Int'>
     readonly branch_id: FieldRef<"hsconsumption_note", 'Int'>
     readonly group_id: FieldRef<"hsconsumption_note", 'Int'>
     readonly total_price: FieldRef<"hsconsumption_note", 'Decimal'>
@@ -18715,16 +18959,22 @@ export namespace Prisma {
   export type Hsconsumer_groupsMinAggregateOutputType = {
     id: number | null
     description: string | null
+    created_at: Date | null
+    modified_at: Date | null
   }
 
   export type Hsconsumer_groupsMaxAggregateOutputType = {
     id: number | null
     description: string | null
+    created_at: Date | null
+    modified_at: Date | null
   }
 
   export type Hsconsumer_groupsCountAggregateOutputType = {
     id: number
     description: number
+    created_at: number
+    modified_at: number
     _all: number
   }
 
@@ -18740,16 +18990,22 @@ export namespace Prisma {
   export type Hsconsumer_groupsMinAggregateInputType = {
     id?: true
     description?: true
+    created_at?: true
+    modified_at?: true
   }
 
   export type Hsconsumer_groupsMaxAggregateInputType = {
     id?: true
     description?: true
+    created_at?: true
+    modified_at?: true
   }
 
   export type Hsconsumer_groupsCountAggregateInputType = {
     id?: true
     description?: true
+    created_at?: true
+    modified_at?: true
     _all?: true
   }
 
@@ -18842,6 +19098,8 @@ export namespace Prisma {
   export type Hsconsumer_groupsGroupByOutputType = {
     id: number
     description: string
+    created_at: Date
+    modified_at: Date
     _count: Hsconsumer_groupsCountAggregateOutputType | null
     _avg: Hsconsumer_groupsAvgAggregateOutputType | null
     _sum: Hsconsumer_groupsSumAggregateOutputType | null
@@ -18866,6 +19124,8 @@ export namespace Prisma {
   export type hsconsumer_groupsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     description?: boolean
+    created_at?: boolean
+    modified_at?: boolean
     hsconsumer_products?: boolean | hsconsumer_groups$hsconsumer_productsArgs<ExtArgs>
     consumptionNotes?: boolean | hsconsumer_groups$consumptionNotesArgs<ExtArgs>
     _count?: boolean | Hsconsumer_groupsCountOutputTypeDefaultArgs<ExtArgs>
@@ -18874,19 +19134,25 @@ export namespace Prisma {
   export type hsconsumer_groupsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     description?: boolean
+    created_at?: boolean
+    modified_at?: boolean
   }, ExtArgs["result"]["hsconsumer_groups"]>
 
   export type hsconsumer_groupsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     description?: boolean
+    created_at?: boolean
+    modified_at?: boolean
   }, ExtArgs["result"]["hsconsumer_groups"]>
 
   export type hsconsumer_groupsSelectScalar = {
     id?: boolean
     description?: boolean
+    created_at?: boolean
+    modified_at?: boolean
   }
 
-  export type hsconsumer_groupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description", ExtArgs["result"]["hsconsumer_groups"]>
+  export type hsconsumer_groupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "created_at" | "modified_at", ExtArgs["result"]["hsconsumer_groups"]>
   export type hsconsumer_groupsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hsconsumer_products?: boolean | hsconsumer_groups$hsconsumer_productsArgs<ExtArgs>
     consumptionNotes?: boolean | hsconsumer_groups$consumptionNotesArgs<ExtArgs>
@@ -18904,6 +19170,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       description: string
+      created_at: Date
+      modified_at: Date
     }, ExtArgs["result"]["hsconsumer_groups"]>
     composites: {}
   }
@@ -19331,6 +19599,8 @@ export namespace Prisma {
   interface hsconsumer_groupsFieldRefs {
     readonly id: FieldRef<"hsconsumer_groups", 'Int'>
     readonly description: FieldRef<"hsconsumer_groups", 'String'>
+    readonly created_at: FieldRef<"hsconsumer_groups", 'DateTime'>
+    readonly modified_at: FieldRef<"hsconsumer_groups", 'DateTime'>
   }
     
 
@@ -19786,6 +20056,2249 @@ export namespace Prisma {
 
 
   /**
+   * Model hsraffles
+   */
+
+  export type AggregateHsraffles = {
+    _count: HsrafflesCountAggregateOutputType | null
+    _avg: HsrafflesAvgAggregateOutputType | null
+    _sum: HsrafflesSumAggregateOutputType | null
+    _min: HsrafflesMinAggregateOutputType | null
+    _max: HsrafflesMaxAggregateOutputType | null
+  }
+
+  export type HsrafflesAvgAggregateOutputType = {
+    id: number | null
+    client_id: number | null
+    branch_id: number | null
+  }
+
+  export type HsrafflesSumAggregateOutputType = {
+    id: number | null
+    client_id: number | null
+    branch_id: number | null
+  }
+
+  export type HsrafflesMinAggregateOutputType = {
+    id: number | null
+    client_id: number | null
+    status: $Enums.HsRafflesStatus | null
+    nfc_key: string | null
+    raffle_number: string | null
+    branch_id: number | null
+    created_at: Date | null
+    modified_at: Date | null
+  }
+
+  export type HsrafflesMaxAggregateOutputType = {
+    id: number | null
+    client_id: number | null
+    status: $Enums.HsRafflesStatus | null
+    nfc_key: string | null
+    raffle_number: string | null
+    branch_id: number | null
+    created_at: Date | null
+    modified_at: Date | null
+  }
+
+  export type HsrafflesCountAggregateOutputType = {
+    id: number
+    client_id: number
+    status: number
+    nfc_key: number
+    raffle_number: number
+    branch_id: number
+    created_at: number
+    modified_at: number
+    _all: number
+  }
+
+
+  export type HsrafflesAvgAggregateInputType = {
+    id?: true
+    client_id?: true
+    branch_id?: true
+  }
+
+  export type HsrafflesSumAggregateInputType = {
+    id?: true
+    client_id?: true
+    branch_id?: true
+  }
+
+  export type HsrafflesMinAggregateInputType = {
+    id?: true
+    client_id?: true
+    status?: true
+    nfc_key?: true
+    raffle_number?: true
+    branch_id?: true
+    created_at?: true
+    modified_at?: true
+  }
+
+  export type HsrafflesMaxAggregateInputType = {
+    id?: true
+    client_id?: true
+    status?: true
+    nfc_key?: true
+    raffle_number?: true
+    branch_id?: true
+    created_at?: true
+    modified_at?: true
+  }
+
+  export type HsrafflesCountAggregateInputType = {
+    id?: true
+    client_id?: true
+    status?: true
+    nfc_key?: true
+    raffle_number?: true
+    branch_id?: true
+    created_at?: true
+    modified_at?: true
+    _all?: true
+  }
+
+  export type HsrafflesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsraffles to aggregate.
+     */
+    where?: hsrafflesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsraffles to fetch.
+     */
+    orderBy?: hsrafflesOrderByWithRelationInput | hsrafflesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: hsrafflesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsraffles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsraffles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned hsraffles
+    **/
+    _count?: true | HsrafflesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HsrafflesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HsrafflesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HsrafflesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HsrafflesMaxAggregateInputType
+  }
+
+  export type GetHsrafflesAggregateType<T extends HsrafflesAggregateArgs> = {
+        [P in keyof T & keyof AggregateHsraffles]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHsraffles[P]>
+      : GetScalarType<T[P], AggregateHsraffles[P]>
+  }
+
+
+
+
+  export type hsrafflesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsrafflesWhereInput
+    orderBy?: hsrafflesOrderByWithAggregationInput | hsrafflesOrderByWithAggregationInput[]
+    by: HsrafflesScalarFieldEnum[] | HsrafflesScalarFieldEnum
+    having?: hsrafflesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HsrafflesCountAggregateInputType | true
+    _avg?: HsrafflesAvgAggregateInputType
+    _sum?: HsrafflesSumAggregateInputType
+    _min?: HsrafflesMinAggregateInputType
+    _max?: HsrafflesMaxAggregateInputType
+  }
+
+  export type HsrafflesGroupByOutputType = {
+    id: number
+    client_id: number
+    status: $Enums.HsRafflesStatus
+    nfc_key: string
+    raffle_number: string | null
+    branch_id: number
+    created_at: Date
+    modified_at: Date
+    _count: HsrafflesCountAggregateOutputType | null
+    _avg: HsrafflesAvgAggregateOutputType | null
+    _sum: HsrafflesSumAggregateOutputType | null
+    _min: HsrafflesMinAggregateOutputType | null
+    _max: HsrafflesMaxAggregateOutputType | null
+  }
+
+  type GetHsrafflesGroupByPayload<T extends hsrafflesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HsrafflesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HsrafflesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HsrafflesGroupByOutputType[P]>
+            : GetScalarType<T[P], HsrafflesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type hsrafflesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    client_id?: boolean
+    status?: boolean
+    nfc_key?: boolean
+    raffle_number?: boolean
+    branch_id?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    hsraffle_clients?: boolean | hsraffle_clientsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsraffles"]>
+
+  export type hsrafflesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    client_id?: boolean
+    status?: boolean
+    nfc_key?: boolean
+    raffle_number?: boolean
+    branch_id?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    hsraffle_clients?: boolean | hsraffle_clientsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsraffles"]>
+
+  export type hsrafflesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    client_id?: boolean
+    status?: boolean
+    nfc_key?: boolean
+    raffle_number?: boolean
+    branch_id?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    hsraffle_clients?: boolean | hsraffle_clientsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsraffles"]>
+
+  export type hsrafflesSelectScalar = {
+    id?: boolean
+    client_id?: boolean
+    status?: boolean
+    nfc_key?: boolean
+    raffle_number?: boolean
+    branch_id?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+  }
+
+  export type hsrafflesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "client_id" | "status" | "nfc_key" | "raffle_number" | "branch_id" | "created_at" | "modified_at", ExtArgs["result"]["hsraffles"]>
+  export type hsrafflesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsraffle_clients?: boolean | hsraffle_clientsDefaultArgs<ExtArgs>
+  }
+  export type hsrafflesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsraffle_clients?: boolean | hsraffle_clientsDefaultArgs<ExtArgs>
+  }
+  export type hsrafflesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsraffle_clients?: boolean | hsraffle_clientsDefaultArgs<ExtArgs>
+  }
+
+  export type $hsrafflesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "hsraffles"
+    objects: {
+      hsraffle_clients: Prisma.$hsraffle_clientsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      client_id: number
+      status: $Enums.HsRafflesStatus
+      nfc_key: string
+      raffle_number: string | null
+      branch_id: number
+      created_at: Date
+      modified_at: Date
+    }, ExtArgs["result"]["hsraffles"]>
+    composites: {}
+  }
+
+  type hsrafflesGetPayload<S extends boolean | null | undefined | hsrafflesDefaultArgs> = $Result.GetResult<Prisma.$hsrafflesPayload, S>
+
+  type hsrafflesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<hsrafflesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HsrafflesCountAggregateInputType | true
+    }
+
+  export interface hsrafflesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hsraffles'], meta: { name: 'hsraffles' } }
+    /**
+     * Find zero or one Hsraffles that matches the filter.
+     * @param {hsrafflesFindUniqueArgs} args - Arguments to find a Hsraffles
+     * @example
+     * // Get one Hsraffles
+     * const hsraffles = await prisma.hsraffles.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends hsrafflesFindUniqueArgs>(args: SelectSubset<T, hsrafflesFindUniqueArgs<ExtArgs>>): Prisma__hsrafflesClient<$Result.GetResult<Prisma.$hsrafflesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hsraffles that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {hsrafflesFindUniqueOrThrowArgs} args - Arguments to find a Hsraffles
+     * @example
+     * // Get one Hsraffles
+     * const hsraffles = await prisma.hsraffles.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends hsrafflesFindUniqueOrThrowArgs>(args: SelectSubset<T, hsrafflesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hsrafflesClient<$Result.GetResult<Prisma.$hsrafflesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsraffles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsrafflesFindFirstArgs} args - Arguments to find a Hsraffles
+     * @example
+     * // Get one Hsraffles
+     * const hsraffles = await prisma.hsraffles.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends hsrafflesFindFirstArgs>(args?: SelectSubset<T, hsrafflesFindFirstArgs<ExtArgs>>): Prisma__hsrafflesClient<$Result.GetResult<Prisma.$hsrafflesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsraffles that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsrafflesFindFirstOrThrowArgs} args - Arguments to find a Hsraffles
+     * @example
+     * // Get one Hsraffles
+     * const hsraffles = await prisma.hsraffles.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends hsrafflesFindFirstOrThrowArgs>(args?: SelectSubset<T, hsrafflesFindFirstOrThrowArgs<ExtArgs>>): Prisma__hsrafflesClient<$Result.GetResult<Prisma.$hsrafflesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hsraffles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsrafflesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hsraffles
+     * const hsraffles = await prisma.hsraffles.findMany()
+     * 
+     * // Get first 10 Hsraffles
+     * const hsraffles = await prisma.hsraffles.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hsrafflesWithIdOnly = await prisma.hsraffles.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends hsrafflesFindManyArgs>(args?: SelectSubset<T, hsrafflesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsrafflesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hsraffles.
+     * @param {hsrafflesCreateArgs} args - Arguments to create a Hsraffles.
+     * @example
+     * // Create one Hsraffles
+     * const Hsraffles = await prisma.hsraffles.create({
+     *   data: {
+     *     // ... data to create a Hsraffles
+     *   }
+     * })
+     * 
+     */
+    create<T extends hsrafflesCreateArgs>(args: SelectSubset<T, hsrafflesCreateArgs<ExtArgs>>): Prisma__hsrafflesClient<$Result.GetResult<Prisma.$hsrafflesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hsraffles.
+     * @param {hsrafflesCreateManyArgs} args - Arguments to create many Hsraffles.
+     * @example
+     * // Create many Hsraffles
+     * const hsraffles = await prisma.hsraffles.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends hsrafflesCreateManyArgs>(args?: SelectSubset<T, hsrafflesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hsraffles and returns the data saved in the database.
+     * @param {hsrafflesCreateManyAndReturnArgs} args - Arguments to create many Hsraffles.
+     * @example
+     * // Create many Hsraffles
+     * const hsraffles = await prisma.hsraffles.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hsraffles and only return the `id`
+     * const hsrafflesWithIdOnly = await prisma.hsraffles.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends hsrafflesCreateManyAndReturnArgs>(args?: SelectSubset<T, hsrafflesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsrafflesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hsraffles.
+     * @param {hsrafflesDeleteArgs} args - Arguments to delete one Hsraffles.
+     * @example
+     * // Delete one Hsraffles
+     * const Hsraffles = await prisma.hsraffles.delete({
+     *   where: {
+     *     // ... filter to delete one Hsraffles
+     *   }
+     * })
+     * 
+     */
+    delete<T extends hsrafflesDeleteArgs>(args: SelectSubset<T, hsrafflesDeleteArgs<ExtArgs>>): Prisma__hsrafflesClient<$Result.GetResult<Prisma.$hsrafflesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hsraffles.
+     * @param {hsrafflesUpdateArgs} args - Arguments to update one Hsraffles.
+     * @example
+     * // Update one Hsraffles
+     * const hsraffles = await prisma.hsraffles.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends hsrafflesUpdateArgs>(args: SelectSubset<T, hsrafflesUpdateArgs<ExtArgs>>): Prisma__hsrafflesClient<$Result.GetResult<Prisma.$hsrafflesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hsraffles.
+     * @param {hsrafflesDeleteManyArgs} args - Arguments to filter Hsraffles to delete.
+     * @example
+     * // Delete a few Hsraffles
+     * const { count } = await prisma.hsraffles.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends hsrafflesDeleteManyArgs>(args?: SelectSubset<T, hsrafflesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsraffles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsrafflesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hsraffles
+     * const hsraffles = await prisma.hsraffles.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends hsrafflesUpdateManyArgs>(args: SelectSubset<T, hsrafflesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsraffles and returns the data updated in the database.
+     * @param {hsrafflesUpdateManyAndReturnArgs} args - Arguments to update many Hsraffles.
+     * @example
+     * // Update many Hsraffles
+     * const hsraffles = await prisma.hsraffles.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hsraffles and only return the `id`
+     * const hsrafflesWithIdOnly = await prisma.hsraffles.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends hsrafflesUpdateManyAndReturnArgs>(args: SelectSubset<T, hsrafflesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsrafflesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hsraffles.
+     * @param {hsrafflesUpsertArgs} args - Arguments to update or create a Hsraffles.
+     * @example
+     * // Update or create a Hsraffles
+     * const hsraffles = await prisma.hsraffles.upsert({
+     *   create: {
+     *     // ... data to create a Hsraffles
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hsraffles we want to update
+     *   }
+     * })
+     */
+    upsert<T extends hsrafflesUpsertArgs>(args: SelectSubset<T, hsrafflesUpsertArgs<ExtArgs>>): Prisma__hsrafflesClient<$Result.GetResult<Prisma.$hsrafflesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hsraffles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsrafflesCountArgs} args - Arguments to filter Hsraffles to count.
+     * @example
+     * // Count the number of Hsraffles
+     * const count = await prisma.hsraffles.count({
+     *   where: {
+     *     // ... the filter for the Hsraffles we want to count
+     *   }
+     * })
+    **/
+    count<T extends hsrafflesCountArgs>(
+      args?: Subset<T, hsrafflesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HsrafflesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hsraffles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HsrafflesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HsrafflesAggregateArgs>(args: Subset<T, HsrafflesAggregateArgs>): Prisma.PrismaPromise<GetHsrafflesAggregateType<T>>
+
+    /**
+     * Group by Hsraffles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsrafflesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends hsrafflesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: hsrafflesGroupByArgs['orderBy'] }
+        : { orderBy?: hsrafflesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, hsrafflesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHsrafflesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the hsraffles model
+   */
+  readonly fields: hsrafflesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for hsraffles.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__hsrafflesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    hsraffle_clients<T extends hsraffle_clientsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hsraffle_clientsDefaultArgs<ExtArgs>>): Prisma__hsraffle_clientsClient<$Result.GetResult<Prisma.$hsraffle_clientsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the hsraffles model
+   */
+  interface hsrafflesFieldRefs {
+    readonly id: FieldRef<"hsraffles", 'Int'>
+    readonly client_id: FieldRef<"hsraffles", 'Int'>
+    readonly status: FieldRef<"hsraffles", 'HsRafflesStatus'>
+    readonly nfc_key: FieldRef<"hsraffles", 'String'>
+    readonly raffle_number: FieldRef<"hsraffles", 'String'>
+    readonly branch_id: FieldRef<"hsraffles", 'Int'>
+    readonly created_at: FieldRef<"hsraffles", 'DateTime'>
+    readonly modified_at: FieldRef<"hsraffles", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * hsraffles findUnique
+   */
+  export type hsrafflesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsraffles to fetch.
+     */
+    where: hsrafflesWhereUniqueInput
+  }
+
+  /**
+   * hsraffles findUniqueOrThrow
+   */
+  export type hsrafflesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsraffles to fetch.
+     */
+    where: hsrafflesWhereUniqueInput
+  }
+
+  /**
+   * hsraffles findFirst
+   */
+  export type hsrafflesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsraffles to fetch.
+     */
+    where?: hsrafflesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsraffles to fetch.
+     */
+    orderBy?: hsrafflesOrderByWithRelationInput | hsrafflesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsraffles.
+     */
+    cursor?: hsrafflesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsraffles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsraffles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsraffles.
+     */
+    distinct?: HsrafflesScalarFieldEnum | HsrafflesScalarFieldEnum[]
+  }
+
+  /**
+   * hsraffles findFirstOrThrow
+   */
+  export type hsrafflesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsraffles to fetch.
+     */
+    where?: hsrafflesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsraffles to fetch.
+     */
+    orderBy?: hsrafflesOrderByWithRelationInput | hsrafflesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsraffles.
+     */
+    cursor?: hsrafflesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsraffles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsraffles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsraffles.
+     */
+    distinct?: HsrafflesScalarFieldEnum | HsrafflesScalarFieldEnum[]
+  }
+
+  /**
+   * hsraffles findMany
+   */
+  export type hsrafflesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesInclude<ExtArgs> | null
+    /**
+     * Filter, which hsraffles to fetch.
+     */
+    where?: hsrafflesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsraffles to fetch.
+     */
+    orderBy?: hsrafflesOrderByWithRelationInput | hsrafflesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing hsraffles.
+     */
+    cursor?: hsrafflesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsraffles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsraffles.
+     */
+    skip?: number
+    distinct?: HsrafflesScalarFieldEnum | HsrafflesScalarFieldEnum[]
+  }
+
+  /**
+   * hsraffles create
+   */
+  export type hsrafflesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a hsraffles.
+     */
+    data: XOR<hsrafflesCreateInput, hsrafflesUncheckedCreateInput>
+  }
+
+  /**
+   * hsraffles createMany
+   */
+  export type hsrafflesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many hsraffles.
+     */
+    data: hsrafflesCreateManyInput | hsrafflesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hsraffles createManyAndReturn
+   */
+  export type hsrafflesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * The data used to create many hsraffles.
+     */
+    data: hsrafflesCreateManyInput | hsrafflesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hsraffles update
+   */
+  export type hsrafflesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a hsraffles.
+     */
+    data: XOR<hsrafflesUpdateInput, hsrafflesUncheckedUpdateInput>
+    /**
+     * Choose, which hsraffles to update.
+     */
+    where: hsrafflesWhereUniqueInput
+  }
+
+  /**
+   * hsraffles updateMany
+   */
+  export type hsrafflesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update hsraffles.
+     */
+    data: XOR<hsrafflesUpdateManyMutationInput, hsrafflesUncheckedUpdateManyInput>
+    /**
+     * Filter which hsraffles to update
+     */
+    where?: hsrafflesWhereInput
+    /**
+     * Limit how many hsraffles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsraffles updateManyAndReturn
+   */
+  export type hsrafflesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * The data used to update hsraffles.
+     */
+    data: XOR<hsrafflesUpdateManyMutationInput, hsrafflesUncheckedUpdateManyInput>
+    /**
+     * Filter which hsraffles to update
+     */
+    where?: hsrafflesWhereInput
+    /**
+     * Limit how many hsraffles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * hsraffles upsert
+   */
+  export type hsrafflesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the hsraffles to update in case it exists.
+     */
+    where: hsrafflesWhereUniqueInput
+    /**
+     * In case the hsraffles found by the `where` argument doesn't exist, create a new hsraffles with this data.
+     */
+    create: XOR<hsrafflesCreateInput, hsrafflesUncheckedCreateInput>
+    /**
+     * In case the hsraffles was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<hsrafflesUpdateInput, hsrafflesUncheckedUpdateInput>
+  }
+
+  /**
+   * hsraffles delete
+   */
+  export type hsrafflesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesInclude<ExtArgs> | null
+    /**
+     * Filter which hsraffles to delete.
+     */
+    where: hsrafflesWhereUniqueInput
+  }
+
+  /**
+   * hsraffles deleteMany
+   */
+  export type hsrafflesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsraffles to delete
+     */
+    where?: hsrafflesWhereInput
+    /**
+     * Limit how many hsraffles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsraffles without action
+   */
+  export type hsrafflesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model hsraffle_clients
+   */
+
+  export type AggregateHsraffle_clients = {
+    _count: Hsraffle_clientsCountAggregateOutputType | null
+    _avg: Hsraffle_clientsAvgAggregateOutputType | null
+    _sum: Hsraffle_clientsSumAggregateOutputType | null
+    _min: Hsraffle_clientsMinAggregateOutputType | null
+    _max: Hsraffle_clientsMaxAggregateOutputType | null
+  }
+
+  export type Hsraffle_clientsAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Hsraffle_clientsSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Hsraffle_clientsMinAggregateOutputType = {
+    id: number | null
+    cpf: string | null
+    name: string | null
+    created_at: Date | null
+    modified_at: Date | null
+  }
+
+  export type Hsraffle_clientsMaxAggregateOutputType = {
+    id: number | null
+    cpf: string | null
+    name: string | null
+    created_at: Date | null
+    modified_at: Date | null
+  }
+
+  export type Hsraffle_clientsCountAggregateOutputType = {
+    id: number
+    cpf: number
+    name: number
+    created_at: number
+    modified_at: number
+    _all: number
+  }
+
+
+  export type Hsraffle_clientsAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type Hsraffle_clientsSumAggregateInputType = {
+    id?: true
+  }
+
+  export type Hsraffle_clientsMinAggregateInputType = {
+    id?: true
+    cpf?: true
+    name?: true
+    created_at?: true
+    modified_at?: true
+  }
+
+  export type Hsraffle_clientsMaxAggregateInputType = {
+    id?: true
+    cpf?: true
+    name?: true
+    created_at?: true
+    modified_at?: true
+  }
+
+  export type Hsraffle_clientsCountAggregateInputType = {
+    id?: true
+    cpf?: true
+    name?: true
+    created_at?: true
+    modified_at?: true
+    _all?: true
+  }
+
+  export type Hsraffle_clientsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsraffle_clients to aggregate.
+     */
+    where?: hsraffle_clientsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsraffle_clients to fetch.
+     */
+    orderBy?: hsraffle_clientsOrderByWithRelationInput | hsraffle_clientsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: hsraffle_clientsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsraffle_clients from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsraffle_clients.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned hsraffle_clients
+    **/
+    _count?: true | Hsraffle_clientsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Hsraffle_clientsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Hsraffle_clientsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Hsraffle_clientsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Hsraffle_clientsMaxAggregateInputType
+  }
+
+  export type GetHsraffle_clientsAggregateType<T extends Hsraffle_clientsAggregateArgs> = {
+        [P in keyof T & keyof AggregateHsraffle_clients]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHsraffle_clients[P]>
+      : GetScalarType<T[P], AggregateHsraffle_clients[P]>
+  }
+
+
+
+
+  export type hsraffle_clientsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hsraffle_clientsWhereInput
+    orderBy?: hsraffle_clientsOrderByWithAggregationInput | hsraffle_clientsOrderByWithAggregationInput[]
+    by: Hsraffle_clientsScalarFieldEnum[] | Hsraffle_clientsScalarFieldEnum
+    having?: hsraffle_clientsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Hsraffle_clientsCountAggregateInputType | true
+    _avg?: Hsraffle_clientsAvgAggregateInputType
+    _sum?: Hsraffle_clientsSumAggregateInputType
+    _min?: Hsraffle_clientsMinAggregateInputType
+    _max?: Hsraffle_clientsMaxAggregateInputType
+  }
+
+  export type Hsraffle_clientsGroupByOutputType = {
+    id: number
+    cpf: string
+    name: string
+    created_at: Date
+    modified_at: Date
+    _count: Hsraffle_clientsCountAggregateOutputType | null
+    _avg: Hsraffle_clientsAvgAggregateOutputType | null
+    _sum: Hsraffle_clientsSumAggregateOutputType | null
+    _min: Hsraffle_clientsMinAggregateOutputType | null
+    _max: Hsraffle_clientsMaxAggregateOutputType | null
+  }
+
+  type GetHsraffle_clientsGroupByPayload<T extends hsraffle_clientsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Hsraffle_clientsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Hsraffle_clientsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Hsraffle_clientsGroupByOutputType[P]>
+            : GetScalarType<T[P], Hsraffle_clientsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type hsraffle_clientsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    cpf?: boolean
+    name?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+    hsraffles?: boolean | hsraffle_clients$hsrafflesArgs<ExtArgs>
+    _count?: boolean | Hsraffle_clientsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hsraffle_clients"]>
+
+  export type hsraffle_clientsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    cpf?: boolean
+    name?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+  }, ExtArgs["result"]["hsraffle_clients"]>
+
+  export type hsraffle_clientsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    cpf?: boolean
+    name?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+  }, ExtArgs["result"]["hsraffle_clients"]>
+
+  export type hsraffle_clientsSelectScalar = {
+    id?: boolean
+    cpf?: boolean
+    name?: boolean
+    created_at?: boolean
+    modified_at?: boolean
+  }
+
+  export type hsraffle_clientsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cpf" | "name" | "created_at" | "modified_at", ExtArgs["result"]["hsraffle_clients"]>
+  export type hsraffle_clientsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hsraffles?: boolean | hsraffle_clients$hsrafflesArgs<ExtArgs>
+    _count?: boolean | Hsraffle_clientsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type hsraffle_clientsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type hsraffle_clientsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $hsraffle_clientsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "hsraffle_clients"
+    objects: {
+      hsraffles: Prisma.$hsrafflesPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      cpf: string
+      name: string
+      created_at: Date
+      modified_at: Date
+    }, ExtArgs["result"]["hsraffle_clients"]>
+    composites: {}
+  }
+
+  type hsraffle_clientsGetPayload<S extends boolean | null | undefined | hsraffle_clientsDefaultArgs> = $Result.GetResult<Prisma.$hsraffle_clientsPayload, S>
+
+  type hsraffle_clientsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<hsraffle_clientsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Hsraffle_clientsCountAggregateInputType | true
+    }
+
+  export interface hsraffle_clientsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hsraffle_clients'], meta: { name: 'hsraffle_clients' } }
+    /**
+     * Find zero or one Hsraffle_clients that matches the filter.
+     * @param {hsraffle_clientsFindUniqueArgs} args - Arguments to find a Hsraffle_clients
+     * @example
+     * // Get one Hsraffle_clients
+     * const hsraffle_clients = await prisma.hsraffle_clients.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends hsraffle_clientsFindUniqueArgs>(args: SelectSubset<T, hsraffle_clientsFindUniqueArgs<ExtArgs>>): Prisma__hsraffle_clientsClient<$Result.GetResult<Prisma.$hsraffle_clientsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hsraffle_clients that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {hsraffle_clientsFindUniqueOrThrowArgs} args - Arguments to find a Hsraffle_clients
+     * @example
+     * // Get one Hsraffle_clients
+     * const hsraffle_clients = await prisma.hsraffle_clients.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends hsraffle_clientsFindUniqueOrThrowArgs>(args: SelectSubset<T, hsraffle_clientsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hsraffle_clientsClient<$Result.GetResult<Prisma.$hsraffle_clientsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsraffle_clients that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsraffle_clientsFindFirstArgs} args - Arguments to find a Hsraffle_clients
+     * @example
+     * // Get one Hsraffle_clients
+     * const hsraffle_clients = await prisma.hsraffle_clients.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends hsraffle_clientsFindFirstArgs>(args?: SelectSubset<T, hsraffle_clientsFindFirstArgs<ExtArgs>>): Prisma__hsraffle_clientsClient<$Result.GetResult<Prisma.$hsraffle_clientsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hsraffle_clients that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsraffle_clientsFindFirstOrThrowArgs} args - Arguments to find a Hsraffle_clients
+     * @example
+     * // Get one Hsraffle_clients
+     * const hsraffle_clients = await prisma.hsraffle_clients.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends hsraffle_clientsFindFirstOrThrowArgs>(args?: SelectSubset<T, hsraffle_clientsFindFirstOrThrowArgs<ExtArgs>>): Prisma__hsraffle_clientsClient<$Result.GetResult<Prisma.$hsraffle_clientsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hsraffle_clients that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsraffle_clientsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hsraffle_clients
+     * const hsraffle_clients = await prisma.hsraffle_clients.findMany()
+     * 
+     * // Get first 10 Hsraffle_clients
+     * const hsraffle_clients = await prisma.hsraffle_clients.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hsraffle_clientsWithIdOnly = await prisma.hsraffle_clients.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends hsraffle_clientsFindManyArgs>(args?: SelectSubset<T, hsraffle_clientsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsraffle_clientsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hsraffle_clients.
+     * @param {hsraffle_clientsCreateArgs} args - Arguments to create a Hsraffle_clients.
+     * @example
+     * // Create one Hsraffle_clients
+     * const Hsraffle_clients = await prisma.hsraffle_clients.create({
+     *   data: {
+     *     // ... data to create a Hsraffle_clients
+     *   }
+     * })
+     * 
+     */
+    create<T extends hsraffle_clientsCreateArgs>(args: SelectSubset<T, hsraffle_clientsCreateArgs<ExtArgs>>): Prisma__hsraffle_clientsClient<$Result.GetResult<Prisma.$hsraffle_clientsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hsraffle_clients.
+     * @param {hsraffle_clientsCreateManyArgs} args - Arguments to create many Hsraffle_clients.
+     * @example
+     * // Create many Hsraffle_clients
+     * const hsraffle_clients = await prisma.hsraffle_clients.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends hsraffle_clientsCreateManyArgs>(args?: SelectSubset<T, hsraffle_clientsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hsraffle_clients and returns the data saved in the database.
+     * @param {hsraffle_clientsCreateManyAndReturnArgs} args - Arguments to create many Hsraffle_clients.
+     * @example
+     * // Create many Hsraffle_clients
+     * const hsraffle_clients = await prisma.hsraffle_clients.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hsraffle_clients and only return the `id`
+     * const hsraffle_clientsWithIdOnly = await prisma.hsraffle_clients.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends hsraffle_clientsCreateManyAndReturnArgs>(args?: SelectSubset<T, hsraffle_clientsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsraffle_clientsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hsraffle_clients.
+     * @param {hsraffle_clientsDeleteArgs} args - Arguments to delete one Hsraffle_clients.
+     * @example
+     * // Delete one Hsraffle_clients
+     * const Hsraffle_clients = await prisma.hsraffle_clients.delete({
+     *   where: {
+     *     // ... filter to delete one Hsraffle_clients
+     *   }
+     * })
+     * 
+     */
+    delete<T extends hsraffle_clientsDeleteArgs>(args: SelectSubset<T, hsraffle_clientsDeleteArgs<ExtArgs>>): Prisma__hsraffle_clientsClient<$Result.GetResult<Prisma.$hsraffle_clientsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hsraffle_clients.
+     * @param {hsraffle_clientsUpdateArgs} args - Arguments to update one Hsraffle_clients.
+     * @example
+     * // Update one Hsraffle_clients
+     * const hsraffle_clients = await prisma.hsraffle_clients.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends hsraffle_clientsUpdateArgs>(args: SelectSubset<T, hsraffle_clientsUpdateArgs<ExtArgs>>): Prisma__hsraffle_clientsClient<$Result.GetResult<Prisma.$hsraffle_clientsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hsraffle_clients.
+     * @param {hsraffle_clientsDeleteManyArgs} args - Arguments to filter Hsraffle_clients to delete.
+     * @example
+     * // Delete a few Hsraffle_clients
+     * const { count } = await prisma.hsraffle_clients.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends hsraffle_clientsDeleteManyArgs>(args?: SelectSubset<T, hsraffle_clientsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsraffle_clients.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsraffle_clientsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hsraffle_clients
+     * const hsraffle_clients = await prisma.hsraffle_clients.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends hsraffle_clientsUpdateManyArgs>(args: SelectSubset<T, hsraffle_clientsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hsraffle_clients and returns the data updated in the database.
+     * @param {hsraffle_clientsUpdateManyAndReturnArgs} args - Arguments to update many Hsraffle_clients.
+     * @example
+     * // Update many Hsraffle_clients
+     * const hsraffle_clients = await prisma.hsraffle_clients.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hsraffle_clients and only return the `id`
+     * const hsraffle_clientsWithIdOnly = await prisma.hsraffle_clients.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends hsraffle_clientsUpdateManyAndReturnArgs>(args: SelectSubset<T, hsraffle_clientsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsraffle_clientsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hsraffle_clients.
+     * @param {hsraffle_clientsUpsertArgs} args - Arguments to update or create a Hsraffle_clients.
+     * @example
+     * // Update or create a Hsraffle_clients
+     * const hsraffle_clients = await prisma.hsraffle_clients.upsert({
+     *   create: {
+     *     // ... data to create a Hsraffle_clients
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hsraffle_clients we want to update
+     *   }
+     * })
+     */
+    upsert<T extends hsraffle_clientsUpsertArgs>(args: SelectSubset<T, hsraffle_clientsUpsertArgs<ExtArgs>>): Prisma__hsraffle_clientsClient<$Result.GetResult<Prisma.$hsraffle_clientsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hsraffle_clients.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsraffle_clientsCountArgs} args - Arguments to filter Hsraffle_clients to count.
+     * @example
+     * // Count the number of Hsraffle_clients
+     * const count = await prisma.hsraffle_clients.count({
+     *   where: {
+     *     // ... the filter for the Hsraffle_clients we want to count
+     *   }
+     * })
+    **/
+    count<T extends hsraffle_clientsCountArgs>(
+      args?: Subset<T, hsraffle_clientsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Hsraffle_clientsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hsraffle_clients.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Hsraffle_clientsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Hsraffle_clientsAggregateArgs>(args: Subset<T, Hsraffle_clientsAggregateArgs>): Prisma.PrismaPromise<GetHsraffle_clientsAggregateType<T>>
+
+    /**
+     * Group by Hsraffle_clients.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hsraffle_clientsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends hsraffle_clientsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: hsraffle_clientsGroupByArgs['orderBy'] }
+        : { orderBy?: hsraffle_clientsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, hsraffle_clientsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHsraffle_clientsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the hsraffle_clients model
+   */
+  readonly fields: hsraffle_clientsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for hsraffle_clients.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__hsraffle_clientsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    hsraffles<T extends hsraffle_clients$hsrafflesArgs<ExtArgs> = {}>(args?: Subset<T, hsraffle_clients$hsrafflesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hsrafflesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the hsraffle_clients model
+   */
+  interface hsraffle_clientsFieldRefs {
+    readonly id: FieldRef<"hsraffle_clients", 'Int'>
+    readonly cpf: FieldRef<"hsraffle_clients", 'String'>
+    readonly name: FieldRef<"hsraffle_clients", 'String'>
+    readonly created_at: FieldRef<"hsraffle_clients", 'DateTime'>
+    readonly modified_at: FieldRef<"hsraffle_clients", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * hsraffle_clients findUnique
+   */
+  export type hsraffle_clientsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffle_clients
+     */
+    select?: hsraffle_clientsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffle_clients
+     */
+    omit?: hsraffle_clientsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsraffle_clientsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsraffle_clients to fetch.
+     */
+    where: hsraffle_clientsWhereUniqueInput
+  }
+
+  /**
+   * hsraffle_clients findUniqueOrThrow
+   */
+  export type hsraffle_clientsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffle_clients
+     */
+    select?: hsraffle_clientsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffle_clients
+     */
+    omit?: hsraffle_clientsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsraffle_clientsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsraffle_clients to fetch.
+     */
+    where: hsraffle_clientsWhereUniqueInput
+  }
+
+  /**
+   * hsraffle_clients findFirst
+   */
+  export type hsraffle_clientsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffle_clients
+     */
+    select?: hsraffle_clientsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffle_clients
+     */
+    omit?: hsraffle_clientsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsraffle_clientsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsraffle_clients to fetch.
+     */
+    where?: hsraffle_clientsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsraffle_clients to fetch.
+     */
+    orderBy?: hsraffle_clientsOrderByWithRelationInput | hsraffle_clientsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsraffle_clients.
+     */
+    cursor?: hsraffle_clientsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsraffle_clients from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsraffle_clients.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsraffle_clients.
+     */
+    distinct?: Hsraffle_clientsScalarFieldEnum | Hsraffle_clientsScalarFieldEnum[]
+  }
+
+  /**
+   * hsraffle_clients findFirstOrThrow
+   */
+  export type hsraffle_clientsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffle_clients
+     */
+    select?: hsraffle_clientsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffle_clients
+     */
+    omit?: hsraffle_clientsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsraffle_clientsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsraffle_clients to fetch.
+     */
+    where?: hsraffle_clientsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsraffle_clients to fetch.
+     */
+    orderBy?: hsraffle_clientsOrderByWithRelationInput | hsraffle_clientsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hsraffle_clients.
+     */
+    cursor?: hsraffle_clientsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsraffle_clients from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsraffle_clients.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hsraffle_clients.
+     */
+    distinct?: Hsraffle_clientsScalarFieldEnum | Hsraffle_clientsScalarFieldEnum[]
+  }
+
+  /**
+   * hsraffle_clients findMany
+   */
+  export type hsraffle_clientsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffle_clients
+     */
+    select?: hsraffle_clientsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffle_clients
+     */
+    omit?: hsraffle_clientsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsraffle_clientsInclude<ExtArgs> | null
+    /**
+     * Filter, which hsraffle_clients to fetch.
+     */
+    where?: hsraffle_clientsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hsraffle_clients to fetch.
+     */
+    orderBy?: hsraffle_clientsOrderByWithRelationInput | hsraffle_clientsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing hsraffle_clients.
+     */
+    cursor?: hsraffle_clientsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hsraffle_clients from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hsraffle_clients.
+     */
+    skip?: number
+    distinct?: Hsraffle_clientsScalarFieldEnum | Hsraffle_clientsScalarFieldEnum[]
+  }
+
+  /**
+   * hsraffle_clients create
+   */
+  export type hsraffle_clientsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffle_clients
+     */
+    select?: hsraffle_clientsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffle_clients
+     */
+    omit?: hsraffle_clientsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsraffle_clientsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a hsraffle_clients.
+     */
+    data: XOR<hsraffle_clientsCreateInput, hsraffle_clientsUncheckedCreateInput>
+  }
+
+  /**
+   * hsraffle_clients createMany
+   */
+  export type hsraffle_clientsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many hsraffle_clients.
+     */
+    data: hsraffle_clientsCreateManyInput | hsraffle_clientsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hsraffle_clients createManyAndReturn
+   */
+  export type hsraffle_clientsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffle_clients
+     */
+    select?: hsraffle_clientsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffle_clients
+     */
+    omit?: hsraffle_clientsOmit<ExtArgs> | null
+    /**
+     * The data used to create many hsraffle_clients.
+     */
+    data: hsraffle_clientsCreateManyInput | hsraffle_clientsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hsraffle_clients update
+   */
+  export type hsraffle_clientsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffle_clients
+     */
+    select?: hsraffle_clientsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffle_clients
+     */
+    omit?: hsraffle_clientsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsraffle_clientsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a hsraffle_clients.
+     */
+    data: XOR<hsraffle_clientsUpdateInput, hsraffle_clientsUncheckedUpdateInput>
+    /**
+     * Choose, which hsraffle_clients to update.
+     */
+    where: hsraffle_clientsWhereUniqueInput
+  }
+
+  /**
+   * hsraffle_clients updateMany
+   */
+  export type hsraffle_clientsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update hsraffle_clients.
+     */
+    data: XOR<hsraffle_clientsUpdateManyMutationInput, hsraffle_clientsUncheckedUpdateManyInput>
+    /**
+     * Filter which hsraffle_clients to update
+     */
+    where?: hsraffle_clientsWhereInput
+    /**
+     * Limit how many hsraffle_clients to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsraffle_clients updateManyAndReturn
+   */
+  export type hsraffle_clientsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffle_clients
+     */
+    select?: hsraffle_clientsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffle_clients
+     */
+    omit?: hsraffle_clientsOmit<ExtArgs> | null
+    /**
+     * The data used to update hsraffle_clients.
+     */
+    data: XOR<hsraffle_clientsUpdateManyMutationInput, hsraffle_clientsUncheckedUpdateManyInput>
+    /**
+     * Filter which hsraffle_clients to update
+     */
+    where?: hsraffle_clientsWhereInput
+    /**
+     * Limit how many hsraffle_clients to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsraffle_clients upsert
+   */
+  export type hsraffle_clientsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffle_clients
+     */
+    select?: hsraffle_clientsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffle_clients
+     */
+    omit?: hsraffle_clientsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsraffle_clientsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the hsraffle_clients to update in case it exists.
+     */
+    where: hsraffle_clientsWhereUniqueInput
+    /**
+     * In case the hsraffle_clients found by the `where` argument doesn't exist, create a new hsraffle_clients with this data.
+     */
+    create: XOR<hsraffle_clientsCreateInput, hsraffle_clientsUncheckedCreateInput>
+    /**
+     * In case the hsraffle_clients was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<hsraffle_clientsUpdateInput, hsraffle_clientsUncheckedUpdateInput>
+  }
+
+  /**
+   * hsraffle_clients delete
+   */
+  export type hsraffle_clientsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffle_clients
+     */
+    select?: hsraffle_clientsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffle_clients
+     */
+    omit?: hsraffle_clientsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsraffle_clientsInclude<ExtArgs> | null
+    /**
+     * Filter which hsraffle_clients to delete.
+     */
+    where: hsraffle_clientsWhereUniqueInput
+  }
+
+  /**
+   * hsraffle_clients deleteMany
+   */
+  export type hsraffle_clientsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hsraffle_clients to delete
+     */
+    where?: hsraffle_clientsWhereInput
+    /**
+     * Limit how many hsraffle_clients to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * hsraffle_clients.hsraffles
+   */
+  export type hsraffle_clients$hsrafflesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffles
+     */
+    select?: hsrafflesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffles
+     */
+    omit?: hsrafflesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsrafflesInclude<ExtArgs> | null
+    where?: hsrafflesWhereInput
+    orderBy?: hsrafflesOrderByWithRelationInput | hsrafflesOrderByWithRelationInput[]
+    cursor?: hsrafflesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HsrafflesScalarFieldEnum | HsrafflesScalarFieldEnum[]
+  }
+
+  /**
+   * hsraffle_clients without action
+   */
+  export type hsraffle_clientsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hsraffle_clients
+     */
+    select?: hsraffle_clientsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hsraffle_clients
+     */
+    omit?: hsraffle_clientsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hsraffle_clientsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -19950,6 +22463,7 @@ export namespace Prisma {
 
   export const Hsconsumption_noteScalarFieldEnum: {
     id: 'id',
+    employee_id: 'employee_id',
     branch_id: 'branch_id',
     group_id: 'group_id',
     total_price: 'total_price',
@@ -19962,10 +22476,37 @@ export namespace Prisma {
 
   export const Hsconsumer_groupsScalarFieldEnum: {
     id: 'id',
-    description: 'description'
+    description: 'description',
+    created_at: 'created_at',
+    modified_at: 'modified_at'
   };
 
   export type Hsconsumer_groupsScalarFieldEnum = (typeof Hsconsumer_groupsScalarFieldEnum)[keyof typeof Hsconsumer_groupsScalarFieldEnum]
+
+
+  export const HsrafflesScalarFieldEnum: {
+    id: 'id',
+    client_id: 'client_id',
+    status: 'status',
+    nfc_key: 'nfc_key',
+    raffle_number: 'raffle_number',
+    branch_id: 'branch_id',
+    created_at: 'created_at',
+    modified_at: 'modified_at'
+  };
+
+  export type HsrafflesScalarFieldEnum = (typeof HsrafflesScalarFieldEnum)[keyof typeof HsrafflesScalarFieldEnum]
+
+
+  export const Hsraffle_clientsScalarFieldEnum: {
+    id: 'id',
+    cpf: 'cpf',
+    name: 'name',
+    created_at: 'created_at',
+    modified_at: 'modified_at'
+  };
+
+  export type Hsraffle_clientsScalarFieldEnum = (typeof Hsraffle_clientsScalarFieldEnum)[keyof typeof Hsraffle_clientsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -20040,44 +22581,44 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'hsvalidities_status'
+   * Reference to a field of type 'HsValiditiesStatus'
    */
-  export type Enumhsvalidities_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'hsvalidities_status'>
+  export type EnumHsValiditiesStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HsValiditiesStatus'>
     
 
 
   /**
-   * Reference to a field of type 'hsvalidities_status[]'
+   * Reference to a field of type 'HsValiditiesStatus[]'
    */
-  export type ListEnumhsvalidities_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'hsvalidities_status[]'>
+  export type ListEnumHsValiditiesStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HsValiditiesStatus[]'>
     
 
 
   /**
-   * Reference to a field of type 'hsvalidity_requests_status'
+   * Reference to a field of type 'HsValidityRequestsStatus'
    */
-  export type Enumhsvalidity_requests_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'hsvalidity_requests_status'>
+  export type EnumHsValidityRequestsStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HsValidityRequestsStatus'>
     
 
 
   /**
-   * Reference to a field of type 'hsvalidity_requests_status[]'
+   * Reference to a field of type 'HsValidityRequestsStatus[]'
    */
-  export type ListEnumhsvalidity_requests_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'hsvalidity_requests_status[]'>
+  export type ListEnumHsValidityRequestsStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HsValidityRequestsStatus[]'>
     
 
 
   /**
-   * Reference to a field of type 'hsvalidity_request_products_status'
+   * Reference to a field of type 'HsValidityRequestProductsStatus'
    */
-  export type Enumhsvalidity_request_products_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'hsvalidity_request_products_status'>
+  export type EnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HsValidityRequestProductsStatus'>
     
 
 
   /**
-   * Reference to a field of type 'hsvalidity_request_products_status[]'
+   * Reference to a field of type 'HsValidityRequestProductsStatus[]'
    */
-  export type ListEnumhsvalidity_request_products_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'hsvalidity_request_products_status[]'>
+  export type ListEnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HsValidityRequestProductsStatus[]'>
     
 
 
@@ -20092,6 +22633,20 @@ export namespace Prisma {
    * Reference to a field of type 'Decimal[]'
    */
   export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'HsRafflesStatus'
+   */
+  export type EnumHsRafflesStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HsRafflesStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'HsRafflesStatus[]'
+   */
+  export type ListEnumHsRafflesStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HsRafflesStatus[]'>
     
 
 
@@ -20483,7 +23038,7 @@ export namespace Prisma {
     id?: IntFilter<"hsvalidities"> | number
     branch_id?: IntFilter<"hsvalidities"> | number
     employee_id?: IntFilter<"hsvalidities"> | number
-    status?: Enumhsvalidities_statusFilter<"hsvalidities"> | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFilter<"hsvalidities"> | $Enums.HsValiditiesStatus
     request_id?: IntNullableFilter<"hsvalidities"> | number | null
     created_at?: DateTimeFilter<"hsvalidities"> | Date | string
     modified_at?: DateTimeFilter<"hsvalidities"> | Date | string
@@ -20514,7 +23069,7 @@ export namespace Prisma {
     NOT?: hsvaliditiesWhereInput | hsvaliditiesWhereInput[]
     branch_id?: IntFilter<"hsvalidities"> | number
     employee_id?: IntFilter<"hsvalidities"> | number
-    status?: Enumhsvalidities_statusFilter<"hsvalidities"> | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFilter<"hsvalidities"> | $Enums.HsValiditiesStatus
     request_id?: IntNullableFilter<"hsvalidities"> | number | null
     created_at?: DateTimeFilter<"hsvalidities"> | Date | string
     modified_at?: DateTimeFilter<"hsvalidities"> | Date | string
@@ -20546,7 +23101,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"hsvalidities"> | number
     branch_id?: IntWithAggregatesFilter<"hsvalidities"> | number
     employee_id?: IntWithAggregatesFilter<"hsvalidities"> | number
-    status?: Enumhsvalidities_statusWithAggregatesFilter<"hsvalidities"> | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusWithAggregatesFilter<"hsvalidities"> | $Enums.HsValiditiesStatus
     request_id?: IntNullableWithAggregatesFilter<"hsvalidities"> | number | null
     created_at?: DateTimeWithAggregatesFilter<"hsvalidities"> | Date | string
     modified_at?: DateTimeWithAggregatesFilter<"hsvalidities"> | Date | string
@@ -20630,7 +23185,7 @@ export namespace Prisma {
     branch_id?: IntFilter<"hsvalidity_requests"> | number
     analyst_id?: IntFilter<"hsvalidity_requests"> | number
     conferee_id?: IntFilter<"hsvalidity_requests"> | number
-    status?: Enumhsvalidity_requests_statusFilter<"hsvalidity_requests"> | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFilter<"hsvalidity_requests"> | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
     modified_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
     hsvalidities?: HsvaliditiesListRelationFilter
@@ -20663,7 +23218,7 @@ export namespace Prisma {
     branch_id?: IntFilter<"hsvalidity_requests"> | number
     analyst_id?: IntFilter<"hsvalidity_requests"> | number
     conferee_id?: IntFilter<"hsvalidity_requests"> | number
-    status?: Enumhsvalidity_requests_statusFilter<"hsvalidity_requests"> | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFilter<"hsvalidity_requests"> | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
     modified_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
     hsvalidities?: HsvaliditiesListRelationFilter
@@ -20696,7 +23251,7 @@ export namespace Prisma {
     branch_id?: IntWithAggregatesFilter<"hsvalidity_requests"> | number
     analyst_id?: IntWithAggregatesFilter<"hsvalidity_requests"> | number
     conferee_id?: IntWithAggregatesFilter<"hsvalidity_requests"> | number
-    status?: Enumhsvalidity_requests_statusWithAggregatesFilter<"hsvalidity_requests"> | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusWithAggregatesFilter<"hsvalidity_requests"> | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeWithAggregatesFilter<"hsvalidity_requests"> | Date | string
     modified_at?: DateTimeWithAggregatesFilter<"hsvalidity_requests"> | Date | string
   }
@@ -20707,7 +23262,7 @@ export namespace Prisma {
     NOT?: hsvalidity_request_productsWhereInput | hsvalidity_request_productsWhereInput[]
     id?: IntFilter<"hsvalidity_request_products"> | number
     request_id?: IntFilter<"hsvalidity_request_products"> | number
-    status?: Enumhsvalidity_request_products_statusFilter<"hsvalidity_request_products"> | $Enums.hsvalidity_request_products_status
+    status?: EnumHsValidityRequestProductsStatusFilter<"hsvalidity_request_products"> | $Enums.HsValidityRequestProductsStatus
     product_code?: IntFilter<"hsvalidity_request_products"> | number
     validity_date?: DateTimeFilter<"hsvalidity_request_products"> | Date | string
     auxiliary_code?: StringFilter<"hsvalidity_request_products"> | string
@@ -20730,7 +23285,7 @@ export namespace Prisma {
     OR?: hsvalidity_request_productsWhereInput[]
     NOT?: hsvalidity_request_productsWhereInput | hsvalidity_request_productsWhereInput[]
     request_id?: IntFilter<"hsvalidity_request_products"> | number
-    status?: Enumhsvalidity_request_products_statusFilter<"hsvalidity_request_products"> | $Enums.hsvalidity_request_products_status
+    status?: EnumHsValidityRequestProductsStatusFilter<"hsvalidity_request_products"> | $Enums.HsValidityRequestProductsStatus
     product_code?: IntFilter<"hsvalidity_request_products"> | number
     validity_date?: DateTimeFilter<"hsvalidity_request_products"> | Date | string
     auxiliary_code?: StringFilter<"hsvalidity_request_products"> | string
@@ -20757,7 +23312,7 @@ export namespace Prisma {
     NOT?: hsvalidity_request_productsScalarWhereWithAggregatesInput | hsvalidity_request_productsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"hsvalidity_request_products"> | number
     request_id?: IntWithAggregatesFilter<"hsvalidity_request_products"> | number
-    status?: Enumhsvalidity_request_products_statusWithAggregatesFilter<"hsvalidity_request_products"> | $Enums.hsvalidity_request_products_status
+    status?: EnumHsValidityRequestProductsStatusWithAggregatesFilter<"hsvalidity_request_products"> | $Enums.HsValidityRequestProductsStatus
     product_code?: IntWithAggregatesFilter<"hsvalidity_request_products"> | number
     validity_date?: DateTimeWithAggregatesFilter<"hsvalidity_request_products"> | Date | string
     auxiliary_code?: StringWithAggregatesFilter<"hsvalidity_request_products"> | string
@@ -20968,6 +23523,7 @@ export namespace Prisma {
     OR?: hsconsumption_noteWhereInput[]
     NOT?: hsconsumption_noteWhereInput | hsconsumption_noteWhereInput[]
     id?: IntFilter<"hsconsumption_note"> | number
+    employee_id?: IntFilter<"hsconsumption_note"> | number
     branch_id?: IntFilter<"hsconsumption_note"> | number
     group_id?: IntFilter<"hsconsumption_note"> | number
     total_price?: DecimalFilter<"hsconsumption_note"> | Decimal | DecimalJsLike | number | string
@@ -20980,6 +23536,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteOrderByWithRelationInput = {
     id?: SortOrder
+    employee_id?: SortOrder
     branch_id?: SortOrder
     group_id?: SortOrder
     total_price?: SortOrder
@@ -20995,6 +23552,7 @@ export namespace Prisma {
     AND?: hsconsumption_noteWhereInput | hsconsumption_noteWhereInput[]
     OR?: hsconsumption_noteWhereInput[]
     NOT?: hsconsumption_noteWhereInput | hsconsumption_noteWhereInput[]
+    employee_id?: IntFilter<"hsconsumption_note"> | number
     branch_id?: IntFilter<"hsconsumption_note"> | number
     group_id?: IntFilter<"hsconsumption_note"> | number
     total_price?: DecimalFilter<"hsconsumption_note"> | Decimal | DecimalJsLike | number | string
@@ -21007,6 +23565,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteOrderByWithAggregationInput = {
     id?: SortOrder
+    employee_id?: SortOrder
     branch_id?: SortOrder
     group_id?: SortOrder
     total_price?: SortOrder
@@ -21024,6 +23583,7 @@ export namespace Prisma {
     OR?: hsconsumption_noteScalarWhereWithAggregatesInput[]
     NOT?: hsconsumption_noteScalarWhereWithAggregatesInput | hsconsumption_noteScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"hsconsumption_note"> | number
+    employee_id?: IntWithAggregatesFilter<"hsconsumption_note"> | number
     branch_id?: IntWithAggregatesFilter<"hsconsumption_note"> | number
     group_id?: IntWithAggregatesFilter<"hsconsumption_note"> | number
     total_price?: DecimalWithAggregatesFilter<"hsconsumption_note"> | Decimal | DecimalJsLike | number | string
@@ -21037,6 +23597,8 @@ export namespace Prisma {
     NOT?: hsconsumer_groupsWhereInput | hsconsumer_groupsWhereInput[]
     id?: IntFilter<"hsconsumer_groups"> | number
     description?: StringFilter<"hsconsumer_groups"> | string
+    created_at?: DateTimeFilter<"hsconsumer_groups"> | Date | string
+    modified_at?: DateTimeFilter<"hsconsumer_groups"> | Date | string
     hsconsumer_products?: Hsconsumer_productsListRelationFilter
     consumptionNotes?: Hsconsumption_noteListRelationFilter
   }
@@ -21044,6 +23606,8 @@ export namespace Prisma {
   export type hsconsumer_groupsOrderByWithRelationInput = {
     id?: SortOrder
     description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
     hsconsumer_products?: hsconsumer_productsOrderByRelationAggregateInput
     consumptionNotes?: hsconsumption_noteOrderByRelationAggregateInput
   }
@@ -21054,6 +23618,8 @@ export namespace Prisma {
     OR?: hsconsumer_groupsWhereInput[]
     NOT?: hsconsumer_groupsWhereInput | hsconsumer_groupsWhereInput[]
     description?: StringFilter<"hsconsumer_groups"> | string
+    created_at?: DateTimeFilter<"hsconsumer_groups"> | Date | string
+    modified_at?: DateTimeFilter<"hsconsumer_groups"> | Date | string
     hsconsumer_products?: Hsconsumer_productsListRelationFilter
     consumptionNotes?: Hsconsumption_noteListRelationFilter
   }, "id">
@@ -21061,6 +23627,8 @@ export namespace Prisma {
   export type hsconsumer_groupsOrderByWithAggregationInput = {
     id?: SortOrder
     description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
     _count?: hsconsumer_groupsCountOrderByAggregateInput
     _avg?: hsconsumer_groupsAvgOrderByAggregateInput
     _max?: hsconsumer_groupsMaxOrderByAggregateInput
@@ -21074,6 +23642,137 @@ export namespace Prisma {
     NOT?: hsconsumer_groupsScalarWhereWithAggregatesInput | hsconsumer_groupsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"hsconsumer_groups"> | number
     description?: StringWithAggregatesFilter<"hsconsumer_groups"> | string
+    created_at?: DateTimeWithAggregatesFilter<"hsconsumer_groups"> | Date | string
+    modified_at?: DateTimeWithAggregatesFilter<"hsconsumer_groups"> | Date | string
+  }
+
+  export type hsrafflesWhereInput = {
+    AND?: hsrafflesWhereInput | hsrafflesWhereInput[]
+    OR?: hsrafflesWhereInput[]
+    NOT?: hsrafflesWhereInput | hsrafflesWhereInput[]
+    id?: IntFilter<"hsraffles"> | number
+    client_id?: IntFilter<"hsraffles"> | number
+    status?: EnumHsRafflesStatusFilter<"hsraffles"> | $Enums.HsRafflesStatus
+    nfc_key?: StringFilter<"hsraffles"> | string
+    raffle_number?: StringNullableFilter<"hsraffles"> | string | null
+    branch_id?: IntFilter<"hsraffles"> | number
+    created_at?: DateTimeFilter<"hsraffles"> | Date | string
+    modified_at?: DateTimeFilter<"hsraffles"> | Date | string
+    hsraffle_clients?: XOR<Hsraffle_clientsScalarRelationFilter, hsraffle_clientsWhereInput>
+  }
+
+  export type hsrafflesOrderByWithRelationInput = {
+    id?: SortOrder
+    client_id?: SortOrder
+    status?: SortOrder
+    nfc_key?: SortOrder
+    raffle_number?: SortOrderInput | SortOrder
+    branch_id?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    hsraffle_clients?: hsraffle_clientsOrderByWithRelationInput
+  }
+
+  export type hsrafflesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: hsrafflesWhereInput | hsrafflesWhereInput[]
+    OR?: hsrafflesWhereInput[]
+    NOT?: hsrafflesWhereInput | hsrafflesWhereInput[]
+    client_id?: IntFilter<"hsraffles"> | number
+    status?: EnumHsRafflesStatusFilter<"hsraffles"> | $Enums.HsRafflesStatus
+    nfc_key?: StringFilter<"hsraffles"> | string
+    raffle_number?: StringNullableFilter<"hsraffles"> | string | null
+    branch_id?: IntFilter<"hsraffles"> | number
+    created_at?: DateTimeFilter<"hsraffles"> | Date | string
+    modified_at?: DateTimeFilter<"hsraffles"> | Date | string
+    hsraffle_clients?: XOR<Hsraffle_clientsScalarRelationFilter, hsraffle_clientsWhereInput>
+  }, "id">
+
+  export type hsrafflesOrderByWithAggregationInput = {
+    id?: SortOrder
+    client_id?: SortOrder
+    status?: SortOrder
+    nfc_key?: SortOrder
+    raffle_number?: SortOrderInput | SortOrder
+    branch_id?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    _count?: hsrafflesCountOrderByAggregateInput
+    _avg?: hsrafflesAvgOrderByAggregateInput
+    _max?: hsrafflesMaxOrderByAggregateInput
+    _min?: hsrafflesMinOrderByAggregateInput
+    _sum?: hsrafflesSumOrderByAggregateInput
+  }
+
+  export type hsrafflesScalarWhereWithAggregatesInput = {
+    AND?: hsrafflesScalarWhereWithAggregatesInput | hsrafflesScalarWhereWithAggregatesInput[]
+    OR?: hsrafflesScalarWhereWithAggregatesInput[]
+    NOT?: hsrafflesScalarWhereWithAggregatesInput | hsrafflesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"hsraffles"> | number
+    client_id?: IntWithAggregatesFilter<"hsraffles"> | number
+    status?: EnumHsRafflesStatusWithAggregatesFilter<"hsraffles"> | $Enums.HsRafflesStatus
+    nfc_key?: StringWithAggregatesFilter<"hsraffles"> | string
+    raffle_number?: StringNullableWithAggregatesFilter<"hsraffles"> | string | null
+    branch_id?: IntWithAggregatesFilter<"hsraffles"> | number
+    created_at?: DateTimeWithAggregatesFilter<"hsraffles"> | Date | string
+    modified_at?: DateTimeWithAggregatesFilter<"hsraffles"> | Date | string
+  }
+
+  export type hsraffle_clientsWhereInput = {
+    AND?: hsraffle_clientsWhereInput | hsraffle_clientsWhereInput[]
+    OR?: hsraffle_clientsWhereInput[]
+    NOT?: hsraffle_clientsWhereInput | hsraffle_clientsWhereInput[]
+    id?: IntFilter<"hsraffle_clients"> | number
+    cpf?: StringFilter<"hsraffle_clients"> | string
+    name?: StringFilter<"hsraffle_clients"> | string
+    created_at?: DateTimeFilter<"hsraffle_clients"> | Date | string
+    modified_at?: DateTimeFilter<"hsraffle_clients"> | Date | string
+    hsraffles?: HsrafflesListRelationFilter
+  }
+
+  export type hsraffle_clientsOrderByWithRelationInput = {
+    id?: SortOrder
+    cpf?: SortOrder
+    name?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    hsraffles?: hsrafflesOrderByRelationAggregateInput
+  }
+
+  export type hsraffle_clientsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: hsraffle_clientsWhereInput | hsraffle_clientsWhereInput[]
+    OR?: hsraffle_clientsWhereInput[]
+    NOT?: hsraffle_clientsWhereInput | hsraffle_clientsWhereInput[]
+    cpf?: StringFilter<"hsraffle_clients"> | string
+    name?: StringFilter<"hsraffle_clients"> | string
+    created_at?: DateTimeFilter<"hsraffle_clients"> | Date | string
+    modified_at?: DateTimeFilter<"hsraffle_clients"> | Date | string
+    hsraffles?: HsrafflesListRelationFilter
+  }, "id">
+
+  export type hsraffle_clientsOrderByWithAggregationInput = {
+    id?: SortOrder
+    cpf?: SortOrder
+    name?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+    _count?: hsraffle_clientsCountOrderByAggregateInput
+    _avg?: hsraffle_clientsAvgOrderByAggregateInput
+    _max?: hsraffle_clientsMaxOrderByAggregateInput
+    _min?: hsraffle_clientsMinOrderByAggregateInput
+    _sum?: hsraffle_clientsSumOrderByAggregateInput
+  }
+
+  export type hsraffle_clientsScalarWhereWithAggregatesInput = {
+    AND?: hsraffle_clientsScalarWhereWithAggregatesInput | hsraffle_clientsScalarWhereWithAggregatesInput[]
+    OR?: hsraffle_clientsScalarWhereWithAggregatesInput[]
+    NOT?: hsraffle_clientsScalarWhereWithAggregatesInput | hsraffle_clientsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"hsraffle_clients"> | number
+    cpf?: StringWithAggregatesFilter<"hsraffle_clients"> | string
+    name?: StringWithAggregatesFilter<"hsraffle_clients"> | string
+    created_at?: DateTimeWithAggregatesFilter<"hsraffle_clients"> | Date | string
+    modified_at?: DateTimeWithAggregatesFilter<"hsraffle_clients"> | Date | string
   }
 
   export type hsemployeesCreateInput = {
@@ -21422,7 +24121,7 @@ export namespace Prisma {
   }
 
   export type hsvaliditiesCreateInput = {
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsbranches: hsbranchesCreateNestedOneWithoutHsvaliditiesInput
@@ -21435,7 +24134,7 @@ export namespace Prisma {
     id?: number
     branch_id: number
     employee_id: number
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     request_id?: number | null
     created_at?: Date | string
     modified_at?: Date | string
@@ -21443,7 +24142,7 @@ export namespace Prisma {
   }
 
   export type hsvaliditiesUpdateInput = {
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvaliditiesNestedInput
@@ -21456,7 +24155,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     employee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     request_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21467,14 +24166,14 @@ export namespace Prisma {
     id?: number
     branch_id: number
     employee_id: number
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     request_id?: number | null
     created_at?: Date | string
     modified_at?: Date | string
   }
 
   export type hsvaliditiesUpdateManyMutationInput = {
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21483,7 +24182,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     employee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     request_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21555,7 +24254,7 @@ export namespace Prisma {
   }
 
   export type hsvalidity_requestsCreateInput = {
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsvalidity_requestsInput
@@ -21570,7 +24269,7 @@ export namespace Prisma {
     branch_id: number
     analyst_id: number
     conferee_id: number
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
@@ -21578,7 +24277,7 @@ export namespace Prisma {
   }
 
   export type hsvalidity_requestsUpdateInput = {
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput
@@ -21593,7 +24292,7 @@ export namespace Prisma {
     branch_id?: IntFieldUpdateOperationsInput | number
     analyst_id?: IntFieldUpdateOperationsInput | number
     conferee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
@@ -21605,13 +24304,13 @@ export namespace Prisma {
     branch_id: number
     analyst_id: number
     conferee_id: number
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
   }
 
   export type hsvalidity_requestsUpdateManyMutationInput = {
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21621,13 +24320,13 @@ export namespace Prisma {
     branch_id?: IntFieldUpdateOperationsInput | number
     analyst_id?: IntFieldUpdateOperationsInput | number
     conferee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type hsvalidity_request_productsCreateInput = {
-    status?: $Enums.hsvalidity_request_products_status
+    status?: $Enums.HsValidityRequestProductsStatus
     product_code: number
     validity_date: Date | string
     auxiliary_code: string
@@ -21637,14 +24336,14 @@ export namespace Prisma {
   export type hsvalidity_request_productsUncheckedCreateInput = {
     id?: number
     request_id: number
-    status?: $Enums.hsvalidity_request_products_status
+    status?: $Enums.HsValidityRequestProductsStatus
     product_code: number
     validity_date: Date | string
     auxiliary_code: string
   }
 
   export type hsvalidity_request_productsUpdateInput = {
-    status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
+    status?: EnumHsValidityRequestProductsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestProductsStatus
     product_code?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
     auxiliary_code?: StringFieldUpdateOperationsInput | string
@@ -21654,7 +24353,7 @@ export namespace Prisma {
   export type hsvalidity_request_productsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     request_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
+    status?: EnumHsValidityRequestProductsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestProductsStatus
     product_code?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
     auxiliary_code?: StringFieldUpdateOperationsInput | string
@@ -21663,14 +24362,14 @@ export namespace Prisma {
   export type hsvalidity_request_productsCreateManyInput = {
     id?: number
     request_id: number
-    status?: $Enums.hsvalidity_request_products_status
+    status?: $Enums.HsValidityRequestProductsStatus
     product_code: number
     validity_date: Date | string
     auxiliary_code: string
   }
 
   export type hsvalidity_request_productsUpdateManyMutationInput = {
-    status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
+    status?: EnumHsValidityRequestProductsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestProductsStatus
     product_code?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
     auxiliary_code?: StringFieldUpdateOperationsInput | string
@@ -21679,7 +24378,7 @@ export namespace Prisma {
   export type hsvalidity_request_productsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     request_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
+    status?: EnumHsValidityRequestProductsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestProductsStatus
     product_code?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
     auxiliary_code?: StringFieldUpdateOperationsInput | string
@@ -21875,6 +24574,7 @@ export namespace Prisma {
   }
 
   export type hsconsumption_noteCreateInput = {
+    employee_id: number
     total_price: Decimal | DecimalJsLike | number | string
     created_at?: Date | string
     modified_at?: Date | string
@@ -21885,6 +24585,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteUncheckedCreateInput = {
     id?: number
+    employee_id: number
     branch_id: number
     group_id: number
     total_price: Decimal | DecimalJsLike | number | string
@@ -21894,6 +24595,7 @@ export namespace Prisma {
   }
 
   export type hsconsumption_noteUpdateInput = {
+    employee_id?: IntFieldUpdateOperationsInput | number
     total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21904,6 +24606,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    employee_id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     group_id?: IntFieldUpdateOperationsInput | number
     total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -21914,6 +24617,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteCreateManyInput = {
     id?: number
+    employee_id: number
     branch_id: number
     group_id: number
     total_price: Decimal | DecimalJsLike | number | string
@@ -21922,6 +24626,7 @@ export namespace Prisma {
   }
 
   export type hsconsumption_noteUpdateManyMutationInput = {
+    employee_id?: IntFieldUpdateOperationsInput | number
     total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21929,6 +24634,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    employee_id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     group_id?: IntFieldUpdateOperationsInput | number
     total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -21938,6 +24644,8 @@ export namespace Prisma {
 
   export type hsconsumer_groupsCreateInput = {
     description: string
+    created_at?: Date | string
+    modified_at?: Date | string
     hsconsumer_products?: hsconsumer_productsCreateNestedManyWithoutHsconsumer_groupsInput
     consumptionNotes?: hsconsumption_noteCreateNestedManyWithoutHsconsumer_groupsInput
   }
@@ -21945,12 +24653,16 @@ export namespace Prisma {
   export type hsconsumer_groupsUncheckedCreateInput = {
     id?: number
     description: string
+    created_at?: Date | string
+    modified_at?: Date | string
     hsconsumer_products?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsconsumer_groupsInput
     consumptionNotes?: hsconsumption_noteUncheckedCreateNestedManyWithoutHsconsumer_groupsInput
   }
 
   export type hsconsumer_groupsUpdateInput = {
     description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsconsumer_products?: hsconsumer_productsUpdateManyWithoutHsconsumer_groupsNestedInput
     consumptionNotes?: hsconsumption_noteUpdateManyWithoutHsconsumer_groupsNestedInput
   }
@@ -21958,6 +24670,8 @@ export namespace Prisma {
   export type hsconsumer_groupsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsconsumer_products?: hsconsumer_productsUncheckedUpdateManyWithoutHsconsumer_groupsNestedInput
     consumptionNotes?: hsconsumption_noteUncheckedUpdateManyWithoutHsconsumer_groupsNestedInput
   }
@@ -21965,15 +24679,151 @@ export namespace Prisma {
   export type hsconsumer_groupsCreateManyInput = {
     id?: number
     description: string
+    created_at?: Date | string
+    modified_at?: Date | string
   }
 
   export type hsconsumer_groupsUpdateManyMutationInput = {
     description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type hsconsumer_groupsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsrafflesCreateInput = {
+    status?: $Enums.HsRafflesStatus
+    nfc_key: string
+    raffle_number?: string | null
+    branch_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsraffle_clients: hsraffle_clientsCreateNestedOneWithoutHsrafflesInput
+  }
+
+  export type hsrafflesUncheckedCreateInput = {
+    id?: number
+    client_id: number
+    status?: $Enums.HsRafflesStatus
+    nfc_key: string
+    raffle_number?: string | null
+    branch_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsrafflesUpdateInput = {
+    status?: EnumHsRafflesStatusFieldUpdateOperationsInput | $Enums.HsRafflesStatus
+    nfc_key?: StringFieldUpdateOperationsInput | string
+    raffle_number?: NullableStringFieldUpdateOperationsInput | string | null
+    branch_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsraffle_clients?: hsraffle_clientsUpdateOneRequiredWithoutHsrafflesNestedInput
+  }
+
+  export type hsrafflesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    client_id?: IntFieldUpdateOperationsInput | number
+    status?: EnumHsRafflesStatusFieldUpdateOperationsInput | $Enums.HsRafflesStatus
+    nfc_key?: StringFieldUpdateOperationsInput | string
+    raffle_number?: NullableStringFieldUpdateOperationsInput | string | null
+    branch_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsrafflesCreateManyInput = {
+    id?: number
+    client_id: number
+    status?: $Enums.HsRafflesStatus
+    nfc_key: string
+    raffle_number?: string | null
+    branch_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsrafflesUpdateManyMutationInput = {
+    status?: EnumHsRafflesStatusFieldUpdateOperationsInput | $Enums.HsRafflesStatus
+    nfc_key?: StringFieldUpdateOperationsInput | string
+    raffle_number?: NullableStringFieldUpdateOperationsInput | string | null
+    branch_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsrafflesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    client_id?: IntFieldUpdateOperationsInput | number
+    status?: EnumHsRafflesStatusFieldUpdateOperationsInput | $Enums.HsRafflesStatus
+    nfc_key?: StringFieldUpdateOperationsInput | string
+    raffle_number?: NullableStringFieldUpdateOperationsInput | string | null
+    branch_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsraffle_clientsCreateInput = {
+    cpf: string
+    name: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsraffles?: hsrafflesCreateNestedManyWithoutHsraffle_clientsInput
+  }
+
+  export type hsraffle_clientsUncheckedCreateInput = {
+    id?: number
+    cpf: string
+    name: string
+    created_at?: Date | string
+    modified_at?: Date | string
+    hsraffles?: hsrafflesUncheckedCreateNestedManyWithoutHsraffle_clientsInput
+  }
+
+  export type hsraffle_clientsUpdateInput = {
+    cpf?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsraffles?: hsrafflesUpdateManyWithoutHsraffle_clientsNestedInput
+  }
+
+  export type hsraffle_clientsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    cpf?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    hsraffles?: hsrafflesUncheckedUpdateManyWithoutHsraffle_clientsNestedInput
+  }
+
+  export type hsraffle_clientsCreateManyInput = {
+    id?: number
+    cpf: string
+    name: string
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsraffle_clientsUpdateManyMutationInput = {
+    cpf?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsraffle_clientsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    cpf?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -22358,11 +25208,11 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type Enumhsvalidities_statusFilter<$PrismaModel = never> = {
-    equals?: $Enums.hsvalidities_status | Enumhsvalidities_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.hsvalidities_status[] | ListEnumhsvalidities_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.hsvalidities_status[] | ListEnumhsvalidities_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumhsvalidities_statusFilter<$PrismaModel> | $Enums.hsvalidities_status
+  export type EnumHsValiditiesStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsValiditiesStatus | EnumHsValiditiesStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsValiditiesStatus[] | ListEnumHsValiditiesStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsValiditiesStatus[] | ListEnumHsValiditiesStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsValiditiesStatusFilter<$PrismaModel> | $Enums.HsValiditiesStatus
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -22440,14 +25290,14 @@ export namespace Prisma {
     request_id?: SortOrder
   }
 
-  export type Enumhsvalidities_statusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.hsvalidities_status | Enumhsvalidities_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.hsvalidities_status[] | ListEnumhsvalidities_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.hsvalidities_status[] | ListEnumhsvalidities_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumhsvalidities_statusWithAggregatesFilter<$PrismaModel> | $Enums.hsvalidities_status
+  export type EnumHsValiditiesStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsValiditiesStatus | EnumHsValiditiesStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsValiditiesStatus[] | ListEnumHsValiditiesStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsValiditiesStatus[] | ListEnumHsValiditiesStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsValiditiesStatusWithAggregatesFilter<$PrismaModel> | $Enums.HsValiditiesStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumhsvalidities_statusFilter<$PrismaModel>
-    _max?: NestedEnumhsvalidities_statusFilter<$PrismaModel>
+    _min?: NestedEnumHsValiditiesStatusFilter<$PrismaModel>
+    _max?: NestedEnumHsValiditiesStatusFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -22522,11 +25372,11 @@ export namespace Prisma {
     treat_id?: SortOrder
   }
 
-  export type Enumhsvalidity_requests_statusFilter<$PrismaModel = never> = {
-    equals?: $Enums.hsvalidity_requests_status | Enumhsvalidity_requests_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.hsvalidity_requests_status[] | ListEnumhsvalidity_requests_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.hsvalidity_requests_status[] | ListEnumhsvalidity_requests_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumhsvalidity_requests_statusFilter<$PrismaModel> | $Enums.hsvalidity_requests_status
+  export type EnumHsValidityRequestsStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsValidityRequestsStatus | EnumHsValidityRequestsStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsValidityRequestsStatus[] | ListEnumHsValidityRequestsStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsValidityRequestsStatus[] | ListEnumHsValidityRequestsStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsValidityRequestsStatusFilter<$PrismaModel> | $Enums.HsValidityRequestsStatus
   }
 
   export type Hsvalidity_request_productsListRelationFilter = {
@@ -22583,21 +25433,21 @@ export namespace Prisma {
     conferee_id?: SortOrder
   }
 
-  export type Enumhsvalidity_requests_statusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.hsvalidity_requests_status | Enumhsvalidity_requests_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.hsvalidity_requests_status[] | ListEnumhsvalidity_requests_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.hsvalidity_requests_status[] | ListEnumhsvalidity_requests_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumhsvalidity_requests_statusWithAggregatesFilter<$PrismaModel> | $Enums.hsvalidity_requests_status
+  export type EnumHsValidityRequestsStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsValidityRequestsStatus | EnumHsValidityRequestsStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsValidityRequestsStatus[] | ListEnumHsValidityRequestsStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsValidityRequestsStatus[] | ListEnumHsValidityRequestsStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsValidityRequestsStatusWithAggregatesFilter<$PrismaModel> | $Enums.HsValidityRequestsStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumhsvalidity_requests_statusFilter<$PrismaModel>
-    _max?: NestedEnumhsvalidity_requests_statusFilter<$PrismaModel>
+    _min?: NestedEnumHsValidityRequestsStatusFilter<$PrismaModel>
+    _max?: NestedEnumHsValidityRequestsStatusFilter<$PrismaModel>
   }
 
-  export type Enumhsvalidity_request_products_statusFilter<$PrismaModel = never> = {
-    equals?: $Enums.hsvalidity_request_products_status | Enumhsvalidity_request_products_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.hsvalidity_request_products_status[] | ListEnumhsvalidity_request_products_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.hsvalidity_request_products_status[] | ListEnumhsvalidity_request_products_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumhsvalidity_request_products_statusFilter<$PrismaModel> | $Enums.hsvalidity_request_products_status
+  export type EnumHsValidityRequestProductsStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsValidityRequestProductsStatus | EnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsValidityRequestProductsStatus[] | ListEnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsValidityRequestProductsStatus[] | ListEnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsValidityRequestProductsStatusFilter<$PrismaModel> | $Enums.HsValidityRequestProductsStatus
   }
 
   export type Hsvalidity_requestsScalarRelationFilter = {
@@ -22644,14 +25494,14 @@ export namespace Prisma {
     product_code?: SortOrder
   }
 
-  export type Enumhsvalidity_request_products_statusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.hsvalidity_request_products_status | Enumhsvalidity_request_products_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.hsvalidity_request_products_status[] | ListEnumhsvalidity_request_products_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.hsvalidity_request_products_status[] | ListEnumhsvalidity_request_products_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumhsvalidity_request_products_statusWithAggregatesFilter<$PrismaModel> | $Enums.hsvalidity_request_products_status
+  export type EnumHsValidityRequestProductsStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsValidityRequestProductsStatus | EnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsValidityRequestProductsStatus[] | ListEnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsValidityRequestProductsStatus[] | ListEnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsValidityRequestProductsStatusWithAggregatesFilter<$PrismaModel> | $Enums.HsValidityRequestProductsStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumhsvalidity_request_products_statusFilter<$PrismaModel>
-    _max?: NestedEnumhsvalidity_request_products_statusFilter<$PrismaModel>
+    _min?: NestedEnumHsValidityRequestProductsStatusFilter<$PrismaModel>
+    _max?: NestedEnumHsValidityRequestProductsStatusFilter<$PrismaModel>
   }
 
   export type hsvalidity_treatmentsCountOrderByAggregateInput = {
@@ -22869,6 +25719,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteCountOrderByAggregateInput = {
     id?: SortOrder
+    employee_id?: SortOrder
     branch_id?: SortOrder
     group_id?: SortOrder
     total_price?: SortOrder
@@ -22878,6 +25729,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteAvgOrderByAggregateInput = {
     id?: SortOrder
+    employee_id?: SortOrder
     branch_id?: SortOrder
     group_id?: SortOrder
     total_price?: SortOrder
@@ -22885,6 +25737,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteMaxOrderByAggregateInput = {
     id?: SortOrder
+    employee_id?: SortOrder
     branch_id?: SortOrder
     group_id?: SortOrder
     total_price?: SortOrder
@@ -22894,6 +25747,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteMinOrderByAggregateInput = {
     id?: SortOrder
+    employee_id?: SortOrder
     branch_id?: SortOrder
     group_id?: SortOrder
     total_price?: SortOrder
@@ -22903,6 +25757,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteSumOrderByAggregateInput = {
     id?: SortOrder
+    employee_id?: SortOrder
     branch_id?: SortOrder
     group_id?: SortOrder
     total_price?: SortOrder
@@ -22911,6 +25766,8 @@ export namespace Prisma {
   export type hsconsumer_groupsCountOrderByAggregateInput = {
     id?: SortOrder
     description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
   }
 
   export type hsconsumer_groupsAvgOrderByAggregateInput = {
@@ -22920,14 +25777,160 @@ export namespace Prisma {
   export type hsconsumer_groupsMaxOrderByAggregateInput = {
     id?: SortOrder
     description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
   }
 
   export type hsconsumer_groupsMinOrderByAggregateInput = {
     id?: SortOrder
     description?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
   }
 
   export type hsconsumer_groupsSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type EnumHsRafflesStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsRafflesStatus | EnumHsRafflesStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsRafflesStatus[] | ListEnumHsRafflesStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsRafflesStatus[] | ListEnumHsRafflesStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsRafflesStatusFilter<$PrismaModel> | $Enums.HsRafflesStatus
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type Hsraffle_clientsScalarRelationFilter = {
+    is?: hsraffle_clientsWhereInput
+    isNot?: hsraffle_clientsWhereInput
+  }
+
+  export type hsrafflesCountOrderByAggregateInput = {
+    id?: SortOrder
+    client_id?: SortOrder
+    status?: SortOrder
+    nfc_key?: SortOrder
+    raffle_number?: SortOrder
+    branch_id?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsrafflesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    client_id?: SortOrder
+    branch_id?: SortOrder
+  }
+
+  export type hsrafflesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    client_id?: SortOrder
+    status?: SortOrder
+    nfc_key?: SortOrder
+    raffle_number?: SortOrder
+    branch_id?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsrafflesMinOrderByAggregateInput = {
+    id?: SortOrder
+    client_id?: SortOrder
+    status?: SortOrder
+    nfc_key?: SortOrder
+    raffle_number?: SortOrder
+    branch_id?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsrafflesSumOrderByAggregateInput = {
+    id?: SortOrder
+    client_id?: SortOrder
+    branch_id?: SortOrder
+  }
+
+  export type EnumHsRafflesStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsRafflesStatus | EnumHsRafflesStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsRafflesStatus[] | ListEnumHsRafflesStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsRafflesStatus[] | ListEnumHsRafflesStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsRafflesStatusWithAggregatesFilter<$PrismaModel> | $Enums.HsRafflesStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumHsRafflesStatusFilter<$PrismaModel>
+    _max?: NestedEnumHsRafflesStatusFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type HsrafflesListRelationFilter = {
+    every?: hsrafflesWhereInput
+    some?: hsrafflesWhereInput
+    none?: hsrafflesWhereInput
+  }
+
+  export type hsrafflesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type hsraffle_clientsCountOrderByAggregateInput = {
+    id?: SortOrder
+    cpf?: SortOrder
+    name?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsraffle_clientsAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type hsraffle_clientsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    cpf?: SortOrder
+    name?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsraffle_clientsMinOrderByAggregateInput = {
+    id?: SortOrder
+    cpf?: SortOrder
+    name?: SortOrder
+    created_at?: SortOrder
+    modified_at?: SortOrder
+  }
+
+  export type hsraffle_clientsSumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -23693,8 +26696,8 @@ export namespace Prisma {
     connect?: hsvalidity_productsWhereUniqueInput | hsvalidity_productsWhereUniqueInput[]
   }
 
-  export type Enumhsvalidities_statusFieldUpdateOperationsInput = {
-    set?: $Enums.hsvalidities_status
+  export type EnumHsValiditiesStatusFieldUpdateOperationsInput = {
+    set?: $Enums.HsValiditiesStatus
   }
 
   export type hsbranchesUpdateOneRequiredWithoutHsvaliditiesNestedInput = {
@@ -23833,8 +26836,8 @@ export namespace Prisma {
     connect?: hsvalidity_request_productsWhereUniqueInput | hsvalidity_request_productsWhereUniqueInput[]
   }
 
-  export type Enumhsvalidity_requests_statusFieldUpdateOperationsInput = {
-    set?: $Enums.hsvalidity_requests_status
+  export type EnumHsValidityRequestsStatusFieldUpdateOperationsInput = {
+    set?: $Enums.HsValidityRequestsStatus
   }
 
   export type hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput = {
@@ -23923,8 +26926,8 @@ export namespace Prisma {
     connect?: hsvalidity_requestsWhereUniqueInput
   }
 
-  export type Enumhsvalidity_request_products_statusFieldUpdateOperationsInput = {
-    set?: $Enums.hsvalidity_request_products_status
+  export type EnumHsValidityRequestProductsStatusFieldUpdateOperationsInput = {
+    set?: $Enums.HsValidityRequestProductsStatus
   }
 
   export type hsvalidity_requestsUpdateOneRequiredWithoutHsvalidity_request_productsNestedInput = {
@@ -24215,6 +27218,70 @@ export namespace Prisma {
     deleteMany?: hsconsumption_noteScalarWhereInput | hsconsumption_noteScalarWhereInput[]
   }
 
+  export type hsraffle_clientsCreateNestedOneWithoutHsrafflesInput = {
+    create?: XOR<hsraffle_clientsCreateWithoutHsrafflesInput, hsraffle_clientsUncheckedCreateWithoutHsrafflesInput>
+    connectOrCreate?: hsraffle_clientsCreateOrConnectWithoutHsrafflesInput
+    connect?: hsraffle_clientsWhereUniqueInput
+  }
+
+  export type EnumHsRafflesStatusFieldUpdateOperationsInput = {
+    set?: $Enums.HsRafflesStatus
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type hsraffle_clientsUpdateOneRequiredWithoutHsrafflesNestedInput = {
+    create?: XOR<hsraffle_clientsCreateWithoutHsrafflesInput, hsraffle_clientsUncheckedCreateWithoutHsrafflesInput>
+    connectOrCreate?: hsraffle_clientsCreateOrConnectWithoutHsrafflesInput
+    upsert?: hsraffle_clientsUpsertWithoutHsrafflesInput
+    connect?: hsraffle_clientsWhereUniqueInput
+    update?: XOR<XOR<hsraffle_clientsUpdateToOneWithWhereWithoutHsrafflesInput, hsraffle_clientsUpdateWithoutHsrafflesInput>, hsraffle_clientsUncheckedUpdateWithoutHsrafflesInput>
+  }
+
+  export type hsrafflesCreateNestedManyWithoutHsraffle_clientsInput = {
+    create?: XOR<hsrafflesCreateWithoutHsraffle_clientsInput, hsrafflesUncheckedCreateWithoutHsraffle_clientsInput> | hsrafflesCreateWithoutHsraffle_clientsInput[] | hsrafflesUncheckedCreateWithoutHsraffle_clientsInput[]
+    connectOrCreate?: hsrafflesCreateOrConnectWithoutHsraffle_clientsInput | hsrafflesCreateOrConnectWithoutHsraffle_clientsInput[]
+    createMany?: hsrafflesCreateManyHsraffle_clientsInputEnvelope
+    connect?: hsrafflesWhereUniqueInput | hsrafflesWhereUniqueInput[]
+  }
+
+  export type hsrafflesUncheckedCreateNestedManyWithoutHsraffle_clientsInput = {
+    create?: XOR<hsrafflesCreateWithoutHsraffle_clientsInput, hsrafflesUncheckedCreateWithoutHsraffle_clientsInput> | hsrafflesCreateWithoutHsraffle_clientsInput[] | hsrafflesUncheckedCreateWithoutHsraffle_clientsInput[]
+    connectOrCreate?: hsrafflesCreateOrConnectWithoutHsraffle_clientsInput | hsrafflesCreateOrConnectWithoutHsraffle_clientsInput[]
+    createMany?: hsrafflesCreateManyHsraffle_clientsInputEnvelope
+    connect?: hsrafflesWhereUniqueInput | hsrafflesWhereUniqueInput[]
+  }
+
+  export type hsrafflesUpdateManyWithoutHsraffle_clientsNestedInput = {
+    create?: XOR<hsrafflesCreateWithoutHsraffle_clientsInput, hsrafflesUncheckedCreateWithoutHsraffle_clientsInput> | hsrafflesCreateWithoutHsraffle_clientsInput[] | hsrafflesUncheckedCreateWithoutHsraffle_clientsInput[]
+    connectOrCreate?: hsrafflesCreateOrConnectWithoutHsraffle_clientsInput | hsrafflesCreateOrConnectWithoutHsraffle_clientsInput[]
+    upsert?: hsrafflesUpsertWithWhereUniqueWithoutHsraffle_clientsInput | hsrafflesUpsertWithWhereUniqueWithoutHsraffle_clientsInput[]
+    createMany?: hsrafflesCreateManyHsraffle_clientsInputEnvelope
+    set?: hsrafflesWhereUniqueInput | hsrafflesWhereUniqueInput[]
+    disconnect?: hsrafflesWhereUniqueInput | hsrafflesWhereUniqueInput[]
+    delete?: hsrafflesWhereUniqueInput | hsrafflesWhereUniqueInput[]
+    connect?: hsrafflesWhereUniqueInput | hsrafflesWhereUniqueInput[]
+    update?: hsrafflesUpdateWithWhereUniqueWithoutHsraffle_clientsInput | hsrafflesUpdateWithWhereUniqueWithoutHsraffle_clientsInput[]
+    updateMany?: hsrafflesUpdateManyWithWhereWithoutHsraffle_clientsInput | hsrafflesUpdateManyWithWhereWithoutHsraffle_clientsInput[]
+    deleteMany?: hsrafflesScalarWhereInput | hsrafflesScalarWhereInput[]
+  }
+
+  export type hsrafflesUncheckedUpdateManyWithoutHsraffle_clientsNestedInput = {
+    create?: XOR<hsrafflesCreateWithoutHsraffle_clientsInput, hsrafflesUncheckedCreateWithoutHsraffle_clientsInput> | hsrafflesCreateWithoutHsraffle_clientsInput[] | hsrafflesUncheckedCreateWithoutHsraffle_clientsInput[]
+    connectOrCreate?: hsrafflesCreateOrConnectWithoutHsraffle_clientsInput | hsrafflesCreateOrConnectWithoutHsraffle_clientsInput[]
+    upsert?: hsrafflesUpsertWithWhereUniqueWithoutHsraffle_clientsInput | hsrafflesUpsertWithWhereUniqueWithoutHsraffle_clientsInput[]
+    createMany?: hsrafflesCreateManyHsraffle_clientsInputEnvelope
+    set?: hsrafflesWhereUniqueInput | hsrafflesWhereUniqueInput[]
+    disconnect?: hsrafflesWhereUniqueInput | hsrafflesWhereUniqueInput[]
+    delete?: hsrafflesWhereUniqueInput | hsrafflesWhereUniqueInput[]
+    connect?: hsrafflesWhereUniqueInput | hsrafflesWhereUniqueInput[]
+    update?: hsrafflesUpdateWithWhereUniqueWithoutHsraffle_clientsInput | hsrafflesUpdateWithWhereUniqueWithoutHsraffle_clientsInput[]
+    updateMany?: hsrafflesUpdateManyWithWhereWithoutHsraffle_clientsInput | hsrafflesUpdateManyWithWhereWithoutHsraffle_clientsInput[]
+    deleteMany?: hsrafflesScalarWhereInput | hsrafflesScalarWhereInput[]
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -24309,11 +27376,11 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedEnumhsvalidities_statusFilter<$PrismaModel = never> = {
-    equals?: $Enums.hsvalidities_status | Enumhsvalidities_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.hsvalidities_status[] | ListEnumhsvalidities_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.hsvalidities_status[] | ListEnumhsvalidities_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumhsvalidities_statusFilter<$PrismaModel> | $Enums.hsvalidities_status
+  export type NestedEnumHsValiditiesStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsValiditiesStatus | EnumHsValiditiesStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsValiditiesStatus[] | ListEnumHsValiditiesStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsValiditiesStatus[] | ListEnumHsValiditiesStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsValiditiesStatusFilter<$PrismaModel> | $Enums.HsValiditiesStatus
   }
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
@@ -24327,14 +27394,14 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedEnumhsvalidities_statusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.hsvalidities_status | Enumhsvalidities_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.hsvalidities_status[] | ListEnumhsvalidities_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.hsvalidities_status[] | ListEnumhsvalidities_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumhsvalidities_statusWithAggregatesFilter<$PrismaModel> | $Enums.hsvalidities_status
+  export type NestedEnumHsValiditiesStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsValiditiesStatus | EnumHsValiditiesStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsValiditiesStatus[] | ListEnumHsValiditiesStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsValiditiesStatus[] | ListEnumHsValiditiesStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsValiditiesStatusWithAggregatesFilter<$PrismaModel> | $Enums.HsValiditiesStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumhsvalidities_statusFilter<$PrismaModel>
-    _max?: NestedEnumhsvalidities_statusFilter<$PrismaModel>
+    _min?: NestedEnumHsValiditiesStatusFilter<$PrismaModel>
+    _max?: NestedEnumHsValiditiesStatusFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -24364,38 +27431,38 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedEnumhsvalidity_requests_statusFilter<$PrismaModel = never> = {
-    equals?: $Enums.hsvalidity_requests_status | Enumhsvalidity_requests_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.hsvalidity_requests_status[] | ListEnumhsvalidity_requests_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.hsvalidity_requests_status[] | ListEnumhsvalidity_requests_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumhsvalidity_requests_statusFilter<$PrismaModel> | $Enums.hsvalidity_requests_status
+  export type NestedEnumHsValidityRequestsStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsValidityRequestsStatus | EnumHsValidityRequestsStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsValidityRequestsStatus[] | ListEnumHsValidityRequestsStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsValidityRequestsStatus[] | ListEnumHsValidityRequestsStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsValidityRequestsStatusFilter<$PrismaModel> | $Enums.HsValidityRequestsStatus
   }
 
-  export type NestedEnumhsvalidity_requests_statusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.hsvalidity_requests_status | Enumhsvalidity_requests_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.hsvalidity_requests_status[] | ListEnumhsvalidity_requests_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.hsvalidity_requests_status[] | ListEnumhsvalidity_requests_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumhsvalidity_requests_statusWithAggregatesFilter<$PrismaModel> | $Enums.hsvalidity_requests_status
+  export type NestedEnumHsValidityRequestsStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsValidityRequestsStatus | EnumHsValidityRequestsStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsValidityRequestsStatus[] | ListEnumHsValidityRequestsStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsValidityRequestsStatus[] | ListEnumHsValidityRequestsStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsValidityRequestsStatusWithAggregatesFilter<$PrismaModel> | $Enums.HsValidityRequestsStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumhsvalidity_requests_statusFilter<$PrismaModel>
-    _max?: NestedEnumhsvalidity_requests_statusFilter<$PrismaModel>
+    _min?: NestedEnumHsValidityRequestsStatusFilter<$PrismaModel>
+    _max?: NestedEnumHsValidityRequestsStatusFilter<$PrismaModel>
   }
 
-  export type NestedEnumhsvalidity_request_products_statusFilter<$PrismaModel = never> = {
-    equals?: $Enums.hsvalidity_request_products_status | Enumhsvalidity_request_products_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.hsvalidity_request_products_status[] | ListEnumhsvalidity_request_products_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.hsvalidity_request_products_status[] | ListEnumhsvalidity_request_products_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumhsvalidity_request_products_statusFilter<$PrismaModel> | $Enums.hsvalidity_request_products_status
+  export type NestedEnumHsValidityRequestProductsStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsValidityRequestProductsStatus | EnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsValidityRequestProductsStatus[] | ListEnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsValidityRequestProductsStatus[] | ListEnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsValidityRequestProductsStatusFilter<$PrismaModel> | $Enums.HsValidityRequestProductsStatus
   }
 
-  export type NestedEnumhsvalidity_request_products_statusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.hsvalidity_request_products_status | Enumhsvalidity_request_products_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.hsvalidity_request_products_status[] | ListEnumhsvalidity_request_products_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.hsvalidity_request_products_status[] | ListEnumhsvalidity_request_products_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumhsvalidity_request_products_statusWithAggregatesFilter<$PrismaModel> | $Enums.hsvalidity_request_products_status
+  export type NestedEnumHsValidityRequestProductsStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsValidityRequestProductsStatus | EnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsValidityRequestProductsStatus[] | ListEnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsValidityRequestProductsStatus[] | ListEnumHsValidityRequestProductsStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsValidityRequestProductsStatusWithAggregatesFilter<$PrismaModel> | $Enums.HsValidityRequestProductsStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumhsvalidity_request_products_statusFilter<$PrismaModel>
-    _max?: NestedEnumhsvalidity_request_products_statusFilter<$PrismaModel>
+    _min?: NestedEnumHsValidityRequestProductsStatusFilter<$PrismaModel>
+    _max?: NestedEnumHsValidityRequestProductsStatusFilter<$PrismaModel>
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -24473,6 +27540,54 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type NestedEnumHsRafflesStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsRafflesStatus | EnumHsRafflesStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsRafflesStatus[] | ListEnumHsRafflesStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsRafflesStatus[] | ListEnumHsRafflesStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsRafflesStatusFilter<$PrismaModel> | $Enums.HsRafflesStatus
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumHsRafflesStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HsRafflesStatus | EnumHsRafflesStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.HsRafflesStatus[] | ListEnumHsRafflesStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HsRafflesStatus[] | ListEnumHsRafflesStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumHsRafflesStatusWithAggregatesFilter<$PrismaModel> | $Enums.HsRafflesStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumHsRafflesStatusFilter<$PrismaModel>
+    _max?: NestedEnumHsRafflesStatusFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type hsbranchesCreateWithoutHsemployeesInput = {
@@ -24562,7 +27677,7 @@ export namespace Prisma {
   }
 
   export type hsvaliditiesCreateWithoutHsemployeesInput = {
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsbranches: hsbranchesCreateNestedOneWithoutHsvaliditiesInput
@@ -24573,7 +27688,7 @@ export namespace Prisma {
   export type hsvaliditiesUncheckedCreateWithoutHsemployeesInput = {
     id?: number
     branch_id: number
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     request_id?: number | null
     created_at?: Date | string
     modified_at?: Date | string
@@ -24591,7 +27706,7 @@ export namespace Prisma {
   }
 
   export type hsvalidity_requestsCreateWithoutAnalystInput = {
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsvalidity_requestsInput
@@ -24604,7 +27719,7 @@ export namespace Prisma {
     id?: number
     branch_id: number
     conferee_id: number
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
@@ -24622,7 +27737,7 @@ export namespace Prisma {
   }
 
   export type hsvalidity_requestsCreateWithoutConfereeInput = {
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsvalidity_requestsInput
@@ -24635,7 +27750,7 @@ export namespace Prisma {
     id?: number
     branch_id: number
     analyst_id: number
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
@@ -24819,7 +27934,7 @@ export namespace Prisma {
     id?: IntFilter<"hsvalidities"> | number
     branch_id?: IntFilter<"hsvalidities"> | number
     employee_id?: IntFilter<"hsvalidities"> | number
-    status?: Enumhsvalidities_statusFilter<"hsvalidities"> | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFilter<"hsvalidities"> | $Enums.HsValiditiesStatus
     request_id?: IntNullableFilter<"hsvalidities"> | number | null
     created_at?: DateTimeFilter<"hsvalidities"> | Date | string
     modified_at?: DateTimeFilter<"hsvalidities"> | Date | string
@@ -24849,7 +27964,7 @@ export namespace Prisma {
     branch_id?: IntFilter<"hsvalidity_requests"> | number
     analyst_id?: IntFilter<"hsvalidity_requests"> | number
     conferee_id?: IntFilter<"hsvalidity_requests"> | number
-    status?: Enumhsvalidity_requests_statusFilter<"hsvalidity_requests"> | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFilter<"hsvalidity_requests"> | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
     modified_at?: DateTimeFilter<"hsvalidity_requests"> | Date | string
   }
@@ -25364,7 +28479,7 @@ export namespace Prisma {
   }
 
   export type hsvaliditiesCreateWithoutHsbranchesInput = {
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsemployees: hsemployeesCreateNestedOneWithoutHsvaliditiesInput
@@ -25375,7 +28490,7 @@ export namespace Prisma {
   export type hsvaliditiesUncheckedCreateWithoutHsbranchesInput = {
     id?: number
     employee_id: number
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     request_id?: number | null
     created_at?: Date | string
     modified_at?: Date | string
@@ -25393,7 +28508,7 @@ export namespace Prisma {
   }
 
   export type hsvalidity_requestsCreateWithoutHsbranchesInput = {
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsvalidity_requestsInput
@@ -25406,7 +28521,7 @@ export namespace Prisma {
     id?: number
     analyst_id: number
     conferee_id: number
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
@@ -25461,6 +28576,7 @@ export namespace Prisma {
   }
 
   export type hsconsumption_noteCreateWithoutBranchInput = {
+    employee_id: number
     total_price: Decimal | DecimalJsLike | number | string
     created_at?: Date | string
     modified_at?: Date | string
@@ -25470,6 +28586,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteUncheckedCreateWithoutBranchInput = {
     id?: number
+    employee_id: number
     group_id: number
     total_price: Decimal | DecimalJsLike | number | string
     created_at?: Date | string
@@ -25572,6 +28689,7 @@ export namespace Prisma {
     OR?: hsconsumption_noteScalarWhereInput[]
     NOT?: hsconsumption_noteScalarWhereInput | hsconsumption_noteScalarWhereInput[]
     id?: IntFilter<"hsconsumption_note"> | number
+    employee_id?: IntFilter<"hsconsumption_note"> | number
     branch_id?: IntFilter<"hsconsumption_note"> | number
     group_id?: IntFilter<"hsconsumption_note"> | number
     total_price?: DecimalFilter<"hsconsumption_note"> | Decimal | DecimalJsLike | number | string
@@ -25640,7 +28758,7 @@ export namespace Prisma {
   }
 
   export type hsvalidity_requestsCreateWithoutHsvaliditiesInput = {
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidity_request_products?: hsvalidity_request_productsCreateNestedManyWithoutHsvalidity_requestsInput
@@ -25654,7 +28772,7 @@ export namespace Prisma {
     branch_id: number
     analyst_id: number
     conferee_id: number
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidity_request_products?: hsvalidity_request_productsUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
@@ -25776,7 +28894,7 @@ export namespace Prisma {
   }
 
   export type hsvalidity_requestsUpdateWithoutHsvaliditiesInput = {
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidity_request_products?: hsvalidity_request_productsUpdateManyWithoutHsvalidity_requestsNestedInput
@@ -25790,7 +28908,7 @@ export namespace Prisma {
     branch_id?: IntFieldUpdateOperationsInput | number
     analyst_id?: IntFieldUpdateOperationsInput | number
     conferee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidity_request_products?: hsvalidity_request_productsUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
@@ -25840,7 +28958,7 @@ export namespace Prisma {
   }
 
   export type hsvaliditiesCreateWithoutHsvalidity_productsInput = {
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsbranches: hsbranchesCreateNestedOneWithoutHsvaliditiesInput
@@ -25852,7 +28970,7 @@ export namespace Prisma {
     id?: number
     branch_id: number
     employee_id: number
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     request_id?: number | null
     created_at?: Date | string
     modified_at?: Date | string
@@ -25895,7 +29013,7 @@ export namespace Prisma {
   }
 
   export type hsvaliditiesUpdateWithoutHsvalidity_productsInput = {
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvaliditiesNestedInput
@@ -25907,14 +29025,14 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     employee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     request_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type hsvaliditiesCreateWithoutHsvalidity_requestsInput = {
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsbranches: hsbranchesCreateNestedOneWithoutHsvaliditiesInput
@@ -25926,7 +29044,7 @@ export namespace Prisma {
     id?: number
     branch_id: number
     employee_id: number
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidity_products?: hsvalidity_productsUncheckedCreateNestedManyWithoutHsvaliditiesInput
@@ -25943,7 +29061,7 @@ export namespace Prisma {
   }
 
   export type hsvalidity_request_productsCreateWithoutHsvalidity_requestsInput = {
-    status?: $Enums.hsvalidity_request_products_status
+    status?: $Enums.HsValidityRequestProductsStatus
     product_code: number
     validity_date: Date | string
     auxiliary_code: string
@@ -25951,7 +29069,7 @@ export namespace Prisma {
 
   export type hsvalidity_request_productsUncheckedCreateWithoutHsvalidity_requestsInput = {
     id?: number
-    status?: $Enums.hsvalidity_request_products_status
+    status?: $Enums.HsValidityRequestProductsStatus
     product_code: number
     validity_date: Date | string
     auxiliary_code: string
@@ -26103,7 +29221,7 @@ export namespace Prisma {
     NOT?: hsvalidity_request_productsScalarWhereInput | hsvalidity_request_productsScalarWhereInput[]
     id?: IntFilter<"hsvalidity_request_products"> | number
     request_id?: IntFilter<"hsvalidity_request_products"> | number
-    status?: Enumhsvalidity_request_products_statusFilter<"hsvalidity_request_products"> | $Enums.hsvalidity_request_products_status
+    status?: EnumHsValidityRequestProductsStatusFilter<"hsvalidity_request_products"> | $Enums.HsValidityRequestProductsStatus
     product_code?: IntFilter<"hsvalidity_request_products"> | number
     validity_date?: DateTimeFilter<"hsvalidity_request_products"> | Date | string
     auxiliary_code?: StringFilter<"hsvalidity_request_products"> | string
@@ -26226,7 +29344,7 @@ export namespace Prisma {
   }
 
   export type hsvalidity_requestsCreateWithoutHsvalidity_request_productsInput = {
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidities?: hsvaliditiesCreateNestedManyWithoutHsvalidity_requestsInput
@@ -26240,7 +29358,7 @@ export namespace Prisma {
     branch_id: number
     analyst_id: number
     conferee_id: number
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
     hsvalidities?: hsvaliditiesUncheckedCreateNestedManyWithoutHsvalidity_requestsInput
@@ -26263,7 +29381,7 @@ export namespace Prisma {
   }
 
   export type hsvalidity_requestsUpdateWithoutHsvalidity_request_productsInput = {
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput
@@ -26277,7 +29395,7 @@ export namespace Prisma {
     branch_id?: IntFieldUpdateOperationsInput | number
     analyst_id?: IntFieldUpdateOperationsInput | number
     conferee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
@@ -26448,12 +29566,16 @@ export namespace Prisma {
 
   export type hsconsumer_groupsCreateWithoutHsconsumer_productsInput = {
     description: string
+    created_at?: Date | string
+    modified_at?: Date | string
     consumptionNotes?: hsconsumption_noteCreateNestedManyWithoutHsconsumer_groupsInput
   }
 
   export type hsconsumer_groupsUncheckedCreateWithoutHsconsumer_productsInput = {
     id?: number
     description: string
+    created_at?: Date | string
+    modified_at?: Date | string
     consumptionNotes?: hsconsumption_noteUncheckedCreateNestedManyWithoutHsconsumer_groupsInput
   }
 
@@ -26485,6 +29607,7 @@ export namespace Prisma {
   }
 
   export type hsconsumption_noteCreateWithoutHsconsumerProductsInput = {
+    employee_id: number
     total_price: Decimal | DecimalJsLike | number | string
     created_at?: Date | string
     modified_at?: Date | string
@@ -26494,6 +29617,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteUncheckedCreateWithoutHsconsumerProductsInput = {
     id?: number
+    employee_id: number
     branch_id: number
     group_id: number
     total_price: Decimal | DecimalJsLike | number | string
@@ -26563,12 +29687,16 @@ export namespace Prisma {
 
   export type hsconsumer_groupsUpdateWithoutHsconsumer_productsInput = {
     description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     consumptionNotes?: hsconsumption_noteUpdateManyWithoutHsconsumer_groupsNestedInput
   }
 
   export type hsconsumer_groupsUncheckedUpdateWithoutHsconsumer_productsInput = {
     id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     consumptionNotes?: hsconsumption_noteUncheckedUpdateManyWithoutHsconsumer_groupsNestedInput
   }
 
@@ -26612,6 +29740,7 @@ export namespace Prisma {
   }
 
   export type hsconsumption_noteUpdateWithoutHsconsumerProductsInput = {
+    employee_id?: IntFieldUpdateOperationsInput | number
     total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26621,6 +29750,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteUncheckedUpdateWithoutHsconsumerProductsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    employee_id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     group_id?: IntFieldUpdateOperationsInput | number
     total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -26630,12 +29760,16 @@ export namespace Prisma {
 
   export type hsconsumer_groupsCreateWithoutConsumptionNotesInput = {
     description: string
+    created_at?: Date | string
+    modified_at?: Date | string
     hsconsumer_products?: hsconsumer_productsCreateNestedManyWithoutHsconsumer_groupsInput
   }
 
   export type hsconsumer_groupsUncheckedCreateWithoutConsumptionNotesInput = {
     id?: number
     description: string
+    created_at?: Date | string
+    modified_at?: Date | string
     hsconsumer_products?: hsconsumer_productsUncheckedCreateNestedManyWithoutHsconsumer_groupsInput
   }
 
@@ -26716,12 +29850,16 @@ export namespace Prisma {
 
   export type hsconsumer_groupsUpdateWithoutConsumptionNotesInput = {
     description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsconsumer_products?: hsconsumer_productsUpdateManyWithoutHsconsumer_groupsNestedInput
   }
 
   export type hsconsumer_groupsUncheckedUpdateWithoutConsumptionNotesInput = {
     id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsconsumer_products?: hsconsumer_productsUncheckedUpdateManyWithoutHsconsumer_groupsNestedInput
   }
 
@@ -26807,6 +29945,7 @@ export namespace Prisma {
   }
 
   export type hsconsumption_noteCreateWithoutHsconsumer_groupsInput = {
+    employee_id: number
     total_price: Decimal | DecimalJsLike | number | string
     created_at?: Date | string
     modified_at?: Date | string
@@ -26816,6 +29955,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteUncheckedCreateWithoutHsconsumer_groupsInput = {
     id?: number
+    employee_id: number
     branch_id: number
     total_price: Decimal | DecimalJsLike | number | string
     created_at?: Date | string
@@ -26865,6 +30005,111 @@ export namespace Prisma {
     data: XOR<hsconsumption_noteUpdateManyMutationInput, hsconsumption_noteUncheckedUpdateManyWithoutHsconsumer_groupsInput>
   }
 
+  export type hsraffle_clientsCreateWithoutHsrafflesInput = {
+    cpf: string
+    name: string
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsraffle_clientsUncheckedCreateWithoutHsrafflesInput = {
+    id?: number
+    cpf: string
+    name: string
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsraffle_clientsCreateOrConnectWithoutHsrafflesInput = {
+    where: hsraffle_clientsWhereUniqueInput
+    create: XOR<hsraffle_clientsCreateWithoutHsrafflesInput, hsraffle_clientsUncheckedCreateWithoutHsrafflesInput>
+  }
+
+  export type hsraffle_clientsUpsertWithoutHsrafflesInput = {
+    update: XOR<hsraffle_clientsUpdateWithoutHsrafflesInput, hsraffle_clientsUncheckedUpdateWithoutHsrafflesInput>
+    create: XOR<hsraffle_clientsCreateWithoutHsrafflesInput, hsraffle_clientsUncheckedCreateWithoutHsrafflesInput>
+    where?: hsraffle_clientsWhereInput
+  }
+
+  export type hsraffle_clientsUpdateToOneWithWhereWithoutHsrafflesInput = {
+    where?: hsraffle_clientsWhereInput
+    data: XOR<hsraffle_clientsUpdateWithoutHsrafflesInput, hsraffle_clientsUncheckedUpdateWithoutHsrafflesInput>
+  }
+
+  export type hsraffle_clientsUpdateWithoutHsrafflesInput = {
+    cpf?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsraffle_clientsUncheckedUpdateWithoutHsrafflesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    cpf?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsrafflesCreateWithoutHsraffle_clientsInput = {
+    status?: $Enums.HsRafflesStatus
+    nfc_key: string
+    raffle_number?: string | null
+    branch_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsrafflesUncheckedCreateWithoutHsraffle_clientsInput = {
+    id?: number
+    status?: $Enums.HsRafflesStatus
+    nfc_key: string
+    raffle_number?: string | null
+    branch_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsrafflesCreateOrConnectWithoutHsraffle_clientsInput = {
+    where: hsrafflesWhereUniqueInput
+    create: XOR<hsrafflesCreateWithoutHsraffle_clientsInput, hsrafflesUncheckedCreateWithoutHsraffle_clientsInput>
+  }
+
+  export type hsrafflesCreateManyHsraffle_clientsInputEnvelope = {
+    data: hsrafflesCreateManyHsraffle_clientsInput | hsrafflesCreateManyHsraffle_clientsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hsrafflesUpsertWithWhereUniqueWithoutHsraffle_clientsInput = {
+    where: hsrafflesWhereUniqueInput
+    update: XOR<hsrafflesUpdateWithoutHsraffle_clientsInput, hsrafflesUncheckedUpdateWithoutHsraffle_clientsInput>
+    create: XOR<hsrafflesCreateWithoutHsraffle_clientsInput, hsrafflesUncheckedCreateWithoutHsraffle_clientsInput>
+  }
+
+  export type hsrafflesUpdateWithWhereUniqueWithoutHsraffle_clientsInput = {
+    where: hsrafflesWhereUniqueInput
+    data: XOR<hsrafflesUpdateWithoutHsraffle_clientsInput, hsrafflesUncheckedUpdateWithoutHsraffle_clientsInput>
+  }
+
+  export type hsrafflesUpdateManyWithWhereWithoutHsraffle_clientsInput = {
+    where: hsrafflesScalarWhereInput
+    data: XOR<hsrafflesUpdateManyMutationInput, hsrafflesUncheckedUpdateManyWithoutHsraffle_clientsInput>
+  }
+
+  export type hsrafflesScalarWhereInput = {
+    AND?: hsrafflesScalarWhereInput | hsrafflesScalarWhereInput[]
+    OR?: hsrafflesScalarWhereInput[]
+    NOT?: hsrafflesScalarWhereInput | hsrafflesScalarWhereInput[]
+    id?: IntFilter<"hsraffles"> | number
+    client_id?: IntFilter<"hsraffles"> | number
+    status?: EnumHsRafflesStatusFilter<"hsraffles"> | $Enums.HsRafflesStatus
+    nfc_key?: StringFilter<"hsraffles"> | string
+    raffle_number?: StringNullableFilter<"hsraffles"> | string | null
+    branch_id?: IntFilter<"hsraffles"> | number
+    created_at?: DateTimeFilter<"hsraffles"> | Date | string
+    modified_at?: DateTimeFilter<"hsraffles"> | Date | string
+  }
+
   export type hssessionsCreateManyUserInput = {
     id?: string
     token: string
@@ -26879,7 +30124,7 @@ export namespace Prisma {
   export type hsvaliditiesCreateManyHsemployeesInput = {
     id?: number
     branch_id: number
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     request_id?: number | null
     created_at?: Date | string
     modified_at?: Date | string
@@ -26889,7 +30134,7 @@ export namespace Prisma {
     id?: number
     branch_id: number
     conferee_id: number
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
   }
@@ -26898,7 +30143,7 @@ export namespace Prisma {
     id?: number
     branch_id: number
     analyst_id: number
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
   }
@@ -26951,7 +30196,7 @@ export namespace Prisma {
   }
 
   export type hsvaliditiesUpdateWithoutHsemployeesInput = {
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvaliditiesNestedInput
@@ -26962,7 +30207,7 @@ export namespace Prisma {
   export type hsvaliditiesUncheckedUpdateWithoutHsemployeesInput = {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     request_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26972,14 +30217,14 @@ export namespace Prisma {
   export type hsvaliditiesUncheckedUpdateManyWithoutHsemployeesInput = {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     request_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type hsvalidity_requestsUpdateWithoutAnalystInput = {
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput
@@ -26992,7 +30237,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     conferee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
@@ -27003,13 +30248,13 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     conferee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type hsvalidity_requestsUpdateWithoutConfereeInput = {
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput
@@ -27022,7 +30267,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     analyst_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
@@ -27033,7 +30278,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     analyst_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -27196,7 +30441,7 @@ export namespace Prisma {
   export type hsvaliditiesCreateManyHsbranchesInput = {
     id?: number
     employee_id: number
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     request_id?: number | null
     created_at?: Date | string
     modified_at?: Date | string
@@ -27206,7 +30451,7 @@ export namespace Prisma {
     id?: number
     analyst_id: number
     conferee_id: number
-    status?: $Enums.hsvalidity_requests_status
+    status?: $Enums.HsValidityRequestsStatus
     created_at?: Date | string
     modified_at?: Date | string
   }
@@ -27227,6 +30472,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteCreateManyBranchInput = {
     id?: number
+    employee_id: number
     group_id: number
     total_price: Decimal | DecimalJsLike | number | string
     created_at?: Date | string
@@ -27278,7 +30524,7 @@ export namespace Prisma {
   }
 
   export type hsvaliditiesUpdateWithoutHsbranchesInput = {
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsemployees?: hsemployeesUpdateOneRequiredWithoutHsvaliditiesNestedInput
@@ -27289,7 +30535,7 @@ export namespace Prisma {
   export type hsvaliditiesUncheckedUpdateWithoutHsbranchesInput = {
     id?: IntFieldUpdateOperationsInput | number
     employee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     request_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27299,14 +30545,14 @@ export namespace Prisma {
   export type hsvaliditiesUncheckedUpdateManyWithoutHsbranchesInput = {
     id?: IntFieldUpdateOperationsInput | number
     employee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     request_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type hsvalidity_requestsUpdateWithoutHsbranchesInput = {
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidities?: hsvaliditiesUpdateManyWithoutHsvalidity_requestsNestedInput
@@ -27319,7 +30565,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     analyst_id?: IntFieldUpdateOperationsInput | number
     conferee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidities?: hsvaliditiesUncheckedUpdateManyWithoutHsvalidity_requestsNestedInput
@@ -27330,7 +30576,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     analyst_id?: IntFieldUpdateOperationsInput | number
     conferee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_requests_statusFieldUpdateOperationsInput | $Enums.hsvalidity_requests_status
+    status?: EnumHsValidityRequestsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestsStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -27377,6 +30623,7 @@ export namespace Prisma {
   }
 
   export type hsconsumption_noteUpdateWithoutBranchInput = {
+    employee_id?: IntFieldUpdateOperationsInput | number
     total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27386,6 +30633,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteUncheckedUpdateWithoutBranchInput = {
     id?: IntFieldUpdateOperationsInput | number
+    employee_id?: IntFieldUpdateOperationsInput | number
     group_id?: IntFieldUpdateOperationsInput | number
     total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27395,6 +30643,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteUncheckedUpdateManyWithoutBranchInput = {
     id?: IntFieldUpdateOperationsInput | number
+    employee_id?: IntFieldUpdateOperationsInput | number
     group_id?: IntFieldUpdateOperationsInput | number
     total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27440,21 +30689,21 @@ export namespace Prisma {
     id?: number
     branch_id: number
     employee_id: number
-    status?: $Enums.hsvalidities_status
+    status?: $Enums.HsValiditiesStatus
     created_at?: Date | string
     modified_at?: Date | string
   }
 
   export type hsvalidity_request_productsCreateManyHsvalidity_requestsInput = {
     id?: number
-    status?: $Enums.hsvalidity_request_products_status
+    status?: $Enums.HsValidityRequestProductsStatus
     product_code: number
     validity_date: Date | string
     auxiliary_code: string
   }
 
   export type hsvaliditiesUpdateWithoutHsvalidity_requestsInput = {
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsbranches?: hsbranchesUpdateOneRequiredWithoutHsvaliditiesNestedInput
@@ -27466,7 +30715,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     employee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsvalidity_products?: hsvalidity_productsUncheckedUpdateManyWithoutHsvaliditiesNestedInput
@@ -27476,13 +30725,13 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     employee_id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidities_statusFieldUpdateOperationsInput | $Enums.hsvalidities_status
+    status?: EnumHsValiditiesStatusFieldUpdateOperationsInput | $Enums.HsValiditiesStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type hsvalidity_request_productsUpdateWithoutHsvalidity_requestsInput = {
-    status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
+    status?: EnumHsValidityRequestProductsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestProductsStatus
     product_code?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
     auxiliary_code?: StringFieldUpdateOperationsInput | string
@@ -27490,7 +30739,7 @@ export namespace Prisma {
 
   export type hsvalidity_request_productsUncheckedUpdateWithoutHsvalidity_requestsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
+    status?: EnumHsValidityRequestProductsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestProductsStatus
     product_code?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
     auxiliary_code?: StringFieldUpdateOperationsInput | string
@@ -27498,7 +30747,7 @@ export namespace Prisma {
 
   export type hsvalidity_request_productsUncheckedUpdateManyWithoutHsvalidity_requestsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    status?: Enumhsvalidity_request_products_statusFieldUpdateOperationsInput | $Enums.hsvalidity_request_products_status
+    status?: EnumHsValidityRequestProductsStatusFieldUpdateOperationsInput | $Enums.HsValidityRequestProductsStatus
     product_code?: IntFieldUpdateOperationsInput | number
     validity_date?: DateTimeFieldUpdateOperationsInput | Date | string
     auxiliary_code?: StringFieldUpdateOperationsInput | string
@@ -27610,6 +30859,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteCreateManyHsconsumer_groupsInput = {
     id?: number
+    employee_id: number
     branch_id: number
     total_price: Decimal | DecimalJsLike | number | string
     created_at?: Date | string
@@ -27658,6 +30908,7 @@ export namespace Prisma {
   }
 
   export type hsconsumption_noteUpdateWithoutHsconsumer_groupsInput = {
+    employee_id?: IntFieldUpdateOperationsInput | number
     total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27667,6 +30918,7 @@ export namespace Prisma {
 
   export type hsconsumption_noteUncheckedUpdateWithoutHsconsumer_groupsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    employee_id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27676,8 +30928,48 @@ export namespace Prisma {
 
   export type hsconsumption_noteUncheckedUpdateManyWithoutHsconsumer_groupsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    employee_id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     total_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsrafflesCreateManyHsraffle_clientsInput = {
+    id?: number
+    status?: $Enums.HsRafflesStatus
+    nfc_key: string
+    raffle_number?: string | null
+    branch_id: number
+    created_at?: Date | string
+    modified_at?: Date | string
+  }
+
+  export type hsrafflesUpdateWithoutHsraffle_clientsInput = {
+    status?: EnumHsRafflesStatusFieldUpdateOperationsInput | $Enums.HsRafflesStatus
+    nfc_key?: StringFieldUpdateOperationsInput | string
+    raffle_number?: NullableStringFieldUpdateOperationsInput | string | null
+    branch_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsrafflesUncheckedUpdateWithoutHsraffle_clientsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    status?: EnumHsRafflesStatusFieldUpdateOperationsInput | $Enums.HsRafflesStatus
+    nfc_key?: StringFieldUpdateOperationsInput | string
+    raffle_number?: NullableStringFieldUpdateOperationsInput | string | null
+    branch_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hsrafflesUncheckedUpdateManyWithoutHsraffle_clientsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    status?: EnumHsRafflesStatusFieldUpdateOperationsInput | $Enums.HsRafflesStatus
+    nfc_key?: StringFieldUpdateOperationsInput | string
+    raffle_number?: NullableStringFieldUpdateOperationsInput | string | null
+    branch_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }

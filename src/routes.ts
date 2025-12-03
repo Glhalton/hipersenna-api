@@ -13,9 +13,12 @@ import { authenticate } from "./middlewares/authentication.js";
 import sessionsRoutes from "./routes/sessions.routes.js";
 import concurrentsRoutes from "./routes/concurrents.routes.js";
 import consumerProductsRoutes from "./routes/consumerProducts.routes.js";
+import consumerGroupsRoutes from "./routes/consumerGroups.routes.js";
+import rafflesRoutes from "./routes/raffles.routes.js";
 
 export default async function (app: FastifyInstance) {
   app.register(signinRoutes, { prefix: "/signin" });
+  app.register(rafflesRoutes, {prefix: "/raffles"})
 
   app.register(async (protectedRoutes) => {
     protectedRoutes.addHook("preHandler", authenticate);
@@ -40,5 +43,9 @@ export default async function (app: FastifyInstance) {
     protectedRoutes.register(consumerProductsRoutes, {
       prefix: "/consumer-products",
     });
+    protectedRoutes.register(consumerGroupsRoutes, {
+      prefix: "/consumer-groups",
+    });
+
   });
 }
