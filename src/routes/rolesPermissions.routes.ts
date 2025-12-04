@@ -4,19 +4,20 @@ import {
   deleteRolePermissionController,
   getRolePermissionsController,
 } from "../controllers/rolesPermissions.controllers.js";
-import { authorizePermissions } from "../middlewares/authorizePermissions.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
 import {
   roleIdSchema,
   rolePermissionResponseSchema,
   rolePermissionSchema,
 } from "../schemas/rolesPermissions.schemas.js";
 import z from "zod";
+import { authenticate } from "../middlewares/authenticate.middleware.js";
 
 export default async function rolesPermissionsRoutes(app: FastifyInstance) {
   app.get(
     "/:id",
     {
-      preHandler: authorizePermissions(12),
+      preHandler: [authenticate, authorize(12)],
       schema: {
         description: "Realiza a consulta de permissões vinculadas a um cargo.",
         security: [{ BearerAuth: [] }],
@@ -35,7 +36,7 @@ export default async function rolesPermissionsRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: authorizePermissions(13),
+      preHandler: [authenticate, authorize(13)],
       schema: {
         description: "Vincula permissões a um determinado cargo.",
         security: [{ BearerAuth: [] }],
@@ -53,7 +54,7 @@ export default async function rolesPermissionsRoutes(app: FastifyInstance) {
   app.delete(
     "/",
     {
-      preHandler: authorizePermissions(14),
+      preHandler: [authenticate, authorize(14)],
       schema: {
         description:
           "Realiza a exclusão de permissões em um determinado cargo.",

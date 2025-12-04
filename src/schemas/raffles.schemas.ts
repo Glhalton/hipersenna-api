@@ -5,13 +5,13 @@ export const getRaffleSchema = z.object({
   client_id: z.number().optional(),
   nfc_key: z.string().optional(),
   branch_id: z.string().optional(),
+  status: z.any().optional(),
 });
 
 export type GetRaffle = z.infer<typeof getRaffleSchema>;
 
 export const createRaffleSchema = z.object({
   nfc_key: z.string(),
-  name: z.string(),
 });
 
 export type CreateRaffle = z.infer<typeof createRaffleSchema>;

@@ -5,7 +5,7 @@ import {
   getRoleController,
   updateRoleController,
 } from "../controllers/roles.controllers.js";
-import { authorizePermissions } from "../middlewares/authorizePermissions.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
 import {
   getRoleSchema,
   roleIdSchema,
@@ -14,12 +14,13 @@ import {
   updateRoleSchema,
 } from "../schemas/roles.schemas.js";
 import z from "zod";
+import { authenticate } from "../middlewares/authenticate.middleware.js";
 
 export default async function rolesRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: authorizePermissions(8),
+      preHandler: [authenticate, authorize(8)],
       schema: {
         description: "Realiza a consulta de cargos.",
         security: [{ BearerAuth: [] }],
@@ -38,7 +39,7 @@ export default async function rolesRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: authorizePermissions(9),
+      preHandler: [authenticate, authorize(9)],
       schema: {
         description: "Realiza a criação de cargos.",
         security: [{ BearerAuth: [] }],
@@ -56,7 +57,7 @@ export default async function rolesRoutes(app: FastifyInstance) {
   app.patch(
     "/:id",
     {
-      preHandler: authorizePermissions(10),
+      preHandler: [authenticate, authorize(10)],
       schema: {
         description: "Realiza a atualização de dados de um cargo.",
         security: [{ BearerAuth: [] }],
@@ -76,7 +77,7 @@ export default async function rolesRoutes(app: FastifyInstance) {
   app.delete(
     "/:id",
     {
-      preHandler: authorizePermissions(11),
+      preHandler: [authenticate, authorize(11)],
       schema: {
         description: "Realiza a exlusão de cargos.",
         security: [{ BearerAuth: [] }],

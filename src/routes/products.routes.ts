@@ -1,17 +1,18 @@
 import { FastifyInstance } from "fastify";
 import { getProductController } from "../controllers/products.controllers.js";
-import { authorizePermissions } from "../middlewares/authorizePermissions.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
 import {
   getProductSchema,
   productResponseSchema,
 } from "../schemas/products.schemas.js";
 import z from "zod";
+import { authenticate } from "../middlewares/authenticate.middleware.js";
 
 export default async function productsRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: authorizePermissions(7),
+      preHandler: [authenticate, authorize(7)],
       schema: {
         description:
           "Realiza a consulta de dados de um produto cadastrado no winthor.",

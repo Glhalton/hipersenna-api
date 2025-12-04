@@ -262,6 +262,7 @@ exports.Prisma.Hsraffle_clientsScalarFieldEnum = {
   id: 'id',
   cpf: 'cpf',
   name: 'name',
+  telephone: 'telephone',
   created_at: 'created_at',
   modified_at: 'modified_at'
 };

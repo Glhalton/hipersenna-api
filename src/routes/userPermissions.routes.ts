@@ -4,19 +4,21 @@ import {
   deleteUserPermissionsController,
   getUserPermissionsController,
 } from "../controllers/userPermissions.controllers.js";
-import { authorizePermissions } from "../middlewares/authorizePermissions.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
 import { userIdSchema } from "../schemas/users.schemas.js";
 import {
   userPermissionSchema,
   userPermissionsResponseSchema,
 } from "../schemas/userPermissions.schemas.js";
 import z from "zod";
+import { authenticate } from "../middlewares/authenticate.middleware.js";
 
 export default async function userPermissionsRoutes(app: FastifyInstance) {
+
   app.get(
     "/:id",
     {
-      preHandler: authorizePermissions(18),
+      preHandler: [authenticate, authorize(18)],
       schema: {
         description:
           "Realiza a consulta de permissões vinculadas a um determinado usuário.",
@@ -36,7 +38,7 @@ export default async function userPermissionsRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: authorizePermissions(19),
+      preHandler: [authenticate, authorize(19)],
       schema: {
         description:
           "Realiza a liberação de permissões a um determiando usuário.",
@@ -55,7 +57,7 @@ export default async function userPermissionsRoutes(app: FastifyInstance) {
   app.delete(
     "/",
     {
-      preHandler: authorizePermissions(20),
+      preHandler: [authenticate, authorize(20)],
       schema: {
         description:
           "Realiza a exclusão de permissões de um determinado usuário.",

@@ -8,8 +8,8 @@ import {
 } from "../schemas/raffles.schemas.js";
 import oracledb from "oracledb";
 import {
-  createRaffleClients,
-  getRaffleClients,
+  createRaffleClientsService,
+  getRaffleClientsService,
 } from "./raffleClients.services.js";
 import crypto from "crypto";
 
@@ -31,7 +31,7 @@ export const getRafflesService = async ({
   });
 };
 
-export const createRaffleService = async ({ nfc_key, name }: CreateRaffle) => {
+export const createRaffleService = async ({ nfc_key }: CreateRaffle) => {
   const riffles: any = [];
 
   const nfcData = await getNfcData(nfc_key);
@@ -58,17 +58,23 @@ export const createRaffleService = async ({ nfc_key, name }: CreateRaffle) => {
 
   const cpf = nfcData[0].cpf;
 
-  if (cpf == "111.111.111-11" || null) {
+  if (cpf == "11111111111" || null) {
     throw new Error("CPF não encontrado no cupom fiscal.");
   }
 
-  const client_id = await getOrCreateClient(cpf, name);
+  const client = await getRaffleClientsService({ cpf });
+
+  if (client.length === 0) {
+    throw new Error("Cliente não encontrado no sistema");
+  }
+
+  // const client_id = await getOrCreateClient(cpf, name);
 
   await prisma.$transaction(async (tx) => {
     for (let i = 0; i < raffleUnits; i++) {
       const raffle = await tx.hsraffles.create({
         data: {
-          client_id,
+          client_id: client[0].id,
           nfc_key,
           branch_id: Number(nfcData[0].codFilial),
         },
@@ -152,7 +158,7 @@ const getNfcData = async (nfc_key: string) => {
 
     return ((result.rows as nfcData[]) ?? []).map((row) => ({
       codFilial: row.CODFILIAL,
-      cpf: row.CGC,
+      cpf: row.CGC.replace(/\D/g, ""),
       numNota: row.NUMNOTA,
       vlTotal: row.VLTOTAL,
     }));
@@ -164,14 +170,4 @@ const getNfcData = async (nfc_key: string) => {
 const createHash = (id: number) => {
   const hash = crypto.createHash("sha256").update(id.toString()).digest("hex");
   return hash.substring(0, 8).toUpperCase();
-};
-
-const getOrCreateClient = async (cpf: string, name: string) => {
-  const existing = await getRaffleClients({ cpf });
-
-  if (existing.length) return existing[0].id;
-
-  const created = await createRaffleClients({ name, cpf });
-
-  return created.id;
 };

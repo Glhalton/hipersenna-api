@@ -5,7 +5,7 @@ import {
   getPermissionController,
   updatePermissionController,
 } from "../controllers/permissions.controllers.js";
-import { authorizePermissions } from "../middlewares/authorizePermissions.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
 import {
   getPermissionSchema,
   permissionIdSchema,
@@ -14,12 +14,13 @@ import {
   updatePermissionSchema,
 } from "../schemas/permissions.schemas.js";
 import z from "zod";
+import { authenticate } from "../middlewares/authenticate.middleware.js";
 
 export default async function permissionsRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: authorizePermissions(3),
+      preHandler: [authenticate, authorize(3)],
       schema: {
         description: "Realiza a consulta de permissões.",
         security: [{ BearerAuth: [] }],
@@ -37,7 +38,7 @@ export default async function permissionsRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: authorizePermissions(4),
+      preHandler: [authenticate, authorize(4)],
       schema: {
         description: "Realiza a criação de permissões.",
         security: [{ BearerAuth: [] }],
@@ -55,7 +56,7 @@ export default async function permissionsRoutes(app: FastifyInstance) {
   app.patch(
     "/:id",
     {
-      preHandler: authorizePermissions(5),
+      preHandler: [authenticate, authorize(5)],
       schema: {
         description: "Realiza a atualização de dados de permissões.",
         security: [{ BearerAuth: [] }],
@@ -74,7 +75,7 @@ export default async function permissionsRoutes(app: FastifyInstance) {
   app.delete(
     "/:id",
     {
-      preHandler: authorizePermissions(6),
+      preHandler: [authenticate, authorize(6)],
       schema: {
         description: "Realiza a exclusão de permissões.",
         security: [{ BearerAuth: [] }],

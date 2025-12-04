@@ -12,13 +12,16 @@ import {
   raffleResponseSchema,
 } from "../schemas/raffles.schemas.js";
 import z from "zod";
+import { authenticate } from "../middlewares/authenticate.middleware.js";
 
 export default async function rafflesRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
+      preHandler: [authenticate],
       schema: {
         description: "Realiza a consulta de rifas de sorteio.",
+        security: [{BearerAuth: []}],
         query: getRaffleSchema,
         response: {
           200: z.array(raffleResponseSchema),
@@ -45,11 +48,14 @@ export default async function rafflesRoutes(app: FastifyInstance) {
     },
     createRafflesController
   );
+
   app.patch(
     "/draw/:branch_id",
     {
+      preHandler: [authenticate],
       schema: {
         description: "Realiza o sorteio de rifas em uma determinada filial.",
+        security: [{BearerAuth: []}],
         params: drawRafflesSchema,
         response: {
           200: z.array(raffleResponseSchema),
@@ -63,14 +69,16 @@ export default async function rafflesRoutes(app: FastifyInstance) {
   app.patch(
     "/invalidate/:branch_id",
     {
+      preHandler: [authenticate],
       schema: {
         description: "Realiza a inativação de rifas em uma determinada filial.",
+        security: [{BearerAuth: []}],
         params: drawRafflesSchema,
         response: {
           200: z.object({ message: z.string() }),
         },
         tags: ["Raffles"],
-        summary: "Rota de inativação de rifas"
+        summary: "Rota de inativação de rifas.",
       },
     },
     invalidateRafflesController

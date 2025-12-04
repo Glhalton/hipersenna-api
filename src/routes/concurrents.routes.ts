@@ -5,13 +5,14 @@ import {
   getConcurrentSchema,
 } from "../schemas/concurrents.schemas.js";
 import z from "zod";
-import { authorizePermissions } from "../middlewares/authorizePermissions.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
+import { authenticate } from "../middlewares/authenticate.middleware.js";
 
 export default async function concurrentsRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: authorizePermissions(2),
+      preHandler: [authenticate, authorize(2)],
       schema: {
         description: "Realiza a consulta de concorrentes.",
         security: [{ BearerAuth: [] }],

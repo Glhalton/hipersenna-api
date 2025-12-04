@@ -11,13 +11,14 @@ import {
   sessionResponseSchema,
 } from "../schemas/sessions.schemas.js";
 import z from "zod";
-import { authorizePermissions } from "../middlewares/authorizePermissions.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
+import { authenticate } from "../middlewares/authenticate.middleware.js";
 
 export default async function sessionsRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: authorizePermissions(15),
+      preHandler: [authenticate, authorize(15)],
       schema: {
         description: "Realiza a consulta de sessões.",
         security: [{ BearerAuth: [] }],
@@ -36,7 +37,7 @@ export default async function sessionsRoutes(app: FastifyInstance) {
   app.delete(
     "/:id",
     {
-      preHandler: authorizePermissions(16),
+      preHandler: [authenticate, authorize(16)],
       schema: {
         description: "Realiza a exclusão de uma sessão pelo ID.",
         security: [{ BearerAuth: [] }],
@@ -55,7 +56,7 @@ export default async function sessionsRoutes(app: FastifyInstance) {
   app.delete(
     "/",
     {
-      preHandler: authorizePermissions(17),
+      preHandler: [authenticate, authorize(17)],
       schema: {
         description:
           "Realiza a exclusão de todas as sessões, com excessão da sessão do usuário que utilizou a rota.",
@@ -73,6 +74,7 @@ export default async function sessionsRoutes(app: FastifyInstance) {
   app.delete(
     "/me",
     {
+      preHandler: [authenticate],
       schema: {
         description:
           "Realiza a exclusão das sessões do usuário que acessou a rota.",

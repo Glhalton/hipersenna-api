@@ -1,4 +1,4 @@
-import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import { FastifyInstance } from "fastify";
 import signinRoutes from "./routes/signin.routes.js";
 import usersRoutes from "./routes/users.routes.js";
 import productsRoutes from "./routes/products.routes.js";
@@ -9,43 +9,60 @@ import permissionsRoutes from "./routes/permissions.routes.js";
 import rolesRoutes from "./routes/roles.routes.js";
 import rolesPermissionsRoutes from "./routes/rolesPermissions.routes.js";
 import userPermissionsRoutes from "./routes/userPermissions.routes.js";
-import { authenticate } from "./middlewares/authentication.js";
 import sessionsRoutes from "./routes/sessions.routes.js";
 import concurrentsRoutes from "./routes/concurrents.routes.js";
 import consumerProductsRoutes from "./routes/consumerProducts.routes.js";
 import consumerGroupsRoutes from "./routes/consumerGroups.routes.js";
 import rafflesRoutes from "./routes/raffles.routes.js";
+import raffleClientsRoutes from "./routes/raffleClients.routes.js";
 
 export default async function (app: FastifyInstance) {
-  app.register(signinRoutes, { prefix: "/signin" });
-  app.register(rafflesRoutes, {prefix: "/raffles"})
-
-  app.register(async (protectedRoutes) => {
-    protectedRoutes.addHook("preHandler", authenticate);
-    protectedRoutes.register(bonusRoutes, { prefix: "/bonus" });
-    protectedRoutes.register(concurrentsRoutes, { prefix: "/concurrents" });
-
-    protectedRoutes.register(permissionsRoutes, { prefix: "/permissions" });
-    protectedRoutes.register(productsRoutes, { prefix: "/products" });
-    protectedRoutes.register(rolesRoutes, { prefix: "/roles" });
-    protectedRoutes.register(rolesPermissionsRoutes, {
-      prefix: "/role-permissions",
-    });
-    protectedRoutes.register(sessionsRoutes, { prefix: "/sessions" });
-    protectedRoutes.register(userPermissionsRoutes, {
-      prefix: "/user-permissions",
-    });
-    protectedRoutes.register(usersRoutes, { prefix: "/users" });
-    protectedRoutes.register(validitiesRoutes, { prefix: "/validities" });
-    protectedRoutes.register(validityRequestsRoutes, {
-      prefix: "/validity-requests",
-    });
-    protectedRoutes.register(consumerProductsRoutes, {
-      prefix: "/consumer-products",
-    });
-    protectedRoutes.register(consumerGroupsRoutes, {
-      prefix: "/consumer-groups",
-    });
-
+  app.register(signinRoutes, {
+    prefix: "/signin",
+  });
+  app.register(bonusRoutes, {
+    prefix: "/bonus",
+  });
+  app.register(concurrentsRoutes, {
+    prefix: "/concurrents",
+  });
+  app.register(consumerProductsRoutes, {
+    prefix: "/consumer-products",
+  });
+  app.register(consumerGroupsRoutes, {
+    prefix: "/consumer-groups",
+  });
+  app.register(permissionsRoutes, {
+    prefix: "/permissions",
+  });
+  app.register(productsRoutes, {
+    prefix: "/products",
+  });
+  app.register(rafflesRoutes, {
+    prefix: "/raffles",
+  });
+  app.register(raffleClientsRoutes, {
+    prefix: "/raffle-clients",
+  });
+  app.register(rolesRoutes, {
+    prefix: "/roles",
+  });
+  app.register(rolesPermissionsRoutes, {
+    prefix: "/role-permissions",
+  });
+  app.register(sessionsRoutes, {
+    prefix: "/sessions",
+  });
+  app.register(userPermissionsRoutes, {
+    prefix: "/user-permissions",
+  });
+  app.register(usersRoutes, {
+    prefix: "/users",
+  });
+  app.register(validitiesRoutes, {
+    prefix: "/validities",
+  });
+  app.register(validityRequestsRoutes, {
+    prefix: "/validity-requests",
   });
 }

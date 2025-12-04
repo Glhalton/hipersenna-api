@@ -42,9 +42,9 @@ export async function createRafflesController(
   reply: FastifyReply
 ) {
   try {
-    const { nfc_key, name } = createRaffleSchema.parse(request.body);
+    const { nfc_key } = createRaffleSchema.parse(request.body);
 
-    const rafflesCreateds = await createRaffleService({ nfc_key, name });
+    const rafflesCreateds = await createRaffleService({ nfc_key });
 
     return reply.status(201).send(rafflesCreateds);
   } catch (error: any) {

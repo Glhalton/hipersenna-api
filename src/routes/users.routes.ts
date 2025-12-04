@@ -7,7 +7,7 @@ import {
   getUserController,
   updateUserController,
 } from "../controllers/users.controllers.js";
-import { authorizePermissions } from "../middlewares/authorizePermissions.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
 import {
   createUserSchema,
   getUserSchema,
@@ -16,12 +16,13 @@ import {
   userResponseSchema,
 } from "../schemas/users.schemas.js";
 import z from "zod";
+import { authenticate } from "../middlewares/authenticate.middleware.js";
 
 export default async function usersRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: authorizePermissions(21),
+      preHandler: [authenticate, authorize(21)],
       schema: {
         description:
           "Realiza a consulta de usuários. Retorna uma lista de usuários, podendo ser filtrado pelo id, nome, username, id do winthor ou filial.",
@@ -40,6 +41,7 @@ export default async function usersRoutes(app: FastifyInstance) {
   app.get(
     "/me",
     {
+      preHandler: [authenticate],
       schema: {
         description: "Retorna os dados do usuário que realizou a consulta.",
         security: [{ BearerAuth: [] }],
@@ -56,6 +58,7 @@ export default async function usersRoutes(app: FastifyInstance) {
   app.get(
     "/token",
     {
+      preHandler: [authenticate],
       schema: {
         description: "Retorna os dados do token",
         security: [{ BearerAuth: [] }],
@@ -69,7 +72,7 @@ export default async function usersRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: authorizePermissions(22),
+      preHandler: [authenticate, authorize(22)],
       schema: {
         description: "Realiza a criação de um usuário.",
         security: [{ BearerAuth: [] }],
@@ -88,7 +91,7 @@ export default async function usersRoutes(app: FastifyInstance) {
   app.patch(
     "/:id",
     {
-      preHandler: authorizePermissions(23),
+      preHandler: [authenticate, authorize(23)],
       schema: {
         description: "Realiza a atualização de dados de um usuário.",
         security: [{ BearerAuth: [] }],
@@ -107,7 +110,7 @@ export default async function usersRoutes(app: FastifyInstance) {
   app.delete(
     "/:id",
     {
-      preHandler: authorizePermissions(24),
+      preHandler: [authenticate, authorize(24)],
       schema: {
         description: "Realiza a exclusão de um usuário.",
         security: [{ BearerAuth: [] }],

@@ -5,7 +5,7 @@ import {
   getMyValidityRequestsController,
   updateValidityRequestController,
 } from "../controllers/validityRequests.controllers.js";
-import { authorizePermissions } from "../middlewares/authorizePermissions.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
 import {
   createValidityRequestSchema,
   getValidityRequestsSchema,
@@ -14,12 +14,13 @@ import {
 } from "../schemas/validityRequests.schemas.js";
 import z from "zod";
 import { createValidityRequestService } from "../services/validityRequests.services.js";
+import { authenticate } from "../middlewares/authenticate.middleware.js";
 
 export default async function validityRequestsRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: authorizePermissions(31),
+      preHandler: [authenticate, authorize(31)],
       schema: {
         description: "Realiza a consulta de Solicitações de validade.",
         security: [{ BearerAuth: [] }],
@@ -38,6 +39,7 @@ export default async function validityRequestsRoutes(app: FastifyInstance) {
   app.get(
     "/me",
     {
+      preHandler: [authenticate],
       schema: {
         description:
           "Realiza a consulta de Solicitações de validade vinculada ao usuario que consultou.",
@@ -57,7 +59,7 @@ export default async function validityRequestsRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: authorizePermissions(32),
+      preHandler: [authenticate, authorize(32)],
       schema: {
         description: "Realiza a criação de Solicitações de validade.",
         security: [{ BearerAuth: [] }],
@@ -75,7 +77,7 @@ export default async function validityRequestsRoutes(app: FastifyInstance) {
   app.patch(
     "/",
     {
-      preHandler: authorizePermissions(33),
+      preHandler: [authenticate, authorize(33)],
       schema: {
         description:
           "Realiza a atualização de dados de Solicitações de validade",

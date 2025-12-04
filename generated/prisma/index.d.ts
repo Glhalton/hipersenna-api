@@ -21218,6 +21218,7 @@ export namespace Prisma {
     id: number | null
     cpf: string | null
     name: string | null
+    telephone: string | null
     created_at: Date | null
     modified_at: Date | null
   }
@@ -21226,6 +21227,7 @@ export namespace Prisma {
     id: number | null
     cpf: string | null
     name: string | null
+    telephone: string | null
     created_at: Date | null
     modified_at: Date | null
   }
@@ -21234,6 +21236,7 @@ export namespace Prisma {
     id: number
     cpf: number
     name: number
+    telephone: number
     created_at: number
     modified_at: number
     _all: number
@@ -21252,6 +21255,7 @@ export namespace Prisma {
     id?: true
     cpf?: true
     name?: true
+    telephone?: true
     created_at?: true
     modified_at?: true
   }
@@ -21260,6 +21264,7 @@ export namespace Prisma {
     id?: true
     cpf?: true
     name?: true
+    telephone?: true
     created_at?: true
     modified_at?: true
   }
@@ -21268,6 +21273,7 @@ export namespace Prisma {
     id?: true
     cpf?: true
     name?: true
+    telephone?: true
     created_at?: true
     modified_at?: true
     _all?: true
@@ -21363,6 +21369,7 @@ export namespace Prisma {
     id: number
     cpf: string
     name: string
+    telephone: string
     created_at: Date
     modified_at: Date
     _count: Hsraffle_clientsCountAggregateOutputType | null
@@ -21390,6 +21397,7 @@ export namespace Prisma {
     id?: boolean
     cpf?: boolean
     name?: boolean
+    telephone?: boolean
     created_at?: boolean
     modified_at?: boolean
     hsraffles?: boolean | hsraffle_clients$hsrafflesArgs<ExtArgs>
@@ -21400,6 +21408,7 @@ export namespace Prisma {
     id?: boolean
     cpf?: boolean
     name?: boolean
+    telephone?: boolean
     created_at?: boolean
     modified_at?: boolean
   }, ExtArgs["result"]["hsraffle_clients"]>
@@ -21408,6 +21417,7 @@ export namespace Prisma {
     id?: boolean
     cpf?: boolean
     name?: boolean
+    telephone?: boolean
     created_at?: boolean
     modified_at?: boolean
   }, ExtArgs["result"]["hsraffle_clients"]>
@@ -21416,11 +21426,12 @@ export namespace Prisma {
     id?: boolean
     cpf?: boolean
     name?: boolean
+    telephone?: boolean
     created_at?: boolean
     modified_at?: boolean
   }
 
-  export type hsraffle_clientsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cpf" | "name" | "created_at" | "modified_at", ExtArgs["result"]["hsraffle_clients"]>
+  export type hsraffle_clientsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cpf" | "name" | "telephone" | "created_at" | "modified_at", ExtArgs["result"]["hsraffle_clients"]>
   export type hsraffle_clientsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hsraffles?: boolean | hsraffle_clients$hsrafflesArgs<ExtArgs>
     _count?: boolean | Hsraffle_clientsCountOutputTypeDefaultArgs<ExtArgs>
@@ -21437,6 +21448,7 @@ export namespace Prisma {
       id: number
       cpf: string
       name: string
+      telephone: string
       created_at: Date
       modified_at: Date
     }, ExtArgs["result"]["hsraffle_clients"]>
@@ -21866,6 +21878,7 @@ export namespace Prisma {
     readonly id: FieldRef<"hsraffle_clients", 'Int'>
     readonly cpf: FieldRef<"hsraffle_clients", 'String'>
     readonly name: FieldRef<"hsraffle_clients", 'String'>
+    readonly telephone: FieldRef<"hsraffle_clients", 'String'>
     readonly created_at: FieldRef<"hsraffle_clients", 'DateTime'>
     readonly modified_at: FieldRef<"hsraffle_clients", 'DateTime'>
   }
@@ -22502,6 +22515,7 @@ export namespace Prisma {
     id: 'id',
     cpf: 'cpf',
     name: 'name',
+    telephone: 'telephone',
     created_at: 'created_at',
     modified_at: 'modified_at'
   };
@@ -23725,6 +23739,7 @@ export namespace Prisma {
     id?: IntFilter<"hsraffle_clients"> | number
     cpf?: StringFilter<"hsraffle_clients"> | string
     name?: StringFilter<"hsraffle_clients"> | string
+    telephone?: StringFilter<"hsraffle_clients"> | string
     created_at?: DateTimeFilter<"hsraffle_clients"> | Date | string
     modified_at?: DateTimeFilter<"hsraffle_clients"> | Date | string
     hsraffles?: HsrafflesListRelationFilter
@@ -23734,6 +23749,7 @@ export namespace Prisma {
     id?: SortOrder
     cpf?: SortOrder
     name?: SortOrder
+    telephone?: SortOrder
     created_at?: SortOrder
     modified_at?: SortOrder
     hsraffles?: hsrafflesOrderByRelationAggregateInput
@@ -23746,6 +23762,7 @@ export namespace Prisma {
     NOT?: hsraffle_clientsWhereInput | hsraffle_clientsWhereInput[]
     cpf?: StringFilter<"hsraffle_clients"> | string
     name?: StringFilter<"hsraffle_clients"> | string
+    telephone?: StringFilter<"hsraffle_clients"> | string
     created_at?: DateTimeFilter<"hsraffle_clients"> | Date | string
     modified_at?: DateTimeFilter<"hsraffle_clients"> | Date | string
     hsraffles?: HsrafflesListRelationFilter
@@ -23755,6 +23772,7 @@ export namespace Prisma {
     id?: SortOrder
     cpf?: SortOrder
     name?: SortOrder
+    telephone?: SortOrder
     created_at?: SortOrder
     modified_at?: SortOrder
     _count?: hsraffle_clientsCountOrderByAggregateInput
@@ -23771,6 +23789,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"hsraffle_clients"> | number
     cpf?: StringWithAggregatesFilter<"hsraffle_clients"> | string
     name?: StringWithAggregatesFilter<"hsraffle_clients"> | string
+    telephone?: StringWithAggregatesFilter<"hsraffle_clients"> | string
     created_at?: DateTimeWithAggregatesFilter<"hsraffle_clients"> | Date | string
     modified_at?: DateTimeWithAggregatesFilter<"hsraffle_clients"> | Date | string
   }
@@ -24772,6 +24791,7 @@ export namespace Prisma {
   export type hsraffle_clientsCreateInput = {
     cpf: string
     name: string
+    telephone: string
     created_at?: Date | string
     modified_at?: Date | string
     hsraffles?: hsrafflesCreateNestedManyWithoutHsraffle_clientsInput
@@ -24781,6 +24801,7 @@ export namespace Prisma {
     id?: number
     cpf: string
     name: string
+    telephone: string
     created_at?: Date | string
     modified_at?: Date | string
     hsraffles?: hsrafflesUncheckedCreateNestedManyWithoutHsraffle_clientsInput
@@ -24789,6 +24810,7 @@ export namespace Prisma {
   export type hsraffle_clientsUpdateInput = {
     cpf?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsraffles?: hsrafflesUpdateManyWithoutHsraffle_clientsNestedInput
@@ -24798,6 +24820,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     cpf?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hsraffles?: hsrafflesUncheckedUpdateManyWithoutHsraffle_clientsNestedInput
@@ -24807,6 +24830,7 @@ export namespace Prisma {
     id?: number
     cpf: string
     name: string
+    telephone: string
     created_at?: Date | string
     modified_at?: Date | string
   }
@@ -24814,6 +24838,7 @@ export namespace Prisma {
   export type hsraffle_clientsUpdateManyMutationInput = {
     cpf?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -24822,6 +24847,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     cpf?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -25906,6 +25932,7 @@ export namespace Prisma {
     id?: SortOrder
     cpf?: SortOrder
     name?: SortOrder
+    telephone?: SortOrder
     created_at?: SortOrder
     modified_at?: SortOrder
   }
@@ -25918,6 +25945,7 @@ export namespace Prisma {
     id?: SortOrder
     cpf?: SortOrder
     name?: SortOrder
+    telephone?: SortOrder
     created_at?: SortOrder
     modified_at?: SortOrder
   }
@@ -25926,6 +25954,7 @@ export namespace Prisma {
     id?: SortOrder
     cpf?: SortOrder
     name?: SortOrder
+    telephone?: SortOrder
     created_at?: SortOrder
     modified_at?: SortOrder
   }
@@ -30008,6 +30037,7 @@ export namespace Prisma {
   export type hsraffle_clientsCreateWithoutHsrafflesInput = {
     cpf: string
     name: string
+    telephone: string
     created_at?: Date | string
     modified_at?: Date | string
   }
@@ -30016,6 +30046,7 @@ export namespace Prisma {
     id?: number
     cpf: string
     name: string
+    telephone: string
     created_at?: Date | string
     modified_at?: Date | string
   }
@@ -30039,6 +30070,7 @@ export namespace Prisma {
   export type hsraffle_clientsUpdateWithoutHsrafflesInput = {
     cpf?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -30047,6 +30079,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     cpf?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    telephone?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     modified_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
