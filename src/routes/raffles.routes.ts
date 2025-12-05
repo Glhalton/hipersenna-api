@@ -18,7 +18,7 @@ export default async function rafflesRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: [authenticate],
+      preHandler: [],
       schema: {
         description: "Realiza a consulta de rifas de sorteio.",
         security: [{BearerAuth: []}],
@@ -36,6 +36,7 @@ export default async function rafflesRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
+      preHandler: [],
       schema: {
         description: "Realiza a criação de rifas de sorteio.",
         body: createRaffleSchema,
@@ -58,7 +59,7 @@ export default async function rafflesRoutes(app: FastifyInstance) {
         security: [{BearerAuth: []}],
         params: drawRafflesSchema,
         response: {
-          200: z.array(raffleResponseSchema),
+          200: raffleResponseSchema,
         },
         tags: ["Raffles"],
         summary: "Rota de sorteio de rifas.",

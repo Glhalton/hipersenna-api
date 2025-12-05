@@ -68,8 +68,6 @@ export const createRaffleService = async ({ nfc_key }: CreateRaffle) => {
     throw new Error("Cliente não encontrado no sistema");
   }
 
-  // const client_id = await getOrCreateClient(cpf, name);
-
   await prisma.$transaction(async (tx) => {
     for (let i = 0; i < raffleUnits; i++) {
       const raffle = await tx.hsraffles.create({
@@ -90,6 +88,8 @@ export const createRaffleService = async ({ nfc_key }: CreateRaffle) => {
       riffles.push(updated);
     }
   });
+
+  
   return riffles;
 };
 
@@ -171,3 +171,4 @@ const createHash = (id: number) => {
   const hash = crypto.createHash("sha256").update(id.toString()).digest("hex");
   return hash.substring(0, 8).toUpperCase();
 };
+

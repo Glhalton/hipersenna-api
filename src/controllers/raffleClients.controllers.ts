@@ -45,9 +45,9 @@ export async function createRaffleClientsController(
     const client = await getRaffleClientsService({ cpf });
 
     if (client.length > 0) {
-      return reply
-        .status(409)
-        .send("Já existe um usuário com esse CPF cadastrado no sistema");
+      return reply.status(409).send({
+        message: "Já existe um usuário com esse CPF cadastrado no sistema",
+      });
     }
 
     const clientCreated = await createRaffleClientsService({
