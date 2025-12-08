@@ -8,6 +8,7 @@ import {
 import {
   createRaffleSchema,
   drawRafflesSchema,
+  getNfcDataSchema,
   getRaffleSchema,
   raffleResponseSchema,
 } from "../schemas/raffles.schemas.js";
@@ -39,7 +40,7 @@ export default async function rafflesRoutes(app: FastifyInstance) {
       preHandler: [],
       schema: {
         description: "Realiza a criação de rifas de sorteio.",
-        body: createRaffleSchema,
+        body: getNfcDataSchema,
         response: {
           201: z.array(raffleResponseSchema),
         },

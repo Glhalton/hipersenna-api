@@ -1,5 +1,13 @@
 import z from "zod";
 
+export const getNfcDataSchema = z.object({
+  nfc_key: z.string().optional(),
+  nfc_number: z.coerce.number().optional(),
+  nfc_serie: z.coerce.number().optional(),
+});
+
+export type GetNfcData = z.infer<typeof getNfcDataSchema>;
+
 export const getRaffleSchema = z.object({
   id: z.number().optional(),
   client_id: z.number().optional(),
@@ -11,7 +19,9 @@ export const getRaffleSchema = z.object({
 export type GetRaffle = z.infer<typeof getRaffleSchema>;
 
 export const createRaffleSchema = z.object({
-  nfc_key: z.string(),
+  nfc_key: z.string().optional(),
+  nfc_number: z.number().optional(),
+  nfc_sries: z.number().optional(),
 });
 
 export type CreateRaffle = z.infer<typeof createRaffleSchema>;
@@ -38,3 +48,12 @@ export const raffleResponseSchema = z.object({
   created_at: z.date(),
   modified_at: z.date(),
 });
+
+export const nfcDataResponse = z.object({
+  codFilial: z.number(),
+  cpf: z.string(),
+  chaveNfe: z.string(),
+  vlTotal: z.number(),
+})
+
+export type nfcDataResponse = z.infer<typeof nfcDataResponse>;

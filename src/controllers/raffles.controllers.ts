@@ -2,11 +2,14 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import {
   createRaffleSchema,
   drawRafflesSchema,
+  getNfcDataSchema,
   getRaffleSchema,
+  nfcDataResponse,
 } from "../schemas/raffles.schemas.js";
 import {
   createRaffleService,
   drawRafflesService,
+  getNfcDataService,
   getRafflesService,
   invalidateRafflesService,
 } from "../services/raffles.services.js";
@@ -42,9 +45,19 @@ export async function createRafflesController(
   reply: FastifyReply
 ) {
   try {
-    const { nfc_key } = createRaffleSchema.parse(request.body);
+    const { nfc_key, nfc_number, nfc_serie } = getNfcDataSchema.parse(
+      request.body
+    );
 
-    const rafflesCreateds = await createRaffleService({ nfc_key });
+    const nfcData = await getNfcDataService({ nfc_key, nfc_number, nfc_serie });
+
+    if (nfcData.length === 0) {
+      return reply
+        .status(404)
+        .send({ message: "Cupom fiscal não encontrado no sistema" });
+    }
+
+    const rafflesCreateds = await createRaffleService(nfcData[0]);
 
     return reply.status(201).send(rafflesCreateds);
   } catch (error: any) {

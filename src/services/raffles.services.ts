@@ -3,7 +3,10 @@ import { prisma } from "../lib/prisma.js";
 import {
   CreateRaffle,
   DrawRaffles,
+  GetNfcData,
+  getNfcDataSchema,
   GetRaffle,
+  nfcDataResponse,
   UpdateRaffle,
 } from "../schemas/raffles.schemas.js";
 import oracledb from "oracledb";
@@ -31,16 +34,21 @@ export const getRafflesService = async ({
   });
 };
 
-export const createRaffleService = async ({ nfc_key }: CreateRaffle) => {
+export const createRaffleService = async ({
+  cpf,
+  chaveNfe,
+  codFilial,
+  vlTotal,
+}: nfcDataResponse) => {
   const riffles: any = [];
 
-  const nfcData = await getNfcData(nfc_key);
+  // const nfcData = await getNfcData(nfc_key);
 
-  if (!nfcData || nfcData.length === 0) {
-    throw new Error("Cupom não encontrado");
-  }
+  // if (!nfcData || nfcData.length === 0) {
+  //   throw new Error("Cupom não encontrado");
+  // }
 
-  const raffleUnits = Math.floor(nfcData[0].vlTotal / 50);
+  const raffleUnits = Math.floor(vlTotal / 50);
 
   if (raffleUnits === 0) {
     throw new Error(
@@ -49,14 +57,12 @@ export const createRaffleService = async ({ nfc_key }: CreateRaffle) => {
   }
 
   const rafflesCount = await prisma.hsraffles.count({
-    where: { nfc_key },
+    where: { nfc_key: chaveNfe },
   });
 
   if (rafflesCount >= raffleUnits) {
     throw new Error("Já existem rifas cadastradas para esse cupom");
   }
-
-  const cpf = nfcData[0].cpf;
 
   if (cpf == "11111111111" || null) {
     throw new Error("CPF não encontrado no cupom fiscal.");
@@ -73,8 +79,8 @@ export const createRaffleService = async ({ nfc_key }: CreateRaffle) => {
       const raffle = await tx.hsraffles.create({
         data: {
           client_id: client[0].id,
-          nfc_key,
-          branch_id: Number(nfcData[0].codFilial),
+          nfc_key: chaveNfe,
+          branch_id: Number(codFilial),
         },
       });
 
@@ -89,7 +95,6 @@ export const createRaffleService = async ({ nfc_key }: CreateRaffle) => {
     }
   });
 
-  
   return riffles;
 };
 
@@ -129,37 +134,69 @@ export const invalidateRafflesService = async ({ branch_id }: DrawRaffles) => {
   return updatedRaffles;
 };
 
-const getNfcData = async (nfc_key: string) => {
+export const getNfcDataService = async ({
+  nfc_key,
+  nfc_number,
+  nfc_serie,
+}: GetNfcData) => {
   const connection = await getOracleConnection();
 
   try {
-    const binds = { nfc_key };
+    const conditions: string[] = [];
+    const binds: Record<string, any> = {};
+    
+
+    if (nfc_key) {
+      conditions.push("chavenfe = :nfc_key");
+      binds.nfc_key = nfc_key;
+    }
+
+    if (nfc_number) {
+      conditions.push("numnota = :nfc_number");
+      binds.nfc_number = Number(nfc_number);
+    }
+
+    if (nfc_serie) {
+      conditions.push("serie = :nfc_serie");
+      binds.nfc_serie = Number(nfc_serie);
+    }
+
+    if (conditions.length === 0) {
+      throw new Error("Nenhuma condição de consulta encontrado para NF");
+    } else if (!nfc_key && conditions.length === 1){
+      console.log(conditions.length);
+      throw new Error ("É necessário informar a chave da nfc ou informar o número da nfc e a série da nfc");
+    }
+
+    const whereClause =
+      conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
 
     const query = `
         SELECT
             codfilial,
             cgc,
-            numnota,
+            chavenfe,
             vltotal
         FROM pcnfsaid
-        WHERE chavenfe = :nfc_key
+        ${whereClause}
     `;
 
     const result = await connection.execute(query, binds, {
       outFormat: oracledb.OUT_FORMAT_OBJECT,
+      maxRows: 250,
     });
 
     type nfcData = {
       CODFILIAL: number;
       CGC: string;
-      NUMNOTA: number;
+      CHAVENFE: string;
       VLTOTAL: number;
     };
 
     return ((result.rows as nfcData[]) ?? []).map((row) => ({
       codFilial: row.CODFILIAL,
       cpf: row.CGC.replace(/\D/g, ""),
-      numNota: row.NUMNOTA,
+      chaveNfe: row.CHAVENFE,
       vlTotal: row.VLTOTAL,
     }));
   } finally {
@@ -171,4 +208,3 @@ const createHash = (id: number) => {
   const hash = crypto.createHash("sha256").update(id.toString()).digest("hex");
   return hash.substring(0, 8).toUpperCase();
 };
-
