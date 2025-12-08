@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { hsvalidity_request_products_status, hsvalidity_requests_status } from "../../generated/prisma/index.js";
 
 export const getValidityRequestsSchema = z.object({
   id: z.coerce.number().optional(),
