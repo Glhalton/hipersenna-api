@@ -147,11 +147,6 @@ model hssessions {
   @@map("hssessions")
 }
 
-/**
- * Problema do preço: o preço dos produtos tambem devem ser passados para a tabela?
- * Preço muda com o tempo, devo pegar os preços quando adiiconar o produto ou quando criar
- * a nota de consumo?
- */
 model hsconsumer_products {
   id                 Int                 @id @default(autoincrement())
   consumption_id     Int?
@@ -160,8 +155,6 @@ model hsconsumer_products {
   product_code       Int
   auxiliary_code     String
   quantity           Int
-  unit_price         Decimal
-  total_price        Decimal
   group_id           Int
   created_at         DateTime            @default(now()) @db.Timestamptz(6)
   modified_at        DateTime            @default(now()) @updatedAt @db.Timestamptz(6)
@@ -176,7 +169,6 @@ model hsconsumption_note {
   employee_id        Int
   branch_id          Int
   group_id           Int
-  total_price        Decimal
   created_at         DateTime              @default(now()) @db.Timestamptz(6)
   modified_at        DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
   hsconsumer_groups  hsconsumer_groups     @relation(fields: [group_id], references: [id])

@@ -50,8 +50,6 @@ export async function signinController(
       expires_at
     );
 
-    console.log(user)
-
     return reply
       .status(200)
       .send({ message: "Usuário logado com sucesso!", token, user });
