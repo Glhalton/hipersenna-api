@@ -19,7 +19,7 @@ export async function getRafflesController(
   reply: FastifyReply
 ) {
   try {
-    const { id, branch_id, client_id, nfc_key } = getRaffleSchema.parse(
+    const { id, branch_id, client_id, nfc_key, cpf } = getRaffleSchema.parse(
       request.query
     );
 
@@ -28,6 +28,7 @@ export async function getRafflesController(
       branch_id,
       client_id,
       nfc_key,
+      cpf,
     });
 
     if (raffles.length === 0) {

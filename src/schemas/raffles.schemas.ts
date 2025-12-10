@@ -14,6 +14,7 @@ export const getRaffleSchema = z.object({
   nfc_key: z.string().optional(),
   branch_id: z.string().optional(),
   status: z.any().optional(),
+  cpf: z.string().optional(),
 });
 
 export type GetRaffle = z.infer<typeof getRaffleSchema>;

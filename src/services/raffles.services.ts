@@ -21,6 +21,7 @@ export const getRafflesService = async ({
   branch_id,
   client_id,
   nfc_key,
+  cpf,
 }: GetRaffle) => {
   const whereClause: any = {};
 
@@ -28,9 +29,17 @@ export const getRafflesService = async ({
   if (branch_id) whereClause.branch_id = branch_id;
   if (client_id) whereClause.client_id = client_id;
   if (nfc_key) whereClause.nfc_key = nfc_key;
+  if (cpf) {
+    whereClause.hsraffle_clients = {
+      cpf: cpf
+    };
+  }
 
   return await prisma.hsraffles.findMany({
     where: whereClause,
+    include: {
+      hsraffle_clients: true,
+    }
   });
 };
 
@@ -144,7 +153,6 @@ export const getNfcDataService = async ({
   try {
     const conditions: string[] = [];
     const binds: Record<string, any> = {};
-    
 
     if (nfc_key) {
       conditions.push("chavenfe = :nfc_key");
@@ -163,9 +171,11 @@ export const getNfcDataService = async ({
 
     if (conditions.length === 0) {
       throw new Error("Nenhuma condição de consulta encontrado para NF");
-    } else if (!nfc_key && conditions.length === 1){
+    } else if (!nfc_key && conditions.length === 1) {
       console.log(conditions.length);
-      throw new Error ("É necessário informar a chave da nfc ou informar o número da nfc e a série da nfc");
+      throw new Error(
+        "É necessário informar a chave da nfc ou informar o número da nfc e a série da nfc"
+      );
     }
 
     const whereClause =

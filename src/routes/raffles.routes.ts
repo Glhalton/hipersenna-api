@@ -22,7 +22,6 @@ export default async function rafflesRoutes(app: FastifyInstance) {
       preHandler: [],
       schema: {
         description: "Realiza a consulta de rifas de sorteio.",
-        security: [{BearerAuth: []}],
         query: getRaffleSchema,
         response: {
           200: z.array(raffleResponseSchema),
