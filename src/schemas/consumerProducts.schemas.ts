@@ -1,11 +1,11 @@
 import z from "zod";
 
 export const createConsumerProductsSchema = z.object({
-  branch_id: z.number(),
-  product_code: z.number(),
+  branch_id: z.coerce.number(),
+  product_code: z.coerce.number(),
   auxiliary_code: z.string(),
-  quantity: z.number(),
-  group_id: z.number(),
+  quantity: z.coerce.number(),
+  group_id: z.coerce.number(),
 });
 
 export type CreateConsumerProducts = z.infer<typeof createConsumerProductsSchema>;
