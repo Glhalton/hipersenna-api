@@ -8,6 +8,7 @@ import {
 import {
   createConsumerProductsService,
   deleteConsumerProductsService,
+  existingConsumerProducts,
   getConsumerProductsService,
   updateConsumerProductsService,
 } from "../services/consumerProducts.services.js";
@@ -17,6 +18,9 @@ export async function getConsumerProductsController(
   reply: FastifyReply
 ) {
   try {
+    
+    console.log(request.query);
+
     const {
       id,
       employee_id,
@@ -24,6 +28,7 @@ export async function getConsumerProductsController(
       product_code,
       auxiliary_code,
       group_id,
+      consumption_id
     } = getConsumerProductsSchema.parse(request.query);
 
     const consumerProducts = await getConsumerProductsService({
@@ -33,6 +38,7 @@ export async function getConsumerProductsController(
       product_code,
       auxiliary_code,
       group_id,
+      consumption_id
     });
 
     if (consumerProducts.length === 0) {
@@ -83,30 +89,27 @@ export async function updateConsumerProductsController(
   reply: FastifyReply
 ) {
   try {
-    const { id } = consumerProductsId.parse(request.params);
-    const { product_code, auxiliary_code, branch_id, quantity, group_id } =
+    const { id, product_code, auxiliary_code, branch_id, quantity, group_id } =
       updateConsumerProductsSchema.parse(request.body);
 
-    const consumerProduct = await getConsumerProductsService({ id });
+    const consumerProduct = await existingConsumerProducts(id);
 
-    if (consumerProduct.length === 0) {
+    if (!consumerProduct) {
       return reply.status(404).send({
         message: "Produtos de consumo não encontrados!",
       });
     }
 
-    const consumerProductUpdated = await updateConsumerProductsService(
-      {
-        product_code,
-        auxiliary_code,
-        branch_id,
-        quantity,
-        group_id,
-      },
-      id
-    );
+    const consumerProductUpdated = await updateConsumerProductsService({
+      id,
+      product_code,
+      auxiliary_code,
+      branch_id,
+      quantity,
+      group_id,
+    });
 
-    return reply.status(200).send(consumerProductUpdated);
+    return reply.status(200).send({message: "Produtos de consumo atualizados com sucesso!"});
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }
@@ -119,7 +122,7 @@ export async function deleteConsumerProductsController(
   try {
     const { id } = consumerProductsId.parse(request.params);
 
-    const consumerProduct = await getConsumerProductsService({ id });
+    const consumerProduct = await getConsumerProductsService({id});
 
     if (consumerProduct.length === 0) {
       return reply.status(404).send({
@@ -130,7 +133,6 @@ export async function deleteConsumerProductsController(
     const consumerProductDeleted = await deleteConsumerProductsService(id);
 
     return reply.status(200).send(consumerProductDeleted);
-
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }

@@ -55,16 +55,15 @@ export default async function consumerProductsRoutes(app: FastifyInstance) {
   );
 
   app.patch(
-    "/:id",
+    "/",
     {
       preHandler: authenticate,
       schema: {
         description: "Realiza a atualização de dados de produtos de consumo.",
         security: [{ BearerAuth: [] }],
-        params: consumerProductsId,
         body: updateConsumerProductsSchema,
         response: {
-          200: consumerProductsResponse,
+          200: z.object({ message: z.string() }),
           404: z.object({ message: z.string() }),
         },
         tags: ["Consumer-Products"],

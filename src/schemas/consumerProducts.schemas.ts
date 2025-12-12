@@ -17,11 +17,13 @@ export const getConsumerProductsSchema = z.object({
   product_code: z.coerce.number().optional(),
   auxiliary_code: z.string().optional(),
   group_id: z.coerce.number().optional(),
+  consumption_id: z.coerce.number().optional().nullable()
 });
 
 export type GetConsumerProducts = z.infer<typeof getConsumerProductsSchema>;
 
 export const updateConsumerProductsSchema = z.object({
+  id: z.coerce.number().array(),
   branch_id: z.number().optional(),
   product_code: z.number().optional(),
   auxiliary_code: z.string().optional(),
@@ -37,6 +39,7 @@ export const consumerProductsId = z.object({
 
 export const consumerProductsResponse = z.object({
   id: z.number(),
+  description: z.string().optional(),
   consumption_id: z.number().nullable(),
   employee_id: z.number(),
   branch_id:  z.number(),
@@ -47,3 +50,5 @@ export const consumerProductsResponse = z.object({
   created_at: z.date(),
   modified_at:z.date(),
 })
+
+
