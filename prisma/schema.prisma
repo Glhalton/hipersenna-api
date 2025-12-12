@@ -16,7 +16,7 @@ model hsemployees {
   name                String
   username            String                @unique
   password            String
-  role_id             Int                   
+  role_id             Int
   created_at          DateTime              @default(now()) @db.Timestamptz(6)
   modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
   branch              hsbranches            @relation(fields: [branch_id], references: [id])
@@ -76,7 +76,6 @@ model hsbranches {
   hsvalidities        hsvalidities[]
   hsvalidity_requests hsvalidity_requests[]
   hsconsumerProducts  hsconsumer_products[]
-  consumptionNotes    hsconsumption_note[]
 }
 
 model hsvalidities {
@@ -148,31 +147,27 @@ model hssessions {
 }
 
 model hsconsumer_products {
-  id                 Int                 @id @default(autoincrement())
-  consumption_id     Int?
-  employee_id        Int
-  branch_id          Int
-  product_code       Int
-  auxiliary_code     String
-  quantity           Int
-  group_id           Int
-  created_at         DateTime            @default(now()) @db.Timestamptz(6)
-  modified_at        DateTime            @default(now()) @updatedAt @db.Timestamptz(6)
-  hsemployees        hsemployees         @relation(fields: [employee_id], references: [id])
-  hsconsumer_groups  hsconsumer_groups   @relation(fields: [group_id], references: [id])
-  branch             hsbranches          @relation(fields: [branch_id], references: [id])
-  hsconsumption_note hsconsumption_note? @relation(fields: [consumption_id], references: [id])
+  id                Int               @id @default(autoincrement())
+  consumption_id    Int?
+  employee_id       Int
+  branch_id         Int
+  product_code      Int
+  auxiliary_code    String
+  quantity          Int
+  group_id          Int
+  created_at        DateTime          @default(now()) @db.Timestamptz(6)
+  modified_at       DateTime          @default(now()) @updatedAt @db.Timestamptz(6)
+  hsemployees       hsemployees       @relation(fields: [employee_id], references: [id])
+  hsconsumer_groups hsconsumer_groups @relation(fields: [group_id], references: [id])
+  branch            hsbranches        @relation(fields: [branch_id], references: [id])
+  hsconsumer_notes  hsconsumer_notes? @relation(fields: [consumption_id], references: [id])
 }
 
-model hsconsumption_note {
+model hsconsumer_notes {
   id                 Int                   @id @default(autoincrement())
   employee_id        Int
-  branch_id          Int
-  group_id           Int
   created_at         DateTime              @default(now()) @db.Timestamptz(6)
   modified_at        DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
-  hsconsumer_groups  hsconsumer_groups     @relation(fields: [group_id], references: [id])
-  branch             hsbranches            @relation(fields: [branch_id], references: [id])
   hsconsumerProducts hsconsumer_products[]
 }
 
@@ -182,7 +177,6 @@ model hsconsumer_groups {
   created_at          DateTime              @default(now()) @db.Timestamptz(6)
   modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
   hsconsumer_products hsconsumer_products[]
-  consumptionNotes    hsconsumption_note[]
 }
 
 model hsraffles {

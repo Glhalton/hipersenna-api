@@ -15,6 +15,7 @@ import consumerProductsRoutes from "./routes/consumerProducts.routes.js";
 import consumerGroupsRoutes from "./routes/consumerGroups.routes.js";
 import rafflesRoutes from "./routes/raffles.routes.js";
 import raffleClientsRoutes from "./routes/raffleClients.routes.js";
+import { consumerNotesRoutes } from "./routes/consumerNotes.routes.js";
 
 export default async function (app: FastifyInstance) {
   app.register(signinRoutes, {
@@ -31,6 +32,9 @@ export default async function (app: FastifyInstance) {
   });
   app.register(consumerGroupsRoutes, {
     prefix: "/consumer-groups",
+  });
+  app.register(consumerNotesRoutes, {
+    prefix: "/consumer-notes",
   });
   app.register(permissionsRoutes, {
     prefix: "/permissions",

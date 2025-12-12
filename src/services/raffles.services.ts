@@ -125,6 +125,9 @@ export const drawRafflesService = async ({ branch_id }: DrawRaffles) => {
     data: {
       status: "SORTEADO",
     },
+    include:{
+      hsraffle_clients: true
+    }
   });
 
   return updatedDrawnRaffle;
