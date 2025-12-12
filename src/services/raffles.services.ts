@@ -15,6 +15,7 @@ import {
   getRaffleClientsService,
 } from "./raffleClients.services.js";
 import crypto from "crypto";
+import { RaffleClientResponse } from "../schemas/raffleClients.schemas.js";
 
 export const getRafflesService = async ({
   id,
@@ -31,7 +32,7 @@ export const getRafflesService = async ({
   if (nfc_key) whereClause.nfc_key = nfc_key;
   if (cpf) {
     whereClause.hsraffle_clients = {
-      cpf: cpf
+      cpf: cpf,
     };
   }
 
@@ -39,23 +40,15 @@ export const getRafflesService = async ({
     where: whereClause,
     include: {
       hsraffle_clients: true,
-    }
+    },
   });
 };
 
-export const createRaffleService = async ({
-  cpf,
-  chaveNfe,
-  codFilial,
-  vlTotal,
-}: nfcDataResponse) => {
+export const createRaffleService = async (
+  { chaveNfe, codFilial, vlTotal }: nfcDataResponse,
+  { id }: RaffleClientResponse
+) => {
   const riffles: any = [];
-
-  // const nfcData = await getNfcData(nfc_key);
-
-  // if (!nfcData || nfcData.length === 0) {
-  //   throw new Error("Cupom não encontrado");
-  // }
 
   const raffleUnits = Math.floor(vlTotal / 50);
 
@@ -73,21 +66,11 @@ export const createRaffleService = async ({
     throw new Error("Já existem rifas cadastradas para esse cupom");
   }
 
-  if (cpf == "11111111111" || null) {
-    throw new Error("CPF não encontrado no cupom fiscal.");
-  }
-
-  const client = await getRaffleClientsService({ cpf });
-
-  if (client.length === 0) {
-    throw new Error("Cliente não encontrado no sistema");
-  }
-
   await prisma.$transaction(async (tx) => {
     for (let i = 0; i < raffleUnits; i++) {
       const raffle = await tx.hsraffles.create({
         data: {
-          client_id: client[0].id,
+          client_id: id,
           nfc_key: chaveNfe,
           branch_id: Number(codFilial),
         },

@@ -32,6 +32,8 @@ export const raffleClientResponseSchema = z.object({
   modified_at: z.date(),
 });
 
+export type RaffleClientResponse = z.infer<typeof raffleClientResponseSchema>;
+
 export const raffleClientIdSchema = z.object({
-  id: z.coerce.number()
-})
+  id: z.coerce.number(),
+});

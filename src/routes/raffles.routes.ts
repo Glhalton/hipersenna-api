@@ -39,7 +39,7 @@ export default async function rafflesRoutes(app: FastifyInstance) {
       preHandler: [],
       schema: {
         description: "Realiza a criação de rifas de sorteio.",
-        body: getNfcDataSchema,
+        body: createRaffleSchema,
         response: {
           201: z.array(raffleResponseSchema),
         },
