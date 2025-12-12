@@ -13,6 +13,7 @@ import {
   getRafflesService,
   invalidateRafflesService,
 } from "../services/raffles.services.js";
+import { getRaffleClientsService, validateCpf } from "../services/raffleClients.services.js";
 
 export async function getRafflesController(
   request: FastifyRequest,
@@ -46,9 +47,21 @@ export async function createRafflesController(
   reply: FastifyReply
 ) {
   try {
-    const { nfc_key, nfc_number, nfc_serie } = getNfcDataSchema.parse(
+    const { nfc_key, nfc_number, nfc_serie, cpf } = createRaffleSchema.parse(
       request.body
     );
+
+    const cpfValidation = validateCpf(cpf);
+
+    if(!cpfValidation){
+      return reply.status(400).send({message: "CPF inválido!"})
+    }
+
+    const client = await getRaffleClientsService({cpf});
+
+    if(client.length === 0 ){
+      reply.status(404).send({message: "CPF não encontrado no sistema!"});
+    }
 
     const nfcData = await getNfcDataService({ nfc_key, nfc_number, nfc_serie });
 
@@ -58,7 +71,7 @@ export async function createRafflesController(
         .send({ message: "Cupom fiscal não encontrado no sistema" });
     }
 
-    const rafflesCreateds = await createRaffleService(nfcData[0]);
+    const rafflesCreateds = await createRaffleService(nfcData[0], client[0]);
 
     return reply.status(201).send(rafflesCreateds);
   } catch (error: any) {

@@ -60,7 +60,7 @@ export const deleteRaffleClientsService = async (id: number) => {
   });
 };
 
-function validateCpf(cpf: string) {
+export function validateCpf(cpf: string) {
   if (!cpf) return false;
 
   const cpfLimpo = cpf.replace(/\D/g, "");

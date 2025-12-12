@@ -22,7 +22,8 @@ export type GetRaffle = z.infer<typeof getRaffleSchema>;
 export const createRaffleSchema = z.object({
   nfc_key: z.string().optional(),
   nfc_number: z.number().optional(),
-  nfc_sries: z.number().optional(),
+  nfc_serie: z.number().optional(),
+  cpf: z.string(),
 });
 
 export type CreateRaffle = z.infer<typeof createRaffleSchema>;
@@ -55,6 +56,6 @@ export const nfcDataResponse = z.object({
   cpf: z.string(),
   chaveNfe: z.string(),
   vlTotal: z.number(),
-})
+});
 
 export type nfcDataResponse = z.infer<typeof nfcDataResponse>;
