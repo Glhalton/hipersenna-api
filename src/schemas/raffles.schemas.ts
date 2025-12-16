@@ -40,13 +40,32 @@ export const drawRafflesSchema = z.object({
 
 export type DrawRaffles = z.infer<typeof drawRafflesSchema>;
 
-export const raffleResponseSchema = z.object({
+export const raffleResponseWithClientSchema = z.object({
   id: z.number(),
   client_id: z.number(),
+  status: z.any(),
   nfc_key: z.string(),
   raffle_number: z.string(),
   branch_id: z.number(),
+  created_at: z.date(),
+  modified_at: z.date(),
+  hsraffle_clients: z.object({
+    id: z.number(),
+    cpf: z.string(),
+    name: z.string(),
+    telephone: z.string(),
+    created_at: z.date(),
+    modified_at: z.date(),
+  }),
+});
+
+export const raffleResponseWithNoClientSchema = z.object({
+  id: z.number(),
+  client_id: z.number(),
   status: z.any(),
+  nfc_key: z.string(),
+  raffle_number: z.string(),
+  branch_id: z.number(),
   created_at: z.date(),
   modified_at: z.date(),
 });
