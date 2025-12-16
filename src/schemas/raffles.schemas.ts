@@ -9,10 +9,10 @@ export const getNfcDataSchema = z.object({
 export type GetNfcData = z.infer<typeof getNfcDataSchema>;
 
 export const getRaffleSchema = z.object({
-  id: z.number().optional(),
-  client_id: z.number().optional(),
+  id: z.coerce.number().optional(),
+  client_id: z.coerce.number().optional(),
   nfc_key: z.string().optional(),
-  branch_id: z.string().optional(),
+  branch_id: z.coerce.number().optional(),
   status: z.any().optional(),
   cpf: z.string().optional(),
 });
