@@ -16,7 +16,7 @@ model hsemployees {
   name                String
   username            String                @unique
   password            String
-  role_id             Int                   
+  role_id             Int
   created_at          DateTime              @default(now()) @db.Timestamptz(6)
   modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
   branch              hsbranches            @relation(fields: [branch_id], references: [id])
@@ -207,7 +207,7 @@ model hsraffles {
 
 model hsraffle_clients {
   id          Int         @id @default(autoincrement())
-  cpf         String
+  cpf         String      @unique
   name        String
   telephone   String
   created_at  DateTime    @default(now()) @db.Timestamptz(6)

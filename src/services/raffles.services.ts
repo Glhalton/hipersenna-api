@@ -44,6 +44,16 @@ export const getRafflesService = async ({
   });
 };
 
+export const getMyRafflesService = async (cpf: string) => {
+  return await prisma.hsraffles.findMany({
+    where: {
+      hsraffle_clients: {
+        cpf,
+      },
+    },
+  });
+};
+
 export const createRaffleService = async (
   { chaveNfe, codFilial, vlTotal }: nfcDataResponse,
   { id }: RaffleClientResponse
@@ -107,6 +117,9 @@ export const drawRafflesService = async ({ branch_id }: DrawRaffles) => {
     where: { id: drawnRaffle.id },
     data: {
       status: "SORTEADO",
+    },
+    include: {
+      hsraffle_clients: true,
     },
   });
 
