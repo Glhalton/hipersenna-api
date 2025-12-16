@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const createConsumerProductsSchema = z.object({
+export const createconsumptionProductsSchema = z.object({
   branch_id: z.coerce.number(),
   product_code: z.coerce.number(),
   auxiliary_code: z.string(),
@@ -8,9 +8,9 @@ export const createConsumerProductsSchema = z.object({
   group_id: z.coerce.number(),
 });
 
-export type CreateConsumerProducts = z.infer<typeof createConsumerProductsSchema>;
+export type CreateconsumptionProducts = z.infer<typeof createconsumptionProductsSchema>;
 
-export const getConsumerProductsSchema = z.object({
+export const getconsumptionProductsSchema = z.object({
   id: z.coerce.number().optional(),
   employee_id: z.coerce.number().optional(),
   branch_id: z.coerce.number().optional(),
@@ -20,9 +20,9 @@ export const getConsumerProductsSchema = z.object({
   consumption_id: z.coerce.number().optional().nullable()
 });
 
-export type GetConsumerProducts = z.infer<typeof getConsumerProductsSchema>;
+export type GetconsumptionProducts = z.infer<typeof getconsumptionProductsSchema>;
 
-export const updateConsumerProductsSchema = z.object({
+export const updateconsumptionProductsSchema = z.object({
   id: z.coerce.number().array(),
   branch_id: z.number().optional(),
   product_code: z.number().optional(),
@@ -31,17 +31,17 @@ export const updateConsumerProductsSchema = z.object({
   group_id: z.number().optional(),
 });
 
-export type UpdateConsumerProducts = z.infer<typeof updateConsumerProductsSchema>
+export type UpdateconsumptionProducts = z.infer<typeof updateconsumptionProductsSchema>
 
-export const consumerProductsId = z.object({
+export const consumptionProductsId = z.object({
   id: z.coerce.number(),
 })
 
-export const consumerProductsResponse = z.object({
+export const consumptionProductsResponse = z.object({
   id: z.number(),
   description: z.string().optional(),
   consumption_id: z.number().nullable(),
-  employee_id: z.number(),
+  created_by_employee_id: z.number(),
   branch_id:  z.number(),
   product_code: z.number(),
   auxiliary_code:z.string(),

@@ -1,17 +1,17 @@
 import { FastifyInstance } from "fastify";
 import {
-  createConsumerGroupsController,
-  deleteConsumerGroupsController,
-  getConsumerGroupsController,
-  updateConsumerGroupsController,
-} from "../controllers/consumerGroups.controllers.js";
+  createconsumptionGroupsController,
+  deleteconsumptionGroupsController,
+  getconsumptionGroupsController,
+  updateconsumptionGroupsController,
+} from "../controllers/consumptionGroups.controllers.js";
 import {
-  consumerGroupsId,
-  consumerGroupsResponseSchema,
-  createConsumerGroupsSchema,
-  getConsumerGroupsSchema,
-  updateConsumerGroupsSchema,
-} from "../schemas/consumerGroups.schemas.js";
+  consumptionGroupsId,
+  consumptionGroupsResponseSchema,
+  createconsumptionGroupsSchema,
+  getconsumptionGroupsSchema,
+  updateconsumptionGroupsSchema,
+} from "../schemas/consumptionGroups.schemas.js";
 import z from "zod";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
 
@@ -23,16 +23,16 @@ export default async function (app: FastifyInstance) {
       schema: {
         description: "Realiza a consulta de grupos de consumo.",
         security: [{BearerAuth: []}],
-        querystring: getConsumerGroupsSchema,
+        querystring: getconsumptionGroupsSchema,
         response: {
-          200: z.array(consumerGroupsResponseSchema),
+          200: z.array(consumptionGroupsResponseSchema),
           404: z.object({ message: z.string() }),
         },
-        tags: ["Consumer-Groups"],
+        tags: ["consumption-Groups"],
         summary: "Rota de consulta de grupos de consumo.",
       },
     },
-    getConsumerGroupsController
+    getconsumptionGroupsController
   );
 
   app.post(
@@ -42,15 +42,15 @@ export default async function (app: FastifyInstance) {
       schema: {
         description: "Realiza a criação de grupos de consumo.",
         security: [{BearerAuth: []}],
-        body: createConsumerGroupsSchema,
+        body: createconsumptionGroupsSchema,
         response: {
-          201: consumerGroupsResponseSchema,
+          201: consumptionGroupsResponseSchema,
         },
-        tags: ["Consumer-Groups"],
+        tags: ["consumption-Groups"],
         summary: "Rota de criação de grupos de consumo.",
       },
     },
-    createConsumerGroupsController
+    createconsumptionGroupsController
   ),
     app.patch(
       "/:id",
@@ -59,17 +59,17 @@ export default async function (app: FastifyInstance) {
         schema: {
           description: "Realiza a atualização de dados de grupos de consumo.",
           security: [{BearerAuth: []}],
-          params: consumerGroupsId,
-          body: updateConsumerGroupsSchema,
+          params: consumptionGroupsId,
+          body: updateconsumptionGroupsSchema,
           response: {
-            200: consumerGroupsResponseSchema,
+            200: consumptionGroupsResponseSchema,
             404: z.object({ message: z.string() }),
           },
-          tags: ["Consumer-Groups"],
+          tags: ["consumption-Groups"],
           summary: "Rota de atualização de dados de grupos de consumo.",
         },
       },
-      updateConsumerGroupsController
+      updateconsumptionGroupsController
     ),
     app.delete(
       "/:id",
@@ -78,15 +78,15 @@ export default async function (app: FastifyInstance) {
         schema: {
           description: "Realiza a exclusão de grupos de consumo.",
           security: [{BearerAuth: []}],
-          params: consumerGroupsId,
+          params: consumptionGroupsId,
           response: {
-            200: consumerGroupsResponseSchema,
+            200: consumptionGroupsResponseSchema,
             404: z.object({ message: z.string() }),
           },
-          tags: ["Consumer-Groups"],
+          tags: ["consumption-Groups"],
           summary: "Rota de exclusão de grupos de consumo.",
         },
       },
-      deleteConsumerGroupsController
+      deleteconsumptionGroupsController
     );
 }
