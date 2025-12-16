@@ -7,12 +7,54 @@ datasource db {
   provider = "postgresql"
 }
 
-// ### TABELAS ###
+// --------------------- T A B E L A S ---------------------
+
+model hsbranches {
+  id                  Int                   @id @default(autoincrement())
+  description         String                @unique @db.VarChar(150)
+  hsemployees         hsemployees[]
+  hsvalidities        hsvalidities[]
+  hsvalidity_requests hsvalidity_requests[]
+  hsconsumptionProducts  hsconsumption_products[]
+}
+
+model hsconsumption_groups {
+  id                  Int                   @id @default(autoincrement())
+  description         String                @unique
+  created_at          DateTime              @default(now()) @db.Timestamptz(6)
+  modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
+  hsconsumption_products hsconsumption_products[]
+}
+
+model hsconsumption_notes {
+  id                       Int                   @id @default(autoincrement())
+  generated_by_employee_id Int
+  created_at               DateTime              @default(now()) @db.Timestamptz(6)
+  modified_at              DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
+  hsconsumptionProducts       hsconsumption_products[]
+}
+
+model hsconsumption_products {
+  id                     Int               @id @default(autoincrement())
+  consumption_id         Int?
+  created_by_employee_id Int
+  branch_id              Int
+  product_code           Int
+  auxiliary_code         String
+  quantity               Int
+  group_id               Int
+  created_at             DateTime          @default(now()) @db.Timestamptz(6)
+  modified_at            DateTime          @default(now()) @updatedAt @db.Timestamptz(6)
+  hsemployees            hsemployees       @relation(fields: [created_by_employee_id], references: [id])
+  hsconsumption_groups      hsconsumption_groups @relation(fields: [group_id], references: [id])
+  branch                 hsbranches        @relation(fields: [branch_id], references: [id])
+  hsconsumption_notes       hsconsumption_notes? @relation(fields: [consumption_id], references: [id], onDelete: SetNull)
+}
 
 model hsemployees {
   id                  Int                   @id @default(autoincrement())
   branch_id           Int
-  winthor_id          Int                   @unique @default(0)
+  winthor_id          Int                   @unique
   name                String
   username            String                @unique
   password            String
@@ -26,19 +68,9 @@ model hsemployees {
   hsvalidities        hsvalidities[]
   analystRequests     hsvalidity_requests[] @relation("AnalystRelation")
   confereeRequests    hsvalidity_requests[] @relation("ConfereeRelation")
-  hsconsumer_products hsconsumer_products[]
+  hsconsumption_products hsconsumption_products[]
 
   @@map("hsemployees")
-}
-
-model hsroles {
-  id                  Int                   @id @default(autoincrement())
-  name                String                @unique @db.VarChar(50)
-  description         String                @db.VarChar(150)
-  created_at          DateTime              @default(now()) @db.Timestamptz(6)
-  modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
-  hsroles_permissions hsroles_permissions[]
-  hsemployees         hsemployees[]
 }
 
 model hspermissions {
@@ -51,6 +83,16 @@ model hspermissions {
   hsusers_permissions hsusers_permissions[]
 }
 
+model hsroles {
+  id                  Int                   @id @default(autoincrement())
+  name                String                @unique @db.VarChar(50)
+  description         String                @db.VarChar(150)
+  created_at          DateTime              @default(now()) @db.Timestamptz(6)
+  modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
+  hsroles_permissions hsroles_permissions[]
+  hsemployees         hsemployees[]
+}
+
 model hsroles_permissions {
   role_id       Int
   permission_id Int
@@ -60,6 +102,17 @@ model hsroles_permissions {
   @@id([role_id, permission_id])
 }
 
+model hssessions {
+  id         String      @id @default(uuid()) @db.Uuid
+  user_id    Int
+  token      String      @unique
+  created_at DateTime    @default(now()) @db.Timestamptz(6)
+  expires_at DateTime?   @db.Timestamptz(6)
+  user       hsemployees @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("hssessions")
+}
+
 model hsusers_permissions {
   user_id       Int
   permission_id Int
@@ -67,15 +120,6 @@ model hsusers_permissions {
   hsemployees   hsemployees   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@id([user_id, permission_id])
-}
-
-model hsbranches {
-  id                  Int                   @id @default(autoincrement())
-  description         String                @db.VarChar(150)
-  hsemployees         hsemployees[]
-  hsvalidities        hsvalidities[]
-  hsvalidity_requests hsvalidity_requests[]
-  hsconsumerProducts  hsconsumer_products[]
 }
 
 model hsvalidities {
@@ -135,50 +179,6 @@ model hsvalidity_treatments {
   hsvalidity_products hsvalidity_products[]
 }
 
-model hssessions {
-  id         String      @id @default(uuid()) @db.Uuid
-  user_id    Int
-  token      String      @unique
-  created_at DateTime    @default(now()) @db.Timestamptz(6)
-  expires_at DateTime?   @db.Timestamptz(6)
-  user       hsemployees @relation(fields: [user_id], references: [id], onDelete: Cascade)
-
-  @@map("hssessions")
-}
-
-model hsconsumer_products {
-  id                Int               @id @default(autoincrement())
-  consumption_id    Int?
-  employee_id       Int
-  branch_id         Int
-  product_code      Int
-  auxiliary_code    String
-  quantity          Int
-  group_id          Int
-  created_at        DateTime          @default(now()) @db.Timestamptz(6)
-  modified_at       DateTime          @default(now()) @updatedAt @db.Timestamptz(6)
-  hsemployees       hsemployees       @relation(fields: [employee_id], references: [id])
-  hsconsumer_groups hsconsumer_groups @relation(fields: [group_id], references: [id])
-  branch            hsbranches        @relation(fields: [branch_id], references: [id])
-  hsconsumer_notes  hsconsumer_notes? @relation(fields: [consumption_id], references: [id])
-}
-
-model hsconsumer_notes {
-  id                 Int                   @id @default(autoincrement())
-  employee_id        Int
-  created_at         DateTime              @default(now()) @db.Timestamptz(6)
-  modified_at        DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
-  hsconsumerProducts hsconsumer_products[]
-}
-
-model hsconsumer_groups {
-  id                  Int                   @id @default(autoincrement())
-  description         String
-  created_at          DateTime              @default(now()) @db.Timestamptz(6)
-  modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
-  hsconsumer_products hsconsumer_products[]
-}
-
 model hsraffles {
   id               Int              @id @default(autoincrement())
   client_id        Int
@@ -193,7 +193,7 @@ model hsraffles {
 
 model hsraffle_clients {
   id          Int         @id @default(autoincrement())
-  cpf         String
+  cpf         String      @unique
   name        String
   telephone   String
   created_at  DateTime    @default(now()) @db.Timestamptz(6)
@@ -201,7 +201,7 @@ model hsraffle_clients {
   hsraffles   hsraffles[]
 }
 
-// ### ENUMS ###
+// --------------------- E N U M S ---------------------
 
 enum HsValiditiesStatus {
   PENDENTE

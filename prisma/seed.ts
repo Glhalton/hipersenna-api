@@ -218,7 +218,7 @@ async function main() {
     ],
   });
 
-  await prisma.hsconsumer_groups.createMany({
+  await prisma.hsconsumption_groups.createMany({
     data: [
       {description: "Copa"}
     ]

@@ -2,12 +2,12 @@ import { getOracleConnection } from "../lib/oracleClient.js";
 import { prisma } from "../lib/prisma.js";
 import oracledb from "oracledb";
 import {
-  CreateConsumerProducts,
-  GetConsumerProducts,
-  UpdateConsumerProducts,
-} from "../schemas/consumerProducts.schemas.js";
+  CreateconsumptionProducts,
+  GetconsumptionProducts,
+  UpdateconsumptionProducts,
+} from "../schemas/consumptionProducts.schemas.js";
 
-export const getConsumerProductsService = async ({
+export const getconsumptionProductsService = async ({
   id,
   employee_id,
   branch_id,
@@ -15,7 +15,7 @@ export const getConsumerProductsService = async ({
   auxiliary_code,
   group_id,
   consumption_id,
-}: GetConsumerProducts) => {
+}: GetconsumptionProducts) => {
   const whereClause: any = {};
 
   if (id) whereClause.id = id;
@@ -27,10 +27,10 @@ export const getConsumerProductsService = async ({
   if (consumption_id) {
     whereClause.consumption_id = consumption_id;
   } else {
-    whereClause.consumption_id = null
+    whereClause.consumption_id = null;
   }
 
-  const postgresData = await prisma.hsconsumer_products.findMany({
+  const postgresData = await prisma.hsconsumption_products.findMany({
     where: whereClause,
   });
 
@@ -65,19 +65,19 @@ export const getConsumerProductsService = async ({
   return enrichedData;
 };
 
-export const createConsumerProductsService = async (
+export const createconsumptionProductsService = async (
   {
     branch_id,
     product_code,
     auxiliary_code,
     quantity,
     group_id,
-  }: CreateConsumerProducts,
+  }: CreateconsumptionProducts,
   employee_id: number
 ) => {
-  return await prisma.hsconsumer_products.create({
+  return await prisma.hsconsumption_products.create({
     data: {
-      employee_id,
+      created_by_employee_id: employee_id,
       branch_id,
       product_code,
       auxiliary_code,
@@ -87,15 +87,15 @@ export const createConsumerProductsService = async (
   });
 };
 
-export const updateConsumerProductsService = async ({
+export const updateconsumptionProductsService = async ({
   id,
   product_code,
   auxiliary_code,
   branch_id,
   quantity,
   group_id,
-}: UpdateConsumerProducts) => {
-  return await prisma.hsconsumer_products.updateMany({
+}: UpdateconsumptionProducts) => {
+  return await prisma.hsconsumption_products.updateMany({
     data: {
       product_code,
       auxiliary_code,
@@ -111,14 +111,14 @@ export const updateConsumerProductsService = async ({
   });
 };
 
-export const deleteConsumerProductsService = async (id: number) => {
-  return await prisma.hsconsumer_products.delete({
+export const deleteconsumptionProductsService = async (id: number) => {
+  return await prisma.hsconsumption_products.delete({
     where: { id },
   });
 };
 
-export const existingConsumerProducts = async (ids: number[]) => {
-  const consumerProducts = await prisma.hsconsumer_products.findMany({
+export const existingconsumptionProducts = async (ids: number[]) => {
+  const consumptionProducts = await prisma.hsconsumption_products.findMany({
     where: {
       id: {
         in: ids,
@@ -129,7 +129,7 @@ export const existingConsumerProducts = async (ids: number[]) => {
     },
   });
 
-  const existingIds = consumerProducts.map((item) => item.id);
+  const existingIds = consumptionProducts.map((item) => item.id);
 
   const missingIds = ids.filter((id) => !existingIds.includes(id));
 

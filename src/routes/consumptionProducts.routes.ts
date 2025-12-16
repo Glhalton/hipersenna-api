@@ -1,22 +1,22 @@
 import { FastifyInstance } from "fastify";
 import {
-  createConsumerProductsController,
-  deleteConsumerProductsController,
-  getConsumerProductsController,
-  updateConsumerProductsController,
-} from "../controllers/consumerProducts.controllers.js";
+  createconsumptionProductsController,
+  deleteconsumptionProductsController,
+  getconsumptionProductsController,
+  updateconsumptionProductsController,
+} from "../controllers/consumptionProducts.controllers.js";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
 import {
-  consumerProductsId,
-  consumerProductsResponse,
-  createConsumerProductsSchema,
-  getConsumerProductsSchema,
-  updateConsumerProductsSchema,
-} from "../schemas/consumerProducts.schemas.js";
+  consumptionProductsId,
+  consumptionProductsResponse,
+  createconsumptionProductsSchema,
+  getconsumptionProductsSchema,
+  updateconsumptionProductsSchema,
+} from "../schemas/consumptionProducts.schemas.js";
 import z from "zod";
 import { productResponseSchema } from "../schemas/products.schemas.js";
 
-export default async function consumerProductsRoutes(app: FastifyInstance) {
+export default async function consumptionProductsRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
@@ -24,16 +24,16 @@ export default async function consumerProductsRoutes(app: FastifyInstance) {
       schema: {
         description: "Realiza a consulta de produtos de consumo.",
         security: [{ BearerAuth: [] }],
-        params: getConsumerProductsSchema,
+        params: getconsumptionProductsSchema,
         response: {
-          200: z.array(consumerProductsResponse),
+          200: z.array(consumptionProductsResponse),
           404: z.object({ message: z.string() }),
         },
-        tags: ["Consumer-Products"],
+        tags: ["consumption-Products"],
         summary: "Rota de consulta de produtos de consumo.",
       },
     },
-    getConsumerProductsController
+    getconsumptionProductsController
   );
 
   app.post(
@@ -43,15 +43,15 @@ export default async function consumerProductsRoutes(app: FastifyInstance) {
       schema: {
         description: "Realiza a criação de produtos de consumo.",
         security: [{ BearerAuth: [] }],
-        body: createConsumerProductsSchema,
+        body: createconsumptionProductsSchema,
         response: {
-          201: consumerProductsResponse,
+          201: consumptionProductsResponse,
         },
-        tags: ["Consumer-Products"],
+        tags: ["consumption-Products"],
         summary: "Rota de criação de produtos de consumo.",
       },
     },
-    createConsumerProductsController
+    createconsumptionProductsController
   );
 
   app.patch(
@@ -61,16 +61,16 @@ export default async function consumerProductsRoutes(app: FastifyInstance) {
       schema: {
         description: "Realiza a atualização de dados de produtos de consumo.",
         security: [{ BearerAuth: [] }],
-        body: updateConsumerProductsSchema,
+        body: updateconsumptionProductsSchema,
         response: {
           200: z.object({ message: z.string() }),
           404: z.object({ message: z.string() }),
         },
-        tags: ["Consumer-Products"],
+        tags: ["consumption-Products"],
         summary: "Rota de atualização de dados de produtos de consumo.",
       },
     },
-    updateConsumerProductsController
+    updateconsumptionProductsController
   );
 
   app.delete(
@@ -80,15 +80,15 @@ export default async function consumerProductsRoutes(app: FastifyInstance) {
       schema: {
         description: "Realiza a exclusão de produtos de consumo.",
         security: [{ BearerAuth: [] }],
-        params: consumerProductsId,
+        params: consumptionProductsId,
         response: {
-          200: consumerProductsResponse,
+          200: consumptionProductsResponse,
           404: z.object({ message: z.string() }),
         },
-        tags: ["Consumer-Products"],
+        tags: ["consumption-Products"],
         summary: "Rota de exclusão de produtos de consumo",
       },
     },
-    deleteConsumerProductsController
+    deleteconsumptionProductsController
   );
 }

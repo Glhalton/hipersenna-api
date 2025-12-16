@@ -1,19 +1,19 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import {
-  consumerProductsId,
-  createConsumerProductsSchema,
-  getConsumerProductsSchema,
-  updateConsumerProductsSchema,
-} from "../schemas/consumerProducts.schemas.js";
+  consumptionProductsId,
+  createconsumptionProductsSchema,
+  getconsumptionProductsSchema,
+  updateconsumptionProductsSchema,
+} from "../schemas/consumptionProducts.schemas.js";
 import {
-  createConsumerProductsService,
-  deleteConsumerProductsService,
-  existingConsumerProducts,
-  getConsumerProductsService,
-  updateConsumerProductsService,
-} from "../services/consumerProducts.services.js";
+  createconsumptionProductsService,
+  deleteconsumptionProductsService,
+  existingconsumptionProducts,
+  getconsumptionProductsService,
+  updateconsumptionProductsService,
+} from "../services/consumptionProducts.services.js";
 
-export async function getConsumerProductsController(
+export async function getconsumptionProductsController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
@@ -29,9 +29,9 @@ export async function getConsumerProductsController(
       auxiliary_code,
       group_id,
       consumption_id
-    } = getConsumerProductsSchema.parse(request.query);
+    } = getconsumptionProductsSchema.parse(request.query);
 
-    const consumerProducts = await getConsumerProductsService({
+    const consumptionProducts = await getconsumptionProductsService({
       id,
       employee_id,
       branch_id,
@@ -41,19 +41,19 @@ export async function getConsumerProductsController(
       consumption_id
     });
 
-    if (consumerProducts.length === 0) {
+    if (consumptionProducts.length === 0) {
       return reply.status(404).send({
         message: "Produtos de consumo não encontrados!",
       });
     }
 
-    return reply.status(200).send(consumerProducts);
+    return reply.status(200).send(consumptionProducts);
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }
 }
 
-export async function createConsumerProductsController(
+export async function createconsumptionProductsController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
@@ -65,9 +65,9 @@ export async function createConsumerProductsController(
     }
 
     const { auxiliary_code, branch_id, group_id, product_code, quantity } =
-      createConsumerProductsSchema.parse(request.body);
+      createconsumptionProductsSchema.parse(request.body);
 
-    const createdConsumerProduct = await createConsumerProductsService(
+    const createdconsumptionProduct = await createconsumptionProductsService(
       {
         branch_id,
         product_code,
@@ -78,29 +78,29 @@ export async function createConsumerProductsController(
       employee_id
     );
 
-    return reply.status(201).send(createdConsumerProduct);
+    return reply.status(201).send(createdconsumptionProduct);
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }
 }
 
-export async function updateConsumerProductsController(
+export async function updateconsumptionProductsController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
     const { id, product_code, auxiliary_code, branch_id, quantity, group_id } =
-      updateConsumerProductsSchema.parse(request.body);
+      updateconsumptionProductsSchema.parse(request.body);
 
-    const consumerProduct = await existingConsumerProducts(id);
+    const consumptionProduct = await existingconsumptionProducts(id);
 
-    if (!consumerProduct) {
+    if (!consumptionProduct) {
       return reply.status(404).send({
         message: "Produtos de consumo não encontrados!",
       });
     }
 
-    const consumerProductUpdated = await updateConsumerProductsService({
+    const consumptionProductUpdated = await updateconsumptionProductsService({
       id,
       product_code,
       auxiliary_code,
@@ -115,24 +115,24 @@ export async function updateConsumerProductsController(
   }
 }
 
-export async function deleteConsumerProductsController(
+export async function deleteconsumptionProductsController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
-    const { id } = consumerProductsId.parse(request.params);
+    const { id } = consumptionProductsId.parse(request.params);
 
-    const consumerProduct = await getConsumerProductsService({id});
+    const consumptionProduct = await getconsumptionProductsService({id});
 
-    if (consumerProduct.length === 0) {
+    if (consumptionProduct.length === 0) {
       return reply.status(404).send({
         message: "Produtos de consumo não encontrados!",
       });
     }
 
-    const consumerProductDeleted = await deleteConsumerProductsService(id);
+    const consumptionProductDeleted = await deleteconsumptionProductsService(id);
 
-    return reply.status(200).send(consumerProductDeleted);
+    return reply.status(200).send(consumptionProductDeleted);
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }
