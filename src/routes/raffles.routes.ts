@@ -9,6 +9,7 @@ import {
 import {
   createRaffleSchema,
   drawRafflesSchema,
+  getMyRaffleSchema,
   getNfcDataSchema,
   getRaffleSchema,
   raffleResponseWithClientSchema,
@@ -26,6 +27,7 @@ export default async function rafflesRoutes(app: FastifyInstance) {
         description:
           "Realiza a consulta de rifas de sorteio e o cliente ao qual pertence.",
         query: getRaffleSchema,
+        security: [{ BearerAuth: [] }],
         response: {
           200: z.array(raffleResponseWithClientSchema),
           404: z.object({ message: z.string() }),
@@ -43,7 +45,7 @@ export default async function rafflesRoutes(app: FastifyInstance) {
       preHandler: [],
       schema: {
         description: "Realiza a consulta de rifas de sorteio pelo CPF.",
-        query: getRaffleSchema,
+        query: getMyRaffleSchema,
         response: {
           200: z.array(raffleResponseWithNoClientSchema),
           404: z.object({ message: z.string() }),
