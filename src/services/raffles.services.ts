@@ -23,6 +23,7 @@ export const getRafflesService = async ({
   client_id,
   nfc_key,
   cpf,
+  status
 }: GetRaffle) => {
   const whereClause: any = {};
 
@@ -30,6 +31,7 @@ export const getRafflesService = async ({
   if (branch_id) whereClause.branch_id = branch_id;
   if (client_id) whereClause.client_id = client_id;
   if (nfc_key) whereClause.nfc_key = nfc_key;
+  if (status) whereClause.status = status;
   if (cpf) {
     whereClause.hsraffle_clients = {
       cpf: cpf,
