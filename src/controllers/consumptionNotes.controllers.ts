@@ -1,23 +1,28 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import {
-  consumptionNotesId,
-  createconsumptionNotesSchema,
-  getconsumptionNotesSchema,
+  consumptionNotesIdSchema,
+  createConsumptionNotesSchema,
+  getConsumptionNotesSchema,
+  updateConsumptionNotesSchema,
 } from "../schemas/consumptionNotes.schemas.js";
 import {
-  createconsumptionNotesService,
-  deleteconsumptionNotesService,
-  getconsumptionNotesService,
+  createConsumptionNotesService,
+  deleteConsumptionNotesService,
+  getConsumptionNotesService,
+  updateConsumptionNotesService,
 } from "../services/consumptionNotes.services.js";
 
-export async function getconsumptionNotesController(
+export async function getConsumptionNotesController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
-    const { id, employee_id } = getconsumptionNotesSchema.parse(request.query);
+    const { id, employee_id } = getConsumptionNotesSchema.parse(request.query);
 
-    const consumptionNotes = await getconsumptionNotesService({ id, employee_id });
+    const consumptionNotes = await getConsumptionNotesService({
+      id,
+      employee_id,
+    });
 
     if (consumptionNotes.length === 0) {
       return reply
@@ -31,7 +36,7 @@ export async function getconsumptionNotesController(
   }
 }
 
-export async function createconsumptionNotesController(
+export async function createConsumptionNotesController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
@@ -42,9 +47,9 @@ export async function createconsumptionNotesController(
       throw new Error("Erro ao coletar dados do usuário.");
     }
 
-    const { id } = createconsumptionNotesSchema.parse(request.body);
+    const { id } = createConsumptionNotesSchema.parse(request.body);
 
-    const consumptionNotesCreated = await createconsumptionNotesService(
+    const consumptionNotesCreated = await createConsumptionNotesService(
       {
         id,
       },
@@ -57,24 +62,42 @@ export async function createconsumptionNotesController(
   }
 }
 
-export async function updateconsumptionNotesController(
+export async function updateConsumptionNotesController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
+    const { id } = consumptionNotesIdSchema.parse(request.params);
+
+    const consumptionNote = await getConsumptionNotesService({ id });
+
+    if (consumptionNote.length === 0) {
+      return reply
+        .status(404)
+        .send({ message: "Nota de consumo não encontrada" });
+    }
+
+    const { nfe_number } = updateConsumptionNotesSchema.parse(request.body);
+
+    const updatedConsumptionNote = await updateConsumptionNotesService(
+      { nfe_number },
+      id
+    );
+
+    return reply.status(200).send(updatedConsumptionNote);
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }
 }
 
-export async function deleteconsumptionNotesController(
+export async function deleteConsumptionNotesController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
-    const { id } = consumptionNotesId.parse(request.params);
+    const { id } = consumptionNotesIdSchema.parse(request.params);
 
-    const consumptionNote = await getconsumptionNotesService({ id });
+    const consumptionNote = await getConsumptionNotesService({ id });
 
     if (consumptionNote.length === 0) {
       return reply
@@ -82,7 +105,7 @@ export async function deleteconsumptionNotesController(
         .send({ message: "Nota de consumo não encontrada!" });
     }
 
-    const consumptionNoteDeleted = await deleteconsumptionNotesService(id);
+    const consumptionNoteDeleted = await deleteConsumptionNotesService(id);
 
     return reply.status(200).send(consumptionNoteDeleted);
   } catch (error: any) {
