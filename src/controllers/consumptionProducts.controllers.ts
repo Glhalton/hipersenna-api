@@ -1,9 +1,9 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import {
   consumptionProductsId,
-  createconsumptionProductsSchema,
-  getconsumptionProductsSchema,
-  updateconsumptionProductsSchema,
+  createConsumptionProductsSchema,
+  getConsumptionProductsSchema,
+  updateConsumptionProductsSchema,
 } from "../schemas/consumptionProducts.schemas.js";
 import {
   createconsumptionProductsService,
@@ -18,8 +18,6 @@ export async function getconsumptionProductsController(
   reply: FastifyReply
 ) {
   try {
-    
-    console.log(request.query);
 
     const {
       id,
@@ -29,7 +27,7 @@ export async function getconsumptionProductsController(
       auxiliary_code,
       group_id,
       consumption_id
-    } = getconsumptionProductsSchema.parse(request.query);
+    } = getConsumptionProductsSchema.parse(request.query);
 
     const consumptionProducts = await getconsumptionProductsService({
       id,
@@ -65,7 +63,7 @@ export async function createconsumptionProductsController(
     }
 
     const { auxiliary_code, branch_id, group_id, product_code, quantity } =
-      createconsumptionProductsSchema.parse(request.body);
+      createConsumptionProductsSchema.parse(request.body);
 
     const createdconsumptionProduct = await createconsumptionProductsService(
       {
@@ -90,7 +88,7 @@ export async function updateconsumptionProductsController(
 ) {
   try {
     const { id, product_code, auxiliary_code, branch_id, quantity, group_id } =
-      updateconsumptionProductsSchema.parse(request.body);
+      updateConsumptionProductsSchema.parse(request.body);
 
     const consumptionProduct = await existingconsumptionProducts(id);
 

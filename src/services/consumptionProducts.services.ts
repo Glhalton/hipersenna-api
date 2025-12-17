@@ -2,8 +2,8 @@ import { getOracleConnection } from "../lib/oracleClient.js";
 import { prisma } from "../lib/prisma.js";
 import oracledb from "oracledb";
 import {
-  CreateconsumptionProducts,
-  GetconsumptionProducts,
+  CreateConsumptionProducts,
+  GetConsumptionProducts,
   UpdateconsumptionProducts,
 } from "../schemas/consumptionProducts.schemas.js";
 
@@ -15,7 +15,7 @@ export const getconsumptionProductsService = async ({
   auxiliary_code,
   group_id,
   consumption_id,
-}: GetconsumptionProducts) => {
+}: GetConsumptionProducts) => {
   const whereClause: any = {};
 
   if (id) whereClause.id = id;
@@ -29,9 +29,12 @@ export const getconsumptionProductsService = async ({
   } else {
     whereClause.consumption_id = null;
   }
-
   const postgresData = await prisma.hsconsumption_products.findMany({
     where: whereClause,
+    include: { hsconsumption_groups: true },
+    orderBy: {
+      created_at: "desc",
+    },
   });
 
   const allCodes = postgresData.flatMap((p) => p.product_code);
@@ -72,7 +75,7 @@ export const createconsumptionProductsService = async (
     auxiliary_code,
     quantity,
     group_id,
-  }: CreateconsumptionProducts,
+  }: CreateConsumptionProducts,
   employee_id: number
 ) => {
   return await prisma.hsconsumption_products.create({
