@@ -10,32 +10,33 @@ datasource db {
 // --------------------- T A B E L A S ---------------------
 
 model hsbranches {
-  id                  Int                   @id @default(autoincrement())
-  description         String                @unique @db.VarChar(150)
-  hsemployees         hsemployees[]
-  hsvalidities        hsvalidities[]
-  hsvalidity_requests hsvalidity_requests[]
-  hsconsumptionProducts  hsconsumption_products[]
+  id                    Int                      @id @default(autoincrement())
+  description           String                   @unique @db.VarChar(150)
+  hsemployees           hsemployees[]
+  hsvalidities          hsvalidities[]
+  hsvalidity_requests   hsvalidity_requests[]
+  hsconsumptionProducts hsconsumption_products[]
 }
 
 model hsconsumption_groups {
-  id                  Int                   @id @default(autoincrement())
-  description         String                @unique
-  created_at          DateTime              @default(now()) @db.Timestamptz(6)
-  modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
+  id                     Int                      @id @default(autoincrement())
+  description            String                   @unique
+  created_at             DateTime                 @default(now()) @db.Timestamptz(6)
+  modified_at            DateTime                 @default(now()) @updatedAt @db.Timestamptz(6)
   hsconsumption_products hsconsumption_products[]
 }
 
 model hsconsumption_notes {
-  id                       Int                   @id @default(autoincrement())
+  id                       Int                      @id @default(autoincrement())
   generated_by_employee_id Int
-  created_at               DateTime              @default(now()) @db.Timestamptz(6)
-  modified_at              DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
-  hsconsumptionProducts       hsconsumption_products[]
+  nfe_number               String?
+  created_at               DateTime                 @default(now()) @db.Timestamptz(6)
+  modified_at              DateTime                 @default(now()) @updatedAt @db.Timestamptz(6)
+  hsconsumptionProducts    hsconsumption_products[]
 }
 
 model hsconsumption_products {
-  id                     Int               @id @default(autoincrement())
+  id                     Int                  @id @default(autoincrement())
   consumption_id         Int?
   created_by_employee_id Int
   branch_id              Int
@@ -43,31 +44,31 @@ model hsconsumption_products {
   auxiliary_code         String
   quantity               Int
   group_id               Int
-  created_at             DateTime          @default(now()) @db.Timestamptz(6)
-  modified_at            DateTime          @default(now()) @updatedAt @db.Timestamptz(6)
-  hsemployees            hsemployees       @relation(fields: [created_by_employee_id], references: [id])
-  hsconsumption_groups      hsconsumption_groups @relation(fields: [group_id], references: [id])
-  branch                 hsbranches        @relation(fields: [branch_id], references: [id])
-  hsconsumption_notes       hsconsumption_notes? @relation(fields: [consumption_id], references: [id], onDelete: SetNull)
+  created_at             DateTime             @default(now()) @db.Timestamptz(6)
+  modified_at            DateTime             @default(now()) @updatedAt @db.Timestamptz(6)
+  hsemployees            hsemployees          @relation(fields: [created_by_employee_id], references: [id])
+  hsconsumption_groups   hsconsumption_groups @relation(fields: [group_id], references: [id])
+  branch                 hsbranches           @relation(fields: [branch_id], references: [id])
+  hsconsumption_notes    hsconsumption_notes? @relation(fields: [consumption_id], references: [id], onDelete: SetNull)
 }
 
 model hsemployees {
-  id                  Int                   @id @default(autoincrement())
-  branch_id           Int
-  winthor_id          Int                   @unique
-  name                String
-  username            String                @unique
-  password            String
-  role_id             Int
-  created_at          DateTime              @default(now()) @db.Timestamptz(6)
-  modified_at         DateTime              @default(now()) @updatedAt @db.Timestamptz(6)
-  branch              hsbranches            @relation(fields: [branch_id], references: [id])
-  role                hsroles               @relation(fields: [role_id], references: [id])
-  sessions            hssessions[]
-  hsusers_permissions hsusers_permissions[]
-  hsvalidities        hsvalidities[]
-  analystRequests     hsvalidity_requests[] @relation("AnalystRelation")
-  confereeRequests    hsvalidity_requests[] @relation("ConfereeRelation")
+  id                     Int                      @id @default(autoincrement())
+  branch_id              Int
+  winthor_id             Int                      @unique
+  name                   String
+  username               String                   @unique
+  password               String
+  role_id                Int
+  created_at             DateTime                 @default(now()) @db.Timestamptz(6)
+  modified_at            DateTime                 @default(now()) @updatedAt @db.Timestamptz(6)
+  branch                 hsbranches               @relation(fields: [branch_id], references: [id])
+  role                   hsroles                  @relation(fields: [role_id], references: [id])
+  sessions               hssessions[]
+  hsusers_permissions    hsusers_permissions[]
+  hsvalidities           hsvalidities[]
+  analystRequests        hsvalidity_requests[]    @relation("AnalystRelation")
+  confereeRequests       hsvalidity_requests[]    @relation("ConfereeRelation")
   hsconsumption_products hsconsumption_products[]
 
   @@map("hsemployees")
