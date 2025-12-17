@@ -8,27 +8,28 @@ import {
 import {
   consumptionGroupsId,
   consumptionGroupsResponseSchema,
-  createconsumptionGroupsSchema,
-  getconsumptionGroupsSchema,
-  updateconsumptionGroupsSchema,
+  createConsumptionGroupsSchema,
+  getConsumptionGroupsSchema,
+  updateConsumptionGroupsSchema,
 } from "../schemas/consumptionGroups.schemas.js";
 import z from "zod";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
 
 export default async function (app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: authenticate,
+      preHandler: [authenticate, authorize(42)],
       schema: {
         description: "Realiza a consulta de grupos de consumo.",
-        security: [{BearerAuth: []}],
-        querystring: getconsumptionGroupsSchema,
+        security: [{ BearerAuth: [] }],
+        querystring: getConsumptionGroupsSchema,
         response: {
           200: z.array(consumptionGroupsResponseSchema),
           404: z.object({ message: z.string() }),
         },
-        tags: ["consumption-Groups"],
+        tags: ["Consumption-Groups"],
         summary: "Rota de consulta de grupos de consumo.",
       },
     },
@@ -38,15 +39,15 @@ export default async function (app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: authenticate,
+      preHandler: [authenticate, authorize(43)],
       schema: {
         description: "Realiza a criação de grupos de consumo.",
-        security: [{BearerAuth: []}],
-        body: createconsumptionGroupsSchema,
+        security: [{ BearerAuth: [] }],
+        body: createConsumptionGroupsSchema,
         response: {
           201: consumptionGroupsResponseSchema,
         },
-        tags: ["consumption-Groups"],
+        tags: ["Consumption-Groups"],
         summary: "Rota de criação de grupos de consumo.",
       },
     },
@@ -55,17 +56,17 @@ export default async function (app: FastifyInstance) {
     app.patch(
       "/:id",
       {
-        preHandler: authenticate,
+        preHandler: [authenticate, authorize(44)],
         schema: {
           description: "Realiza a atualização de dados de grupos de consumo.",
-          security: [{BearerAuth: []}],
+          security: [{ BearerAuth: [] }],
           params: consumptionGroupsId,
-          body: updateconsumptionGroupsSchema,
+          body: updateConsumptionGroupsSchema,
           response: {
             200: consumptionGroupsResponseSchema,
             404: z.object({ message: z.string() }),
           },
-          tags: ["consumption-Groups"],
+          tags: ["Consumption-Groups"],
           summary: "Rota de atualização de dados de grupos de consumo.",
         },
       },
@@ -74,16 +75,16 @@ export default async function (app: FastifyInstance) {
     app.delete(
       "/:id",
       {
-        preHandler: authenticate,
+        preHandler: [authenticate, authorize(45)],
         schema: {
           description: "Realiza a exclusão de grupos de consumo.",
-          security: [{BearerAuth: []}],
+          security: [{ BearerAuth: [] }],
           params: consumptionGroupsId,
           response: {
             200: consumptionGroupsResponseSchema,
             404: z.object({ message: z.string() }),
           },
-          tags: ["consumption-Groups"],
+          tags: ["Consumption-Groups"],
           summary: "Rota de exclusão de grupos de consumo.",
         },
       },

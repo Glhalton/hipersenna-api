@@ -1,27 +1,27 @@
 import z from "zod";
 
-export const createconsumptionGroupsSchema = z.object({
+export const createConsumptionGroupsSchema = z.object({
   description: z.string(),
 });
 
-export type consumptionGroups = z.infer<typeof createconsumptionGroupsSchema>;
+export type ConsumptionGroups = z.infer<typeof createConsumptionGroupsSchema>;
 
-export const getconsumptionGroupsSchema = z.object({
+export const getConsumptionGroupsSchema = z.object({
   id: z.coerce.number().optional(),
 });
 
-export type GetconsumptionGroups = z.infer<typeof getconsumptionGroupsSchema>;
+export type GetConsumptionGroups = z.infer<typeof getConsumptionGroupsSchema>;
 
-
-export const updateconsumptionGroupsSchema = z.object({
+export const updateConsumptionGroupsSchema = z.object({
   description: z.string(),
 });
 
-export type UpdateconsumptionGroups = z.infer<typeof updateconsumptionGroupsSchema>;
-
+export type UpdateConsumptionGroups = z.infer<
+  typeof updateConsumptionGroupsSchema
+>;
 export const consumptionGroupsId = z.object({
   id: z.coerce.number(),
-})
+});
 
 export const consumptionGroupsResponseSchema = z.object({
   id: z.number(),

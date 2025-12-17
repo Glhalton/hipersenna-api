@@ -1,7 +1,7 @@
 import { prisma } from "../lib/prisma.js";
-import { consumptionGroups, GetconsumptionGroups } from "../schemas/consumptionGroups.schemas.js";
+import { ConsumptionGroups, GetConsumptionGroups } from "../schemas/consumptionGroups.schemas.js";
 
-export const getconsumptionGroupsService = async ({id} : GetconsumptionGroups) => {
+export const getconsumptionGroupsService = async ({id} : GetConsumptionGroups) => {
   return prisma.hsconsumption_groups.findMany({
     where: {
       id,
@@ -11,7 +11,7 @@ export const getconsumptionGroupsService = async ({id} : GetconsumptionGroups) =
 
 export const createconsumptionGroupsService = async ({
   description,
-}: consumptionGroups) => {
+}: ConsumptionGroups) => {
   return prisma.hsconsumption_groups.create({
     data: {
       description,
@@ -21,7 +21,7 @@ export const createconsumptionGroupsService = async ({
 
 export const updateconsumptionGroupsService = async (
   id: number,
-  { description }: consumptionGroups
+  { description }: ConsumptionGroups
 ) => {
   return prisma.hsconsumption_groups.update({
     where: {

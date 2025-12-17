@@ -1,9 +1,9 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import {
   consumptionGroupsId,
-  createconsumptionGroupsSchema,
-  getconsumptionGroupsSchema,
-  updateconsumptionGroupsSchema,
+  createConsumptionGroupsSchema,
+  getConsumptionGroupsSchema,
+  updateConsumptionGroupsSchema,
 } from "../schemas/consumptionGroups.schemas.js";
 import {
   createconsumptionGroupsService,
@@ -17,7 +17,7 @@ export async function getconsumptionGroupsController(
   reply: FastifyReply
 ) {
   try {
-    const { id } = getconsumptionGroupsSchema.parse(request.query);
+    const { id } = getConsumptionGroupsSchema.parse(request.query);
 
     const consumptionGroups = await getconsumptionGroupsService({ id });
 
@@ -38,7 +38,7 @@ export async function createconsumptionGroupsController(
   reply: FastifyReply
 ) {
   try {
-    const { description } = createconsumptionGroupsSchema.parse(request.body);
+    const { description } = createConsumptionGroupsSchema.parse(request.body);
 
     const consumptionGroupCreated = await createconsumptionGroupsService({
       description,
@@ -56,7 +56,7 @@ export async function updateconsumptionGroupsController(
 ) {
   try {
     const { id } = consumptionGroupsId.parse(request.params);
-    const { description } = updateconsumptionGroupsSchema.parse(request.body);
+    const { description } = updateConsumptionGroupsSchema.parse(request.body);
 
     const consumptionGroup = await getconsumptionGroupsService({ id });
 
