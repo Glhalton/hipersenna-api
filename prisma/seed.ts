@@ -159,6 +159,59 @@ async function main() {
         description:
           "Editar informações de solicitações de vistoria de validades do sistema",
       },
+      {
+        name: "Consultar notas de consumo",
+        description:
+          "Visualizar dados de notas de consumo registradas no sistema",
+      },
+      {
+        name: "Cadastrar notas de consumo",
+        description: "Registrar novas notas de consumo no sistema",
+      },
+      {
+        name: "Atualizar notas de consumo",
+        description: "Editar informações de notas de consumo do sistema",
+      },
+      {
+        name: "Excluir notas de consumo",
+        description: "Deletar notas de consumo do sistema",
+      },
+
+      {
+        name: "Consultar produtos de consumo",
+        description:
+          "Visualizar dados de notas de consumo registradas no sistema",
+      },
+      {
+        name: "Cadastrar produtos de consumo",
+        description: "Registrar novos produtos de consumo no sistema",
+      },
+      {
+        name: "Atualizar produtos de consumo",
+        description: "Editar informações de produtos de consumo do sistema",
+      },
+      {
+        name: "Excluir produtos de consumo",
+        description: "Deletar produtos de consumo do sistema",
+      },
+
+      {
+        name: "Consultar grupos de consumo",
+        description:
+          "Visualizar dados de grupos de consumo registradas no sistema",
+      },
+      {
+        name: "Cadastrar grupos de consumo",
+        description: "Registrar novos grupos de consumo no sistema",
+      },
+      {
+        name: "Atualizar grupos de consumo",
+        description: "Editar informações de grupos de consumo do sistema",
+      },
+      {
+        name: "Excluir grupos de consumo",
+        description: "Deletar grupos de consumo do sistema",
+      },
     ],
   });
 
@@ -218,11 +271,9 @@ async function main() {
     ],
   });
 
-  await prisma.hsconsumer_groups.createMany({
-    data: [
-      {description: "Copa"}
-    ]
-  })
+  await prisma.hsconsumption_groups.createMany({
+    data: [{ description: "Copa" }],
+  });
 
   const password = process.env.ADMIN_PASSWORD;
   if (!password) {

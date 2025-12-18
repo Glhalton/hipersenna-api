@@ -120,9 +120,9 @@ export const drawRafflesService = async ({ branch_id }: DrawRaffles) => {
     data: {
       status: "SORTEADO",
     },
-    include: {
-      hsraffle_clients: true,
-    },
+    include:{
+      hsraffle_clients: true
+    }
   });
 
   return updatedDrawnRaffle;
@@ -170,7 +170,6 @@ export const getNfcDataService = async ({
     if (conditions.length === 0) {
       throw new Error("Nenhuma condição de consulta encontrado para NF");
     } else if (!nfc_key && conditions.length === 1) {
-      console.log(conditions.length);
       throw new Error(
         "É necessário informar a chave da nfc ou informar o número da nfc e a série da nfc"
       );

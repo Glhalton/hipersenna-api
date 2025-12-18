@@ -11,10 +11,11 @@ import rolesPermissionsRoutes from "./routes/rolesPermissions.routes.js";
 import userPermissionsRoutes from "./routes/userPermissions.routes.js";
 import sessionsRoutes from "./routes/sessions.routes.js";
 import concurrentsRoutes from "./routes/concurrents.routes.js";
-import consumerProductsRoutes from "./routes/consumerProducts.routes.js";
-import consumerGroupsRoutes from "./routes/consumerGroups.routes.js";
+import consumptionProductsRoutes from "./routes/consumptionProducts.routes.js";
+import consumptionGroupsRoutes from "./routes/consumptionGroups.routes.js";
 import rafflesRoutes from "./routes/raffles.routes.js";
 import raffleClientsRoutes from "./routes/raffleClients.routes.js";
+import { consumptionNotesRoutes } from "./routes/consumptionNotes.routes.js";
 
 export default async function (app: FastifyInstance) {
   app.register(signinRoutes, {
@@ -26,11 +27,14 @@ export default async function (app: FastifyInstance) {
   app.register(concurrentsRoutes, {
     prefix: "/concurrents",
   });
-  app.register(consumerProductsRoutes, {
-    prefix: "/consumer-products",
+  app.register(consumptionGroupsRoutes, {
+    prefix: "/consumption-groups",
   });
-  app.register(consumerGroupsRoutes, {
-    prefix: "/consumer-groups",
+  app.register(consumptionNotesRoutes, {
+    prefix: "/consumption-notes",
+  });
+  app.register(consumptionProductsRoutes, {
+    prefix: "/consumption-products",
   });
   app.register(permissionsRoutes, {
     prefix: "/permissions",
