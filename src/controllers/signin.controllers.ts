@@ -51,7 +51,7 @@ export async function signinController(
     );
 
     return reply
-      .status(200)
+      .status(201)
       .send({ message: "Usuário logado com sucesso!", token, user });
   } catch (error: any) {
     if (error instanceof ZodError) {
