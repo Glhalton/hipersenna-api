@@ -27,14 +27,14 @@ export default async function (app: FastifyInstance) {
   app.register(concurrentsRoutes, {
     prefix: "/concurrents",
   });
-  app.register(consumptionProductsRoutes, {
-    prefix: "/consumption-products",
-  });
   app.register(consumptionGroupsRoutes, {
     prefix: "/consumption-groups",
   });
   app.register(consumptionNotesRoutes, {
     prefix: "/consumption-notes",
+  });
+  app.register(consumptionProductsRoutes, {
+    prefix: "/consumption-products",
   });
   app.register(permissionsRoutes, {
     prefix: "/permissions",
