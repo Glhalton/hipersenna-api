@@ -13,14 +13,17 @@ import {
   getRafflesService,
   invalidateRafflesService,
 } from "../services/raffles.services.js";
-import { getRaffleClientsService, validateCpf } from "../services/raffleClients.services.js";
+import {
+  getRaffleClientsService,
+  validateCpf,
+} from "../services/raffleClients.services.js";
 
 export async function getRafflesController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
-    const { id, branch_id, client_id, nfc_key, cpf } = getRaffleSchema.parse(
+    const { id, branch_id, client_id, nfc_key, cpf, status } = getRaffleSchema.parse(
       request.query
     );
 
@@ -29,6 +32,32 @@ export async function getRafflesController(
       branch_id,
       client_id,
       nfc_key,
+      cpf,
+      status
+    });
+
+    if (raffles.length === 0) {
+      return reply.status(404).send({ message: "Rifa não encontrada" });
+    }
+
+    return reply.status(200).send(raffles);
+  } catch (error: any) {
+    return reply.status(400).send({ message: error.message });
+  }
+}
+
+export async function getMyRafflesController(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
+  try {
+    const { cpf } = getRaffleSchema.parse(request.query);
+
+    if(!cpf){
+      return reply.status(400).send({message: "Nenhum CPF informado!"})
+    }
+
+    const raffles = await getRafflesService({
       cpf,
     });
 
@@ -53,14 +82,14 @@ export async function createRafflesController(
 
     const cpfValidation = validateCpf(cpf);
 
-    if(!cpfValidation){
-      return reply.status(400).send({message: "CPF inválido!"})
+    if (!cpfValidation) {
+      return reply.status(400).send({ message: "CPF inválido!" });
     }
 
-    const client = await getRaffleClientsService({cpf});
+    const client = await getRaffleClientsService({ cpf });
 
-    if(client.length === 0 ){
-      reply.status(404).send({message: "CPF não encontrado no sistema!"});
+    if (client.length === 0) {
+      reply.status(404).send({ message: "CPF não encontrado no sistema!" });
     }
 
     const nfcData = await getNfcDataService({ nfc_key, nfc_number, nfc_serie });
