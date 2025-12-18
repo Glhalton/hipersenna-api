@@ -3,6 +3,46 @@ import bcrypt from "bcryptjs";
 import { signInInput } from "../schemas/signin.schemas.js";
 import { includes } from "zod";
 
+type User = {
+  id: number;
+  branch_id: number;
+  winthor_id: number;
+  role_id: number;
+  password: string;
+  name: string;
+  username: string;
+  created_at: Date;
+  modified_at: Date;
+  hsusers_permissions: {
+    permission_id: number;
+    hspermissions: {
+      description: string;
+    };
+  }[];
+  role: {
+    id: number;
+    description: string;
+    hsroles_permissions: { permission_id: number }[];
+  };
+};
+
+type MappedUser = {
+  id: number;
+  branch_id: number;
+  winthor_id: number;
+  name: string;
+  username: string;
+  created_at: Date;
+  modified_at: Date;
+  role: {
+    role_id: number;
+    description: string;
+    permissions: number[];
+  };
+  userPermissions: number[];
+  allPermissions: number[];
+};
+
 export const signInService = async ({ password, username }: signInInput) => {
   const user = await prisma.hsemployees.findFirst({
     where: {
@@ -28,26 +68,62 @@ export const signInService = async ({ password, username }: signInInput) => {
           },
         },
       },
+      role: {
+        select: {
+          id: true,
+          description: true,
+          hsroles_permissions: {
+            select: {
+              permission_id: true,
+            },
+          },
+        },
+      },
     },
   });
-
 
   if (!user) {
     return false;
   }
 
-  const isCorrectPassword = await bcrypt.compare(
-    password,
-    user.password
-  );
+  const isCorrectPassword = await bcrypt.compare(password, user.password);
 
   if (!isCorrectPassword) {
     return false;
   }
 
-  const {password: _, ...safeUser} = user;
+  function mapUser(user: User): MappedUser {
+    const userPermissions = user.hsusers_permissions.map(
+      (p) => p.permission_id
+    );
 
-  return safeUser;
+    const rolePermissions = user.role.hsroles_permissions.map(
+      (p) => p.permission_id
+    );
+
+    const mergedPermissions = Array.from(
+      new Set([...userPermissions, ...rolePermissions])
+    );
+
+    return {
+      id: user.id,
+      branch_id: user.branch_id,
+      winthor_id: user.winthor_id,
+      name: user.name,
+      username: user.username,
+      created_at: user.created_at,
+      modified_at: user.modified_at,
+      role: {
+        role_id: user.role.id,
+        description: user.role.description,
+        permissions: rolePermissions,
+      },
+      userPermissions: userPermissions,
+      allPermissions: mergedPermissions,
+    };
+  }
+
+  return mapUser(user);
 };
 
 export const createSessionService = async (

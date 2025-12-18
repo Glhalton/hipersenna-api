@@ -24,7 +24,7 @@ export async function getRoleController(
       return reply.status(404).send({ message: "Cargo não encontrado!" });
     }
 
-    return reply.status(201).send(role);
+    return reply.status(200).send(role);
   } catch (error: any) {
     return reply.status(400).send({ message: error.message });
   }
