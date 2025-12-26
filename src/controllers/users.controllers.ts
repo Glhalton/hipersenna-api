@@ -17,121 +17,73 @@ export async function getUserController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  try {
-    const { id, branch_id, name, username, winthor_id, role_id } =
-      getUserSchema.parse(request.query);
-    const user = await getUserService({
-      id,
-      branch_id,
-      name,
-      username,
-      winthor_id,
-      role_id,
-    });
+  const { id, branch_id, name, username, winthor_id, role_id } =
+    getUserSchema.parse(request.query);
+  const user = await getUserService({
+    id,
+    branch_id,
+    name,
+    username,
+    winthor_id,
+    role_id,
+  });
 
-    if (!user || user.length === 0) {
-      return reply.status(404).send({ message: "Usuário não encontrado!" });
-    }
-
-    return reply.status(200).send(user);
-  } catch (error: any) {
-    return reply.status(400).send({ message: ` ${error.message}` });
-  }
+  return reply.status(200).send(user);
 }
 
 export async function getMeController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  try {
-    const id = request.user?.id;
-    const user = await getUserService({ id });
+  const id = request.user?.id;
+  const user = await getUserService({ id });
 
-    return reply.status(200).send(user);
-  } catch (error: any) {
-    return reply.status(400).send({ message: ` ${error.message}` });
-  }
+  return reply.status(200).send(user);
 }
 
 export async function createUserController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  try {
-    const { name, username, password, branch_id, winthor_id, role_id } =
-      createUserSchema.parse(request.body);
-    const user = await findUser(winthor_id, username);
+  const { name, username, password, branch_id, winthor_id, role_id } =
+    createUserSchema.parse(request.body);
 
-    if (user) {
-      return reply.status(409).send({
-        message: "Username ou código do winthor já cadastrados no sistema",
-      });
-    }
+  const userCreated = await createUserService({
+    name,
+    username,
+    password,
+    branch_id,
+    winthor_id,
+    role_id,
+  });
 
-    const userCreated = await createUserService({
-      name,
-      username,
-      password,
-      branch_id,
-      winthor_id,
-      role_id,
-    });
-
-    return reply.status(201).send(userCreated);
-  } catch (error: any) {
-    return reply.status(400).send({ message: `${error.message}` });
-  }
+  return reply.status(201).send(userCreated);
 }
 
 export async function updateUserController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  try {
-    const { id } = userIdSchema.parse(request.params);
+  const { id } = userIdSchema.parse(request.params);
+  const userData = updateUserSchema.parse(request.body);
 
-    const user = await getUserService({ id });
-    if (!user || user.length === 0) {
-      return reply.status(404).send({ message: "Usuário não encontrado" });
-    }
-
-    const userData = updateUserSchema.parse(request.body);
-
-    const userUpdated = await updateUserService(id, userData);
-    return reply.status(200).send(userUpdated);
-  } catch (error: any) {
-    return reply.status(400).send({ message: ` ${error.message}` });
-  }
+  const userUpdated = await updateUserService(id, userData);
+  return reply.status(200).send(userUpdated);
 }
 
 export async function deleteUserController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  try {
-    const { id } = userIdSchema.parse(request.params);
+  const { id } = userIdSchema.parse(request.params);
 
-    const user = await getUserService({ id });
-    if (!user || user.length === 0) {
-      return reply.status(404).send({ message: "Usuário não encontrado!" });
-    }
-
-    const userDeleted = await deleteUserService(id);
-    return reply.status(200).send(userDeleted);
-  } catch (error: any) {
-    return reply.status(400).send({ message: `${error.message}` });
-  }
+  const userDeleted = await deleteUserService(id);
+  return reply.status(200).send(userDeleted);
 }
 
 export async function getTokenDataController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  try {
-    return reply.send(request.user);
-  } catch (error: any) {
-    return reply
-      .status(400)
-      .send({ message: `Erro no servidor: ${error.message}` });
-  }
+  return reply.send(request.user);
 }

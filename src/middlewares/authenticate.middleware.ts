@@ -28,6 +28,7 @@ export async function authenticate(
     }
 
     const jwtSecret = process.env.JWT_SECRET;
+
     if (!jwtSecret) {
       throw new Error("JWT_SECRET não definido no .env");
     }
@@ -39,7 +40,7 @@ export async function authenticate(
     });
 
     if (typeof decodedJwt === "string" || !session) {
-      return reply.status(401).send({ message: "Token inválido ou expirado" });
+      return reply.status(401).send({ message: "Token inválido ou sessão não encontrada" });
     }
 
     request.user = decodedJwt as FastifyRequest["user"];

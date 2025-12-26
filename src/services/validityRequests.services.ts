@@ -1,115 +1,122 @@
-import { prisma } from "../lib/prisma.js"
-import { createValidityRequestInput, GetValidityRequests } from "../schemas/validityRequests.schemas.js";
+import { prisma } from "../lib/prisma.js";
+import {
+  createValidityRequestInput,
+  GetValidityRequests,
+} from "../schemas/validityRequests.schemas.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
 import { UpdateValidityRequestsInput } from "../schemas/validityRequests.schemas.js";
 
-export const getValidityRequestsService = async ({id, branch_id, analyst_id, conferee_id, status} : GetValidityRequests) => {
+export const getValidityRequestsService = async ({
+  id,
+  branch_id,
+  analyst_id,
+  conferee_id,
+  status,
+}: GetValidityRequests) => {
+  const whereClause: any = {};
 
-    const whereClause: any = {}
+  if (id) whereClause.id = id;
+  if (branch_id) whereClause.branch_id = branch_id;
+  if (analyst_id) whereClause.analyst_id = analyst_id;
+  if (conferee_id) whereClause.conferee_id = conferee_id;
+  if (status) whereClause.status = status;
 
-    if(id) whereClause.id = id;
-    if(branch_id) whereClause.branch_id = branch_id;
-    if(analyst_id) whereClause.analyst_id = analyst_id;
-    if(conferee_id) whereClause.conferee_id = conferee_id;
-    if(status) whereClause.status = status
+  const postgreData = await prisma.hsvalidity_requests.findMany({
+    where: whereClause,
+    include: {
+      hsvalidity_request_products: true,
+    },
+  });
 
-    const dadosPostgres = await prisma.hsvalidity_requests.findMany({
-        where: whereClause,
-        include: {
-            hsvalidity_request_products: true
-        }
-    });
+  const allCodes = postgreData.flatMap((req) =>
+    req.hsvalidity_request_products.map((p) => p.product_code)
+  );
 
-    //
-    const allCodes = dadosPostgres.flatMap(req =>
-        req.hsvalidity_request_products.map(p => p.product_code)
-    );
+  if (allCodes.length === 0) return postgreData;
 
-    if (allCodes.length === 0) return dadosPostgres;
+  const connection = await getOracleConnection();
 
-    const connection = await getOracleConnection();
-
-    const query = `
+  const query = `
         SELECT codprod, descricao
         FROM pcprodut
         WHERE codprod IN (${allCodes.map(() => ":code").join(",")})
     `;
 
-    const result = await connection.execute(
-        query,
-        allCodes,
-        { outFormat: oracledb.OUT_FORMAT_OBJECT }
-    );
+  const result = await connection.execute(query, allCodes, {
+    outFormat: oracledb.OUT_FORMAT_OBJECT,
+  });
 
-    await connection.close();
+  await connection.close();
 
-    const descricaoMap: Record<string, string> = {};
-    (result.rows || []).forEach((row: any) => {
-        descricaoMap[row.CODPROD] = row.DESCRICAO;
-    });
+  const descricaoMap: Record<string, string> = {};
+  (result.rows || []).forEach((row: any) => {
+    descricaoMap[row.CODPROD] = row.DESCRICAO;
+  });
 
-    const enrichedData = dadosPostgres.map(req => ({
-        ...req,
-        hsvalidity_request_products: req.hsvalidity_request_products.map(prod => ({
-            ...prod,
-            description: descricaoMap[prod.product_code] || null,
-        })),
-    }));
+  const enrichedData = postgreData.map((req) => ({
+    ...req,
+    hsvalidity_request_products: req.hsvalidity_request_products.map(
+      (prod) => ({
+        ...prod,
+        description: descricaoMap[prod.product_code] || null,
+      })
+    ),
+  }));
 
-    return enrichedData;
-}
+  return enrichedData;
+};
 
 //Tambem retorna as descrições dos produtos com base no banco da oracle
 export const getMyValidityRequestsService = async (employeeId: number) => {
-    const dadosPostgres = await prisma.hsvalidity_requests.findMany({
-        where: {
-            conferee_id: employeeId,
-            status: "PENDENTE",
-        },
-        include: {
-            hsvalidity_request_products: true
-        }
-    });
+  const postgreData = await prisma.hsvalidity_requests.findMany({
+    where: {
+      conferee_id: employeeId,
+      status: "PENDENTE",
+    },
+    include: {
+      hsvalidity_request_products: true,
+    },
+  });
 
-    //
-    const allCodes = dadosPostgres.flatMap(req =>
-        req.hsvalidity_request_products.map(p => p.product_code)
-    );
+  //
+  const allCodes = postgreData.flatMap((req) =>
+    req.hsvalidity_request_products.map((p) => p.product_code)
+  );
 
-    if (allCodes.length === 0) return dadosPostgres;
+  if (allCodes.length === 0) return postgreData;
 
-    const connection = await getOracleConnection();
+  const connection = await getOracleConnection();
 
-    const query = `
+  const query = `
         SELECT codprod, descricao
         FROM pcprodut
         WHERE codprod IN (${allCodes.map(() => ":code").join(",")})
     `;
 
-    const result = await connection.execute(
-        query,
-        allCodes,
-        { outFormat: oracledb.OUT_FORMAT_OBJECT }
-    );
+  const result = await connection.execute(query, allCodes, {
+    outFormat: oracledb.OUT_FORMAT_OBJECT,
+  });
 
-    await connection.close();
+  await connection.close();
 
-    const descricaoMap: Record<string, string> = {};
-    (result.rows || []).forEach((row: any) => {
-        descricaoMap[row.CODPROD] = row.DESCRICAO;
-    });
+  const descricaoMap: Record<string, string> = {};
+  (result.rows || []).forEach((row: any) => {
+    descricaoMap[row.CODPROD] = row.DESCRICAO;
+  });
 
-    const enrichedData = dadosPostgres.map(req => ({
-        ...req,
-        hsvalidity_request_products: req.hsvalidity_request_products.map(prod => ({
-            ...prod,
-            description: descricaoMap[prod.product_code] || null,
-        })),
-    }));
+  const enrichedData = postgreData.map((req) => ({
+    ...req,
+    hsvalidity_request_products: req.hsvalidity_request_products.map(
+      (prod) => ({
+        ...prod,
+        description: descricaoMap[prod.product_code] || null,
+      })
+    ),
+  }));
 
-    return enrichedData;
-}
+  return enrichedData;
+};
 
 export const createValidityRequestService = async (
   validityRequestData: createValidityRequestInput,
@@ -134,32 +141,36 @@ export const createValidityRequestService = async (
   });
 };
 
-export async function updateValidityRequestService({requestId, status, products}: UpdateValidityRequestsInput) {
-    // Transação: tudo ou nada
-    const result = await prisma.$transaction(async (tx) => {
-        // Atualiza a solicitação principal
-        const validityRequestUpdate = await tx.hsvalidity_requests.update({
-            where: { id: requestId },
-            data: { status },
-        });
-
-        // Atualiza cada produto vinculado
-        await Promise.all(
-            products.map((p) =>
-                tx.hsvalidity_request_products.updateMany({
-                    where: {
-                        request_id: requestId,
-                        id: p.id,
-                    },
-                    data: {
-                        status: p.status,
-                    }, 
-                })
-            )
-        );
-
-        return validityRequestUpdate;
+export async function updateValidityRequestService({
+  requestId,
+  status,
+  products,
+}: UpdateValidityRequestsInput) {
+  // Transação: tudo ou nada
+  const result = await prisma.$transaction(async (tx) => {
+    // Atualiza a solicitação principal
+    const validityRequestUpdate = await tx.hsvalidity_requests.update({
+      where: { id: requestId },
+      data: { status },
     });
 
-    return result;
+    // Atualiza cada produto vinculado
+    await Promise.all(
+      products.map((p) =>
+        tx.hsvalidity_request_products.updateMany({
+          where: {
+            request_id: requestId,
+            id: p.id,
+          },
+          data: {
+            status: p.status,
+          },
+        })
+      )
+    );
+
+    return validityRequestUpdate;
+  });
+
+  return result;
 }

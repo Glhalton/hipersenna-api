@@ -4,18 +4,19 @@ import {
   CreateRaffle,
   DrawRaffles,
   GetNfcData,
-  getNfcDataSchema,
   GetRaffle,
   nfcDataResponse,
-  UpdateRaffle,
 } from "../schemas/raffles.schemas.js";
 import oracledb from "oracledb";
-import {
-  createRaffleClientsService,
-  getRaffleClientsService,
-} from "./raffleClients.services.js";
 import crypto from "crypto";
 import { RaffleClientResponse } from "../schemas/raffleClients.schemas.js";
+import { BadRequest } from "../errors/badRequest.error.js";
+import {
+  getRaffleClientsService,
+  validateCpf,
+} from "./raffleClients.services.js";
+import { NotFound } from "../errors/notFound.error.js";
+import { Conflict } from "../errors/conflict.error.js";
 
 export const getRafflesService = async ({
   id,
@@ -23,7 +24,7 @@ export const getRafflesService = async ({
   client_id,
   nfc_key,
   cpf,
-  status
+  status,
 }: GetRaffle) => {
   const whereClause: any = {};
 
@@ -46,7 +47,11 @@ export const getRafflesService = async ({
   });
 };
 
-export const getMyRafflesService = async (cpf: string) => {
+export const getMyRafflesService = async (cpf?: string) => {
+  if (!cpf) {
+    throw new BadRequest("Nenhum CPF informado!");
+  }
+
   return await prisma.hsraffles.findMany({
     where: {
       hsraffle_clients: {
@@ -56,35 +61,55 @@ export const getMyRafflesService = async (cpf: string) => {
   });
 };
 
-export const createRaffleService = async (
-  { chaveNfe, codFilial, vlTotal }: nfcDataResponse,
-  { id }: RaffleClientResponse
-) => {
+export const createRaffleService = async ({
+  nfc_key,
+  nfc_number,
+  nfc_serie,
+  cpf,
+}: CreateRaffle) => {
+  const cpfValidation = validateCpf(cpf);
+
+  if (!cpfValidation) {
+    throw new BadRequest("CPF inválido!");
+  }
+
+  const client = await getRaffleClientsService({ cpf });
+
+  if (client.length === 0) {
+    throw new NotFound("CPF não encontrado no sistema!");
+  }
+
+  const nfcData = await getNfcDataService({ nfc_key, nfc_number, nfc_serie });
+
+  if (nfcData.length === 0) {
+    throw new NotFound("Cupom fiscal não encotrado no sistema");
+  }
+
   const riffles: any = [];
 
-  const raffleUnits = Math.floor(vlTotal / 50);
+  const raffleUnits = Math.floor(nfcData[0].vlTotal / 50);
 
   if (raffleUnits === 0) {
-    throw new Error(
+    throw new BadRequest(
       "Valor do cupom não atingiu o valor mínimo para participar do sorteio."
     );
   }
 
   const rafflesCount = await prisma.hsraffles.count({
-    where: { nfc_key: chaveNfe },
+    where: { nfc_key: nfcData[0].chaveNfe },
   });
 
   if (rafflesCount >= raffleUnits) {
-    throw new Error("Já existem rifas cadastradas para esse cupom");
+    throw new Conflict("Já existem rifas cadastradas para esse cupom");
   }
 
   await prisma.$transaction(async (tx) => {
     for (let i = 0; i < raffleUnits; i++) {
       const raffle = await tx.hsraffles.create({
         data: {
-          client_id: id,
-          nfc_key: chaveNfe,
-          branch_id: Number(codFilial),
+          client_id: client[0].id,
+          nfc_key: nfcData[0].chaveNfe,
+          branch_id: Number(nfcData[0].codFilial),
         },
       });
 
@@ -108,7 +133,7 @@ export const drawRafflesService = async ({ branch_id }: DrawRaffles) => {
   });
 
   if (data.length === 0) {
-    throw new Error("Nenhuma rifa para ser sorteada.");
+    throw new NotFound("Nenhuma rifa para ser sorteada.");
   }
 
   const raffles = [...data];
@@ -120,25 +145,27 @@ export const drawRafflesService = async ({ branch_id }: DrawRaffles) => {
     data: {
       status: "SORTEADO",
     },
-    include:{
-      hsraffle_clients: true
-    }
+    include: {
+      hsraffle_clients: true,
+    },
   });
 
   return updatedDrawnRaffle;
 };
 
 export const invalidateRafflesService = async ({ branch_id }: DrawRaffles) => {
-  const updatedRaffles = await prisma.hsraffles.updateMany({
-    where: { branch_id, status: "ATIVO" },
-    data: { status: "INATIVO" },
-  });
+  try {
+    const updatedRaffles = await prisma.hsraffles.updateMany({
+      where: { branch_id, status: "ATIVO" },
+      data: { status: "INATIVO" },
+    });
 
-  if (updatedRaffles.count === 0) {
-    throw new Error("Nenhuma rifa ativa encontrada.");
+    return updatedRaffles;
+  } catch (error: any) {
+    if (error.code == "P2025") {
+      throw new NotFound("Nenhuma rifa ativa encontrada.");
+    }
   }
-
-  return updatedRaffles;
 };
 
 export const getNfcDataService = async ({

@@ -6,11 +6,12 @@ export const validityIdSchema = z.object({
 
 export const getValiditySchema = z.object({
   id: z.coerce.number().optional(),
-  created_at: z.coerce.date().optional(),
+  initialCreationDate: z.coerce.date().optional(),
+  finalCreationDate: z.coerce.date().optional(),
+  initialValidityDate: z.coerce.date().optional(),
+  finalValidityDate: z.coerce.date().optional(),
   branch_id: z.coerce.number().optional(),
   expiresDays: z.coerce.number().optional(),
-  initialDate: z.coerce.date().optional(),
-  finalDate: z.coerce.date().optional(),
   descricao: z.string().optional(),
 });
 export type GetValidity = z.infer<typeof getValiditySchema>;
@@ -60,6 +61,37 @@ export const validityResponseSchema = z.object({
       treat_id: z.number(),
       auxiliary_code: z.string(),
       description: z.string().optional().nullable(),
+      department_id: z.number(),
+      supplier_id: z.number(),
+      supplier_name: z.string(),
+      buyer_id: z.number(),
+      buyer_name: z.string(),
+      average1: z.number(),
+      average2: z.number(),
+      average3: z.number(),
+      average4: z.number(),
+      average5: z.number(),
+      average7: z.number(),
+      average8: z.number(),
     })
   ),
 });
+
+export const oracleProductSchema = z.object({
+  CODPROD: z.number(),
+  DESCRICAO: z.number(),
+  CODEPTO: z.number(),
+  CODFORNEC: z.number(),
+  FORNECEDOR: z.number(),
+  CODCOMPRADOR: z.number(),
+  NOME: z.string(),
+  MEDIA1: z.number(),
+  MEDIA2: z.number(),
+  MEDIA3: z.number(),
+  MEDIA4: z.number(),
+  MEDIA5: z.number(),
+  MEDIA7: z.number(),
+  MEDIA8: z.number(),
+});
+
+export type OracleProduct = z.infer<typeof oracleProductSchema>;

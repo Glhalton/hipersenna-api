@@ -1,9 +1,9 @@
 import { FastifyInstance } from "fastify";
 import {
-  createconsumptionGroupsController,
-  deleteconsumptionGroupsController,
-  getconsumptionGroupsController,
-  updateconsumptionGroupsController,
+  createConsumptionGroupsController,
+  deleteConsumptionGroupsController,
+  getConsumptionGroupsController,
+  updateConsumptionGroupsController,
 } from "../controllers/consumptionGroups.controllers.js";
 import {
   consumptionGroupsId,
@@ -22,18 +22,20 @@ export default async function (app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(42)],
       schema: {
+        summary: "Rota de consulta de grupos de consumo.",
         description: "Realiza a consulta de grupos de consumo.",
+        tags: ["Consumption-Groups"],
         security: [{ BearerAuth: [] }],
         querystring: getConsumptionGroupsSchema,
         response: {
           200: z.array(consumptionGroupsResponseSchema),
-          404: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Consumption-Groups"],
-        summary: "Rota de consulta de grupos de consumo.",
       },
     },
-    getconsumptionGroupsController
+    getConsumptionGroupsController
   );
 
   app.post(
@@ -41,53 +43,62 @@ export default async function (app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(43)],
       schema: {
+        summary: "Rota de criação de grupos de consumo.",
         description: "Realiza a criação de grupos de consumo.",
+        tags: ["Consumption-Groups"],
         security: [{ BearerAuth: [] }],
         body: createConsumptionGroupsSchema,
         response: {
           201: consumptionGroupsResponseSchema,
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Consumption-Groups"],
-        summary: "Rota de criação de grupos de consumo.",
       },
     },
-    createconsumptionGroupsController
+    createConsumptionGroupsController
   ),
     app.patch(
       "/:id",
       {
         preHandler: [authenticate, authorize(44)],
         schema: {
+          summary: "Rota de atualização de dados de grupos de consumo.",
           description: "Realiza a atualização de dados de grupos de consumo.",
+          tags: ["Consumption-Groups"],
           security: [{ BearerAuth: [] }],
           params: consumptionGroupsId,
           body: updateConsumptionGroupsSchema,
           response: {
             200: consumptionGroupsResponseSchema,
+            400: z.object({ message: z.string() }),
+            403: z.object({ message: z.string() }),
             404: z.object({ message: z.string() }),
+            500: z.object({ message: z.string() }),
           },
-          tags: ["Consumption-Groups"],
-          summary: "Rota de atualização de dados de grupos de consumo.",
         },
       },
-      updateconsumptionGroupsController
+      updateConsumptionGroupsController
     ),
     app.delete(
       "/:id",
       {
         preHandler: [authenticate, authorize(45)],
         schema: {
+          summary: "Rota de exclusão de grupos de consumo.",
           description: "Realiza a exclusão de grupos de consumo.",
+          tags: ["Consumption-Groups"],
           security: [{ BearerAuth: [] }],
           params: consumptionGroupsId,
           response: {
             200: consumptionGroupsResponseSchema,
+            400: z.object({ message: z.string() }),
+            403: z.object({ message: z.string() }),
             404: z.object({ message: z.string() }),
+            500: z.object({ message: z.string() }),
           },
-          tags: ["Consumption-Groups"],
-          summary: "Rota de exclusão de grupos de consumo.",
         },
       },
-      deleteconsumptionGroupsController
+      deleteConsumptionGroupsController
     );
 }

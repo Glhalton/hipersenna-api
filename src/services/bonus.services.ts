@@ -1,8 +1,8 @@
 import oracledb from "oracledb";
-import { GetBonus } from "../schemas/bonus.schemas.js";
+import { GetBonus, OracleBonusSchema } from "../schemas/bonus.schemas.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
 
-export async function bonusListService({
+export async function getBonusService({
   codprod,
   dpart,
   dtbonusend,
@@ -45,7 +45,7 @@ export async function bonusListService({
 
     conditions.push("bi.DTVALIDADE BETWEEN SYSDATE - 30 AND SYSDATE + 50");
 
-   const whereClause = `WHERE ${conditions.join(" AND ")}`;
+    const whereClause = `WHERE ${conditions.join(" AND ")}`;
 
     const query = `
     SELECT
@@ -75,45 +75,31 @@ export async function bonusListService({
     `;
 
     const result = await connection.execute(query, binds, {
-      maxRows: 5000,
+      maxRows: 250,
       outFormat: oracledb.OUT_FORMAT_OBJECT,
     });
 
-      type DataRow = {
-      FILIAL: string;
-      DPART: number;
-      CODPROD: number;
-      DESCRICAO: string;
-      QTENTRADA: number;
-      DTBONUS: string;
-      DTVALIDADE: string;
-      MEDIAF1: number;
-      MEDIAF2: number;
-      MEDIAF3: number;
-      MEDIAF4: number;
-      MEDIAF5: number;
-      MEDIAF7: number;
-    };
+    if (result.rows?.length === 0) {
+      return [];
+    }
 
-
-    return ((result.rows as DataRow[] )?? []).map(row => ({
-      filial: row.FILIAL,
-      depart: row.DPART,
-      codProd: row.CODPROD,
-      descricao: row.DESCRICAO,
-      qtEntrada: row.QTENTRADA,
-      dtBonus: row.DTBONUS,
-      dtValidade: row.DTVALIDADE,
-      mediaF1: row.MEDIAF1,
-      mediaF2: row.MEDIAF2,
-      mediaF3: row.MEDIAF3,
-      mediaF4: row.MEDIAF4,
-      mediaF5: row.MEDIAF5,
-      mediaF7: row.MEDIAF7,
+    return ((result.rows as OracleBonusSchema[]) ?? []).map((row) => ({
+      branchId: row.FILIAL,
+      department: row.DPART,
+      productCode: row.CODPROD,
+      description: row.DESCRICAO,
+      inputQuantity: row.QTENTRADA,
+      bonusDate: row.DTBONUS,
+      validityDate: row.DTVALIDADE,
+      average1: row.MEDIAF1,
+      average2: row.MEDIAF2,
+      average3: row.MEDIAF3,
+      average4: row.MEDIAF4,
+      average5: row.MEDIAF5,
+      average7: row.MEDIAF7,
     }));
-
-  } catch (error: any){
-    console.log(error)
+  } catch (error: unknown) {
+    throw error;
   } finally {
     await connection.close();
   }

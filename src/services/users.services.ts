@@ -5,6 +5,8 @@ import {
   CreateUserInput,
   GetUserInput,
 } from "../schemas/users.schemas.js";
+import { Conflict } from "../errors/conflict.error.js";
+import { NotFound } from "../errors/notFound.error.js";
 
 export const getUserService = async ({
   id,
@@ -53,6 +55,14 @@ export const createUserService = async ({
   winthor_id,
   role_id,
 }: CreateUserInput) => {
+  const user = await findUser(winthor_id, username);
+
+  if (user) {
+    throw new Conflict(
+      "Username ou código do winthor já cadastrados no sistema!"
+    );
+  }
+
   const hashedPassword = await bcrypt.hash(password, 10);
 
   return await prisma.hsemployees.create({
@@ -62,7 +72,7 @@ export const createUserService = async ({
       branch_id: branch_id,
       password: hashedPassword,
       winthor_id: winthor_id,
-      role_id: role_id
+      role_id: role_id,
     },
   });
 };
@@ -72,58 +82,72 @@ export const updateUserService = async (id: number, data: UpdateUserInput) => {
     data.password = await bcrypt.hash(data.password, 10);
   }
 
-  return await prisma.hsemployees.update({
-    where: { id },
-    data,
-    select: {
-      id: true,
-      branch_id: true,
-      winthor_id: true,
-      role_id: true,
-      name: true,
-      username: true,
-      created_at: true,
-      modified_at: true,
-      hsusers_permissions: {
-        select: {
-          permission_id: true,
-          hspermissions: {
-            select: {
-              description: true,
+  try {
+    return await prisma.hsemployees.update({
+      where: { id },
+      data,
+      select: {
+        id: true,
+        branch_id: true,
+        winthor_id: true,
+        role_id: true,
+        name: true,
+        username: true,
+        created_at: true,
+        modified_at: true,
+        hsusers_permissions: {
+          select: {
+            permission_id: true,
+            hspermissions: {
+              select: {
+                description: true,
+              },
             },
           },
         },
       },
-    },
-  });
+    });
+  } catch (error: any) {
+    if (error.code == "P2025") {
+      throw new NotFound("Usuário não encontrado!");
+    }
+    throw error;
+  }
 };
 
 export const deleteUserService = async (userId: number) => {
-  return await prisma.hsemployees.delete({
-    where: {
-      id: userId,
-    },
-    select: {
-      id: true,
-      branch_id: true,
-      winthor_id: true,
-      role_id: true,
-      name: true,
-      username: true,
-      created_at: true,
-      modified_at: true,
-      hsusers_permissions: {
-        select: {
-          permission_id: true,
-          hspermissions: {
-            select: {
-              description: true,
+  try {
+    return await prisma.hsemployees.delete({
+      where: {
+        id: userId,
+      },
+      select: {
+        id: true,
+        branch_id: true,
+        winthor_id: true,
+        role_id: true,
+        name: true,
+        username: true,
+        created_at: true,
+        modified_at: true,
+        hsusers_permissions: {
+          select: {
+            permission_id: true,
+            hspermissions: {
+              select: {
+                description: true,
+              },
             },
           },
         },
       },
-    },
-  });
+    });
+  } catch (error: any) {
+    if (error.code == "P2025") {
+      throw new NotFound("Usuário não encontrado!");
+    }
+    throw error;
+  }
 };
 
 export const findUser = async (winthor_id: number, username: string) => {

@@ -20,15 +20,18 @@ export default async function sessionsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(15)],
       schema: {
+        summary: "Rota de consulta de sessões.",
         description: "Realiza a consulta de sessões.",
+        tags: ["Sessions"],
         security: [{ BearerAuth: [] }],
         querystring: getSessionSchema,
         response: {
           200: z.array(sessionResponseSchema),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
           404: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Sessions"],
-        summary: "Rota de consulta de sessões.",
       },
     },
     getSessionsController
@@ -39,15 +42,18 @@ export default async function sessionsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(16)],
       schema: {
+        summary: "Rota de exclusão de sessões.",
         description: "Realiza a exclusão de uma sessão pelo ID.",
+        tags: ["Sessions"],
         security: [{ BearerAuth: [] }],
         params: sessionIdSchema,
         response: {
           200: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
           404: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Sessions"],
-        summary: "Rota de exclusão de sessões.",
       },
     },
     deleteSessionsController
@@ -58,14 +64,18 @@ export default async function sessionsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(17)],
       schema: {
+        summary: "Rota de exclusão de todas as sessões",
         description:
           "Realiza a exclusão de todas as sessões, com excessão da sessão do usuário que utilizou a rota.",
+        tags: ["Sessions"],
         security: [{ BearerAuth: [] }],
         response: {
           200: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          404: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Sessions"],
-        summary: "Rota de exclusão de todas as sessões",
       },
     },
     deleteAllSessionsController
@@ -76,15 +86,17 @@ export default async function sessionsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate],
       schema: {
+        summary: "Rota de exclusão das sessões do usuário que acessou a rota.",
         description:
           "Realiza a exclusão das sessões do usuário que acessou a rota.",
+        tags: ["Sessions"],
         security: [{ BearerAuth: [] }],
         response: {
           200: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
           404: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Sessions"],
-        summary: "Rota de exclusão das sessões do usuário que acessou a rota.",
       },
     },
     deleteMySessionController

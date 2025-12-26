@@ -8,7 +8,15 @@ export const getConcurrentSchema = z.object({
 export type GetConcurrent = z.infer<typeof getConcurrentSchema>;
 
 export const concurrentResponseSchema = z.object({
-    codConc: z.string(),
-    concorrente: z.string(),
-    ativo: z.string().nullable(),
-})
+  concurrentCode: z.string(),
+  concurrentName: z.string(),
+  active: z.string().nullable(),
+});
+
+export const oracleConcurrentSchema = z.object({
+  CODCONC: z.string(),
+  CONCORRENTE: z.string(),
+  ATIVO: z.string(),
+});
+
+export type OracleConcurrent = z.infer<typeof oracleConcurrentSchema>;
