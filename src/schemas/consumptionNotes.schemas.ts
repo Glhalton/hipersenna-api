@@ -1,8 +1,8 @@
 import z from "zod";
 
 export const getConsumptionNotesSchema = z.object({
-  id: z.number().optional(),
-  employee_id: z.number().optional(),
+  id: z.coerce.number().optional(),
+  employee_id: z.coerce.number().optional(),
 });
 
 export type GetConsumptionNotes = z.infer<typeof getConsumptionNotesSchema>;

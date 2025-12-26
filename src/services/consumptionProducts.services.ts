@@ -6,6 +6,7 @@ import {
   GetConsumptionProducts,
   UpdateconsumptionProducts,
 } from "../schemas/consumptionProducts.schemas.js";
+import { NotFound } from "../errors/notFound.error.js";
 
 export const getconsumptionProductsService = async ({
   id,
@@ -43,29 +44,33 @@ export const getconsumptionProductsService = async ({
 
   const connection = await getOracleConnection();
 
-  const query = `
-    SELECT codprod, descricao
-    FROM pcprodut
-    WHERE codprod IN (${allCodes.map(() => ":code").join(",")})
-  `;
+  try {
+    const query = `
+      SELECT codprod, descricao
+      FROM pcprodut
+      WHERE codprod IN (${allCodes.map(() => ":code").join(",")})
+    `;
 
-  const result = await connection.execute(query, allCodes, {
-    outFormat: oracledb.OUT_FORMAT_OBJECT,
-  });
+    const result = await connection.execute(query, allCodes, {
+      outFormat: oracledb.OUT_FORMAT_OBJECT,
+    });
 
-  await connection.close();
+    const descricaoMap: Record<string, string> = {};
+    (result.rows || []).forEach((row: any) => {
+      descricaoMap[row.CODPROD] = row.DESCRICAO;
+    });
 
-  const descricaoMap: Record<string, string> = {};
-  (result.rows || []).forEach((row: any) => {
-    descricaoMap[row.CODPROD] = row.DESCRICAO;
-  });
+    const enrichedData = postgresData.map((item) => ({
+      ...item,
+      description: descricaoMap[item.product_code] || null,
+    }));
 
-  const enrichedData = postgresData.map((item) => ({
-    ...item,
-    description: descricaoMap[item.product_code] || null,
-  }));
-
-  return enrichedData;
+    return enrichedData;
+  } catch (error: unknown) {
+    throw error;
+  } finally {
+    await connection.close();
+  }
 };
 
 export const createconsumptionProductsService = async (
@@ -98,26 +103,35 @@ export const updateconsumptionProductsService = async ({
   quantity,
   group_id,
 }: UpdateconsumptionProducts) => {
-  return await prisma.hsconsumption_products.updateMany({
-    data: {
-      product_code,
-      auxiliary_code,
-      branch_id,
-      quantity,
-      group_id,
-    },
-    where: {
-      id: {
-        in: id,
+  try {
+    return await prisma.hsconsumption_products.updateMany({
+      data: {
+        product_code,
+        auxiliary_code,
+        branch_id,
+        quantity,
+        group_id,
       },
-    },
-  });
+      where: {
+        id: {
+          in: id,
+        },
+      },
+    });
+  } catch (error: any) {
+    throw new NotFound("Produto de consumo não encontrado!");
+  }
 };
 
 export const deleteconsumptionProductsService = async (id: number) => {
-  return await prisma.hsconsumption_products.delete({
-    where: { id },
-  });
+  try {
+    return await prisma.hsconsumption_products.delete({
+      where: { id },
+    });
+  } catch (error: any) {
+    throw new NotFound("Produto de consumo não encontrado!");
+    throw error;
+  }
 };
 
 export const existingconsumptionProducts = async (ids: number[]) => {

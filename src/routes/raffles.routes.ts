@@ -10,7 +10,6 @@ import {
   createRaffleSchema,
   drawRafflesSchema,
   getMyRaffleSchema,
-  getNfcDataSchema,
   getRaffleSchema,
   raffleResponseWithClientSchema,
   raffleResponseWithNoClientSchema,
@@ -24,16 +23,18 @@ export default async function rafflesRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate],
       schema: {
+        summary: "Rota de consulta de rifas.",
         description:
           "Realiza a consulta de rifas de sorteio e o cliente ao qual pertence.",
+        tags: ["Raffles"],
         query: getRaffleSchema,
         security: [{ BearerAuth: [] }],
         response: {
           200: z.array(raffleResponseWithClientSchema),
-          404: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Raffles"],
-        summary: "Rota de consulta de rifas.",
       },
     },
     getRafflesController
@@ -45,13 +46,15 @@ export default async function rafflesRoutes(app: FastifyInstance) {
       preHandler: [],
       schema: {
         description: "Realiza a consulta de rifas de sorteio pelo CPF.",
+        summary: "Rota de consulta de rifas pelo CPF.",
+        tags: ["Raffles"],
         query: getMyRaffleSchema,
         response: {
           200: z.array(raffleResponseWithNoClientSchema),
-          404: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Raffles"],
-        summary: "Rota de consulta de rifas pelo CPF.",
       },
     },
     getMyRafflesController
@@ -63,12 +66,15 @@ export default async function rafflesRoutes(app: FastifyInstance) {
       preHandler: [],
       schema: {
         description: "Realiza a criação de rifas de sorteio.",
+        summary: "Rota de criação de rifas.",
+        tags: ["Raffles"],
         body: createRaffleSchema,
         response: {
           201: z.array(raffleResponseWithNoClientSchema),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Raffles"],
-        summary: "Rota de criação de rifas.",
       },
     },
     createRafflesController
@@ -80,13 +86,17 @@ export default async function rafflesRoutes(app: FastifyInstance) {
       preHandler: [authenticate],
       schema: {
         description: "Realiza o sorteio de rifas em uma determinada filial.",
+        summary: "Rota de sorteio de rifas.",
+        tags: ["Raffles"],
         security: [{ BearerAuth: [] }],
         params: drawRafflesSchema,
         response: {
           200: raffleResponseWithClientSchema,
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          404: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Raffles"],
-        summary: "Rota de sorteio de rifas.",
       },
     },
     drawRafflesController
@@ -97,13 +107,17 @@ export default async function rafflesRoutes(app: FastifyInstance) {
       preHandler: [authenticate],
       schema: {
         description: "Realiza a inativação de rifas em uma determinada filial.",
+        summary: "Rota de inativação de rifas.",
+        tags: ["Raffles"],
         security: [{ BearerAuth: [] }],
         params: drawRafflesSchema,
         response: {
           200: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          404: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Raffles"],
-        summary: "Rota de inativação de rifas.",
       },
     },
     invalidateRafflesController

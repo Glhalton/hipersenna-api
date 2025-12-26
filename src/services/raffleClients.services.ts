@@ -1,3 +1,6 @@
+import { BadRequest } from "../errors/badRequest.error.js";
+import { Conflict } from "../errors/conflict.error.js";
+import { NotFound } from "../errors/notFound.error.js";
 import { prisma } from "../lib/prisma.js";
 import {
   CreateRaffleClient,
@@ -26,38 +29,59 @@ export const createRaffleClientsService = async ({
   const cpfExist = validateCpf(cpfClear);
 
   if (!cpfExist) {
-    throw new Error("O CPF informado é inválido.");
+    throw new BadRequest("O CPF informado é inválido.");
   }
 
-  return await prisma.hsraffle_clients.create({
-    data: {
-      name,
-      cpf: cpfClear,
-      telephone,
-    },
-  });
+  try {
+    return await prisma.hsraffle_clients.create({
+      data: {
+        name,
+        cpf: cpfClear,
+        telephone,
+      },
+    });
+  } catch (error: any) {
+    if (error.code == "P2002") {
+      throw new Conflict(
+        "Já existe um usuário com esse CPF cadastrado no sistema"
+      );
+      throw error;
+    }
+  }
 };
 
 export const updateRaffleClientsService = async (
   { name, cpf, telephone }: UpdateRaffleClient,
   id: number
 ) => {
-
-
-  return await prisma.hsraffle_clients.update({
-    where: { id },
-    data: {
-      name,
-      cpf,
-      telephone,
-    },
-  });
+  try {
+    return await prisma.hsraffle_clients.update({
+      where: { id },
+      data: {
+        name,
+        cpf,
+        telephone,
+      },
+    });
+  } catch (error: any) {
+    if (error.code == "P2025") {
+      throw new NotFound("Cliente da rifa não encontrado!");
+    }
+    throw error;
+  }
 };
 
 export const deleteRaffleClientsService = async (id: number) => {
-  return await prisma.hsraffle_clients.delete({
-    where: { id },
-  });
+  try {
+    return await prisma.hsraffle_clients.delete({
+      where: { id },
+    });
+  } catch (error: any) {
+    if (error.code == "P2025") {
+      throw new NotFound("Cliente da rifa não encontrado!");
+    }
+    throw error;
+  }
 };
 
 export function validateCpf(cpf: string) {

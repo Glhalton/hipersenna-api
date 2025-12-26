@@ -24,15 +24,18 @@ export default async function usersRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(21)],
       schema: {
+        summary: "Rota de consulta de usuários.",
         description:
           "Realiza a consulta de usuários. Retorna uma lista de usuários, podendo ser filtrado pelo id, nome, username, id do winthor ou filial.",
+        tags: ["Users"],
         security: [{ BearerAuth: [] }],
         querystring: getUserSchema,
         response: {
           200: z.array(userResponseSchema),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Users"],
-        summary: "Rota de consulta de usuários.",
       },
     },
     getUserController
@@ -43,13 +46,16 @@ export default async function usersRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate],
       schema: {
+        summary: "Rota de consulta de dados do usuário que consultou.",
         description: "Retorna os dados do usuário que realizou a consulta.",
+        tags: ["Users"],
         security: [{ BearerAuth: [] }],
         response: {
           200: z.array(userResponseSchema),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Users"],
-        summary: "Rota de consulta de dados do usuário que consultou.",
       },
     },
     getMeController
@@ -60,10 +66,10 @@ export default async function usersRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate],
       schema: {
+        summary: "Rota de consulta de dados do token.",
         description: "Retorna os dados do token",
         security: [{ BearerAuth: [] }],
         tags: ["Users"],
-        summary: "Rota de consulta de dados do token.",
       },
     },
     getTokenDataController
@@ -74,15 +80,18 @@ export default async function usersRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(22)],
       schema: {
+        summary: "Rota de criação de usuários.",
         description: "Realiza a criação de um usuário.",
+        tags: ["Users"],
         security: [{ BearerAuth: [] }],
         body: createUserSchema,
         response: {
-          200: userResponseSchema,
+          201: userResponseSchema,
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
           409: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Users"],
-        summary: "Rota de criação de usuários.",
       },
     },
     createUserController
@@ -93,15 +102,19 @@ export default async function usersRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(23)],
       schema: {
+        summary: "Rota de atualização de dados de usuários.",
         description: "Realiza a atualização de dados de um usuário.",
+        tags: ["Users"],
         security: [{ BearerAuth: [] }],
         params: userIdSchema,
         body: updateUserSchema,
         response: {
           200: userResponseSchema,
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          404: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Users"],
-        summary: "Rota de atualização de dados de usuários.",
       },
     },
     updateUserController
@@ -112,14 +125,18 @@ export default async function usersRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(24)],
       schema: {
+        summary: "Rota de exclusão de usuários.",
         description: "Realiza a exclusão de um usuário.",
+        tags: ["Users"],
         security: [{ BearerAuth: [] }],
         params: userIdSchema,
         response: {
           200: userResponseSchema,
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          404: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Users"],
-        summary: "Rota de exclusão de usuários.",
       },
     },
     deleteUserController

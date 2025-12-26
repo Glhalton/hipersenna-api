@@ -10,8 +10,11 @@ import {
   jsonSchemaTransform,
   ZodTypeProvider,
 } from "fastify-type-provider-zod";
+import { registerErrorHandler } from "./errors/errorHandler.js";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
+
+registerErrorHandler(app);
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);

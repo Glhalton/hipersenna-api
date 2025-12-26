@@ -1,3 +1,5 @@
+import { BadRequest } from "../errors/badRequest.error.js";
+import { NotFound } from "../errors/notFound.error.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
 
@@ -34,7 +36,7 @@ export const getProductService = async (
     }
 
     if (conditions.length === 0) {
-      return 400;
+      throw new BadRequest("Informe pelo menos um filtro de busca");
     }
 
     const whereClause =
@@ -85,7 +87,7 @@ export const getProductService = async (
 
     const result = await connection.execute(query, binds, {
       outFormat: oracledb.OUT_FORMAT_OBJECT,
-      maxRows: 250
+      maxRows: 250,
     });
 
     type ProductRow = {

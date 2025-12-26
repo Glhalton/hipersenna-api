@@ -22,15 +22,17 @@ export default async function validityRequestsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(31)],
       schema: {
+        summary: "Rota de consulta de Solicitações de validade.",
         description: "Realiza a consulta de Solicitações de validade.",
+        tags: ["Validity-Requests"],
         security: [{ BearerAuth: [] }],
         querystring: getValidityRequestsSchema,
         response: {
           200: z.array(validityRequestResponseSchema),
-          404: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Validity-Requests"],
-        summary: "Rota de consulta de Solicitações de validade.",
       },
     },
     getValidityRequestsController
@@ -41,16 +43,17 @@ export default async function validityRequestsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate],
       schema: {
+        summary:
+          "Rota de consulta de Solicitações de validade vinculada ao usuário que consultou.",
         description:
           "Realiza a consulta de Solicitações de validade vinculada ao usuario que consultou.",
+        tags: ["Validity-Requests"],
         security: [{ BearerAuth: [] }],
         response: {
           200: z.array(validityRequestResponseSchema),
-          404: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Validity-Requests"],
-        summary:
-          "Rota de consulta de Solicitações de validade vinculada ao usuário que consultou.",
       },
     },
     getMyValidityRequestsController
@@ -61,14 +64,17 @@ export default async function validityRequestsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(32)],
       schema: {
+        summary: "Rota de criação de Solicitações de validade.",
+        tags: ["Validity-Requests"],
         description: "Realiza a criação de Solicitações de validade.",
         security: [{ BearerAuth: [] }],
         body: createValidityRequestSchema,
         response: {
           201: validityRequestResponseSchema,
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Validity-Requests"],
-        summary: "Rota de criação de Solicitações de validade.",
       },
     },
     createValidityRequestController
@@ -79,15 +85,19 @@ export default async function validityRequestsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(33)],
       schema: {
+        summary: "Rota de atualização de dados de Solicitações de validade.",
         description:
           "Realiza a atualização de dados de Solicitações de validade",
+        tags: ["Validity-Requests"],
         security: [{ BearerAuth: [] }],
         body: updateValidityRequestsSchema,
         response: {
           200: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          404: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Validity-Requests"],
-        summary: "Rota de atualização de dados de Solicitações de validade.",
       },
     },
     updateValidityRequestController
