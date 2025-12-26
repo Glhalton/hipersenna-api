@@ -1,19 +1,15 @@
+import { Conflict } from "../errors/conflict.error.js";
+import { NotFound } from "../errors/notFound.error.js";
 import { prisma } from "../lib/prisma.js";
-import {
-  SessionId,
-  GetSession,
-} from "../schemas/sessions.schemas.js";
+import { SessionId, GetSession } from "../schemas/sessions.schemas.js";
 
-export const getSessionsService = async ({
-  sessionId,
-  userId,
-}: GetSession) => {
+export const getSessionsService = async ({ sessionId, userId }: GetSession) => {
   const whereClause: any = {};
 
   if (sessionId) whereClause.id = sessionId;
   if (userId) whereClause.user_id = userId;
 
-  return await prisma.hssessions.findMany({
+  const sessions = await prisma.hssessions.findMany({
     where: whereClause,
     select: {
       id: true,
@@ -29,6 +25,26 @@ export const getSessionsService = async ({
       },
     },
   });
+
+  if (sessions.length === 0) {
+    throw new NotFound("Sessão não encontrada!");
+  }
+
+  return sessions;
+};
+
+export const deleteMySessionService = async (token: string) => {
+  const sessionDeleted = await prisma.hssessions.delete({
+    where: {
+      token,
+    },
+  });
+
+  if (!sessionDeleted) {
+    throw new NotFound("Sessão não encontrada!");
+  }
+
+  return sessionDeleted;
 };
 
 export const deleteSessionsService = async (
@@ -37,10 +53,14 @@ export const deleteSessionsService = async (
 ) => {
   const whereClause: any = {};
 
-  const session = await getSessionsService({ userId });
+  const session = await getSessionsService({ sessionId: id });
 
-  if (session[0].id == id) {
-    throw new Error("Não é possivel deletar a própria sessão");
+  if (session.length === 0) {
+    throw new NotFound("Sessão não encontrada!");
+  }
+
+  if (session[0].user.id == userId) {
+    throw new Conflict("Não é possivel deletar a própria sessão");
   }
 
   return await prisma.hssessions.delete({
@@ -62,19 +82,17 @@ export const deleteSessionsService = async (
 };
 
 export const deleteAllSessionsService = async (userId: number) => {
+  const sessions = await getSessionsService({});
+
+  if (sessions.length === 1) {
+    throw new NotFound("Nenhuma sessão encontrada!");
+  }
+
   return await prisma.hssessions.deleteMany({
     where: {
       user_id: {
         not: userId,
       },
-    },
-  });
-};
-
-export const deleteMySessionService = async (token: string) => {
-  return await prisma.hssessions.delete({
-    where: {
-      token,
     },
   });
 };

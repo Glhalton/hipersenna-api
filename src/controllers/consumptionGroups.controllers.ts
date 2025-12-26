@@ -6,97 +6,57 @@ import {
   updateConsumptionGroupsSchema,
 } from "../schemas/consumptionGroups.schemas.js";
 import {
-  createconsumptionGroupsService,
-  deleteconsumptionGroupsService,
-  getconsumptionGroupsService,
-  updateconsumptionGroupsService,
+  createConsumptionGroupsService,
+  deleteConsumptionGroupsService,
+  getConsumptionGroupsService,
+  updateConsumptionGroupsService,
 } from "../services/consumptionGroups.services.js";
 
-export async function getconsumptionGroupsController(
+export async function getConsumptionGroupsController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  try {
-    const { id } = getConsumptionGroupsSchema.parse(request.query);
+  const { id } = getConsumptionGroupsSchema.parse(request.query);
 
-    const consumptionGroups = await getconsumptionGroupsService({ id });
+  const consumptionGroups = await getConsumptionGroupsService({ id });
 
-    if (!consumptionGroups || consumptionGroups.length === 0) {
-      return reply
-        .status(404)
-        .send({ message: "Grupo de consumo não encontrado!" });
-    }
-
-    return reply.status(200).send(consumptionGroups);
-  } catch (error: any) {
-    return reply.status(400).send({ message: error.message });
-  }
+  return reply.status(200).send(consumptionGroups);
 }
 
-export async function createconsumptionGroupsController(
+export async function createConsumptionGroupsController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  try {
-    const { description } = createConsumptionGroupsSchema.parse(request.body);
+  const { description } = createConsumptionGroupsSchema.parse(request.body);
 
-    const consumptionGroupCreated = await createconsumptionGroupsService({
-      description,
-    });
+  const consumptionGroupCreated = await createConsumptionGroupsService({
+    description,
+  });
 
-    return reply.status(201).send(consumptionGroupCreated);
-  } catch (error: any) {
-    return reply.status(400).send({ message: error.message });
-  }
+  return reply.status(201).send(consumptionGroupCreated);
 }
 
-export async function updateconsumptionGroupsController(
+export async function updateConsumptionGroupsController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  try {
-    const { id } = consumptionGroupsId.parse(request.params);
-    const { description } = updateConsumptionGroupsSchema.parse(request.body);
+  const { id } = consumptionGroupsId.parse(request.params);
+  const { description } = updateConsumptionGroupsSchema.parse(request.body);
 
-    const consumptionGroup = await getconsumptionGroupsService({ id });
+  const consumptionGroupUpdated = await updateConsumptionGroupsService(id, {
+    description,
+  });
 
-    if (consumptionGroup.length === 0) {
-      return reply
-        .status(404)
-        .send({ message: "Grupo de consumo não encontrado!" });
-    }
-
-    const consumptionGroupUpdated = await updateconsumptionGroupsService(id, {
-      description,
-    });
-
-    return reply.status(200).send(consumptionGroupUpdated);
-  } catch (error: any) {
-    return reply.status(400).send({ message: error.message });
-  }
+  return reply.status(200).send(consumptionGroupUpdated);
 }
 
-export async function deleteconsumptionGroupsController(
+export async function deleteConsumptionGroupsController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  try {
-    const { id } = consumptionGroupsId.parse(request.params);
+  const { id } = consumptionGroupsId.parse(request.params);
 
-    const consumptionGroup = await getconsumptionGroupsService({ id });
+  const consumptionGroupDeleted = await deleteConsumptionGroupsService(id);
 
-    if (consumptionGroup.length === 0) {
-      return reply
-        .status(404)
-        .send({ message: "Grupo de consumo não encontrado" });
-    }
-
-    const consumptionGroupDeleted = await deleteconsumptionGroupsService(id);
-
-    return reply.status(200).send(consumptionGroupDeleted);
-  } catch (error: any) {
-    return reply.status(400).send({
-      message: error.message,
-    });
-  }
+  return reply.status(200).send(consumptionGroupDeleted);
 }

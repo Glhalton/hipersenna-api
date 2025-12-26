@@ -14,15 +14,17 @@ export default async function bonusRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(1)],
       schema: {
+        summary: "Rota de consulta de bônus.",
         description: "Realiza a consulta de bônus.",
+        tags: ["Bonus"],
         security: [{ BearerAuth: [] }],
         querystring: getBonusSchema,
         response: {
           200: z.array(bonusResponseSchema),
-          404: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Bonus"],
-        summary: "Rota de consulta de bônus.",
       },
     },
     bonusListController

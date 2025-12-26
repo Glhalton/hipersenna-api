@@ -1,47 +1,8 @@
 import { prisma } from "../lib/prisma.js";
 import bcrypt from "bcryptjs";
-import { signInInput } from "../schemas/signin.schemas.js";
-import { includes } from "zod";
-
-type User = {
-  id: number;
-  branch_id: number;
-  winthor_id: number;
-  role_id: number;
-  password: string;
-  name: string;
-  username: string;
-  created_at: Date;
-  modified_at: Date;
-  hsusers_permissions: {
-    permission_id: number;
-    hspermissions: {
-      description: string;
-    };
-  }[];
-  role: {
-    id: number;
-    description: string;
-    hsroles_permissions: { permission_id: number }[];
-  };
-};
-
-type MappedUser = {
-  id: number;
-  branch_id: number;
-  winthor_id: number;
-  name: string;
-  username: string;
-  created_at: Date;
-  modified_at: Date;
-  role: {
-    role_id: number;
-    description: string;
-    permissions: number[];
-  };
-  userPermissions: number[];
-  allPermissions: number[];
-};
+import { MappedUser, signInInput, User } from "../schemas/signin.schemas.js";
+import { Unauthorized } from "../errors/unauthorized.error.js";
+import jwt from "jsonwebtoken";
 
 export const signInService = async ({ password, username }: signInInput) => {
   const user = await prisma.hsemployees.findFirst({
@@ -83,47 +44,44 @@ export const signInService = async ({ password, username }: signInInput) => {
   });
 
   if (!user) {
-    return false;
+    throw new Unauthorized("Usuário ou senha estão incorretos!");
   }
 
   const isCorrectPassword = await bcrypt.compare(password, user.password);
 
   if (!isCorrectPassword) {
-    return false;
+    throw new Unauthorized("Usuário ou senha estão incorretos!");
   }
 
-  function mapUser(user: User): MappedUser {
-    const userPermissions = user.hsusers_permissions.map(
-      (p) => p.permission_id
-    );
+  const jwtSecret = process.env.JWT_SECRET;
 
-    const rolePermissions = user.role.hsroles_permissions.map(
-      (p) => p.permission_id
-    );
+  if (!jwtSecret) {
+    throw new Error("JWT_SECRET não definido no .env");
+  }
 
-    const mergedPermissions = Array.from(
-      new Set([...userPermissions, ...rolePermissions])
-    );
-
-    return {
+  const token = jwt.sign(
+    {
       id: user.id,
-      branch_id: user.branch_id,
-      winthor_id: user.winthor_id,
       name: user.name,
       username: user.username,
-      created_at: user.created_at,
-      modified_at: user.modified_at,
-      role: {
-        role_id: user.role.id,
-        description: user.role.description,
-        permissions: rolePermissions,
-      },
-      userPermissions: userPermissions,
-      allPermissions: mergedPermissions,
-    };
-  }
+      winthor_id: user.winthor_id,
+      branch_id: user.branch_id,
+    },
+    jwtSecret,
+    {
+      expiresIn: "12h",
+    }
+  );
 
-  return mapUser(user);
+  const decoded: any = jwt.decode(token);
+  const expires_at = new Date(decoded.exp * 1000);
+
+  const sessionsDeleted = await deleteSessionsService(user.id);
+  const sessionCreated = await createSessionService(user.id, token, expires_at);
+
+  const mappedUser = mapUserService(user);
+
+  return { token, user: mappedUser };
 };
 
 export const createSessionService = async (
@@ -140,8 +98,39 @@ export const createSessionService = async (
   });
 };
 
-export const deleteSessionService = async (user_id: number) => {
+export const deleteSessionsService = async (id: number) => {
   return await prisma.hssessions.deleteMany({
-    where: { user_id },
+    where: {
+      user_id: id,
+    },
   });
+};
+
+export const mapUserService = (user: User): MappedUser => {
+  const userPermissions = user.hsusers_permissions.map((p) => p.permission_id);
+
+  const rolePermissions = user.role.hsroles_permissions.map(
+    (p) => p.permission_id
+  );
+
+  const mergedPermissions = Array.from(
+    new Set([...userPermissions, ...rolePermissions])
+  );
+
+  return {
+    id: user.id,
+    branch_id: user.branch_id,
+    winthor_id: user.winthor_id,
+    name: user.name,
+    username: user.username,
+    created_at: user.created_at,
+    modified_at: user.modified_at,
+    role: {
+      role_id: user.role.id,
+      description: user.role.description,
+      permissions: rolePermissions,
+    },
+    userPermissions: userPermissions,
+    allPermissions: mergedPermissions,
+  };
 };

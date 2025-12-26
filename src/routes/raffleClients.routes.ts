@@ -21,15 +21,17 @@ export default async function raffleClientsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate],
       schema: {
+        summary: "Rota de consulta de clientes das rifas.",
         description: "Realiza a consulta de clientes das rifas.",
-        security: [{BearerAuth: []}],
+        tags: ["Raffle-Clients"],
+        security: [{ BearerAuth: [] }],
         querystring: getRaffleClientSchema,
         response: {
           200: z.array(raffleClientResponseSchema),
-          404: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Raffle-Clients"],
-        summary: "Rota de consulta de clientes das rifas.",
       },
     },
     getRaffleClientsController
@@ -40,13 +42,16 @@ export default async function raffleClientsRoutes(app: FastifyInstance) {
     {
       preHandler: [],
       schema: {
+        summary: "Rota de criação de clientes de rifas.",
         description: "Realiza a criação de clientes das rifas.",
+        tags: ["Raffle-Clients"],
         body: createRaffleClientSchema,
         response: {
           200: raffleClientResponseSchema,
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Raffle-Clients"],
-        summary: "Rota de criação de clientes de rifas.",
       },
     },
     createRaffleClientsController
@@ -57,16 +62,19 @@ export default async function raffleClientsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate],
       schema: {
+        summary: "Rota de atualização de dados de clientes das rifas.",
         description: "Realiza a atualização de dados de clientes das rifas.",
-        security: [{BearerAuth: []}],
+        tags: ["Raffle-Clients"],
+        security: [{ BearerAuth: [] }],
         body: updateRaffleClientSchema,
         params: raffleClientIdSchema,
         response: {
           200: raffleClientResponseSchema,
+          400: z.object({ message: z.string() }),
           404: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Raffle-Clients"],
-        summary: "Rota de atualização de dados de clientes das rifas.",
       },
     },
     updateRaffleClientsController
@@ -77,15 +85,18 @@ export default async function raffleClientsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate],
       schema: {
+        summary: "Rota de exclusão de clientes das rifas.",
         description: "Realiza a exclusão de clientes das rifas.",
-        security: [{BearerAuth: [] }],
+        tags: ["Raffle-Clients"],
+        security: [{ BearerAuth: [] }],
         params: raffleClientIdSchema,
         response: {
           200: raffleClientResponseSchema,
+          400: z.object({ message: z.string() }),
           404: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Raffle-Clients"],
-        summary: "Rota de exclusão de clientes das rifas.",
       },
     },
     deleteRaffleClientsController

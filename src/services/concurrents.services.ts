@@ -1,6 +1,9 @@
 import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
-import { GetConcurrent } from "../schemas/concurrents.schemas.js";
+import {
+  GetConcurrent,
+  OracleConcurrent,
+} from "../schemas/concurrents.schemas.js";
 
 export const getConcurrentsService = async ({ id, name }: GetConcurrent) => {
   const connection = await getOracleConnection();
@@ -35,18 +38,16 @@ export const getConcurrentsService = async ({ id, name }: GetConcurrent) => {
       outFormat: oracledb.OUT_FORMAT_OBJECT,
     });
 
-    type ConcurrentRow = {
-      CODCONC: string;
-      CONCORRENTE: string;
-      ATIVO: string;
-    };
+    if (result.rows?.length === 0) {
+      return [];
+    }
 
-    return ((result.rows as ConcurrentRow[]) ?? []).map((row) => ({
-      codConc: row.CODCONC,
-      concorrente: row.CONCORRENTE,
-      ativo: row.ATIVO,
+    return ((result.rows as OracleConcurrent[]) ?? []).map((row) => ({
+      concurrentCode: row.CODCONC,
+      concurrentName: row.CONCORRENTE,
+      active: row.ATIVO,
     }));
-  } catch (error: any) {
+  } catch (error: unknown) {
     throw error;
   } finally {
     await connection.close();

@@ -14,15 +14,17 @@ export default async function concurrentsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(2)],
       schema: {
+        summary: "Rota de consulta de concorrentes",
         description: "Realiza a consulta de concorrentes.",
+        tags: ["Concurrents"],
         security: [{ BearerAuth: [] }],
         querystring: getConcurrentSchema,
         response: {
           200: z.array(concurrentResponseSchema),
-          404: z.object({ message: z.string() }),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Concurrents"],
-        summary: "Rota de consulta de concorrentes",
       },
     },
     getConcurrentsController

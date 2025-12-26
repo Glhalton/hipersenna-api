@@ -1,3 +1,5 @@
+import { Conflict } from "../errors/conflict.error.js";
+import { NotFound } from "../errors/notFound.error.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
 import { prisma } from "../lib/prisma.js";
 import {
@@ -38,32 +40,36 @@ export const getConsumptionNotesService = async ({
 
   const connection = await getOracleConnection();
 
-  const query = `
-    SELECT codprod, descricao
-    FROM pcprodut
-    WHERE codprod IN (${allCodes.map(() => ":code").join(",")})
-  `;
+  try {
+    const query = `
+      SELECT codprod, descricao
+      FROM pcprodut
+      WHERE codprod IN (${allCodes.map(() => ":code").join(",")})
+    `;
 
-  const result = await connection.execute(query, allCodes, {
-    outFormat: oracledb.OUT_FORMAT_OBJECT,
-  });
+    const result = await connection.execute(query, allCodes, {
+      outFormat: oracledb.OUT_FORMAT_OBJECT,
+    });
 
-  await connection.close();
+    const descricaoMap: Record<string, string> = {};
+    (result.rows || []).forEach((row: any) => {
+      descricaoMap[row.CODPROD] = row.DESCRICAO;
+    });
 
-  const descricaoMap: Record<string, string> = {};
-  (result.rows || []).forEach((row: any) => {
-    descricaoMap[row.CODPROD] = row.DESCRICAO;
-  });
+    const enrichedData = postgresData.map((item) => ({
+      ...item,
+      hsconsumptionProducts: item.hsconsumptionProducts.map((prod) => ({
+        ...prod,
+        description: descricaoMap[prod.product_code] || null,
+      })),
+    }));
 
-  const enrichedData = postgresData.map((item) => ({
-    ...item,
-    hsconsumptionProducts: item.hsconsumptionProducts.map((prod) => ({
-      ...prod,
-      description: descricaoMap[prod.product_code] || null,
-    })),
-  }));
-
-  return enrichedData;
+    return enrichedData;
+  } catch (error: unknown) {
+    throw error;
+  } finally {
+    await connection.close();
+  }
 };
 
 export const createConsumptionNotesService = async (
@@ -83,14 +89,16 @@ export const createConsumptionNotesService = async (
       },
     });
 
-    if (products.length !== id.length) {
-      throw new Error("Algum produto já estão vinculado a outra nota!");
+    if (products.length === 0) {
+      throw new NotFound(
+        "Produto de consumo não encontrado ou já vinculado a uma nota!"
+      );
     }
 
     const branchIds = new Set(products.map((p) => p.branch_id));
 
     if (branchIds.size > 1) {
-      throw new Error(
+      throw new Conflict(
         "Não é permitido criar nota com produtos de filiais diferentes!"
       );
     }
@@ -98,7 +106,7 @@ export const createConsumptionNotesService = async (
     const groupIds = new Set(products.map((p) => p.group_id));
 
     if (groupIds.size > 1) {
-      throw new Error(
+      throw new Conflict(
         "Não é permitido criar nota com produtos de grupos de consumo diferentes!"
       );
     }
@@ -126,16 +134,28 @@ export const updateConsumptionNotesService = async (
   { nfe_number }: UpdateConsumptionNotes,
   id: number
 ) => {
-  return await prisma.hsconsumption_notes.update({
-    where: { id },
-    data: {
-      nfe_number,
-    },
-  });
+  try {
+    return await prisma.hsconsumption_notes.update({
+      where: { id },
+      data: { nfe_number },
+    });
+  } catch (error: any) {
+    if (error.code == "P2025") {
+      throw new NotFound("Nota de consumo não encontrada!");
+    }
+    throw error;
+  }
 };
 
 export const deleteConsumptionNotesService = async (id: number) => {
-  return await prisma.hsconsumption_notes.delete({
-    where: { id },
-  });
+  try {
+    return await prisma.hsconsumption_notes.delete({
+      where: { id },
+    });
+  } catch (error: any) {
+    if (error.code == "P2025") {
+      throw new NotFound("Nota de consumo não encontrada!");
+    }
+    throw error;
+  }
 };

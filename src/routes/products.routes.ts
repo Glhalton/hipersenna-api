@@ -14,15 +14,18 @@ export default async function productsRoutes(app: FastifyInstance) {
     {
       preHandler: [authenticate, authorize(7)],
       schema: {
+        summary: "Rota de consulta de produtos.",
         description:
           "Realiza a consulta de dados de um produto cadastrado no winthor.",
+        tags: ["Products"],
         security: [{ BearerAuth: [] }],
         querystring: getProductSchema,
         response: {
           200: z.array(productResponseSchema),
+          400: z.object({ message: z.string() }),
+          403: z.object({ message: z.string() }),
+          500: z.object({ message: z.string() }),
         },
-        tags: ["Products"],
-        summary: "Rota de consulta de produtos.",
       },
     },
     getProductController
