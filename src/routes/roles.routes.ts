@@ -15,6 +15,7 @@ import {
 } from "../schemas/roles.schemas.js";
 import z from "zod";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
+import { validationErrorSchema } from "../schemas/errors.schemas.js";
 
 export default async function rolesRoutes(app: FastifyInstance) {
   app.get(
@@ -28,10 +29,13 @@ export default async function rolesRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         querystring: getRoleSchema,
         response: {
-          200: z.array(roleResponseSchema),
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: z.array(roleResponseSchema).describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -49,10 +53,13 @@ export default async function rolesRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         body: roleSchema,
         response: {
-          201: roleResponseSchema,
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          201: roleResponseSchema.describe("Created"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -71,11 +78,14 @@ export default async function rolesRoutes(app: FastifyInstance) {
         params: roleIdSchema,
         body: updateRoleSchema,
         response: {
-          200: roleResponseSchema,
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: roleResponseSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -93,11 +103,14 @@ export default async function rolesRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         params: roleIdSchema,
         response: {
-          200: roleResponseSchema,
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: roleResponseSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },

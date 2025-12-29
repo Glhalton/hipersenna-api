@@ -14,6 +14,7 @@ import {
 } from "../schemas/raffleClients.schemas.js";
 import z from "zod";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
+import { validationErrorSchema } from "../schemas/errors.schemas.js";
 
 export default async function raffleClientsRoutes(app: FastifyInstance) {
   app.get(
@@ -27,10 +28,13 @@ export default async function raffleClientsRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         querystring: getRaffleClientSchema,
         response: {
-          200: z.array(raffleClientResponseSchema),
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: z.array(raffleClientResponseSchema).describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -47,10 +51,13 @@ export default async function raffleClientsRoutes(app: FastifyInstance) {
         tags: ["Raffle-Clients"],
         body: createRaffleClientSchema,
         response: {
-          200: raffleClientResponseSchema,
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: raffleClientResponseSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -69,11 +76,14 @@ export default async function raffleClientsRoutes(app: FastifyInstance) {
         body: updateRaffleClientSchema,
         params: raffleClientIdSchema,
         response: {
-          200: raffleClientResponseSchema,
-          400: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: raffleClientResponseSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -91,11 +101,14 @@ export default async function raffleClientsRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         params: raffleClientIdSchema,
         response: {
-          200: raffleClientResponseSchema,
-          400: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: raffleClientResponseSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },

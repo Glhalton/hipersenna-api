@@ -5,6 +5,7 @@ import {
   signInSchema,
 } from "../schemas/signin.schemas.js";
 import z from "zod";
+import { validationErrorSchema } from "../schemas/errors.schemas.js";
 
 export default async function signinRoutes(app: FastifyInstance) {
   app.post(
@@ -16,10 +17,11 @@ export default async function signinRoutes(app: FastifyInstance) {
         tags: ["Authentication"],
         body: signInSchema,
         response: {
-          201: signInResponseSchema,
-          400: z.object({ message: z.string() }),
-          401: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          201: signInResponseSchema.describe("Created"),
+          400: validationErrorSchema.describe("Bad Request"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },

@@ -16,6 +16,7 @@ import {
 } from "../schemas/raffles.schemas.js";
 import z from "zod";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
+import { validationErrorSchema } from "../schemas/errors.schemas.js";
 
 export default async function rafflesRoutes(app: FastifyInstance) {
   app.get(
@@ -30,10 +31,13 @@ export default async function rafflesRoutes(app: FastifyInstance) {
         query: getRaffleSchema,
         security: [{ BearerAuth: [] }],
         response: {
-          200: z.array(raffleResponseWithClientSchema),
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: z.array(raffleResponseWithClientSchema).describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -50,10 +54,11 @@ export default async function rafflesRoutes(app: FastifyInstance) {
         tags: ["Raffles"],
         query: getMyRaffleSchema,
         response: {
-          200: z.array(raffleResponseWithNoClientSchema),
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: z.array(raffleResponseWithNoClientSchema).describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -70,10 +75,11 @@ export default async function rafflesRoutes(app: FastifyInstance) {
         tags: ["Raffles"],
         body: createRaffleSchema,
         response: {
-          201: z.array(raffleResponseWithNoClientSchema),
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          201: z.array(raffleResponseWithNoClientSchema).describe("Created"),
+          400: validationErrorSchema.describe("Bad Request"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -91,11 +97,14 @@ export default async function rafflesRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         params: drawRafflesSchema,
         response: {
-          200: raffleResponseWithClientSchema,
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: raffleResponseWithClientSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -112,11 +121,14 @@ export default async function rafflesRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         params: drawRafflesSchema,
         response: {
-          200: z.object({ message: z.string() }),
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: z.object({ message: z.string() }).describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },

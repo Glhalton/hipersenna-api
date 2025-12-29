@@ -13,10 +13,6 @@ export const getRoleService = async ({ id, name, description }: GetRole) => {
     where: whereClause,
   });
 
-  if (roles.length === 0) {
-    throw new NotFound("Cargo não encontrado!");
-  }
-
   return roles;
 };
 
@@ -33,33 +29,34 @@ export const updateRoleService = async (
   id: number,
   { name, description }: UpdateRole
 ) => {
-  const role = await getRoleService({ id });
-
-  if (role.length === 0) {
-    throw new NotFound("Cargo não encontrado!");
+  try {
+    return await prisma.hsroles.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
+        description,
+      },
+    });
+  } catch (error: any) {
+    if (error.code == "P2025") {
+      throw new NotFound("Cargo não encontrado!");
+    }
+    throw error;
   }
-
-  return await prisma.hsroles.update({
-    where: {
-      id,
-    },
-    data: {
-      name,
-      description,
-    },
-  });
 };
 
 export const deleteRoleService = async (id: number) => {
-  const role = await getRoleService({ id });
-
-  if (role.length === 0) {
-    throw new NotFound("Cargo não encontrado!");
+  try {
+    return await prisma.hsroles.delete({
+      where: {
+        id,
+      },
+    });
+  } catch (error: any) {
+    if (error.code == "P2025") {
+      throw new NotFound("Cargo não encontrado!");
+    }
   }
-
-  return await prisma.hsroles.delete({
-    where: {
-      id,
-    },
-  });
 };
