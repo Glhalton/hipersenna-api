@@ -17,6 +17,7 @@ import {
 } from "../schemas/users.schemas.js";
 import z from "zod";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
+import { validationErrorSchema } from "../schemas/errors.schemas.js";
 
 export default async function usersRoutes(app: FastifyInstance) {
   app.get(
@@ -31,10 +32,13 @@ export default async function usersRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         querystring: getUserSchema,
         response: {
-          200: z.array(userResponseSchema),
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: z.array(userResponseSchema).describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -51,10 +55,12 @@ export default async function usersRoutes(app: FastifyInstance) {
         tags: ["Users"],
         security: [{ BearerAuth: [] }],
         response: {
-          200: z.array(userResponseSchema),
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: z.array(userResponseSchema).describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -86,11 +92,14 @@ export default async function usersRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         body: createUserSchema,
         response: {
-          201: userResponseSchema,
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          409: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          201: userResponseSchema.describe("Created"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          409: z.object({ message: z.string() }).describe("Conflict"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -109,11 +118,14 @@ export default async function usersRoutes(app: FastifyInstance) {
         params: userIdSchema,
         body: updateUserSchema,
         response: {
-          200: userResponseSchema,
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: userResponseSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -131,11 +143,14 @@ export default async function usersRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         params: userIdSchema,
         response: {
-          200: userResponseSchema,
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: userResponseSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },

@@ -15,6 +15,7 @@ import {
 } from "../schemas/consumptionNotes.schemas.js";
 import z from "zod";
 import { authorize } from "../middlewares/authorize.middleware.js";
+import { validationErrorSchema } from "../schemas/errors.schemas.js";
 
 export async function consumptionNotesRoutes(app: FastifyInstance) {
   app.get(
@@ -28,10 +29,16 @@ export async function consumptionNotesRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         querystring: getConsumptionNotesSchema,
         response: {
-          200: z.array(consumptionNotesResponseSchema),
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: z.array(consumptionNotesResponseSchema).describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z
+            .object({ message: z.string() })
+            .describe("Forbidden")
+            .describe("Forbidden"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -49,12 +56,15 @@ export async function consumptionNotesRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         body: createConsumptionNotesSchema,
         response: {
-          201: consumptionNotesResponseSchema,
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          409: z.object({ message: z.object() }),
-          500: z.object({ message: z.string() }),
+          201: consumptionNotesResponseSchema.describe("Created"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          409: z.object({ message: z.object() }).describe("Conflict"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -73,11 +83,14 @@ export async function consumptionNotesRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         body: updateConsumptionNotesSchema,
         response: {
-          200: consumptionNotesResponseSchema,
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: consumptionNotesResponseSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -95,11 +108,14 @@ export async function consumptionNotesRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         params: consumptionNotesIdSchema,
         response: {
-          200: consumptionNotesResponseSchema,
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: consumptionNotesResponseSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },

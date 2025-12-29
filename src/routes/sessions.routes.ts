@@ -13,6 +13,7 @@ import {
 import z from "zod";
 import { authorize } from "../middlewares/authorize.middleware.js";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
+import { validationErrorSchema } from "../schemas/errors.schemas.js";
 
 export default async function sessionsRoutes(app: FastifyInstance) {
   app.get(
@@ -26,11 +27,14 @@ export default async function sessionsRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         querystring: getSessionSchema,
         response: {
-          200: z.array(sessionResponseSchema),
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: z.array(sessionResponseSchema).describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -48,11 +52,14 @@ export default async function sessionsRoutes(app: FastifyInstance) {
         security: [{ BearerAuth: [] }],
         params: sessionIdSchema,
         response: {
-          200: z.object({ message: z.string() }),
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: z.object({ message: z.string() }).describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -70,11 +77,14 @@ export default async function sessionsRoutes(app: FastifyInstance) {
         tags: ["Sessions"],
         security: [{ BearerAuth: [] }],
         response: {
-          200: z.object({ message: z.string() }),
-          400: z.object({ message: z.string() }),
-          403: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: z.object({ message: z.string() }).describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
@@ -92,10 +102,13 @@ export default async function sessionsRoutes(app: FastifyInstance) {
         tags: ["Sessions"],
         security: [{ BearerAuth: [] }],
         response: {
-          200: z.object({ message: z.string() }),
-          400: z.object({ message: z.string() }),
-          404: z.object({ message: z.string() }),
-          500: z.object({ message: z.string() }),
+          200: z.object({ message: z.string() }).describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },

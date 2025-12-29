@@ -13,6 +13,7 @@ import {
 } from "../schemas/branches.schemas.js";
 import z from "zod";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
+import { validationErrorSchema } from "../schemas/errors.schemas.js";
 
 export default async function branchesRoutes(app: FastifyInstance) {
   app.get(
@@ -27,7 +28,7 @@ export default async function branchesRoutes(app: FastifyInstance) {
         querystring: getBranchesSchema,
         response: {
           200: z.array(branchesResponseSchema).describe("Ok"),
-          400: z.object({ message: z.string() }).describe("Bad Request"),
+          400: validationErrorSchema.describe("Bad Request"),
           401: z.object({ message: z.string() }).describe("Unauthorized"),
           403: z.object({ message: z.string() }).describe("Forbidden"),
           500: z
@@ -50,7 +51,7 @@ export default async function branchesRoutes(app: FastifyInstance) {
         body: branchDescriptionSchema,
         response: {
           201: branchesResponseSchema.describe("Created"),
-          400: z.object({ message: z.string() }).describe("Bad Request"),
+          400: validationErrorSchema.describe("Bad Request"),
           401: z.object({ message: z.string() }).describe("Unauthorized"),
           403: z.object({ message: z.string() }).describe("Forbidden"),
           500: z
@@ -74,7 +75,7 @@ export default async function branchesRoutes(app: FastifyInstance) {
         body: branchDescriptionSchema,
         response: {
           200: branchesResponseSchema.describe("Ok"),
-          400: z.object({ message: z.string() }).describe("Bad Request"),
+          400: validationErrorSchema.describe("Bad Request"),
           401: z.object({ message: z.string() }).describe("Unauthorized"),
           403: z.object({ message: z.string() }).describe("Forbidden"),
           404: z.object({ message: z.string() }).describe("Not Found"),
@@ -98,7 +99,7 @@ export default async function branchesRoutes(app: FastifyInstance) {
         params: branchesIdSchema,
         response: {
           200: branchesResponseSchema.describe("Ok"),
-          400: z.object({ message: z.string() }).describe("Bad Request"),
+          400: validationErrorSchema.describe("Bad Request"),
           401: z.object({ message: z.string() }).describe("Unauthorized"),
           403: z.object({ message: z.string() }).describe("Forbidden"),
           404: z.object({ message: z.string() }).describe("Not Found"),
