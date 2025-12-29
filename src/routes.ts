@@ -16,10 +16,14 @@ import consumptionGroupsRoutes from "./routes/consumptionGroups.routes.js";
 import rafflesRoutes from "./routes/raffles.routes.js";
 import raffleClientsRoutes from "./routes/raffleClients.routes.js";
 import { consumptionNotesRoutes } from "./routes/consumptionNotes.routes.js";
+import branchesRoutes from "./routes/branches.routes.js";
 
 export default async function (app: FastifyInstance) {
   app.register(signinRoutes, {
     prefix: "/signin",
+  });
+  app.register(branchesRoutes, {
+    prefix: "/branches",
   });
   app.register(bonusRoutes, {
     prefix: "/bonus",
