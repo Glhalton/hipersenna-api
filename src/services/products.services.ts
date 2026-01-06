@@ -1,5 +1,4 @@
 import { BadRequest } from "../errors/badRequest.error.js";
-import { NotFound } from "../errors/notFound.error.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
 
@@ -15,7 +14,7 @@ export const getProductService = async (
     const binds: Record<string, any> = {};
 
     if (codprod) {
-      conditions.push("em.codprod = :codprod");
+      conditions.push("p.codprod = :codprod");
       binds.codprod = Number(codprod);
     }
 
@@ -31,7 +30,6 @@ export const getProductService = async (
 
     if (codfilial) {
       conditions.push("em.codfilial = :codfilial");
-      conditions.push("es.codfilial = :codfilial");
       binds.codfilial = Number(codfilial);
     }
 
@@ -43,7 +41,7 @@ export const getProductService = async (
       conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
 
     const query = `
-      SELECT DISTINCT
+    SELECT
           p.codepto,
           em.codprod,
           em.codauxiliar,
@@ -57,33 +55,44 @@ export const getProductService = async (
           em.ptabelaatac,
           em.pvendaatac,
           em.dtinativo,
-          es.qtestger, 
+
+          es.qtestger,
           es.qtreserv,
           es.qtbloqueada,
 
-          -- Estoque da filial 6
-          (SELECT es6.qtestger
-            FROM pcest es6
-            WHERE es6.codprod = p.codprod
-              AND es6.codfilial = 6
-              AND ROWNUM = 1) AS qtestgerdp6,
+          es6.qtestger    AS qtestgerdp6,
+          es6.qtreserv    AS qtreservdp6,
+          es6.qtbloqueada AS qtbloqueadadp6,
 
-          (SELECT es6.qtreserv
-            FROM pcest es6
-            WHERE es6.codprod = p.codprod
-              AND es6.codfilial = 6
-              AND ROWNUM = 1) AS qtreservdp6,
+          ofe.vloferta
 
-          (SELECT es6.qtbloqueada
-            FROM pcest es6
-            WHERE es6.codprod = p.codprod
-              AND es6.codfilial = 6
-              AND ROWNUM = 1) AS qtbloqueadadp6
+    FROM pcprodut p
 
-      FROM pcprodut p
-      JOIN pcembalagem em ON em.codprod = p.codprod
-      JOIN pcest es ON es.codprod = p.codprod
-      ${whereClause}`;
+    JOIN pcembalagem em
+    ON em.codprod = p.codprod
+
+    JOIN pcest es
+    ON es.codprod   = p.codprod
+    AND es.codfilial = em.codfilial
+
+    LEFT JOIN pcest es6
+    ON es6.codprod   = p.codprod
+    AND es6.codfilial = 6
+
+    LEFT JOIN (
+        SELECT oi.codprod,
+              oc.codfilial,
+              MIN(oi.vloferta) AS vloferta
+        FROM pcofertaprogramadai oi
+        JOIN pcofertaprogramadac oc
+          ON oc.codoferta = oi.codoferta
+        WHERE oc.dtfinal  > DATE '2026-01-06'
+          AND oc.dtcancel IS NULL
+        GROUP BY oi.codprod, oc.codfilial
+    ) ofe
+      ON ofe.codprod   = p.codprod
+    AND ofe.codfilial = em.codfilial
+    ${whereClause}`;
 
     const result = await connection.execute(query, binds, {
       outFormat: oracledb.OUT_FORMAT_OBJECT,
@@ -110,6 +119,7 @@ export const getProductService = async (
       QTESTGERDP6: number;
       QTRESERVDP6: number;
       QTBLOQUEADADP6: number;
+      VLOFERTA: number;
     };
 
     return ((result.rows as ProductRow[]) ?? []).map((row) => ({
@@ -132,6 +142,7 @@ export const getProductService = async (
       qtEstGerDp6: row.QTESTGERDP6,
       qtReservDp6: row.QTRESERVDP6,
       qtBloqueadaDp6: row.QTBLOQUEADADP6,
+      vlOferta: row.VLOFERTA,
     }));
   } finally {
     await connection.close();

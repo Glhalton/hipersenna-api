@@ -27,4 +27,5 @@ export const productResponseSchema = z.object({
   qtEstGerDp6: z.coerce.number().nullable(),
   qtReservDp6: z.coerce.number().nullable(),
   qtBloqueadaDp6: z.coerce.number().nullable(),
+  vlOferta: z.coerce.number().nullable(),
 });
