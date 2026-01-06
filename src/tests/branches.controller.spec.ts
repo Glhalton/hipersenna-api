@@ -115,7 +115,7 @@ describe("branchesController", () => {
     expect(reply.send).toHaveBeenCalledWith(fakeResult);
   });
 
-    test("Branch not found for update/error 404", async () => {
+  test("Branch not found for update/error 404", async () => {
     (services.updateBranchesService as any).mockRejectedValue(
       new NotFound("Filial não encontrada!")
     );
@@ -129,9 +129,9 @@ describe("branchesController", () => {
       send: vi.fn(),
     };
 
-    await expect(services.updateBranchesService(request, reply)).rejects.toThrowError(
-      NotFound
-    );
+    await expect(
+      services.updateBranchesService(request, reply)
+    ).rejects.toThrowError(NotFound);
   });
 
   test("Branch successfully deleted", async () => {

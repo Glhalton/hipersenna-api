@@ -18,6 +18,7 @@ model hsbranches {
   hsvalidities          hsvalidities[]
   hsvalidity_requests   hsvalidity_requests[]
   hsconsumptionProducts hsconsumption_products[]
+  hsdispatchRecords     hsdispatch_records[]
 }
 
 model hsconsumption_groups {
@@ -54,6 +55,20 @@ model hsconsumption_products {
   hsconsumption_notes    hsconsumption_notes? @relation(fields: [consumption_id], references: [id], onDelete: SetNull)
 }
 
+model hsdispatch_records {
+  id                     Int         @id @default(autoincrement())
+  branch_id              Int
+  nfe_number             String
+  seal_number            String
+  bonus_number           String
+  license_plate          String
+  created_by_employee_id Int
+  created_at             DateTime    @default(now()) @db.Timestamptz(6)
+  modified_at            DateTime    @default(now()) @updatedAt @db.Timestamptz(6)
+  branch                 hsbranches  @relation(fields: [branch_id], references: [id])
+  employee               hsemployees @relation(fields: [created_by_employee_id], references: [id])
+}
+
 model hsemployees {
   id                     Int                      @id @default(autoincrement())
   branch_id              Int
@@ -72,6 +87,7 @@ model hsemployees {
   analystRequests        hsvalidity_requests[]    @relation("AnalystRelation")
   confereeRequests       hsvalidity_requests[]    @relation("ConfereeRelation")
   hsconsumption_products hsconsumption_products[]
+  hsdispatchRecords      hsdispatch_records[]
 
   @@map("hsemployees")
 }
