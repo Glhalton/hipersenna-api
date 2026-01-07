@@ -21,7 +21,7 @@ export default async function (app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: [authenticate, authorize(42)],
+      preHandler: [authenticate],
       schema: {
         summary: "Rota de consulta de grupos de consumo.",
         description: "Realiza a consulta de grupos de consumo.",
