@@ -1,5 +1,4 @@
 import { prisma } from "../lib/prisma.js";
-import { Prisma } from "@prisma/client";
 import {
   UpdateValidity,
   CreateValidity,
@@ -212,7 +211,7 @@ export const getOracleProductDetailsService = async (codes: string[]) => {
   }
 };
 
-const buildHsvaliditiesWhereClause = ({
+const  buildHsvaliditiesWhereClause = ({
   id,
   branch_id,
   initialCreationDate,
