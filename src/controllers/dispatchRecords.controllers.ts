@@ -23,6 +23,7 @@ export async function getDispatchRecordController(
     license_plate,
     nfe_number,
     seal_number,
+    employee_id,
   } = getDispatchRecordSchema.parse(request.query);
 
   const dispatchRecords = await getDispatchRecordService({
@@ -32,6 +33,7 @@ export async function getDispatchRecordController(
     seal_number,
     bonus_number,
     license_plate,
+    employee_id,
   });
 
   return reply.status(200).send(dispatchRecords);

@@ -16,12 +16,13 @@ import {
 } from "../schemas/dispatchRecords.schemas.js";
 import z from "zod";
 import { validationErrorSchema } from "../schemas/errors.schemas.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
 
 export default async function dispatchRecordsRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(46)],
       schema: {
         summary: "Rota de consulta de registros de despacho de mercadorias",
         description:
@@ -46,7 +47,7 @@ export default async function dispatchRecordsRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(47)],
       schema: {
         summary: "Rota de criação de registros de despacho de mercadorias",
         description:
@@ -71,7 +72,7 @@ export default async function dispatchRecordsRoutes(app: FastifyInstance) {
   app.patch(
     "/:id",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(49)],
       schema: {
         summary: "Rota de atualização de registros de despacho de mercadorias",
         description:
@@ -98,7 +99,7 @@ export default async function dispatchRecordsRoutes(app: FastifyInstance) {
   app.delete(
     "/:id",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(48)],
       schema: {
         summary: "Rota de exclusão de registros de despacho de mercadorias",
         description:
