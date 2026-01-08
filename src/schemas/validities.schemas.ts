@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { z } from "zod";
 
 export const validityIdSchema = z.object({
@@ -15,6 +16,12 @@ export const getValiditySchema = z.object({
   descricao: z.string().optional(),
 });
 export type GetValidity = z.infer<typeof getValiditySchema>;
+
+export const getMyValiditiesSchema = z.object({
+  orderBy: z.enum(["asc", "desc"]).optional(),
+});
+
+export type GetMyValidities = z.infer<typeof getMyValiditiesSchema>;
 
 export const createValiditySchema = z.object({
   branch_id: z.number(),

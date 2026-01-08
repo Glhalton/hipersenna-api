@@ -1,8 +1,10 @@
 import { prisma } from "../lib/prisma.js";
+import { Prisma } from "@prisma/client";
 import {
   UpdateValidity,
   CreateValidity,
   GetValidity,
+  GetMyValidities,
 } from "../schemas/validities.schemas.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
@@ -68,13 +70,19 @@ export const getValidityService = async ({
   }
 };
 
-export const getMyValiditiesService = async (employeeId: number) => {
+export const getMyValiditiesService = async (
+  { orderBy }: GetMyValidities,
+  employeeId: number
+) => {
   const postgreData = await prisma.hsvalidities.findMany({
     where: {
       employee_id: employeeId,
     },
     include: {
       hsvalidity_products: true,
+    },
+    orderBy: {
+      created_at: orderBy,
     },
   });
 
@@ -112,6 +120,12 @@ export const createValidityService = async (
     },
   });
 };
+
+export const createValidityFromRequestService = async (
+  validityData: CreateValidity,
+  validityRequestId: number,
+  userId: number
+) => {};
 
 export const updateValidityService = async (data: UpdateValidity) => {
   const updates = data.flatMap((validity) =>
