@@ -10,6 +10,12 @@ export const getValidityRequestsSchema = z.object({
 
 export type GetValidityRequests = z.infer<typeof getValidityRequestsSchema>;
 
+export const getMyValidityRequestsSchema = z.object({
+  orderBy: z.enum(["asc", "desc"]).optional(),
+});
+
+export type GetMyValidityRequests = z.infer<typeof getMyValidityRequestsSchema>;
+
 export const createValidityRequestSchema = z.object({
   branch_id: z.number(),
   conferee_id: z.number(),
@@ -31,7 +37,7 @@ export const updateValidityRequestsSchema = z.object({
   products: z.array(
     z.object({
       id: z.number(),
-      status: z.any()
+      status: z.any(),
     })
   ),
 });

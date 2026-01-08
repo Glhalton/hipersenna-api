@@ -8,6 +8,7 @@ import {
 import { authorize } from "../middlewares/authorize.middleware.js";
 import {
   createValidityRequestSchema,
+  getMyValidityRequestsSchema,
   getValidityRequestsSchema,
   updateValidityRequestsSchema,
   validityRequestResponseSchema,
@@ -53,6 +54,7 @@ export default async function validityRequestsRoutes(app: FastifyInstance) {
           "Realiza a consulta de Solicitações de validade vinculada ao usuario que consultou.",
         tags: ["Validity-Requests"],
         security: [{ BearerAuth: [] }],
+        querystring: getMyValidityRequestsSchema,
         response: {
           200: z.array(validityRequestResponseSchema).describe("Ok"),
           400: validationErrorSchema.describe("Bad Request"),

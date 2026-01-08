@@ -6,6 +6,7 @@ import {
 import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
 import { UpdateValidityRequestsInput } from "../schemas/validityRequests.schemas.js";
+import { GetMyValidities } from "../schemas/validities.schemas.js";
 
 export const getValidityRequestsService = async ({
   id,
@@ -67,8 +68,10 @@ export const getValidityRequestsService = async ({
   return enrichedData;
 };
 
-//Tambem retorna as descrições dos produtos com base no banco da oracle
-export const getMyValidityRequestsService = async (employeeId: number) => {
+export const getMyValidityRequestsService = async (
+  { orderBy }: GetMyValidities,
+  employeeId: number
+) => {
   const postgreData = await prisma.hsvalidity_requests.findMany({
     where: {
       conferee_id: employeeId,
@@ -76,6 +79,9 @@ export const getMyValidityRequestsService = async (employeeId: number) => {
     },
     include: {
       hsvalidity_request_products: true,
+    },
+    orderBy: {
+      created_at: orderBy,
     },
   });
 
