@@ -212,6 +212,18 @@ async function main() {
         name: "Excluir grupos de consumo",
         description: "Deletar grupos de consumo do sistema",
       },
+      {
+        name: "Consultar registros de expedição",
+        description: "Visualizar dados de registros de expedição no sistema",
+      },
+      {
+        name: "Cadastrar registros de expedição",
+        description: "Registrar novas expedições no sistema",
+      },
+      {
+        name: "Excluir registros de expedição",
+        description: "Deletar registros de expedição do sistema",
+      },
     ],
   });
 

@@ -7,6 +7,7 @@ export const getDispatchRecordSchema = z.object({
   seal_number: z.string().optional().describe("Seal number"),
   bonus_number: z.string().optional().describe("Bonus number"),
   license_plate: z.string().optional().describe("Vehicle license plate"),
+  employee_id: z.coerce.number().optional().describe("Employee id"),
 });
 
 export type GetDispatchRecord = z.infer<typeof getDispatchRecordSchema>;
@@ -47,4 +48,7 @@ export const dispatchRecordResponseSchema = z.object({
   created_by_employee_id: z.number(),
   created_at: z.date(),
   modified_at: z.date(),
+  employee: z.object({
+    name: z.string(),
+  }).optional(),
 });
