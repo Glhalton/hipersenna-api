@@ -7,6 +7,7 @@ import {
 } from "../services/validities.services.js";
 import {
   createValiditySchema,
+  getMyValiditiesSchema,
   getValiditySchema,
   updateValiditySchema,
   validityIdSchema,
@@ -47,7 +48,11 @@ export async function getMyValiditiesController(
   reply: FastifyReply
 ) {
   const userId = request.user?.id;
-  const validitiesByEmployee = await getMyValiditiesService(userId!);
+  const { orderBy } = getMyValiditiesSchema.parse(request.query);
+  const validitiesByEmployee = await getMyValiditiesService(
+    { orderBy },
+    userId!
+  );
   return reply.status(200).send(validitiesByEmployee);
 }
 
