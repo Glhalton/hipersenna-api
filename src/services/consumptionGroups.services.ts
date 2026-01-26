@@ -10,6 +10,9 @@ export const getConsumptionGroupsService = async ({
 }: GetConsumptionGroups) => {
   return await prisma.hsconsumption_groups.findMany({
     where: { id },
+    orderBy: {
+      created_at: "asc",
+    },
   });
 };
 

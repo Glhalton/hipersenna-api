@@ -3,6 +3,7 @@ import {
   createConsumptionNotesController,
   deleteConsumptionNotesController,
   getConsumptionNotesController,
+  getConsumptionNotesDetailedController,
   updateConsumptionNotesController,
 } from "../controllers/consumptionNotes.controllers.js";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
@@ -42,7 +43,35 @@ export async function consumptionNotesRoutes(app: FastifyInstance) {
         },
       },
     },
-    getConsumptionNotesController
+    getConsumptionNotesController,
+  );
+
+  app.get(
+    "/:id",
+    {
+      preHandler: [authenticate, authorize(34)],
+      schema: {
+        summary: "Rota de consulta detalhada de notas de consumo.",
+        description: "Realiza a consulta detalhada de notas de consumo.",
+        tags: ["Consumption-Notes"],
+        security: [{ BearerAuth: [] }],
+        params: consumptionNotesIdSchema,
+        response: {
+          200: consumptionNotesResponseSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z
+            .object({ message: z.string() })
+            .describe("Forbidden")
+            .describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
+        },
+      },
+    },
+    getConsumptionNotesDetailedController,
   );
 
   app.post(
@@ -68,7 +97,7 @@ export async function consumptionNotesRoutes(app: FastifyInstance) {
         },
       },
     },
-    createConsumptionNotesController
+    createConsumptionNotesController,
   );
 
   app.patch(
@@ -94,7 +123,7 @@ export async function consumptionNotesRoutes(app: FastifyInstance) {
         },
       },
     },
-    updateConsumptionNotesController
+    updateConsumptionNotesController,
   );
 
   app.delete(
@@ -119,6 +148,6 @@ export async function consumptionNotesRoutes(app: FastifyInstance) {
         },
       },
     },
-    deleteConsumptionNotesController
+    deleteConsumptionNotesController,
   );
 }

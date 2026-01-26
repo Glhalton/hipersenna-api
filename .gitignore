@@ -11,3 +11,5 @@ dist
 
 # Arquivos gerados pelo prisma
 generated/prisma
+
+signatures/ 

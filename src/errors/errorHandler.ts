@@ -8,7 +8,7 @@ import { Unauthorized } from "./unauthorized.error.js";
 export function registerErrorHandler(app: FastifyInstance) {
   app.setErrorHandler((error, request, reply) => {
     if (error.validation) {
-
+      console.log(error);
       return reply.status(400).send({
         message: "Erro de validação",
         errors: error.validation.map((err) => ({
