@@ -6,7 +6,7 @@ export const getProductService = async (
   codprod?: number,
   codauxiliar?: number,
   descricao?: string,
-  codfilial?: number
+  codfilial?: number,
 ) => {
   const connection = await getOracleConnection();
   try {
@@ -40,6 +40,9 @@ export const getProductService = async (
     const whereClause =
       conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
 
+    const date = new Date();
+    binds.todayDate = date;
+
     const query = `
     SELECT
           p.codepto,
@@ -59,6 +62,8 @@ export const getProductService = async (
           es.qtestger,
           es.qtreserv,
           es.qtbloqueada,
+          es.dtultent,
+          es.dtultfat,
 
           es6.qtestger    AS qtestgerdp6,
           es6.qtreserv    AS qtreservdp6,
@@ -86,7 +91,8 @@ export const getProductService = async (
         FROM pcofertaprogramadai oi
         JOIN pcofertaprogramadac oc
           ON oc.codoferta = oi.codoferta
-        WHERE oc.dtfinal  > DATE '2026-01-06'
+        WHERE oc.dtfinal  >= TRUNC(:todayDate) 
+        AND oc.dtinicial <= TRUNC(:todayDate)
           AND oc.dtcancel IS NULL
         GROUP BY oi.codprod, oc.codfilial
     ) ofe
@@ -120,6 +126,8 @@ export const getProductService = async (
       QTRESERVDP6: number;
       QTBLOQUEADADP6: number;
       VLOFERTA: number;
+      DTULTENT: string;
+      DTULTFAT: string;
     };
 
     return ((result.rows as ProductRow[]) ?? []).map((row) => ({
@@ -143,6 +151,8 @@ export const getProductService = async (
       qtReservDp6: row.QTRESERVDP6,
       qtBloqueadaDp6: row.QTBLOQUEADADP6,
       vlOferta: row.VLOFERTA,
+      dtUltimaEntrada: new Date(row.DTULTENT).toISOString(),
+      dtUltimoFaturamento: new Date(row.DTULTFAT).toISOString(),
     }));
   } finally {
     await connection.close();
