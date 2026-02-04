@@ -18,6 +18,7 @@ import raffleClientsRoutes from "./routes/raffleClients.routes.js";
 import { consumptionNotesRoutes } from "./routes/consumptionNotes.routes.js";
 import branchesRoutes from "./routes/branches.routes.js";
 import dispatchRecordsRoutes from "./routes/dispatchRecords.routes.js";
+import pushTokensRoutes from "./routes/pushTokens.routes.js";
 
 export default async function (app: FastifyInstance) {
   app.register(signinRoutes, {
@@ -46,6 +47,9 @@ export default async function (app: FastifyInstance) {
   });
   app.register(productsRoutes, {
     prefix: "/products",
+  });
+  app.register(pushTokensRoutes, {
+    prefix: "/push-tokens",
   });
   app.register(rafflesRoutes, {
     prefix: "/raffles",
