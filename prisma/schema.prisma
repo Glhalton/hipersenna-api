@@ -93,13 +93,13 @@ model hsemployees {
 }
 
 model hsemployee_branches {
-  user_id    Int
-  branch_id  Int
-  created_at DateTime    @default(now()) @db.Timestamptz(6)
-  branch     hsbranches  @relation(fields: [branch_id], references: [id])
-  user       hsemployees @relation(fields: [user_id], references: [id])
+  employee_id Int
+  branch_id   Int
+  created_at  DateTime    @default(now()) @db.Timestamptz(6)
+  branch      hsbranches  @relation(fields: [branch_id], references: [id])
+  user        hsemployees @relation(fields: [employee_id], references: [id])
 
-  @@id([user_id, branch_id])
+  @@id([employee_id, branch_id])
 }
 
 model hspermissions {
