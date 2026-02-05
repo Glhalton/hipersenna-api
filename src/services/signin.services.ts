@@ -40,6 +40,16 @@ export const signInService = async ({ password, username }: signInInput) => {
           },
         },
       },
+      hsemployeeBranches: {
+        select: {
+          branch_id: true,
+          branch: {
+            select: {
+              description: true,
+            },
+          },
+        },
+      },
     },
   });
 
@@ -70,7 +80,7 @@ export const signInService = async ({ password, username }: signInInput) => {
     jwtSecret,
     {
       expiresIn: "12h",
-    }
+    },
   );
 
   const decoded: any = jwt.decode(token);
@@ -87,7 +97,7 @@ export const signInService = async ({ password, username }: signInInput) => {
 export const createSessionService = async (
   user_id: number,
   token: string,
-  expires_at?: any
+  expires_at?: any,
 ) => {
   return await prisma.hssessions.create({
     data: {
@@ -110,12 +120,17 @@ export const mapUserService = (user: User): MappedUser => {
   const userPermissions = user.hsusers_permissions.map((p) => p.permission_id);
 
   const rolePermissions = user.role.hsroles_permissions.map(
-    (p) => p.permission_id
+    (p) => p.permission_id,
   );
 
   const mergedPermissions = Array.from(
-    new Set([...userPermissions, ...rolePermissions])
+    new Set([...userPermissions, ...rolePermissions]),
   );
+
+  const branches = user.hsemployeeBranches.map((item) => ({
+    branch_id: item.branch_id,
+    description: item.branch.description,
+  }));
 
   return {
     id: user.id,
@@ -125,6 +140,7 @@ export const mapUserService = (user: User): MappedUser => {
     username: user.username,
     created_at: user.created_at,
     modified_at: user.modified_at,
+    branches,
     role: {
       role_id: user.role.id,
       description: user.role.description,

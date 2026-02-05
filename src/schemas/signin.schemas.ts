@@ -25,6 +25,12 @@ export const signInResponseSchema = z.object({
     }),
     userPermissions: z.number().array(),
     allPermissions: z.number().array(),
+    branches: z.array(
+      z.object({
+        branch_id: z.number(),
+        description: z.string(),
+      }),
+    ),
   }),
 });
 
@@ -44,13 +50,21 @@ export const userSchema = z.object({
       hspermissions: z.object({
         description: z.string(),
       }),
-    })
+    }),
   ),
   role: z.object({
     id: z.number(),
     description: z.string(),
     hsroles_permissions: z.array(z.object({ permission_id: z.number() })),
   }),
+  hsemployeeBranches: z.array(
+    z.object({
+      branch_id: z.number(),
+      branch: z.object({
+        description: z.string(),
+      }),
+    }),
+  ),
 });
 
 export type User = z.infer<typeof userSchema>;
@@ -70,6 +84,12 @@ export const mappedUserSchema = {
   }),
   userPermissions: z.number().array(),
   allPermissions: z.number().array(),
+  branches: z.array(
+    z.object({
+      branch_id: z.number(),
+      description: z.string(),
+    }),
+  ),
 };
 
 export type MappedUser = z.infer<typeof mappedUserSchema>;

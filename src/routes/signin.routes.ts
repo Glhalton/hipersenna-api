@@ -17,7 +17,7 @@ export default async function signinRoutes(app: FastifyInstance) {
         tags: ["Authentication"],
         body: signInSchema,
         response: {
-          201: signInResponseSchema.describe("Created"),
+          // 201: signInResponseSchema.describe("Created"),
           400: validationErrorSchema.describe("Bad Request"),
           500: z
             .object({ message: z.string() })
