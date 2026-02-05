@@ -9,6 +9,7 @@ export const getEmployeeBranchesService = async (id: number) => {
     select: {
       employee_id: true,
       branch_id: true,
+      created_at: true,
       branch: {
         select: {
           id: true,

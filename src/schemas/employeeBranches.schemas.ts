@@ -15,7 +15,7 @@ export const employeeBranchesResponseSchema = z.object({
   employee_id: z.number(),
   branch_id: z.number(),
   created_at: z.date(),
-  hsbranches: z.object({
+  branch: z.object({
     id: z.number(),
     description: z.string(),
   }),
