@@ -264,6 +264,22 @@ async function main() {
         name: "Excluir departamentos",
         description: "Deletar departamentos do sistema",
       },
+      {
+        name: "Consultar registros de metas",
+        description: "Visualizar dados de registros de metas",
+      },
+      {
+        name: "Cadastrar registros de metas",
+        description: "Realizar o cadastro de registros de  metas",
+      },
+      {
+        name: "Atualizar registros de metas",
+        description: "Editar informações de regitros de metas",
+      },
+      {
+        name: "Excluir registros de metas",
+        description: "Deletar registros de metas",
+      },
     ],
   });
 
@@ -360,6 +376,19 @@ async function main() {
     },
   });
 }
+
+await prisma.hsemployee_branches.createMany({
+  data: [
+    { employee_id: 1, branch_id: 1 },
+    { employee_id: 1, branch_id: 2 },
+    { employee_id: 1, branch_id: 3 },
+    { employee_id: 1, branch_id: 4 },
+    { employee_id: 1, branch_id: 5 },
+    { employee_id: 1, branch_id: 6 },
+    { employee_id: 1, branch_id: 7 },
+    { employee_id: 1, branch_id: 8 },
+  ],
+});
 
 main()
   .catch((e) => {
