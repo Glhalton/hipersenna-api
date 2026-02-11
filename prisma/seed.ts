@@ -280,6 +280,10 @@ async function main() {
         name: "Excluir registros de metas",
         description: "Deletar registros de metas",
       },
+      {
+        name: "Consultar relatórios de metas",
+        description: "Visualizar dados de relatórios de metas",
+      },
     ],
   });
 

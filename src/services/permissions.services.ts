@@ -36,7 +36,7 @@ export const createPermissionService = async ({
 
 export const updatePermissionService = async (
   id: number,
-  { name, description }: UpdatePermission
+  { name, description }: UpdatePermission,
 ) => {
   try {
     return await prisma.hspermissions.update({
@@ -49,8 +49,8 @@ export const updatePermissionService = async (
   } catch (error: any) {
     if (error.code == "P2025") {
       throw new NotFound("Permissão não encontrada!");
-      throw error;
     }
+    throw error;
   }
 };
 
@@ -62,7 +62,7 @@ export const deletePermissionService = async (id: number) => {
   } catch (error: any) {
     if (error.code == "P2025") {
       throw new NotFound("Permissão não encontrada!");
-      throw error;
     }
+    throw error;
   }
 };
