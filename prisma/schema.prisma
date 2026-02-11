@@ -20,6 +20,7 @@ model hsbranches {
   hsdispatchRecords   hsdispatch_records[]
   hsconsumptionNotes  hsconsumption_notes[]
   hsemployeeBranches  hsemployee_branches[]
+  hsgoalRecords       hsgoal_records[]
 }
 
 model hsconsumption_groups {
@@ -68,6 +69,15 @@ model hsdispatch_records {
   employee               hsemployees @relation(fields: [created_by_employee_id], references: [id])
 }
 
+model hsdepartments {
+  id            Int              @id @default(autoincrement())
+  winthor_id    Int              @unique
+  description   String
+  created_at    DateTime         @default(now()) @db.Timestamptz(6)
+  modified_at   DateTime         @default(now()) @updatedAt @db.Timestamptz(6)
+  hsgoalRecords hsgoal_records[]
+}
+
 model hsemployees {
   id                  Int                   @id @default(autoincrement())
   branch_id           Int
@@ -100,6 +110,21 @@ model hsemployee_branches {
   user        hsemployees @relation(fields: [employee_id], references: [id])
 
   @@id([employee_id, branch_id])
+}
+
+model hsgoal_records {
+  id          Int           @id @default(autoincrement())
+  department  Int
+  branch_id   Int
+  type        HsGoals?
+  goal_value  Int
+  goal_month  DateTime      @db.Date
+  created_at  DateTime      @default(now()) @db.Timestamptz(6)
+  modified_at DateTime      @default(now()) @updatedAt @db.Timestamptz(6)
+  branches    hsbranches    @relation(fields: [branch_id], references: [id])
+  departments hsdepartments @relation(fields: [department], references: [id])
+
+  @@unique([branch_id, department, type, goal_month])
 }
 
 model hspermissions {
@@ -242,6 +267,11 @@ enum HsValidityRequestProductsStatus {
   NAO_ENCONTRADO
   NAO_VISTORIADO
   VISTORIADO
+}
+
+enum HsGoals {
+  AVARIA
+  FATURAMENTO
 }
 
 enum HsValidityRequestsStatus {

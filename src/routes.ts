@@ -11,7 +11,6 @@ import rolesPermissionsRoutes from "./routes/rolesPermissions.routes.js";
 import userPermissionsRoutes from "./routes/userPermissions.routes.js";
 import sessionsRoutes from "./routes/sessions.routes.js";
 import concurrentsRoutes from "./routes/concurrents.routes.js";
-
 import consumptionGroupsRoutes from "./routes/consumptionGroups.routes.js";
 import rafflesRoutes from "./routes/raffles.routes.js";
 import raffleClientsRoutes from "./routes/raffleClients.routes.js";
@@ -19,6 +18,9 @@ import { consumptionNotesRoutes } from "./routes/consumptionNotes.routes.js";
 import branchesRoutes from "./routes/branches.routes.js";
 import dispatchRecordsRoutes from "./routes/dispatchRecords.routes.js";
 import employeeBranchesRoutes from "./routes/employeeBranches.routes.js";
+import goalRecordsRoutes from "./routes/goalRecords.routes.js";
+import departmentRoutes from "./routes/departments.routes.js";
+import reportsRoutes from "./routes/reports.routes.js";
 
 export default async function (app: FastifyInstance) {
   app.register(signinRoutes, {
@@ -39,11 +41,20 @@ export default async function (app: FastifyInstance) {
   app.register(consumptionNotesRoutes, {
     prefix: "/consumption-notes",
   });
+  app.register(departmentRoutes, {
+    prefix: "/departments",
+  });
   app.register(dispatchRecordsRoutes, {
     prefix: "/dispatch-records",
   });
   app.register(employeeBranchesRoutes, {
     prefix: "/employee-branches",
+  });
+  app.register(reportsRoutes, {
+    prefix: "/reports",
+  });
+  app.register(goalRecordsRoutes, {
+    prefix: "/goal-records",
   });
   app.register(permissionsRoutes, {
     prefix: "/permissions",

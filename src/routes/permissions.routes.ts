@@ -34,11 +34,13 @@ export default async function permissionsRoutes(app: FastifyInstance) {
           401: z.object({ message: z.string() }).describe("Unauthorized"),
           403: z.object({ message: z.string() }).describe("Forbidden"),
           404: z.object({ message: z.string() }).describe("Not Found"),
-          500: z.object({ messae: z.string() }),
+          500: z
+            .object({ messae: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
-    getPermissionController
+    getPermissionController,
   );
 
   app.post(
@@ -62,7 +64,7 @@ export default async function permissionsRoutes(app: FastifyInstance) {
         },
       },
     },
-    createPermissionController
+    createPermissionController,
   );
 
   app.patch(
@@ -87,7 +89,7 @@ export default async function permissionsRoutes(app: FastifyInstance) {
         },
       },
     },
-    updatePermissionController
+    updatePermissionController,
   );
 
   app.delete(
@@ -112,6 +114,6 @@ export default async function permissionsRoutes(app: FastifyInstance) {
         },
       },
     },
-    deletePermissionController
+    deletePermissionController,
   );
 }

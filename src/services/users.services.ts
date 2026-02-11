@@ -59,7 +59,7 @@ export const createUserService = async ({
 
   if (user) {
     throw new Conflict(
-      "Username ou código do winthor já cadastrados no sistema!"
+      "Username ou código do winthor já cadastrados no sistema!",
     );
   }
 

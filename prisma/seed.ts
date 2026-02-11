@@ -15,6 +15,26 @@ async function main() {
     ],
   });
 
+  await prisma.hsdepartments.createMany({
+    data: [
+      { winthor_id: 3, description: "Hortifruti" },
+      { winthor_id: 5, description: "Peixaria" },
+      { winthor_id: 10, description: "Petshop" },
+      { winthor_id: 11, description: "Bebidas" },
+      { winthor_id: 13, description: "Uso/consumo" },
+      { winthor_id: 16, description: "Bazar" },
+      { winthor_id: 17, description: "Laticinios" },
+      { winthor_id: 18, description: "Higiene pessoal/beleza" },
+      { winthor_id: 19, description: "Limpeza" },
+      { winthor_id: 20, description: "Mercearia doce" },
+      { winthor_id: 21, description: "Merceraria de alto giro" },
+      { winthor_id: 22, description: "Matinais" },
+      { winthor_id: 23, description: "Açougue" },
+      { winthor_id: 24, description: "Praça de alimentação" },
+      { winthor_id: 25, description: "Pereciveis cong/resf" },
+    ],
+  });
+
   await prisma.hspermissions.createMany({
     data: [
       {
@@ -228,6 +248,42 @@ async function main() {
         name: "Atualizar registros de expedição",
         description: "Editar informações de registros de expedição",
       },
+      {
+        name: "Consultar departamentos",
+        description: "Visualizar dados de departamentos no sistema",
+      },
+      {
+        name: "Cadastrar departamentos",
+        description: "Realizar o cadastro de departamentos no sistema",
+      },
+      {
+        name: "Atualizar departamentos",
+        description: "Editar informações de departamentos",
+      },
+      {
+        name: "Excluir departamentos",
+        description: "Deletar departamentos do sistema",
+      },
+      {
+        name: "Consultar registros de metas",
+        description: "Visualizar dados de registros de metas",
+      },
+      {
+        name: "Cadastrar registros de metas",
+        description: "Realizar o cadastro de registros de  metas",
+      },
+      {
+        name: "Atualizar registros de metas",
+        description: "Editar informações de regitros de metas",
+      },
+      {
+        name: "Excluir registros de metas",
+        description: "Deletar registros de metas",
+      },
+      {
+        name: "Consultar relatórios de metas",
+        description: "Visualizar dados de relatórios de metas",
+      },
     ],
   });
 
@@ -322,6 +378,19 @@ async function main() {
       role_id: 1,
       password: hashedPassword,
     },
+  });
+
+  await prisma.hsemployee_branches.createMany({
+    data: [
+      { employee_id: 1, branch_id: 1 },
+      { employee_id: 1, branch_id: 2 },
+      { employee_id: 1, branch_id: 3 },
+      { employee_id: 1, branch_id: 4 },
+      { employee_id: 1, branch_id: 5 },
+      { employee_id: 1, branch_id: 6 },
+      { employee_id: 1, branch_id: 7 },
+      { employee_id: 1, branch_id: 8 },
+    ],
   });
 }
 
