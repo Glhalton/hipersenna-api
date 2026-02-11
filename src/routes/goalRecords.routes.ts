@@ -14,12 +14,13 @@ import {
   getGoalRecordsController,
   updateGoalRecordsController,
 } from "../controllers/goalRecords.controllers.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
 
 export default async function goalRecordsRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(54)],
       schema: {
         summary: "Rota de consulta de registros de metas.",
         description: "Realiza a consulta de permissões.",
@@ -43,7 +44,7 @@ export default async function goalRecordsRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(55)],
       schema: {
         summary: "Rota de criação de registros de metas.",
         description: "Realiza a criaçao de registros de metas.",
@@ -67,7 +68,7 @@ export default async function goalRecordsRoutes(app: FastifyInstance) {
   app.patch(
     "/",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(56)],
       schema: {
         summary: "Rota de atualização de registro de metas.",
         description: "Realiza a atualização de dados de registros de metas.",
@@ -93,7 +94,7 @@ export default async function goalRecordsRoutes(app: FastifyInstance) {
   app.delete(
     "/",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(57)],
       schema: {
         summary: "Rota de exclusão de registro de metas.",
         description: "Realiza a exclusão de registro de metas.",

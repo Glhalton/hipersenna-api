@@ -14,12 +14,13 @@ import {
   getDepartmentController,
   updateDepartmentController,
 } from "../controllers/departments.controllers.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
 
 export default function departmentRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(50)],
       schema: {
         summary: "Rota de consulta de departamentos.",
         description: "Realiza a consulta de departamentos.",
@@ -42,7 +43,7 @@ export default function departmentRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(51)],
       schema: {
         summary: "Rota de criação de departamentos.",
         description: "Realiza a criação de departamentos.",
@@ -66,7 +67,7 @@ export default function departmentRoutes(app: FastifyInstance) {
   app.patch(
     "/:id",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(52)],
       schema: {
         summary: "Rota de atualização de departamentos.",
         description: "Realiza a atualização dos dados de departamentos.",
@@ -91,7 +92,7 @@ export default function departmentRoutes(app: FastifyInstance) {
   app.delete(
     "/:id",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(53)],
       schema: {
         summary: "Rota de exclusão de departamentos.",
         description: "Realiza a exclusão de departamentos",

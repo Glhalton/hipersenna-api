@@ -13,12 +13,13 @@ import {
   getDamageReportController,
   getSalesReportController,
 } from "../controllers/reports.controllers.js";
+import { authorize } from "../middlewares/authorize.middleware.js";
 
 export default async function reportsRoutes(app: FastifyInstance) {
   app.get(
     "/damage",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(58)],
       schema: {
         summary: "Rota de consulta de relatório de avarias",
         description: "Rota de consulta de relatório de avarias",
@@ -43,7 +44,7 @@ export default async function reportsRoutes(app: FastifyInstance) {
   app.get(
     "/sales",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(58)],
       schema: {
         summary: "Rota de consulta de relatório de vendas",
         description: "Rota de consulta de relatório de vendas",

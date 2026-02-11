@@ -27,6 +27,9 @@ CREATE TABLE "hsgoal_records" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "hsdepartments_winthor_id_key" ON "hsdepartments"("winthor_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "hsgoal_records_branch_id_department_type_goal_month_key" ON "hsgoal_records"("branch_id", "department", "type", "goal_month");
 
 -- AddForeignKey
