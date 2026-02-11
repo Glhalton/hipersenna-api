@@ -20,7 +20,7 @@ export default function departmentRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
-      preHandler: [authenticate, authorize(50)],
+      preHandler: [authenticate],
       schema: {
         summary: "Rota de consulta de departamentos.",
         description: "Realiza a consulta de departamentos.",
