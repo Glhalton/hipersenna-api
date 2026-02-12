@@ -39,7 +39,7 @@ export default async function validitiesRoutes(app: FastifyInstance) {
         },
       },
     },
-    getValidityController
+    getValidityController,
   );
 
   app.get(
@@ -64,7 +64,7 @@ export default async function validitiesRoutes(app: FastifyInstance) {
         },
       },
     },
-    getMyValiditiesController
+    getMyValiditiesController,
   );
 
   app.post(
@@ -89,7 +89,7 @@ export default async function validitiesRoutes(app: FastifyInstance) {
         },
       },
     },
-    createValidityController
+    createValidityController,
   );
 
   app.patch(
@@ -115,6 +115,6 @@ export default async function validitiesRoutes(app: FastifyInstance) {
         },
       },
     },
-    updateValidityController
+    updateValidityController,
   );
 }
