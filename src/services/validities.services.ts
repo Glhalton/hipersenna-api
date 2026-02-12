@@ -41,17 +41,52 @@ export const getValidityService = async ({
       },
     });
 
-    if (postgreData.length === 0) {
+    const filteredData = postgreData
+      .map((validity) => {
+        const filteredProducts = validity.hsvalidity_products.filter(
+          (product) => {
+            // Filtro baseado em validade (ou outros critérios)
+            if (initialValidityDate && finalValidityDate) {
+              const productDate = new Date(product.validity_date);
+              return (
+                productDate >= initialValidityDate &&
+                productDate <= finalValidityDate
+              );
+            }
+
+            if (expiresDays) {
+              const now = new Date();
+              const expiresLimit = new Date(
+                now.getTime() + expiresDays * 24 * 60 * 60 * 1000,
+              );
+              return (
+                product.validity_date >= now &&
+                product.validity_date <= expiresLimit
+              );
+            }
+
+            return true;
+          },
+        );
+
+        return {
+          ...validity,
+          hsvalidity_products: filteredProducts,
+        };
+      })
+      .filter((validity) => validity.hsvalidity_products.length > 0);
+
+    if (filteredData.length === 0) {
       return [];
     }
 
-    const allCodes = postgreData.flatMap((req) =>
+    const allCodes = filteredData.flatMap((req) =>
       req.hsvalidity_products.map((p) => p.product_code),
     );
 
     const oracleProducts = await getOracleProductDetails(allCodes);
 
-    const response = mapValidityResponse(postgreData, oracleProducts);
+    const response = mapValidityResponse(filteredData, oracleProducts);
 
     return response;
   } catch (error: unknown) {
@@ -240,11 +275,8 @@ const buildValiditiesWhereClause = ({
   }
 
   if (expiresDays) {
-    const start = expiresDays ? new Date() : undefined;
-    const end =
-      expiresDays && start
-        ? new Date(start.getTime() + expiresDays * 24 * 60 * 60 * 1000)
-        : undefined;
+    const start = new Date();
+    const end = new Date(start.getTime() + expiresDays * 24 * 60 * 60 * 1000);
 
     if (start && end) {
       whereClause.hsvalidity_products = {
