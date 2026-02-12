@@ -21,6 +21,7 @@ import employeeBranchesRoutes from "./routes/employeeBranches.routes.js";
 import goalRecordsRoutes from "./routes/goalRecords.routes.js";
 import departmentRoutes from "./routes/departments.routes.js";
 import reportsRoutes from "./routes/reports.routes.js";
+import validityProductsRoutes from "./routes/validityProducts.routes.js";
 
 export default async function (app: FastifyInstance) {
   app.register(signinRoutes, {
@@ -85,6 +86,9 @@ export default async function (app: FastifyInstance) {
   });
   app.register(validitiesRoutes, {
     prefix: "/validities",
+  });
+  app.register(validityProductsRoutes, {
+    prefix: "/validity-products",
   });
   app.register(validityRequestsRoutes, {
     prefix: "/validity-requests",
