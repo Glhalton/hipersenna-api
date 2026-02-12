@@ -7,6 +7,8 @@ import {
 } from "../schemas/validities.schemas.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
+import { getDateRange } from "./date.services.js";
+import { start } from "repl";
 
 export const getValidityService = async ({
   id,
@@ -16,19 +18,11 @@ export const getValidityService = async ({
   initialValidityDate,
   finalValidityDate,
   expiresDays,
-  descricao,
 }: GetValidity) => {
   const connection = await getOracleConnection();
 
   try {
-    let codigosFiltrados: string[] | undefined;
-
-    if (descricao) {
-      codigosFiltrados = await getProductCodesByDescription(descricao);
-      if (codigosFiltrados.length === 0) return [];
-    }
-
-    const whereClause = buildHsvaliditiesWhereClause({
+    const whereClause = buildValiditiesWhereClause({
       ...{
         id,
         branch_id,
@@ -37,9 +31,7 @@ export const getValidityService = async ({
         initialValidityDate,
         finalValidityDate,
         expiresDays,
-        descricao,
       },
-      codigosFiltrados,
     });
 
     const postgreData = await prisma.hsvalidities.findMany({
@@ -54,7 +46,7 @@ export const getValidityService = async ({
     }
 
     const allCodes = postgreData.flatMap((req) =>
-      req.hsvalidity_products.map((p) => p.product_code)
+      req.hsvalidity_products.map((p) => p.product_code),
     );
 
     const oracleProducts = await getOracleProductDetails(allCodes);
@@ -71,7 +63,7 @@ export const getValidityService = async ({
 
 export const getMyValiditiesService = async (
   { orderBy }: GetMyValidities,
-  employeeId: number
+  employeeId: number,
 ) => {
   const postgreData = await prisma.hsvalidities.findMany({
     where: {
@@ -86,7 +78,7 @@ export const getMyValiditiesService = async (
   });
 
   const allCodes = postgreData.flatMap((req) =>
-    req.hsvalidity_products.map((p) => p.product_code)
+    req.hsvalidity_products.map((p) => p.product_code),
   );
 
   const oracleProducts = await getOracleProductDetails(allCodes);
@@ -98,7 +90,7 @@ export const getMyValiditiesService = async (
 
 export const createValidityService = async (
   validityData: CreateValidity,
-  userId: number
+  userId: number,
 ) => {
   return await prisma.hsvalidities.create({
     data: {
@@ -123,7 +115,7 @@ export const createValidityService = async (
 export const createValidityFromRequestService = async (
   validityData: CreateValidity,
   validityRequestId: number,
-  userId: number
+  userId: number,
 ) => {};
 
 export const updateValidityService = async (data: UpdateValidity) => {
@@ -137,8 +129,8 @@ export const updateValidityService = async (data: UpdateValidity) => {
         data: {
           treat_id: product.treat_id,
         },
-      })
-    )
+      }),
+    ),
   );
 
   const results = await Promise.all(updates);
@@ -163,7 +155,7 @@ const getProductCodesByDescription = async (description: string) => {
       { descricao: `%${description.toUpperCase()}%` },
       {
         outFormat: oracledb.OUT_FORMAT_OBJECT,
-      }
+      },
     );
 
     return (result.rows || []).map((row: any) => row.CODPROD);
@@ -178,10 +170,13 @@ export const getOracleProductDetailsService = async (codes: string[]) => {
   const connection = await getOracleConnection();
 
   try {
-    const binds = codes.reduce((acc, code, i) => {
-      acc[`code${i}`] = code;
-      return acc;
-    }, {} as Record<string, string>);
+    const binds = codes.reduce(
+      (acc, code, i) => {
+        acc[`code${i}`] = code;
+        return acc;
+      },
+      {} as Record<string, string>,
+    );
 
     const inClause = Object.keys(binds)
       .map((k) => `:${k}`)
@@ -202,7 +197,7 @@ export const getOracleProductDetailsService = async (codes: string[]) => {
     ((result.rows as { CODPROD: string; DESCRICAO: string }[]) || []).forEach(
       (row) => {
         descricaoMap[row.CODPROD] = row.DESCRICAO;
-      }
+      },
     );
 
     return descricaoMap;
@@ -211,7 +206,7 @@ export const getOracleProductDetailsService = async (codes: string[]) => {
   }
 };
 
-const  buildHsvaliditiesWhereClause = ({
+const buildValiditiesWhereClause = ({
   id,
   branch_id,
   initialCreationDate,
@@ -219,7 +214,6 @@ const  buildHsvaliditiesWhereClause = ({
   initialValidityDate,
   finalValidityDate,
   expiresDays,
-  codigosFiltrados,
 }: {
   id?: number;
   branch_id?: number;
@@ -228,7 +222,6 @@ const  buildHsvaliditiesWhereClause = ({
   initialValidityDate?: Date;
   finalValidityDate?: Date;
   expiresDays?: number;
-  codigosFiltrados?: string[];
 }) => {
   const whereClause: any = {};
 
@@ -236,32 +229,22 @@ const  buildHsvaliditiesWhereClause = ({
   if (branch_id) whereClause.branch_id = branch_id;
 
   if (initialCreationDate && finalCreationDate) {
+    const { startUTC, endUTC } = getDateRange(
+      initialCreationDate,
+      finalCreationDate,
+    );
     whereClause.created_at = {
-      gte: initialCreationDate,
-      lte: finalCreationDate,
+      gte: startUTC,
+      lte: endUTC,
     };
   }
 
-  if (codigosFiltrados && codigosFiltrados.length > 0) {
-    whereClause.hsvalidity_products = {
-      some: {
-        product_code: { in: codigosFiltrados },
-      },
-    };
-  }
-
-  if (expiresDays || (initialValidityDate && finalValidityDate)) {
-    const start = initialValidityDate
-      ? new Date(initialValidityDate)
-      : expiresDays
-      ? new Date()
-      : undefined;
-
-    const end = finalValidityDate
-      ? new Date(finalValidityDate)
-      : expiresDays && start
-      ? new Date(start.getTime() + expiresDays * 24 * 60 * 60 * 1000)
-      : undefined;
+  if (expiresDays) {
+    const start = expiresDays ? new Date() : undefined;
+    const end =
+      expiresDays && start
+        ? new Date(start.getTime() + expiresDays * 24 * 60 * 60 * 1000)
+        : undefined;
 
     if (start && end) {
       whereClause.hsvalidity_products = {
@@ -269,6 +252,23 @@ const  buildHsvaliditiesWhereClause = ({
         some: {
           ...(whereClause.hsvalidity_products?.some || {}),
           validity_date: { gte: start, lte: end },
+        },
+      };
+    }
+  }
+
+  if (initialValidityDate && finalValidityDate) {
+    const { startUTC, endUTC } = getDateRange(
+      initialValidityDate,
+      finalValidityDate,
+    );
+
+    if (startUTC && endUTC) {
+      whereClause.hsvalidity_products = {
+        ...whereClause.hsvalidity_products,
+        some: {
+          ...(whereClause.hsvalidity_products?.some || {}),
+          validity_date: { gte: startUTC, lte: endUTC },
         },
       };
     }
@@ -305,63 +305,71 @@ type HsvalidityProduct = {
 };
 
 export const getOracleProductDetails = async (
-  codes: number[]
+  codes: number[],
 ): Promise<Record<number, OracleProductDetail>> => {
   if (codes.length === 0) return {};
 
   const connection = await getOracleConnection();
 
   try {
-    // bind seguro para IN (...)
-    const binds = codes.reduce((acc, code, index) => {
-      acc[`code${index}`] = code;
-      return acc;
-    }, {} as Record<string, number>);
+    const BATCH_SIZE = 1000;
+    const resultMap: Record<string, OracleProductDetail> = {};
 
-    const inClause = Object.keys(binds)
-      .map((key) => `:${key}`)
-      .join(",");
+    for (let i = 0; i < codes.length; i += BATCH_SIZE) {
+      const batch = codes.slice(i, i + BATCH_SIZE);
 
-    const query = `
-      SELECT
-        p.codprod,
-        p.descricao,
-        p.codepto,
-        p.codfornec,
-        f.fornecedor,
-        pf.codcomprador,
-        emp.nome,
-        ((COALESCE(pcest1.qtvendmes1, 0) + COALESCE(pcest1.qtvendmes2, 0) + COALESCE(pcest1.qtvendmes3, 0)) / 3) AS media1,
-        ((COALESCE(pcest2.qtvendmes1, 0) + COALESCE(pcest2.qtvendmes2, 0) + COALESCE(pcest2.qtvendmes3, 0)) / 3) AS media2,
-        ((COALESCE(pcest3.qtvendmes1, 0) + COALESCE(pcest3.qtvendmes2, 0) + COALESCE(pcest3.qtvendmes3, 0)) / 3) AS media3,
-        ((COALESCE(pcest4.qtvendmes1, 0) + COALESCE(pcest4.qtvendmes2, 0) + COALESCE(pcest4.qtvendmes3, 0)) / 3) AS media4,
-        ((COALESCE(pcest5.qtvendmes1, 0) + COALESCE(pcest5.qtvendmes2, 0) + COALESCE(pcest5.qtvendmes3, 0)) / 3) AS media5,
-        ((COALESCE(pcest7.qtvendmes1, 0) + COALESCE(pcest7.qtvendmes2, 0) + COALESCE(pcest7.qtvendmes3, 0)) / 3) AS media7,
-        ((COALESCE(pcest8.qtvendmes1, 0) + COALESCE(pcest8.qtvendmes2, 0) + COALESCE(pcest8.qtvendmes3, 0)) / 3) AS media8
-      FROM pcprodut p
-      LEFT JOIN pcest pcest1 ON pcest1.codfilial = 1 AND pcest1.codprod = p.codprod
-      LEFT JOIN pcest pcest2 ON pcest2.codfilial = 2 AND pcest2.codprod = p.codprod
-      LEFT JOIN pcest pcest3 ON pcest3.codfilial = 3 AND pcest3.codprod = p.codprod
-      LEFT JOIN pcest pcest4 ON pcest4.codfilial = 4 AND pcest4.codprod = p.codprod
-      LEFT JOIN pcest pcest5 ON pcest5.codfilial = 5 AND pcest5.codprod = p.codprod
-      LEFT JOIN pcest pcest7 ON pcest7.codfilial = 7 AND pcest7.codprod = p.codprod
-      LEFT JOIN pcest pcest8 ON pcest8.codfilial = 8 AND pcest8.codprod = p.codprod
-      LEFT JOIN pcfornec f ON f.codfornec = p.codfornec
-      LEFT JOIN pcprodfilial pf ON pf.codprod = p.codprod
-      LEFT JOIN pcempr emp ON emp.matricula = pf.codcomprador
-      WHERE p.codprod IN (${inClause})
-    `;
+      const binds = batch.reduce(
+        (acc, code, index) => {
+          acc[`code${index}`] = code;
+          return acc;
+        },
+        {} as Record<string, number>,
+      );
 
-    const result = await connection.execute(query, binds, {
-      outFormat: oracledb.OUT_FORMAT_OBJECT,
-    });
+      const inClause = Object.keys(binds)
+        .map((key) => `:${key}`)
+        .join(",");
 
-    const map: Record<string, OracleProductDetail> = {};
-    ((result.rows as OracleProductDetail[]) || []).forEach((row) => {
-      map[row.CODPROD] = row;
-    });
+      const query = `
+        SELECT
+          p.codprod,
+          p.descricao,
+          p.codepto,
+          p.codfornec,
+          f.fornecedor,
+          pf.codcomprador,
+          emp.nome,
+          ((COALESCE(pcest1.qtvendmes1, 0) + COALESCE(pcest1.qtvendmes2, 0) + COALESCE(pcest1.qtvendmes3, 0)) / 3) AS media1,
+          ((COALESCE(pcest2.qtvendmes1, 0) + COALESCE(pcest2.qtvendmes2, 0) + COALESCE(pcest2.qtvendmes3, 0)) / 3) AS media2,
+          ((COALESCE(pcest3.qtvendmes1, 0) + COALESCE(pcest3.qtvendmes2, 0) + COALESCE(pcest3.qtvendmes3, 0)) / 3) AS media3,
+          ((COALESCE(pcest4.qtvendmes1, 0) + COALESCE(pcest4.qtvendmes2, 0) + COALESCE(pcest4.qtvendmes3, 0)) / 3) AS media4,
+          ((COALESCE(pcest5.qtvendmes1, 0) + COALESCE(pcest5.qtvendmes2, 0) + COALESCE(pcest5.qtvendmes3, 0)) / 3) AS media5,
+          ((COALESCE(pcest7.qtvendmes1, 0) + COALESCE(pcest7.qtvendmes2, 0) + COALESCE(pcest7.qtvendmes3, 0)) / 3) AS media7,
+          ((COALESCE(pcest8.qtvendmes1, 0) + COALESCE(pcest8.qtvendmes2, 0) + COALESCE(pcest8.qtvendmes3, 0)) / 3) AS media8
+        FROM pcprodut p
+        LEFT JOIN pcest pcest1 ON pcest1.codfilial = 1 AND pcest1.codprod = p.codprod
+        LEFT JOIN pcest pcest2 ON pcest2.codfilial = 2 AND pcest2.codprod = p.codprod
+        LEFT JOIN pcest pcest3 ON pcest3.codfilial = 3 AND pcest3.codprod = p.codprod
+        LEFT JOIN pcest pcest4 ON pcest4.codfilial = 4 AND pcest4.codprod = p.codprod
+        LEFT JOIN pcest pcest5 ON pcest5.codfilial = 5 AND pcest5.codprod = p.codprod
+        LEFT JOIN pcest pcest7 ON pcest7.codfilial = 7 AND pcest7.codprod = p.codprod
+        LEFT JOIN pcest pcest8 ON pcest8.codfilial = 8 AND pcest8.codprod = p.codprod
+        LEFT JOIN pcfornec f ON f.codfornec = p.codfornec
+        LEFT JOIN pcprodfilial pf ON pf.codprod = p.codprod
+        LEFT JOIN pcempr emp ON emp.matricula = pf.codcomprador
+        WHERE p.codprod IN (${inClause})
+      `;
 
-    return map;
+      const result = await connection.execute(query, binds, {
+        outFormat: oracledb.OUT_FORMAT_OBJECT,
+      });
+
+      ((result.rows as OracleProductDetail[]) || []).forEach((row) => {
+        resultMap[row.CODPROD] = row;
+      });
+    }
+
+    return resultMap;
   } finally {
     await connection.close();
   }
@@ -369,7 +377,7 @@ export const getOracleProductDetails = async (
 
 const mapValidityResponse = (
   data: any[],
-  oracleMap: Record<number, OracleProductDetail>
+  oracleMap: Record<number, OracleProductDetail>,
 ) => {
   return data.map((validity) => ({
     id: validity.id,
@@ -409,7 +417,7 @@ const mapValidityResponse = (
           average7: oracle?.MEDIA7 ?? 0,
           average8: oracle?.MEDIA8 ?? 0,
         };
-      }
+      },
     ),
   }));
 };
