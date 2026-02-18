@@ -22,6 +22,7 @@ import goalRecordsRoutes from "./routes/goalRecords.routes.js";
 import departmentRoutes from "./routes/departments.routes.js";
 import reportsRoutes from "./routes/reports.routes.js";
 import validityProductsRoutes from "./routes/validityProducts.routes.js";
+import ruptureProductsRoutes from "./routes/ruptureProducts.routes.js";
 
 export default async function (app: FastifyInstance) {
   app.register(signinRoutes, {
@@ -74,6 +75,9 @@ export default async function (app: FastifyInstance) {
   });
   app.register(rolesPermissionsRoutes, {
     prefix: "/role-permissions",
+  });
+  app.register(ruptureProductsRoutes, {
+    prefix: "/ruptures",
   });
   app.register(sessionsRoutes, {
     prefix: "/sessions",
