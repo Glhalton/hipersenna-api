@@ -21,6 +21,7 @@ model hsbranches {
   hsconsumptionNotes  hsconsumption_notes[]
   hsemployeeBranches  hsemployee_branches[]
   hsgoalRecords       hsgoal_records[]
+  hsrupture_products  hsrupture_products[]
 }
 
 model hsconsumption_groups {
@@ -98,6 +99,7 @@ model hsemployees {
   hsdispatchRecords   hsdispatch_records[]
   hsconsumptionNotes  hsconsumption_notes[]
   hsemployeeBranches  hsemployee_branches[]
+  hsrupture_products  hsrupture_products[]
 
   @@map("hsemployees")
 }
@@ -176,6 +178,18 @@ model hsroles_permissions {
   hsroles       hsroles       @relation(fields: [role_id], references: [id])
 
   @@id([role_id, permission_id])
+}
+
+model hsrupture_products {
+  id                     Int         @id @default(autoincrement())
+  branch_id              Int
+  created_by_employee_id Int
+  product_code           Int
+  auxiliary_code         String      @db.VarChar(150)
+  created_at             DateTime    @default(now()) @db.Timestamptz(6)
+  modified_at            DateTime    @default(now()) @updatedAt @db.Timestamptz(6)
+  branches               hsbranches  @relation(fields: [branch_id], references: [id])
+  employees              hsemployees @relation(fields: [created_by_employee_id], references: [id])
 }
 
 model hssessions {
