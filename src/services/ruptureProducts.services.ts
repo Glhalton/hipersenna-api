@@ -7,6 +7,7 @@ import {
   UpdateRuptureProducts,
 } from "../schemas/ruptureProducts.schemas.js";
 import oracledb from "oracledb";
+import { getDateRange } from "./date.services.js";
 
 export const getRuptureProductsService = async ({
   branchId,
@@ -15,6 +16,8 @@ export const getRuptureProductsService = async ({
   orderBy,
   cursor,
   limit,
+  initialDate,
+  finalDate,
 }: GetRuptureProducts) => {
   let connection;
   try {
@@ -23,6 +26,14 @@ export const getRuptureProductsService = async ({
     if (branchId) whereClause.branch_id = branchId;
     if (auxiliaryCode) whereClause.auxiliary_code = auxiliaryCode;
     if (productCode) whereClause.product_code = productCode;
+
+    if (initialDate && finalDate) {
+      const { startUTC, endUTC } = getDateRange(initialDate, finalDate);
+      whereClause.created_at = {
+        gte: startUTC,
+        lte: endUTC,
+      };
+    }
 
     const ruptures = await prisma.hsrupture_products.findMany({
       where: whereClause,
