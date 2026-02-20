@@ -7,6 +7,8 @@ export const getRuptureProductsSchema = z.object({
   orderBy: z.enum(["asc", "desc"]).optional(),
   cursor: z.coerce.number().optional().nullable(),
   limit: z.coerce.number().optional(),
+  initialDate: z.coerce.date().optional(),
+  finalDate: z.coerce.date().optional(),
 });
 
 export type GetRuptureProducts = z.infer<typeof getRuptureProductsSchema>;

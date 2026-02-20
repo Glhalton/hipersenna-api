@@ -16,8 +16,16 @@ export async function getRuptureProductsController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
-  const { auxiliaryCode, branchId, orderBy, cursor, limit, productCode } =
-    getRuptureProductsSchema.parse(request.query);
+  const {
+    auxiliaryCode,
+    branchId,
+    orderBy,
+    cursor,
+    limit,
+    productCode,
+    initialDate,
+    finalDate,
+  } = getRuptureProductsSchema.parse(request.query);
 
   const data = await getRuptureProductsService({
     branchId,
@@ -26,6 +34,8 @@ export async function getRuptureProductsController(
     orderBy,
     cursor,
     limit,
+    initialDate,
+    finalDate,
   });
 
   return reply.status(200).send(data);
