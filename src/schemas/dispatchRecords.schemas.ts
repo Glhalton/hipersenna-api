@@ -8,6 +8,10 @@ export const getDispatchRecordSchema = z.object({
   bonus_number: z.string().optional().describe("Bonus number"),
   license_plate: z.string().optional().describe("Vehicle license plate"),
   employee_id: z.coerce.number().optional().describe("Employee id"),
+  cursor: z.coerce.number().optional().nullable(),
+  limit: z.coerce.number().optional(),
+  initialDate: z.coerce.date().optional(),
+  finalDate: z.coerce.date().optional(),
 });
 
 export type GetDispatchRecord = z.infer<typeof getDispatchRecordSchema>;
@@ -48,7 +52,31 @@ export const dispatchRecordResponseSchema = z.object({
   created_by_employee_id: z.number(),
   created_at: z.date(),
   modified_at: z.date(),
-  employee: z.object({
-    name: z.string(),
-  }).optional(),
+  employee: z
+    .object({
+      name: z.string(),
+    })
+    .optional(),
+});
+
+export const getDispatchRecordResponseSchema = z.object({
+  data: z.array(
+    z.object({
+      id: z.number(),
+      branch_id: z.number(),
+      nfe_number: z.string(),
+      seal_number: z.string(),
+      bonus_number: z.string(),
+      license_plate: z.string(),
+      created_by_employee_id: z.number(),
+      created_at: z.date(),
+      modified_at: z.date(),
+      employee: z
+        .object({
+          name: z.string(),
+        })
+        .optional(),
+    }),
+  ),
+  nextCursor: z.number().nullable(),
 });

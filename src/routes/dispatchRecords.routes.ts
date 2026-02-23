@@ -11,6 +11,7 @@ import {
   createDispatchRecordSchema,
   dispatchRecordIdSchema,
   dispatchRecordResponseSchema,
+  getDispatchRecordResponseSchema,
   getDispatchRecordSchema,
   updateDispatchRecordSchema,
 } from "../schemas/dispatchRecords.schemas.js";
@@ -31,7 +32,7 @@ export default async function dispatchRecordsRoutes(app: FastifyInstance) {
         tags: ["Dispatch-Records"],
         querystring: getDispatchRecordSchema,
         response: {
-          200: z.array(dispatchRecordResponseSchema).describe("Ok"),
+          200: getDispatchRecordResponseSchema.describe("Ok"),
           400: validationErrorSchema.describe("Bad Request"),
           401: z.object({ message: z.string() }).describe("Unauthorized"),
           403: z.object({ message: z.string() }).describe("Forbidden"),
