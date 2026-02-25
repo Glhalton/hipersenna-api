@@ -61,6 +61,9 @@ export const getRuptureProductsResponseSchema = z.object({
       created_at: z.date(),
       modified_at: z.date(),
       description: z.string().optional(),
+      department: z.number().optional(),
+      lastEntryDate: z.date().optional().nullable(),
+      lastExitDate: z.date().optional().nullable(),
       employees: z
         .object({
           winthor_id: z.number(),

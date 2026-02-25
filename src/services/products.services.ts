@@ -58,12 +58,16 @@ export const getProductService = async (
           em.ptabelaatac,
           em.pvendaatac,
           em.dtinativo,
-
+        
           es.qtestger,
           es.qtreserv,
           es.qtbloqueada,
           es.dtultent,
           es.dtultfat,
+          es.qtpedida,
+          es.qtvendmes1,
+          es.qtvendmes2,
+          es.qtvendmes3,
 
           es6.qtestger    AS qtestgerdp6,
           es6.qtreserv    AS qtreservdp6,
@@ -128,6 +132,10 @@ export const getProductService = async (
       VLOFERTA: number;
       DTULTENT: string;
       DTULTFAT: string;
+      QTPEDIDA: number;
+      QTVENDMES1: number;
+      QTVENDMES2: number;
+      QTVENDMES3: number;
     };
 
     return ((result.rows as ProductRow[]) ?? []).map((row) => ({
@@ -151,6 +159,8 @@ export const getProductService = async (
       qtReservDp6: row.QTRESERVDP6,
       qtBloqueadaDp6: row.QTBLOQUEADADP6,
       vlOferta: row.VLOFERTA,
+      qtPedida: row.QTPEDIDA,
+      giroMedMes: (row.QTVENDMES1 + row.QTVENDMES2 + row.QTVENDMES3) / 3,
       dtUltimaEntrada: new Date(row.DTULTENT).toISOString(),
       dtUltimoFaturamento: new Date(row.DTULTFAT).toISOString(),
     }));

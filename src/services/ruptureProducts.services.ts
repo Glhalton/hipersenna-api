@@ -63,26 +63,59 @@ export const getRuptureProductsService = async ({
     connection = await getOracleConnection();
 
     const allCodes = ruptures.map((p) => p.product_code);
+    const allBranches = ruptures.map((p) => p.branch_id);
+
+    const codeBinds = allCodes.map((_, i) => `:code${i}`).join(",");
+    const branchBinds = allBranches.map((_, i) => `:branch${i}`).join(",");
 
     const query = `
-        SELECT codprod, descricao
-        FROM pcprodut
-        WHERE codprod IN (${allCodes.map(() => ":code").join(",")})
+        SELECT 
+          p.codepto,
+          p.codprod, 
+          p.descricao,
+          es.codfilial,
+          es.dtultent,
+          es.dtultfat
+        FROM pcprodut p    
+        JOIN pcest es
+          ON es.codprod = p.codprod
+        WHERE p.codprod IN (${codeBinds})
+          AND es.codfilial IN (${branchBinds})
     `;
 
-    const result = await connection.execute(query, allCodes, {
+    const binds = {
+      ...Object.fromEntries(allCodes.map((c, i) => [`code${i}`, c])),
+      ...Object.fromEntries(allBranches.map((b, i) => [`branch${i}`, b])),
+    };
+
+    const result = await connection.execute(query, binds, {
       outFormat: oracledb.OUT_FORMAT_OBJECT,
     });
 
-    const descricaoMap: Record<string, string> = {};
+    const map: Record<string, any> = {};
+
     (result.rows || []).forEach((row: any) => {
-      descricaoMap[row.CODPROD] = row.DESCRICAO;
+      const key = `${row.CODPROD}_${row.CODFILIAL}`;
+
+      map[key] = {
+        description: row.DESCRICAO,
+        department: row.CODEPTO,
+        lastEntryDate: row.DTULTENT,
+        lastExitDate: row.DTULTFAT,
+      };
     });
 
-    const enrichedProducts = ruptures.map((p) => ({
-      ...p,
-      description: descricaoMap[p.product_code] || null,
-    }));
+    const enrichedProducts = ruptures.map((p) => {
+      const key = `${p.product_code}_${p.branch_id}`;
+
+      return {
+        ...p,
+        description: map[key]?.description || null,
+        department: map[key]?.department || null,
+        lastEntryDate: map[key]?.lastEntryDate || null,
+        lastExitDate: map[key]?.lastExitDate || null,
+      };
+    });
 
     const lastItem = enrichedProducts[enrichedProducts.length - 1];
 

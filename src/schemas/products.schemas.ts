@@ -28,6 +28,8 @@ export const productResponseSchema = z.object({
   qtReservDp6: z.coerce.number().nullable(),
   qtBloqueadaDp6: z.coerce.number().nullable(),
   vlOferta: z.coerce.number().nullable(),
-  dtUltimaEntrada: z.string(),
-  dtUltimoFaturamento: z.string(),
+  dtUltimaEntrada: z.string().nullable(),
+  dtUltimoFaturamento: z.string().nullable(),
+  qtPedida: z.number().nullable(),
+  giroMedMes: z.number(),
 });
