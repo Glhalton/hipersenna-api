@@ -137,8 +137,6 @@ const buildGetValidityProductsWhereClause = ({
     }
   }
 
-  console.log(whereClause);
-
   return whereClause;
 };
 
