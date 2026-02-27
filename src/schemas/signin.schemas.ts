@@ -69,7 +69,7 @@ export const userSchema = z.object({
 
 export type User = z.infer<typeof userSchema>;
 
-export const mappedUserSchema = {
+export const mappedUserSchema = z.object({
   id: z.number(),
   branch_id: z.number(),
   winthor_id: z.number(),
@@ -90,6 +90,6 @@ export const mappedUserSchema = {
       description: z.string(),
     }),
   ),
-};
+});
 
 export type MappedUser = z.infer<typeof mappedUserSchema>;

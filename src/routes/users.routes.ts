@@ -18,6 +18,7 @@ import {
 import z from "zod";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
 import { validationErrorSchema } from "../schemas/errors.schemas.js";
+import { mappedUserSchema } from "../schemas/signin.schemas.js";
 
 export default async function usersRoutes(app: FastifyInstance) {
   app.get(
@@ -42,7 +43,7 @@ export default async function usersRoutes(app: FastifyInstance) {
         },
       },
     },
-    getUserController
+    getUserController,
   );
 
   app.get(
@@ -55,7 +56,7 @@ export default async function usersRoutes(app: FastifyInstance) {
         tags: ["Users"],
         security: [{ BearerAuth: [] }],
         response: {
-          200: z.array(userResponseSchema).describe("Ok"),
+          200: mappedUserSchema.describe("Ok"),
           400: validationErrorSchema.describe("Bad Request"),
           401: z.object({ message: z.string() }).describe("Unauthorized"),
           500: z
@@ -64,7 +65,7 @@ export default async function usersRoutes(app: FastifyInstance) {
         },
       },
     },
-    getMeController
+    getMeController,
   );
 
   app.get(
@@ -78,7 +79,7 @@ export default async function usersRoutes(app: FastifyInstance) {
         tags: ["Users"],
       },
     },
-    getTokenDataController
+    getTokenDataController,
   );
 
   app.post(
@@ -103,7 +104,7 @@ export default async function usersRoutes(app: FastifyInstance) {
         },
       },
     },
-    createUserController
+    createUserController,
   );
 
   app.patch(
@@ -129,7 +130,7 @@ export default async function usersRoutes(app: FastifyInstance) {
         },
       },
     },
-    updateUserController
+    updateUserController,
   );
 
   app.delete(
@@ -154,6 +155,6 @@ export default async function usersRoutes(app: FastifyInstance) {
         },
       },
     },
-    deleteUserController
+    deleteUserController,
   );
 }
