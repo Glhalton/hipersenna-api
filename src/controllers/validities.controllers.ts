@@ -16,7 +16,7 @@ import z from "zod";
 
 export async function getValidityController(
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
   const {
     id,
@@ -26,7 +26,6 @@ export async function getValidityController(
     initialValidityDate,
     finalValidityDate,
     expiresDays,
-    descricao,
   } = getValiditySchema.parse(request.query);
 
   const validity = await getValidityService({
@@ -37,7 +36,6 @@ export async function getValidityController(
     initialValidityDate,
     finalValidityDate,
     expiresDays,
-    descricao,
   });
 
   return reply.status(200).send(validity);
@@ -45,20 +43,20 @@ export async function getValidityController(
 
 export async function getMyValiditiesController(
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
   const userId = request.user?.id;
   const { orderBy } = getMyValiditiesSchema.parse(request.query);
   const validitiesByEmployee = await getMyValiditiesService(
     { orderBy },
-    userId!
+    userId!,
   );
   return reply.status(200).send(validitiesByEmployee);
 }
 
 export async function createValidityController(
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
   const userId = request.user?.id;
 
@@ -70,7 +68,7 @@ export async function createValidityController(
 
 export async function updateValidityController(
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
   const data = updateValiditySchema.parse(request.body);
 

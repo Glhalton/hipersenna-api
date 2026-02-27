@@ -7,6 +7,7 @@ import {
   GetDispatchRecord,
   UpdateDispatchRecord,
 } from "../schemas/dispatchRecords.schemas.js";
+import { getDateRange } from "./date.services.js";
 
 export const getDispatchRecordService = async ({
   id,
@@ -16,6 +17,10 @@ export const getDispatchRecordService = async ({
   bonus_number,
   license_plate,
   employee_id,
+  initialDate,
+  finalDate,
+  cursor,
+  limit,
 }: GetDispatchRecord) => {
   const whereClause: any = {};
 
@@ -26,11 +31,38 @@ export const getDispatchRecordService = async ({
   if (bonus_number) whereClause.bonus_number = bonus_number;
   if (license_plate) whereClause.license_plate = license_plate;
   if (employee_id) whereClause.created_by_employee_id = employee_id;
+  if (initialDate && finalDate) {
+    const { startUTC, endUTC } = getDateRange(initialDate, finalDate);
+    whereClause.created_at = {
+      gte: startUTC,
+      lte: endUTC,
+    };
+  }
 
-  return await prisma.hsdispatch_records.findMany({
+  const dispatchRecords = await prisma.hsdispatch_records.findMany({
     where: whereClause,
+    take: limit,
+    skip: cursor ? 1 : 0,
+    cursor: cursor ? { id: cursor } : undefined,
+    orderBy: {
+      id: "desc",
+    },
     include: { employee: { select: { name: true } } },
   });
+
+  if (dispatchRecords.length === 0) {
+    return {
+      data: [],
+      nextCursor: null,
+    };
+  }
+
+  const lastItem = dispatchRecords[dispatchRecords.length - 1];
+
+  return {
+    data: dispatchRecords,
+    nextCursor: dispatchRecords.length === limit ? lastItem.id : null,
+  };
 };
 
 export const createDispatchRecordService = async (
@@ -41,13 +73,12 @@ export const createDispatchRecordService = async (
     seal_number,
     license_plate,
   }: CreateDispatchRecord,
-  employeeId: number
+  employeeId: number,
 ) => {
-
   const plateCarValidity = isValidCarPlate(license_plate);
 
-  if(!plateCarValidity){
-    throw new BadRequest("A Placa de veículo informada é inválida!")
+  if (!plateCarValidity) {
+    throw new BadRequest("A Placa de veículo informada é inválida!");
   }
 
   return await prisma.hsdispatch_records.create({
@@ -70,7 +101,7 @@ export const updateDispatchRecordService = async (
     nfe_number,
     seal_number,
   }: UpdateDispatchRecord,
-  { id }: DispatchRecordId
+  { id }: DispatchRecordId,
 ) => {
   try {
     return await prisma.hsdispatch_records.update({

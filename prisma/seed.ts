@@ -284,6 +284,22 @@ async function main() {
         name: "Consultar relatórios de metas",
         description: "Visualizar dados de relatórios de metas",
       },
+      {
+        name: "Consultar rupturas",
+        description: "Visualizar dados de rupturas",
+      },
+      {
+        name: "Cadastrar rupturas",
+        description: "Realizar o cadastro de rupturas",
+      },
+      {
+        name: "Atualizar rupturas",
+        description: "Editar informações de rupturas",
+      },
+      {
+        name: "Excluir rupturas",
+        description: "Deletar rupturas",
+      },
     ],
   });
 
@@ -342,6 +358,15 @@ async function main() {
       { permission_id: 47, role_id: 1 },
       { permission_id: 48, role_id: 1 },
       { permission_id: 49, role_id: 1 },
+      { permission_id: 50, role_id: 1 },
+      { permission_id: 51, role_id: 1 },
+      { permission_id: 52, role_id: 1 },
+      { permission_id: 53, role_id: 1 },
+      { permission_id: 54, role_id: 1 },
+      { permission_id: 55, role_id: 1 },
+      { permission_id: 56, role_id: 1 },
+      { permission_id: 57, role_id: 1 },
+      { permission_id: 58, role_id: 1 },
     ],
   });
 

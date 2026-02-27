@@ -1,57 +1,59 @@
 import { FastifyInstance } from "fastify";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
 import {
-  createDepartmentSchema,
-  departmentId,
-  departmentResponseSchema,
-  getDepartmentSchema,
-} from "../schemas/departments.schemas.js";
+  createRuptureProductsSchema,
+  getRuptureProductsResponseSchema,
+  getRuptureProductsSchema,
+  ruptureProductsIdSchema,
+  ruptureProductsResponseSchema,
+  updateRuptureProductsSchema,
+} from "../schemas/ruptureProducts.schemas.js";
 import z from "zod";
 import { validationErrorSchema } from "../schemas/errors.schemas.js";
 import {
-  createDepartmentController,
-  deleteDepartmentController,
-  getDepartmentController,
-  updateDepartmentController,
-} from "../controllers/departments.controllers.js";
-import { authorize } from "../middlewares/authorize.middleware.js";
+  createRuptureProductsController,
+  deleteRuptureProductsController,
+  getRuptureProductsController,
+  updateRuptureProductsController,
+} from "../controllers/ruptureProducts.controllers.js";
 
-export default function departmentRoutes(app: FastifyInstance) {
+export default async function ruptureProductsRoutes(app: FastifyInstance) {
   app.get(
     "/",
     {
       preHandler: [authenticate],
       schema: {
-        summary: "Rota de consulta de departamentos.",
-        description: "Realiza a consulta de departamentos.",
-        tags: ["Departments"],
+        summary: "Rota de consulta de produtos de ruptura.",
+        description: "Realiza a consulta de produtos de ruptura.",
+        tags: ["Rupture-Products"],
         security: [{ BearerAuth: [] }],
-        querystring: getDepartmentSchema,
+        querystring: getRuptureProductsSchema,
         response: {
-          200: z.array(departmentResponseSchema).describe("Ok"),
+          200: getRuptureProductsResponseSchema.describe("Ok"),
           400: validationErrorSchema.describe("Bad Request"),
           401: z.object({ message: z.string() }).describe("Unauthorized"),
           403: z.object({ message: z.string() }).describe("Forbidden"),
           404: z.object({ message: z.string() }).describe("Not Found"),
-          500: z.object({ messae: z.string() }),
+          500: z
+            .object({ messae: z.string() })
+            .describe("Internal Server Error"),
         },
       },
     },
-    getDepartmentController,
+    getRuptureProductsController,
   );
-
   app.post(
     "/",
     {
-      preHandler: [authenticate, authorize(51)],
+      preHandler: [authenticate],
       schema: {
-        summary: "Rota de criação de departamentos.",
-        description: "Realiza a criação de departamentos.",
-        tags: ["Departments"],
+        summary: "Rota de criação de produtos de ruptura.",
+        description: "Realiza a criação de produtos de ruptura.",
+        tags: ["Rupture-Products"],
         security: [{ BearerAuth: [] }],
-        body: createDepartmentSchema,
+        body: createRuptureProductsSchema,
         response: {
-          201: departmentResponseSchema.describe("Created"),
+          201: ruptureProductsResponseSchema.describe("Created"),
           400: validationErrorSchema.describe("Bad Request"),
           401: z.object({ message: z.string() }).describe("Unauthorized"),
           403: z.object({ message: z.string() }).describe("Forbidden"),
@@ -61,23 +63,22 @@ export default function departmentRoutes(app: FastifyInstance) {
         },
       },
     },
-    createDepartmentController,
+    createRuptureProductsController,
   );
-
   app.patch(
     "/:id",
     {
-      preHandler: [authenticate, authorize(52)],
+      preHandler: [authenticate],
       schema: {
-        summary: "Rota de atualização de departamentos.",
-        description: "Realiza a atualização dos dados de departamentos.",
-        tags: ["Departments"],
+        summary: "Rota de atualização de produtos de ruptura.",
+        description: "Realiza a atualização de produtos de ruptura.",
+        tags: ["Rupture-Products"],
         security: [{ BearerAuth: [] }],
-        params: departmentId,
+        params: ruptureProductsIdSchema,
+        body: updateRuptureProductsSchema,
         response: {
-          200: departmentResponseSchema.describe("Ok"),
+          200: ruptureProductsResponseSchema.describe("Ok"),
           400: validationErrorSchema.describe("Bad Request"),
-          401: z.object({ message: z.string() }).describe("Unauthorized"),
           403: z.object({ message: z.string() }).describe("Forbidden"),
           404: z.object({ message: z.string() }).describe("Not Found"),
           500: z
@@ -86,21 +87,20 @@ export default function departmentRoutes(app: FastifyInstance) {
         },
       },
     },
-    updateDepartmentController,
+    updateRuptureProductsController,
   );
-
   app.delete(
     "/:id",
     {
-      preHandler: [authenticate, authorize(53)],
+      preHandler: [authenticate],
       schema: {
-        summary: "Rota de exclusão de departamentos.",
-        description: "Realiza a exclusão de departamentos",
-        tags: ["Departments"],
+        summary: "Rota de exclusão de produtos de ruptura.",
+        description: "Realiza a exclusão de produtos de ruptura",
+        tags: ["Rupture-Products"],
         security: [{ BearerAuth: [] }],
-        params: departmentId,
+        params: ruptureProductsIdSchema,
         response: {
-          200: departmentResponseSchema.describe("Ok"),
+          200: ruptureProductsResponseSchema.describe("Ok"),
           400: validationErrorSchema.describe("Bad Request"),
           401: z.object({ message: z.string() }).describe("Unauthorized"),
           403: z.object({ message: z.string() }).describe("Forbidden"),
@@ -111,6 +111,6 @@ export default function departmentRoutes(app: FastifyInstance) {
         },
       },
     },
-    deleteDepartmentController,
+    deleteRuptureProductsController,
   );
 }
