@@ -155,9 +155,19 @@ export const getProductService = async (
       qtEstGer: row.QTESTGER,
       qtReserv: row.QTRESERV,
       qtBloqueada: row.QTBLOQUEADA,
+      qtDisponivel: calculateAvailableStock(
+        row.QTESTGER,
+        row.QTRESERV,
+        row.QTBLOQUEADA,
+      ),
       qtEstGerDp6: row.QTESTGERDP6,
       qtReservDp6: row.QTRESERVDP6,
       qtBloqueadaDp6: row.QTBLOQUEADADP6,
+      qtDisponivelDp6: calculateAvailableStock(
+        row.QTESTGERDP6,
+        row.QTRESERVDP6,
+        row.QTBLOQUEADADP6,
+      ),
       vlOferta: row.VLOFERTA,
       qtPedida: row.QTPEDIDA,
       giroMedMes: (row.QTVENDMES1 + row.QTVENDMES2 + row.QTVENDMES3) / 3,
@@ -167,4 +177,14 @@ export const getProductService = async (
   } finally {
     await connection.close();
   }
+};
+
+const calculateAvailableStock = (
+  total: number,
+  reserved: number,
+  blocked: number,
+) => {
+  const availableStock = total - (reserved + blocked);
+
+  return availableStock;
 };
