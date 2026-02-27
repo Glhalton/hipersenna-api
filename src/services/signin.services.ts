@@ -79,15 +79,15 @@ export const signInService = async ({ password, username }: signInInput) => {
     },
     jwtSecret,
     {
-      expiresIn: "12h",
+      expiresIn: "7d",
     },
   );
 
   const decoded: any = jwt.decode(token);
   const expires_at = new Date(decoded.exp * 1000);
 
-  const sessionsDeleted = await deleteSessionsService(user.id);
-  const sessionCreated = await createSessionService(user.id, token, expires_at);
+  await deleteSessionsService(user.id);
+  await createSessionService(user.id, token, expires_at);
 
   const mappedUser = mapUserService(user);
 
