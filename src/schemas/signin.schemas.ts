@@ -37,6 +37,12 @@ export const signInResponseSchema = z.object({
 export const userSchema = z.object({
   id: z.number(),
   branch_id: z.number(),
+  branch: z
+    .object({
+      id: z.number(),
+      description: z.string(),
+    })
+    .optional(),
   winthor_id: z.number(),
   role_id: z.number(),
   password: z.string(),
@@ -72,6 +78,7 @@ export type User = z.infer<typeof userSchema>;
 export const mappedUserSchema = z.object({
   id: z.number(),
   branch_id: z.number(),
+  branch_name: z.string().optional(),
   winthor_id: z.number(),
   name: z.string(),
   username: z.string(),

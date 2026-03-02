@@ -49,6 +49,68 @@ export const getUserService = async ({
   });
 };
 
+export const getDetailedUserService = async (id: number) => {
+  const user = await prisma.hsemployees.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      branch_id: true,
+      branch: {
+        select: {
+          id: true,
+          description: true,
+        },
+      },
+      winthor_id: true,
+      role_id: true,
+      name: true,
+      password: true,
+      username: true,
+      created_at: true,
+      modified_at: true,
+      hsusers_permissions: {
+        select: {
+          permission_id: true,
+          hspermissions: {
+            select: {
+              description: true,
+            },
+          },
+        },
+      },
+      role: {
+        select: {
+          id: true,
+          description: true,
+          hsroles_permissions: {
+            select: {
+              permission_id: true,
+            },
+          },
+        },
+      },
+      hsemployeeBranches: {
+        select: {
+          branch_id: true,
+          branch: {
+            select: {
+              description: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!user) {
+    throw new NotFound("Usuário não encontrado");
+  }
+
+  const mappedUser = mapUserService(user);
+
+  return mappedUser;
+};
+
 export const createUserService = async ({
   name,
   username,
@@ -237,6 +299,7 @@ export const mapUserService = (user: User): MappedUser => {
   return {
     id: user.id,
     branch_id: user.branch_id,
+    branch_name: user.branch?.description,
     winthor_id: user.winthor_id,
     name: user.name,
     username: user.username,
