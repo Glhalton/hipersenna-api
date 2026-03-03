@@ -10,7 +10,8 @@ export const getUserSchema = z.object({
   username: z.string().optional(),
   winthor_id: z.coerce.number().optional(),
   branch_id: z.coerce.number().optional(),
-  role_id: z.coerce.number().optional()
+  role_id: z.coerce.number().optional(),
+  is_active: z.coerce.number().optional(),
 });
 
 export type GetUserInput = z.infer<typeof getUserSchema>;
@@ -33,6 +34,7 @@ export const updateUserSchema = z.object({
   branch_id: z.number().optional(),
   winthor_id: z.number().optional(),
   role_id: z.number().optional(),
+  is_active: z.boolean().optional(),
 });
 
 export type UpdateUserInput = z.infer<typeof updateUserSchema>;
@@ -46,12 +48,14 @@ export const userResponseSchema = z.object({
   username: z.string(),
   created_at: z.coerce.date(),
   modified_at: z.coerce.date(),
-  hsusers_permissions: z.array(
-    z.object({
-      permission_id: z.number(),
-      hspermissions: z.object({
-        description: z.string(),
+  hsusers_permissions: z
+    .array(
+      z.object({
+        permission_id: z.number(),
+        hspermissions: z.object({
+          description: z.string(),
+        }),
       }),
-    })
-  ).optional(),
+    )
+    .optional(),
 });

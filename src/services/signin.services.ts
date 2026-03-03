@@ -17,6 +17,7 @@ export const signInService = async ({ password, username }: signInInput) => {
       name: true,
       password: true,
       username: true,
+      is_active: true,
       created_at: true,
       modified_at: true,
       hsusers_permissions: {
@@ -61,6 +62,10 @@ export const signInService = async ({ password, username }: signInInput) => {
 
   if (!isCorrectPassword) {
     throw new Unauthorized("Usuário ou senha estão incorretos!");
+  }
+
+  if (!user.is_active) {
+    throw new Unauthorized("Usuário inativo!");
   }
 
   const jwtSecret = process.env.JWT_SECRET;

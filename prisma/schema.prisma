@@ -88,6 +88,7 @@ model hsemployees {
   username              String                   @unique
   password              String
   role_id               Int
+  is_active             Boolean                  @default(true)
   created_at            DateTime                 @default(now()) @db.Timestamptz(6)
   modified_at           DateTime                 @default(now()) @updatedAt @db.Timestamptz(6)
   branch                hsbranches               @relation(fields: [branch_id], references: [id])
