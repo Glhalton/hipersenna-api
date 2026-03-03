@@ -9,6 +9,7 @@ import { Conflict } from "../errors/conflict.error.js";
 import { NotFound } from "../errors/notFound.error.js";
 import { MappedUser, User } from "../schemas/signin.schemas.js";
 import { Unauthorized } from "../errors/unauthorized.error.js";
+import { format } from "path";
 
 export const getUserService = async ({
   id,
@@ -49,6 +50,68 @@ export const getUserService = async ({
   });
 };
 
+export const getDetailedUserService = async (id: number) => {
+  const user = await prisma.hsemployees.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      branch_id: true,
+      branch: {
+        select: {
+          id: true,
+          description: true,
+        },
+      },
+      winthor_id: true,
+      role_id: true,
+      name: true,
+      password: true,
+      username: true,
+      created_at: true,
+      modified_at: true,
+      hsusers_permissions: {
+        select: {
+          permission_id: true,
+          hspermissions: {
+            select: {
+              description: true,
+            },
+          },
+        },
+      },
+      role: {
+        select: {
+          id: true,
+          description: true,
+          hsroles_permissions: {
+            select: {
+              permission_id: true,
+            },
+          },
+        },
+      },
+      hsemployeeBranches: {
+        select: {
+          branch_id: true,
+          branch: {
+            select: {
+              description: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!user) {
+    throw new NotFound("Usuário não encontrado");
+  }
+
+  const mappedUser = mapUserService(user);
+
+  return mappedUser;
+};
+
 export const createUserService = async ({
   name,
   username,
@@ -57,7 +120,8 @@ export const createUserService = async ({
   winthor_id,
   role_id,
 }: CreateUserInput) => {
-  const user = await findUser(winthor_id, username);
+  const userNameFormated = formatUsername(username);
+  const user = await findUser(winthor_id, userNameFormated);
 
   if (user) {
     throw new Conflict(
@@ -67,16 +131,29 @@ export const createUserService = async ({
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  return await prisma.hsemployees.create({
-    data: {
-      name: name,
-      username: username,
-      branch_id: branch_id,
-      password: hashedPassword,
-      winthor_id: winthor_id,
-      role_id: role_id,
-    },
+  const userCreated = await prisma.$transaction(async (tx) => {
+    const user = await tx.hsemployees.create({
+      data: {
+        name: name,
+        username: userNameFormated,
+        branch_id: branch_id,
+        password: hashedPassword,
+        winthor_id: winthor_id,
+        role_id: role_id,
+      },
+    });
+
+    await tx.hsemployee_branches.create({
+      data: {
+        branch_id: user.branch_id,
+        employee_id: user.id,
+      },
+    });
+
+    return user;
   });
+
+  return userCreated;
 };
 
 export const updateUserService = async (id: number, data: UpdateUserInput) => {
@@ -84,44 +161,21 @@ export const updateUserService = async (id: number, data: UpdateUserInput) => {
     data.password = await bcrypt.hash(data.password, 10);
   }
 
+  if (data.username) {
+    data.username = formatUsername(data.username);
+  }
+
   try {
     return await prisma.hsemployees.update({
       where: { id },
-      data,
-      select: {
-        id: true,
-        branch_id: true,
-        winthor_id: true,
-        role_id: true,
-        name: true,
-        username: true,
-        created_at: true,
-        modified_at: true,
-        hsusers_permissions: {
-          select: {
-            permission_id: true,
-            hspermissions: {
-              select: {
-                description: true,
-              },
-            },
-          },
-        },
-      },
-    });
-  } catch (error: any) {
-    if (error.code == "P2025") {
-      throw new NotFound("Usuário não encontrado!");
-    }
-    throw error;
-  }
-};
-
-export const deleteUserService = async (userId: number) => {
-  try {
-    return await prisma.hsemployees.delete({
-      where: {
-        id: userId,
+      data: {
+        name: data.name,
+        username: data.username,
+        password: data.password,
+        branch_id: data.branch_id,
+        winthor_id: data.branch_id,
+        role_id: data.role_id,
+        is_active: data.is_active,
       },
       select: {
         id: true,
@@ -237,6 +291,7 @@ export const mapUserService = (user: User): MappedUser => {
   return {
     id: user.id,
     branch_id: user.branch_id,
+    branch_name: user.branch?.description,
     winthor_id: user.winthor_id,
     name: user.name,
     username: user.username,
@@ -251,4 +306,8 @@ export const mapUserService = (user: User): MappedUser => {
     userPermissions: userPermissions,
     allPermissions: mergedPermissions,
   };
+};
+
+const formatUsername = (username: string) => {
+  return username.replace(/\s+/g, "").toLowerCase();
 };

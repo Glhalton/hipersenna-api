@@ -1,9 +1,8 @@
 import { FastifyInstance } from "fastify";
 import {
   createUserController,
-  deleteUserController,
+  getDetailedUserController,
   getMeController,
-  getTokenDataController,
   getUserController,
   updateUserController,
 } from "../controllers/users.controllers.js";
@@ -19,6 +18,7 @@ import z from "zod";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
 import { validationErrorSchema } from "../schemas/errors.schemas.js";
 import { mappedUserSchema } from "../schemas/signin.schemas.js";
+import { getDetailedUserService } from "../services/users.services.js";
 
 export default async function usersRoutes(app: FastifyInstance) {
   app.get(
@@ -47,6 +47,34 @@ export default async function usersRoutes(app: FastifyInstance) {
   );
 
   app.get(
+    "/:id",
+    {
+      preHandler: [authenticate, authorize(34)],
+      schema: {
+        summary: "Rota de consulta detalhada de notas de consumo.",
+        description: "Realiza a consulta detalhada de notas de consumo.",
+        tags: ["Consumption-Notes"],
+        security: [{ BearerAuth: [] }],
+        params: userIdSchema,
+        response: {
+          200: mappedUserSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z
+            .object({ message: z.string() })
+            .describe("Forbidden")
+            .describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
+        },
+      },
+    },
+    getDetailedUserController,
+  );
+
+  app.get(
     "/me",
     {
       preHandler: [authenticate],
@@ -66,20 +94,6 @@ export default async function usersRoutes(app: FastifyInstance) {
       },
     },
     getMeController,
-  );
-
-  app.get(
-    "/token",
-    {
-      preHandler: [authenticate],
-      schema: {
-        summary: "Rota de consulta de dados do token.",
-        description: "Retorna os dados do token",
-        security: [{ BearerAuth: [] }],
-        tags: ["Users"],
-      },
-    },
-    getTokenDataController,
   );
 
   app.post(
@@ -131,30 +145,5 @@ export default async function usersRoutes(app: FastifyInstance) {
       },
     },
     updateUserController,
-  );
-
-  app.delete(
-    "/:id",
-    {
-      preHandler: [authenticate, authorize(24)],
-      schema: {
-        summary: "Rota de exclusão de usuários.",
-        description: "Realiza a exclusão de um usuário.",
-        tags: ["Users"],
-        security: [{ BearerAuth: [] }],
-        params: userIdSchema,
-        response: {
-          200: userResponseSchema.describe("Ok"),
-          400: validationErrorSchema.describe("Bad Request"),
-          401: z.object({ message: z.string() }).describe("Unauthorized"),
-          403: z.object({ message: z.string() }).describe("Forbidden"),
-          404: z.object({ message: z.string() }).describe("Not Found"),
-          500: z
-            .object({ message: z.string() })
-            .describe("Internal Server Error"),
-        },
-      },
-    },
-    deleteUserController,
   );
 }

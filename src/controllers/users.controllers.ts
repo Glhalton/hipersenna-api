@@ -7,13 +7,23 @@ import {
 } from "../schemas/users.schemas.js";
 import {
   createUserService,
-  deleteUserService,
-  findUser,
+  getDetailedUserService,
   getMeService,
   getUserService,
   updateUserService,
 } from "../services/users.services.js";
 import { prisma } from "../lib/prisma.js";
+
+export async function getDetailedUserController(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
+  const { id } = userIdSchema.parse(request.params);
+
+  const user = await getDetailedUserService(id);
+
+  return reply.status(200).send(user);
+}
 
 export async function getUserController(
   request: FastifyRequest,
@@ -71,21 +81,4 @@ export async function updateUserController(
 
   const userUpdated = await updateUserService(id, userData);
   return reply.status(200).send(userUpdated);
-}
-
-export async function deleteUserController(
-  request: FastifyRequest,
-  reply: FastifyReply,
-) {
-  const { id } = userIdSchema.parse(request.params);
-
-  const userDeleted = await deleteUserService(id);
-  return reply.status(200).send(userDeleted);
-}
-
-export async function getTokenDataController(
-  request: FastifyRequest,
-  reply: FastifyReply,
-) {
-  return reply.send(request.user);
 }

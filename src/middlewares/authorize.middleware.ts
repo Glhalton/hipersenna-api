@@ -12,13 +12,14 @@ export function authorize(...rolesPermitidos: number[]) {
       const permissions = await getUserPermissions(userId);
 
       const hasPermission = rolesPermitidos.some((p) =>
-        permissions.includes(p)
+        permissions.includes(p),
       );
 
       if (!hasPermission) {
         return reply.status(403).send({ message: "Usuário não autorizado" });
       }
     } catch (error: any) {
+      console.log(error);
       return reply
         .status(500)
         .send({ message: "Erro ao verificar permissões do usuário:" });
@@ -46,11 +47,11 @@ async function getUserPermissions(userId: number): Promise<number[]> {
   if (!user) return [];
 
   const directPermissions = user.hsusers_permissions.map(
-    (p) => p.hspermissions.id
+    (p) => p.hspermissions.id,
   );
 
   const rolePermissions = user.role.hsroles_permissions.map(
-    (p) => p.hspermissions.id
+    (p) => p.hspermissions.id,
   );
 
   const allPermissions = new Set([...directPermissions, ...rolePermissions]);
