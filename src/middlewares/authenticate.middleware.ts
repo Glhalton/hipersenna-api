@@ -12,13 +12,14 @@ declare module "fastify" {
       branch_id: number;
       iat: number;
       exp: number;
+      permittedBranches?: number[];
     };
   }
 }
 
 export async function authenticate(
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
   try {
     const token = request.headers.authorization?.replace("Bearer ", "");
@@ -40,11 +41,26 @@ export async function authenticate(
     });
 
     if (typeof decodedJwt === "string" || !session) {
-      return reply.status(401).send({ message: "Token inválido ou sessão não encontrada" });
+      return reply
+        .status(401)
+        .send({ message: "Token inválido ou sessão não encontrada" });
     }
 
     request.user = decodedJwt as FastifyRequest["user"];
+
+    const branches = await prisma.hsemployee_branches.findMany({
+      where: { employee_id: request.user?.id },
+      select: { branch_id: true },
+    });
+
+    if (!request.user) {
+      return reply.status(401).send({ message: "Usuário não autenticado" });
+    }
+
+    request.user.permittedBranches = branches.map((f) => f.branch_id);
   } catch (err: any) {
-    return reply.status(401).send({ message: `Autenticação falhou: ${err.message}` });
+    return reply
+      .status(401)
+      .send({ message: `Autenticação falhou: ${err.message}` });
   }
 }

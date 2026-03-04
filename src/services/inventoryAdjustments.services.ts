@@ -9,21 +9,34 @@ import {
   UpdateInventoryAdjustment,
 } from "../schemas/inventoryAdjustments.schemas.js";
 import { getDateRange } from "./date.services.js";
+import { Unauthorized } from "../errors/unauthorized.error.js";
 
-export const getInventoryAdjustmentsService = async ({
-  branch_id,
-  product_code,
-  auxiliary_code,
-  orderBy,
-  cursor,
-  limit,
-  initial_date,
-  final_date,
-}: GetInventoryAdjustments) => {
+export const getInventoryAdjustmentsService = async (
+  {
+    branch_id,
+    product_code,
+    auxiliary_code,
+    orderBy,
+    cursor,
+    limit,
+    initial_date,
+    final_date,
+  }: GetInventoryAdjustments,
+  permittedBranches: number[],
+) => {
   let connection;
   try {
     const whereClause: any = {};
-    if (branch_id) whereClause.branch_id = branch_id;
+    if (branch_id) {
+      if (!permittedBranches.includes(branch_id)) {
+        throw new Unauthorized(
+          "O usuário não possui acesso a filial informada",
+        );
+      }
+      whereClause.branch_id = branch_id;
+    } else {
+      whereClause.branch_id = { in: permittedBranches };
+    }
     if (auxiliary_code) whereClause.auxiliary_code = auxiliary_code;
     if (product_code) whereClause.product_code = product_code;
     if (initial_date && final_date) {
@@ -147,7 +160,11 @@ export const createInventoryAdjustmentService = async (
     quantity,
   }: CreateInventoryAdjustment,
   userId: number,
+  permittedBranches: number[],
 ) => {
+  if (!permittedBranches.includes(branch_id)) {
+    throw new Unauthorized("O usuário não possui acesso a filial informada");
+  }
   return await prisma.hsinventory_adjustments.create({
     data: {
       branch_id,
@@ -169,35 +186,34 @@ export const updateInventoryAdjustmentService = async (
   }: UpdateInventoryAdjustment,
   itemId: number,
   userId: number,
+  permittedBranches: number[],
 ) => {
-  try {
-    const currentAdjustment = await prisma.hsinventory_adjustments.findUnique({
-      where: { id: itemId },
-    });
+  const existing = await prisma.hsinventory_adjustments.findFirst({
+    where: {
+      id: itemId,
+      branch_id: { in: permittedBranches },
+    },
+  });
 
-    if (!currentAdjustment) {
-      throw new NotFound("Solicitação de ajuste de estoque não encontrado!");
-    }
-
-    const statusChanged = status && status !== currentAdjustment.status;
-
-    return await prisma.hsinventory_adjustments.update({
-      where: { id: itemId },
-      data: {
-        branch_id,
-        product_code,
-        auxiliary_code,
-        quantity,
-        status,
-        ...(statusChanged && {
-          status_changed_by_employee_id: userId,
-        }),
-      },
-    });
-  } catch (error: any) {
-    if (error.code === "P2025") {
-      throw new NotFound("Solicitação de ajuste de estoque não encontrado!");
-    }
-    throw error;
+  if (!existing) {
+    throw new NotFound(
+      "Solicitação de ajuste de estoque não encontrada ou acesso negado à filial",
+    );
   }
+
+  const statusChanged = status && status !== existing.status;
+
+  return await prisma.hsinventory_adjustments.update({
+    where: { id: itemId },
+    data: {
+      branch_id,
+      product_code,
+      auxiliary_code,
+      quantity,
+      status,
+      ...(statusChanged && {
+        status_changed_by_employee_id: userId,
+      }),
+    },
+  });
 };

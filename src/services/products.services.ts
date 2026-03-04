@@ -1,12 +1,12 @@
 import { BadRequest } from "../errors/badRequest.error.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
+import { GetProductSchema } from "../schemas/products.schemas.js";
+import { Unauthorized } from "../errors/unauthorized.error.js";
 
 export const getProductService = async (
-  codprod?: number,
-  codauxiliar?: number,
-  descricao?: string,
-  codfilial?: number,
+  { codfilial, codprod, codauxiliar, descricao }: GetProductSchema,
+  permittedBranches: number[],
 ) => {
   const connection = await getOracleConnection();
   try {
@@ -29,8 +29,15 @@ export const getProductService = async (
     }
 
     if (codfilial) {
+      if (!permittedBranches.includes(codfilial)) {
+        throw new Unauthorized(
+          "O usuário não possui acesso a filial informada",
+        );
+      }
       conditions.push("em.codfilial = :codfilial");
       binds.codfilial = Number(codfilial);
+    } else {
+      throw new BadRequest("É necessário informar uma filial!");
     }
 
     if (conditions.length === 0) {

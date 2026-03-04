@@ -9,6 +9,7 @@ import {
   UpdateConsumptionNotes,
 } from "../schemas/consumptionNotes.schemas.js";
 import oracledb from "oracledb";
+import { Unauthorized } from "../errors/unauthorized.error.js";
 
 export const getConsumptionNotesDetailedService = async (id: number) => {
   let connection;
@@ -64,14 +65,15 @@ export const getConsumptionNotesDetailedService = async (id: number) => {
   }
 };
 
-export const getConsumptionNotesService = async ({
-  id,
-  employee_id,
-}: GetConsumptionNotes) => {
+export const getConsumptionNotesService = async (
+  { id, employee_id }: GetConsumptionNotes,
+  permittedBranches: number[],
+) => {
   const whereClause: any = {};
 
   if (id) whereClause.id = id;
   if (employee_id) whereClause.employee_id = employee_id;
+  whereClause.branch_id = { in: permittedBranches };
 
   return await prisma.hsconsumption_notes.findMany({
     where: whereClause,
@@ -87,7 +89,12 @@ export const getConsumptionNotesService = async ({
 export const createConsumptionNotesService = async (
   noteData: CreateConsumptionNotes,
   employee_id: number,
+  permittedBranches: number[],
 ) => {
+  if (!permittedBranches.includes(noteData.branch_id)) {
+    throw new Unauthorized("O usuário não possui acesso a filial informada");
+  }
+
   let fileName;
 
   if (noteData.signature) {
@@ -120,31 +127,45 @@ export const createConsumptionNotesService = async (
 export const updateConsumptionNotesService = async (
   { nfe_number }: UpdateConsumptionNotes,
   id: number,
+  permittedBranches: number[],
 ) => {
-  try {
-    return await prisma.hsconsumption_notes.update({
-      where: { id },
-      data: { nfe_number },
-    });
-  } catch (error: any) {
-    if (error.code == "P2025") {
-      throw new NotFound("Nota de consumo não encontrada!");
-    }
-    throw error;
+  const existing = await prisma.hsconsumption_notes.findFirst({
+    where: {
+      id,
+      branch_id: { in: permittedBranches },
+    },
+  });
+
+  if (!existing) {
+    throw new NotFound(
+      "Nota de consumo não encontrada ou acesso negado à filial",
+    );
   }
+  return await prisma.hsconsumption_notes.update({
+    where: { id },
+    data: { nfe_number },
+  });
 };
 
-export const deleteConsumptionNotesService = async (id: number) => {
-  try {
-    return await prisma.hsconsumption_notes.delete({
-      where: { id },
-    });
-  } catch (error: any) {
-    if (error.code == "P2025") {
-      throw new NotFound("Nota de consumo não encontrada!");
-    }
-    throw error;
+export const deleteConsumptionNotesService = async (
+  id: number,
+  permittedBranches: number[],
+) => {
+  const existing = await prisma.hsconsumption_notes.findFirst({
+    where: {
+      id,
+      branch_id: { in: permittedBranches },
+    },
+  });
+
+  if (!existing) {
+    throw new NotFound(
+      "Nota de consumo não encontrada ou acesso negado à filial",
+    );
   }
+  return await prisma.hsconsumption_notes.delete({
+    where: { id },
+  });
 };
 
 const saveSignature = async (signature: string) => {

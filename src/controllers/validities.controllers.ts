@@ -18,6 +18,7 @@ export async function getValidityController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const {
     id,
     branch_id,
@@ -28,15 +29,18 @@ export async function getValidityController(
     expiresDays,
   } = getValiditySchema.parse(request.query);
 
-  const validity = await getValidityService({
-    id,
-    branch_id,
-    initialCreationDate,
-    finalCreationDate,
-    initialValidityDate,
-    finalValidityDate,
-    expiresDays,
-  });
+  const validity = await getValidityService(
+    {
+      id,
+      branch_id,
+      initialCreationDate,
+      finalCreationDate,
+      initialValidityDate,
+      finalValidityDate,
+      expiresDays,
+    },
+    permittedBranches!,
+  );
 
   return reply.status(200).send(validity);
 }
@@ -58,10 +62,15 @@ export async function createValidityController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const userId = request.user?.id;
 
   const validity = createValiditySchema.parse(request.body);
-  const createdValidity = await createValidityService(validity, userId!);
+  const createdValidity = await createValidityService(
+    validity,
+    userId!,
+    permittedBranches!,
+  );
 
   return reply.status(201).send(createdValidity);
 }

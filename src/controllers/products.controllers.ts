@@ -4,17 +4,17 @@ import { getProductService } from "../services/products.services.js";
 
 export async function getProductController(
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
+
   const { codprod, codauxiliar, descricao, codfilial } = getProductSchema.parse(
-    request.query
+    request.query,
   );
 
   const product = await getProductService(
-    codprod,
-    codauxiliar,
-    descricao,
-    codfilial
+    { codfilial, codprod, codauxiliar, descricao },
+    permittedBranches!,
   );
 
   return reply.status(200).send(product);
