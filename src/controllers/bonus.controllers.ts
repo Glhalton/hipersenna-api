@@ -4,7 +4,7 @@ import { getBonusService } from "../services/bonus.services.js";
 
 export async function bonusListController(
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
   const {
     codprod,

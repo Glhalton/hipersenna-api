@@ -23,6 +23,7 @@ import departmentRoutes from "./routes/departments.routes.js";
 import reportsRoutes from "./routes/reports.routes.js";
 import validityProductsRoutes from "./routes/validityProducts.routes.js";
 import ruptureProductsRoutes from "./routes/ruptureProducts.routes.js";
+import inventoryAdjustmentsRoutes from "./routes/inventoryAdjustments.routes.js";
 
 export default async function (app: FastifyInstance) {
   app.register(signinRoutes, {
@@ -52,11 +53,11 @@ export default async function (app: FastifyInstance) {
   app.register(employeeBranchesRoutes, {
     prefix: "/employee-branches",
   });
-  app.register(reportsRoutes, {
-    prefix: "/reports",
-  });
   app.register(goalRecordsRoutes, {
     prefix: "/goal-records",
+  });
+  app.register(inventoryAdjustmentsRoutes, {
+    prefix: "/inventory-adjustments",
   });
   app.register(permissionsRoutes, {
     prefix: "/permissions",
@@ -69,6 +70,9 @@ export default async function (app: FastifyInstance) {
   });
   app.register(raffleClientsRoutes, {
     prefix: "/raffle-clients",
+  });
+  app.register(reportsRoutes, {
+    prefix: "/reports",
   });
   app.register(rolesRoutes, {
     prefix: "/roles",

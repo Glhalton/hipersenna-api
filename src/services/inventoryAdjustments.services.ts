@@ -1,0 +1,203 @@
+import { NotFound } from "../errors/notFound.error.js";
+import { getOracleConnection } from "../lib/oracleClient.js";
+import { prisma } from "../lib/prisma.js";
+import oracledb from "oracledb";
+import {
+  CreateInventoryAdjustment,
+  GetInventoryAdjustments,
+  updateInventoryAdjustmentSchema,
+  UpdateInventoryAdjustment,
+} from "../schemas/inventoryAdjustments.schemas.js";
+import { getDateRange } from "./date.services.js";
+
+export const getInventoryAdjustmentsService = async ({
+  branch_id,
+  product_code,
+  auxiliary_code,
+  orderBy,
+  cursor,
+  limit,
+  initial_date,
+  final_date,
+}: GetInventoryAdjustments) => {
+  let connection;
+  try {
+    const whereClause: any = {};
+    if (branch_id) whereClause.branch_id = branch_id;
+    if (auxiliary_code) whereClause.auxiliary_code = auxiliary_code;
+    if (product_code) whereClause.product_code = product_code;
+    if (initial_date && final_date) {
+      const { startUTC, endUTC } = getDateRange(initial_date, final_date);
+      whereClause.created_at = {
+        gte: startUTC,
+        lte: endUTC,
+      };
+    }
+
+    const inventoryAdjustments = await prisma.hsinventory_adjustments.findMany({
+      where: whereClause,
+      take: limit,
+      skip: cursor ? 1 : 0,
+      cursor: cursor ? { id: cursor } : undefined,
+      orderBy: {
+        id: "desc",
+      },
+      select: {
+        id: true,
+        created_by_employee_id: true,
+        status_changed_by_employee_id: true,
+        branch_id: true,
+        product_code: true,
+        auxiliary_code: true,
+        quantity: true,
+        status: true,
+        created_at: true,
+        modified_at: true,
+        created_by_employee: {
+          select: {
+            name: true,
+            winthor_id: true,
+          },
+        },
+        status_changed_by_employee: {
+          select: { name: true, winthor_id: true },
+        },
+      },
+    });
+
+    if (inventoryAdjustments.length === 0) {
+      return {
+        data: [],
+        nextCursor: null,
+      };
+    }
+
+    connection = await getOracleConnection();
+
+    const allCodes = inventoryAdjustments.map((p) => p.product_code);
+    const allBranches = inventoryAdjustments.map((p) => p.branch_id);
+
+    const codeBinds = allCodes.map((_, i) => `:code${i}`).join(",");
+    const branchBinds = allBranches.map((_, i) => `:branch${i}`).join(",");
+
+    const query = `
+            SELECT 
+              p.codepto,
+              p.codprod, 
+              p.descricao,
+              es.codfilial,
+              es.dtultent,
+              es.dtultfat
+            FROM pcprodut p    
+            JOIN pcest es
+              ON es.codprod = p.codprod
+            WHERE p.codprod IN (${codeBinds})
+              AND es.codfilial IN (${branchBinds})
+        `;
+
+    const binds = {
+      ...Object.fromEntries(allCodes.map((c, i) => [`code${i}`, c])),
+      ...Object.fromEntries(allBranches.map((b, i) => [`branch${i}`, b])),
+    };
+
+    const result = await connection.execute(query, binds, {
+      outFormat: oracledb.OUT_FORMAT_OBJECT,
+    });
+
+    const map: Record<string, any> = {};
+
+    (result.rows || []).forEach((row: any) => {
+      const key = `${row.CODPROD}_${row.CODFILIAL}`;
+
+      map[key] = {
+        description: row.DESCRICAO,
+        department: row.CODEPTO,
+        lastEntryDate: row.DTULTENT,
+        lastExitDate: row.DTULTFAT,
+      };
+    });
+
+    const enrichedProducts = inventoryAdjustments.map((p) => {
+      const key = `${p.product_code}_${p.branch_id}`;
+
+      return {
+        ...p,
+        description: map[key]?.description || null,
+        department: map[key]?.department || null,
+        lastEntryDate: map[key]?.lastEntryDate || null,
+        lastExitDate: map[key]?.lastExitDate || null,
+      };
+    });
+
+    const lastItem = enrichedProducts[enrichedProducts.length - 1];
+
+    return {
+      data: enrichedProducts,
+      nextCursor: inventoryAdjustments.length === limit ? lastItem.id : null,
+    };
+  } finally {
+  }
+};
+
+export const createInventoryAdjustmentService = async (
+  {
+    branch_id,
+    product_code,
+    auxiliary_code,
+    quantity,
+  }: CreateInventoryAdjustment,
+  userId: number,
+) => {
+  return await prisma.hsinventory_adjustments.create({
+    data: {
+      branch_id,
+      product_code,
+      auxiliary_code,
+      quantity,
+      created_by_employee_id: userId,
+    },
+  });
+};
+
+export const updateInventoryAdjustmentService = async (
+  {
+    branch_id,
+    product_code,
+    auxiliary_code,
+    quantity,
+    status,
+  }: UpdateInventoryAdjustment,
+  itemId: number,
+  userId: number,
+) => {
+  try {
+    const currentAdjustment = await prisma.hsinventory_adjustments.findUnique({
+      where: { id: itemId },
+    });
+
+    if (!currentAdjustment) {
+      throw new NotFound("Solicitação de ajuste de estoque não encontrado!");
+    }
+
+    const statusChanged = status && status !== currentAdjustment.status;
+
+    return await prisma.hsinventory_adjustments.update({
+      where: { id: itemId },
+      data: {
+        branch_id,
+        product_code,
+        auxiliary_code,
+        quantity,
+        status,
+        ...(statusChanged && {
+          status_changed_by_employee_id: userId,
+        }),
+      },
+    });
+  } catch (error: any) {
+    if (error.code === "P2025") {
+      throw new NotFound("Solicitação de ajuste de estoque não encontrado!");
+    }
+    throw error;
+  }
+};
