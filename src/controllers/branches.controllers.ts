@@ -13,7 +13,7 @@ import {
 
 export async function getBranchesController(
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
   const { id } = getBranchesSchema.parse(request.query);
 
@@ -24,7 +24,7 @@ export async function getBranchesController(
 
 export async function createBranchesController(
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
   const { description } = branchDescriptionSchema.parse(request.body);
 
@@ -35,7 +35,7 @@ export async function createBranchesController(
 
 export async function updateBranchesController(
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
   const { id } = branchesIdSchema.parse(request.params);
   const { description } = branchDescriptionSchema.parse(request.body);
@@ -47,7 +47,7 @@ export async function updateBranchesController(
 
 export async function deleteBranchesController(
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
   const { id } = branchesIdSchema.parse(request.params);
 

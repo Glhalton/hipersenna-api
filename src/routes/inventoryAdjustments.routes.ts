@@ -1,0 +1,94 @@
+import { FastifyInstance } from "fastify";
+import { getInventoryAdjustmentsService } from "../services/inventoryAdjustments.services.js";
+import {
+  createInventoryAdjustmentsController,
+  getInventoryAdjustmentsController,
+  updateInventoryAdjustmentController,
+} from "../controllers/inventoryAdjustments.controllers.js";
+import { authenticate } from "../middlewares/authenticate.middleware.js";
+import {
+  createInventoryAdjustmentSchema,
+  getInventoryAdjustmentsResponse,
+  getInventoryAdjustmentsSchema,
+  inventoryAdjustmentIdSchema,
+  inventoryAdjustmentsResponse,
+  updateInventoryAdjustmentSchema,
+} from "../schemas/inventoryAdjustments.schemas.js";
+import { validationErrorSchema } from "../schemas/errors.schemas.js";
+import z from "zod";
+
+export default function inventoryAdjustmentsRoutes(app: FastifyInstance) {
+  app.get(
+    "/",
+    {
+      preHandler: [authenticate],
+      schema: {
+        summary: "Rota de consulta de solicitações de ajustes de estoque.",
+        description: "Realiza a consulta de solicitações de ajustes de estoque",
+        tags: ["Inventory-Adjustments"],
+        security: [{ BearerAuth: [] }],
+        querystring: getInventoryAdjustmentsSchema,
+        response: {
+          200: getInventoryAdjustmentsResponse.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ messae: z.string() })
+            .describe("Internal Server Error"),
+        },
+      },
+    },
+    getInventoryAdjustmentsController,
+  );
+  app.post(
+    "/",
+    {
+      preHandler: [authenticate],
+      schema: {
+        summary: "Rota de criação de solicitações de ajustes de estoque.",
+        description: "Realiza a criação de solicitações de ajustes de estoque.",
+        tags: ["Inventory-Adjustments"],
+        security: [{ BearerAuth: [] }],
+        body: createInventoryAdjustmentSchema,
+        response: {
+          201: inventoryAdjustmentsResponse.describe("Created"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
+        },
+      },
+    },
+    createInventoryAdjustmentsController,
+  );
+  app.patch(
+    "/:id",
+    {
+      preHandler: [authenticate],
+      schema: {
+        summary:
+          "Rota de atualização de dados de solicitações de ajustes de estoque.",
+        description:
+          "Realiza a atualização de dados de solicitações de ajustes de estoque.",
+        tags: ["Inventory-Adjustments"],
+        security: [{ BearerAuth: [] }],
+        body: updateInventoryAdjustmentSchema,
+        params: inventoryAdjustmentIdSchema,
+        response: {
+          200: inventoryAdjustmentsResponse.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ message: z.string() })
+            .describe("Internal Server Error"),
+        },
+      },
+    },
+    updateInventoryAdjustmentController,
+  );
+}
