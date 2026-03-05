@@ -300,6 +300,23 @@ async function main() {
         name: "Excluir rupturas",
         description: "Deletar rupturas",
       },
+      {
+        name: "Cadastrar solicitações de ajuste de estoque",
+        description: "Realizar o cadastro de solicitações de ajuste de estoque",
+      },
+      {
+        name: "Consultar solicitações de ajuste de estoque",
+        description: "Visualizar dados de solicitações de ajuste de estoque",
+      },
+      {
+        name: "Atualizar solicitações de ajuste de estoque",
+        description:
+          "Editar informações de dados de solicitações de ajuste de estoque",
+      },
+      {
+        name: "Excluir solicitações de ajuste de estoque",
+        description: "Deletar solicitações de ajuste de estoque",
+      },
     ],
   });
 

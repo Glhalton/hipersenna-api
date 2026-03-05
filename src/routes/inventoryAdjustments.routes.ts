@@ -18,6 +18,7 @@ import {
 } from "../schemas/inventoryAdjustments.schemas.js";
 import { validationErrorSchema } from "../schemas/errors.schemas.js";
 import z from "zod";
+import { authorize } from "../middlewares/authorize.middleware.js";
 
 export default function inventoryAdjustmentsRoutes(app: FastifyInstance) {
   app.get(
@@ -47,7 +48,7 @@ export default function inventoryAdjustmentsRoutes(app: FastifyInstance) {
   app.get(
     "/:id",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(64)],
       schema: {
         summary:
           "Rota de consulta detalhada de solicitações de ajustes de estoque.",
@@ -73,7 +74,7 @@ export default function inventoryAdjustmentsRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(63)],
       schema: {
         summary: "Rota de criação de solicitações de ajustes de estoque.",
         description: "Realiza a criação de solicitações de ajustes de estoque.",
@@ -96,7 +97,7 @@ export default function inventoryAdjustmentsRoutes(app: FastifyInstance) {
   app.patch(
     "/:id",
     {
-      preHandler: [authenticate],
+      preHandler: [authenticate, authorize(65)],
       schema: {
         summary:
           "Rota de atualização de dados de solicitações de ajustes de estoque.",
