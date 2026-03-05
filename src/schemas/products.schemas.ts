@@ -35,3 +35,5 @@ export const productResponseSchema = z.object({
   qtPedida: z.number().nullable(),
   giroMedMes: z.number(),
 });
+
+export type GetProductSchema = z.infer<typeof getProductSchema>;

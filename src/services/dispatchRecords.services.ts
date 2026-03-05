@@ -1,5 +1,6 @@
 import { BadRequest } from "../errors/badRequest.error.js";
 import { NotFound } from "../errors/notFound.error.js";
+import { Unauthorized } from "../errors/unauthorized.error.js";
 import { prisma } from "../lib/prisma.js";
 import {
   CreateDispatchRecord,
@@ -9,23 +10,33 @@ import {
 } from "../schemas/dispatchRecords.schemas.js";
 import { getDateRange } from "./date.services.js";
 
-export const getDispatchRecordService = async ({
-  id,
-  branch_id,
-  nfe_number,
-  seal_number,
-  bonus_number,
-  license_plate,
-  employee_id,
-  initialDate,
-  finalDate,
-  cursor,
-  limit,
-}: GetDispatchRecord) => {
+export const getDispatchRecordService = async (
+  {
+    id,
+    branch_id,
+    nfe_number,
+    seal_number,
+    bonus_number,
+    license_plate,
+    employee_id,
+    initialDate,
+    finalDate,
+    cursor,
+    limit,
+  }: GetDispatchRecord,
+  permittedBranches: number[],
+) => {
   const whereClause: any = {};
 
   if (id) whereClause.id = id;
-  if (branch_id) whereClause.branch_id = branch_id;
+  if (branch_id) {
+    if (!permittedBranches.includes(branch_id)) {
+      throw new Unauthorized("O usuário não possui acesso a filial informada");
+    }
+    whereClause.branch_id = branch_id;
+  } else {
+    whereClause.branch_id = { in: permittedBranches };
+  }
   if (nfe_number) whereClause.nfe_number = nfe_number;
   if (seal_number) whereClause.seal_number = seal_number;
   if (bonus_number) whereClause.bonus_number = bonus_number;
@@ -74,11 +85,16 @@ export const createDispatchRecordService = async (
     license_plate,
   }: CreateDispatchRecord,
   employeeId: number,
+  permittedBranches: number[],
 ) => {
   const plateCarValidity = isValidCarPlate(license_plate);
 
   if (!plateCarValidity) {
     throw new BadRequest("A Placa de veículo informada é inválida!");
+  }
+
+  if (!permittedBranches.includes(branch_id)) {
+    throw new Unauthorized("O usuário não possui acesso a filial informada");
   }
 
   return await prisma.hsdispatch_records.create({
@@ -102,37 +118,51 @@ export const updateDispatchRecordService = async (
     seal_number,
   }: UpdateDispatchRecord,
   { id }: DispatchRecordId,
+  permittedBranches: number[],
 ) => {
-  try {
-    return await prisma.hsdispatch_records.update({
-      where: { id },
-      data: {
-        bonus_number,
-        branch_id,
-        license_plate,
-        nfe_number,
-        seal_number,
-      },
-    });
-  } catch (error: any) {
-    if (error.code == "P2025") {
-      throw new NotFound("Registro de expedição de mercadoria não encontrada!");
-    }
-    throw error;
+  const existing = await prisma.hsdispatch_records.findFirst({
+    where: {
+      id,
+      branch_id: { in: permittedBranches },
+    },
+  });
+
+  if (!existing) {
+    throw new NotFound(
+      "Registro de expedição de mercadoria não encontrado ou acesso negado à filial",
+    );
   }
+  return await prisma.hsdispatch_records.update({
+    where: { id },
+    data: {
+      bonus_number,
+      branch_id,
+      license_plate,
+      nfe_number,
+      seal_number,
+    },
+  });
 };
 
-export const deleteDispatchRecordService = async ({ id }: DispatchRecordId) => {
-  try {
-    return await prisma.hsdispatch_records.delete({
-      where: { id },
-    });
-  } catch (error: any) {
-    if (error.code == "P2025") {
-      throw new NotFound("Registro de expedição de mercadoria não encontrada!");
-    }
-    throw error;
+export const deleteDispatchRecordService = async (
+  { id }: DispatchRecordId,
+  permittedBranches: number[],
+) => {
+  const existing = await prisma.hsdispatch_records.findFirst({
+    where: {
+      id,
+      branch_id: { in: permittedBranches },
+    },
+  });
+
+  if (!existing) {
+    throw new NotFound(
+      "Registro de expedição de mercadoria não encontrado ou acesso negado à filial",
+    );
   }
+  return await prisma.hsdispatch_records.delete({
+    where: { id },
+  });
 };
 
 function isValidCarPlate(plate: string): boolean {

@@ -28,12 +28,16 @@ export async function getConsumptionNotesController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const { id, employee_id } = getConsumptionNotesSchema.parse(request.query);
 
-  const consumptionNotes = await getConsumptionNotesService({
-    id,
-    employee_id,
-  });
+  const consumptionNotes = await getConsumptionNotesService(
+    {
+      id,
+      employee_id,
+    },
+    permittedBranches!,
+  );
 
   return reply.status(200).send(consumptionNotes);
 }
@@ -42,12 +46,14 @@ export async function createConsumptionNotesController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const employee_id = request.user?.id;
 
   const noteData = createConsumptionNotesSchema.parse(request.body);
   const consumptionNotesCreated = await createConsumptionNotesService(
     noteData,
     employee_id!,
+    permittedBranches!,
   );
 
   return reply.status(201).send(consumptionNotesCreated);
@@ -57,6 +63,7 @@ export async function updateConsumptionNotesController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const { id } = consumptionNotesIdSchema.parse(request.params);
 
   const { nfe_number } = updateConsumptionNotesSchema.parse(request.body);
@@ -64,6 +71,7 @@ export async function updateConsumptionNotesController(
   const updatedConsumptionNote = await updateConsumptionNotesService(
     { nfe_number },
     id,
+    permittedBranches!,
   );
 
   return reply.status(200).send(updatedConsumptionNote);
@@ -73,9 +81,13 @@ export async function deleteConsumptionNotesController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const { id } = consumptionNotesIdSchema.parse(request.params);
 
-  const consumptionNoteDeleted = await deleteConsumptionNotesService(id);
+  const consumptionNoteDeleted = await deleteConsumptionNotesService(
+    id,
+    permittedBranches!,
+  );
 
   return reply.status(200).send(consumptionNoteDeleted);
 }

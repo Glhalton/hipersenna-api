@@ -8,22 +8,36 @@ import {
 } from "../schemas/ruptureProducts.schemas.js";
 import oracledb from "oracledb";
 import { getDateRange } from "./date.services.js";
+import { Unauthorized } from "../errors/unauthorized.error.js";
 
-export const getRuptureProductsService = async ({
-  branchId,
-  auxiliaryCode,
-  productCode,
-  orderBy,
-  cursor,
-  limit,
-  initialDate,
-  finalDate,
-}: GetRuptureProducts) => {
+export const getRuptureProductsService = async (
+  {
+    branchId,
+    auxiliaryCode,
+    productCode,
+    orderBy,
+    cursor,
+    limit,
+    initialDate,
+    finalDate,
+  }: GetRuptureProducts,
+  permittedBranches: number[],
+) => {
   let connection;
   try {
     const whereClause: any = {};
 
-    if (branchId) whereClause.branch_id = branchId;
+    if (branchId) {
+      if (!permittedBranches.includes(branchId)) {
+        throw new Unauthorized(
+          "O usuário não possui acesso a filial informada",
+        );
+      }
+      whereClause.branch_id = branchId;
+    } else {
+      whereClause.branch_id = { in: permittedBranches };
+    }
+
     if (auxiliaryCode) whereClause.auxiliary_code = auxiliaryCode;
     if (productCode) whereClause.product_code = productCode;
 
@@ -131,7 +145,11 @@ export const getRuptureProductsService = async ({
 export const createRuptureProductsService = async (
   { branchId, productCode, auxiliaryCode }: CreateRuptureProducts,
   employeeId: number,
+  permittedBranches: number[],
 ) => {
+  if (!permittedBranches.includes(branchId)) {
+    throw new Unauthorized("O usuário não possui acesso a filial informada");
+  }
   return await prisma.hsrupture_products.create({
     data: {
       branch_id: branchId,
@@ -145,33 +163,49 @@ export const createRuptureProductsService = async (
 export const updateRuptureProductsService = async (
   { branchId, productCode, auxiliaryCode }: UpdateRuptureProducts,
   id: number,
+  permittedBranches: number[],
 ) => {
-  try {
-    return await prisma.hsrupture_products.update({
-      where: { id },
-      data: {
-        branch_id: branchId,
-        product_code: productCode,
-        auxiliary_code: auxiliaryCode,
-      },
-    });
-  } catch (error: any) {
-    if (error.code === "P2025") {
-      throw new NotFound("Produto de ruptura não encontrado!");
-    }
-    throw error;
+  const existing = await prisma.hsrupture_products.findFirst({
+    where: {
+      id,
+      branch_id: { in: permittedBranches },
+    },
+  });
+
+  if (!existing) {
+    throw new NotFound(
+      "Produto de ruptura não encontrado ou acesso negado à filial",
+    );
   }
+
+  return await prisma.hsrupture_products.update({
+    where: { id },
+    data: {
+      branch_id: branchId,
+      product_code: productCode,
+      auxiliary_code: auxiliaryCode,
+    },
+  });
 };
 
-export const deleteRuptureProductsService = async (id: number) => {
-  try {
-    return await prisma.hsrupture_products.delete({
-      where: { id },
-    });
-  } catch (error: any) {
-    if (error.code === "P2025") {
-      throw new NotFound("Produto de ruptura não encontrado!");
-    }
-    throw error;
+export const deleteRuptureProductsService = async (
+  id: number,
+  permittedBranches: number[],
+) => {
+  const existing = await prisma.hsrupture_products.findFirst({
+    where: {
+      id,
+      branch_id: { in: permittedBranches },
+    },
+  });
+
+  if (!existing) {
+    throw new NotFound(
+      "Produto de ruptura não encontrado ou acesso negado à filial",
+    );
   }
+
+  return await prisma.hsrupture_products.delete({
+    where: { id },
+  });
 };

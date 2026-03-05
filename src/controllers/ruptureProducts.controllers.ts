@@ -27,16 +27,21 @@ export async function getRuptureProductsController(
     finalDate,
   } = getRuptureProductsSchema.parse(request.query);
 
-  const data = await getRuptureProductsService({
-    branchId,
-    productCode,
-    auxiliaryCode,
-    orderBy,
-    cursor,
-    limit,
-    initialDate,
-    finalDate,
-  });
+  const permittedBranches = request.user?.permittedBranches;
+
+  const data = await getRuptureProductsService(
+    {
+      branchId,
+      productCode,
+      auxiliaryCode,
+      orderBy,
+      cursor,
+      limit,
+      initialDate,
+      finalDate,
+    },
+    permittedBranches!,
+  );
 
   return reply.status(200).send(data);
 }
@@ -50,6 +55,8 @@ export async function createRuptureProductsController(
   const { branchId, productCode, auxiliaryCode } =
     createRuptureProductsSchema.parse(request.body);
 
+  const permittedBranches = request.user?.permittedBranches;
+
   const data = await createRuptureProductsService(
     {
       branchId,
@@ -57,6 +64,7 @@ export async function createRuptureProductsController(
       auxiliaryCode,
     },
     employeeId!,
+    permittedBranches!,
   );
 
   return reply.status(201).send(data);
@@ -66,6 +74,7 @@ export async function updateRuptureProductsController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const { id } = ruptureProductsIdSchema.parse(request.params);
   const { branchId, productCode, auxiliaryCode } =
     updateRuptureProductsSchema.parse(request.body);
@@ -73,6 +82,7 @@ export async function updateRuptureProductsController(
   const data = await updateRuptureProductsService(
     { branchId, productCode, auxiliaryCode },
     id,
+    permittedBranches!,
   );
 
   return reply.status(200).send(data);
@@ -82,9 +92,10 @@ export async function deleteRuptureProductsController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const { id } = ruptureProductsIdSchema.parse(request.params);
 
-  const data = await deleteRuptureProductsService(id);
+  const data = await deleteRuptureProductsService(id, permittedBranches!);
 
   return reply.status(200).send(data);
 }

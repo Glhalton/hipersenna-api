@@ -16,6 +16,7 @@ export async function getDispatchRecordController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const {
     id,
     branch_id,
@@ -30,19 +31,22 @@ export async function getDispatchRecordController(
     limit,
   } = getDispatchRecordSchema.parse(request.query);
 
-  const dispatchRecords = await getDispatchRecordService({
-    id,
-    branch_id,
-    nfe_number,
-    seal_number,
-    bonus_number,
-    license_plate,
-    employee_id,
-    initialDate,
-    finalDate,
-    cursor,
-    limit,
-  });
+  const dispatchRecords = await getDispatchRecordService(
+    {
+      id,
+      branch_id,
+      nfe_number,
+      seal_number,
+      bonus_number,
+      license_plate,
+      employee_id,
+      initialDate,
+      finalDate,
+      cursor,
+      limit,
+    },
+    permittedBranches!,
+  );
 
   return reply.status(200).send(dispatchRecords);
 }
@@ -51,6 +55,7 @@ export async function createDispatchRecordController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const employeeId = request.user?.id;
 
   const { branch_id, nfe_number, bonus_number, seal_number, license_plate } =
@@ -59,6 +64,7 @@ export async function createDispatchRecordController(
   const dispatchRecordCreated = await createDispatchRecordService(
     { branch_id, nfe_number, seal_number, bonus_number, license_plate },
     employeeId!,
+    permittedBranches!,
   );
 
   return reply.status(201).send(dispatchRecordCreated);
@@ -68,6 +74,7 @@ export async function updateDispatchRecordController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const { branch_id, bonus_number, license_plate, nfe_number, seal_number } =
     updateDispatchRecordSchema.parse(request.body);
 
@@ -76,6 +83,7 @@ export async function updateDispatchRecordController(
   const dispatchRecordUpdated = await updateDispatchRecordService(
     { branch_id, nfe_number, seal_number, bonus_number, license_plate },
     { id },
+    permittedBranches!,
   );
 
   return reply.status(200).send(dispatchRecordUpdated);
@@ -85,9 +93,13 @@ export async function deleteDispatchRecordController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const { id } = dispatchRecordIdSchema.parse(request.params);
 
-  const dispatchRecordDeleted = await deleteDispatchRecordService({ id });
+  const dispatchRecordDeleted = await deleteDispatchRecordService(
+    { id },
+    permittedBranches!,
+  );
 
   return reply.status(200).send(dispatchRecordDeleted);
 }

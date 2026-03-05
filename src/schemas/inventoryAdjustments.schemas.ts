@@ -29,13 +29,39 @@ export const getInventoryAdjustmentsResponse = z.object({
         name: z.string(),
         winthor_id: z.number(),
       }),
-      status_changed_by_employee: z.object({
-        name: z.string(),
-        winthor_id: z.number(),
-      }).nullable(),
+      status_changed_by_employee: z
+        .object({
+          name: z.string(),
+          winthor_id: z.number(),
+        })
+        .nullable(),
     }),
   ),
   nextCursor: z.number().nullable(),
+});
+
+export const getDetailedInventoryAdjustmentsResponseSchema = z.object({
+  id: z.number(),
+  created_by_employee_id: z.number(),
+  status_changed_by_employee_id: z.number().nullable(),
+  branch_id: z.number(),
+  description: z.string(),
+  product_code: z.number(),
+  auxiliary_code: z.string(),
+  quantity: z.number(),
+  status: z.enum(["NEGADO", "PENDENTE", "AJUSTADO"]),
+  created_at: z.date(),
+  modified_at: z.date(),
+  created_by_employee: z.object({
+    name: z.string(),
+    winthor_id: z.number(),
+  }),
+  status_changed_by_employee: z
+    .object({
+      name: z.string(),
+      winthor_id: z.number(),
+    })
+    .nullable(),
 });
 
 export const createInventoryAdjustmentSchema = z.object({

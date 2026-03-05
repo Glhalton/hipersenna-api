@@ -9,30 +9,37 @@ import { getOracleConnection } from "../lib/oracleClient.js";
 import oracledb from "oracledb";
 import { getDateRange } from "./date.services.js";
 import { start } from "repl";
+import { Unauthorized } from "../errors/unauthorized.error.js";
 
-export const getValidityService = async ({
-  id,
-  branch_id,
-  initialCreationDate,
-  finalCreationDate,
-  initialValidityDate,
-  finalValidityDate,
-  expiresDays,
-}: GetValidity) => {
+export const getValidityService = async (
+  {
+    id,
+    branch_id,
+    initialCreationDate,
+    finalCreationDate,
+    initialValidityDate,
+    finalValidityDate,
+    expiresDays,
+  }: GetValidity,
+  permittedBranches: number[],
+) => {
   const connection = await getOracleConnection();
 
   try {
-    const whereClause = buildValiditiesWhereClause({
-      ...{
-        id,
-        branch_id,
-        initialCreationDate,
-        finalCreationDate,
-        initialValidityDate,
-        finalValidityDate,
-        expiresDays,
+    const whereClause = buildValiditiesWhereClause(
+      {
+        ...{
+          id,
+          branch_id,
+          initialCreationDate,
+          finalCreationDate,
+          initialValidityDate,
+          finalValidityDate,
+          expiresDays,
+        },
       },
-    });
+      permittedBranches,
+    );
 
     const postgreData = await prisma.hsvalidities.findMany({
       where: whereClause,
@@ -126,7 +133,11 @@ export const getMyValiditiesService = async (
 export const createValidityService = async (
   validityData: CreateValidity,
   userId: number,
+  permittedBranches: number[],
 ) => {
+  if (!permittedBranches.includes(validityData.branch_id)) {
+    throw new Unauthorized("O usuário não possui acesso a filial informada");
+  }
   return await prisma.hsvalidities.create({
     data: {
       branch_id: validityData.branch_id,
@@ -146,12 +157,6 @@ export const createValidityService = async (
     },
   });
 };
-
-export const createValidityFromRequestService = async (
-  validityData: CreateValidity,
-  validityRequestId: number,
-  userId: number,
-) => {};
 
 export const updateValidityService = async (data: UpdateValidity) => {
   const updates = data.flatMap((validity) =>
@@ -241,27 +246,38 @@ export const getOracleProductDetailsService = async (codes: string[]) => {
   }
 };
 
-const buildValiditiesWhereClause = ({
-  id,
-  branch_id,
-  initialCreationDate,
-  finalCreationDate,
-  initialValidityDate,
-  finalValidityDate,
-  expiresDays,
-}: {
-  id?: number;
-  branch_id?: number;
-  initialCreationDate?: Date;
-  finalCreationDate?: Date;
-  initialValidityDate?: Date;
-  finalValidityDate?: Date;
-  expiresDays?: number;
-}) => {
+const buildValiditiesWhereClause = (
+  {
+    id,
+    branch_id,
+    initialCreationDate,
+    finalCreationDate,
+    initialValidityDate,
+    finalValidityDate,
+    expiresDays,
+  }: {
+    id?: number;
+    branch_id?: number;
+    initialCreationDate?: Date;
+    finalCreationDate?: Date;
+    initialValidityDate?: Date;
+    finalValidityDate?: Date;
+    expiresDays?: number;
+  },
+  permittedBranches: number[],
+) => {
   const whereClause: any = {};
 
+  if (branch_id) {
+    if (!permittedBranches.includes(branch_id)) {
+      throw new Unauthorized("O usuário não possui acesso a filial informada");
+    }
+    whereClause.branch_id = branch_id;
+  } else {
+    whereClause.branch_id = { in: permittedBranches };
+  }
+
   if (id) whereClause.id = id;
-  if (branch_id) whereClause.branch_id = branch_id;
 
   if (initialCreationDate && finalCreationDate) {
     const { startUTC, endUTC } = getDateRange(

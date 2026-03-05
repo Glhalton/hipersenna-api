@@ -7,6 +7,7 @@ import {
 } from "../schemas/inventoryAdjustments.schemas.js";
 import {
   createInventoryAdjustmentService,
+  getDetailedInventoryAdjustmentsService,
   getInventoryAdjustmentsService,
   updateInventoryAdjustmentService,
 } from "../services/inventoryAdjustments.services.js";
@@ -26,16 +27,37 @@ export async function getInventoryAdjustmentsController(
     final_date,
   } = getInventoryAdjustmentsSchema.parse(request.query);
 
-  const data = await getInventoryAdjustmentsService({
-    branch_id,
-    product_code,
-    auxiliary_code,
-    orderBy,
-    cursor,
-    limit,
-    initial_date,
-    final_date,
-  });
+  const permittedBranches = request.user?.permittedBranches;
+
+  const data = await getInventoryAdjustmentsService(
+    {
+      branch_id,
+      product_code,
+      auxiliary_code,
+      orderBy,
+      cursor,
+      limit,
+      initial_date,
+      final_date,
+    },
+    permittedBranches!,
+  );
+
+  return reply.status(200).send(data);
+}
+
+export async function getDetailedInventoryAdjustmentsController(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
+  const permittedBranches = request.user?.permittedBranches;
+
+  const { id } = inventoryAdjustmentIdSchema.parse(request.params);
+
+  const data = await getDetailedInventoryAdjustmentsService(
+    id,
+    permittedBranches!,
+  );
 
   return reply.status(200).send(data);
 }
@@ -44,6 +66,7 @@ export async function createInventoryAdjustmentsController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const userId = request.user?.id;
   const { branch_id, product_code, auxiliary_code, quantity } =
     createInventoryAdjustmentSchema.parse(request.body);
@@ -56,6 +79,7 @@ export async function createInventoryAdjustmentsController(
       quantity,
     },
     userId!,
+    permittedBranches!,
   );
 
   return reply.status(201).send(data);
@@ -65,6 +89,7 @@ export async function updateInventoryAdjustmentController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const userId = request.user?.id;
 
   const { branch_id, product_code, auxiliary_code, quantity, status } =
@@ -81,6 +106,7 @@ export async function updateInventoryAdjustmentController(
     },
     id,
     userId!,
+    permittedBranches!,
   );
 
   return reply.status(200).send(data);

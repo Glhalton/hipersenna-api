@@ -2,12 +2,14 @@ import { FastifyInstance } from "fastify";
 import { getInventoryAdjustmentsService } from "../services/inventoryAdjustments.services.js";
 import {
   createInventoryAdjustmentsController,
+  getDetailedInventoryAdjustmentsController,
   getInventoryAdjustmentsController,
   updateInventoryAdjustmentController,
 } from "../controllers/inventoryAdjustments.controllers.js";
 import { authenticate } from "../middlewares/authenticate.middleware.js";
 import {
   createInventoryAdjustmentSchema,
+  getDetailedInventoryAdjustmentsResponseSchema,
   getInventoryAdjustmentsResponse,
   getInventoryAdjustmentsSchema,
   inventoryAdjustmentIdSchema,
@@ -41,6 +43,32 @@ export default function inventoryAdjustmentsRoutes(app: FastifyInstance) {
       },
     },
     getInventoryAdjustmentsController,
+  );
+  app.get(
+    "/:id",
+    {
+      preHandler: [authenticate],
+      schema: {
+        summary:
+          "Rota de consulta detalhada de solicitações de ajustes de estoque.",
+        description:
+          "Realiza a consulta detalhada de solicitações de ajustes de estoque",
+        tags: ["Inventory-Adjustments"],
+        security: [{ BearerAuth: [] }],
+        params: inventoryAdjustmentIdSchema,
+        response: {
+          200: getDetailedInventoryAdjustmentsResponseSchema.describe("Ok"),
+          400: validationErrorSchema.describe("Bad Request"),
+          401: z.object({ message: z.string() }).describe("Unauthorized"),
+          403: z.object({ message: z.string() }).describe("Forbidden"),
+          404: z.object({ message: z.string() }).describe("Not Found"),
+          500: z
+            .object({ messae: z.string() })
+            .describe("Internal Server Error"),
+        },
+      },
+    },
+    getDetailedInventoryAdjustmentsController,
   );
   app.post(
     "/",
