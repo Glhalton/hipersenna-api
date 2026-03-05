@@ -7,6 +7,7 @@ import {
 } from "../schemas/inventoryAdjustments.schemas.js";
 import {
   createInventoryAdjustmentService,
+  getDetailedInventoryAdjustmentsService,
   getInventoryAdjustmentsService,
   updateInventoryAdjustmentService,
 } from "../services/inventoryAdjustments.services.js";
@@ -39,6 +40,22 @@ export async function getInventoryAdjustmentsController(
       initial_date,
       final_date,
     },
+    permittedBranches!,
+  );
+
+  return reply.status(200).send(data);
+}
+
+export async function getDetailedInventoryAdjustmentsController(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
+  const permittedBranches = request.user?.permittedBranches;
+
+  const { id } = inventoryAdjustmentIdSchema.parse(request.params);
+
+  const data = await getDetailedInventoryAdjustmentsService(
+    id,
     permittedBranches!,
   );
 
