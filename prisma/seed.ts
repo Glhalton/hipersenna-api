@@ -384,6 +384,14 @@ async function main() {
       { permission_id: 56, role_id: 1 },
       { permission_id: 57, role_id: 1 },
       { permission_id: 58, role_id: 1 },
+      { permission_id: 59, role_id: 1 },
+      { permission_id: 60, role_id: 1 },
+      { permission_id: 61, role_id: 1 },
+      { permission_id: 62, role_id: 1 },
+      { permission_id: 63, role_id: 1 },
+      { permission_id: 64, role_id: 1 },
+      { permission_id: 65, role_id: 1 },
+      { permission_id: 66, role_id: 1 },
     ],
   });
 
@@ -398,6 +406,8 @@ async function main() {
       { description: "Vencido" },
       { description: "Produto vendável dentro do prazo" },
       { description: "Inserção tardia" },
+      { description: "Acima de 45 dias" },
+      { description: "Acompanhar produto" },
     ],
   });
 
