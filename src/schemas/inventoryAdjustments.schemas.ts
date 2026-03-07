@@ -9,6 +9,7 @@ export const getInventoryAdjustmentsSchema = z.object({
   limit: z.coerce.number().optional(),
   initial_date: z.coerce.date().optional(),
   final_date: z.coerce.date().optional(),
+  status: z.coerce.string().optional(),
 });
 
 export const getInventoryAdjustmentsResponse = z.object({

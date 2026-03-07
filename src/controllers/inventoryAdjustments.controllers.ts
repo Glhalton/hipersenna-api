@@ -25,6 +25,7 @@ export async function getInventoryAdjustmentsController(
     limit,
     initial_date,
     final_date,
+    status,
   } = getInventoryAdjustmentsSchema.parse(request.query);
 
   const permittedBranches = request.user?.permittedBranches;
@@ -39,6 +40,7 @@ export async function getInventoryAdjustmentsController(
       limit,
       initial_date,
       final_date,
+      status,
     },
     permittedBranches!,
   );

@@ -10,6 +10,7 @@ export const getValiditySchema = z.object({
   finalCreationDate: z.coerce.date().optional(),
   initialValidityDate: z.coerce.date().optional(),
   finalValidityDate: z.coerce.date().optional(),
+  productCode: z.coerce.number(),
   branch_id: z.coerce.number().optional(),
   expiresDays: z.coerce.number().optional(),
 });

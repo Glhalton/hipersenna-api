@@ -28,6 +28,7 @@ export const getInventoryAdjustmentsService = async (
     orderBy,
     cursor,
     limit,
+    status,
     initial_date,
     final_date,
   }: GetInventoryAdjustments,
@@ -55,6 +56,7 @@ export const getInventoryAdjustmentsService = async (
         lte: endUTC,
       };
     }
+    if (status) whereClause.status = status;
 
     const inventoryAdjustments = await prisma.hsinventory_adjustments.findMany({
       where: whereClause,
