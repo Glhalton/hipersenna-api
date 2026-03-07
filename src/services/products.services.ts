@@ -79,6 +79,7 @@ export const getProductService = async (
           es6.qtestger    AS qtestgerdp6,
           es6.qtreserv    AS qtreservdp6,
           es6.qtbloqueada AS qtbloqueadadp6,
+          es6.qtpedida    AS qtpedidadp6,
 
           ofe.vloferta
 
@@ -113,7 +114,7 @@ export const getProductService = async (
 
     const result = await connection.execute(query, binds, {
       outFormat: oracledb.OUT_FORMAT_OBJECT,
-      maxRows: 250,
+      maxRows: 100,
     });
 
     type ProductRow = {
@@ -140,6 +141,7 @@ export const getProductService = async (
       DTULTENT: string;
       DTULTFAT: string;
       QTPEDIDA: number;
+      QTPEDIDADP6: number;
       QTVENDMES1: number;
       QTVENDMES2: number;
       QTVENDMES3: number;
@@ -177,6 +179,7 @@ export const getProductService = async (
       ),
       vlOferta: row.VLOFERTA,
       qtPedida: row.QTPEDIDA,
+      qtPedidaDp6: row.QTPEDIDADP6,
       giroMedMes: (row.QTVENDMES1 + row.QTVENDMES2 + row.QTVENDMES3) / 3,
       dtUltimaEntrada: new Date(row.DTULTENT).toISOString(),
       dtUltimoFaturamento: new Date(row.DTULTFAT).toISOString(),

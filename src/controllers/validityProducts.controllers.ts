@@ -6,27 +6,41 @@ export async function getValidityProductsController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  const permittedBranches = request.user?.permittedBranches;
   const {
     branchId,
+    expiresDays,
+    finalCreationDate,
+    finalValidityDate,
     id,
     initialCreationDate,
     initialValidityDate,
-    finalCreationDate,
-    finalValidityDate,
-    expiresDays,
-    orderBy,
+    productCode,
+    auxiliaryCode,
+    createdByEmployee,
+    department,
+    cursor,
+    limit,
   } = getValidityProductsSchema.parse(request.query);
 
-  const data = await getValidityProductsService({
-    branchId,
-    expiresDays,
-    finalCreationDate,
-    finalValidityDate,
-    id,
-    initialCreationDate,
-    initialValidityDate,
-    orderBy,
-  });
+  const data = await getValidityProductsService(
+    {
+      branchId,
+      expiresDays,
+      finalCreationDate,
+      finalValidityDate,
+      id,
+      initialCreationDate,
+      initialValidityDate,
+      productCode,
+      auxiliaryCode,
+      createdByEmployee,
+      department,
+      cursor,
+      limit,
+    },
+    permittedBranches!,
+  );
 
   return reply.status(200).send(data);
 }

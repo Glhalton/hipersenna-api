@@ -1,3 +1,4 @@
+import { Unauthorized } from "../errors/unauthorized.error.js";
 import { getOracleConnection } from "../lib/oracleClient.js";
 import { prisma } from "../lib/prisma.js";
 import { GetValidityProducts } from "../schemas/validityProducts.schemas.js";
@@ -11,6 +12,7 @@ type OracleProductDetail = {
   CODFORNEC: string;
   FORNECEDOR: string;
   CODCOMPRADOR: string;
+  DEPARTDESCRICAO: string;
   NOME: string;
   MEDIA1: number;
   MEDIA2: number;
@@ -31,30 +33,53 @@ type HsvalidityProduct = {
   auxiliary_code: string;
 };
 
-export const getValidityProductsService = async ({
-  branchId,
-  expiresDays,
-  finalCreationDate,
-  finalValidityDate,
-  id,
-  initialCreationDate,
-  initialValidityDate,
-  orderBy,
-}: GetValidityProducts) => {
-  const whereClause = buildGetValidityProductsWhereClause({
-    id,
+export const getValidityProductsService = async (
+  {
     branchId,
-    initialCreationDate,
-    finalCreationDate,
-    initialValidityDate,
-    finalValidityDate,
     expiresDays,
-  });
+    finalCreationDate,
+    finalValidityDate,
+    id,
+    initialCreationDate,
+    initialValidityDate,
+    productCode,
+    auxiliaryCode,
+    createdByEmployee,
+    department,
+    cursor,
+    limit = 20,
+  }: GetValidityProducts,
+  permittedBranches: number[],
+) => {
+  const whereClause = buildGetValidityProductsWhereClause(
+    {
+      branchId,
+      expiresDays,
+      finalCreationDate,
+      finalValidityDate,
+      id,
+      initialCreationDate,
+      initialValidityDate,
+      productCode,
+      auxiliaryCode,
+      createdByEmployee,
+      department,
+      cursor,
+      limit,
+    },
+    permittedBranches,
+  );
 
   const products = await prisma.hsvalidity_products.findMany({
     where: whereClause,
+    take: limit,
+    skip: cursor ? 1 : 0,
+    cursor: cursor ? { id: cursor } : undefined,
+    orderBy: {
+      id: "desc",
+    },
     include: {
-      hsvalidities: true,
+      hsvalidities: { include: { hsemployees: { select: { name: true } } } },
     },
   });
 
@@ -63,31 +88,31 @@ export const getValidityProductsService = async ({
   }
 
   const allCodes = products.flatMap((p) => p.product_code);
+  const oracleProducts = await getOracleProductDetails(allCodes, department);
+  const response = mapValidityResponse(products, oracleProducts, department);
+  const lastItem = response[response.length - 1];
 
-  const oracleProducts = await getOracleProductDetails(allCodes);
-
-  const response = mapValidityResponse(products, oracleProducts);
-
-  return response;
+  return {
+    data: response,
+    nextCursor: response.length === limit ? lastItem.id : null,
+  };
 };
 
-const buildGetValidityProductsWhereClause = ({
-  id,
-  branchId,
-  initialCreationDate,
-  finalCreationDate,
-  initialValidityDate,
-  finalValidityDate,
-  expiresDays,
-}: {
-  id?: number;
-  branchId?: number;
-  initialCreationDate?: Date;
-  finalCreationDate?: Date;
-  initialValidityDate?: Date;
-  finalValidityDate?: Date;
-  expiresDays?: number;
-}) => {
+const buildGetValidityProductsWhereClause = (
+  {
+    branchId,
+    expiresDays,
+    finalCreationDate,
+    finalValidityDate,
+    id,
+    initialCreationDate,
+    initialValidityDate,
+    productCode,
+    auxiliaryCode,
+    createdByEmployee,
+  }: GetValidityProducts,
+  permittedBranches: number[],
+) => {
   const whereClause: any = {};
 
   if (initialValidityDate && finalValidityDate) {
@@ -111,17 +136,32 @@ const buildGetValidityProductsWhereClause = ({
       lte: end,
     };
   }
+  if (productCode) whereClause.product_code = productCode;
+  if (auxiliaryCode) whereClause.auxiliary_code = auxiliaryCode;
 
-  if (id) {
-    whereClause.id = id;
-  }
+  if (id) whereClause.id = id;
 
-  if (branchId || initialCreationDate || finalCreationDate) {
+  if (
+    branchId ||
+    initialCreationDate ||
+    finalCreationDate ||
+    createdByEmployee
+  ) {
     whereClause.hsvalidities = {};
 
     if (branchId) {
+      if (!permittedBranches.includes(branchId)) {
+        throw new Unauthorized(
+          "O usuário não possui acesso a filial informada",
+        );
+      }
       whereClause.hsvalidities.branch_id = branchId;
+    } else {
+      whereClause.hsvalidities.branch_id = { in: permittedBranches };
     }
+
+    if (createdByEmployee)
+      whereClause.hsvalidities.employee_id = createdByEmployee;
 
     if (initialCreationDate && finalCreationDate) {
       whereClause.hsvalidities.created_at = {};
@@ -142,36 +182,21 @@ const buildGetValidityProductsWhereClause = ({
 
 export const getOracleProductDetails = async (
   codes: number[],
-): Promise<Record<number, OracleProductDetail>> => {
+  department?: number,
+) => {
   if (codes.length === 0) return {};
-
   const connection = await getOracleConnection();
-
   try {
-    const BATCH_SIZE = 1000;
+    const codeBinds = codes.map((_, i) => `:code${i}`).join(",");
     const resultMap: Record<string, OracleProductDetail> = {};
 
-    for (let i = 0; i < codes.length; i += BATCH_SIZE) {
-      const batch = codes.slice(i, i + BATCH_SIZE);
-
-      const binds = batch.reduce(
-        (acc, code, index) => {
-          acc[`code${index}`] = code;
-          return acc;
-        },
-        {} as Record<string, number>,
-      );
-
-      const inClause = Object.keys(binds)
-        .map((key) => `:${key}`)
-        .join(",");
-
-      const query = `
+    let query = `
         SELECT
           p.codprod,
           p.descricao,
           p.codepto,
           p.codfornec,
+          dp.descricao as departDescricao,
           f.fornecedor,
           pf.codcomprador,
           emp.nome,
@@ -193,18 +218,29 @@ export const getOracleProductDetails = async (
         LEFT JOIN pcfornec f ON f.codfornec = p.codfornec
         LEFT JOIN pcprodfilial pf ON pf.codprod = p.codprod
         LEFT JOIN pcempr emp ON emp.matricula = pf.codcomprador
-        WHERE p.codprod IN (${inClause})
+        LEFT JOIN pcdepto dp ON p.codepto = dp.codepto 
+        WHERE p.codprod IN (${codeBinds})
       `;
 
-      const result = await connection.execute(query, binds, {
-        outFormat: oracledb.OUT_FORMAT_OBJECT,
-      });
-
-      ((result.rows as OracleProductDetail[]) || []).forEach((row) => {
-        resultMap[row.CODPROD] = row;
-      });
+    if (department) {
+      query += ` AND p.codepto = :department`;
     }
 
+    const binds = {
+      ...Object.fromEntries(codes.map((c, i) => [`code${i}`, c])),
+    };
+
+    if (department) {
+      binds.department = department;
+    }
+
+    const result = await connection.execute(query, binds, {
+      outFormat: oracledb.OUT_FORMAT_OBJECT,
+    });
+
+    ((result.rows as OracleProductDetail[]) || []).forEach((row) => {
+      resultMap[row.CODPROD] = row;
+    });
     return resultMap;
   } finally {
     await connection.close();
@@ -214,22 +250,26 @@ export const getOracleProductDetails = async (
 const mapValidityResponse = (
   data: any[],
   oracleMap: Record<number, OracleProductDetail>,
+  department?: number,
 ) => {
   if (!data.length) return [];
 
-  return data.map((item) => {
+  const filteredData = department
+    ? data.filter((item) => oracleMap[item.product_code])
+    : data;
+
+  return filteredData.map((item) => {
     const oracle = oracleMap[item.product_code];
 
     return {
-      // ===== Dados da validade =====
       validity_id: item.hsvalidities.id,
       branch_id: item.hsvalidities.branch_id,
-      employee_id: item.hsvalidities.employee_id,
+      created_by_employee_id: item.hsvalidities.employee_id,
+      created_by_employee_name: item.hsvalidities.hsemployees.name,
       status: item.hsvalidities.status,
       created_at: item.hsvalidities.created_at,
       modified_at: item.hsvalidities.modified_at,
 
-      // ===== Dados do produto =====
       id: item.id,
       product_code: item.product_code,
       quantity: item.quantity,
@@ -237,7 +277,7 @@ const mapValidityResponse = (
       treat_id: item.treat_id,
       auxiliary_code: item.auxiliary_code,
 
-      // ===== Oracle =====
+      department_description: oracle?.DEPARTDESCRICAO ?? "",
       description: oracle?.DESCRICAO ?? null,
       department_id: oracle?.CODEPTO ?? 0,
       supplier_id: oracle?.CODFORNEC ?? 0,

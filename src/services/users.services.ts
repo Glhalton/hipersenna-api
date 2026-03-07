@@ -251,6 +251,7 @@ export const getMeService = async (id: number) => {
         },
       },
       hsemployeeBranches: {
+        orderBy: { branch_id: "asc" },
         select: {
           branch_id: true,
           branch: {

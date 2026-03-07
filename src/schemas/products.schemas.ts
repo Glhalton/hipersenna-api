@@ -33,6 +33,7 @@ export const productResponseSchema = z.object({
   dtUltimaEntrada: z.string().nullable(),
   dtUltimoFaturamento: z.string().nullable(),
   qtPedida: z.number().nullable(),
+  qtPedidaDp6: z.number().nullable(),
   giroMedMes: z.number(),
 });
 
